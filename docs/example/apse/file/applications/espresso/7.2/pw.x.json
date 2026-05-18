@@ -1,0 +1,94 @@
+{
+    "&CONTROL": {
+        "calculation": "scf",
+        "title": "",
+        "verbosity": "low",
+        "restart_mode": "from_scratch",
+        "wf_collect": true,
+        "tstress": true,
+        "tprnfor": true,
+        "outdir": "{{ JOB_WORK_DIR }}/outdir",
+        "wfcdir": "{{ JOB_WORK_DIR }}/outdir",
+        "prefix": "__prefix__",
+        "pseudo_dir": "{{ JOB_WORK_DIR }}/pseudo"
+    },
+    "&SYSTEM": {
+        "ibrav": 0,
+        "nat": 2,
+        "ntyp": 2,
+        "ecutwfc": 40,
+        "ecutrho": 200,
+        "occupations": "smearing",
+        "degauss": 0.005,
+        "starting_magnetization": [
+            0.01,
+            0.02
+        ],
+        "Hubbard_occ": [
+            [
+                1,
+                1,
+                0
+            ],
+            [
+                1,
+                2,
+                0.02
+            ]
+        ]
+    },
+    "&ELECTRONS": {
+        "diagonalization": "david",
+        "diago_david_ndim": 4,
+        "diago_full_acc": true,
+        "mixing_beta": 0.3,
+        "startingwfc": "atomic+random"
+    },
+    "&IONS": null,
+    "&CELL": null,
+    "ATOMIC_SPECIES": {
+        "values": [
+            {
+                "X": "Cs",
+                "Mass_X": 132.90543,
+                "PseudoPot_X": "Cs.upf"
+            },
+            {
+                "X": "Cl",
+                "Mass_X": 35.4527,
+                "PseudoPot_X": "Cl.upf"
+            }
+        ]
+    },
+    "CELL_PARAMETERS": {
+        "card_option": "angstrom",
+        "values": {
+            "v1": [
+                4.324582724,
+                0,
+                2.496799
+            ],
+            "v2": [
+                1.441527575,
+                4.077255694,
+                2.496799
+            ],
+            "v3": [
+                0,
+                0,
+                4.993598
+            ]
+        }
+    },
+    "K_POINTS": {
+        "card_option": "automatic",
+        "values": {
+            "nk1": 2,
+            "nk2": 2,
+            "nk3": 2,
+            "sk1": 0,
+            "sk2": 0,
+            "sk3": 0
+        }
+    }
+}

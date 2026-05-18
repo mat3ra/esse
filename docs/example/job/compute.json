@@ -1,0 +1,26 @@
+{
+    "arguments": {
+        "nband": 1,
+        "npools": 1,
+        "ntg": 1
+    },
+    "cluster": {
+        "fqdn": "master-1-staging.exabyte.io",
+        "jid": "1234.master-1-staging.exabyte.io"
+    },
+    "email": "demo@exabyte.io",
+    "errors": [
+        {
+            "domain": "rupy",
+            "message": "File Not Found: /home/demo/data/project1/job-123/job-config.json",
+            "reason": "FileNotFound"
+        }
+    ],
+    "excludeFilesPattern": "^.*.txt$",
+    "maxCPU": 36,
+    "nodes": 1,
+    "notify": "abe",
+    "ppn": 1,
+    "queue": "OF",
+    "timeLimit": "00:05:00"
+}

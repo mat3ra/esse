@@ -1,0 +1,46 @@
+{
+    "bonds": [
+        {
+            "0": {
+                "atomPair": [
+                    {
+                        "id": 1
+                    },
+                    {
+                        "id": 2
+                    }
+                ],
+                "bondType": "single"
+            },
+            "1": {
+                "atomPair": [
+                    {
+                        "id": 3
+                    },
+                    {
+                        "id": 4
+                    }
+                ],
+                "bondType": "double"
+            }
+        }
+    ],
+    "coordinates": [
+        {
+            "id": 1,
+            "value": [
+                0,
+                0,
+                0
+            ]
+        }
+    ],
+    "elements": [
+        {
+            "id": 1,
+            "value": "Si"
+        }
+    ],
+    "name": "basis",
+    "units": "crystal"
+}

@@ -1,0 +1,13 @@
+{
+    "$id": "models-category/enum-options",
+    "physicsBased": {
+        "enum": [
+            "pb"
+        ]
+    },
+    "statistical": {
+        "enum": [
+            "st"
+        ]
+    }
+}

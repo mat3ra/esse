@@ -1,0 +1,20 @@
+{
+    "$id": "methods-category/mathematical/intgr/analytic/enum-options",
+    "volume": {
+        "enum": [
+            "volume"
+        ]
+    },
+    "volumeSubtypes": {
+        "enum": [
+            "sphere",
+            "cube",
+            "rect-prism",
+            "tri-prism",
+            "cylinder",
+            "cone",
+            "tetrahedron",
+            "sq-pyr"
+        ]
+    }
+}

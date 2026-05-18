@@ -1,0 +1,10 @@
+{
+    "name": "Conjugate gradient method",
+    "path": "/opt/diff/ordern/cg",
+    "categories": {
+        "tier1": "opt",
+        "tier2": "diff",
+        "tier3": "ordern",
+        "type": "cg"
+    }
+}

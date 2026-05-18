@@ -1,0 +1,13 @@
+{
+    "$id": "methods-category/mathematical/opt/root/enum-options",
+    "iterative": {
+        "enum": [
+            "iterative"
+        ]
+    },
+    "bracketing": {
+        "enum": [
+            "bracket"
+        ]
+    }
+}

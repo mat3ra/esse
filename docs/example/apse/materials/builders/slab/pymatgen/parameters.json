@@ -1,0 +1,6 @@
+{
+    "min_vacuum_size": 0,
+    "in_unit_planes": true,
+    "reorient_lattice": true,
+    "symmetrize": false
+}

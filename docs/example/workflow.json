@@ -1,0 +1,131 @@
+{
+    "_id": "FPjAaKfuYAL7tiHbm",
+    "createdAt": "2018-11-19 06:41:46.877Z",
+    "creator": {
+        "_id": "HtxACY2wX4b2hS8Rv",
+        "cls": "User",
+        "slug": "exadmin"
+    },
+    "exabyteId": "qKtTzu9utCo6ac4n7",
+    "hash": "f4fd707d2e47c15f8d786cf159040954",
+    "isDefault": true,
+    "name": "workflow",
+    "owner": {
+        "_id": "HtxACY2wX4b2hS8Rv",
+        "cls": "Account",
+        "slug": "exabyte"
+    },
+    "properties": [
+        "band_structure"
+    ],
+    "schemaVersion": "0.2.0",
+    "slug": "workflow",
+    "subworkflows": [
+        {
+            "_id": "LCthJ6E2QabYCZqf4",
+            "application": {
+                "name": "espresso",
+                "shortName": "qe",
+                "summary": "Quantum Espresso",
+                "version": "6.3",
+                "hasAdvancedComputeOptions": true,
+                "isUsingMaterial": true
+            },
+            "model": {
+                "method": {
+                    "data": {
+                        "pseudo": []
+                    },
+                    "subtype": "us",
+                    "type": "pseudopotential"
+                },
+                "subtype": "gga",
+                "type": "dft"
+            },
+            "name": "Band Structure",
+            "properties": [
+                "band_structure"
+            ],
+            "units": [
+                {
+                    "application": {
+                        "name": "espresso",
+                        "shortName": "qe",
+                        "summary": "Quantum Espresso",
+                        "version": "6.3",
+                        "hasAdvancedComputeOptions": true,
+                        "isUsingMaterial": true
+                    },
+                    "compute": null,
+                    "executable": {
+                        "advancedComputeOptions": true,
+                        "applicationId": [
+                            "eaJepm4AWfqpaCw59"
+                        ],
+                        "isDefault": true,
+                        "monitors": [
+                            {
+                                "name": "standard_output"
+                            }
+                        ],
+                        "name": "pw.x",
+                        "postProcessors": [],
+                        "preProcessors": [],
+                        "results": [
+                            {
+                                "name": "atomic_forces"
+                            }
+                        ]
+                    },
+                    "flavor": {
+                        "executableId": "4987JFJ3kKbwvFSG7",
+                        "input": [
+                            {
+                                "templateId": "dJ7HYz5pQ4AuN5qc9"
+                            }
+                        ],
+                        "name": "pw_scf"
+                    },
+                    "flowchartId": "execution",
+                    "head": true,
+                    "input": [
+                        {
+                            "content": "K_POINTS automatic\n2 2 2 0 0 0",
+                            "name": "pw_scf.in"
+                        }
+                    ],
+                    "monitors": [
+                        {
+                            "name": "scf_accuracy"
+                        },
+                        {
+                            "name": "standard_output"
+                        }
+                    ],
+                    "name": "execution",
+                    "next": "pw-bands",
+                    "postProcessors": [],
+                    "preProcessors": [],
+                    "results": [
+                        {
+                            "name": "harris_foulkes_estimate"
+                        }
+                    ],
+                    "status": "idle",
+                    "type": "execution"
+                }
+            ]
+        }
+    ],
+    "tags": [
+        "workflow"
+    ],
+    "units": [
+        {
+            "_id": "LCthJ6E2QabYCZqf4",
+            "flowchartId": "05c362dc27ff1bb98d16fd60",
+            "type": "subworkflow",
+            "name": "subworkflow unit"
+        }
+    ]
+}

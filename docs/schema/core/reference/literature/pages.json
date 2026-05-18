@@ -1,0 +1,17 @@
+{
+    "$id": "core/reference/literature/pages",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "pages schema",
+    "type": "object",
+    "required": [
+        "start"
+    ],
+    "properties": {
+        "start": {
+            "type": "string"
+        },
+        "end": {
+            "type": "string"
+        }
+    }
+}

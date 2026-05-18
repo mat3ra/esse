@@ -1,0 +1,18 @@
+{
+    "$id": "methods-category/mathematical/discr/mesh/enum-options",
+    "hybridMesh": {
+        "enum": [
+            "hybrid"
+        ]
+    },
+    "unstructuredMesh": {
+        "enum": [
+            "nstruct"
+        ]
+    },
+    "structuredMesh": {
+        "enum": [
+            "struct"
+        ]
+    }
+}

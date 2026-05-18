@@ -1,0 +1,14 @@
+{
+    "$id": "model/mixins/dft/hybrid-functional",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hybrid functional mixin",
+    "type": "object",
+    "properties": {
+        "functional": {
+            "enum": [
+                "hse06",
+                "b3lyp"
+            ]
+        }
+    }
+}

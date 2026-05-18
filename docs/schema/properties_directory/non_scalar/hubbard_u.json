@@ -1,0 +1,58 @@
+{
+    "$id": "properties-directory/non-scalar/hubbard-u",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hubbard U parameters property schema",
+    "description": "Hubbard U values in eV corresponding to atomic species, orbital and site number.",
+    "type": "object",
+    "required": [
+        "name",
+        "values",
+        "units"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "hubbard_u"
+            ]
+        },
+        "units": {
+            "enum": [
+                "eV"
+            ]
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "atomicSpecies",
+                    "orbitalName",
+                    "value"
+                ],
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "Atomic data per orbital numeric",
+                "description": "Atomic properties per orbital pair with numeric value e.g., Hubbard V parameters.",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Site number or index in the lattice"
+                    },
+                    "atomicSpecies": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z]{1,2}[\\d+]?$",
+                        "description": "Example: Co1, Mn"
+                    },
+                    "orbitalName": {
+                        "type": "string",
+                        "pattern": "^[1-7][sSpPdDfF]$"
+                    },
+                    "value": {
+                        "type": "number",
+                        "description": "Value related to a specific property, e.g., Hubbard U, V etc."
+                    }
+                }
+            }
+        }
+    }
+}

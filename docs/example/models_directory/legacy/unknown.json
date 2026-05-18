@@ -1,0 +1,11 @@
+{
+    "type": "unknown",
+    "subtype": "unknown",
+    "method": {
+        "data": {
+            "pseudo": []
+        },
+        "subtype": "us",
+        "type": "pseudopotential"
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "$id": "context-providers-directory/ion-dynamics-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Ion Dynamics Context Provider Schema",
+    "description": "Important parameters for molecular dynamics calculation",
+    "type": "object",
+    "properties": {
+        "numberOfSteps": {
+            "type": "integer",
+            "title": "numberOfSteps"
+        },
+        "timeStep": {
+            "type": "number",
+            "title": "timeStep (Hartree a.u.)"
+        },
+        "electronMass": {
+            "type": "number",
+            "title": "Effective electron mass"
+        },
+        "temperature": {
+            "type": "number",
+            "title": "Ionic temperature (K)"
+        }
+    }
+}

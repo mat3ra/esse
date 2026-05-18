@@ -1,0 +1,22 @@
+{
+    "name": "magnetic_moments",
+    "units": "uB",
+    "values": [
+        {
+            "id": 1,
+            "value": [
+                0,
+                0,
+                1.235
+            ]
+        },
+        {
+            "id": 2,
+            "value": [
+                0,
+                0,
+                -1.235
+            ]
+        }
+    ]
+}

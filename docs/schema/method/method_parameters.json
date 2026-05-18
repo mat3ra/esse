@@ -1,0 +1,47 @@
+{
+    "$id": "method/method-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "MethodParameters",
+    "oneOf": [
+        {
+            "type": "object",
+            "properties": {
+                "basisSlug": {
+                    "enum": [
+                        "cc-pvdz",
+                        "cc-pvtz",
+                        "cc-pvqz"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "object",
+            "properties": {
+                "basisSlug": {
+                    "enum": [
+                        "3-21G",
+                        "6-31G",
+                        "6-311G"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "object",
+            "properties": {
+                "basisSlug": {
+                    "enum": [
+                        "sto-3g",
+                        "sto-4g",
+                        "sto-6g",
+                        "def2-svp",
+                        "def2-tzvp",
+                        "def2-qzvp",
+                        "cbs-qb3"
+                    ]
+                }
+            }
+        }
+    ]
+}

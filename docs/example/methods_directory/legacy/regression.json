@@ -1,0 +1,61 @@
+{
+    "data": {
+        "dataSet": {
+            "exabyteIds": [
+                "LCthJ6E2QabYCZqf4",
+                "LCthJ6E2QabYCZqf5",
+                "LCthJ6E2QabYCZqf6",
+                "LCthJ6E2QabYCZqf7",
+                "LCthJ6E2QabYCZqf8",
+                "LCthJ6E2QabYCZqf9",
+                "LCthJ6E2QabYCZq10",
+                "LCthJ6E2QabYCZq11"
+            ],
+            "extra": {}
+        },
+        "perProperty": [
+            {
+                "intercept": 0.363,
+                "name": "band_gaps:direct",
+                "perFeature": [
+                    {
+                        "coefficient": 0.015,
+                        "importance": 0.134,
+                        "name": "atomic_radius:Ge"
+                    },
+                    {
+                        "coefficient": 0.016,
+                        "importance": 0.135,
+                        "name": "atomic_radius:Si"
+                    }
+                ]
+            },
+            {
+                "intercept": 0.364,
+                "name": "band_gaps:indirect",
+                "perFeature": [
+                    {
+                        "coefficient": 0.016,
+                        "importance": 0.135,
+                        "name": "atomic_radius:Ge"
+                    },
+                    {
+                        "coefficient": 0.017,
+                        "importance": 0.136,
+                        "name": "atomic_radius:Si"
+                    }
+                ]
+            }
+        ]
+    },
+    "precision": {
+        "perProperty": [
+            {
+                "score": 0.8,
+                "trainingError": 0.002
+            }
+        ]
+    },
+    "subtype": "least_squares",
+    "type": "linear"
+}

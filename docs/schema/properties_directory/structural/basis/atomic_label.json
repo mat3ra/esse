@@ -1,0 +1,36 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-label",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic label schema",
+    "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
+    "type": "object",
+    "required": [
+        "id",
+        "value"
+    ],
+    "properties": {
+        "value": {
+            "anyOf": [
+                {
+                    "type": [
+                        "integer",
+                        "string",
+                        "number"
+                    ]
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "integer positive single digit",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 9
+                }
+            ],
+            "description": "value of this entry"
+        },
+        "id": {
+            "description": "integer id of this entry",
+            "type": "integer"
+        }
+    }
+}

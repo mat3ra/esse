@@ -1,0 +1,25 @@
+{
+    "$id": "workflow/unit/io/api",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "data IO rest API input schema",
+    "type": "object",
+    "required": [
+        "endpoint",
+        "endpoint_options"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "endpoint": {
+            "description": "rest API endpoint",
+            "type": "string"
+        },
+        "endpoint_options": {
+            "description": "rest API endpoint options",
+            "type": "object"
+        },
+        "name": {
+            "description": "the name of the variable in local scope to save the data under",
+            "type": "string"
+        }
+    }
+}

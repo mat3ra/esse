@@ -1,0 +1,67 @@
+{
+    "application": {
+        "name": "espresso",
+        "shortName": "qe",
+        "summary": "Quantum Espresso",
+        "version": "6.3",
+        "hasAdvancedComputeOptions": true,
+        "isUsingMaterial": true
+    },
+    "compute": null,
+    "executable": {
+        "advancedComputeOptions": true,
+        "applicationId": [
+            "eaJepm4AWfqpaCw59"
+        ],
+        "isDefault": true,
+        "monitors": [
+            {
+                "name": "standard_output"
+            }
+        ],
+        "name": "pw.x",
+        "postProcessors": [],
+        "preProcessors": [],
+        "results": [
+            {
+                "name": "atomic_forces"
+            }
+        ]
+    },
+    "flavor": {
+        "executableId": "4987JFJ3kKbwvFSG7",
+        "input": [
+            {
+                "templateId": "dJ7HYz5pQ4AuN5qc9"
+            }
+        ],
+        "name": "pw_scf"
+    },
+    "flowchartId": "execution",
+    "head": true,
+    "input": [
+        {
+            "content": "K_POINTS automatic\n2 2 2 0 0 0",
+            "name": "pw_scf.in"
+        }
+    ],
+    "monitors": [
+        {
+            "name": "scf_accuracy"
+        },
+        {
+            "name": "standard_output"
+        }
+    ],
+    "name": "execution",
+    "next": "pw-bands",
+    "postProcessors": [],
+    "preProcessors": [],
+    "results": [
+        {
+            "name": "harris_foulkes_estimate"
+        }
+    ],
+    "status": "idle",
+    "type": "execution"
+}

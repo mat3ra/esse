@@ -1,0 +1,26 @@
+{
+    "$id": "system/owner",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Entity owner reference schema",
+    "type": "object",
+    "required": [
+        "_id"
+    ],
+    "properties": {
+        "cls": {
+            "description": "Entity owner class",
+            "type": "string",
+            "enum": [
+                "Account"
+            ]
+        },
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        }
+    }
+}

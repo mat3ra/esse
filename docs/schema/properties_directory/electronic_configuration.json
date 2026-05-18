@@ -1,0 +1,16 @@
+{
+    "$id": "properties-directory/electronic-configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "electronic configuration schema",
+    "type": "object",
+    "properties": {
+        "charge": {
+            "description": "total charge of the molecular system",
+            "type": "integer"
+        },
+        "multiplicity": {
+            "description": "calculated as 2S+1, with S is the total spin angular momentum",
+            "type": "integer"
+        }
+    }
+}

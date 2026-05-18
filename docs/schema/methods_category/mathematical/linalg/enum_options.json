@@ -1,0 +1,23 @@
+{
+    "$id": "methods-category/mathematical/linalg/enum-options",
+    "decomposition": {
+        "enum": [
+            "dcomp"
+        ]
+    },
+    "diagonalization": {
+        "enum": [
+            "diag"
+        ]
+    },
+    "linearTransformation": {
+        "enum": [
+            "lintra"
+        ]
+    },
+    "matrixFunction": {
+        "enum": [
+            "matf"
+        ]
+    }
+}

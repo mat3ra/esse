@@ -1,0 +1,26 @@
+{
+    "$id": "properties-directory/structural/elemental-ratio",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "elemental-ratio",
+    "description": "ration of this element in the compound",
+    "type": "object",
+    "required": [
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "elemental_ratio"
+            ]
+        },
+        "value": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+        },
+        "element": {
+            "type": "string",
+            "description": "the element this ratio is for"
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "PAWDoubleCounting2": {
+        "name": "PAW_double-counting_correction_2",
+        "value": 12658.30538857
+    },
+    "PAWDoubleCounting3": {
+        "name": "PAW_double-counting_correction_3",
+        "value": -12074.85364512
+    },
+    "alphaZ": {
+        "name": "alphaZ",
+        "value": 1056.91493097
+    },
+    "atomicEnergy": {
+        "name": "atomic_energy",
+        "value": 15740.5725788
+    },
+    "eigenvalues": {
+        "name": "eigenvalues",
+        "value": -577.80127102
+    },
+    "ewald": {
+        "name": "ewald",
+        "value": 128376.45871064
+    },
+    "exchange": {
+        "name": "exchange",
+        "value": 0
+    },
+    "exchangeCorrelation": {
+        "name": "exchange_correlation",
+        "value": 41.63693035
+    },
+    "hartree": {
+        "name": "hartree",
+        "value": -145344.66902862
+    },
+    "name": "total_energy_contributions",
+    "temperatureEntropy": {
+        "name": "temperature_entropy",
+        "value": -0.00032545
+    },
+    "units": "eV"
+}

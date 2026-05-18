@@ -1,0 +1,28 @@
+{
+    "$id": "methods-directory/physical/ao/enum-options",
+    "popleAoBasis": {
+        "enum": [
+            "3-21G",
+            "6-31G",
+            "6-311G"
+        ]
+    },
+    "dunningAoBasis": {
+        "enum": [
+            "cc-pvdz",
+            "cc-pvtz",
+            "cc-pvqz"
+        ]
+    },
+    "otherAoBasis": {
+        "enum": [
+            "sto-3g",
+            "sto-4g",
+            "sto-6g",
+            "def2-svp",
+            "def2-tzvp",
+            "def2-qzvp",
+            "cbs-qb3"
+        ]
+    }
+}

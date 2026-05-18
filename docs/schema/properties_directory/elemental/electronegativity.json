@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/elemental/electronegativity",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "electronegativity",
+    "description": "electronegativity for the element (Pauling scale)",
+    "type": "object",
+    "required": [
+        "name",
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "electronegativity"
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

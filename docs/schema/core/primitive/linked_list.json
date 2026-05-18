@@ -1,0 +1,171 @@
+{
+    "$id": "core/primitive/linked-list",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "linked list schema",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "anyOf": [
+            {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "basic node schema (linked list)",
+                "type": "object",
+                "definitions": {
+                    "flowchart-id": {
+                        "required": [
+                            "flowchartId"
+                        ],
+                        "properties": {
+                            "flowchartId": {
+                                "description": "Unique flowchart ID of node",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "flowchartId"
+                ],
+                "properties": {
+                    "next": {
+                        "description": "Flowchart ID of next node",
+                        "type": "string"
+                    },
+                    "head": {
+                        "description": "Whether node is head node or not",
+                        "type": "boolean"
+                    },
+                    "flowchartId": {
+                        "description": "Unique flowchart ID of node",
+                        "type": "string"
+                    }
+                }
+            },
+            {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "Named node schema",
+                "type": "object",
+                "definitions": {
+                    "flowchart-id": {
+                        "required": [
+                            "flowchartId"
+                        ],
+                        "properties": {
+                            "flowchartId": {
+                                "description": "Unique flowchart ID of node",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "flowchartId"
+                ],
+                "properties": {
+                    "next": {
+                        "description": "Flowchart ID of next node",
+                        "type": "string"
+                    },
+                    "head": {
+                        "description": "Whether node is head node or not",
+                        "type": "boolean"
+                    },
+                    "flowchartId": {
+                        "description": "Unique flowchart ID of node",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "entity name",
+                        "type": "string"
+                    }
+                }
+            },
+            {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "Named node in group schema",
+                "type": "object",
+                "definitions": {
+                    "flowchart-id": {
+                        "required": [
+                            "flowchartId"
+                        ],
+                        "properties": {
+                            "flowchartId": {
+                                "description": "Unique flowchart ID of node",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "flowchartId"
+                ],
+                "properties": {
+                    "next": {
+                        "description": "Flowchart ID of next node",
+                        "type": "string"
+                    },
+                    "head": {
+                        "description": "Whether node is head node or not",
+                        "type": "boolean"
+                    },
+                    "flowchartId": {
+                        "description": "Unique flowchart ID of node",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "entity name",
+                        "type": "string"
+                    },
+                    "groupName": {
+                        "description": "Human-readable name of group of nodes",
+                        "type": "string"
+                    },
+                    "groupId": {
+                        "description": "Unique identifier of the group a node belongs to",
+                        "type": "string"
+                    }
+                }
+            },
+            {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "Typed node schema",
+                "type": "object",
+                "definitions": {
+                    "flowchart-id": {
+                        "required": [
+                            "flowchartId"
+                        ],
+                        "properties": {
+                            "flowchartId": {
+                                "description": "Unique flowchart ID of node",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "flowchartId"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "next": {
+                        "description": "Flowchart ID of next node",
+                        "type": "string"
+                    },
+                    "head": {
+                        "description": "Whether node is head node or not",
+                        "type": "boolean"
+                    },
+                    "flowchartId": {
+                        "description": "Unique flowchart ID of node",
+                        "type": "string"
+                    }
+                }
+            }
+        ],
+        "uniqueItems": true
+    }
+}

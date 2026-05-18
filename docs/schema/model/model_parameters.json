@@ -1,0 +1,98 @@
+{
+    "$id": "model/model-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ModelParameters",
+    "type": "object",
+    "oneOf": [
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "LDA functional mixin",
+            "type": "object",
+            "properties": {
+                "functional": {
+                    "enum": [
+                        "pz"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "GGA functional mixin",
+            "type": "object",
+            "properties": {
+                "functional": {
+                    "enum": [
+                        "pbe",
+                        "pbesol"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Meta-GGA functional mixin",
+            "type": "object",
+            "properties": {
+                "functional": {
+                    "enum": [
+                        "scan"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Hybrid functional mixin",
+            "type": "object",
+            "properties": {
+                "functional": {
+                    "enum": [
+                        "hse06",
+                        "b3lyp"
+                    ]
+                }
+            }
+        },
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Double hybrid functional mixin",
+            "type": "object",
+            "properties": {
+                "functional": {
+                    "enum": [
+                        "b2plyp"
+                    ]
+                }
+            }
+        }
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "hubbardType": {
+            "enum": [
+                "u"
+            ]
+        },
+        "spinPolarization": {
+            "enum": [
+                "collinear",
+                "non-collinear"
+            ]
+        },
+        "spinOrbitCoupling": {
+            "type": "boolean"
+        },
+        "dispersionCorrection": {
+            "enum": [
+                "dft-d2",
+                "dft-d3",
+                "xdm",
+                "ts"
+            ]
+        }
+    }
+}

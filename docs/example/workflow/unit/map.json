@@ -1,0 +1,16 @@
+{
+    "flowchartId": "map",
+    "head": true,
+    "input": {
+        "target": "MAP_K_POINTS_1",
+        "values": [
+            "2 2 2 0 0 0",
+            "3 3 3 0 0 0",
+            "4 4 4 0 0 0"
+        ]
+    },
+    "name": "map",
+    "status": "idle",
+    "type": "map",
+    "workflowId": "zxjhEiaQvwWwvB3oM"
+}

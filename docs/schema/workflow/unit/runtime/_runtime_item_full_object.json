@@ -1,0 +1,15 @@
+{
+    "$id": "workflow/unit/runtime/-runtime-item-full-object",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "full result schema",
+    "type": "object",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "name": {
+            "description": "The name of this item. e.g. 'my_custom_property. <OTHER FIELDS TO BE ADDED>'",
+            "type": "string"
+        }
+    }
+}

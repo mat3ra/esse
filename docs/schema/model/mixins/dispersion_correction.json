@@ -1,0 +1,16 @@
+{
+    "$id": "model/mixins/dispersion-correction",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Dispersion correction mixin",
+    "type": "object",
+    "properties": {
+        "dispersionCorrection": {
+            "enum": [
+                "dft-d2",
+                "dft-d3",
+                "xdm",
+                "ts"
+            ]
+        }
+    }
+}

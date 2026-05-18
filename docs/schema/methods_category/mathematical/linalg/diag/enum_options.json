@@ -1,0 +1,8 @@
+{
+    "$id": "methods-category/mathematical/linalg/diag/enum-options",
+    "davidson": {
+        "enum": [
+            "davidson"
+        ]
+    }
+}

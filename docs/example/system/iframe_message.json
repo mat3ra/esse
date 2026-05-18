@@ -1,0 +1,9 @@
+{
+    "type": "from-iframe-to-host",
+    "action": "set-data",
+    "payload": {
+        "property": {
+            "name": "material"
+        }
+    }
+}

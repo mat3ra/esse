@@ -1,0 +1,32 @@
+{
+    "$id": "core/reusable/object-storage-container-data",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Object Storage Container Data",
+    "type": "object",
+    "properties": {
+        "CONTAINER": {
+            "description": "Object storage container for the file",
+            "type": "string"
+        },
+        "NAME": {
+            "description": "Name of the file inside the object storage bucket",
+            "type": "string"
+        },
+        "PROVIDER": {
+            "description": "Object storage provider",
+            "type": "string"
+        },
+        "REGION": {
+            "description": "Region for the object container specified in Container",
+            "type": "string"
+        },
+        "SIZE": {
+            "description": "Size of the file in bytes",
+            "type": "integer"
+        },
+        "TIMESTAMP": {
+            "description": "Unix timestamp showing when the file was last modified",
+            "type": "string"
+        }
+    }
+}

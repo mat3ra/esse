@@ -1,0 +1,15 @@
+{
+    "$id": "models-category/pb/qm/abin/enum-options",
+    "gwApproximation": {
+        "enum": [
+            "gw"
+        ]
+    },
+    "gwSubtypes": {
+        "enum": [
+            "g0w0",
+            "evgw0",
+            "evgw"
+        ]
+    }
+}

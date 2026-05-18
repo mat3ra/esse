@@ -1,0 +1,36 @@
+{
+    "$id": "workflow/unit/input/-map-input",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Unit map input schema",
+    "type": "object",
+    "properties": {
+        "target": {
+            "type": "string"
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "object"
+                    }
+                ]
+            }
+        },
+        "useValues": {
+            "type": "boolean"
+        },
+        "scope": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "name": "cc-pVTZ basis set",
+    "path": "/qm/wf/ao/dunning?basisSlug=cc-pvtz",
+    "categories": {
+        "tier1": "qm",
+        "tier2": "wf",
+        "type": "ao",
+        "subtype": "dunning"
+    },
+    "parameters": {
+        "basisSlug": "cc-pvtz"
+    }
+}

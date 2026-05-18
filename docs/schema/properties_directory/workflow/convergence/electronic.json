@@ -1,0 +1,34 @@
+{
+    "$id": "properties-directory/workflow/convergence/electronic",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Convergence electronic property schema",
+    "type": "object",
+    "required": [
+        "data",
+        "name",
+        "units"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "convergence_electronic"
+            ]
+        },
+        "units": {
+            "enum": [
+                "eV",
+                "Ry",
+                "hartree"
+            ]
+        },
+        "data": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "authors": [
+        {
+            "affiliation": "Exabyte Inc.",
+            "first": "John",
+            "last": "Doe"
+        }
+    ],
+    "conditions": [
+        {
+            "name": "pressure",
+            "scalar": [
+                {
+                    "value": "1.2"
+                },
+                {
+                    "value": "3.3"
+                }
+            ],
+            "units": "kbar"
+        }
+    ],
+    "method": "DFT",
+    "references": [
+        {
+            "authors": [
+                {
+                    "affiliation": "Exabyte Inc.",
+                    "first": "John",
+                    "last": "Doe"
+                }
+            ],
+            "doi": "10.1000/xyz123"
+        }
+    ],
+    "timestamp": 141182979832,
+    "title": "Experiment 1"
+}

@@ -1,0 +1,47 @@
+{
+    "name": "PW-NCPP (Davidson Diagonalization, Gaussian Smearing)",
+    "path": "/qm/wf/pw:/qm/wf/psp/nc?functional=pbe:/qm/wf/smearing/gaussian:/linalg/diag/davidson",
+    "units": [
+        {
+            "name": "Plane-wave",
+            "path": "/qm/wf/pw",
+            "categories": {
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "pw"
+            }
+        },
+        {
+            "name": "Norm-conserving PSP",
+            "path": "/qm/wf/psp/nc?functional=pbe",
+            "categories": {
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "psp",
+                "subtype": "nc"
+            },
+            "parameters": {
+                "functional": "pbe"
+            }
+        },
+        {
+            "name": "Gaussian Smearing method",
+            "path": "/qm/wf/smearing/gaussian",
+            "categories": {
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "smearing",
+                "subtype": "gaussian"
+            }
+        },
+        {
+            "name": "Davidson Diagonalization",
+            "path": "/linalg/diag/davidson",
+            "categories": {
+                "tier1": "linalg",
+                "tier2": "diag",
+                "type": "davidson"
+            }
+        }
+    ]
+}

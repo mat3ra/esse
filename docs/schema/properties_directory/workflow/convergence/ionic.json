@@ -1,0 +1,67 @@
+{
+    "$id": "properties-directory/workflow/convergence/ionic",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Convergence ionic property schema",
+    "type": "object",
+    "required": [
+        "data",
+        "name",
+        "units"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "convergence_ionic"
+            ]
+        },
+        "tolerance": {
+            "description": "for ionic convergence tolerance shows force tolerance"
+        },
+        "units": {
+            "description": "units for force tolerance",
+            "enum": [
+                "eV"
+            ]
+        },
+        "data": {
+            "type": "array",
+            "description": "energetic and structural information",
+            "items": {
+                "type": "object",
+                "required": [
+                    "energy"
+                ],
+                "properties": {
+                    "energy": {
+                        "description": "converged electronic energy for this structure (last in `electronic`)",
+                        "type": "number"
+                    },
+                    "structure": {
+                        "description": "TODO: structural information at each step to be here",
+                        "type": "object"
+                    },
+                    "electronic": {
+                        "description": "data about electronic at this ionic step",
+                        "type": "object",
+                        "properties": {
+                            "units": {
+                                "description": "units for force tolerance",
+                                "enum": [
+                                    "eV",
+                                    "Ry",
+                                    "hartree"
+                                ]
+                            },
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

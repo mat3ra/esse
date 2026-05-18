@@ -1,0 +1,8 @@
+{
+    "$id": "models-category/st/enum-options",
+    "deterministic": {
+        "enum": [
+            "det"
+        ]
+    }
+}

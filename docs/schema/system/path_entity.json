@@ -1,0 +1,18 @@
+{
+    "$id": "system/path-entity",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "path entity schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "path": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "category path schema",
+            "description": "TODO: Use regex once schema draft version has been updated",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "$id": "system/message",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "message schema",
+    "description": "communication message between Rupy and web application.",
+    "type": "object",
+    "required": [
+        "header",
+        "payload"
+    ],
+    "properties": {
+        "header": {
+            "type": "object",
+            "required": [
+                "entity",
+                "version",
+                "timestamp"
+            ],
+            "properties": {
+                "entity": {
+                    "type": "object",
+                    "required": [
+                        "_id",
+                        "name"
+                    ],
+                    "properties": {
+                        "_id": {
+                            "description": "job identifier",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "entity name.",
+                            "type": "string",
+                            "enum": [
+                                "job",
+                                "unit"
+                            ]
+                        },
+                        "flowchartId": {
+                            "description": "unit identifier within the workflow",
+                            "type": "string"
+                        },
+                        "probe": {
+                            "description": "source of the message.",
+                            "type": "string",
+                            "enum": [
+                                "monitor",
+                                "postprocessor"
+                            ]
+                        }
+                    }
+                },
+                "version": {
+                    "description": "Rupy-Webapp communication schema version.",
+                    "type": "string"
+                },
+                "timestamp": {
+                    "description": "Timestamp of the message.",
+                    "type": "number"
+                }
+            }
+        },
+        "payload": {
+            "description": "Actual payload of the message.",
+            "type": "object"
+        }
+    }
+}

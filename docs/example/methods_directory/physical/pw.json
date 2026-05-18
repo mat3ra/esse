@@ -1,0 +1,9 @@
+{
+    "name": "Plane wave basis",
+    "path": "/qm/wf/pw",
+    "categories": {
+        "tier1": "qm",
+        "tier2": "wf",
+        "type": "pw"
+    }
+}

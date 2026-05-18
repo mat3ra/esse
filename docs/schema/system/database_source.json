@@ -1,0 +1,45 @@
+{
+    "$id": "system/database-source",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "database source schema",
+    "description": "information about a database source",
+    "type": "object",
+    "required": [
+        "id",
+        "source",
+        "origin"
+    ],
+    "properties": {
+        "id": {
+            "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "source": {
+            "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
+            "type": "string"
+        },
+        "origin": {
+            "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
+            "type": "boolean"
+        },
+        "data": {
+            "description": "Original response from external source.",
+            "type": "object"
+        },
+        "doi": {
+            "description": "Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506",
+            "type": "string"
+        },
+        "url": {
+            "description": "The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
+            "type": "string"
+        }
+    }
+}

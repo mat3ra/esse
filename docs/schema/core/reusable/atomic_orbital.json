@@ -1,0 +1,32 @@
+{
+    "$id": "core/reusable/atomic-orbital",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic orbital schema",
+    "type": "object",
+    "properties": {
+        "orbitalName": {
+            "type": "string",
+            "pattern": "^[1-7][sSpPdDfF]$"
+        },
+        "orbitalIndex": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "principalNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+        },
+        "angularMomentum": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+        },
+        "occupation": {
+            "type": "number",
+            "description": "Shell occupation",
+            "minimum": 0,
+            "maximum": 14
+        }
+    }
+}

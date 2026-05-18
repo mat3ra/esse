@@ -1,0 +1,11 @@
+{
+    "$id": "material/conventional",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material conventional schema",
+    "type": "object",
+    "properties": {
+        "conventional": {
+            "type": "object"
+        }
+    }
+}

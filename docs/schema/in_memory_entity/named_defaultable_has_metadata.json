@@ -1,0 +1,36 @@
+{
+    "$id": "in-memory-entity/named-defaultable-has-metadata",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Named defaultable has metadata in-memory entity schema",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Identifies that entity is defaultable",
+            "type": "boolean",
+            "default": false
+        },
+        "metadata": {
+            "type": "object"
+        }
+    }
+}

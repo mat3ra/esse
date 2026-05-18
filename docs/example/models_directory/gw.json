@@ -1,0 +1,15 @@
+{
+    "name": "G0W0@PBE (SOC)",
+    "categories": {
+        "tier1": "pb",
+        "tier2": "qm",
+        "tier3": "abin",
+        "type": "gw",
+        "subtype": "g0w0"
+    },
+    "parameters": {
+        "functional": "pbe",
+        "require": "/pb/qm/dft/ksdft/gga",
+        "spinOrbitCoupling": true
+    }
+}

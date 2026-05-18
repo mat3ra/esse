@@ -1,0 +1,11 @@
+{
+    "method": {
+        "data": {
+            "pseudo": []
+        },
+        "subtype": "us",
+        "type": "pseudopotential"
+    },
+    "subtype": "gga",
+    "type": "dft"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "charge_density_profile",
+    "xAxis": {
+        "label": "z coordinate"
+    },
+    "xDataArray": [
+        -4.89,
+        -4.78,
+        -4.67
+    ],
+    "yAxis": {
+        "label": "charge density",
+        "units": "e/A"
+    },
+    "yDataSeries": [
+        [
+            2.3697,
+            2.1422,
+            2.0006
+        ]
+    ]
+}

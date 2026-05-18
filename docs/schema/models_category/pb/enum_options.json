@@ -1,0 +1,8 @@
+{
+    "$id": "models-category/pb/enum-options",
+    "quantumMechanical": {
+        "enum": [
+            "qm"
+        ]
+    }
+}

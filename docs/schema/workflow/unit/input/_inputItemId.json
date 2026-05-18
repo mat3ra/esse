@@ -1,0 +1,19 @@
+{
+    "$id": "workflow/unit/input/-inputItemId",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "execution unit input id item schema for physics-based simulation engines",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "templateId": {
+            "type": "string"
+        },
+        "templateName": {
+            "type": "string"
+        },
+        "name": {
+            "description": "name of the resulting input file, if different than template name",
+            "type": "string"
+        }
+    }
+}

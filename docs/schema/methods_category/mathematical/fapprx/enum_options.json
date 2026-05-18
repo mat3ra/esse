@@ -1,0 +1,13 @@
+{
+    "$id": "methods-category/mathematical/fapprx/enum-options",
+    "basisExpansion": {
+        "enum": [
+            "basisExp"
+        ]
+    },
+    "interpolation": {
+        "enum": [
+            "ipol"
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "$id": "methods-directory/mathematical/regression/linear/data-per-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "linear regression parameters schema",
+    "type": "object",
+    "required": [
+        "intercept",
+        "perFeature"
+    ],
+    "properties": {
+        "intercept": {
+            "description": "intercept (shift) from the linear or non-linear fit of data points",
+            "type": "number"
+        },
+        "perFeature": {
+            "type": "array",
+            "description": "per-feature (property used for training the ML method/model) parameters",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "per-feature (property used for training the ML method/model) parameters schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "coefficient": {
+                        "description": "coefficient in linear regression",
+                        "type": "number"
+                    },
+                    "name": {
+                        "description": "feature name",
+                        "type": "string"
+                    },
+                    "importance": {
+                        "description": "pvalue: https://en.wikipedia.org/wiki/P-value",
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

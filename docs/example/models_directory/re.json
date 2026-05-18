@@ -1,0 +1,10 @@
+{
+    "name": "regression",
+    "categories": {
+        "tier1": "st",
+        "tier2": "det",
+        "tier3": "ml",
+        "type": "re"
+    },
+    "parameters": {}
+}

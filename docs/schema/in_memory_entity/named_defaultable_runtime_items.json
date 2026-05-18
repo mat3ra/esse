@@ -1,0 +1,157 @@
+{
+    "$id": "in-memory-entity/named-defaultable-runtime-items",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Named defaultable runtime items in-memory entity schema",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Identifies that entity is defaultable",
+            "type": "boolean",
+            "default": false
+        },
+        "preProcessors": {
+            "description": "names of the pre-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item schema",
+                "oneOf": [
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "name result schema",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "The name of this item. e.g. scf_accuracy",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "required": [
+                            "name"
+                        ]
+                    },
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "RuntimeItemString",
+                        "description": "name of runtime item in shortened notation",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "postProcessors": {
+            "description": "names of the post-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item schema",
+                "oneOf": [
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "name result schema",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "The name of this item. e.g. scf_accuracy",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "required": [
+                            "name"
+                        ]
+                    },
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "RuntimeItemString",
+                        "description": "name of runtime item in shortened notation",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "monitors": {
+            "description": "names of the monitors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item schema",
+                "oneOf": [
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "name result schema",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "The name of this item. e.g. scf_accuracy",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "required": [
+                            "name"
+                        ]
+                    },
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "RuntimeItemString",
+                        "description": "name of runtime item in shortened notation",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "results": {
+            "description": "names of the results for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item schema",
+                "oneOf": [
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "name result schema",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "The name of this item. e.g. scf_accuracy",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "required": [
+                            "name"
+                        ]
+                    },
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "RuntimeItemString",
+                        "description": "name of runtime item in shortened notation",
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    }
+}

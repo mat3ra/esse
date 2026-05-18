@@ -1,0 +1,11 @@
+{
+    "$id": "system/scope",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "scope schema",
+    "type": "object",
+    "properties": {
+        "scope": {
+            "type": "string"
+        }
+    }
+}

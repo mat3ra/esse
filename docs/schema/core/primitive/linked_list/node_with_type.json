@@ -1,0 +1,39 @@
+{
+    "$id": "core/primitive/linked-list/node-with-type",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Typed node schema",
+    "type": "object",
+    "definitions": {
+        "flowchart-id": {
+            "required": [
+                "flowchartId"
+            ],
+            "properties": {
+                "flowchartId": {
+                    "description": "Unique flowchart ID of node",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "flowchartId"
+    ],
+    "properties": {
+        "type": {
+            "type": "string"
+        },
+        "next": {
+            "description": "Flowchart ID of next node",
+            "type": "string"
+        },
+        "head": {
+            "description": "Whether node is head node or not",
+            "type": "boolean"
+        },
+        "flowchartId": {
+            "description": "Unique flowchart ID of node",
+            "type": "string"
+        }
+    }
+}

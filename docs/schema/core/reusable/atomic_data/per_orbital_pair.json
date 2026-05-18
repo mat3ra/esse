@@ -1,0 +1,39 @@
+{
+    "$id": "core/reusable/atomic-data/per-orbital-pair",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atomic data per orbital pair",
+    "description": "Atomic properties per orbital pair e.g., Hubbard V parameters.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Site number or index in the lattice"
+        },
+        "id2": {
+            "type": "integer",
+            "description": "Site number or index in the lattice of second site"
+        },
+        "atomicSpecies": {
+            "type": "string",
+            "pattern": "^[a-zA-Z]{1,2}[\\d+]?$",
+            "description": "Example: Co1, Mn"
+        },
+        "atomicSpecies2": {
+            "type": "string",
+            "pattern": "^[a-zA-Z]{1,2}[\\d+]?$",
+            "description": "Example: Co2, O"
+        },
+        "orbitalName": {
+            "type": "string",
+            "pattern": "^[1-7][sSpPdDfF]$"
+        },
+        "orbitalName2": {
+            "type": "string",
+            "pattern": "^[1-7][sSpPdDfF]$"
+        },
+        "distance": {
+            "type": "number",
+            "description": "Distance between two sites in Bohr."
+        }
+    }
+}

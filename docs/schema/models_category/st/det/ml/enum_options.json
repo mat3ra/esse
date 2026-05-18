@@ -1,0 +1,8 @@
+{
+    "$id": "models-category/st/det/ml/enum-options",
+    "regression": {
+        "enum": [
+            "re"
+        ]
+    }
+}

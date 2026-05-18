@@ -1,0 +1,11 @@
+{
+    "$id": "core/primitive/array-of-strings",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "array of strings",
+    "description": "array of strings, e.g. metadata tags",
+    "type": "array",
+    "items": {
+        "type": "string",
+        "uniqueItems": true
+    }
+}

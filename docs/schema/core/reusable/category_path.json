@@ -1,0 +1,7 @@
+{
+    "$id": "core/reusable/category-path",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "category path schema",
+    "description": "TODO: Use regex once schema draft version has been updated",
+    "type": "string"
+}

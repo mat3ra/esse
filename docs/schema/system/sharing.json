@@ -1,0 +1,11 @@
+{
+    "$id": "system/sharing",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "extended sharing schema",
+    "type": "object",
+    "properties": {
+        "sharedCount": {
+            "type": "number"
+        }
+    }
+}

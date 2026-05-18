@@ -1,0 +1,91 @@
+{
+    "$id": "properties-directory/non-scalar/wavefunction-amplitude",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Wavefunction amplitude property schema",
+    "type": "object",
+    "required": [
+        "name",
+        "xAxis",
+        "xDataArray",
+        "yAxis",
+        "yDataSeries"
+    ],
+    "properties": {
+        "xAxis": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "axis schema",
+            "required": [
+                "label"
+            ],
+            "properties": {
+                "label": {
+                    "enum": [
+                        "coordinate"
+                    ],
+                    "description": "label of an axis object",
+                    "type": "string"
+                },
+                "units": {
+                    "description": "units for an axis",
+                    "type": "string"
+                }
+            }
+        },
+        "yAxis": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "axis schema",
+            "required": [
+                "label"
+            ],
+            "properties": {
+                "label": {
+                    "enum": [
+                        "amplitude"
+                    ],
+                    "description": "label of an axis object",
+                    "type": "string"
+                },
+                "units": {
+                    "description": "units for an axis",
+                    "type": "string"
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "wavefunction_amplitude"
+            ]
+        },
+        "xDataArray": {
+            "description": "array containing values of x Axis",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "yDataSeries": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "1 dimension data series schema",
+            "type": "array",
+            "items": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

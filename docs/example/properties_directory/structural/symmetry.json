@@ -1,0 +1,9 @@
+{
+    "name": "symmetry",
+    "pointGroupSymbol": "C2v",
+    "spaceGroupSymbol": "Fd-3m",
+    "tolerance": {
+        "units": "angstrom",
+        "value": 0.3
+    }
+}

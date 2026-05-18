@@ -1,0 +1,8 @@
+{
+    "exec": "python",
+    "flavor": "python2",
+    "name": "python",
+    "shortName": "py",
+    "summary": "Python Script",
+    "version": "2.7.5"
+}

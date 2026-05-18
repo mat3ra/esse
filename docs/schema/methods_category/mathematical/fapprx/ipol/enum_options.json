@@ -1,0 +1,18 @@
+{
+    "$id": "methods-category/mathematical/fapprx/ipol/enum-options",
+    "linear": {
+        "enum": [
+            "lin"
+        ]
+    },
+    "polynomial": {
+        "enum": [
+            "poly"
+        ]
+    },
+    "spline": {
+        "enum": [
+            "spline"
+        ]
+    }
+}

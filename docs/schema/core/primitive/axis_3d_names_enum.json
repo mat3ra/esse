@@ -1,0 +1,12 @@
+{
+    "$id": "core/primitive/axis-3d-names-enum",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Axis Enum",
+    "type": "string",
+    "description": "Enum for axis types",
+    "enum": [
+        "x",
+        "y",
+        "z"
+    ]
+}

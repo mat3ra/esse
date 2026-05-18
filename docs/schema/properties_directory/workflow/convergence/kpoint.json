@@ -1,0 +1,48 @@
+{
+    "$id": "properties-directory/workflow/convergence/kpoint",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "convergence schema for converging a property wrt kpoints",
+    "type": "object",
+    "required": [
+        "tolerance",
+        "units",
+        "data"
+    ],
+    "properties": {
+        "tolerance": {
+            "description": "tolerance for the property under investigation"
+        },
+        "units": {
+            "description": "units for the property under investigation",
+            "type": "string"
+        },
+        "property": {
+            "description": "name of the property under investigation",
+            "type": "string"
+        },
+        "data": {
+            "type": "array",
+            "description": "kpoint grid and property information",
+            "items": {
+                "type": "object",
+                "required": [
+                    "value",
+                    "grid"
+                ],
+                "properties": {
+                    "value": {
+                        "description": "value of the property at this step"
+                    },
+                    "grid": {
+                        "description": "information about the kpoint grid",
+                        "type": "object"
+                    },
+                    "spacing": {
+                        "description": "optional kpoint spacing information",
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

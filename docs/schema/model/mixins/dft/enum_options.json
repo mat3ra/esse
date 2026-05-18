@@ -1,0 +1,30 @@
+{
+    "$id": "model/mixins/dft/enum-options",
+    "lda": {
+        "enum": [
+            "pz"
+        ]
+    },
+    "gga": {
+        "enum": [
+            "pbe",
+            "pbesol"
+        ]
+    },
+    "mgga": {
+        "enum": [
+            "scan"
+        ]
+    },
+    "hybrid": {
+        "enum": [
+            "hse06",
+            "b3lyp"
+        ]
+    },
+    "doubleHybrid": {
+        "enum": [
+            "b2plyp"
+        ]
+    }
+}

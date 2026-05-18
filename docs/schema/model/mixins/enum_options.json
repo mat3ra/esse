@@ -1,0 +1,22 @@
+{
+    "$id": "model/mixins/enum-options",
+    "spinPolarization": {
+        "enum": [
+            "collinear",
+            "non-collinear"
+        ]
+    },
+    "dispersionCorrection": {
+        "enum": [
+            "dft-d2",
+            "dft-d3",
+            "xdm",
+            "ts"
+        ]
+    },
+    "hubbardType": {
+        "enum": [
+            "u"
+        ]
+    }
+}

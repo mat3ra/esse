@@ -1,0 +1,21 @@
+{
+    "$id": "methods-directory/mathematical/regression/dataset",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "description": "dataset for ml",
+    "type": "object",
+    "required": [
+        "exabyteIds"
+    ],
+    "properties": {
+        "exabyteIds": {
+            "description": "array of exabyteIds for materials in dataset",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "extra": {
+            "description": "holder for any extra information, eg. coming from user-uploaded CSV file"
+        }
+    }
+}

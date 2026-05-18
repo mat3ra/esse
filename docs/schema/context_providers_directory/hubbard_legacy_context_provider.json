@@ -1,0 +1,26 @@
+{
+    "$id": "context-providers-directory/hubbard-legacy-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hubbard Legacy Context Provider Schema",
+    "description": "Hubbard parameters for DFT+U calculation.",
+    "type": "array",
+    "uniqueItems": true,
+    "minItems": 1,
+    "items": {
+        "type": "object",
+        "properties": {
+            "atomicSpecies": {
+                "type": "string",
+                "title": "Atomic species"
+            },
+            "atomicSpeciesIndex": {
+                "type": "integer",
+                "title": "Species index"
+            },
+            "hubbardUValue": {
+                "type": "number",
+                "title": "Hubbard U (eV)"
+            }
+        }
+    }
+}

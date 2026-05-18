@@ -1,0 +1,18 @@
+{
+    "$id": "methods-category/mathematical/opt/enum-options",
+    "differentiable": {
+        "enum": [
+            "diff"
+        ]
+    },
+    "nonDifferentiable": {
+        "enum": [
+            "ndiff"
+        ]
+    },
+    "rootFinding": {
+        "enum": [
+            "root"
+        ]
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "exec": "sh",
+    "flavor": "sh",
+    "name": "shell",
+    "shortName": "sh",
+    "summary": "Shell Script",
+    "version": "4.2.46"
+}

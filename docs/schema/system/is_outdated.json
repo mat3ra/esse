@@ -1,0 +1,11 @@
+{
+    "$id": "system/is-outdated",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "is outdated schema",
+    "type": "object",
+    "properties": {
+        "isOutdated": {
+            "type": "boolean"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "$id": "core/reusable/dielectric-tensor-component",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Dielectric Tensor",
+    "type": "object",
+    "required": [
+        "part",
+        "frequencies",
+        "components"
+    ],
+    "description": "Schema for a function of frequency yielding a nx3 matrix",
+    "properties": {
+        "part": {
+            "description": "Real or imaginary part of the dielectric tensor component",
+            "type": "string",
+            "enum": [
+                "real",
+                "imaginary"
+            ]
+        },
+        "spin": {
+            "type": "number"
+        },
+        "frequencies": {
+            "description": "Frequencies",
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "components": {
+            "description": "Matrix with 3 columns, e.g. x, y, z",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "array of 3 number elements schema",
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

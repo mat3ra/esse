@@ -1,0 +1,11 @@
+{
+    "$id": "workflow/unit/input/-map-input/values",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Unit values schema",
+    "type": "object",
+    "properties": {
+        "values": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "$id": "apse/materials/builders/slab/pymatgen/parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Pymatgen Slab Generator Parameters Schema",
+    "description": "Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187",
+    "type": "object",
+    "properties": {
+        "min_vacuum_size": {
+            "description": "Minimum size of the vacuum in layers or angstroms",
+            "type": [
+                "integer",
+                "number"
+            ],
+            "minimum": 0,
+            "default": 0
+        },
+        "in_unit_planes": {
+            "description": "Whether to use unit planes for the vacuum and slab size",
+            "type": "boolean",
+            "default": true
+        },
+        "reorient_lattice": {
+            "description": "Whether to reorient the lattice to have c vector along the z-axis",
+            "type": "boolean",
+            "default": true
+        },
+        "symmetrize": {
+            "description": "Whether to symmetrize the slab",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

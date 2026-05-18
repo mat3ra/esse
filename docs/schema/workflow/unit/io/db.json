@@ -1,0 +1,40 @@
+{
+    "$id": "workflow/unit/io/db",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "data IO database input/output schema",
+    "type": "object",
+    "oneOf": [
+        {
+            "properties": {
+                "ids": {
+                    "description": "IDs of item to retrieve from db",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "ids"
+            ],
+            "additionalProperties": true
+        },
+        {
+            "properties": {
+                "collection": {
+                    "description": "db collection name",
+                    "type": "string"
+                },
+                "draft": {
+                    "description": "whether the result should be saved as draft",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "collection",
+                "draft"
+            ],
+            "additionalProperties": true
+        }
+    ]
+}

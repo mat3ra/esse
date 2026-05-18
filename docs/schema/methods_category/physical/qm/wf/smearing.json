@@ -1,0 +1,174 @@
+{
+    "$id": "methods-category/physical/qm/wf/smearing",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Smearing methods category schema",
+    "description": "Approximating Heaviside step function with smooth function",
+    "type": "object",
+    "properties": {
+        "type": {
+            "enum": [
+                "smearing"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "slugified entry or slug",
+            "description": "contains either object with slugified entry or slug only as a string",
+            "oneOf": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry",
+                    "description": "container for machine- and human-readable identifier",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "descriptive human-readable name of entry",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "machine-readable identifier",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "slug"
+                    ]
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "subtype": {
+            "enum": [
+                "gaussian",
+                "marzari-vanderbilt",
+                "methfessel-paxton",
+                "fermi-dirac"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "slugified entry or slug",
+            "description": "contains either object with slugified entry or slug only as a string",
+            "oneOf": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry",
+                    "description": "container for machine- and human-readable identifier",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "descriptive human-readable name of entry",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "machine-readable identifier",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "slug"
+                    ]
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "tier2": {
+            "enum": [
+                "wf"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "slugified entry or slug",
+            "description": "contains either object with slugified entry or slug only as a string",
+            "oneOf": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry",
+                    "description": "container for machine- and human-readable identifier",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "descriptive human-readable name of entry",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "machine-readable identifier",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "slug"
+                    ]
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "tier1": {
+            "enum": [
+                "qm"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "slugified entry or slug",
+            "description": "contains either object with slugified entry or slug only as a string",
+            "oneOf": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry",
+                    "description": "container for machine- and human-readable identifier",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "descriptive human-readable name of entry",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "machine-readable identifier",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "slug"
+                    ]
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "tier3": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "slugified entry or slug",
+            "description": "contains either object with slugified entry or slug only as a string",
+            "oneOf": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry",
+                    "description": "container for machine- and human-readable identifier",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "descriptive human-readable name of entry",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "machine-readable identifier",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "slug"
+                    ]
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}

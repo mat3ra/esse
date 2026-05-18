@@ -1,0 +1,12 @@
+{
+    "type": "dft",
+    "subtype": "gga",
+    "functional": "pbe",
+    "method": {
+        "data": {
+            "pseudo": []
+        },
+        "subtype": "us",
+        "type": "pseudopotential"
+    }
+}

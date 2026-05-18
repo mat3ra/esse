@@ -1,0 +1,11 @@
+{
+    "$id": "core/primitive/array-of-3-numbers",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "array of 3 number elements schema",
+    "type": "array",
+    "minItems": 3,
+    "maxItems": 3,
+    "items": {
+        "type": "number"
+    }
+}

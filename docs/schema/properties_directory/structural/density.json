@@ -1,0 +1,24 @@
+{
+    "$id": "properties-directory/structural/density",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "density schema",
+    "type": "object",
+    "required": [
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "density"
+            ]
+        },
+        "units": {
+            "enum": [
+                "g/cm^3"
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

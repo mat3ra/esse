@@ -1,0 +1,30 @@
+{
+    "$id": "system/file-source",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "file source schema",
+    "description": "file source with the information inside",
+    "type": "object",
+    "required": [
+        "filename",
+        "text",
+        "hash"
+    ],
+    "properties": {
+        "extension": {
+            "description": "file extension",
+            "type": "string"
+        },
+        "filename": {
+            "description": "file name without extension",
+            "type": "string"
+        },
+        "text": {
+            "description": "file content as raw text",
+            "type": "string"
+        },
+        "hash": {
+            "description": "MD5 hash based on file content",
+            "type": "string"
+        }
+    }
+}

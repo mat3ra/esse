@@ -1,0 +1,55 @@
+{
+    "$id": "models-directory/legacy/unknown",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "legacy model unknown",
+    "type": "object",
+    "required": [
+        "type",
+        "subtype",
+        "method"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "type": {
+            "enum": [
+                "unknown"
+            ],
+            "description": "general type of the model, eg. `dft`",
+            "type": "string"
+        },
+        "subtype": {
+            "enum": [
+                "unknown"
+            ],
+            "description": "general subtype of the model, eg. `lda`",
+            "type": "string"
+        },
+        "method": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "base method",
+            "type": "object",
+            "required": [
+                "type",
+                "subtype"
+            ],
+            "properties": {
+                "type": {
+                    "description": "general type of this method, eg. `pseudopotential`",
+                    "type": "string"
+                },
+                "subtype": {
+                    "description": "general subtype of this method, eg. `ultra-soft`",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Object showing the actual possible precision based on theory and implementation",
+                    "type": "object"
+                },
+                "data": {
+                    "description": "additional data specific to method, eg. array of pseudopotentials",
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

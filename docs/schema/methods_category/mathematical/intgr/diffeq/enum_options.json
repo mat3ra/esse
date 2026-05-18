@@ -1,0 +1,13 @@
+{
+    "$id": "methods-category/mathematical/intgr/diffeq/enum-options",
+    "firstOrder": {
+        "enum": [
+            "order1"
+        ]
+    },
+    "secondOrder": {
+        "enum": [
+            "order2"
+        ]
+    }
+}

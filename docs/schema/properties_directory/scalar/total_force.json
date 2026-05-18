@@ -1,0 +1,31 @@
+{
+    "$id": "properties-directory/scalar/total-force",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Total forces property schema",
+    "type": "object",
+    "required": [
+        "name",
+        "units",
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "total_force"
+            ]
+        },
+        "units": {
+            "enum": [
+                "eV/bohr",
+                "eV/angstrom",
+                "Ry/a.u.",
+                "newton",
+                "kg*m/s^2",
+                "eV/a.u."
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

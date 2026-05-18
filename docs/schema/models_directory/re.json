@@ -1,0 +1,334 @@
+{
+    "$id": "models-directory/re",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "model regression",
+    "description": "machine learning model type/subtype schema",
+    "type": "object",
+    "required": [
+        "categories",
+        "parameters"
+    ],
+    "properties": {
+        "categories": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "regression model category schema",
+            "type": "object",
+            "description": "Used to categorize entities such as models and methods",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "re"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "tier3": {
+                    "enum": [
+                        "ml"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "tier2": {
+                    "enum": [
+                        "det"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "tier1": {
+                    "enum": [
+                        "st"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "subtype": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        },
+        "parameters": {
+            "type": "object",
+            "description": "Model parameters defined in-place or via model mixins"
+        },
+        "reference": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "literature reference schema",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "literature"
+                    ]
+                },
+                "doi": {
+                    "type": "string",
+                    "description": "Digital Object Identifier of the reference."
+                },
+                "isbn": {
+                    "type": "string",
+                    "description": "International Standard Book Number of the reference."
+                },
+                "issn": {
+                    "type": "string",
+                    "description": "International Standard Serial Number of the reference."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Internet address of the reference."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Title of the work."
+                },
+                "publisher": {
+                    "type": "string",
+                    "description": "Publisher of the work."
+                },
+                "journal": {
+                    "type": "string",
+                    "description": "Journal in which the work appeared."
+                },
+                "volume": {
+                    "type": "string",
+                    "description": "Volume of the series in which the work appeared."
+                },
+                "year": {
+                    "type": "string",
+                    "description": "Year in which the reference was published."
+                },
+                "issue": {
+                    "type": "string",
+                    "description": "Issue of the collection in which the work appeared."
+                },
+                "pages": {
+                    "type": "object",
+                    "description": "Start and end pages of the work.",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "pages schema",
+                    "required": [
+                        "start"
+                    ],
+                    "properties": {
+                        "start": {
+                            "type": "string"
+                        },
+                        "end": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "authors": {
+                    "type": "array",
+                    "description": "List of authors of the work.",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "experiment author schema",
+                        "type": "object",
+                        "required": [
+                            "first",
+                            "last"
+                        ],
+                        "properties": {
+                            "first": {
+                                "type": "string"
+                            },
+                            "middle": {
+                                "type": "string"
+                            },
+                            "last": {
+                                "type": "string"
+                            },
+                            "affiliation": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "editors": {
+                    "type": "array",
+                    "description": "List of editors of the work.",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "experiment author schema",
+                        "type": "object",
+                        "required": [
+                            "first",
+                            "last"
+                        ],
+                        "properties": {
+                            "first": {
+                                "type": "string"
+                            },
+                            "middle": {
+                                "type": "string"
+                            },
+                            "last": {
+                                "type": "string"
+                            },
+                            "affiliation": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "reference": {
+                    "type": "array",
+                    "description": "References cited by the work. Reference objects can nest as deeply as needed. This is useful, for example, when tracking the history of a value referenced in a scholarly article; the top level reference would contain information about where the data was accessed while the nested reference would contain information about where it was originally published.",
+                    "items": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "path": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "category path schema",
+            "description": "TODO: Use regex once schema draft version has been updated",
+            "type": "string"
+        },
+        "tags": {
+            "description": "entity tags",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

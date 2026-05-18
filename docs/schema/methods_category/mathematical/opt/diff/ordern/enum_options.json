@@ -1,0 +1,8 @@
+{
+    "$id": "methods-category/mathematical/opt/diff/ordern/enum-options",
+    "conjugateGradient": {
+        "enum": [
+            "cg"
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "atomic_constraints",
+    "values": [
+        {
+            "id": 1,
+            "value": [
+                true,
+                false,
+                true
+            ]
+        },
+        {
+            "id": 2,
+            "value": [
+                false,
+                false,
+                true
+            ]
+        }
+    ]
+}

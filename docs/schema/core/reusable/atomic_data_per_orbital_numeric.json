@@ -1,0 +1,26 @@
+{
+    "$id": "core/reusable/atomic-data-per-orbital-numeric",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atomic data per orbital numeric",
+    "description": "Atomic properties per orbital pair with numeric value e.g., Hubbard V parameters.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Site number or index in the lattice"
+        },
+        "atomicSpecies": {
+            "type": "string",
+            "pattern": "^[a-zA-Z]{1,2}[\\d+]?$",
+            "description": "Example: Co1, Mn"
+        },
+        "orbitalName": {
+            "type": "string",
+            "pattern": "^[1-7][sSpPdDfF]$"
+        },
+        "value": {
+            "type": "number",
+            "description": "Value related to a specific property, e.g., Hubbard U, V etc."
+        }
+    }
+}

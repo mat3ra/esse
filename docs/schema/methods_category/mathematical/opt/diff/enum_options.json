@@ -1,0 +1,28 @@
+{
+    "$id": "methods-category/mathematical/opt/diff/enum-options",
+    "bracketing": {
+        "enum": [
+            "bracket"
+        ]
+    },
+    "localDescent": {
+        "enum": [
+            "local"
+        ]
+    },
+    "firstOrder": {
+        "enum": [
+            "order1"
+        ]
+    },
+    "secondOrder": {
+        "enum": [
+            "order2"
+        ]
+    },
+    "nOrder": {
+        "enum": [
+            "ordern"
+        ]
+    }
+}

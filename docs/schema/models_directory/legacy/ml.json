@@ -1,0 +1,55 @@
+{
+    "$id": "models-directory/legacy/ml",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "legacy model regression",
+    "type": "object",
+    "required": [
+        "type",
+        "subtype",
+        "method"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "type": {
+            "enum": [
+                "ml"
+            ],
+            "description": "general type of the model, eg. `dft`",
+            "type": "string"
+        },
+        "subtype": {
+            "enum": [
+                "re"
+            ],
+            "description": "general subtype of the model, eg. `lda`",
+            "type": "string"
+        },
+        "method": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "base method",
+            "type": "object",
+            "required": [
+                "type",
+                "subtype"
+            ],
+            "properties": {
+                "type": {
+                    "description": "general type of this method, eg. `pseudopotential`",
+                    "type": "string"
+                },
+                "subtype": {
+                    "description": "general subtype of this method, eg. `ultra-soft`",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Object showing the actual possible precision based on theory and implementation",
+                    "type": "object"
+                },
+                "data": {
+                    "description": "additional data specific to method, eg. array of pseudopotentials",
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

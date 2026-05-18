@@ -1,0 +1,11 @@
+{
+    "type": "ml",
+    "subtype": "re",
+    "method": {
+        "data": {
+            "pseudo": []
+        },
+        "subtype": "us",
+        "type": "pseudopotential"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "$id": "core/primitive/group-info",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Group info schema for nodes in a graph",
+    "type": "object",
+    "properties": {
+        "groupName": {
+            "description": "Human-readable name of group of nodes",
+            "type": "string"
+        },
+        "groupId": {
+            "description": "Unique identifier of the group a node belongs to",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "$id": "core/reusable/atomic-data/value-number",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atomic data numeric properties",
+    "description": "Numeric value specific to atomic data",
+    "type": "object",
+    "properties": {
+        "value": {
+            "type": "number",
+            "description": "Value related to a specific property, e.g., Hubbard U, V etc."
+        }
+    }
+}

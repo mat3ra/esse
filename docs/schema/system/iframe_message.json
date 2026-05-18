@@ -1,0 +1,44 @@
+{
+    "$id": "system/iframe-message",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "iframe message schema",
+    "description": "communication message between iframe and the parent window.",
+    "type": "object",
+    "required": [
+        "type",
+        "action",
+        "payload"
+    ],
+    "properties": {
+        "type": {
+            "description": "The type of the message to distinguish the direction of the message.",
+            "type": "string",
+            "enum": [
+                "from-iframe-to-host",
+                "from-host-to-iframe"
+            ],
+            "tsEnumNames": [
+                "fromIframeToHost",
+                "fromHostToIframe"
+            ]
+        },
+        "action": {
+            "description": "The action to be performed upon receiving the message.",
+            "type": "string",
+            "enum": [
+                "set-data",
+                "get-data",
+                "info"
+            ],
+            "tsEnumNames": [
+                "setData",
+                "getData",
+                "info"
+            ]
+        },
+        "payload": {
+            "description": "The content of the message with actual data.",
+            "type": "object"
+        }
+    }
+}

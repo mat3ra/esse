@@ -1,0 +1,13 @@
+{
+    "$id": "methods-category/mathematical/intgr/numquad/enum-options",
+    "gaussQuadrature": {
+        "enum": [
+            "gauss"
+        ]
+    },
+    "newtonCotes": {
+        "enum": [
+            "newcot"
+        ]
+    }
+}

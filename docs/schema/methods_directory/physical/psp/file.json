@@ -1,0 +1,220 @@
+{
+    "$id": "methods-directory/physical/psp/file",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Pseudopotential file",
+    "type": "object",
+    "properties": {
+        "slug": {
+            "enum": [
+                "pseudopotential"
+            ]
+        },
+        "data": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "File data item",
+            "type": "object",
+            "required": [
+                "element",
+                "type",
+                "exchangeCorrelation",
+                "source",
+                "path",
+                "apps",
+                "name",
+                "hash"
+            ],
+            "properties": {
+                "element": {
+                    "type": "string",
+                    "description": "chemical element"
+                },
+                "hash": {
+                    "type": "string",
+                    "description": "MD5 hash of the pseudopotential file"
+                },
+                "type": {
+                    "enum": [
+                        "us",
+                        "nc",
+                        "nc-fr",
+                        "paw",
+                        "coulomb"
+                    ]
+                },
+                "source": {
+                    "type": "string",
+                    "description": "explains where this came from"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "explains the version of where this came from"
+                },
+                "exchangeCorrelation": {
+                    "type": "object",
+                    "properties": {
+                        "approximation": {
+                            "description": "DFT approximation",
+                            "type": "string"
+                        },
+                        "functional": {
+                            "description": "Exchange correlation functional",
+                            "type": "string"
+                        },
+                        "path": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "category path schema",
+                            "description": "TODO: Use regex once schema draft version has been updated",
+                            "type": "string"
+                        }
+                    }
+                },
+                "valenceConfiguration": {
+                    "type": "array",
+                    "description": "contains pseudo orbital information, including orbital names and occupations",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "atomic orbital schema",
+                        "type": "object",
+                        "properties": {
+                            "orbitalName": {
+                                "type": "string",
+                                "pattern": "^[1-7][sSpPdDfF]$"
+                            },
+                            "orbitalIndex": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "principalNumber": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 7
+                            },
+                            "angularMomentum": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 3
+                            },
+                            "occupation": {
+                                "type": "number",
+                                "description": "Shell occupation",
+                                "minimum": 0,
+                                "maximum": 14
+                            }
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "location of the pseudopotential file on filesystem"
+                },
+                "apps": {
+                    "type": "array",
+                    "description": "The names of the simulation engines that can use this pseudopotential, e.g. espresso",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "filename": {
+                    "type": "string",
+                    "description": "filename of pseudopotential file on filesystem"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "name of the data category",
+                    "enum": [
+                        "pseudopotential"
+                    ]
+                },
+                "cutoffs": {
+                    "type": "object",
+                    "description": "Suggested cutoff values for wave function and charge density.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "wavefunction": {
+                            "type": "array",
+                            "description": "Energy cutoff values for wavefunction plane wave expansion.",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "Reusable schema for energy value with unit corresponding to a specific accuracy level, e.g., used for suggested wavefunction and charge density cutoffs",
+                                "type": "object",
+                                "required": [
+                                    "accuracy_level",
+                                    "unit",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "unit": {
+                                        "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+                                        "type": "string",
+                                        "enum": [
+                                            "Ry"
+                                        ]
+                                    },
+                                    "accuracy_level": {
+                                        "description": "Accuracy level determines suggested scalar value.",
+                                        "type": "string",
+                                        "enum": [
+                                            "standard",
+                                            "low",
+                                            "high"
+                                        ]
+                                    },
+                                    "value": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        },
+                        "density": {
+                            "type": "array",
+                            "description": "Energy cutoff values for charge density plane wave expansion.",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "Reusable schema for energy value with unit corresponding to a specific accuracy level, e.g., used for suggested wavefunction and charge density cutoffs",
+                                "type": "object",
+                                "required": [
+                                    "accuracy_level",
+                                    "unit",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "unit": {
+                                        "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+                                        "type": "string",
+                                        "enum": [
+                                            "Ry"
+                                        ]
+                                    },
+                                    "accuracy_level": {
+                                        "description": "Accuracy level determines suggested scalar value.",
+                                        "type": "string",
+                                        "enum": [
+                                            "standard",
+                                            "low",
+                                            "high"
+                                        ]
+                                    },
+                                    "value": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "source": {
+            "type": "object",
+            "description": "TODO: remove in the future",
+            "properties": {
+                "info": {
+                    "type": "object"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

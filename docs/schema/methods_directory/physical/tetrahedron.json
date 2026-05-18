@@ -1,0 +1,208 @@
+{
+    "$id": "methods-directory/physical/tetrahedron",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "unit method tetrahedron",
+    "type": "object",
+    "required": [
+        "categories"
+    ],
+    "properties": {
+        "categories": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Tetrahedron method for Brillouin zone integration category schema",
+            "type": "object",
+            "description": "Used to categorize entities such as models and methods",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "tetrahedron"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "subtype": {
+                    "enum": [
+                        "linear",
+                        "optimized",
+                        "bloechl"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "tier2": {
+                    "enum": [
+                        "wf"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "tier1": {
+                    "enum": [
+                        "qm"
+                    ],
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "tier3": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "slugified entry or slug",
+                    "description": "contains either object with slugified entry or slug only as a string",
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "slugified entry",
+                            "description": "container for machine- and human-readable identifier",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "descriptive human-readable name of entry",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "machine-readable identifier",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "slug"
+                            ]
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        },
+        "parameters": {
+            "description": "Instructive parameters defining the method",
+            "type": "object"
+        },
+        "precision": {
+            "description": "Object showing the actual possible precision based on theory and implementation",
+            "type": "object"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "path": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "category path schema",
+            "description": "TODO: Use regex once schema draft version has been updated",
+            "type": "string"
+        },
+        "tags": {
+            "description": "entity tags",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

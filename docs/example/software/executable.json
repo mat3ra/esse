@@ -1,0 +1,20 @@
+{
+    "advancedComputeOptions": true,
+    "applicationId": [
+        "eaJepm4AWfqpaCw59"
+    ],
+    "isDefault": true,
+    "monitors": [
+        {
+            "name": "standard_output"
+        }
+    ],
+    "name": "pw.x",
+    "postProcessors": [],
+    "preProcessors": [],
+    "results": [
+        {
+            "name": "atomic_forces"
+        }
+    ]
+}

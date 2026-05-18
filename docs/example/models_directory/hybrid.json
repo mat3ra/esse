@@ -1,0 +1,15 @@
+{
+    "name": "HSE06 (SOC)",
+    "categories": {
+        "tier1": "pb",
+        "tier2": "qm",
+        "tier3": "dft",
+        "type": "ksdft",
+        "subtype": "hybrid"
+    },
+    "parameters": {
+        "functional": "hse06",
+        "spinOrbitCoupling": true,
+        "spinPolarization": "non-collinear"
+    }
+}

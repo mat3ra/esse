@@ -1,0 +1,51 @@
+{
+    "$id": "materials-category-components/operations/core/combinations/stack",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Stack Schema",
+    "description": "A stack of components in a certain direction. The specific types of components should be defined by the inheriting schema.",
+    "type": "object",
+    "required": [
+        "stack_components",
+        "direction"
+    ],
+    "properties": {
+        "stack_components": {
+            "type": "array"
+        },
+        "direction": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Axis Enum",
+            "type": "string",
+            "description": "Enum for axis types",
+            "enum": [
+                "x",
+                "y",
+                "z"
+            ]
+        },
+        "gaps": {
+            "description": "Gap distances between stack components as array of objects with id and value",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "object with id and value schema",
+                "description": "object containing integer id and value each",
+                "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "description": "value of this entry"
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

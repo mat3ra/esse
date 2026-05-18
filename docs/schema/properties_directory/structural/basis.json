@@ -1,0 +1,252 @@
+{
+    "$id": "properties-directory/structural/basis",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "basis schema",
+    "type": "object",
+    "required": [
+        "elements",
+        "coordinates"
+    ],
+    "properties": {
+        "elements": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "atomic elements schema",
+            "description": "atomic elements schema",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "atomic element schema",
+                "description": "chemical element of an atom according to the periodic table",
+                "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
+                "properties": {
+                    "value": {
+                        "description": "All elements, including extra elements",
+                        "anyOf": [
+                            {
+                                "enum": [
+                                    "H",
+                                    "He",
+                                    "Li",
+                                    "Be",
+                                    "B",
+                                    "C",
+                                    "N",
+                                    "O",
+                                    "F",
+                                    "Ne",
+                                    "Na",
+                                    "Mg",
+                                    "Al",
+                                    "Si",
+                                    "P",
+                                    "S",
+                                    "Cl",
+                                    "Ar",
+                                    "K",
+                                    "Ca",
+                                    "Sc",
+                                    "Ti",
+                                    "V",
+                                    "Cr",
+                                    "Mn",
+                                    "Fe",
+                                    "Co",
+                                    "Ni",
+                                    "Cu",
+                                    "Zn",
+                                    "Ga",
+                                    "Ge",
+                                    "As",
+                                    "Se",
+                                    "Br",
+                                    "Kr",
+                                    "Rb",
+                                    "Sr",
+                                    "Y",
+                                    "Zr",
+                                    "Nb",
+                                    "Mo",
+                                    "Tc",
+                                    "Ru",
+                                    "Rh",
+                                    "Pd",
+                                    "Ag",
+                                    "Cd",
+                                    "In",
+                                    "Sn",
+                                    "Sb",
+                                    "Te",
+                                    "I",
+                                    "Xe",
+                                    "Cs",
+                                    "Ba",
+                                    "La",
+                                    "Ce",
+                                    "Pr",
+                                    "Nd",
+                                    "Pm",
+                                    "Sm",
+                                    "Eu",
+                                    "Gd",
+                                    "Tb",
+                                    "Dy",
+                                    "Ho",
+                                    "Er",
+                                    "Tm",
+                                    "Yb",
+                                    "Lu",
+                                    "Hf",
+                                    "Ta",
+                                    "W",
+                                    "Re",
+                                    "Os",
+                                    "Ir",
+                                    "Pt",
+                                    "Au",
+                                    "Hg",
+                                    "Tl",
+                                    "Pb",
+                                    "Bi",
+                                    "Po",
+                                    "At",
+                                    "Rn",
+                                    "Fr",
+                                    "Ra",
+                                    "Ac",
+                                    "Th",
+                                    "Pa",
+                                    "U",
+                                    "Np",
+                                    "Pu",
+                                    "Am",
+                                    "Cm",
+                                    "Bk",
+                                    "Cf",
+                                    "Es",
+                                    "Fm",
+                                    "Md",
+                                    "No",
+                                    "Lr",
+                                    "Rf",
+                                    "Db",
+                                    "Sg",
+                                    "Bh",
+                                    "Hs",
+                                    "Mt",
+                                    "Ds",
+                                    "Rg",
+                                    "Cn",
+                                    "Nh",
+                                    "Fl",
+                                    "Mc",
+                                    "Lv",
+                                    "Ts",
+                                    "Og"
+                                ]
+                            },
+                            {
+                                "description": "Extra elements, used for convenience purposed",
+                                "enum": [
+                                    "X",
+                                    "Vac"
+                                ]
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "coordinates": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "atomic coordinates schema",
+            "description": "atomic coordinates schema",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "atomic coordinate schema",
+                "description": "coordinate of an atom",
+                "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
+                "properties": {
+                    "value": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "coordinate 3d schema",
+                        "type": "array",
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "description": "value of this entry",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "units": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "basis units enum",
+            "enum": [
+                "crystal",
+                "cartesian"
+            ],
+            "default": "crystal"
+        },
+        "labels": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "atomic labels schema",
+            "description": "atomic labels schema",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "atomic label schema",
+                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
+                "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
+                "properties": {
+                    "value": {
+                        "anyOf": [
+                            {
+                                "type": [
+                                    "integer",
+                                    "string",
+                                    "number"
+                                ]
+                            },
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "integer positive single digit",
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 9
+                            }
+                        ],
+                        "description": "value of this entry"
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

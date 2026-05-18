@@ -1,0 +1,21 @@
+{
+    "$id": "core/primitive/slugified-entry",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "slugified entry",
+    "description": "container for machine- and human-readable identifier",
+    "type": "object",
+    "required": [
+        "name",
+        "slug"
+    ],
+    "properties": {
+        "name": {
+            "description": "descriptive human-readable name of entry",
+            "type": "string"
+        },
+        "slug": {
+            "description": "machine-readable identifier",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "$id": "properties-directory/scalar/reaction-energy-barrier",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Reaction energy barrier property schema",
+    "type": "object",
+    "required": [
+        "name",
+        "units",
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "reaction_energy_barrier"
+            ],
+            "type": "string"
+        },
+        "units": {
+            "oneOf": [
+                {
+                    "enum": [
+                        "kcal/mol",
+                        "kJ/mol",
+                        "eV",
+                        "J/mol",
+                        "hartree",
+                        "cm-1",
+                        "Ry",
+                        "eV/atom"
+                    ]
+                },
+                {
+                    "enum": [
+                        "eV/A^2"
+                    ]
+                }
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

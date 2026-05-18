@@ -1,0 +1,25 @@
+{
+    "name": "vibrational_spectrum",
+    "xAxis": {
+        "label": "wavenumber",
+        "units": "cm-1"
+    },
+    "xDataArray": [
+        [
+            1625.972,
+            3631.832,
+            3735.535
+        ]
+    ],
+    "yAxis": {
+        "label": "Absorption coefficient",
+        "units": "km/mol"
+    },
+    "yDataSeries": [
+        [
+            46.681,
+            1.139,
+            14.281
+        ]
+    ]
+}

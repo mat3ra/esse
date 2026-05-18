@@ -1,0 +1,45 @@
+{
+    "$id": "methods-category/mathematical/enum-options",
+    "differentiation": {
+        "enum": [
+            "diff"
+        ]
+    },
+    "discretization": {
+        "enum": [
+            "discr"
+        ]
+    },
+    "functionApproximation": {
+        "enum": [
+            "fapprx"
+        ]
+    },
+    "integration": {
+        "enum": [
+            "intgr"
+        ]
+    },
+    "linearAlgebra": {
+        "enum": [
+            "linalg"
+        ]
+    },
+    "optimization": {
+        "enum": [
+            "opt"
+        ]
+    },
+    "regressionTypes": {
+        "enum": [
+            "linear",
+            "kernel_ridge"
+        ]
+    },
+    "regressionSubtypes": {
+        "enum": [
+            "least_squares",
+            "ridge"
+        ]
+    }
+}

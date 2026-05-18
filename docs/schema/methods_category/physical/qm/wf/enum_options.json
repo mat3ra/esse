@@ -1,0 +1,64 @@
+{
+    "$id": "methods-category/physical/qm/wf/enum-options",
+    "planewave": {
+        "enum": [
+            "pw"
+        ]
+    },
+    "atomicOrbital": {
+        "enum": [
+            "ao"
+        ]
+    },
+    "wavelet": {
+        "enum": [
+            "wvl"
+        ]
+    },
+    "smearing": {
+        "enum": [
+            "smearing"
+        ]
+    },
+    "tetrahedron": {
+        "enum": [
+            "tetrahedron"
+        ]
+    },
+    "pseudization": {
+        "enum": [
+            "psp"
+        ]
+    },
+    "pseudoSubtypes": {
+        "enum": [
+            "us",
+            "nc",
+            "nc-fr",
+            "paw",
+            "coulomb"
+        ]
+    },
+    "smearingSubtypes": {
+        "enum": [
+            "gaussian",
+            "marzari-vanderbilt",
+            "methfessel-paxton",
+            "fermi-dirac"
+        ]
+    },
+    "tetrahedronSubtypes": {
+        "enum": [
+            "linear",
+            "optimized",
+            "bloechl"
+        ]
+    },
+    "aoTypes": {
+        "enum": [
+            "pople",
+            "dunning",
+            "other"
+        ]
+    }
+}

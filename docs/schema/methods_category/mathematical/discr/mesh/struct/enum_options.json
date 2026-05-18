@@ -1,0 +1,8 @@
+{
+    "$id": "methods-category/mathematical/discr/mesh/struct/enum-options",
+    "cartesian": {
+        "enum": [
+            "cartesian"
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "else": "sample_id_6",
+    "flowchartId": "condition",
+    "head": true,
+    "input": [
+        {
+            "name": "x",
+            "scope": "global"
+        },
+        {
+            "name": "total_energy",
+            "scope": "sample_id_2"
+        }
+    ],
+    "maxOccurrences": 100,
+    "name": "condition",
+    "statement": "abs(x-total_energy) < 1e-5",
+    "status": "idle",
+    "then": "sample_id_4",
+    "throwException": true,
+    "type": "condition"
+}

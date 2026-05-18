@@ -1,0 +1,11 @@
+{
+    "$id": "system/is-multi-material",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "is multi schema",
+    "type": "object",
+    "properties": {
+        "isMultiMaterial": {
+            "type": "boolean"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "$id": "workflow/unit/input/-input",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "execution unit input schema for physics-based simulation engines",
+    "type": "object",
+    "properties": {
+        "input": {
+            "title": "execution unit input schema",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "execution unit input item schema for physics-based simulation engines",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Input file name. e.g. pw_scf.in",
+                                "type": "string"
+                            },
+                            "content": {
+                                "description": "Content of the input file. e.g. &CONTROL    calculation='scf' ...",
+                                "type": "string"
+                            },
+                            "rendered": {
+                                "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "content"
+                        ]
+                    },
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "execution unit input id item schema for physics-based simulation engines",
+                        "type": "object",
+                        "properties": {
+                            "templateId": {
+                                "type": "string"
+                            },
+                            "templateName": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "name of the resulting input file, if different than template name",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "$id": "core/reference/exabyte",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "jobId",
+        "unitId"
+    ],
+    "properties": {
+        "jobId": {
+            "description": "Job's identity",
+            "type": "string"
+        },
+        "unitId": {
+            "description": "Id of the unit that extracted the result",
+            "type": "string"
+        }
+    }
+}

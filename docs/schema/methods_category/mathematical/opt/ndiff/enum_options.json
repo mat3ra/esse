@@ -1,0 +1,18 @@
+{
+    "$id": "methods-category/mathematical/opt/ndiff/enum-options",
+    "direct": {
+        "enum": [
+            "direct"
+        ]
+    },
+    "population": {
+        "enum": [
+            "pop"
+        ]
+    },
+    "stochastic": {
+        "enum": [
+            "stoch"
+        ]
+    }
+}

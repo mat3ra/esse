@@ -1,0 +1,33 @@
+{
+    "$id": "methods-directory/mathematical/regression/precision",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "regression precision",
+    "type": "object",
+    "properties": {
+        "perProperty": {
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "regression precision per property schema",
+                "type": "object",
+                "required": [
+                    "trainingError"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "property name in 'flattened' format",
+                        "type": "string"
+                    },
+                    "trainingError": {
+                        "description": "training error of the estimator",
+                        "type": "number"
+                    },
+                    "score": {
+                        "description": "prediction score of the estimator. Eg: r2_score",
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

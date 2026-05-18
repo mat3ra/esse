@@ -1,0 +1,55 @@
+{
+    "legend": [
+        {
+            "electronicState": "2s",
+            "element": "C",
+            "index": 1,
+            "spin": 0.5
+        },
+        {
+            "electronicState": "2p",
+            "element": "C",
+            "index": 2,
+            "spin": 0.5
+        }
+    ],
+    "name": "density_of_states",
+    "xAxis": {
+        "label": "energy",
+        "units": "eV"
+    },
+    "xDataArray": [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            0.5,
+            0.5,
+            0.5
+        ]
+    ],
+    "yAxis": {
+        "label": "density of states",
+        "units": "states/unitcell"
+    },
+    "yDataSeries": [
+        [
+            12.1,
+            12.5
+        ],
+        [
+            11.1,
+            11.5
+        ],
+        [
+            10.1,
+            10.5
+        ],
+        [
+            9.5,
+            8.5
+        ]
+    ]
+}

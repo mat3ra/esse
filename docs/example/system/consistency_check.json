@@ -1,0 +1,6 @@
+{
+    "key": "basis.coordinates.0",
+    "name": "atomsTooClose",
+    "severity": "warning",
+    "message": "Atom 0 is too close to atom X"
+}

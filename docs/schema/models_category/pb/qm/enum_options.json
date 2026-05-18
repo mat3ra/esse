@@ -1,0 +1,18 @@
+{
+    "$id": "models-category/pb/qm/enum-options",
+    "abInitio": {
+        "enum": [
+            "abin"
+        ]
+    },
+    "densityFunctional": {
+        "enum": [
+            "dft"
+        ]
+    },
+    "semiEmpirical": {
+        "enum": [
+            "semp"
+        ]
+    }
+}

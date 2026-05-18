@@ -1,0 +1,45 @@
+{
+    "$id": "properties-directory/structural/patterns/functional-group",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "functional group pattern schema",
+    "type": "object",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "functional_group"
+            ]
+        },
+        "atoms": {
+            "type": "array",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "array of ids",
+            "description": "array of objects containing integer id each",
+            "items": {
+                "type": "object",
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "object with id",
+                "description": "object containing integer id",
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "isConnector": {
+                        "description": "whether atom connects to atoms outside of functional group.",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "SMARTS": {
+            "description": "SMARTS string for classification of FG; https://en.wikipedia.org/wiki/SMILES_arbitrary_target_specification",
+            "type": "string"
+        }
+    }
+}

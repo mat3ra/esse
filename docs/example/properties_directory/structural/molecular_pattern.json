@@ -1,0 +1,71 @@
+[
+    {
+        "SMARTS": "[O&D1]-C(=O)[#6X3]",
+        "atoms": [
+            {
+                "id": 1,
+                "isConnector": false
+            },
+            {
+                "id": 2,
+                "isConnector": false
+            },
+            {
+                "id": 3,
+                "isConnector": false
+            },
+            {
+                "id": 4,
+                "isConnector": true
+            }
+        ],
+        "name": "functional_group"
+    },
+    {
+        "atoms": [
+            {
+                "id": 1,
+                "isConnector": true
+            },
+            {
+                "id": 2,
+                "isConnector": false
+            },
+            {
+                "id": 3,
+                "isConnector": true
+            }
+        ],
+        "name": "special_bond"
+    },
+    {
+        "atoms": [
+            {
+                "id": 1,
+                "isConnector": false
+            },
+            {
+                "id": 2,
+                "isConnector": false
+            },
+            {
+                "id": 3,
+                "isConnector": false
+            },
+            {
+                "id": 4,
+                "isConnector": false
+            },
+            {
+                "id": 5,
+                "isConnector": false
+            },
+            {
+                "id": 6,
+                "isConnector": true
+            }
+        ],
+        "isAromatic": true,
+        "name": "ring"
+    }
+]

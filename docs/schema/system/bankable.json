@@ -1,0 +1,16 @@
+{
+    "$id": "system/bankable",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "bankable schema",
+    "type": "object",
+    "properties": {
+        "exabyteId": {
+            "description": "Identity of the corresponding bank entity",
+            "type": "string"
+        },
+        "hash": {
+            "description": "Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.",
+            "type": "string"
+        }
+    }
+}

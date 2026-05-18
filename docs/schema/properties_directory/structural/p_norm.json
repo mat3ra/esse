@@ -1,0 +1,24 @@
+{
+    "$id": "properties-directory/structural/p-norm",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "p_norm",
+    "description": "https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm",
+    "type": "object",
+    "required": [
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "p-norm"
+            ]
+        },
+        "degree": {
+            "type": "integer",
+            "description": "degree of the dimensionality of the norm"
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

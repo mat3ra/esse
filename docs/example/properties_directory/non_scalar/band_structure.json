@@ -1,0 +1,47 @@
+{
+    "name": "band_structure",
+    "spin": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+    ],
+    "xAxis": {
+        "label": "kpoints",
+        "units": "crystal"
+    },
+    "xDataArray": [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            0.5,
+            0.5,
+            0.5
+        ]
+    ],
+    "yAxis": {
+        "label": "energy",
+        "units": "eV"
+    },
+    "yDataSeries": [
+        [
+            12.1,
+            12.5
+        ],
+        [
+            11.1,
+            11.5
+        ],
+        [
+            10.1,
+            10.5
+        ],
+        [
+            9.5,
+            8.5
+        ]
+    ]
+}

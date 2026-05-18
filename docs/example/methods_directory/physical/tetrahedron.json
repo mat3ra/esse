@@ -1,0 +1,10 @@
+{
+    "name": "Optimized Tetrahedron method (Kawamura)",
+    "path": "/qm/wf/tetrahedron/optimized",
+    "categories": {
+        "tier1": "qm",
+        "tier2": "wf",
+        "type": "tetrahedron",
+        "subtype": "optimized"
+    }
+}

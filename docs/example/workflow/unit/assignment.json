@@ -1,0 +1,19 @@
+{
+    "flowchartId": "assignment",
+    "head": true,
+    "input": [
+        {
+            "name": "N_K_x",
+            "scope": "global"
+        },
+        {
+            "name": "N_K_y",
+            "scope": "global"
+        }
+    ],
+    "name": "assignment",
+    "operand": "N_K_x",
+    "status": "idle",
+    "type": "assignment",
+    "value": "N_K_x+N_K_y+1"
+}

@@ -1,0 +1,76 @@
+{
+    "$id": "software-directory/modeling/nwchem",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NWChem",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "NWChem"
+            ],
+            "description": "entity name",
+            "type": "string"
+        },
+        "summary": {
+            "enum": [
+                "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations"
+            ],
+            "description": "Application's short description.",
+            "type": "string"
+        },
+        "version": {
+            "enum": [
+                "6.6",
+                "7.0.2"
+            ],
+            "description": "Application version. e.g. 5.3.5",
+            "type": "string"
+        },
+        "exec": {
+            "enum": [
+                "nwchem"
+            ]
+        },
+        "shortName": {
+            "description": "The short name of the application. e.g. qe",
+            "type": "string"
+        },
+        "build": {
+            "description": "Application build. e.g. VTST",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Whether the build is the default build",
+            "type": "boolean",
+            "default": false
+        },
+        "hasAdvancedComputeOptions": {
+            "description": "Whether advanced compute options are present",
+            "type": "boolean"
+        },
+        "isLicensed": {
+            "description": "Whether licensing is present",
+            "type": "boolean"
+        },
+        "isUsingMaterial": {
+            "description": "Whether the application is using (being passed during a downstream processing routine) a material structure.",
+            "type": "boolean"
+        },
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        }
+    }
+}

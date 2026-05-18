@@ -1,0 +1,10 @@
+{
+    "name": "Methfessel-Paxton smearing",
+    "path": "/qm/wf/smearing/methfessel-paxton",
+    "categories": {
+        "tier1": "qm",
+        "tier2": "wf",
+        "type": "smearing",
+        "subtype": "methfessel-paxton"
+    }
+}

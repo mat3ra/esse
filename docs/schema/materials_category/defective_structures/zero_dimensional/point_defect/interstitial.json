@@ -1,0 +1,1736 @@
+{
+    "$id": "materials-category/defective-structures/zero-dimensional/point-defect/interstitial",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interstitial Point Defect Schema",
+    "description": "An interstitial point defect configuration where an atom is added to an interstitial site.",
+    "required": [
+        "merge_components",
+        "merge_method"
+    ],
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Crystal Schema",
+                    "description": "A crystal structure, referencing the base material schema",
+                    "type": "object",
+                    "required": [
+                        "basis",
+                        "lattice"
+                    ],
+                    "properties": {
+                        "formula": {
+                            "description": "reduced chemical formula",
+                            "type": "string"
+                        },
+                        "unitCellFormula": {
+                            "description": "chemical formula based on the number of atoms of each element in the supercell",
+                            "type": "string"
+                        },
+                        "basis": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "basis schema",
+                            "type": "object",
+                            "required": [
+                                "elements",
+                                "coordinates"
+                            ],
+                            "properties": {
+                                "elements": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "atomic elements schema",
+                                    "description": "atomic elements schema",
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic element schema",
+                                        "description": "chemical element of an atom according to the periodic table",
+                                        "type": "object",
+                                        "required": [
+                                            "id",
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "value": {
+                                                "description": "All elements, including extra elements",
+                                                "anyOf": [
+                                                    {
+                                                        "enum": [
+                                                            "H",
+                                                            "He",
+                                                            "Li",
+                                                            "Be",
+                                                            "B",
+                                                            "C",
+                                                            "N",
+                                                            "O",
+                                                            "F",
+                                                            "Ne",
+                                                            "Na",
+                                                            "Mg",
+                                                            "Al",
+                                                            "Si",
+                                                            "P",
+                                                            "S",
+                                                            "Cl",
+                                                            "Ar",
+                                                            "K",
+                                                            "Ca",
+                                                            "Sc",
+                                                            "Ti",
+                                                            "V",
+                                                            "Cr",
+                                                            "Mn",
+                                                            "Fe",
+                                                            "Co",
+                                                            "Ni",
+                                                            "Cu",
+                                                            "Zn",
+                                                            "Ga",
+                                                            "Ge",
+                                                            "As",
+                                                            "Se",
+                                                            "Br",
+                                                            "Kr",
+                                                            "Rb",
+                                                            "Sr",
+                                                            "Y",
+                                                            "Zr",
+                                                            "Nb",
+                                                            "Mo",
+                                                            "Tc",
+                                                            "Ru",
+                                                            "Rh",
+                                                            "Pd",
+                                                            "Ag",
+                                                            "Cd",
+                                                            "In",
+                                                            "Sn",
+                                                            "Sb",
+                                                            "Te",
+                                                            "I",
+                                                            "Xe",
+                                                            "Cs",
+                                                            "Ba",
+                                                            "La",
+                                                            "Ce",
+                                                            "Pr",
+                                                            "Nd",
+                                                            "Pm",
+                                                            "Sm",
+                                                            "Eu",
+                                                            "Gd",
+                                                            "Tb",
+                                                            "Dy",
+                                                            "Ho",
+                                                            "Er",
+                                                            "Tm",
+                                                            "Yb",
+                                                            "Lu",
+                                                            "Hf",
+                                                            "Ta",
+                                                            "W",
+                                                            "Re",
+                                                            "Os",
+                                                            "Ir",
+                                                            "Pt",
+                                                            "Au",
+                                                            "Hg",
+                                                            "Tl",
+                                                            "Pb",
+                                                            "Bi",
+                                                            "Po",
+                                                            "At",
+                                                            "Rn",
+                                                            "Fr",
+                                                            "Ra",
+                                                            "Ac",
+                                                            "Th",
+                                                            "Pa",
+                                                            "U",
+                                                            "Np",
+                                                            "Pu",
+                                                            "Am",
+                                                            "Cm",
+                                                            "Bk",
+                                                            "Cf",
+                                                            "Es",
+                                                            "Fm",
+                                                            "Md",
+                                                            "No",
+                                                            "Lr",
+                                                            "Rf",
+                                                            "Db",
+                                                            "Sg",
+                                                            "Bh",
+                                                            "Hs",
+                                                            "Mt",
+                                                            "Ds",
+                                                            "Rg",
+                                                            "Cn",
+                                                            "Nh",
+                                                            "Fl",
+                                                            "Mc",
+                                                            "Lv",
+                                                            "Ts",
+                                                            "Og"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "description": "Extra elements, used for convenience purposed",
+                                                        "enum": [
+                                                            "X",
+                                                            "Vac"
+                                                        ]
+                                                    }
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "description": "integer id of this entry",
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                },
+                                "coordinates": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "atomic coordinates schema",
+                                    "description": "atomic coordinates schema",
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic coordinate schema",
+                                        "description": "coordinate of an atom",
+                                        "type": "object",
+                                        "required": [
+                                            "id",
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "value": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "coordinate 3d schema",
+                                                "type": "array",
+                                                "minItems": 3,
+                                                "maxItems": 3,
+                                                "description": "value of this entry",
+                                                "items": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "id": {
+                                                "description": "integer id of this entry",
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                },
+                                "units": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "basis units enum",
+                                    "enum": [
+                                        "crystal",
+                                        "cartesian"
+                                    ],
+                                    "default": "crystal"
+                                },
+                                "labels": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "atomic labels schema",
+                                    "description": "atomic labels schema",
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic label schema",
+                                        "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
+                                        "type": "object",
+                                        "required": [
+                                            "id",
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "value": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": [
+                                                            "integer",
+                                                            "string",
+                                                            "number"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "integer positive single digit",
+                                                        "type": "integer",
+                                                        "minimum": 1,
+                                                        "maximum": 9
+                                                    }
+                                                ],
+                                                "description": "value of this entry"
+                                            },
+                                            "id": {
+                                                "description": "integer id of this entry",
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "lattice": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "lattice schema",
+                            "type": "object",
+                            "required": [
+                                "a",
+                                "b",
+                                "c",
+                                "alpha",
+                                "beta",
+                                "gamma"
+                            ],
+                            "properties": {
+                                "a": {
+                                    "description": "length of the first lattice vector",
+                                    "type": "number"
+                                },
+                                "b": {
+                                    "description": "length of the second lattice vector",
+                                    "type": "number"
+                                },
+                                "c": {
+                                    "description": "length of the third lattice vector",
+                                    "type": "number"
+                                },
+                                "alpha": {
+                                    "description": "angle between first and second lattice vector",
+                                    "type": "number"
+                                },
+                                "beta": {
+                                    "description": "angle between second and third lattice vector",
+                                    "type": "number"
+                                },
+                                "gamma": {
+                                    "description": "angle between first and third lattice vector",
+                                    "type": "number"
+                                },
+                                "vectors": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice vectors schema",
+                                    "type": "object",
+                                    "required": [
+                                        "a",
+                                        "b",
+                                        "c"
+                                    ],
+                                    "properties": {
+                                        "a": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "vector 3d schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "b": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "vector 3d schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "c": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "vector 3d schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "alat": {
+                                            "description": "lattice parameter for fractional coordinates",
+                                            "type": "number",
+                                            "default": 1
+                                        },
+                                        "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "lattice vectors units enum",
+                                            "enum": [
+                                                "angstrom",
+                                                "bohr"
+                                            ],
+                                            "default": "angstrom"
+                                        }
+                                    }
+                                },
+                                "type": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice type enum",
+                                    "type": "string",
+                                    "enum": [
+                                        "CUB",
+                                        "BCC",
+                                        "FCC",
+                                        "TET",
+                                        "MCL",
+                                        "ORC",
+                                        "ORCC",
+                                        "ORCF",
+                                        "ORCI",
+                                        "HEX",
+                                        "BCT",
+                                        "TRI",
+                                        "MCLC",
+                                        "RHL"
+                                    ],
+                                    "default": "TRI"
+                                },
+                                "units": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "Lattice units schema",
+                                    "type": "object",
+                                    "default": {
+                                        "length": "angstrom",
+                                        "angle": "degree"
+                                    },
+                                    "properties": {
+                                        "length": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "lattice units length enum",
+                                            "enum": [
+                                                "angstrom",
+                                                "bohr"
+                                            ],
+                                            "default": "angstrom"
+                                        },
+                                        "angle": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "lattice units angle enum",
+                                            "enum": [
+                                                "degree",
+                                                "radian"
+                                            ],
+                                            "default": "degree"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "derivedProperties": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "derived properties schema",
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "volume schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "volume"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "angstrom^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "density schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "density"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "g/cm^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "symmetry schema",
+                                        "type": "object",
+                                        "properties": {
+                                            "pointGroupSymbol": {
+                                                "description": "point group symbol in Schoenflies notation",
+                                                "type": "string"
+                                            },
+                                            "spaceGroupSymbol": {
+                                                "description": "space group symbol in Hermann–Mauguin notation",
+                                                "type": "string"
+                                            },
+                                            "tolerance": {
+                                                "type": "object",
+                                                "description": "tolerance used for symmetry calculation",
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "scalar schema",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "units": {
+                                                        "enum": [
+                                                            "angstrom"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            "name": {
+                                                "enum": [
+                                                    "symmetry"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "elemental-ratio",
+                                        "description": "ration of this element in the compound",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "elemental_ratio"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "maximum": 1
+                                            },
+                                            "element": {
+                                                "type": "string",
+                                                "description": "the element this ratio is for"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "p_norm",
+                                        "description": "https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "p-norm"
+                                                ]
+                                            },
+                                            "degree": {
+                                                "type": "integer",
+                                                "description": "degree of the dimensionality of the norm"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI key representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi_key"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "discriminator": {
+                                    "propertyName": "name"
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            }
+                        },
+                        "external": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "database source schema",
+                            "description": "information about a database source",
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "origin",
+                                "source"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                "source": {
+                                    "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
+                                    "type": "string",
+                                    "enum": [
+                                        "MaterialsProject",
+                                        "MaterialsProjectLegacy",
+                                        "ICSD",
+                                        "2dmatpedia",
+                                        "MaterialsVirtualLab"
+                                    ]
+                                },
+                                "origin": {
+                                    "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "description": "Original response from external source.",
+                                    "type": "object"
+                                },
+                                "doi": {
+                                    "description": "Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506",
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "description": "The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "src": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "file source schema",
+                            "description": "file source with the information inside",
+                            "type": "object",
+                            "required": [
+                                "filename",
+                                "text",
+                                "hash"
+                            ],
+                            "properties": {
+                                "extension": {
+                                    "description": "file extension",
+                                    "type": "string"
+                                },
+                                "filename": {
+                                    "description": "file name without extension",
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "description": "file content as raw text",
+                                    "type": "string"
+                                },
+                                "hash": {
+                                    "description": "MD5 hash based on file content",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "scaledHash": {
+                            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
+                            "type": "string"
+                        },
+                        "icsdId": {
+                            "description": "Corresponding ICSD id of the material",
+                            "type": "integer"
+                        },
+                        "isNonPeriodic": {
+                            "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
+                            "type": "boolean"
+                        },
+                        "consistencyChecks": {
+                            "type": "array",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "material consistency check schema",
+                                "type": "object",
+                                "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
+                                "required": [
+                                    "key",
+                                    "name",
+                                    "severity",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "enum": [
+                                            "default",
+                                            "atomsTooClose",
+                                            "atomsOverlap"
+                                        ],
+                                        "description": "Name of the consistency check that is performed, which is listed in an enum."
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
+                                    },
+                                    "severity": {
+                                        "enum": [
+                                            "info",
+                                            "warning",
+                                            "error"
+                                        ],
+                                        "description": "Severity level of the problem, which is used in UI to differentiate."
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Message generated by the consistency check describing the problem."
+                                    }
+                                }
+                            }
+                        },
+                        "_id": {
+                            "description": "entity identity",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "entity slug",
+                            "type": "string"
+                        },
+                        "systemName": {
+                            "type": "string"
+                        },
+                        "schemaVersion": {
+                            "description": "entity's schema version. Used to distinct between different schemas.",
+                            "type": "string",
+                            "default": "2022.8.16"
+                        },
+                        "name": {
+                            "description": "entity name",
+                            "type": "string"
+                        },
+                        "isDefault": {
+                            "description": "Identifies that entity is defaultable",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "metadata": {
+                            "type": "object"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Point Defect Site Schema",
+                    "description": "A crystal site with defect information (atom or vacancy) for point defects",
+                    "type": "object",
+                    "required": [
+                        "coordinate",
+                        "crystal",
+                        "element"
+                    ],
+                    "properties": {
+                        "crystal": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "Crystal Schema",
+                            "description": "A crystal structure, referencing the base material schema",
+                            "type": "object",
+                            "required": [
+                                "basis",
+                                "lattice"
+                            ],
+                            "properties": {
+                                "formula": {
+                                    "description": "reduced chemical formula",
+                                    "type": "string"
+                                },
+                                "unitCellFormula": {
+                                    "description": "chemical formula based on the number of atoms of each element in the supercell",
+                                    "type": "string"
+                                },
+                                "basis": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "basis schema",
+                                    "type": "object",
+                                    "required": [
+                                        "elements",
+                                        "coordinates"
+                                    ],
+                                    "properties": {
+                                        "elements": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic elements schema",
+                                            "description": "atomic elements schema",
+                                            "type": "array",
+                                            "items": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "atomic element schema",
+                                                "description": "chemical element of an atom according to the periodic table",
+                                                "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "value": {
+                                                        "description": "All elements, including extra elements",
+                                                        "anyOf": [
+                                                            {
+                                                                "enum": [
+                                                                    "H",
+                                                                    "He",
+                                                                    "Li",
+                                                                    "Be",
+                                                                    "B",
+                                                                    "C",
+                                                                    "N",
+                                                                    "O",
+                                                                    "F",
+                                                                    "Ne",
+                                                                    "Na",
+                                                                    "Mg",
+                                                                    "Al",
+                                                                    "Si",
+                                                                    "P",
+                                                                    "S",
+                                                                    "Cl",
+                                                                    "Ar",
+                                                                    "K",
+                                                                    "Ca",
+                                                                    "Sc",
+                                                                    "Ti",
+                                                                    "V",
+                                                                    "Cr",
+                                                                    "Mn",
+                                                                    "Fe",
+                                                                    "Co",
+                                                                    "Ni",
+                                                                    "Cu",
+                                                                    "Zn",
+                                                                    "Ga",
+                                                                    "Ge",
+                                                                    "As",
+                                                                    "Se",
+                                                                    "Br",
+                                                                    "Kr",
+                                                                    "Rb",
+                                                                    "Sr",
+                                                                    "Y",
+                                                                    "Zr",
+                                                                    "Nb",
+                                                                    "Mo",
+                                                                    "Tc",
+                                                                    "Ru",
+                                                                    "Rh",
+                                                                    "Pd",
+                                                                    "Ag",
+                                                                    "Cd",
+                                                                    "In",
+                                                                    "Sn",
+                                                                    "Sb",
+                                                                    "Te",
+                                                                    "I",
+                                                                    "Xe",
+                                                                    "Cs",
+                                                                    "Ba",
+                                                                    "La",
+                                                                    "Ce",
+                                                                    "Pr",
+                                                                    "Nd",
+                                                                    "Pm",
+                                                                    "Sm",
+                                                                    "Eu",
+                                                                    "Gd",
+                                                                    "Tb",
+                                                                    "Dy",
+                                                                    "Ho",
+                                                                    "Er",
+                                                                    "Tm",
+                                                                    "Yb",
+                                                                    "Lu",
+                                                                    "Hf",
+                                                                    "Ta",
+                                                                    "W",
+                                                                    "Re",
+                                                                    "Os",
+                                                                    "Ir",
+                                                                    "Pt",
+                                                                    "Au",
+                                                                    "Hg",
+                                                                    "Tl",
+                                                                    "Pb",
+                                                                    "Bi",
+                                                                    "Po",
+                                                                    "At",
+                                                                    "Rn",
+                                                                    "Fr",
+                                                                    "Ra",
+                                                                    "Ac",
+                                                                    "Th",
+                                                                    "Pa",
+                                                                    "U",
+                                                                    "Np",
+                                                                    "Pu",
+                                                                    "Am",
+                                                                    "Cm",
+                                                                    "Bk",
+                                                                    "Cf",
+                                                                    "Es",
+                                                                    "Fm",
+                                                                    "Md",
+                                                                    "No",
+                                                                    "Lr",
+                                                                    "Rf",
+                                                                    "Db",
+                                                                    "Sg",
+                                                                    "Bh",
+                                                                    "Hs",
+                                                                    "Mt",
+                                                                    "Ds",
+                                                                    "Rg",
+                                                                    "Cn",
+                                                                    "Nh",
+                                                                    "Fl",
+                                                                    "Mc",
+                                                                    "Lv",
+                                                                    "Ts",
+                                                                    "Og"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "description": "Extra elements, used for convenience purposed",
+                                                                "enum": [
+                                                                    "X",
+                                                                    "Vac"
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "coordinates": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic coordinates schema",
+                                            "description": "atomic coordinates schema",
+                                            "type": "array",
+                                            "items": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "atomic coordinate schema",
+                                                "description": "coordinate of an atom",
+                                                "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "value": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "coordinate 3d schema",
+                                                        "type": "array",
+                                                        "minItems": 3,
+                                                        "maxItems": 3,
+                                                        "description": "value of this entry",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "basis units enum",
+                                            "enum": [
+                                                "crystal",
+                                                "cartesian"
+                                            ],
+                                            "default": "crystal"
+                                        },
+                                        "labels": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic labels schema",
+                                            "description": "atomic labels schema",
+                                            "type": "array",
+                                            "items": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "atomic label schema",
+                                                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
+                                                "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "value": {
+                                                        "anyOf": [
+                                                            {
+                                                                "type": [
+                                                                    "integer",
+                                                                    "string",
+                                                                    "number"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "integer positive single digit",
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "maximum": 9
+                                                            }
+                                                        ],
+                                                        "description": "value of this entry"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "lattice": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice schema",
+                                    "type": "object",
+                                    "required": [
+                                        "a",
+                                        "b",
+                                        "c",
+                                        "alpha",
+                                        "beta",
+                                        "gamma"
+                                    ],
+                                    "properties": {
+                                        "a": {
+                                            "description": "length of the first lattice vector",
+                                            "type": "number"
+                                        },
+                                        "b": {
+                                            "description": "length of the second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "c": {
+                                            "description": "length of the third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "alpha": {
+                                            "description": "angle between first and second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "beta": {
+                                            "description": "angle between second and third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "gamma": {
+                                            "description": "angle between first and third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "vectors": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "lattice vectors schema",
+                                            "type": "object",
+                                            "required": [
+                                                "a",
+                                                "b",
+                                                "c"
+                                            ],
+                                            "properties": {
+                                                "a": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "vector 3d schema",
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "b": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "vector 3d schema",
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "c": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "vector 3d schema",
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "alat": {
+                                                    "description": "lattice parameter for fractional coordinates",
+                                                    "type": "number",
+                                                    "default": 1
+                                                },
+                                                "units": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice vectors units enum",
+                                                    "enum": [
+                                                        "angstrom",
+                                                        "bohr"
+                                                    ],
+                                                    "default": "angstrom"
+                                                }
+                                            }
+                                        },
+                                        "type": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "lattice type enum",
+                                            "type": "string",
+                                            "enum": [
+                                                "CUB",
+                                                "BCC",
+                                                "FCC",
+                                                "TET",
+                                                "MCL",
+                                                "ORC",
+                                                "ORCC",
+                                                "ORCF",
+                                                "ORCI",
+                                                "HEX",
+                                                "BCT",
+                                                "TRI",
+                                                "MCLC",
+                                                "RHL"
+                                            ],
+                                            "default": "TRI"
+                                        },
+                                        "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "Lattice units schema",
+                                            "type": "object",
+                                            "default": {
+                                                "length": "angstrom",
+                                                "angle": "degree"
+                                            },
+                                            "properties": {
+                                                "length": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units length enum",
+                                                    "enum": [
+                                                        "angstrom",
+                                                        "bohr"
+                                                    ],
+                                                    "default": "angstrom"
+                                                },
+                                                "angle": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units angle enum",
+                                                    "enum": [
+                                                        "degree",
+                                                        "radian"
+                                                    ],
+                                                    "default": "degree"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "derivedProperties": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "derived properties schema",
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "volume schema",
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "enum": [
+                                                            "volume"
+                                                        ]
+                                                    },
+                                                    "units": {
+                                                        "enum": [
+                                                            "angstrom^3"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "density schema",
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "enum": [
+                                                            "density"
+                                                        ]
+                                                    },
+                                                    "units": {
+                                                        "enum": [
+                                                            "g/cm^3"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "symmetry schema",
+                                                "type": "object",
+                                                "properties": {
+                                                    "pointGroupSymbol": {
+                                                        "description": "point group symbol in Schoenflies notation",
+                                                        "type": "string"
+                                                    },
+                                                    "spaceGroupSymbol": {
+                                                        "description": "space group symbol in Hermann–Mauguin notation",
+                                                        "type": "string"
+                                                    },
+                                                    "tolerance": {
+                                                        "type": "object",
+                                                        "description": "tolerance used for symmetry calculation",
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "scalar schema",
+                                                        "required": [
+                                                            "value"
+                                                        ],
+                                                        "properties": {
+                                                            "units": {
+                                                                "enum": [
+                                                                    "angstrom"
+                                                                ]
+                                                            },
+                                                            "value": {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    },
+                                                    "name": {
+                                                        "enum": [
+                                                            "symmetry"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "elemental-ratio",
+                                                "description": "ration of this element in the compound",
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "enum": [
+                                                            "elemental_ratio"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number",
+                                                        "minimum": 0,
+                                                        "maximum": 1
+                                                    },
+                                                    "element": {
+                                                        "type": "string",
+                                                        "description": "the element this ratio is for"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "p_norm",
+                                                "description": "https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm",
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "enum": [
+                                                            "p-norm"
+                                                        ]
+                                                    },
+                                                    "degree": {
+                                                        "type": "integer",
+                                                        "description": "degree of the dimensionality of the norm"
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "InChI representation schema",
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "enum": [
+                                                            "inchi"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "InChI key representation schema",
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "enum": [
+                                                            "inchi_key"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "discriminator": {
+                                            "propertyName": "name"
+                                        },
+                                        "required": [
+                                            "name"
+                                        ]
+                                    }
+                                },
+                                "external": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "database source schema",
+                                    "description": "information about a database source",
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "origin",
+                                        "source"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
+                                            "oneOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "number"
+                                                }
+                                            ]
+                                        },
+                                        "source": {
+                                            "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
+                                            "type": "string",
+                                            "enum": [
+                                                "MaterialsProject",
+                                                "MaterialsProjectLegacy",
+                                                "ICSD",
+                                                "2dmatpedia",
+                                                "MaterialsVirtualLab"
+                                            ]
+                                        },
+                                        "origin": {
+                                            "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "description": "Original response from external source.",
+                                            "type": "object"
+                                        },
+                                        "doi": {
+                                            "description": "Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506",
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "description": "The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "src": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "file source schema",
+                                    "description": "file source with the information inside",
+                                    "type": "object",
+                                    "required": [
+                                        "filename",
+                                        "text",
+                                        "hash"
+                                    ],
+                                    "properties": {
+                                        "extension": {
+                                            "description": "file extension",
+                                            "type": "string"
+                                        },
+                                        "filename": {
+                                            "description": "file name without extension",
+                                            "type": "string"
+                                        },
+                                        "text": {
+                                            "description": "file content as raw text",
+                                            "type": "string"
+                                        },
+                                        "hash": {
+                                            "description": "MD5 hash based on file content",
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "scaledHash": {
+                                    "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
+                                    "type": "string"
+                                },
+                                "icsdId": {
+                                    "description": "Corresponding ICSD id of the material",
+                                    "type": "integer"
+                                },
+                                "isNonPeriodic": {
+                                    "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
+                                    "type": "boolean"
+                                },
+                                "consistencyChecks": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "material consistency check schema",
+                                        "type": "object",
+                                        "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
+                                        "required": [
+                                            "key",
+                                            "name",
+                                            "severity",
+                                            "message"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "default",
+                                                    "atomsTooClose",
+                                                    "atomsOverlap"
+                                                ],
+                                                "description": "Name of the consistency check that is performed, which is listed in an enum."
+                                            },
+                                            "key": {
+                                                "type": "string",
+                                                "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
+                                            },
+                                            "severity": {
+                                                "enum": [
+                                                    "info",
+                                                    "warning",
+                                                    "error"
+                                                ],
+                                                "description": "Severity level of the problem, which is used in UI to differentiate."
+                                            },
+                                            "message": {
+                                                "type": "string",
+                                                "description": "Message generated by the consistency check describing the problem."
+                                            }
+                                        }
+                                    }
+                                },
+                                "_id": {
+                                    "description": "entity identity",
+                                    "type": "string"
+                                },
+                                "slug": {
+                                    "description": "entity slug",
+                                    "type": "string"
+                                },
+                                "systemName": {
+                                    "type": "string"
+                                },
+                                "schemaVersion": {
+                                    "description": "entity's schema version. Used to distinct between different schemas.",
+                                    "type": "string",
+                                    "default": "2022.8.16"
+                                },
+                                "name": {
+                                    "description": "entity name",
+                                    "type": "string"
+                                },
+                                "isDefault": {
+                                    "description": "Identifies that entity is defaultable",
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "metadata": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "coordinate": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 3d schema",
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "element": {
+                            "anyOf": [
+                                {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "Atom Schema",
+                                    "description": "A chemical element that can be placed at a crystal site",
+                                    "type": "object",
+                                    "properties": {
+                                        "chemical_element": {
+                                            "enum": [
+                                                "H",
+                                                "He",
+                                                "Li",
+                                                "Be",
+                                                "B",
+                                                "C",
+                                                "N",
+                                                "O",
+                                                "F",
+                                                "Ne",
+                                                "Na",
+                                                "Mg",
+                                                "Al",
+                                                "Si",
+                                                "P",
+                                                "S",
+                                                "Cl",
+                                                "Ar",
+                                                "K",
+                                                "Ca",
+                                                "Sc",
+                                                "Ti",
+                                                "V",
+                                                "Cr",
+                                                "Mn",
+                                                "Fe",
+                                                "Co",
+                                                "Ni",
+                                                "Cu",
+                                                "Zn",
+                                                "Ga",
+                                                "Ge",
+                                                "As",
+                                                "Se",
+                                                "Br",
+                                                "Kr",
+                                                "Rb",
+                                                "Sr",
+                                                "Y",
+                                                "Zr",
+                                                "Nb",
+                                                "Mo",
+                                                "Tc",
+                                                "Ru",
+                                                "Rh",
+                                                "Pd",
+                                                "Ag",
+                                                "Cd",
+                                                "In",
+                                                "Sn",
+                                                "Sb",
+                                                "Te",
+                                                "I",
+                                                "Xe",
+                                                "Cs",
+                                                "Ba",
+                                                "La",
+                                                "Ce",
+                                                "Pr",
+                                                "Nd",
+                                                "Pm",
+                                                "Sm",
+                                                "Eu",
+                                                "Gd",
+                                                "Tb",
+                                                "Dy",
+                                                "Ho",
+                                                "Er",
+                                                "Tm",
+                                                "Yb",
+                                                "Lu",
+                                                "Hf",
+                                                "Ta",
+                                                "W",
+                                                "Re",
+                                                "Os",
+                                                "Ir",
+                                                "Pt",
+                                                "Au",
+                                                "Hg",
+                                                "Tl",
+                                                "Pb",
+                                                "Bi",
+                                                "Po",
+                                                "At",
+                                                "Rn",
+                                                "Fr",
+                                                "Ra",
+                                                "Ac",
+                                                "Th",
+                                                "Pa",
+                                                "U",
+                                                "Np",
+                                                "Pu",
+                                                "Am",
+                                                "Cm",
+                                                "Bk",
+                                                "Cf",
+                                                "Es",
+                                                "Fm",
+                                                "Md",
+                                                "No",
+                                                "Lr",
+                                                "Rf",
+                                                "Db",
+                                                "Sg",
+                                                "Bh",
+                                                "Hs",
+                                                "Mt",
+                                                "Ds",
+                                                "Rg",
+                                                "Cn",
+                                                "Nh",
+                                                "Fl",
+                                                "Mc",
+                                                "Lv",
+                                                "Ts",
+                                                "Og"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "chemical_element"
+                                    ]
+                                },
+                                {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "Vacancy Schema",
+                                    "description": "A chemical element that can be placed at a crystal site",
+                                    "type": "object",
+                                    "properties": {
+                                        "chemical_element": {
+                                            "default": "Vac",
+                                            "description": "Extra elements, used for convenience purposed",
+                                            "enum": [
+                                                "X",
+                                                "Vac"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "chemical_element"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "merge_method": {
+            "default": "REPLACE",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Merge Methods Enum",
+            "description": "Available methods for merging components",
+            "type": "string",
+            "enum": [
+                "ADD",
+                "REPLACE",
+                "YIELD"
+            ]
+        }
+    }
+}

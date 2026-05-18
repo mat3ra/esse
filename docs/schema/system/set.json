@@ -1,0 +1,17 @@
+{
+    "$id": "system/set",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Entity set schema",
+    "type": "object",
+    "properties": {
+        "isEntitySet": {
+            "type": "boolean"
+        },
+        "entitySetType": {
+            "type": "string"
+        },
+        "entityCls": {
+            "type": "string"
+        }
+    }
+}

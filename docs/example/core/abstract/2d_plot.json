@@ -1,0 +1,26 @@
+{
+    "xAxis": {
+        "label": "kpoint index"
+    },
+    "xDataArray": [
+        0,
+        1,
+        2
+    ],
+    "yAxis": {
+        "label": "eigenvalues",
+        "units": "eV"
+    },
+    "yDataSeries": [
+        [
+            0,
+            0.5,
+            1
+        ],
+        [
+            0,
+            2.5,
+            5
+        ]
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "name": "atomic_forces",
+    "units": "eV/bohr",
+    "values": [
+        {
+            "id": 1,
+            "value": [
+                -3.9e-7,
+                -2.4e-7,
+                0
+            ]
+        },
+        {
+            "id": 2,
+            "value": [
+                3.9e-7,
+                2.4e-7,
+                0
+            ]
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "application": {
+        "exec": "python",
+        "flavor": "python2",
+        "name": "python",
+        "shortName": "py",
+        "summary": "Python Script",
+        "version": "2.7.5"
+    },
+    "compute": null,
+    "flowchartId": "scripting",
+    "head": true,
+    "input": [
+        {
+            "applicationName": "espresso",
+            "applicationVersions": [
+                "6.0"
+            ],
+            "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
+            "rendered": "K_POINTS automatic\n10 10 10 0 0 0",
+            "contextProviders": [
+                {
+                    "name": "KGridManagerMixin"
+                }
+            ],
+            "executableName": "pw.x",
+            "name": "kpoints_grid"
+        }
+    ],
+    "name": "scripting",
+    "status": "idle",
+    "type": "execution"
+}

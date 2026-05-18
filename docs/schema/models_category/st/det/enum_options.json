@@ -1,0 +1,8 @@
+{
+    "$id": "models-category/st/det/enum-options",
+    "machineLearning": {
+        "enum": [
+            "ml"
+        ]
+    }
+}
