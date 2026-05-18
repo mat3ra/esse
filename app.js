@@ -1,23 +1,24 @@
-'use strict';
+/* global monaco */
+/* eslint-disable import/no-amd, import/no-dynamic-require, no-use-before-define */
 
 // ── Monaco bootstrap ──────────────────────────────────────────────────────────
 let monacoEditor = null;
 let pendingContent = null;
 
-require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' } });
-require(['vs/editor/editor.main'], function () {
-    monacoEditor = monaco.editor.create(document.getElementById('monaco-editor'), {
-        value: '',
-        language: 'json',
-        theme: 'vs-dark',
+require.config({ paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs" } });
+require(["vs/editor/editor.main"], () => {
+    monacoEditor = monaco.editor.create(document.getElementById("monaco-editor"), {
+        value: "",
+        language: "json",
+        theme: "vs-dark",
         readOnly: true,
         minimap: { enabled: true },
         scrollBeyondLastLine: false,
         fontSize: 13,
-        lineNumbers: 'on',
-        wordWrap: 'off',
+        lineNumbers: "on",
+        wordWrap: "off",
         automaticLayout: true,
-        renderLineHighlight: 'all',
+        renderLineHighlight: "all",
     });
     if (pendingContent !== null) {
         applyContent(pendingContent);
@@ -26,23 +27,27 @@ require(['vs/editor/editor.main'], function () {
 });
 
 function applyContent(text) {
-    if (!monacoEditor) { pendingContent = text; return; }
-    document.getElementById('welcome').style.display = 'none';
-    document.getElementById('monaco-editor').style.display = 'block';
+    if (!monacoEditor) {
+        pendingContent = text;
+        return;
+    }
+    document.getElementById("welcome").style.display = "none";
+    document.getElementById("monaco-editor").style.display = "block";
     monacoEditor.setValue(text);
     monacoEditor.revealLine(1);
 }
 
 // ── State ─────────────────────────────────────────────────────────────────────
-let allFiles      = [];
-let expandedSet   = new Set();   // set of folder paths that are expanded
-let selectedFile  = null;        // currently selected file path
+let allFiles = [];
+const expandedSet = new Set(); // set of folder paths that are expanded
+let selectedFile = null; // currently selected file path
+let currentQuery = "";
 
 // ── Build nested tree object from flat path list ──────────────────────────────
 function pathsToTree(paths) {
     const root = {};
-    paths.forEach(p => {
-        const parts = p.split('/');
+    paths.forEach((p) => {
+        const parts = p.split("/");
         let node = root;
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i];
@@ -61,44 +66,49 @@ function pathsToTree(paths) {
 // ── Render tree (lazy — children only rendered when folder is opened) ─────────
 function renderTree(container, node, depth, folderPath) {
     // Folders first (alphabetical)
-    const folderKeys = Object.keys(node).filter(k => k !== '__files').sort();
-    folderKeys.forEach(key => {
+    const folderKeys = Object.keys(node)
+        .filter((k) => k !== "__files")
+        .sort();
+    folderKeys.forEach((key) => {
         const fp = folderPath ? `${folderPath}/${key}` : key;
         const isOpen = expandedSet.has(fp);
 
-        const row = document.createElement('div');
-        row.className = 't-item folder';
+        const row = document.createElement("div");
+        row.className = "t-item folder";
         row.style.paddingLeft = `${depth * 12 + 4}px`;
         row.dataset.fp = fp;
+        row.setAttribute("aria-expanded", String(isOpen));
 
         row.innerHTML =
-            `<span class="t-chevron">${isOpen ? '▾' : '▸'}</span>` +
-            `<span class="t-icon" style="color:var(--icon-folder)">📁</span>` +
+            `<span class="t-chevron">${isOpen ? "▾" : "▸"}</span>` +
+            `<span class="t-icon" style="color:var(--icon-folder)">${isOpen ? "📂" : "📁"}</span>` +
             `<span class="t-label">${escHtml(key)}</span>`;
 
-        const children = document.createElement('div');
-        children.className = 't-children' + (isOpen ? ' open' : '');
-        children.dataset.rendered = isOpen ? 'true' : 'false';
+        const children = document.createElement("div");
+        children.className = "t-children" + (isOpen ? " open" : "");
+        children.dataset.rendered = "false";
 
-        row.addEventListener('click', e => {
+        row.addEventListener("click", (e) => {
             e.stopPropagation();
-            const opening = !children.classList.contains('open');
-            children.classList.toggle('open', opening);
-            row.querySelector('.t-chevron').textContent = opening ? '▾' : '▸';
+            const opening = !children.classList.contains("open");
+            children.classList.toggle("open", opening);
+            row.querySelector(".t-chevron").textContent = opening ? "▾" : "▸";
+            row.querySelector(".t-icon").textContent = opening ? "📂" : "📁";
+            row.setAttribute("aria-expanded", String(opening));
             if (opening) {
                 expandedSet.add(fp);
-                if (children.dataset.rendered === 'false') {
+                if (children.dataset.rendered === "false") {
                     renderTree(children, node[key], depth + 1, fp);
-                    children.dataset.rendered = 'true';
+                    children.dataset.rendered = "true";
                 }
             } else {
                 expandedSet.delete(fp);
             }
         });
 
-        if (isOpen && children.dataset.rendered === 'false') {
+        if (isOpen && children.dataset.rendered === "false") {
             renderTree(children, node[key], depth + 1, fp);
-            children.dataset.rendered = 'true';
+            children.dataset.rendered = "true";
         }
 
         container.appendChild(row);
@@ -111,8 +121,8 @@ function renderTree(container, node, depth, folderPath) {
             .slice()
             .sort((a, b) => a.name.localeCompare(b.name))
             .forEach(({ name, path }) => {
-                const row = document.createElement('div');
-                row.className = 't-item file' + (path === selectedFile ? ' selected' : '');
+                const row = document.createElement("div");
+                row.className = "t-item file" + (path === selectedFile ? " selected" : "");
                 row.style.paddingLeft = `${depth * 12 + 22}px`;
                 row.dataset.path = path;
 
@@ -120,7 +130,7 @@ function renderTree(container, node, depth, folderPath) {
                     `<span class="t-icon">📄</span>` +
                     `<span class="t-label">${escHtml(name)}</span>`;
 
-                row.addEventListener('click', () => openFile(path));
+                row.addEventListener("click", () => openFile(path));
                 container.appendChild(row);
             });
     }
@@ -132,26 +142,28 @@ function renderSearch(container, matches, query) {
         container.innerHTML = '<div class="tree-msg">No results found.</div>';
         return;
     }
-    document.getElementById('status-count').textContent = `${matches.length} result${matches.length !== 1 ? 's' : ''}`;
+    document.getElementById("status-count").textContent = `${matches.length} result${
+        matches.length !== 1 ? "s" : ""
+    }`;
 
-    matches.forEach(path => {
-        const fileName  = path.split('/').pop();
-        const dirPart   = path.slice(0, path.length - fileName.length - 1);
-        const row = document.createElement('div');
-        row.className = 't-item file flat-result' + (path === selectedFile ? ' selected' : '');
-        row.style.paddingLeft = '8px';
+    matches.forEach((path) => {
+        const fileName = path.split("/").pop();
+        const dirPart = path.slice(0, path.length - fileName.length - 1);
+        const row = document.createElement("div");
+        row.className = "t-item file flat-result" + (path === selectedFile ? " selected" : "");
+        row.style.paddingLeft = "8px";
         row.dataset.path = path;
 
-        const hl = s => hlMatch(s, query);
+        const hl = (s) => hlMatch(s, query);
 
         row.innerHTML =
             `<span class="t-icon" style="flex-shrink:0">📄</span>` +
             `<span class="t-label">` +
-              `<span class="t-filename">${hl(fileName)}</span>` +
-              `<span class="t-filepath">${hl(dirPart)}</span>` +
+            `<span class="t-filename">${hl(fileName)}</span>` +
+            `<span class="t-filepath">${hl(dirPart)}</span>` +
             `</span>`;
 
-        row.addEventListener('click', () => openFile(path));
+        row.addEventListener("click", () => openFile(path));
         container.appendChild(row);
     });
 }
@@ -161,21 +173,23 @@ function hlMatch(text, query) {
     if (!query) return escHtml(text);
     const idx = text.toLowerCase().indexOf(query.toLowerCase());
     if (idx === -1) return escHtml(text);
-    return escHtml(text.slice(0, idx)) +
-           `<mark>${escHtml(text.slice(idx, idx + query.length))}</mark>` +
-           escHtml(text.slice(idx + query.length));
+    return (
+        escHtml(text.slice(0, idx)) +
+        `<mark>${escHtml(text.slice(idx, idx + query.length))}</mark>` +
+        escHtml(text.slice(idx + query.length))
+    );
 }
 
 function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 // ── Pre-expand folders up to a given depth ────────────────────────────────────
 function preExpand(node, depth, folderPath, maxDepth) {
     if (depth >= maxDepth) return;
     Object.keys(node)
-        .filter(k => k !== '__files')
-        .forEach(key => {
+        .filter((k) => k !== "__files")
+        .forEach((key) => {
             const fp = folderPath ? `${folderPath}/${key}` : key;
             expandedSet.add(fp);
             preExpand(node[key], depth + 1, fp, maxDepth);
@@ -184,61 +198,83 @@ function preExpand(node, depth, folderPath, maxDepth) {
 
 // ── Rebuild the whole tree pane ───────────────────────────────────────────────
 function rebuildTree(query) {
-    const container = document.getElementById('file-tree');
-    container.innerHTML = '';
+    currentQuery = query;
+    const container = document.getElementById("file-tree");
+    container.innerHTML = "";
 
     if (!query) {
-        document.getElementById('status-count').textContent =
-            `${allFiles.length} file${allFiles.length !== 1 ? 's' : ''}`;
+        document.getElementById("status-count").textContent = `${allFiles.length} file${
+            allFiles.length !== 1 ? "s" : ""
+        }`;
         const tree = pathsToTree(allFiles);
-        renderTree(container, tree, 0, '');
+        renderTree(container, tree, 0, "");
     } else {
         const q = query.toLowerCase();
-        const matches = allFiles.filter(f => f.toLowerCase().includes(q));
+        const matches = allFiles.filter((f) => f.toLowerCase().includes(q));
         renderSearch(container, matches, query);
+    }
+}
+
+function focusSelectedFileInTree(path) {
+    document.querySelectorAll(".t-item.selected").forEach((el) => el.classList.remove("selected"));
+    const el = document.querySelector(`.t-item.file[data-path="${CSS.escape(path)}"]`);
+    if (el) {
+        el.classList.add("selected");
+        el.scrollIntoView({ block: "nearest" });
     }
 }
 
 // ── Open / display a file ─────────────────────────────────────────────────────
 function openFile(path) {
     selectedFile = path;
+    expandToFile(path);
+
+    if (currentQuery) {
+        currentQuery = "";
+        document.getElementById("search-input").value = "";
+    }
+
+    rebuildTree("");
 
     // Highlight in tree (works for both tree and search views)
-    document.querySelectorAll('.t-item.selected').forEach(el => el.classList.remove('selected'));
-    const el = document.querySelector(`.t-item.file[data-path="${CSS.escape(path)}"]`);
-    if (el) el.classList.add('selected');
+    focusSelectedFileInTree(path);
 
     // Tab
-    const fname = path.split('/').pop();
-    document.getElementById('tabbar').innerHTML =
-        `<div class="tab active"><span>📄</span><span>${escHtml(fname)}</span></div>`;
+    const fname = path.split("/").pop();
+    document.getElementById(
+        "tabbar",
+    ).innerHTML = `<div class="tab active"><span>📄</span><span>${escHtml(fname)}</span></div>`;
 
     // Breadcrumb
-    const parts = path.split('/');
-    document.getElementById('breadcrumb').innerHTML =
-        parts.map((p, i) =>
+    const parts = path.split("/");
+    document.getElementById("breadcrumb").innerHTML = parts
+        .map((p, i) =>
             i < parts.length - 1
                 ? `<span>${escHtml(p)}</span><span class="bc-sep">›</span>`
-                : `<span style="color:var(--text-primary)">${escHtml(p)}</span>`
-        ).join('');
+                : `<span style="color:var(--text-primary)">${escHtml(p)}</span>`,
+        )
+        .join("");
 
     // Status
-    document.getElementById('status-path').textContent = path;
+    document.getElementById("status-path").textContent = path;
 
     // Update URL hash for deep-linking
-    history.replaceState(null, '', '#' + path);
+    window.history.replaceState(null, "", "#" + path);
 
     // Fetch
     fetch(path)
-        .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-        .then(data => applyContent(JSON.stringify(data, null, 2)))
-        .catch(err  => applyContent(`// Error loading file\n// ${err.message}`));
+        .then((r) => {
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.json();
+        })
+        .then((data) => applyContent(JSON.stringify(data, null, 2)))
+        .catch((err) => applyContent(`// Error loading file\n// ${err.message}`));
 }
 
 // ── Expand all ancestor folders for a given file path ────────────────────────
 function expandToFile(path) {
-    const parts = path.split('/');
-    let folderPath = '';
+    const parts = path.split("/");
+    let folderPath = "";
     for (let i = 0; i < parts.length - 1; i++) {
         folderPath = folderPath ? `${folderPath}/${parts[i]}` : parts[i];
         expandedSet.add(folderPath);
@@ -247,63 +283,68 @@ function expandToFile(path) {
 
 // ── Search handler ────────────────────────────────────────────────────────────
 let searchTimer = null;
-document.getElementById('search-input').addEventListener('input', function () {
+document.getElementById("search-input").addEventListener("input", function () {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => rebuildTree(this.value.trim()), 150);
 });
 
 // ── Resizer ───────────────────────────────────────────────────────────────────
-(function () {
-    const resizer = document.getElementById('resizer');
-    const sidebar = document.getElementById('sidebar');
-    let dragging = false, startX = 0, startW = 0;
+(function initResizer() {
+    const resizer = document.getElementById("resizer");
+    const sidebar = document.getElementById("sidebar");
+    let dragging = false;
+    let startX = 0;
+    let startW = 0;
 
-    resizer.addEventListener('mousedown', e => {
-        dragging = true; startX = e.clientX; startW = sidebar.offsetWidth;
-        resizer.classList.add('active');
-        document.body.style.cursor = 'col-resize';
-        document.body.style.userSelect = 'none';
+    resizer.addEventListener("mousedown", (e) => {
+        dragging = true;
+        startX = e.clientX;
+        startW = sidebar.offsetWidth;
+        resizer.classList.add("active");
+        document.body.style.cursor = "col-resize";
+        document.body.style.userSelect = "none";
         e.preventDefault();
     });
-    document.addEventListener('mousemove', e => {
+    document.addEventListener("mousemove", (e) => {
         if (!dragging) return;
         const w = Math.max(120, Math.min(window.innerWidth * 0.6, startW + e.clientX - startX));
-        sidebar.style.width = w + 'px';
+        sidebar.style.width = w + "px";
         if (monacoEditor) monacoEditor.layout();
     });
-    document.addEventListener('mouseup', () => {
+    document.addEventListener("mouseup", () => {
         if (!dragging) return;
         dragging = false;
-        resizer.classList.remove('active');
-        document.body.style.cursor = '';
-        document.body.style.userSelect = '';
+        resizer.classList.remove("active");
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
     });
-}());
+})();
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-fetch('files.json')
-    .then(r => r.json())
-    .then(files => {
+fetch("files.json")
+    .then((r) => r.json())
+    .then((files) => {
         allFiles = files;
         // Pre-expand to second degree by default
         const tree = pathsToTree(allFiles);
-        preExpand(tree, 0, '', 2);
+        preExpand(tree, 0, "", 2);
         // Handle deep-link hash
         const hash = window.location.hash.slice(1);
         if (hash && allFiles.includes(hash)) {
             expandToFile(hash);
         }
-        rebuildTree('');
+        rebuildTree("");
         if (hash && allFiles.includes(hash)) {
             openFile(hash);
         }
     })
-    .catch(err => {
-        document.getElementById('file-tree').innerHTML =
-            `<div class="tree-msg" style="color:#f88">Failed to load file index: ${err.message}</div>`;
+    .catch((err) => {
+        document.getElementById(
+            "file-tree",
+        ).innerHTML = `<div class="tree-msg" style="color:#f88">Failed to load file index: ${err.message}</div>`;
     });
 
-window.addEventListener('hashchange', () => {
+window.addEventListener("hashchange", () => {
     const hash = window.location.hash.slice(1);
     if (hash && allFiles.includes(hash)) openFile(hash);
 });
