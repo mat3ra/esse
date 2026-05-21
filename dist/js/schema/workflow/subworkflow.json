@@ -266,10 +266,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -284,10 +286,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -302,10 +306,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -320,10 +326,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -562,10 +570,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -580,10 +590,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -598,10 +610,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -616,10 +630,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -782,10 +798,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -800,10 +818,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -818,10 +838,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -836,10 +858,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -971,10 +995,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -989,10 +1015,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -1007,10 +1035,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -1025,10 +1055,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -1267,10 +1299,12 @@
                                         "items": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "runtime item name object schema",
+                                            "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                             "type": "object",
                                             "required": [
                                                 "name"
                                             ],
+                                            "additionalProperties": true,
                                             "properties": {
                                                 "name": {
                                                     "description": "The name of this item. e.g. scf_accuracy",
@@ -1285,10 +1319,12 @@
                                         "items": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "runtime item name object schema",
+                                            "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                             "type": "object",
                                             "required": [
                                                 "name"
                                             ],
+                                            "additionalProperties": true,
                                             "properties": {
                                                 "name": {
                                                     "description": "The name of this item. e.g. scf_accuracy",
@@ -1303,10 +1339,12 @@
                                         "items": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "runtime item name object schema",
+                                            "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                             "type": "object",
                                             "required": [
                                                 "name"
                                             ],
+                                            "additionalProperties": true,
                                             "properties": {
                                                 "name": {
                                                     "description": "The name of this item. e.g. scf_accuracy",
@@ -1321,10 +1359,12 @@
                                         "items": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "runtime item name object schema",
+                                            "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                             "type": "object",
                                             "required": [
                                                 "name"
                                             ],
+                                            "additionalProperties": true,
                                             "properties": {
                                                 "name": {
                                                     "description": "The name of this item. e.g. scf_accuracy",
@@ -3102,10 +3142,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -3120,10 +3162,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -3138,10 +3182,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",
@@ -3156,10 +3202,12 @@
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                     "title": "runtime item name object schema",
+                                    "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                                     "type": "object",
                                     "required": [
                                         "name"
                                     ],
+                                    "additionalProperties": true,
                                     "properties": {
                                         "name": {
                                             "description": "The name of this item. e.g. scf_accuracy",

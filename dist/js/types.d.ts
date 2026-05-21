@@ -6147,6 +6147,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6156,6 +6157,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6165,6 +6167,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6174,6 +6177,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6300,6 +6304,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6309,6 +6314,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6318,6 +6324,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6327,6 +6334,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6425,6 +6433,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6434,6 +6443,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6443,6 +6453,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6452,6 +6463,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6525,6 +6537,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6534,6 +6547,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6543,6 +6557,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6552,6 +6567,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6707,6 +6723,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the post-processors for this calculation
@@ -6716,6 +6733,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the monitors for this calculation
@@ -6725,6 +6743,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the results for this calculation
@@ -6734,6 +6753,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * name of the executable this flavor belongs to
@@ -7408,6 +7428,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -7417,6 +7438,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -7426,6 +7448,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -7435,6 +7458,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -7711,6 +7735,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -7720,6 +7745,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -7729,6 +7755,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -7738,6 +7765,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -7829,6 +7857,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -7838,6 +7867,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -7847,6 +7877,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -7856,6 +7887,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -7938,6 +7970,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -7947,6 +7980,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -7956,6 +7990,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -7965,6 +8000,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -52285,6 +52321,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -52294,6 +52331,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -52303,6 +52341,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -52312,6 +52351,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -52438,6 +52478,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -52447,6 +52488,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -52456,6 +52498,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -52465,6 +52508,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -52563,6 +52607,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -52572,6 +52617,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -52581,6 +52627,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -52590,6 +52637,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -52663,6 +52711,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -52672,6 +52721,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -52681,6 +52731,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -52690,6 +52741,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -52845,6 +52897,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -52854,6 +52907,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -52863,6 +52917,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -52872,6 +52927,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * name of the executable this flavor belongs to
@@ -53546,6 +53602,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -53555,6 +53612,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -53564,6 +53622,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -53573,6 +53632,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -53849,6 +53909,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -53858,6 +53919,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -53867,6 +53929,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -53876,6 +53939,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -53967,6 +54031,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -53976,6 +54041,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -53985,6 +54051,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -53994,6 +54061,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -54076,6 +54144,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -54085,6 +54154,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -54094,6 +54164,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -54103,6 +54174,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -55815,6 +55887,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -55824,6 +55897,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -55833,6 +55907,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -55842,6 +55917,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -55968,6 +56044,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -55977,6 +56054,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -55986,6 +56064,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -55995,6 +56074,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -56093,6 +56173,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -56102,6 +56183,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -56111,6 +56193,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -56120,6 +56203,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -56193,6 +56277,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -56202,6 +56287,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -56211,6 +56297,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -56220,6 +56307,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -56375,6 +56463,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the post-processors for this calculation
@@ -56384,6 +56473,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the monitors for this calculation
@@ -56393,6 +56483,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the results for this calculation
@@ -56402,6 +56493,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * name of the executable this flavor belongs to
@@ -57076,6 +57168,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -57085,6 +57178,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -57094,6 +57188,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -57103,6 +57198,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -57379,6 +57475,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57388,6 +57485,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57397,6 +57495,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57406,6 +57505,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -57497,6 +57597,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57506,6 +57607,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57515,6 +57617,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57524,6 +57627,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -57606,6 +57710,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57615,6 +57720,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57624,6 +57730,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57633,6 +57740,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -58377,6 +58485,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -58386,6 +58495,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -58395,6 +58505,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -58404,6 +58515,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * name of the application this executable belongs to
@@ -58464,6 +58576,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -58473,6 +58586,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -58482,6 +58596,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -58491,6 +58606,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * name of the executable this flavor belongs to
@@ -58810,6 +58926,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -58819,6 +58936,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -58828,6 +58946,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -58837,6 +58956,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -58992,6 +59112,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59001,6 +59122,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59010,6 +59132,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59019,6 +59142,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
@@ -59954,6 +60078,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -59963,6 +60088,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -59972,6 +60098,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -59981,6 +60108,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -60136,6 +60264,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -60145,6 +60274,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -60154,6 +60284,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -60163,6 +60294,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
@@ -61211,11 +61343,15 @@ export interface PathEntitySchema {
     path?: string;
 }
 /** Schema dist/js/schema/system/runtime_item.json */
+/**
+ * A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.
+ */
 export interface RuntimeItemNameObjectSchema {
     /**
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
+    [k: string]: unknown;
 }
 /** Schema dist/js/schema/system/runtime_items.json */
 export interface RuntimeItemsSchema {
@@ -61227,6 +61363,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -61236,6 +61373,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -61245,6 +61383,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -61254,6 +61393,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
 }
 /** Schema dist/js/schema/system/schema_version.json */
@@ -61497,6 +61637,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -61506,6 +61647,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -61515,6 +61657,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -61524,6 +61667,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -61650,6 +61794,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -61659,6 +61804,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -61668,6 +61814,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -61677,6 +61824,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -61775,6 +61923,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -61784,6 +61933,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -61793,6 +61943,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -61802,6 +61953,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -61875,6 +62027,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -61884,6 +62037,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -61893,6 +62047,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -61902,6 +62057,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -62057,6 +62213,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -62066,6 +62223,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -62075,6 +62233,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -62084,6 +62243,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * name of the executable this flavor belongs to
@@ -62758,6 +62918,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -62767,6 +62928,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -62776,6 +62938,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -62785,6 +62948,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -63061,6 +63225,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63070,6 +63235,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63079,6 +63245,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63088,6 +63255,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63179,6 +63347,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63188,6 +63357,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63197,6 +63367,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63206,6 +63377,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63288,6 +63460,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63297,6 +63470,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63306,6 +63480,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63315,6 +63490,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63649,6 +63825,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63658,6 +63835,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63667,6 +63845,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63676,6 +63855,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63802,6 +63982,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63811,6 +63992,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63820,6 +64002,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63829,6 +64012,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63927,6 +64111,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63936,6 +64121,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63945,6 +64131,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63954,6 +64141,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -64027,6 +64215,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -64036,6 +64225,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -64045,6 +64235,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -64054,6 +64245,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -64209,6 +64401,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -64218,6 +64411,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -64227,6 +64421,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -64236,6 +64431,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * name of the executable this flavor belongs to
@@ -64910,6 +65106,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -64919,6 +65116,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -64928,6 +65126,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -64937,6 +65136,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -65211,6 +65411,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -65220,6 +65421,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -65229,6 +65431,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -65238,6 +65441,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -65364,6 +65568,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -65373,6 +65578,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -65382,6 +65588,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -65391,6 +65598,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -65489,6 +65697,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -65498,6 +65707,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -65507,6 +65717,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -65516,6 +65727,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -65589,6 +65801,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -65598,6 +65811,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -65607,6 +65821,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -65616,6 +65831,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -65771,6 +65987,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -65780,6 +65997,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -65789,6 +66007,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -65798,6 +66017,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
@@ -66472,6 +66692,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -66481,6 +66702,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -66490,6 +66712,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -66499,6 +66722,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -66717,6 +66941,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -66726,6 +66951,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -66735,6 +66961,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -66744,6 +66971,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -66870,6 +67098,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -66879,6 +67108,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -66888,6 +67118,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -66897,6 +67128,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -66995,6 +67227,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -67004,6 +67237,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -67013,6 +67247,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -67022,6 +67257,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -67095,6 +67331,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -67104,6 +67341,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -67113,6 +67351,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -67122,6 +67361,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -67277,6 +67517,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -67286,6 +67527,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -67295,6 +67537,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -67304,6 +67547,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * name of the executable this flavor belongs to
@@ -67978,6 +68222,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -67987,6 +68232,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -67996,6 +68242,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -68005,6 +68252,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -68279,6 +68527,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68288,6 +68537,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68297,6 +68547,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68306,6 +68557,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68381,6 +68633,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68390,6 +68643,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68399,6 +68653,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68408,6 +68663,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68497,6 +68753,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68506,6 +68763,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68515,6 +68773,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68524,6 +68783,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68591,6 +68851,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68600,6 +68861,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68609,6 +68871,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68618,6 +68881,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -69929,6 +70193,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -69938,6 +70203,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -69947,6 +70213,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -69956,6 +70223,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -70111,6 +70379,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -70120,6 +70389,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -70129,6 +70399,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -70138,6 +70409,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
@@ -71011,6 +71283,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -71020,6 +71293,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -71029,6 +71303,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -71038,6 +71313,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -71166,6 +71442,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -71175,6 +71452,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -71184,6 +71462,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -71193,6 +71472,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -71484,6 +71764,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -71493,6 +71774,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -71502,6 +71784,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -71511,6 +71794,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
@@ -72325,6 +72609,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -72334,6 +72619,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -72343,6 +72629,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -72352,6 +72639,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -72507,6 +72795,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -72516,6 +72805,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -72525,6 +72815,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -72534,6 +72825,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -72601,6 +72893,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -72610,6 +72903,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -72619,6 +72913,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -72628,6 +72923,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -72719,6 +73015,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -72728,6 +73025,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -72737,6 +73035,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -72746,6 +73045,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -72828,6 +73128,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -72837,6 +73138,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -72846,6 +73148,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -72855,6 +73158,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -73193,6 +73497,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -73202,6 +73507,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -73211,6 +73517,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -73220,6 +73527,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -73346,6 +73654,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -73355,6 +73664,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -73364,6 +73674,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -73373,6 +73684,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -73471,6 +73783,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -73480,6 +73793,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -73489,6 +73803,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -73498,6 +73813,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -73571,6 +73887,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -73580,6 +73897,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -73589,6 +73907,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -73598,6 +73917,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -73753,6 +74073,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -73762,6 +74083,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -73771,6 +74093,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -73780,6 +74103,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * name of the executable this flavor belongs to
@@ -74454,6 +74778,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -74463,6 +74788,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -74472,6 +74798,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -74481,6 +74808,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -74757,6 +75085,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -74766,6 +75095,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -74775,6 +75105,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -74784,6 +75115,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -74875,6 +75207,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -74884,6 +75217,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -74893,6 +75227,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -74902,6 +75237,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -74984,6 +75320,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -74993,6 +75330,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -75002,6 +75340,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -75011,6 +75350,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags

@@ -11,6 +11,9 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
