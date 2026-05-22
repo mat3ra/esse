@@ -7,122 +7,12 @@
         {
             "description": "in-memory entity",
             "$ref": "in_memory_entity/named_defaultable.json"
+        },
+        {
+            "$ref": "material/material_properties.json"
+        },
+        {
+            "$ref": "material/metadata.json"
         }
-    ],
-    "properties": {
-        "formula": {
-            "description": "reduced chemical formula",
-            "type": "string"
-        },
-        "unitCellFormula": {
-            "description": "chemical formula based on the number of atoms of each element in the supercell",
-            "type": "string"
-        },
-        "basis": {
-            "description": "object containing an array of elements and coordinates in the supercell",
-            "$ref": "properties_directory/structural/basis.json"
-        },
-        "lattice": {
-            "description": "object defining the lattice cell size and shape",
-            "$ref": "properties_directory/structural/lattice.json"
-        },
-        "derivedProperties": {
-            "description": "object defining the lattice cell size and shape",
-            "$ref": "properties_directory/derived_properties.json"
-        },
-        "external": {
-            "allOf": [
-                {
-                    "$ref": "system/database_source.json"
-                },
-                {
-                    "$ref": "apse/db/third_party_sources.json"
-                }
-            ]
-        },
-        "src": {
-            "description": "File information if material was exported from POSCAR, XYZ or UPF file.",
-            "$ref": "system/file_source.json"
-        },
-        "scaledHash": {
-            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
-            "type": "string"
-        },
-        "icsdId": {
-            "description": "Corresponding ICSD id of the material",
-            "type": "integer"
-        },
-        "isNonPeriodic": {
-            "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
-            "type": "boolean"
-        },
-        "consistencyChecks": {
-            "type": "array",
-            "items": {
-                "$ref": "material/consistency_check.json"
-            }
-        },
-        "metadata": {
-            "type": "object",
-            "properties": {
-                "boundaryConditions": {
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "$ref": "apse/file/applications/espresso/7.2/pw.x/system.json#/properties/esm_bc"
-                        },
-                        "offset": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "offset"
-                    ]
-                },
-                "isSlab": {
-                    "description": "Whether the material was created as a surface slab",
-                    "type": "boolean"
-                },
-                "h": {
-                    "description": "Miller index h used to generate the slab",
-                    "type": "number"
-                },
-                "k": {
-                    "description": "Miller index k used to generate the slab",
-                    "type": "number"
-                },
-                "l": {
-                    "description": "Miller index l used to generate the slab",
-                    "type": "number"
-                },
-                "thickness": {
-                    "description": "Slab thickness in number of layers",
-                    "type": "number"
-                },
-                "vacuumRatio": {
-                    "description": "Vacuum fraction used when scaling the out-of-plane lattice vector",
-                    "type": "number"
-                },
-                "vx": {
-                    "description": "Termination vector component along a",
-                    "type": "number"
-                },
-                "vy": {
-                    "description": "Termination vector component along b",
-                    "type": "number"
-                },
-                "bulkId": {
-                    "description": "Source bulk material id used to generate the slab",
-                    "type": "string"
-                }
-            },
-            "default": {}
-        }
-    },
-    "required": [
-        "basis",
-        "lattice",
-        "metadata"
     ]
 }

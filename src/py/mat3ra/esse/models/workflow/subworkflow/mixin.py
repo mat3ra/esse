@@ -1068,7 +1068,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name596(Enum):
+class Name604(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1656,7 +1656,7 @@ class DFTModelSchema17(BaseModel):
     method: BaseMethod29 = Field(..., title="base method")
 
 
-class Type99(Enum):
+class Type100(Enum):
     ml = "ml"
 
 
@@ -1689,7 +1689,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod30 = Field(..., title="base method")
 
 
-class Type100(Enum):
+class Type101(Enum):
     unknown = "unknown"
 
 
