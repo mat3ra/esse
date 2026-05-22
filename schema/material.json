@@ -116,7 +116,8 @@
                     "description": "Source bulk material id used to generate the slab",
                     "type": "string"
                 }
-            }
+            },
+            "default": {}
         }
     },
     "required": [

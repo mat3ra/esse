@@ -716,7 +716,7 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    metadata: Metadata
+    metadata: Optional[Metadata] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

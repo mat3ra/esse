@@ -703,7 +703,7 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    metadata: Metadata
+    metadata: Optional[Metadata] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1216,7 +1216,7 @@ class CrystalSchema20(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema20]] = None
-    metadata: Metadata20
+    metadata: Optional[Metadata20] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1740,7 +1740,7 @@ class CrystalSchema21(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema21]] = None
-    metadata: Metadata21
+    metadata: Optional[Metadata21] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2370,7 +2370,7 @@ class CrystalSchema22(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema22]] = None
-    metadata: Metadata22
+    metadata: Optional[Metadata22] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

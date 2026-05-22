@@ -750,6 +750,7 @@
                         },
                         "metadata": {
                             "type": "object",
+                            "default": {},
                             "properties": {
                                 "boundaryConditions": {
                                     "type": "object",
@@ -1587,6 +1588,7 @@
                                 },
                                 "metadata": {
                                     "type": "object",
+                                    "default": {},
                                     "properties": {
                                         "boundaryConditions": {
                                             "type": "object",

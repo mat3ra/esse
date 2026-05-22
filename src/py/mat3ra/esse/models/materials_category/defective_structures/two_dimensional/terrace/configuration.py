@@ -703,7 +703,7 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    metadata: Metadata
+    metadata: Optional[Metadata] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1216,7 +1216,7 @@ class CrystalSchema14(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema14]] = None
-    metadata: Metadata14
+    metadata: Optional[Metadata14] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1753,7 +1753,7 @@ class CrystalSchema15(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema15]] = None
-    metadata: Metadata15
+    metadata: Optional[Metadata15] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2260,7 +2260,7 @@ class CrystalSchema16(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema16]] = None
-    metadata: Metadata16
+    metadata: Optional[Metadata16] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2773,7 +2773,7 @@ class CrystalSchema17(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema17]] = None
-    metadata: Metadata17
+    metadata: Optional[Metadata17] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -3335,7 +3335,7 @@ class CrystalSchema18(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema18]] = None
-    metadata: Metadata18
+    metadata: Optional[Metadata18] = {}
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
