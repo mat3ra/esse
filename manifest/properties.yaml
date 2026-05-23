@@ -23,6 +23,12 @@ total_energy:
   schemaId: properties-directory/scalar/total-energy
   isResult: true
 
+formation_energy:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/formation-energy
+  isResult: true
+
 surface_energy:
   defaults:
     units: eV/A^2

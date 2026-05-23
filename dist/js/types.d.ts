@@ -46925,7 +46925,7 @@ export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ScalarPropertyEnum".
  */
-export type ScalarPropertyEnum = "fermi_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "thermal_correction_to_energy" | "thermal_correction_to_enthalpy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+export type ScalarPropertyEnum = "chemical_potential" | "fermi_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "thermal_correction_to_energy" | "thermal_correction_to_enthalpy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "NonScalarPropertyEnum".
@@ -50293,6 +50293,12 @@ export interface HubbardParametersReusableSchema {
         value: number;
     }[];
 }
+/** Schema dist/js/schema/properties_directory/scalar/chemical_potential.json */
+export interface ChemicalPotentialPropertySchema {
+    name: "chemical_potential";
+    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
 /** Schema dist/js/schema/properties_directory/scalar/electron_affinity.json */
 export interface ElectronAffinityPropertySchema {
     name: "electron_affinity";
@@ -51020,6 +51026,10 @@ export interface PropertyHolderSchema {
         value: number;
     } | {
         name: "reaction_energy_barrier";
+        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        value: number;
+    } | {
+        name: "chemical_potential";
         units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
