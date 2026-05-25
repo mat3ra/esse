@@ -173,10 +173,40 @@ jobs:
           echo "List build directory ./docs"
           ls -l docs
 
-      - name: Generate Directory Listings
-        uses: jayanta525/github-pages-directory-listing@624ac8c4e56893256d3772f61a88e3b14d54314e # v4.0.0
-        with:
-          FOLDER: docs     #directory to generate index
+      - name: Generate Schema Explorer
+        shell: bash -l {0}
+        run: |
+          # Copy the VS Code-like schema explorer interface
+          cp src/html/index.html docs/index.html
+          cp src/html/style.css docs/style.css
+          cp src/html/app.js docs/app.js
+
+          # Generate files.json manifest (schema + example files, relative to docs/)
+          node -e "
+            const fs   = require('fs');
+            const path = require('path');
+
+            function collect(dir, base) {
+              const out = [];
+              for (const entry of fs.readdirSync(dir).sort()) {
+                const full = path.join(dir, entry);
+                const rel  = base ? base + '/' + entry : entry;
+                if (fs.statSync(full).isDirectory()) {
+                  out.push(...collect(full, rel));
+                } else if (entry.endsWith('.json')) {
+                  out.push(rel);
+                }
+              }
+              return out;
+            }
+
+            const files = [
+              ...collect('docs/schema',  'schema'),
+              ...collect('docs/example', 'example'),
+            ];
+            fs.writeFileSync('docs/files.json', JSON.stringify(files, null, 2));
+            console.log('Generated files.json with ' + files.length + ' entries');
+          "
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
