@@ -986,6 +986,24 @@
                         "isUsingMaterial": {
                             "description": "Whether the application is using (being passed during a downstream processing routine) a material structure.",
                             "type": "boolean"
+                        },
+                        "runConfig": {
+                            "description": "The run configuration of the application",
+                            "type": "object",
+                            "required": [
+                                "commandTemplate",
+                                "outFileName"
+                            ],
+                            "properties": {
+                                "commandTemplate": {
+                                    "description": "The command template of the application",
+                                    "type": "string"
+                                },
+                                "outFileName": {
+                                    "description": "The output file name of the application",
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 },

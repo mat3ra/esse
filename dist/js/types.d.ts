@@ -6657,6 +6657,19 @@ export interface JobSchema {
                      * Whether the application is using (being passed during a downstream processing routine) a material structure.
                      */
                     isUsingMaterial?: boolean;
+                    /**
+                     * The run configuration of the application
+                     */
+                    runConfig?: {
+                        /**
+                         * The command template of the application
+                         */
+                        commandTemplate: string;
+                        /**
+                         * The output file name of the application
+                         */
+                        outFileName: string;
+                    };
                 };
                 executable: {
                     /**
@@ -7695,6 +7708,19 @@ export interface JobSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             isMultiMaterial?: boolean;
             /**
@@ -53683,6 +53709,19 @@ export interface WorkflowPropertySchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             executable: {
                 /**
@@ -54721,6 +54760,19 @@ export interface WorkflowPropertySchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         isMultiMaterial?: boolean;
         /**
@@ -57249,6 +57301,19 @@ export interface PropertyHolderSchema {
                      * Whether the application is using (being passed during a downstream processing routine) a material structure.
                      */
                     isUsingMaterial?: boolean;
+                    /**
+                     * The run configuration of the application
+                     */
+                    runConfig?: {
+                        /**
+                         * The command template of the application
+                         */
+                        commandTemplate: string;
+                        /**
+                         * The output file name of the application
+                         */
+                        outFileName: string;
+                    };
                 };
                 executable: {
                     /**
@@ -58287,6 +58352,19 @@ export interface PropertyHolderSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             isMultiMaterial?: boolean;
             /**
@@ -59180,6 +59258,19 @@ export interface ApplicationSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software/application_properties.json */
 export interface ApplicationPropertiesSchema {
@@ -59219,6 +59310,19 @@ export interface ApplicationPropertiesSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
@@ -59305,6 +59409,19 @@ export interface ApplicationWithBuildConfigSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software/executable.json */
 export interface ExecutableSchema {
@@ -59603,6 +59720,19 @@ export interface DeePMDAppSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
 export interface QuantumEspressoArgumentsSchema {
@@ -59689,6 +59819,19 @@ export interface LAMMPS {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/modeling/nwchem.json */
 export interface NWChem {
@@ -59746,6 +59889,19 @@ export interface NWChem {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
@@ -59898,6 +60054,19 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -60704,6 +60873,19 @@ export interface ViennaAbInitoSimulationPackage {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
@@ -60762,6 +60944,19 @@ export interface JupyterLabApplicationSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
@@ -60832,6 +61027,19 @@ export interface PythonProgramingLanguageSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
@@ -60898,6 +61106,19 @@ export interface ShellScriptingLanguageSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
@@ -61050,6 +61271,19 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -62999,6 +63233,19 @@ export interface BaseWorkflowSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             executable: {
                 /**
@@ -64037,6 +64284,19 @@ export interface BaseWorkflowSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         isMultiMaterial?: boolean;
         /**
@@ -65187,6 +65447,19 @@ export interface SubworkflowMixinSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         executable: {
             /**
@@ -66225,6 +66498,19 @@ export interface SubworkflowMixinSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     isMultiMaterial?: boolean;
     /**
@@ -66773,6 +67059,19 @@ export type WorkflowSubworkflowUnitSchema = {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -68303,6 +68602,19 @@ export interface SubworkflowSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         executable: {
             /**
@@ -69341,6 +69653,19 @@ export interface SubworkflowSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     isMultiMaterial?: boolean;
     /**
@@ -71165,6 +71490,19 @@ export interface ExecutionUnitSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -72550,6 +72888,19 @@ export interface ExecutionUnitMixinSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -74859,6 +75210,19 @@ export interface WorkflowSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             executable: {
                 /**
@@ -75897,6 +76261,19 @@ export interface WorkflowSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         isMultiMaterial?: boolean;
         /**

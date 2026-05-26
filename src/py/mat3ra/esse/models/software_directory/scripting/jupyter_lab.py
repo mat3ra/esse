@@ -30,6 +30,17 @@ class Exec(Enum):
     jupyter = "jupyter"
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class JupyterLabApplicationSchema(BaseModel):
     name: Name
     """
@@ -85,4 +96,8 @@ class JupyterLabApplicationSchema(BaseModel):
     isUsingMaterial: Optional[bool] = None
     """
     Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """

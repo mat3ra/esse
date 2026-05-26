@@ -514,6 +514,17 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -567,6 +578,10 @@ class ApplicationSchema(BaseModel):
     isUsingMaterial: Optional[bool] = None
     """
     Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """
 
 
@@ -1722,6 +1737,66 @@ class UnknownModelSchema(BaseModel):
     method: BaseMethod9 = Field(..., title="base method")
 
 
+class ApplicationSchema2(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    summary: str
+    """
+    Application's short description.
+    """
+    version: str
+    """
+    Application version. e.g. 5.3.5
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
+    """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
+    """
+
+
 class SubworkflowSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -1755,7 +1830,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5], MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="type", title="Any model schema"
     )
-    application: ApplicationSchema = Field(..., title="application schema")
+    application: ApplicationSchema2 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
