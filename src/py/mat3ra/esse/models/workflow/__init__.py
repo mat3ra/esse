@@ -1730,7 +1730,7 @@ class DFTModelSchema23(BaseModel):
     method: BaseMethod42 = Field(..., title="base method")
 
 
-class Type143(Enum):
+class Type144(Enum):
     ml = "ml"
 
 
@@ -1763,7 +1763,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod43 = Field(..., title="base method")
 
 
-class Type144(Enum):
+class Type145(Enum):
     unknown = "unknown"
 
 

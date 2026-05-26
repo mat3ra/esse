@@ -1,4 +1,4 @@
-import type { JSONSchema } from "./utils";
+import type { JSONSchema } from "../utils";
 export interface JSONSchemaWithPath {
     data: JSONSchema;
     path: string;

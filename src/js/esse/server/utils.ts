@@ -1,10 +1,17 @@
+/**
+ * Server-side schema parsing utilities.
+ *
+ * Use this module only in Node/server contexts where the filesystem is available.
+ * It walks directories and reads JSON schema files from disk; do not import it in
+ * browser bundles.
+ */
 // @ts-ignore
 import deref from "json-schema-deref-sync";
 import path from "path";
 
-import { JSONInclude } from "../json_include";
-import { walkDirSync } from "../utils/filesystem";
-import type { JSONSchema } from "./utils";
+import { JSONInclude } from "../../json_include";
+import { walkDirSync } from "../../utils/filesystem";
+import type { JSONSchema } from "../utils";
 
 export interface JSONSchemaWithPath {
     data: JSONSchema;
@@ -50,7 +57,7 @@ export function parseIncludeReferenceStatementsByDir(
 export function parseIncludeReferenceStatementsByDir(dirPath: string, wrapInDataAndPath = false) {
     const schemas: JSONSchema[] = [];
     const schemasWithPath: JSONSchemaWithPath[] = [];
-    const topDir = path.resolve(__dirname, "../../../");
+    const topDir = path.resolve(__dirname, "../../../../");
 
     walkDirSync(dirPath, (filePath) => {
         if (filePath.endsWith(".json")) {

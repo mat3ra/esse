@@ -8286,6 +8286,9 @@ export interface MaterialConventionalSchema {
     conventional?: {};
 }
 /** Schema dist/js/schema/material/material_properties.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
 export interface MaterialPropertiesSchema {
     /**
      * reduced chemical formula
@@ -8520,6 +8523,61 @@ export interface MaterialPropertiesSchema {
         message: string;
     }[];
 }
+/** Schema dist/js/schema/material/metadata/boundary_conditions.json */
+export interface MaterialMetadataBoundaryConditions {
+    boundaryConditions?: {
+        /**
+         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+         */
+        type: "pbc" | "bc1" | "bc2" | "bc3";
+        offset: number;
+    };
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/material/metadata/bulk_properties.json */
+export interface MaterialMetadataBulkProperties {
+    /**
+     * Source bulk material id used to generate the slab
+     */
+    bulkId?: string;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/material/metadata/slab_properties.json */
+export interface MaterialMetadataSlabProperties {
+    /**
+     * Whether the material was created as a surface slab
+     */
+    isSlab?: boolean;
+    /**
+     * Miller index h used to generate the slab
+     */
+    h?: number;
+    /**
+     * Miller index k used to generate the slab
+     */
+    k?: number;
+    /**
+     * Miller index l used to generate the slab
+     */
+    l?: number;
+    /**
+     * Slab thickness in number of layers
+     */
+    thickness?: number;
+    /**
+     * Vacuum fraction used when scaling the out-of-plane lattice vector
+     */
+    vacuumRatio?: number;
+    /**
+     * Termination vector component along a
+     */
+    vx?: number;
+    /**
+     * Termination vector component along b
+     */
+    vy?: number;
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/material/metadata.json */
 export interface MaterialMetadataSchema {
     metadata: {
@@ -8530,6 +8588,8 @@ export interface MaterialMetadataSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * Whether the material was created as a surface slab
          */
@@ -8562,13 +8622,19 @@ export interface MaterialMetadataSchema {
          * Termination vector component along b
          */
         vy?: number;
+        [k: string]: unknown;
+    } | {
         /**
          * Source bulk material id used to generate the slab
          */
         bulkId?: string;
+        [k: string]: unknown;
     };
 }
 /** Schema dist/js/schema/material.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
 export interface MaterialSchema {
     /**
      * entity identity
@@ -8831,6 +8897,8 @@ export interface MaterialSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * Whether the material was created as a surface slab
          */
@@ -8863,10 +8931,13 @@ export interface MaterialSchema {
          * Termination vector component along b
          */
         vy?: number;
+        [k: string]: unknown;
+    } | {
         /**
          * Source bulk material id used to generate the slab
          */
         bulkId?: string;
+        [k: string]: unknown;
     };
 }
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
@@ -9177,6 +9248,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -9209,10 +9282,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -9494,6 +9570,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -9526,10 +9604,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -9859,6 +9940,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -9891,10 +9974,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -10176,6 +10262,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -10208,10 +10296,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -10530,6 +10621,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -10562,10 +10655,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -10847,6 +10943,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -10879,10 +10977,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -11212,6 +11313,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -11244,10 +11347,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -11529,6 +11635,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -11561,10 +11669,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -11884,6 +11995,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -11916,10 +12029,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -12201,6 +12317,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -12233,10 +12351,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -12566,6 +12687,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -12598,10 +12721,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -12883,6 +13009,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -12915,10 +13043,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -13237,6 +13368,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -13269,10 +13402,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -13554,6 +13690,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -13586,10 +13724,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -13919,6 +14060,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -13951,10 +14094,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -14236,6 +14382,8 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -14268,10 +14416,13 @@ export interface InterfaceConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -14568,6 +14719,8 @@ export interface InterfaceConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -14600,10 +14753,13 @@ export interface InterfaceConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -14941,6 +15097,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -14973,10 +15131,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -15258,6 +15419,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -15290,10 +15453,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -15623,6 +15789,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -15655,10 +15823,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -15940,6 +16111,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -15972,10 +16145,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -16294,6 +16470,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -16326,10 +16504,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -16611,6 +16792,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -16643,10 +16826,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -16976,6 +17162,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -17008,10 +17196,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -17293,6 +17484,8 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -17325,10 +17518,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -17687,6 +17883,8 @@ export interface AdatomDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -17719,10 +17917,13 @@ export interface AdatomDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -18004,6 +18205,8 @@ export interface AdatomDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -18036,10 +18239,13 @@ export interface AdatomDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -18328,6 +18534,8 @@ export interface AdatomDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -18360,10 +18568,13 @@ export interface AdatomDefectConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -18654,6 +18865,8 @@ export interface AdatomDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -18686,10 +18899,13 @@ export interface AdatomDefectConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -19024,6 +19240,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -19056,10 +19274,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -19341,6 +19562,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -19373,10 +19596,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -19706,6 +19932,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -19738,10 +19966,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -20023,6 +20254,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -20055,10 +20288,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -20377,6 +20613,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -20409,10 +20647,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -20694,6 +20935,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -20726,10 +20969,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -21059,6 +21305,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -21091,10 +21339,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -21376,6 +21627,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -21408,10 +21661,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -21731,6 +21987,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -21763,10 +22021,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -22048,6 +22309,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -22080,10 +22343,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -22413,6 +22679,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -22445,10 +22713,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -22730,6 +23001,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -22762,10 +23035,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -23084,6 +23360,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -23116,10 +23394,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -23401,6 +23682,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -23433,10 +23716,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -23766,6 +24052,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -23798,10 +24086,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -24083,6 +24374,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -24115,10 +24408,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -24415,6 +24711,8 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -24447,10 +24745,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -24782,6 +25083,8 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -24814,10 +25117,13 @@ export interface IslandDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -25099,6 +25405,8 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -25131,10 +25439,13 @@ export interface IslandDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -25459,6 +25770,8 @@ export interface IslandDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Whether the material was created as a surface slab
                                      */
@@ -25491,10 +25804,13 @@ export interface IslandDefectConfigurationSchema {
                                      * Termination vector component along b
                                      */
                                     vy?: number;
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Source bulk material id used to generate the slab
                                      */
                                     bulkId?: string;
+                                    [k: string]: unknown;
                                 };
                             };
                             /**
@@ -25776,6 +26092,8 @@ export interface IslandDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Whether the material was created as a surface slab
                                      */
@@ -25808,10 +26126,13 @@ export interface IslandDefectConfigurationSchema {
                                      * Termination vector component along b
                                      */
                                     vy?: number;
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Source bulk material id used to generate the slab
                                      */
                                     bulkId?: string;
+                                    [k: string]: unknown;
                                 };
                             };
                         }
@@ -26100,6 +26421,8 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -26132,10 +26455,13 @@ export interface IslandDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -26474,6 +26800,8 @@ export interface IslandDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -26506,10 +26834,13 @@ export interface IslandDefectConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -26838,6 +27169,8 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -26870,10 +27203,13 @@ export interface TerraceDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -27155,6 +27491,8 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -27187,10 +27525,13 @@ export interface TerraceDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -27515,6 +27856,8 @@ export interface TerraceDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Whether the material was created as a surface slab
                                      */
@@ -27547,10 +27890,13 @@ export interface TerraceDefectConfigurationSchema {
                                      * Termination vector component along b
                                      */
                                     vy?: number;
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Source bulk material id used to generate the slab
                                      */
                                     bulkId?: string;
+                                    [k: string]: unknown;
                                 };
                             };
                             /**
@@ -27832,6 +28178,8 @@ export interface TerraceDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Whether the material was created as a surface slab
                                      */
@@ -27864,10 +28212,13 @@ export interface TerraceDefectConfigurationSchema {
                                      * Termination vector component along b
                                      */
                                     vy?: number;
+                                    [k: string]: unknown;
+                                } | {
                                     /**
                                      * Source bulk material id used to generate the slab
                                      */
                                     bulkId?: string;
+                                    [k: string]: unknown;
                                 };
                             };
                         }
@@ -28156,6 +28507,8 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -28188,10 +28541,13 @@ export interface TerraceDefectConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -28530,6 +28886,8 @@ export interface TerraceDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -28562,10 +28920,13 @@ export interface TerraceDefectConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -28867,6 +29228,8 @@ export interface PointDefectBaseConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -28899,10 +29262,13 @@ export interface PointDefectBaseConfigurationSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         },
         unknown
@@ -29184,6 +29550,8 @@ export interface InterstitialPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -29216,10 +29584,13 @@ export interface InterstitialPointDefectSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         },
         {
@@ -29488,6 +29859,8 @@ export interface InterstitialPointDefectSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -29520,10 +29893,13 @@ export interface InterstitialPointDefectSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -29818,6 +30194,8 @@ export interface SubstitutionalPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -29850,10 +30228,13 @@ export interface SubstitutionalPointDefectSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         },
         {
@@ -30122,6 +30503,8 @@ export interface SubstitutionalPointDefectSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -30154,10 +30537,13 @@ export interface SubstitutionalPointDefectSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -30452,6 +30838,8 @@ export interface VacancyPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -30484,10 +30872,13 @@ export interface VacancyPointDefectSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         },
         {
@@ -30768,6 +31159,8 @@ export interface IdealCrystalSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * Whether the material was created as a surface slab
          */
@@ -30800,10 +31193,13 @@ export interface IdealCrystalSchema {
          * Termination vector component along b
          */
         vy?: number;
+        [k: string]: unknown;
+    } | {
         /**
          * Source bulk material id used to generate the slab
          */
         bulkId?: string;
+        [k: string]: unknown;
     };
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/nanoribbon.json */
@@ -31129,6 +31525,8 @@ export interface NanoribbonConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -31161,10 +31559,13 @@ export interface NanoribbonConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -31446,6 +31847,8 @@ export interface NanoribbonConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -31478,10 +31881,13 @@ export interface NanoribbonConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -31778,6 +32184,8 @@ export interface NanoribbonConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -31810,10 +32218,13 @@ export interface NanoribbonConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -32153,6 +32564,8 @@ export interface NanoTapeConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -32185,10 +32598,13 @@ export interface NanoTapeConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -32470,6 +32886,8 @@ export interface NanoTapeConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -32502,10 +32920,13 @@ export interface NanoTapeConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -32828,6 +33249,8 @@ export interface SlabConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -32860,10 +33283,13 @@ export interface SlabConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -33145,6 +33571,8 @@ export interface SlabConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -33177,10 +33605,13 @@ export interface SlabConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -33515,6 +33946,8 @@ export interface SlabStrainedSupercellConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -33547,10 +33980,13 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -33832,6 +34268,8 @@ export interface SlabStrainedSupercellConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -33864,10 +34302,13 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -34161,6 +34602,8 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -34193,10 +34636,13 @@ export interface PassivationConfigurationSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         } | {
             /**
@@ -34464,6 +34910,8 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -34496,10 +34944,13 @@ export interface PassivationConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -34778,6 +35229,8 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -34810,10 +35263,13 @@ export interface PassivationConfigurationSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         } | {
             /**
@@ -35081,6 +35537,8 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -35113,10 +35571,13 @@ export interface PassivationConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -35395,6 +35856,8 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * Whether the material was created as a surface slab
                  */
@@ -35427,10 +35890,13 @@ export interface PassivationConfigurationSchema {
                  * Termination vector component along b
                  */
                 vy?: number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * Source bulk material id used to generate the slab
                  */
                 bulkId?: string;
+                [k: string]: unknown;
             };
         } | {
             /**
@@ -35698,6 +36164,8 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -35730,10 +36198,13 @@ export interface PassivationConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
             /**
@@ -36082,6 +36553,8 @@ export interface CrystalSiteSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -36114,10 +36587,13 @@ export interface CrystalSiteSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -36396,6 +36872,8 @@ export interface PointDefectSiteSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -36428,10 +36906,13 @@ export interface PointDefectSiteSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -36718,6 +37199,8 @@ export interface VoidRegionSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -36750,10 +37233,13 @@ export interface VoidRegionSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -37078,6 +37564,8 @@ export interface CrystalSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * Whether the material was created as a surface slab
          */
@@ -37110,10 +37598,13 @@ export interface CrystalSchema {
          * Termination vector component along b
          */
         vy?: number;
+        [k: string]: unknown;
+    } | {
         /**
          * Source bulk material id used to generate the slab
          */
         bulkId?: string;
+        [k: string]: unknown;
     };
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/three_dimensional/void.json */
@@ -37460,6 +37951,8 @@ export interface VacuumConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -37492,10 +37985,13 @@ export interface VacuumConfigurationSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
 }
@@ -37793,6 +38289,8 @@ export interface CrystalLatticeLinesSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -37825,10 +38323,13 @@ export interface CrystalLatticeLinesSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -38147,6 +38648,8 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -38179,10 +38682,13 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -38460,6 +38966,8 @@ export interface CrystalLatticeBaseSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -38492,10 +39000,13 @@ export interface CrystalLatticeBaseSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -38781,6 +39292,8 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -38813,10 +39326,13 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -39095,6 +39611,8 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -39127,10 +39645,13 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -39408,6 +39929,8 @@ export interface SupercellConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -39440,10 +39963,13 @@ export interface SupercellConfigurationSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -39756,6 +40282,8 @@ export interface AtomicLayersSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -39788,10 +40316,13 @@ export interface AtomicLayersSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -40103,6 +40634,8 @@ export interface AtomicLayersUniqueSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -40135,10 +40668,13 @@ export interface AtomicLayersUniqueSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -40440,6 +40976,8 @@ export interface AtomicLayersUniqueRepeatedSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -40472,10 +41010,13 @@ export interface AtomicLayersUniqueRepeatedSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -40760,6 +41301,8 @@ export interface CrystalLatticePlanesSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -40792,10 +41335,13 @@ export interface CrystalLatticePlanesSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**
@@ -41109,6 +41655,8 @@ export interface SlabStackConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -41141,10 +41689,13 @@ export interface SlabStackConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                     /**
@@ -41426,6 +41977,8 @@ export interface SlabStackConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Whether the material was created as a surface slab
                              */
@@ -41458,10 +42011,13 @@ export interface SlabStackConfigurationSchema {
                              * Termination vector component along b
                              */
                             vy?: number;
+                            [k: string]: unknown;
+                        } | {
                             /**
                              * Source bulk material id used to generate the slab
                              */
                             bulkId?: string;
+                            [k: string]: unknown;
                         };
                     };
                 }
@@ -41759,6 +42315,8 @@ export interface SlabStackConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Whether the material was created as a surface slab
                      */
@@ -41791,10 +42349,13 @@ export interface SlabStackConfigurationSchema {
                      * Termination vector component along b
                      */
                     vy?: number;
+                    [k: string]: unknown;
+                } | {
                     /**
                      * Source bulk material id used to generate the slab
                      */
                     bulkId?: string;
+                    [k: string]: unknown;
                 };
             };
         }
@@ -41862,6 +42423,9 @@ export interface StackSchema {
  * A perturbation operation that modifies a configuration by applying a perturbation to atoms coordinates.
  */
 export interface PerturbationSchema {
+    /**
+     * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+     */
     material?: {
         /**
          * entity identity
@@ -42124,6 +42688,8 @@ export interface PerturbationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * Whether the material was created as a surface slab
              */
@@ -42156,10 +42722,13 @@ export interface PerturbationSchema {
              * Termination vector component along b
              */
             vy?: number;
+            [k: string]: unknown;
+        } | {
             /**
              * Source bulk material id used to generate the slab
              */
             bulkId?: string;
+            [k: string]: unknown;
         };
     };
     /**

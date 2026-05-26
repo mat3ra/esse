@@ -1,0 +1,24 @@
+{
+    "$id": "material/metadata/boundary-conditions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material metadata boundary conditions",
+    "type": "object",
+    "properties": {
+        "boundaryConditions": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/esm_bc"
+                },
+                "offset": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "type",
+                "offset"
+            ]
+        }
+    },
+    "additionalProperties": true
+}

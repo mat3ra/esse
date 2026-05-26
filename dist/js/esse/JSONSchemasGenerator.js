@@ -8,7 +8,7 @@ const fs_1 = __importDefault(require("fs"));
 const js_yaml_1 = __importDefault(require("js-yaml"));
 const json_schema_merge_allof_1 = __importDefault(require("json-schema-merge-allof"));
 const path_1 = __importDefault(require("path"));
-const serverUtils_1 = require("./serverUtils");
+const utils_1 = require("./server/utils");
 const settings_1 = require("./settings");
 const DEFAULT_CONFIG = {
     schemasDir: settings_1.SCHEMAS_DIR,
@@ -20,9 +20,9 @@ class JSONSchemasGenerator {
         this.schemasDir = config.schemasDir;
         this.examplesDir = config.examplesDir;
         this.propertiesManifestDir = config.propertiesManifestDir;
-        this.schemas = (0, serverUtils_1.parseIncludeReferenceStatementsByDir)(this.schemasDir);
+        this.schemas = (0, utils_1.parseIncludeReferenceStatementsByDir)(this.schemasDir);
         this.wrappedExamples = this.examplesDir
-            ? (0, serverUtils_1.parseIncludeReferenceStatementsByDir)(this.examplesDir, true)
+            ? (0, utils_1.parseIncludeReferenceStatementsByDir)(this.examplesDir, true)
             : [];
         this.examples = this.wrappedExamples.map((example) => example.data);
         this.propertiesManifest = this.propertiesManifestDir

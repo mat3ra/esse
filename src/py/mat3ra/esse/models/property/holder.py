@@ -2505,7 +2505,7 @@ class NebContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Type81(Enum):
+class Type82(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
@@ -2513,7 +2513,7 @@ class Type81(Enum):
 
 
 class BoundaryConditionsDataProviderSchema(BaseModel):
-    type: Optional[Type81] = "pbc"
+    type: Optional[Type82] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
@@ -2977,7 +2977,7 @@ class DFTModelSchema11(BaseModel):
     method: BaseMethod18 = Field(..., title="base method")
 
 
-class Type82(Enum):
+class Type83(Enum):
     ml = "ml"
 
 
@@ -3010,7 +3010,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod19 = Field(..., title="base method")
 
 
-class Type83(Enum):
+class Type84(Enum):
     unknown = "unknown"
 
 

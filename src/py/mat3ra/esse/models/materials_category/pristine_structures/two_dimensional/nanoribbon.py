@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat, conint, constr
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint, constr
 
 
 class ChemicalElements(Enum):
@@ -643,8 +643,17 @@ class BoundaryConditions(BaseModel):
     offset: float
 
 
-class Metadata(BaseModel):
+class MaterialMetadataBoundaryConditions(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     boundaryConditions: Optional[BoundaryConditions] = None
+
+
+class MaterialMetadataSlabProperties(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     isSlab: Optional[bool] = None
     """
     Whether the material was created as a surface slab
@@ -677,6 +686,12 @@ class Metadata(BaseModel):
     """
     Termination vector component along b
     """
+
+
+class MaterialMetadataBulkProperties(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     bulkId: Optional[str] = None
     """
     Source bulk material id used to generate the slab
@@ -737,7 +752,9 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    metadata: Optional[Metadata] = {}
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class CrystalLatticeLinesUniqueRepeatedSchema(BaseModel):
@@ -1156,7 +1173,7 @@ class MaterialConsistencyCheckSchema62(BaseModel):
     """
 
 
-class BoundaryConditions61(BaseModel):
+class BoundaryConditions62(BaseModel):
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -1164,44 +1181,11 @@ class BoundaryConditions61(BaseModel):
     offset: float
 
 
-class Metadata61(BaseModel):
-    boundaryConditions: Optional[BoundaryConditions61] = None
-    isSlab: Optional[bool] = None
-    """
-    Whether the material was created as a surface slab
-    """
-    h: Optional[float] = None
-    """
-    Miller index h used to generate the slab
-    """
-    k: Optional[float] = None
-    """
-    Miller index k used to generate the slab
-    """
-    l: Optional[float] = None
-    """
-    Miller index l used to generate the slab
-    """
-    thickness: Optional[float] = None
-    """
-    Slab thickness in number of layers
-    """
-    vacuumRatio: Optional[float] = None
-    """
-    Vacuum fraction used when scaling the out-of-plane lattice vector
-    """
-    vx: Optional[float] = None
-    """
-    Termination vector component along a
-    """
-    vy: Optional[float] = None
-    """
-    Termination vector component along b
-    """
-    bulkId: Optional[str] = None
-    """
-    Source bulk material id used to generate the slab
-    """
+class MaterialMetadataBoundaryConditions62(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions62] = None
 
 
 class CrystalSchema57(BaseModel):
@@ -1258,7 +1242,9 @@ class CrystalSchema57(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema62]] = None
-    metadata: Optional[Metadata61] = {}
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions62, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema(BaseModel):
@@ -1680,7 +1666,7 @@ class MaterialConsistencyCheckSchema63(BaseModel):
     """
 
 
-class BoundaryConditions62(BaseModel):
+class BoundaryConditions63(BaseModel):
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -1688,44 +1674,11 @@ class BoundaryConditions62(BaseModel):
     offset: float
 
 
-class Metadata62(BaseModel):
-    boundaryConditions: Optional[BoundaryConditions62] = None
-    isSlab: Optional[bool] = None
-    """
-    Whether the material was created as a surface slab
-    """
-    h: Optional[float] = None
-    """
-    Miller index h used to generate the slab
-    """
-    k: Optional[float] = None
-    """
-    Miller index k used to generate the slab
-    """
-    l: Optional[float] = None
-    """
-    Miller index l used to generate the slab
-    """
-    thickness: Optional[float] = None
-    """
-    Slab thickness in number of layers
-    """
-    vacuumRatio: Optional[float] = None
-    """
-    Vacuum fraction used when scaling the out-of-plane lattice vector
-    """
-    vx: Optional[float] = None
-    """
-    Termination vector component along a
-    """
-    vy: Optional[float] = None
-    """
-    Termination vector component along b
-    """
-    bulkId: Optional[str] = None
-    """
-    Source bulk material id used to generate the slab
-    """
+class MaterialMetadataBoundaryConditions63(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions63] = None
 
 
 class CrystalSchema58(BaseModel):
@@ -1782,7 +1735,9 @@ class CrystalSchema58(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema63]] = None
-    metadata: Optional[Metadata62] = {}
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions63, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema24(BaseModel):
