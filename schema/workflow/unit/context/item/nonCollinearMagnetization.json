@@ -1,0 +1,27 @@
+{
+    "$id": "workflow/unit/context/item/nonCollinearMagnetization",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "nonCollinearMagnetization context item schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../_base.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "nonCollinearMagnetization"
+        },
+        "data": {
+            "$ref": "../../../../context_providers_directory/non_collinear_magnetization_context_provider.json"
+        },
+        "extraData": {
+            "allOf": [
+                {
+                    "$ref": "../_extra_data_material_hash.json"
+                }
+            ]
+        }
+    }
+}

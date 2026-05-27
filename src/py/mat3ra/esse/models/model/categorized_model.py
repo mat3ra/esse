@@ -57,7 +57,7 @@ class CategorizedUnitMethod(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -73,7 +73,7 @@ class CategorizedUnitMethod(BaseModel):
 
 class CategorizedMethod(BaseModel):
     units: List[CategorizedUnitMethod]
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -197,7 +197,7 @@ class CategorizedModel(BaseModel):
     Model parameters defined in-place or via model mixins
     """
     reference: Optional[LiteratureReferenceSchema] = Field(None, title="literature reference schema")
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

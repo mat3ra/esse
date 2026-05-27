@@ -1,0 +1,32 @@
+{
+    "$id": "material/metadata/boundary-conditions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material metadata boundary conditions",
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "boundaryConditions": {
+            "type": "object",
+            "required": [
+                "type",
+                "offset"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "pbc",
+                        "bc1",
+                        "bc2",
+                        "bc3"
+                    ],
+                    "default": "pbc",
+                    "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
+                },
+                "offset": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

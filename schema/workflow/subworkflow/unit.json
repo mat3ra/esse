@@ -8,9 +8,6 @@
             "$ref": "./../unit/io.json"
         },
         {
-            "$ref": "./../unit/reduce.json"
-        },
-        {
             "$ref": "./../unit/condition.json"
         },
         {
@@ -21,9 +18,6 @@
         },
         {
             "$ref": "./../unit/assignment.json"
-        },
-        {
-            "$ref": "./../unit/processing.json"
         }
     ],
     "discriminator": {

@@ -5,35 +5,13 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../in_memory_entity/named_defaultable_runtime_items.json"
+            "$ref": "../in_memory_entity/named_defaultable.json"
+        },
+        {
+            "$ref": "../system/runtime_items.json"
+        },
+        {
+            "$ref": "flavor_properties.json"
         }
-    ],
-    "properties": {
-        "executableId": {
-            "description": "_id of the executable this flavor belongs to",
-            "type": "string"
-        },
-        "executableName": {
-            "description": "name of the executable this flavor belongs to",
-            "type": "string"
-        },
-        "applicationName": {
-            "description": "name of the application this flavor belongs to",
-            "type": "string"
-        },
-        "input": {
-            "title": "execution unit input schema",
-            "type": "array",
-            "items": {
-                "$ref": "../workflow/unit/input/_inputItemId.json"
-            }
-        },
-        "supportedApplicationVersions": {
-            "description": "list of application versions this flavor supports",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        }
-    }
+    ]
 }

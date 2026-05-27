@@ -1,0 +1,48 @@
+{
+    "$id": "workflow/subworkflow/mixin",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Subworkflow Mixin Schema",
+    "type": "object",
+    "properties": {
+        "properties": {
+            "description": "Array of characteristic properties calculated by this subworkflow",
+            "type": "array",
+            "items": {
+                "description": "property names, eg. `band_gaps`, `band_structure`",
+                "type": "string"
+            }
+        },
+        "compute": {
+            "description": "compute parameters",
+            "$ref": "../../job/compute.json"
+        },
+        "units": {
+            "description": "Contains the Units of the subworkflow",
+            "type": "array",
+            "items": {
+                "$ref": "./unit.json"
+            }
+        },
+        "model": {
+            "$ref": "../../models_directory/legacy/any.json"
+        },
+        "application": {
+            "description": "information about the simulation engine/application.",
+            "$ref": "../../software/application.json"
+        },
+        "isMultiMaterial": {
+            "type": "boolean"
+        },
+        "isDraft": {
+            "description": "Defines whether to store the results/properties extracted in this unit to properties collection",
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "required": [
+        "model",
+        "properties",
+        "application",
+        "units"
+    ]
+}

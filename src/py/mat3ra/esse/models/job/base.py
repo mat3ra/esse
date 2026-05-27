@@ -23,6 +23,31 @@ class Status(Enum):
     timeout = "timeout"
 
 
+class EntityReferenceSchema(BaseModel):
+    id: str = Field(..., alias="_id")
+    """
+    entity identity
+    """
+    cls: Optional[str] = None
+    """
+    entity class
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+
+
+class WorkflowScopeSchema(BaseModel):
+    global_: Dict[str, Any] = Field(..., alias="global")
+    local: Dict[str, Any]
+
+
+class ScopeTrackItem(BaseModel):
+    repetition: Optional[float] = None
+    scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
+
+
 class Queue(Enum):
     D = "D"
     OR = "OR"
@@ -168,31 +193,6 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
-class EntityReferenceSchema(BaseModel):
-    id: str = Field(..., alias="_id")
-    """
-    entity identity
-    """
-    cls: Optional[str] = None
-    """
-    entity class
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-
-
-class WorkflowScopeSchema(BaseModel):
-    global_: Dict[str, Any] = Field(..., alias="global")
-    local: Dict[str, Any]
-
-
-class ScopeTrackItem(BaseModel):
-    repetition: Optional[float] = None
-    scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
-
-
 class JobBaseSchema(BaseModel):
     rmsId: Optional[str] = None
     """
@@ -209,10 +209,6 @@ class JobBaseSchema(BaseModel):
     workDir: Optional[str] = None
     """
     The path to the working directory of this job, when the job originates from command-line
-    """
-    compute: ComputeArgumentsSchema = Field(..., title="compute arguments schema")
-    """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
     project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
     material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
@@ -238,7 +234,7 @@ class JobBaseSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -247,3 +243,7 @@ class JobBaseSchema(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+    compute: ComputeArgumentsSchema = Field(..., title="compute arguments schema")
+    """
+    Compute schema
+    """

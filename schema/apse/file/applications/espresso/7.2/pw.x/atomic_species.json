@@ -23,7 +23,12 @@
                         "type": "string",
                         "description": "PseudoPot_X"
                     }
-                }
+                },
+                "required": [
+                    "X",
+                    "Mass_X",
+                    "PseudoPot_X"
+                ]
             }
         }
     }

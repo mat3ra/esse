@@ -29,7 +29,7 @@ var Name;
     Name["VASPInputDataManager"] = "VASPInputDataManager";
     Name["VASPNEBInputDataManager"] = "VASPNEBInputDataManager";
     Name["NWChemInputDataManager"] = "NWChemInputDataManager";
-})(Name || (exports.Name = Name = {}));
+})(Name = exports.Name || (exports.Name = {}));
 /**
  * This interface was referenced by `ContextProvidersDirectoryEnum`'s JSON-Schema
  * via the `definition` "ContextProviderNameEnum".
@@ -61,7 +61,7 @@ var ContextProviderNameEnum;
     ContextProviderNameEnum["VASPInputDataManager"] = "VASPInputDataManager";
     ContextProviderNameEnum["VASPNEBInputDataManager"] = "VASPNEBInputDataManager";
     ContextProviderNameEnum["NWChemInputDataManager"] = "NWChemInputDataManager";
-})(ContextProviderNameEnum || (exports.ContextProviderNameEnum = ContextProviderNameEnum = {}));
+})(ContextProviderNameEnum = exports.ContextProviderNameEnum || (exports.ContextProviderNameEnum = {}));
 /**
  * The type of the message to distinguish the direction of the message.
  */
@@ -69,7 +69,7 @@ var Type;
 (function (Type) {
     Type["fromIframeToHost"] = "from-iframe-to-host";
     Type["fromHostToIframe"] = "from-host-to-iframe";
-})(Type || (exports.Type = Type = {}));
+})(Type = exports.Type || (exports.Type = {}));
 /**
  * The action to be performed upon receiving the message.
  */
@@ -78,7 +78,7 @@ var Action;
     Action["setData"] = "set-data";
     Action["getData"] = "get-data";
     Action["info"] = "info";
-})(Action || (exports.Action = Action = {}));
+})(Action = exports.Action || (exports.Action = {}));
 /**
  * This interface was referenced by `WorkflowSubworkflowConvergenceEnumOptions`'s JSON-Schema
  * via the `definition` "ConvergenceParameterNameEnum".
@@ -88,4 +88,4 @@ var ConvergenceParameterNameEnum;
     ConvergenceParameterNameEnum["N_k"] = "N_k";
     ConvergenceParameterNameEnum["N_k_nonuniform"] = "N_k_nonuniform";
     ConvergenceParameterNameEnum["N_k_nonuniform_2D"] = "N_k_nonuniform_2D";
-})(ConvergenceParameterNameEnum || (exports.ConvergenceParameterNameEnum = ConvergenceParameterNameEnum = {}));
+})(ConvergenceParameterNameEnum = exports.ConvergenceParameterNameEnum || (exports.ConvergenceParameterNameEnum = {}));

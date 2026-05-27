@@ -6,42 +6,60 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
-class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class ContextProvider(BaseModel):
+    name: str
+
+
+class TemplateSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    Input file name. e.g. pw_scf.in
+    entity name
     """
+    executableName: str
+    applicationName: str
+    applicationVersion: str
+    contextProviders: List[ContextProvider]
     content: str
     """
-    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
     """
+
+
+class ExecutionUnitInputItemSchema(BaseModel):
+    template: TemplateSchema = Field(..., title="template schema")
     rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    isManuallyChanged: Optional[bool] = False
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """
 
 
-class ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class ExecutionUnitInputSchema(BaseModel):
     input: Optional[
-        List[
-            Union[
-                ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
-                ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines,
-            ]
-        ]
+        List[Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]]
     ] = Field(None, title="execution unit input schema")

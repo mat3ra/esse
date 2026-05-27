@@ -37,6 +37,13 @@
             "type": "boolean",
             "title": "Set arbitrary spin angle"
         },
+        "isArbitrarySpinDirection": {
+            "type": "boolean",
+            "title": "Set arbitrary spin direction"
+        },
+        "lforcet": {
+            "type": "boolean"
+        },
         "spinAngles": {
             "type": "array",
             "items": {

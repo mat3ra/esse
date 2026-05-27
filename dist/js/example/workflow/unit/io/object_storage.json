@@ -9,5 +9,6 @@
         "SIZE": 6582,
         "TIMESTAMP": "1614217411"
     },
-    "filetype": "text/html"
+    "filetype": "text/html",
+    "type": "object_storage"
 }

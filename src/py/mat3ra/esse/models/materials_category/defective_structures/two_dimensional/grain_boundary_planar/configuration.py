@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat, conint, constr
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint, constr
 
 
 class AxisEnum(Enum):
@@ -425,7 +425,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name42(Enum):
+class Name44(Enum):
     density = "density"
 
 
@@ -448,7 +448,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name43(Enum):
+class Name45(Enum):
     symmetry = "symmetry"
 
 
@@ -468,7 +468,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name44(Enum):
+class Name46(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -481,7 +481,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name45(Enum):
+class Name47(Enum):
     p_norm = "p-norm"
 
 
@@ -494,7 +494,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name46(Enum):
+class Name48(Enum):
     inchi = "inchi"
 
 
@@ -503,7 +503,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name47(Enum):
+class Name49(Enum):
     inchi_key = "inchi_key"
 
 
@@ -590,7 +590,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name48(Enum):
+class Name50(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -603,7 +603,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name48
+    name: Name50
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -621,7 +621,98 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
+class BoundaryConditions(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions] = None
+
+
+class MaterialMetadataSlabProperties(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+
+
+class MaterialMetadataBulkProperties(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
+
+
 class CrystalSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -654,28 +745,9 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class AtomicLayersUniqueRepeatedSchema(BaseModel):
@@ -903,7 +975,7 @@ class LatticeSchema5(BaseModel):
     )
 
 
-class Name49(Enum):
+class Name51(Enum):
     volume = "volume"
 
 
@@ -917,7 +989,7 @@ class VolumeSchema5(BaseModel):
     value: float
 
 
-class Name50(Enum):
+class Name52(Enum):
     density = "density"
 
 
@@ -940,7 +1012,7 @@ class ScalarSchema6(BaseModel):
     value: float
 
 
-class Name51(Enum):
+class Name53(Enum):
     symmetry = "symmetry"
 
 
@@ -960,7 +1032,7 @@ class SymmetrySchema5(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name52(Enum):
+class Name54(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -973,7 +1045,7 @@ class ElementalRatio5(BaseModel):
     """
 
 
-class Name53(Enum):
+class Name55(Enum):
     p_norm = "p-norm"
 
 
@@ -986,7 +1058,7 @@ class PNorm5(BaseModel):
     value: float
 
 
-class Name54(Enum):
+class Name56(Enum):
     inchi = "inchi"
 
 
@@ -995,7 +1067,7 @@ class InChIRepresentationSchema5(BaseModel):
     value: str
 
 
-class Name55(Enum):
+class Name57(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1055,14 +1127,14 @@ class DatabaseSourceSchema5(BaseModel):
     """
 
 
-class Name56(Enum):
+class Name58(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema5(BaseModel):
-    name: Name56
+    name: Name58
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1080,7 +1152,43 @@ class MaterialConsistencyCheckSchema5(BaseModel):
     """
 
 
+class BoundaryConditions6(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions6(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions6] = None
+
+
 class CrystalSchema5(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1113,28 +1221,9 @@ class CrystalSchema5(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema5]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions6, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema(BaseModel):
@@ -1400,7 +1489,7 @@ class LatticeSchema6(BaseModel):
     )
 
 
-class Name57(Enum):
+class Name59(Enum):
     volume = "volume"
 
 
@@ -1414,7 +1503,7 @@ class VolumeSchema6(BaseModel):
     value: float
 
 
-class Name58(Enum):
+class Name60(Enum):
     density = "density"
 
 
@@ -1437,7 +1526,7 @@ class ScalarSchema7(BaseModel):
     value: float
 
 
-class Name59(Enum):
+class Name61(Enum):
     symmetry = "symmetry"
 
 
@@ -1457,7 +1546,7 @@ class SymmetrySchema6(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name60(Enum):
+class Name62(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1470,7 +1559,7 @@ class ElementalRatio6(BaseModel):
     """
 
 
-class Name61(Enum):
+class Name63(Enum):
     p_norm = "p-norm"
 
 
@@ -1483,7 +1572,7 @@ class PNorm6(BaseModel):
     value: float
 
 
-class Name62(Enum):
+class Name64(Enum):
     inchi = "inchi"
 
 
@@ -1492,7 +1581,7 @@ class InChIRepresentationSchema6(BaseModel):
     value: str
 
 
-class Name63(Enum):
+class Name65(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1552,14 +1641,14 @@ class DatabaseSourceSchema6(BaseModel):
     """
 
 
-class Name64(Enum):
+class Name66(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema6(BaseModel):
-    name: Name64
+    name: Name66
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1577,7 +1666,43 @@ class MaterialConsistencyCheckSchema6(BaseModel):
     """
 
 
+class BoundaryConditions7(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions7(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions7] = None
+
+
 class CrystalSchema6(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1610,28 +1735,9 @@ class CrystalSchema6(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema6]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions7, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class AtomicLayersUniqueRepeatedSchema2(BaseModel):
@@ -1859,7 +1965,7 @@ class LatticeSchema7(BaseModel):
     )
 
 
-class Name65(Enum):
+class Name67(Enum):
     volume = "volume"
 
 
@@ -1873,7 +1979,7 @@ class VolumeSchema7(BaseModel):
     value: float
 
 
-class Name66(Enum):
+class Name68(Enum):
     density = "density"
 
 
@@ -1896,7 +2002,7 @@ class ScalarSchema8(BaseModel):
     value: float
 
 
-class Name67(Enum):
+class Name69(Enum):
     symmetry = "symmetry"
 
 
@@ -1916,7 +2022,7 @@ class SymmetrySchema7(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name68(Enum):
+class Name70(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1929,7 +2035,7 @@ class ElementalRatio7(BaseModel):
     """
 
 
-class Name69(Enum):
+class Name71(Enum):
     p_norm = "p-norm"
 
 
@@ -1942,7 +2048,7 @@ class PNorm7(BaseModel):
     value: float
 
 
-class Name70(Enum):
+class Name72(Enum):
     inchi = "inchi"
 
 
@@ -1951,7 +2057,7 @@ class InChIRepresentationSchema7(BaseModel):
     value: str
 
 
-class Name71(Enum):
+class Name73(Enum):
     inchi_key = "inchi_key"
 
 
@@ -2011,14 +2117,14 @@ class DatabaseSourceSchema7(BaseModel):
     """
 
 
-class Name72(Enum):
+class Name74(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema7(BaseModel):
-    name: Name72
+    name: Name74
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -2036,7 +2142,43 @@ class MaterialConsistencyCheckSchema7(BaseModel):
     """
 
 
+class BoundaryConditions8(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions8(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions8] = None
+
+
 class CrystalSchema7(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -2069,28 +2211,9 @@ class CrystalSchema7(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema7]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions8, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema1(BaseModel):
@@ -2349,7 +2472,7 @@ class LatticeSchema8(BaseModel):
     )
 
 
-class Name73(Enum):
+class Name75(Enum):
     volume = "volume"
 
 
@@ -2363,7 +2486,7 @@ class VolumeSchema8(BaseModel):
     value: float
 
 
-class Name74(Enum):
+class Name76(Enum):
     density = "density"
 
 
@@ -2386,7 +2509,7 @@ class ScalarSchema9(BaseModel):
     value: float
 
 
-class Name75(Enum):
+class Name77(Enum):
     symmetry = "symmetry"
 
 
@@ -2406,7 +2529,7 @@ class SymmetrySchema8(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name76(Enum):
+class Name78(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -2419,7 +2542,7 @@ class ElementalRatio8(BaseModel):
     """
 
 
-class Name77(Enum):
+class Name79(Enum):
     p_norm = "p-norm"
 
 
@@ -2432,7 +2555,7 @@ class PNorm8(BaseModel):
     value: float
 
 
-class Name78(Enum):
+class Name80(Enum):
     inchi = "inchi"
 
 
@@ -2441,7 +2564,7 @@ class InChIRepresentationSchema8(BaseModel):
     value: str
 
 
-class Name79(Enum):
+class Name81(Enum):
     inchi_key = "inchi_key"
 
 
@@ -2501,14 +2624,14 @@ class DatabaseSourceSchema8(BaseModel):
     """
 
 
-class Name80(Enum):
+class Name82(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema8(BaseModel):
-    name: Name80
+    name: Name82
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -2526,7 +2649,43 @@ class MaterialConsistencyCheckSchema8(BaseModel):
     """
 
 
+class BoundaryConditions9(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions9(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions9] = None
+
+
 class CrystalSchema8(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -2559,28 +2718,9 @@ class CrystalSchema8(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema8]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions9, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class AtomicLayersUniqueRepeatedSchema3(BaseModel):
@@ -2808,7 +2948,7 @@ class LatticeSchema9(BaseModel):
     )
 
 
-class Name81(Enum):
+class Name83(Enum):
     volume = "volume"
 
 
@@ -2822,7 +2962,7 @@ class VolumeSchema9(BaseModel):
     value: float
 
 
-class Name82(Enum):
+class Name84(Enum):
     density = "density"
 
 
@@ -2845,7 +2985,7 @@ class ScalarSchema10(BaseModel):
     value: float
 
 
-class Name83(Enum):
+class Name85(Enum):
     symmetry = "symmetry"
 
 
@@ -2865,7 +3005,7 @@ class SymmetrySchema9(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name84(Enum):
+class Name86(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -2878,7 +3018,7 @@ class ElementalRatio9(BaseModel):
     """
 
 
-class Name85(Enum):
+class Name87(Enum):
     p_norm = "p-norm"
 
 
@@ -2891,7 +3031,7 @@ class PNorm9(BaseModel):
     value: float
 
 
-class Name86(Enum):
+class Name88(Enum):
     inchi = "inchi"
 
 
@@ -2900,7 +3040,7 @@ class InChIRepresentationSchema9(BaseModel):
     value: str
 
 
-class Name87(Enum):
+class Name89(Enum):
     inchi_key = "inchi_key"
 
 
@@ -2960,14 +3100,14 @@ class DatabaseSourceSchema9(BaseModel):
     """
 
 
-class Name88(Enum):
+class Name90(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema9(BaseModel):
-    name: Name88
+    name: Name90
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -2985,7 +3125,43 @@ class MaterialConsistencyCheckSchema9(BaseModel):
     """
 
 
+class BoundaryConditions10(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions10(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions10] = None
+
+
 class CrystalSchema9(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -3018,28 +3194,9 @@ class CrystalSchema9(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema9]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions10, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema2(BaseModel):
@@ -3286,7 +3443,7 @@ class LatticeSchema10(BaseModel):
     )
 
 
-class Name89(Enum):
+class Name91(Enum):
     volume = "volume"
 
 
@@ -3300,7 +3457,7 @@ class VolumeSchema10(BaseModel):
     value: float
 
 
-class Name90(Enum):
+class Name92(Enum):
     density = "density"
 
 
@@ -3323,7 +3480,7 @@ class ScalarSchema11(BaseModel):
     value: float
 
 
-class Name91(Enum):
+class Name93(Enum):
     symmetry = "symmetry"
 
 
@@ -3343,7 +3500,7 @@ class SymmetrySchema10(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name92(Enum):
+class Name94(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -3356,7 +3513,7 @@ class ElementalRatio10(BaseModel):
     """
 
 
-class Name93(Enum):
+class Name95(Enum):
     p_norm = "p-norm"
 
 
@@ -3369,7 +3526,7 @@ class PNorm10(BaseModel):
     value: float
 
 
-class Name94(Enum):
+class Name96(Enum):
     inchi = "inchi"
 
 
@@ -3378,7 +3535,7 @@ class InChIRepresentationSchema10(BaseModel):
     value: str
 
 
-class Name95(Enum):
+class Name97(Enum):
     inchi_key = "inchi_key"
 
 
@@ -3438,14 +3595,14 @@ class DatabaseSourceSchema10(BaseModel):
     """
 
 
-class Name96(Enum):
+class Name98(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema10(BaseModel):
-    name: Name96
+    name: Name98
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -3463,7 +3620,43 @@ class MaterialConsistencyCheckSchema10(BaseModel):
     """
 
 
+class BoundaryConditions11(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions11(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions11] = None
+
+
 class CrystalSchema10(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -3496,28 +3689,9 @@ class CrystalSchema10(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema10]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions11, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class AtomicLayersUniqueRepeatedSchema4(BaseModel):
@@ -3745,7 +3919,7 @@ class LatticeSchema11(BaseModel):
     )
 
 
-class Name97(Enum):
+class Name99(Enum):
     volume = "volume"
 
 
@@ -3759,7 +3933,7 @@ class VolumeSchema11(BaseModel):
     value: float
 
 
-class Name98(Enum):
+class Name100(Enum):
     density = "density"
 
 
@@ -3782,7 +3956,7 @@ class ScalarSchema12(BaseModel):
     value: float
 
 
-class Name99(Enum):
+class Name101(Enum):
     symmetry = "symmetry"
 
 
@@ -3802,7 +3976,7 @@ class SymmetrySchema11(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name100(Enum):
+class Name102(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -3815,7 +3989,7 @@ class ElementalRatio11(BaseModel):
     """
 
 
-class Name101(Enum):
+class Name103(Enum):
     p_norm = "p-norm"
 
 
@@ -3828,7 +4002,7 @@ class PNorm11(BaseModel):
     value: float
 
 
-class Name102(Enum):
+class Name104(Enum):
     inchi = "inchi"
 
 
@@ -3837,7 +4011,7 @@ class InChIRepresentationSchema11(BaseModel):
     value: str
 
 
-class Name103(Enum):
+class Name105(Enum):
     inchi_key = "inchi_key"
 
 
@@ -3897,14 +4071,14 @@ class DatabaseSourceSchema11(BaseModel):
     """
 
 
-class Name104(Enum):
+class Name106(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema11(BaseModel):
-    name: Name104
+    name: Name106
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -3922,7 +4096,43 @@ class MaterialConsistencyCheckSchema11(BaseModel):
     """
 
 
+class BoundaryConditions12(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions12(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions12] = None
+
+
 class CrystalSchema11(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -3955,28 +4165,9 @@ class CrystalSchema11(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema11]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions12, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema3(BaseModel):
@@ -4222,7 +4413,7 @@ class LatticeSchema12(BaseModel):
     )
 
 
-class Name105(Enum):
+class Name107(Enum):
     volume = "volume"
 
 
@@ -4236,7 +4427,7 @@ class VolumeSchema12(BaseModel):
     value: float
 
 
-class Name106(Enum):
+class Name108(Enum):
     density = "density"
 
 
@@ -4259,7 +4450,7 @@ class ScalarSchema13(BaseModel):
     value: float
 
 
-class Name107(Enum):
+class Name109(Enum):
     symmetry = "symmetry"
 
 
@@ -4279,7 +4470,7 @@ class SymmetrySchema12(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name108(Enum):
+class Name110(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -4292,7 +4483,7 @@ class ElementalRatio12(BaseModel):
     """
 
 
-class Name109(Enum):
+class Name111(Enum):
     p_norm = "p-norm"
 
 
@@ -4305,7 +4496,7 @@ class PNorm12(BaseModel):
     value: float
 
 
-class Name110(Enum):
+class Name112(Enum):
     inchi = "inchi"
 
 
@@ -4314,7 +4505,7 @@ class InChIRepresentationSchema12(BaseModel):
     value: str
 
 
-class Name111(Enum):
+class Name113(Enum):
     inchi_key = "inchi_key"
 
 
@@ -4374,14 +4565,14 @@ class DatabaseSourceSchema12(BaseModel):
     """
 
 
-class Name112(Enum):
+class Name114(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema12(BaseModel):
-    name: Name112
+    name: Name114
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -4399,7 +4590,43 @@ class MaterialConsistencyCheckSchema12(BaseModel):
     """
 
 
+class BoundaryConditions13(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class MaterialMetadataBoundaryConditions13(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    boundaryConditions: Optional[BoundaryConditions13] = None
+
+
 class CrystalSchema12(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -4432,28 +4659,9 @@ class CrystalSchema12(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema12]] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions13, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class VacuumConfigurationSchema4(BaseModel):

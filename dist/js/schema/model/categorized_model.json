@@ -6,6 +6,7 @@
     "required": [
         "categories",
         "method",
+        "name",
         "parameters"
     ],
     "properties": {
@@ -14,6 +15,7 @@
             "title": "categorized method",
             "type": "object",
             "required": [
+                "name",
                 "units"
             ],
             "properties": {
@@ -23,6 +25,9 @@
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "categorized unit method",
                         "type": "object",
+                        "required": [
+                            "name"
+                        ],
                         "properties": {
                             "categories": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",

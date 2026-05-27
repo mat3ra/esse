@@ -1,0 +1,48 @@
+{
+    "$id": "workflow/unit/context/item/dynamics",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "dynamics context item schema",
+    "type": "object",
+    "required": [
+        "name",
+        "isEdited",
+        "data",
+        "extraData"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "dynamics"
+        },
+        "data": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Ion Dynamics Context Provider Schema",
+            "description": "Important parameters for molecular dynamics calculation",
+            "type": "object",
+            "properties": {
+                "numberOfSteps": {
+                    "type": "integer",
+                    "title": "numberOfSteps"
+                },
+                "timeStep": {
+                    "type": "number",
+                    "title": "timeStep (Hartree a.u.)"
+                },
+                "electronMass": {
+                    "type": "number",
+                    "title": "Effective electron mass"
+                },
+                "temperature": {
+                    "type": "number",
+                    "title": "Ionic temperature (K)"
+                }
+            }
+        },
+        "isEdited": {
+            "type": "boolean"
+        },
+        "extraData": {
+            "type": "object"
+        }
+    }
+}

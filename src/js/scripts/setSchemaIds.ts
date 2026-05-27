@@ -15,6 +15,7 @@ export default function setSchemaIds(schemaDir: string) {
         }
 
         const fileContents = fs.readFileSync(filePath);
+        console.log(filePath);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { $id, ...schema } = JSON.parse(fileContents.toString());
         const schemaId = filePath.replace(schemaDir, "").replace(".json", "").replace(/_/g, "-");

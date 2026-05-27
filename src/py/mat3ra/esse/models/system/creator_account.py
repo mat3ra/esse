@@ -25,4 +25,4 @@ class EntityReferenceSchema(BaseModel):
 
 
 class CreatorAccountSchema(BaseModel):
-    creatorAccount: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
+    creatorAccount: EntityReferenceSchema = Field(..., title="entity reference schema")

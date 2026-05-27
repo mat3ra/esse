@@ -1634,15 +1634,15 @@ class Value(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    X: Optional[str] = None
+    X: str
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    Mass_X: float
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    PseudoPot_X: str
     """
     PseudoPot_X
     """
@@ -1663,7 +1663,7 @@ class CardOption(Enum):
     crystal_sg = "crystal_sg"
 
 
-class Value143(BaseModel):
+class Value145(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1693,7 +1693,7 @@ class AtomicPositionsSchema(BaseModel):
         extra="forbid",
     )
     card_option: Optional[CardOption] = "alat"
-    values: Optional[List[Value143]] = None
+    values: Optional[List[Value145]] = None
 
 
 class CardOption5(Enum):
@@ -1707,7 +1707,7 @@ class CardOption5(Enum):
     crystal_c = "crystal_c"
 
 
-class Value144(BaseModel):
+class Value146(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1756,7 +1756,7 @@ class KPointsSchema(BaseModel):
         extra="forbid",
     )
     card_option: Optional[CardOption5] = None
-    values: Optional[Union[List[Value144], Values]] = None
+    values: Optional[Union[List[Value146], Values]] = None
 
 
 class CardOption6(Enum):
@@ -1853,7 +1853,7 @@ class ParamType(Enum):
     E3 = "E3"
 
 
-class Value145(BaseModel):
+class Value147(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1967,7 +1967,7 @@ class HubbardSchema(BaseModel):
     )
     card_option: Optional[CardOption7] = None
     values: Optional[
-        Union[List[Union[Values9, Values10]], List[Value145], List[Union[Values11, Values12, Values13]]]
+        Union[List[Union[Values9, Values10]], List[Value147], List[Union[Values11, Values12, Values13]]]
     ] = None
 
 

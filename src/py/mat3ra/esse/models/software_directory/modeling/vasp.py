@@ -32,32 +32,60 @@ class Exec(Enum):
     vasp = "vasp"
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class ViennaAbInitoSimulationPackage(BaseModel):
-    name: Optional[Name] = None
+    name: Name
     """
     entity name
     """
-    summary: Optional[Summary] = None
+    summary: Summary
     """
     Application's short description.
     """
     flavor: Optional[Flavor] = None
-    version: Optional[Version] = None
+    version: Version
     """
     Application version. e.g. 5.3.5
     """
     exec: Optional[Exec] = None
-    shortName: Optional[str] = None
+    id: Optional[str] = Field(None, alias="_id")
     """
-    The short name of the application. e.g. qe
+    entity identity
     """
-    build: Optional[str] = None
+    slug: Optional[str] = None
     """
-    Application build. e.g. VTST
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
     """
     isDefault: Optional[bool] = False
     """
-    Whether the build is the default build
+    Identifies that entity is defaultable
+    """
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
@@ -71,16 +99,7 @@ class ViennaAbInitoSimulationPackage(BaseModel):
     """
     Whether the application is using (being passed during a downstream processing routine) a material structure.
     """
-    id: Optional[str] = Field(None, alias="_id")
+    runConfig: Optional[RunConfig] = None
     """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
+    The run configuration of the application
     """

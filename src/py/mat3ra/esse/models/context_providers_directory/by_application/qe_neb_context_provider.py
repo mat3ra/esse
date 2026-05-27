@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, conint
 
@@ -19,15 +19,15 @@ class ATOMICSPECY(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    X: Optional[str] = None
+    X: str
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    Mass_X: float
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    PseudoPot_X: str
     """
     PseudoPot_X
     """
@@ -37,15 +37,15 @@ class ATOMICSPECIESWITHLABEL(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    X: Optional[str] = None
+    X: str
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    Mass_X: float
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    PseudoPot_X: str
     """
     PseudoPot_X
     """
@@ -85,6 +85,81 @@ class CELLPARAMETERS(BaseModel):
     v3: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
+class FIRSTIMAGEItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class LASTIMAGEItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class INTERMEDIATEIMAGE(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
 class QENEBContextProviderSchema(BaseModel):
     IBRAV: int
     RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
@@ -108,15 +183,13 @@ class QENEBContextProviderSchema(BaseModel):
     Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
     """
     CELL_PARAMETERS: CELLPARAMETERS
-    FIRST_IMAGE: str
-    """
-    Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.
-    """
-    LAST_IMAGE: str
-    """
-    Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.
-    """
-    INTERMEDIATE_IMAGES: List[str]
+    FIRST_IMAGE: List[FIRSTIMAGEItem]
+    LAST_IMAGE: List[LASTIMAGEItem]
+    INTERMEDIATE_IMAGES: List[List[INTERMEDIATEIMAGE]]
     """
     Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+    """
+    contextProviderName: Literal["qe-neb"]
+    """
+    Descriminator for AJV validator
     """

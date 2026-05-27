@@ -15,7 +15,7 @@ class Cls(Enum):
 
 
 class EntityOwnerReferenceSchema(BaseModel):
-    cls: Optional[Cls] = None
+    cls: Cls
     """
     Entity owner class
     """

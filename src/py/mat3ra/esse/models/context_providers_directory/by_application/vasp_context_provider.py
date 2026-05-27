@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel
 
 
@@ -15,4 +17,8 @@ class VASPContextProviderSchema(BaseModel):
     POSCAR_WITH_CONSTRAINTS: str
     """
     POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+    """
+    contextProviderName: Literal["vasp"]
+    """
+    Descriminator for AJV validator
     """

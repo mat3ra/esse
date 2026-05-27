@@ -15,7 +15,7 @@ class Cls(Enum):
 
 
 class CreatorEntityReferenceSchema(BaseModel):
-    cls: Optional[Cls] = None
+    cls: Cls
     """
     Creator class
     """

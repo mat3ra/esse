@@ -36,17 +36,28 @@ class Exec(Enum):
     csh = "csh"
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class ShellScriptingLanguageSchema(BaseModel):
-    name: Optional[Name] = None
+    name: Name
     """
     entity name
     """
     flavor: Optional[Flavor] = None
-    summary: Optional[Summary] = None
+    summary: Summary
     """
     Application's short description.
     """
-    version: Optional[Version] = None
+    version: Version
     """
     Application version. e.g. 5.3.5
     """
@@ -58,30 +69,6 @@ class ShellScriptingLanguageSchema(BaseModel):
     environment: Optional[Dict[str, Any]] = None
     """
     Optional environment variables exported before running the Shell script
-    """
-    shortName: Optional[str] = None
-    """
-    The short name of the application. e.g. qe
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    isDefault: Optional[bool] = False
-    """
-    Whether the build is the default build
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
-    isUsingMaterial: Optional[bool] = None
-    """
-    Whether the application is using (being passed during a downstream processing routine) a material structure.
     """
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -95,4 +82,36 @@ class ShellScriptingLanguageSchema(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
+    """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """

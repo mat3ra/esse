@@ -147,7 +147,7 @@ class UnitMethodRegression(BaseModel):
     """
     Instructive parameters defining the method
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

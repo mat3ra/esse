@@ -83,7 +83,7 @@ class UnitMethodAoPople(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

@@ -9,39 +9,18 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class ApplicationSchemaBase(BaseModel):
-    shortName: Optional[str] = None
+class RunConfig(BaseModel):
+    commandTemplate: str
     """
-    The short name of the application. e.g. qe
+    The command template of the application
     """
-    summary: Optional[str] = None
+    outFileName: str
     """
-    Application's short description.
+    The output file name of the application
     """
-    version: Optional[str] = None
-    """
-    Application version. e.g. 5.3.5
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    isDefault: Optional[bool] = False
-    """
-    Whether the build is the default build
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
-    isUsingMaterial: Optional[bool] = None
-    """
-    Whether the application is using (being passed during a downstream processing routine) a material structure.
-    """
+
+
+class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -55,7 +34,47 @@ class ApplicationSchemaBase(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    summary: str
+    """
+    Application's short description.
+    """
+    version: str
+    """
+    Application version. e.g. 5.3.5
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
+    """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """

@@ -1,0 +1,33 @@
+{
+    "$id": "workflow/unit/context/item/path",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "path context item schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../_base.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "enum": [
+                "qpath",
+                "ipath",
+                "kpath",
+                "explicitKPath",
+                "explicitKPath2PIBA"
+            ]
+        },
+        "data": {
+            "$ref": "../../../../context_providers_directory/points_path_data_provider.json"
+        },
+        "extraData": {
+            "allOf": [
+                {
+                    "$ref": "../_extra_data_material_hash.json"
+                }
+            ]
+        }
+    }
+}

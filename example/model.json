@@ -3,5 +3,6 @@
         "...": "include(method.json)"
     },
     "subtype": "gga",
-    "type": "dft"
+    "type": "dft",
+    "functional": "pbe"
 }

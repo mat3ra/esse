@@ -14,7 +14,8 @@
         "NTYP_WITH_LABELS",
         "ATOMIC_POSITIONS",
         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
-        "CELL_PARAMETERS"
+        "CELL_PARAMETERS",
+        "contextProviderName"
     ],
     "properties": {
         "IBRAV": {
@@ -32,6 +33,11 @@
             "type": "array",
             "items": {
                 "type": "object",
+                "required": [
+                    "X",
+                    "Mass_X",
+                    "PseudoPot_X"
+                ],
                 "additionalProperties": false,
                 "properties": {
                     "X": {
@@ -53,6 +59,11 @@
             "type": "array",
             "items": {
                 "type": "object",
+                "required": [
+                    "X",
+                    "Mass_X",
+                    "PseudoPot_X"
+                ],
                 "additionalProperties": false,
                 "properties": {
                     "X": {
@@ -173,6 +184,11 @@
                     }
                 }
             }
+        },
+        "contextProviderName": {
+            "type": "string",
+            "const": "qe-pwx",
+            "description": "Descriminator for AJV validator"
         }
     }
 }

@@ -7,14 +7,181 @@
         "flowchartId",
         "input",
         "mapFlowchartId",
+        "monitors",
+        "name",
+        "postProcessors",
+        "preProcessors",
+        "results",
         "type"
     ],
-    "additionalProperties": true,
     "properties": {
-        "type": {
-            "const": "reduce",
-            "description": "type of the unit",
+        "_id": {
+            "description": "entity identity",
             "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Identifies that entity is defaultable",
+            "type": "boolean",
+            "default": false
+        },
+        "preProcessors": {
+            "description": "names of the pre-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "postProcessors": {
+            "description": "names of the post-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "monitors": {
+            "description": "names of the monitors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "results": {
+            "description": "names of the results for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "tags": {
+            "description": "entity tags",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "status": {
+            "type": "string",
+            "description": "Status of the unit.",
+            "enum": [
+                "idle",
+                "active",
+                "warning",
+                "error",
+                "finished"
+            ]
+        },
+        "statusTrack": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "trackedAt",
+                    "status"
+                ],
+                "properties": {
+                    "trackedAt": {
+                        "type": "number"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "repetition": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "isDraft": {
+            "type": "boolean"
+        },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "const": "reduce"
+        },
+        "head": {
+            "description": "Whether this unit is the first one to be executed.",
+            "type": "boolean"
+        },
+        "flowchartId": {
+            "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+            "type": "string"
+        },
+        "next": {
+            "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+            "type": "string"
+        },
+        "enableRender": {
+            "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+            "type": "boolean"
         },
         "mapFlowchartId": {
             "description": "corresponding map unit flowchart ID",
@@ -40,216 +207,6 @@
                         "items": {
                             "type": "string"
                         }
-                    }
-                }
-            }
-        },
-        "_id": {
-            "type": "string",
-            "description": "entity identity"
-        },
-        "isDraft": {
-            "type": "boolean"
-        },
-        "name": {
-            "description": "name of the unit. e.g. pw_scf",
-            "type": "string"
-        },
-        "status": {
-            "description": "Status of the unit.",
-            "type": "string",
-            "enum": [
-                "idle",
-                "active",
-                "warning",
-                "error",
-                "finished"
-            ]
-        },
-        "head": {
-            "description": "Whether this unit is the first one to be executed.",
-            "type": "boolean"
-        },
-        "flowchartId": {
-            "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-            "type": "string"
-        },
-        "next": {
-            "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-            "type": "string"
-        },
-        "enableRender": {
-            "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-            "type": "boolean"
-        },
-        "context": {
-            "type": "object"
-        },
-        "slug": {
-            "description": "entity slug",
-            "type": "string"
-        },
-        "systemName": {
-            "type": "string"
-        },
-        "schemaVersion": {
-            "description": "entity's schema version. Used to distinct between different schemas.",
-            "type": "string",
-            "default": "2022.8.16"
-        },
-        "isDefault": {
-            "description": "Identifies that entity is defaultable",
-            "type": "boolean",
-            "default": false
-        },
-        "preProcessors": {
-            "description": "names of the pre-processors for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "postProcessors": {
-            "description": "names of the post-processors for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "monitors": {
-            "description": "names of the monitors for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "results": {
-            "description": "names of the results for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "tags": {
-            "description": "entity tags",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "statusTrack": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "required": [
-                    "trackedAt",
-                    "status"
-                ],
-                "properties": {
-                    "trackedAt": {
-                        "type": "number"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "repetition": {
-                        "type": "number"
                     }
                 }
             }

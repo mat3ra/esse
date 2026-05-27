@@ -1,4 +1,4 @@
-import { applyPatchTree, JSONSchema } from "./utils";
+import { type JSONSchema, applyPatchTree } from "./utils";
 
 export type JSONSchemasInterfaceQuery = { [key in keyof JSONSchema]: { $regex: string } };
 

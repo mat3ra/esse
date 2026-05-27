@@ -8,5 +8,8 @@
             "description": "entity name",
             "type": "string"
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }
