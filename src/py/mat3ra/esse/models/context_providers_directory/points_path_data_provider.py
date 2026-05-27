@@ -4,19 +4,18 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field, RootModel
 
 
 class PointsPathDataProviderSchemaItem(BaseModel):
-    point: Optional[str] = None
-    steps: int
-    coordinates: List[float]
+    point: str
+    steps: float
 
 
 class PointsPathDataProviderSchema(RootModel[List[PointsPathDataProviderSchemaItem]]):
     root: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
-    Path in reciprocal space for band structure calculations.
+    Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
     """

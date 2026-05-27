@@ -1,4 +1,5 @@
-import { JSONSchema, JSONSchemaWithPath } from "./utils";
+import { JSONSchemaWithPath } from "./server/utils";
+import type { JSONSchema } from "./utils";
 interface JSONSchemasGeneratorConfig {
     schemasDir: string;
     examplesDir?: string;

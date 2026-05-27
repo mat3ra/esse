@@ -8,12 +8,17 @@
             "description": "name of the application this executable belongs to",
             "type": "string"
         },
+        "applicationVersion": {
+            "description": "version of the application this executable belongs to",
+            "type": "string"
+        },
         "hasAdvancedComputeOptions": {
             "description": "Whether advanced compute options are present",
             "type": "boolean"
         }
     },
     "required": [
-        "applicationName"
+        "applicationName",
+        "applicationVersion"
     ]
 }

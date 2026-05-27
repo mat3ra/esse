@@ -3,7 +3,7 @@ import { assert, expect } from "chai";
 import * as path from "path";
 
 import JSONSchemasInterface from "../../src/js/esse/JSONSchemasInterfaceServer";
-import { JSONSchema } from "../../src/js/esse/utils";
+import type { JSONSchema } from "../../src/js/esse/utils";
 import {
     expectedPatchedSchema,
     originalSchema,

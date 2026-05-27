@@ -1,4 +1,4 @@
-import { JSONSchema, JSONSchemaDefinition } from "./utils";
+import type { JSONSchema, JSONSchemaDefinition } from "./utils";
 
 export type MapSchema = (prop: JSONSchemaDefinition) => JSONSchemaDefinition | undefined;
 

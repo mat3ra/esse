@@ -7,10 +7,13 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy

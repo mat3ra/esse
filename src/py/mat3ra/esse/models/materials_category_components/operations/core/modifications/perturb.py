@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat, conint
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 
 
 class Value(Enum):
@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value139(Enum):
+class Value141(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value139]
+    value: Union[Value, Value141]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name644(Enum):
+class Name652(Enum):
     density = "density"
 
 
-class Units281(Enum):
+class Units284(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units281] = None
+    units: Optional[Units284] = None
     value: float
 
 
-class Units282(Enum):
+class Units285(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units282] = None
+    units: Optional[Units285] = None
     value: float
 
 
-class Name645(Enum):
+class Name653(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name646(Enum):
+class Name654(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name647(Enum):
+class Name655(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name648(Enum):
+class Name656(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name649(Enum):
+class Name657(Enum):
     inchi_key = "inchi_key"
 
 
@@ -450,7 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name650(Enum):
+class Name658(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -463,7 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name650
+    name: Name658
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -496,11 +496,83 @@ class BoundaryConditions(BaseModel):
     offset: float
 
 
-class Metadata(BaseModel):
+class MaterialMetadataBoundaryConditions(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     boundaryConditions: Optional[BoundaryConditions] = None
 
 
+class MaterialMetadataSlabProperties(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+
+
+class MaterialMetadataBulkProperties(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
+
+
 class MaterialSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -533,32 +605,16 @@ class MaterialSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    metadata: Optional[Metadata] = None
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
+    metadata: Optional[
+        Union[MaterialMetadataBoundaryConditions, MaterialMetadataSlabProperties, MaterialMetadataBulkProperties]
+    ] = {}
 
 
 class PerturbationSchema(BaseModel):
     material: Optional[MaterialSchema] = Field(None, title="material schema")
+    """
+    Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+    """
     perturbation_function: Optional[str] = None
     """
     A function that defines the perturbation (delta in coordinates) to be applied to the atomic coordinates.

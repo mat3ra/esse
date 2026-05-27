@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -57,6 +60,10 @@ class ExecutableSchema(BaseModel):
     applicationName: str
     """
     name of the application this executable belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this executable belongs to
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """

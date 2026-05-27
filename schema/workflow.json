@@ -5,10 +5,19 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+            "$ref": "in_memory_entity/named.json"
+        },
+        {
+            "$ref": "system/metadata.json"
         },
         {
             "$ref": "workflow/base.json"
+        },
+        {
+            "$ref": "system/description.json"
+        },
+        {
+            "$ref": "system/tags.json"
         }
     ],
     "properties": {
@@ -18,6 +27,10 @@
             "items": {
                 "type": "object"
             }
+        },
+        "compute": {
+            "description": "compute parameters",
+            "$ref": "job/compute.json"
         }
     },
     "required": [

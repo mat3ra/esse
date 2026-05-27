@@ -159,7 +159,84 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
+class Error15(BaseModel):
+    domain: Optional[Domain] = None
+    """
+    Domain of the error appearance (internal).
+    """
+    reason: Optional[str] = None
+    """
+    Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+    """
+    message: Optional[str] = None
+    """
+    Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+    """
+    traceback: Optional[str] = None
+    """
+    Full machine-readable error traceback. e.g. FileNotFound
+    """
+
+
+class ComputeArgumentsSchema15(BaseModel):
+    queue: Queue
+    """
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+    """
+    nodes: int
+    """
+    number of nodes used for the job inside the RMS.
+    """
+    ppn: int
+    """
+    number of CPUs used for the job inside the RMS.
+    """
+    timeLimit: str
+    """
+    Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+    """
+    timeLimitType: Optional[TimeLimitType] = "per single attempt"
+    """
+    Convention to use when reasoning about time limits
+    """
+    isRestartable: Optional[bool] = True
+    """
+    Job is allowed to restart on termination.
+    """
+    notify: Optional[str] = None
+    """
+    Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+    """
+    email: Optional[str] = None
+    """
+    Email address to notify about job execution.
+    """
+    maxCPU: Optional[int] = None
+    """
+    Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+    """
+    arguments: Optional[QuantumEspressoArgumentsSchema] = Field({}, title="quantum espresso arguments schema")
+    """
+    Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+    """
+    cluster: Optional[Cluster] = None
+    """
+    Cluster where the job is executed. Optional on create. Required on job submission.
+    """
+    errors: Optional[List[Error15]] = None
+    """
+    Computation error. Optional. Appears only if something happens on jobs execution.
+    """
+    excludeFilesPattern: Optional[str] = None
+    """
+    A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+    """
+
+
 class RuntimeItemNameObjectSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -515,6 +592,17 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -553,6 +641,10 @@ class ApplicationSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -564,6 +656,10 @@ class ApplicationSchema(BaseModel):
     isUsingMaterial: Optional[bool] = None
     """
     Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """
 
 
@@ -593,6 +689,10 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     name of the application this executable belongs to
     """
+    applicationVersion: str
+    """
+    version of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -600,12 +700,9 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """
@@ -649,21 +746,21 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableName: Optional[str] = None
+    executableName: str
     """
     name of the executable this flavor belongs to
     """
-    applicationName: Optional[str] = None
+    applicationName: str
     """
     name of the application this flavor belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this flavor belongs to
     """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
 
 
 class ContextProvider(BaseModel):
@@ -688,9 +785,9 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: str
-    applicationVersion: Optional[str] = None
     executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """
@@ -700,7 +797,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
@@ -1007,7 +1104,7 @@ class ExtraDataWithMaterialHashSchema(BaseModel):
 
 
 class InputContextItemSchema(BaseModel):
-    name: Literal["input"]
+    name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     data: Union[
         NWChemTotalEnergyContextProviderSchema,
         QENEBContextProviderSchema,
@@ -1025,7 +1122,7 @@ class PlanewaveCutoffsContextProviderSchema(BaseModel):
 
 
 class CutoffsContextItemSchema(BaseModel):
-    name: Literal["cutoffs"]
+    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
     """
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
@@ -1034,7 +1131,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name827(Enum):
+class Name835(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1055,7 +1152,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name827
+    name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -1064,7 +1161,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name828(Enum):
+class Name836(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1073,16 +1170,15 @@ class Name828(Enum):
 
 
 class PointsPathDataProviderSchemaItem(BaseModel):
-    point: Optional[str] = None
-    steps: int
-    coordinates: List[float]
+    point: str
+    steps: float
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name828
+    name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
-    Path in reciprocal space for band structure calculations.
+    Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -1104,7 +1200,7 @@ class HubbardJContextProviderSchemaItem(BaseModel):
 
 
 class HubbardJContextItemSchema(BaseModel):
-    name: Literal["hubbard_j"]
+    name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardJContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
     Hubbard parameters for DFT+U+J calculation.
@@ -1120,7 +1216,7 @@ class HubbardUContextProviderSchemaItem(BaseModel):
 
 
 class HubbardUContextItemSchema(BaseModel):
-    name: Literal["hubbard_u"]
+    name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
     Hubbard U parameters for DFT+U or DFT+U+V calculation.
@@ -1140,7 +1236,7 @@ class HubbardVContextProviderSchemaItem(BaseModel):
 
 
 class HubbardVContextItemSchema(BaseModel):
-    name: Literal["hubbard_v"]
+    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
     """
     Hubbard V parameters for DFT+U+V calculation.
@@ -1156,7 +1252,7 @@ class HubbardLegacyContextProviderSchemaItem(BaseModel):
 
 
 class HubbardLegacyContextItemSchema(BaseModel):
-    name: Literal["hubbard_legacy"]
+    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardLegacyContextProviderSchemaItem] = Field(
         ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
     )
@@ -1172,7 +1268,7 @@ class NEBDataProviderSchema(BaseModel):
 
 
 class NebContextItemSchema(BaseModel):
-    name: Literal["neb"]
+    name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
     """
     Number of intermediate NEB images.
@@ -1199,7 +1295,7 @@ class BoundaryConditionsDataProviderSchema(BaseModel):
 
 
 class BoundaryConditionsContextItemSchema(BaseModel):
-    name: Literal["boundaryConditions"]
+    name: Literal["9#-datamodel-code-generator-#-object-#-special-#"]
     data: BoundaryConditionsDataProviderSchema = Field(..., title="Boundary Conditions Data Provider Schema")
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -1217,7 +1313,7 @@ class MLSettingsContextProviderSchema(BaseModel):
 
 
 class MlSettingsContextItemSchema(BaseModel):
-    name: Literal["mlSettings"]
+    name: Literal["10#-datamodel-code-generator-#-object-#-special-#"]
     data: MLSettingsContextProviderSchema = Field(..., title="ML Settings Context Provider Schema")
     """
     Settings important to machine learning runs.
@@ -1231,7 +1327,7 @@ class MLTrainTestSplitContextProviderSchema(BaseModel):
 
 
 class MlTrainTestSplitContextItemSchema(BaseModel):
-    name: Literal["mlTrainTestSplit"]
+    name: Literal["11#-datamodel-code-generator-#-object-#-special-#"]
     data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
     """
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
@@ -1248,7 +1344,7 @@ class IonDynamicsContextProviderSchema(BaseModel):
 
 
 class DynamicsContextItemSchema(BaseModel):
-    name: Literal["dynamics"]
+    name: Literal["12#-datamodel-code-generator-#-object-#-special-#"]
     data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
     """
     Important parameters for molecular dynamics calculation
@@ -1270,7 +1366,7 @@ class CollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class CollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["collinearMagnetization"]
+    name: Literal["13#-datamodel-code-generator-#-object-#-special-#"]
     data: CollinearMagnetizationContextProviderSchema = Field(
         ..., title="Collinear Magnetization Context Provider Schema"
     )
@@ -1330,7 +1426,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class NonCollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["nonCollinearMagnetization"]
+    name: Literal["14#-datamodel-code-generator-#-object-#-special-#"]
     data: NonCollinearMagnetizationContextProviderSchema = Field(
         ..., title="Non Collinear Magnetization Context Provider Schema"
     )
@@ -1339,6 +1435,46 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
+
+
+class ContextItemSchema(
+    RootModel[
+        Union[
+            InputContextItemSchema,
+            CutoffsContextItemSchema,
+            GridContextItemSchema,
+            PathContextItemSchema,
+            HubbardJContextItemSchema,
+            HubbardUContextItemSchema,
+            HubbardVContextItemSchema,
+            HubbardLegacyContextItemSchema,
+            NebContextItemSchema,
+            BoundaryConditionsContextItemSchema,
+            MlSettingsContextItemSchema,
+            MlTrainTestSplitContextItemSchema,
+            DynamicsContextItemSchema,
+            CollinearMagnetizationContextItemSchema,
+            NonCollinearMagnetizationContextItemSchema,
+        ]
+    ]
+):
+    root: Union[
+        InputContextItemSchema,
+        CutoffsContextItemSchema,
+        GridContextItemSchema,
+        PathContextItemSchema,
+        HubbardJContextItemSchema,
+        HubbardUContextItemSchema,
+        HubbardVContextItemSchema,
+        HubbardLegacyContextItemSchema,
+        NebContextItemSchema,
+        BoundaryConditionsContextItemSchema,
+        MlSettingsContextItemSchema,
+        MlTrainTestSplitContextItemSchema,
+        DynamicsContextItemSchema,
+        CollinearMagnetizationContextItemSchema,
+        NonCollinearMagnetizationContextItemSchema,
+    ] = Field(..., discriminator="name", title="context item schema")
 
 
 class ExecutionUnitSchema(BaseModel):
@@ -1413,25 +1549,7 @@ class ExecutionUnitSchema(BaseModel):
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
-    context: List[
-        Union[
-            InputContextItemSchema,
-            CutoffsContextItemSchema,
-            GridContextItemSchema,
-            PathContextItemSchema,
-            HubbardJContextItemSchema,
-            HubbardUContextItemSchema,
-            HubbardVContextItemSchema,
-            HubbardLegacyContextItemSchema,
-            NebContextItemSchema,
-            BoundaryConditionsContextItemSchema,
-            MlSettingsContextItemSchema,
-            MlTrainTestSplitContextItemSchema,
-            DynamicsContextItemSchema,
-            CollinearMagnetizationContextItemSchema,
-            NonCollinearMagnetizationContextItemSchema,
-        ]
-    ]
+    context: List[ContextItemSchema]
 
 
 class AssignmentUnitSchema(BaseModel):
@@ -1631,7 +1749,7 @@ class DFTModelSchema26(BaseModel):
     method: BaseMethod47 = Field(..., title="base method")
 
 
-class Type145(Enum):
+class Type147(Enum):
     ml = "ml"
 
 
@@ -1664,7 +1782,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod48 = Field(..., title="base method")
 
 
-class Type146(Enum):
+class Type148(Enum):
     unknown = "unknown"
 
 
@@ -1697,6 +1815,66 @@ class UnknownModelSchema(BaseModel):
     method: BaseMethod49 = Field(..., title="base method")
 
 
+class ApplicationSchema19(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    summary: str
+    """
+    Application's short description.
+    """
+    version: str
+    """
+    Application version. e.g. 5.3.5
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
+    """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
+    """
+
+
 class SubworkflowSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -1707,9 +1885,6 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    """
-    system name of the subworkflow
-    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1722,7 +1897,7 @@ class SubworkflowSchema(BaseModel):
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
+    compute: Optional[ComputeArgumentsSchema15] = Field(None, title="compute arguments schema")
     """
     Compute schema
     """
@@ -1733,7 +1908,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[Union[DFTModelSchema, DFTModelSchema25, DFTModelSchema26], MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="type", title="Any model schema"
     )
-    application: ApplicationSchema = Field(..., title="application schema")
+    application: ApplicationSchema19 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
@@ -2020,6 +2195,10 @@ class WorkflowPropertySchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
+    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
+    """
+    Compute schema
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2032,10 +2211,6 @@ class WorkflowPropertySchema(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
     properties: List[str]
@@ -2066,3 +2241,8 @@ class WorkflowPropertySchema(BaseModel):
     """
     tags for the workflow
     """
+    description: Optional[str] = None
+    """
+    entity description
+    """
+    descriptionObject: Optional[Dict[str, Any]] = None

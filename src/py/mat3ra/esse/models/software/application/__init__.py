@@ -9,6 +9,17 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -47,6 +58,10 @@ class ApplicationSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -58,4 +73,8 @@ class ApplicationSchema(BaseModel):
     isUsingMaterial: Optional[bool] = None
     """
     Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """

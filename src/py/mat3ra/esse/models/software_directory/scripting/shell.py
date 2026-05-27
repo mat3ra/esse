@@ -36,6 +36,17 @@ class Exec(Enum):
     csh = "csh"
 
 
+class RunConfig(BaseModel):
+    commandTemplate: str
+    """
+    The command template of the application
+    """
+    outFileName: str
+    """
+    The output file name of the application
+    """
+
+
 class ShellScriptingLanguageSchema(BaseModel):
     name: Name
     """
@@ -84,6 +95,10 @@ class ShellScriptingLanguageSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -95,4 +110,8 @@ class ShellScriptingLanguageSchema(BaseModel):
     isUsingMaterial: Optional[bool] = None
     """
     Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+    runConfig: Optional[RunConfig] = None
+    """
+    The run configuration of the application
     """

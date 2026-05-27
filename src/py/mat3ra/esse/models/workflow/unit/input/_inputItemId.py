@@ -6,16 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """

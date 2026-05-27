@@ -5,6 +5,7 @@
     "type": "object",
     "required": [
         "applicationName",
+        "applicationVersion",
         "content",
         "contextProviders",
         "executableName",
@@ -31,13 +32,13 @@
             "description": "entity name",
             "type": "string"
         },
+        "executableName": {
+            "type": "string"
+        },
         "applicationName": {
             "type": "string"
         },
         "applicationVersion": {
-            "type": "string"
-        },
-        "executableName": {
             "type": "string"
         },
         "contextProviders": {

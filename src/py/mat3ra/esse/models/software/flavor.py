@@ -10,6 +10,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,12 +20,9 @@ class RuntimeItemNameObjectSchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """
@@ -66,18 +66,18 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableName: Optional[str] = None
+    executableName: str
     """
     name of the executable this flavor belongs to
     """
-    applicationName: Optional[str] = None
+    applicationName: str
     """
     name of the application this flavor belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this flavor belongs to
     """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """

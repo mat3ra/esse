@@ -48,5 +48,8 @@
         {
             "$ref": "item/nonCollinearMagnetization.json"
         }
-    ]
+    ],
+    "discriminator": {
+        "propertyName": "name"
+    }
 }

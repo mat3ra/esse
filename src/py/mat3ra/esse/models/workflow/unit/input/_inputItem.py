@@ -31,9 +31,9 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: str
-    applicationVersion: Optional[str] = None
     executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """
@@ -43,7 +43,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """

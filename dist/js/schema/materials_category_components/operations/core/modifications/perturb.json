@@ -12,9 +12,36 @@
             "required": [
                 "basis",
                 "lattice",
+                "metadata",
                 "name"
             ],
+            "description": "Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).",
             "properties": {
+                "_id": {
+                    "description": "entity identity",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "entity slug",
+                    "type": "string"
+                },
+                "systemName": {
+                    "type": "string"
+                },
+                "schemaVersion": {
+                    "description": "entity's schema version. Used to distinct between different schemas.",
+                    "type": "string",
+                    "default": "2022.8.16"
+                },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
+                "isDefault": {
+                    "description": "Identifies that entity is defaultable",
+                    "type": "boolean",
+                    "default": false
+                },
                 "formula": {
                     "description": "reduced chemical formula",
                     "type": "string"
@@ -740,56 +767,93 @@
                 },
                 "metadata": {
                     "type": "object",
-                    "properties": {
-                        "boundaryConditions": {
+                    "default": {},
+                    "anyOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "material metadata boundary conditions",
                             "type": "object",
-                            "required": [
-                                "type",
-                                "offset"
-                            ],
                             "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "pbc",
-                                        "bc1",
-                                        "bc2",
-                                        "bc3"
+                                "boundaryConditions": {
+                                    "type": "object",
+                                    "required": [
+                                        "type",
+                                        "offset"
                                     ],
-                                    "default": "pbc",
-                                    "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "pbc",
+                                                "bc1",
+                                                "bc2",
+                                                "bc3"
+                                            ],
+                                            "default": "pbc",
+                                            "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
+                                        },
+                                        "offset": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            },
+                            "additionalProperties": true
+                        },
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "material metadata slab properties",
+                            "type": "object",
+                            "properties": {
+                                "isSlab": {
+                                    "description": "Whether the material was created as a surface slab",
+                                    "type": "boolean"
                                 },
-                                "offset": {
+                                "h": {
+                                    "description": "Miller index h used to generate the slab",
+                                    "type": "number"
+                                },
+                                "k": {
+                                    "description": "Miller index k used to generate the slab",
+                                    "type": "number"
+                                },
+                                "l": {
+                                    "description": "Miller index l used to generate the slab",
+                                    "type": "number"
+                                },
+                                "thickness": {
+                                    "description": "Slab thickness in number of layers",
+                                    "type": "number"
+                                },
+                                "vacuumRatio": {
+                                    "description": "Vacuum fraction used when scaling the out-of-plane lattice vector",
+                                    "type": "number"
+                                },
+                                "vx": {
+                                    "description": "Termination vector component along a",
+                                    "type": "number"
+                                },
+                                "vy": {
+                                    "description": "Termination vector component along b",
                                     "type": "number"
                                 }
-                            }
+                            },
+                            "additionalProperties": true
+                        },
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "material metadata bulk properties",
+                            "type": "object",
+                            "properties": {
+                                "bulkId": {
+                                    "description": "Source bulk material id used to generate the slab",
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": true
                         }
-                    }
-                },
-                "_id": {
-                    "description": "entity identity",
-                    "type": "string"
-                },
-                "slug": {
-                    "description": "entity slug",
-                    "type": "string"
-                },
-                "systemName": {
-                    "type": "string"
-                },
-                "schemaVersion": {
-                    "description": "entity's schema version. Used to distinct between different schemas.",
-                    "type": "string",
-                    "default": "2022.8.16"
-                },
-                "name": {
-                    "description": "entity name",
-                    "type": "string"
-                },
-                "isDefault": {
-                    "description": "Identifies that entity is defaultable",
-                    "type": "boolean",
-                    "default": false
+                    ],
+                    "additionalProperties": true
                 }
             }
         },

@@ -4,6 +4,9 @@
     "title": "flavor schema",
     "type": "object",
     "required": [
+        "applicationName",
+        "applicationVersion",
+        "executableName",
         "input",
         "monitors",
         "name",
@@ -43,10 +46,12 @@
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                 "type": "object",
                 "required": [
                     "name"
                 ],
+                "additionalProperties": true,
                 "properties": {
                     "name": {
                         "description": "The name of this item. e.g. scf_accuracy",
@@ -61,10 +66,12 @@
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                 "type": "object",
                 "required": [
                     "name"
                 ],
+                "additionalProperties": true,
                 "properties": {
                     "name": {
                         "description": "The name of this item. e.g. scf_accuracy",
@@ -79,10 +86,12 @@
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                 "type": "object",
                 "required": [
                     "name"
                 ],
+                "additionalProperties": true,
                 "properties": {
                     "name": {
                         "description": "The name of this item. e.g. scf_accuracy",
@@ -97,10 +106,12 @@
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
+                "description": "A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.",
                 "type": "object",
                 "required": [
                     "name"
                 ],
+                "additionalProperties": true,
                 "properties": {
                     "name": {
                         "description": "The name of this item. e.g. scf_accuracy",
@@ -117,6 +128,10 @@
             "description": "name of the application this flavor belongs to",
             "type": "string"
         },
+        "applicationVersion": {
+            "description": "version of the application this flavor belongs to",
+            "type": "string"
+        },
         "input": {
             "title": "execution unit input schema",
             "type": "array",
@@ -124,7 +139,9 @@
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "execution unit input id item schema for physics-based simulation engines",
                 "type": "object",
-                "additionalProperties": false,
+                "required": [
+                    "name"
+                ],
                 "properties": {
                     "templateId": {
                         "type": "string"
@@ -137,13 +154,6 @@
                         "type": "string"
                     }
                 }
-            }
-        },
-        "supportedApplicationVersions": {
-            "description": "list of application versions this flavor supports",
-            "type": "array",
-            "items": {
-                "type": "string"
             }
         }
     }

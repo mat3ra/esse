@@ -1,0 +1,13 @@
+{
+    "$id": "material/metadata/bulk-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material metadata bulk properties",
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "bulkId": {
+            "description": "Source bulk material id used to generate the slab",
+            "type": "string"
+        }
+    }
+}

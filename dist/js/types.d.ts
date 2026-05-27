@@ -3679,18 +3679,34 @@ export interface PointsGridDataProviderSchema {
 }
 /** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */
 /**
- * Path in reciprocal space for band structure calculations.
+ * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
  *
  * @minItems 1
  */
 export type PointsPathDataProviderSchema = [
     {
-        point?: string;
+        point: string;
+        steps: number;
+    },
+    ...{
+        point: string;
+        steps: number;
+    }[]
+];
+/** Schema dist/js/schema/context_providers_directory/points_path_data_provider_rendering.json */
+/**
+ * Path in reciprocal space including derived Cartesian/fractional coordinates for template rendering. Not persisted on the context item.
+ *
+ * @minItems 1
+ */
+export type PointsPathDataProviderRenderingSchema = [
+    {
+        point: string;
         steps: number;
         coordinates: number[];
     },
     ...{
-        point?: string;
+        point: string;
         steps: number;
         coordinates: number[];
     }[]
@@ -5836,6 +5852,110 @@ export interface JobSchema {
          */
         workflows: {}[];
         /**
+         * Compute schema
+         */
+        compute?: {
+            /**
+             * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+             */
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            /**
+             * number of nodes used for the job inside the RMS.
+             */
+            nodes: number;
+            /**
+             * number of CPUs used for the job inside the RMS.
+             */
+            ppn: number;
+            /**
+             * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+             */
+            timeLimit: string;
+            /**
+             * Convention to use when reasoning about time limits
+             */
+            timeLimitType?: "per single attempt" | "compound";
+            /**
+             * Job is allowed to restart on termination.
+             */
+            isRestartable?: boolean;
+            /**
+             * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+             */
+            notify?: string;
+            /**
+             * Email address to notify about job execution.
+             */
+            email?: string;
+            /**
+             * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+             */
+            maxCPU?: number;
+            /**
+             * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+             */
+            arguments?: {
+                /**
+                 * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+                 */
+                nimage?: number;
+                /**
+                 * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+                 */
+                npools?: number;
+                /**
+                 * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+                 */
+                nband?: number;
+                /**
+                 * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+                 */
+                ntg?: number;
+                /**
+                 * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+                 */
+                ndiag?: number;
+            };
+            /**
+             * Cluster where the job is executed. Optional on create. Required on job submission.
+             */
+            cluster?: {
+                /**
+                 * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+                 */
+                fqdn?: string;
+                /**
+                 * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+                 */
+                jid?: string;
+            };
+            /**
+             * Computation error. Optional. Appears only if something happens on jobs execution.
+             */
+            errors?: {
+                /**
+                 * Domain of the error appearance (internal).
+                 */
+                domain?: "rupy" | "alfred" | "celim" | "webapp";
+                /**
+                 * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+                 */
+                reason?: string;
+                /**
+                 * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+                 */
+                message?: string;
+                /**
+                 * Full machine-readable error traceback. e.g. FileNotFound
+                 */
+                traceback?: string;
+            }[];
+            /**
+             * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+             */
+            excludeFilesPattern?: string;
+        };
+        /**
          * entity identity
          */
         _id?: string;
@@ -5852,10 +5972,6 @@ export interface JobSchema {
          * entity name
          */
         name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
         metadata?: {};
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -5881,9 +5997,6 @@ export interface JobSchema {
              * entity slug
              */
             slug?: string;
-            /**
-             * system name of the subworkflow
-             */
             systemName?: string;
             /**
              * entity's schema version. Used to distinct between different schemas.
@@ -6034,6 +6147,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6043,6 +6157,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6052,6 +6167,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6061,6 +6177,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6187,6 +6304,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6196,6 +6314,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6205,6 +6324,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6214,6 +6334,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6312,6 +6433,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6321,6 +6443,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6330,6 +6453,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6339,6 +6463,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6412,6 +6537,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -6421,6 +6547,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -6430,6 +6557,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -6439,6 +6567,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -6513,6 +6642,10 @@ export interface JobSchema {
                      */
                     build: string;
                     /**
+                     * Whether the version is the default version
+                     */
+                    isDefaultVersion?: boolean;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -6524,6 +6657,19 @@ export interface JobSchema {
                      * Whether the application is using (being passed during a downstream processing routine) a material structure.
                      */
                     isUsingMaterial?: boolean;
+                    /**
+                     * The run configuration of the application
+                     */
+                    runConfig?: {
+                        /**
+                         * The command template of the application
+                         */
+                        commandTemplate: string;
+                        /**
+                         * The output file name of the application
+                         */
+                        outFileName: string;
+                    };
                 };
                 executable: {
                     /**
@@ -6551,6 +6697,10 @@ export interface JobSchema {
                      * name of the application this executable belongs to
                      */
                     applicationName: string;
+                    /**
+                     * version of the application this executable belongs to
+                     */
+                    applicationVersion: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -6586,6 +6736,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the post-processors for this calculation
@@ -6595,6 +6746,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the monitors for this calculation
@@ -6604,6 +6756,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the results for this calculation
@@ -6613,27 +6766,28 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * name of the executable this flavor belongs to
                      */
-                    executableName?: string;
+                    executableName: string;
                     /**
                      * name of the application this flavor belongs to
                      */
-                    applicationName?: string;
+                    applicationName: string;
+                    /**
+                     * version of the application this flavor belongs to
+                     */
+                    applicationVersion: string;
                     input: {
                         templateId?: string;
                         templateName?: string;
                         /**
                          * name of the resulting input file, if different than template name
                          */
-                        name?: string;
+                        name: string;
                     }[];
-                    /**
-                     * list of application versions this flavor supports
-                     */
-                    supportedApplicationVersions?: string[];
                 };
                 input: {
                     template: {
@@ -6654,9 +6808,9 @@ export interface JobSchema {
                          * entity name
                          */
                         name: string;
-                        applicationName: string;
-                        applicationVersion?: string;
                         executableName: string;
+                        applicationName: string;
+                        applicationVersion: string;
                         contextProviders: {
                             name: ContextProviderNameEnum;
                         }[];
@@ -6668,7 +6822,7 @@ export interface JobSchema {
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
-                    rendered: string;
+                    rendered?: string;
                     isManuallyChanged: boolean;
                 }[];
                 context: ({
@@ -7036,20 +7190,18 @@ export interface JobSchema {
                 } | {
                     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                     /**
-                     * Path in reciprocal space for band structure calculations.
+                     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                      *
                      * @minItems 1
                      */
                     data: [
                         {
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         },
                         ...{
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         }[]
                     ];
                     extraData: {
@@ -7289,6 +7441,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -7298,6 +7451,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -7307,6 +7461,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -7316,6 +7471,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -7537,6 +7693,10 @@ export interface JobSchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -7548,6 +7708,19 @@ export interface JobSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             isMultiMaterial?: boolean;
             /**
@@ -7588,6 +7761,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -7597,6 +7771,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -7606,6 +7781,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -7615,6 +7791,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -7706,6 +7883,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -7715,6 +7893,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -7724,6 +7903,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -7733,6 +7913,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -7815,6 +7996,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -7824,6 +8006,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -7833,6 +8016,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -7842,6 +8026,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -7891,6 +8076,11 @@ export interface JobSchema {
          * tags for the workflow
          */
         tags?: string[];
+        /**
+         * entity description
+         */
+        description?: string;
+        descriptionObject?: {};
     };
     /**
      * Identity used to track jobs originated from command-line
@@ -8121,8 +8311,11 @@ export interface MaterialConsistencyCheckSchema {
 export interface MaterialConventionalSchema {
     conventional?: {};
 }
-/** Schema dist/js/schema/material.json */
-export interface MaterialSchema {
+/** Schema dist/js/schema/material/material_properties.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
+export interface MaterialPropertiesSchema {
     /**
      * reduced chemical formula
      */
@@ -8355,7 +8548,65 @@ export interface MaterialSchema {
          */
         message: string;
     }[];
-    metadata?: {
+}
+/** Schema dist/js/schema/material/metadata/boundary_conditions.json */
+export interface MaterialMetadataBoundaryConditions {
+    boundaryConditions?: {
+        /**
+         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+         */
+        type: "pbc" | "bc1" | "bc2" | "bc3";
+        offset: number;
+    };
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/material/metadata/bulk_properties.json */
+export interface MaterialMetadataBulkProperties {
+    /**
+     * Source bulk material id used to generate the slab
+     */
+    bulkId?: string;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/material/metadata/slab_properties.json */
+export interface MaterialMetadataSlabProperties {
+    /**
+     * Whether the material was created as a surface slab
+     */
+    isSlab?: boolean;
+    /**
+     * Miller index h used to generate the slab
+     */
+    h?: number;
+    /**
+     * Miller index k used to generate the slab
+     */
+    k?: number;
+    /**
+     * Miller index l used to generate the slab
+     */
+    l?: number;
+    /**
+     * Slab thickness in number of layers
+     */
+    thickness?: number;
+    /**
+     * Vacuum fraction used when scaling the out-of-plane lattice vector
+     */
+    vacuumRatio?: number;
+    /**
+     * Termination vector component along a
+     */
+    vx?: number;
+    /**
+     * Termination vector component along b
+     */
+    vy?: number;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/material/metadata.json */
+export interface MaterialMetadataSchema {
+    metadata: {
         boundaryConditions?: {
             /**
              * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -8363,7 +8614,54 @@ export interface MaterialSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
     };
+}
+/** Schema dist/js/schema/material.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
+export interface MaterialSchema {
     /**
      * entity identity
      */
@@ -8385,6 +8683,288 @@ export interface MaterialSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * reduced chemical formula
+     */
+    formula?: string;
+    /**
+     * chemical formula based on the number of atoms of each element in the supercell
+     */
+    unitCellFormula?: string;
+    basis: {
+        /**
+         * atomic elements schema
+         */
+        elements: {
+            /**
+             * All elements, including extra elements
+             */
+            value: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | ("X" | "Vac")) & string;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic coordinates schema
+         */
+        coordinates: {
+            /**
+             * value of this entry
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            value: [number, number, number];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        units?: "crystal" | "cartesian";
+        /**
+         * atomic labels schema
+         */
+        labels?: {
+            /**
+             * value of this entry
+             */
+            value: (number | string) | number;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+    };
+    lattice: {
+        /**
+         * length of the first lattice vector
+         */
+        a: number;
+        /**
+         * length of the second lattice vector
+         */
+        b: number;
+        /**
+         * length of the third lattice vector
+         */
+        c: number;
+        /**
+         * angle between first and second lattice vector
+         */
+        alpha: number;
+        /**
+         * angle between second and third lattice vector
+         */
+        beta: number;
+        /**
+         * angle between first and third lattice vector
+         */
+        gamma: number;
+        vectors?: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            a: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            b: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            c: [number, number, number];
+            /**
+             * lattice parameter for fractional coordinates
+             */
+            alat?: number;
+            units?: "angstrom" | "bohr";
+        };
+        type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+        units?: {
+            length?: "angstrom" | "bohr";
+            angle?: "degree" | "radian";
+        };
+    };
+    derivedProperties?: ({
+        name?: "volume";
+        units?: "angstrom^3";
+        value: number;
+    } | {
+        name?: "density";
+        units?: "g/cm^3";
+        value: number;
+    } | {
+        /**
+         * point group symbol in Schoenflies notation
+         */
+        pointGroupSymbol?: string;
+        /**
+         * space group symbol in Hermann–Mauguin notation
+         */
+        spaceGroupSymbol?: string;
+        /**
+         * tolerance used for symmetry calculation
+         */
+        tolerance?: {
+            units?: "angstrom";
+            value: number;
+        };
+        name?: "symmetry";
+    } | {
+        name?: "elemental_ratio";
+        value: number;
+        /**
+         * the element this ratio is for
+         */
+        element?: string;
+    } | {
+        name?: "p-norm";
+        /**
+         * degree of the dimensionality of the norm
+         */
+        degree?: number;
+        value: number;
+    } | {
+        name?: "inchi";
+        value: string;
+    } | {
+        name?: "inchi_key";
+        value: string;
+    })[];
+    /**
+     * information about a database source
+     */
+    external?: {
+        /**
+         * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+         */
+        id: string | number;
+        /**
+         * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+         */
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
+        /**
+         * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+         */
+        origin: boolean;
+        /**
+         * Original response from external source.
+         */
+        data?: {};
+        /**
+         * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+         */
+        doi?: string;
+        /**
+         * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+         */
+        url?: string;
+    };
+    /**
+     * file source with the information inside
+     */
+    src?: {
+        /**
+         * file extension
+         */
+        extension?: string;
+        /**
+         * file name without extension
+         */
+        filename: string;
+        /**
+         * file content as raw text
+         */
+        text: string;
+        /**
+         * MD5 hash based on file content
+         */
+        hash: string;
+    };
+    /**
+     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     */
+    scaledHash?: string;
+    /**
+     * Corresponding ICSD id of the material
+     */
+    icsdId?: number;
+    /**
+     * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+     */
+    isNonPeriodic?: boolean;
+    consistencyChecks?: {
+        /**
+         * Name of the consistency check that is performed, which is listed in an enum.
+         */
+        name: "default" | "atomsTooClose" | "atomsOverlap";
+        /**
+         * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+         */
+        key: string;
+        /**
+         * Severity level of the problem, which is used in UI to differentiate.
+         */
+        severity: "info" | "warning" | "error";
+        /**
+         * Message generated by the consistency check describing the problem.
+         */
+        message: string;
+    }[];
+    metadata: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
@@ -8434,6 +9014,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -8665,7 +9266,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -8673,28 +9274,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -8715,6 +9336,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -8946,7 +9588,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -8954,28 +9596,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -9044,6 +9706,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -9275,7 +9958,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -9283,28 +9966,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -9325,6 +10028,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -9556,7 +10280,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -9564,28 +10288,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -9643,6 +10387,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -9874,7 +10639,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -9882,28 +10647,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -9924,6 +10709,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -10155,7 +10961,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10163,28 +10969,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -10253,6 +11079,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -10484,7 +11331,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10492,28 +11339,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -10534,6 +11401,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -10765,7 +11653,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10773,28 +11661,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -10853,6 +11761,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -11084,7 +12013,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11092,28 +12021,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -11134,6 +12083,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -11365,7 +12335,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11373,28 +12343,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -11463,6 +12453,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -11694,7 +12705,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11702,28 +12713,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -11744,6 +12775,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -11975,7 +13027,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11983,28 +13035,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -12062,6 +13134,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -12293,7 +13386,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -12301,28 +13394,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -12343,6 +13456,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -12574,7 +13708,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -12582,28 +13716,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -12672,6 +13826,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -12903,7 +14078,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -12911,28 +14086,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -12953,6 +14148,27 @@ export interface InterfaceConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -13184,7 +14400,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13192,28 +14408,48 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -13248,6 +14484,27 @@ export interface InterfaceConfigurationSchema {
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -13480,7 +14737,7 @@ export interface InterfaceConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13488,28 +14745,48 @@ export interface InterfaceConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -13586,6 +14863,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -13817,7 +15115,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13825,28 +15123,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -13867,6 +15185,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -14098,7 +15437,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -14106,28 +15445,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -14196,6 +15555,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -14427,7 +15807,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -14435,28 +15815,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -14477,6 +15877,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -14708,7 +16129,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -14716,28 +16137,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -14795,6 +16236,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -15026,7 +16488,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15034,28 +16496,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -15076,6 +16558,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -15307,7 +16810,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15315,28 +16818,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -15405,6 +16928,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -15636,7 +17180,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15644,28 +17188,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -15686,6 +17250,27 @@ export interface GrainBoundaryLinearConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -15917,7 +17502,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15925,28 +17510,48 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -16044,6 +17649,27 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -16275,7 +17901,7 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16283,28 +17909,48 @@ export interface AdatomDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -16325,6 +17971,27 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -16556,7 +18223,7 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16564,28 +18231,48 @@ export interface AdatomDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -16612,6 +18299,27 @@ export interface AdatomDefectConfigurationSchema {
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -16844,7 +18552,7 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16852,28 +18560,48 @@ export interface AdatomDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * @minItems 3
@@ -16903,6 +18631,27 @@ export interface AdatomDefectConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -17134,7 +18883,7 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -17142,28 +18891,48 @@ export interface AdatomDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -17237,6 +19006,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -17468,7 +19258,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -17476,28 +19266,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -17518,6 +19328,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -17749,7 +19580,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -17757,28 +19588,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -17847,6 +19698,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -18078,7 +19950,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18086,28 +19958,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -18128,6 +20020,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -18359,7 +20272,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18367,28 +20280,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -18446,6 +20379,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -18677,7 +20631,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18685,28 +20639,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -18727,6 +20701,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -18958,7 +20953,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18966,28 +20961,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -19056,6 +21071,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -19287,7 +21323,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -19295,28 +21331,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -19337,6 +21393,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -19568,7 +21645,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -19576,28 +21653,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -19656,6 +21753,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -19887,7 +22005,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -19895,28 +22013,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -19937,6 +22075,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -20168,7 +22327,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20176,28 +22335,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -20266,6 +22445,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -20497,7 +22697,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20505,28 +22705,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -20547,6 +22767,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -20778,7 +23019,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20786,28 +23027,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -20865,6 +23126,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -21096,7 +23378,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21104,28 +23386,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -21146,6 +23448,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -21377,7 +23700,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21385,28 +23708,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -21475,6 +23818,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -21706,7 +24070,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21714,28 +24078,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -21756,6 +24140,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -21987,7 +24392,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21995,28 +24400,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -22051,6 +24476,27 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -22283,7 +24729,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -22291,28 +24737,48 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -22383,6 +24849,27 @@ export interface IslandDefectConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -22614,7 +25101,7 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -22622,28 +25109,48 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -22664,6 +25171,27 @@ export interface IslandDefectConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -22895,7 +25423,7 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -22903,28 +25431,48 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -22988,6 +25536,27 @@ export interface IslandDefectConfigurationSchema {
                              */
                             crystal: {
                                 /**
+                                 * entity identity
+                                 */
+                                _id?: string;
+                                /**
+                                 * entity slug
+                                 */
+                                slug?: string;
+                                systemName?: string;
+                                /**
+                                 * entity's schema version. Used to distinct between different schemas.
+                                 */
+                                schemaVersion?: string;
+                                /**
+                                 * entity name
+                                 */
+                                name: string;
+                                /**
+                                 * Identifies that entity is defaultable
+                                 */
+                                isDefault?: boolean;
+                                /**
                                  * reduced chemical formula
                                  */
                                 formula?: string;
@@ -23219,7 +25788,7 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23227,28 +25796,48 @@ export interface IslandDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
+                                    [k: string]: unknown;
                                 };
-                                /**
-                                 * entity identity
-                                 */
-                                _id?: string;
-                                /**
-                                 * entity slug
-                                 */
-                                slug?: string;
-                                systemName?: string;
-                                /**
-                                 * entity's schema version. Used to distinct between different schemas.
-                                 */
-                                schemaVersion?: string;
-                                /**
-                                 * entity name
-                                 */
-                                name: string;
-                                /**
-                                 * Identifies that entity is defaultable
-                                 */
-                                isDefault?: boolean;
                             };
                             /**
                              * Use the conventional cell for the crystal structure
@@ -23269,6 +25858,27 @@ export interface IslandDefectConfigurationSchema {
                              */
                             crystal: {
                                 /**
+                                 * entity identity
+                                 */
+                                _id?: string;
+                                /**
+                                 * entity slug
+                                 */
+                                slug?: string;
+                                systemName?: string;
+                                /**
+                                 * entity's schema version. Used to distinct between different schemas.
+                                 */
+                                schemaVersion?: string;
+                                /**
+                                 * entity name
+                                 */
+                                name: string;
+                                /**
+                                 * Identifies that entity is defaultable
+                                 */
+                                isDefault?: boolean;
+                                /**
                                  * reduced chemical formula
                                  */
                                 formula?: string;
@@ -23500,7 +26110,7 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23508,28 +26118,48 @@ export interface IslandDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
+                                    [k: string]: unknown;
                                 };
-                                /**
-                                 * entity identity
-                                 */
-                                _id?: string;
-                                /**
-                                 * entity slug
-                                 */
-                                slug?: string;
-                                systemName?: string;
-                                /**
-                                 * entity's schema version. Used to distinct between different schemas.
-                                 */
-                                schemaVersion?: string;
-                                /**
-                                 * entity name
-                                 */
-                                name: string;
-                                /**
-                                 * Identifies that entity is defaultable
-                                 */
-                                isDefault?: boolean;
                             };
                         }
                     ];
@@ -23556,6 +26186,27 @@ export interface IslandDefectConfigurationSchema {
                      * A crystal structure, referencing the base material schema
                      */
                     crystal: {
+                        /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
                         /**
                          * reduced chemical formula
                          */
@@ -23788,7 +26439,7 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23796,28 +26447,48 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Combined schema for all coordinate condition types
@@ -23894,6 +26565,27 @@ export interface IslandDefectConfigurationSchema {
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -24126,7 +26818,7 @@ export interface IslandDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -24134,28 +26826,48 @@ export interface IslandDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -24223,6 +26935,27 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -24454,7 +27187,7 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -24462,28 +27195,48 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -24504,6 +27257,27 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -24735,7 +27509,7 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -24743,28 +27517,48 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -24828,6 +27622,27 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             crystal: {
                                 /**
+                                 * entity identity
+                                 */
+                                _id?: string;
+                                /**
+                                 * entity slug
+                                 */
+                                slug?: string;
+                                systemName?: string;
+                                /**
+                                 * entity's schema version. Used to distinct between different schemas.
+                                 */
+                                schemaVersion?: string;
+                                /**
+                                 * entity name
+                                 */
+                                name: string;
+                                /**
+                                 * Identifies that entity is defaultable
+                                 */
+                                isDefault?: boolean;
+                                /**
                                  * reduced chemical formula
                                  */
                                 formula?: string;
@@ -25059,7 +27874,7 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25067,28 +27882,48 @@ export interface TerraceDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
+                                    [k: string]: unknown;
                                 };
-                                /**
-                                 * entity identity
-                                 */
-                                _id?: string;
-                                /**
-                                 * entity slug
-                                 */
-                                slug?: string;
-                                systemName?: string;
-                                /**
-                                 * entity's schema version. Used to distinct between different schemas.
-                                 */
-                                schemaVersion?: string;
-                                /**
-                                 * entity name
-                                 */
-                                name: string;
-                                /**
-                                 * Identifies that entity is defaultable
-                                 */
-                                isDefault?: boolean;
                             };
                             /**
                              * Use the conventional cell for the crystal structure
@@ -25109,6 +27944,27 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             crystal: {
                                 /**
+                                 * entity identity
+                                 */
+                                _id?: string;
+                                /**
+                                 * entity slug
+                                 */
+                                slug?: string;
+                                systemName?: string;
+                                /**
+                                 * entity's schema version. Used to distinct between different schemas.
+                                 */
+                                schemaVersion?: string;
+                                /**
+                                 * entity name
+                                 */
+                                name: string;
+                                /**
+                                 * Identifies that entity is defaultable
+                                 */
+                                isDefault?: boolean;
+                                /**
                                  * reduced chemical formula
                                  */
                                 formula?: string;
@@ -25340,7 +28196,7 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25348,28 +28204,48 @@ export interface TerraceDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    [k: string]: unknown;
+                                } | {
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
+                                    [k: string]: unknown;
                                 };
-                                /**
-                                 * entity identity
-                                 */
-                                _id?: string;
-                                /**
-                                 * entity slug
-                                 */
-                                slug?: string;
-                                systemName?: string;
-                                /**
-                                 * entity's schema version. Used to distinct between different schemas.
-                                 */
-                                schemaVersion?: string;
-                                /**
-                                 * entity name
-                                 */
-                                name: string;
-                                /**
-                                 * Identifies that entity is defaultable
-                                 */
-                                isDefault?: boolean;
                             };
                         }
                     ];
@@ -25396,6 +28272,27 @@ export interface TerraceDefectConfigurationSchema {
                      * A crystal structure, referencing the base material schema
                      */
                     crystal: {
+                        /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
                         /**
                          * reduced chemical formula
                          */
@@ -25628,7 +28525,7 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25636,28 +28533,48 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Combined schema for all coordinate condition types
@@ -25735,6 +28652,27 @@ export interface TerraceDefectConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -25966,7 +28904,7 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25974,28 +28912,48 @@ export interface TerraceDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -26036,6 +28994,27 @@ export interface PointDefectBaseConfigurationSchema {
     merge_components: [
         {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -26267,7 +29246,7 @@ export interface PointDefectBaseConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26275,28 +29254,48 @@ export interface PointDefectBaseConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         },
         unknown
     ];
@@ -26317,6 +29316,27 @@ export interface InterstitialPointDefectSchema {
     merge_components: [
         {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -26548,7 +29568,7 @@ export interface InterstitialPointDefectSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26556,34 +29576,75 @@ export interface InterstitialPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         },
         {
             /**
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -26816,7 +29877,7 @@ export interface InterstitialPointDefectSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26824,28 +29885,48 @@ export interface InterstitialPointDefectSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * @minItems 3
@@ -26879,6 +29960,27 @@ export interface SubstitutionalPointDefectSchema {
     merge_components: [
         {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -27110,7 +30212,7 @@ export interface SubstitutionalPointDefectSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27118,34 +30220,75 @@ export interface SubstitutionalPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         },
         {
             /**
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -27378,7 +30521,7 @@ export interface SubstitutionalPointDefectSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27386,28 +30529,48 @@ export interface SubstitutionalPointDefectSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * @minItems 3
@@ -27440,6 +30603,27 @@ export interface VacancyPointDefectSchema {
      */
     merge_components: [
         {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
             /**
              * reduced chemical formula
              */
@@ -27672,7 +30856,7 @@ export interface VacancyPointDefectSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27680,28 +30864,48 @@ export interface VacancyPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         },
         {
             /**
@@ -27720,6 +30924,27 @@ export interface VacancyPointDefectSchema {
  * An ideal, perfect crystal structure
  */
 export interface IdealCrystalSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
     /**
      * reduced chemical formula
      */
@@ -27952,7 +31177,7 @@ export interface IdealCrystalSchema {
          */
         message: string;
     }[];
-    metadata?: {
+    metadata: {
         boundaryConditions?: {
             /**
              * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27960,28 +31185,48 @@ export interface IdealCrystalSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
     };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/nanoribbon.json */
 /**
@@ -28046,6 +31291,27 @@ export interface NanoribbonConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -28277,7 +31543,7 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28285,28 +31551,48 @@ export interface NanoribbonConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -28327,6 +31613,27 @@ export interface NanoribbonConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -28558,7 +31865,7 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28566,28 +31873,48 @@ export interface NanoribbonConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -28622,6 +31949,27 @@ export interface NanoribbonConfigurationSchema {
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -28854,7 +32202,7 @@ export interface NanoribbonConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28862,28 +32210,48 @@ export interface NanoribbonConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -28962,6 +32330,27 @@ export interface NanoTapeConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -29193,7 +32582,7 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -29201,28 +32590,48 @@ export interface NanoTapeConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -29243,6 +32652,27 @@ export interface NanoTapeConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -29474,7 +32904,7 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -29482,28 +32912,48 @@ export interface NanoTapeConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -29565,6 +33015,27 @@ export interface SlabConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -29796,7 +33267,7 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -29804,28 +33275,48 @@ export interface SlabConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -29846,6 +33337,27 @@ export interface SlabConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -30077,7 +33589,7 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30085,28 +33597,48 @@ export interface SlabConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -30180,6 +33712,27 @@ export interface SlabStrainedSupercellConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -30411,7 +33964,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30419,28 +33972,48 @@ export interface SlabStrainedSupercellConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -30461,6 +34034,27 @@ export interface SlabStrainedSupercellConfigurationSchema {
              */
             crystal: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -30692,7 +34286,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30700,28 +34294,48 @@ export interface SlabStrainedSupercellConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -30754,6 +34368,27 @@ export interface PassivationConfigurationSchema {
     merge_components: [
         ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -30985,7 +34620,7 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30993,33 +34628,74 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         } | {
             /**
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -31252,7 +34928,7 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31260,28 +34936,48 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * @minItems 3
@@ -31299,6 +34995,27 @@ export interface PassivationConfigurationSchema {
         }),
         ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -31530,7 +35247,7 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31538,33 +35255,74 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         } | {
             /**
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -31797,7 +35555,7 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31805,28 +35563,48 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * @minItems 3
@@ -31844,6 +35622,27 @@ export interface PassivationConfigurationSchema {
         }),
         ...({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -32075,7 +35874,7 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32083,33 +35882,74 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                [k: string]: unknown;
+            } | {
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
+                [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         } | {
             /**
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -32342,7 +36182,7 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32350,28 +36190,48 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * @minItems 3
@@ -32459,6 +36319,27 @@ export interface CrystalSiteSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -32690,7 +36571,7 @@ export interface CrystalSiteSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32698,28 +36579,48 @@ export interface CrystalSiteSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * @minItems 3
@@ -32737,6 +36638,27 @@ export interface PointDefectSiteSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -32968,7 +36890,7 @@ export interface PointDefectSiteSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32976,28 +36898,48 @@ export interface PointDefectSiteSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * @minItems 3
@@ -33023,6 +36965,27 @@ export interface VoidRegionSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -33254,7 +37217,7 @@ export interface VoidRegionSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -33262,28 +37225,48 @@ export interface VoidRegionSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Combined schema for all coordinate condition types
@@ -33346,6 +37329,27 @@ export interface VoidRegionSchema {
  * A crystal structure, referencing the base material schema
  */
 export interface CrystalSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
     /**
      * reduced chemical formula
      */
@@ -33578,7 +37582,7 @@ export interface CrystalSchema {
          */
         message: string;
     }[];
-    metadata?: {
+    metadata: {
         boundaryConditions?: {
             /**
              * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -33586,28 +37590,48 @@ export interface CrystalSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
     };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/three_dimensional/void.json */
 /**
@@ -33693,6 +37717,27 @@ export interface VacuumConfigurationSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -33924,7 +37969,7 @@ export interface VacuumConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -33932,28 +37977,48 @@ export interface VacuumConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/zero_dimensional/atom.json */
@@ -33990,6 +38055,27 @@ export interface CrystalLatticeLinesSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -34221,7 +38307,7 @@ export interface CrystalLatticeLinesSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34229,28 +38315,48 @@ export interface CrystalLatticeLinesSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34308,6 +38414,27 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -34539,7 +38666,7 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34547,28 +38674,48 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34585,6 +38732,27 @@ export interface CrystalLatticeBaseSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -34816,7 +38984,7 @@ export interface CrystalLatticeBaseSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34824,28 +38992,48 @@ export interface CrystalLatticeBaseSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34870,6 +39058,27 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -35101,7 +39310,7 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35109,28 +39318,48 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * @minItems 3
@@ -35148,6 +39377,27 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -35379,7 +39629,7 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35387,28 +39637,48 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Percentage of uniform strain to apply to the crystal structure
@@ -35425,6 +39695,27 @@ export interface SupercellConfigurationSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -35656,7 +39947,7 @@ export interface SupercellConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35664,28 +39955,48 @@ export interface SupercellConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * @minItems 3
@@ -35737,6 +40048,27 @@ export interface AtomicLayersSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -35968,7 +40300,7 @@ export interface AtomicLayersSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35976,28 +40308,48 @@ export interface AtomicLayersSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36048,6 +40400,27 @@ export interface AtomicLayersUniqueSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -36279,7 +40652,7 @@ export interface AtomicLayersUniqueSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36287,28 +40660,48 @@ export interface AtomicLayersUniqueSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36349,6 +40742,27 @@ export interface AtomicLayersUniqueRepeatedSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -36580,7 +40994,7 @@ export interface AtomicLayersUniqueRepeatedSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36588,28 +41002,48 @@ export interface AtomicLayersUniqueRepeatedSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36633,6 +41067,27 @@ export interface CrystalLatticePlanesSchema {
      */
     crystal: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -36864,7 +41319,7 @@ export interface CrystalLatticePlanesSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36872,28 +41327,48 @@ export interface CrystalLatticePlanesSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36946,6 +41421,27 @@ export interface SlabStackConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -37177,7 +41673,7 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -37185,28 +41681,48 @@ export interface SlabStackConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -37227,6 +41743,27 @@ export interface SlabStackConfigurationSchema {
                      */
                     crystal: {
                         /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        /**
+                         * Identifies that entity is defaultable
+                         */
+                        isDefault?: boolean;
+                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -37458,7 +41995,7 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -37466,28 +42003,48 @@ export interface SlabStackConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            [k: string]: unknown;
+                        } | {
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
+                            [k: string]: unknown;
                         };
-                        /**
-                         * entity identity
-                         */
-                        _id?: string;
-                        /**
-                         * entity slug
-                         */
-                        slug?: string;
-                        systemName?: string;
-                        /**
-                         * entity's schema version. Used to distinct between different schemas.
-                         */
-                        schemaVersion?: string;
-                        /**
-                         * entity name
-                         */
-                        name: string;
-                        /**
-                         * Identifies that entity is defaultable
-                         */
-                        isDefault?: boolean;
                     };
                 }
             ];
@@ -37523,6 +42080,27 @@ export interface SlabStackConfigurationSchema {
              * A crystal structure, referencing the base material schema
              */
             crystal: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
                 /**
                  * reduced chemical formula
                  */
@@ -37755,7 +42333,7 @@ export interface SlabStackConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -37763,28 +42341,48 @@ export interface SlabStackConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    [k: string]: unknown;
+                } | {
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
+                    [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
         }
     ];
@@ -37851,7 +42449,31 @@ export interface StackSchema {
  * A perturbation operation that modifies a configuration by applying a perturbation to atoms coordinates.
  */
 export interface PerturbationSchema {
+    /**
+     * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+     */
     material?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
         /**
          * reduced chemical formula
          */
@@ -38084,7 +42706,7 @@ export interface PerturbationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -38092,28 +42714,48 @@ export interface PerturbationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            [k: string]: unknown;
+        } | {
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            [k: string]: unknown;
+        } | {
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
+            [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * A function that defines the perturbation (delta in coordinates) to be applied to the atomic coordinates.
@@ -48266,6 +52908,110 @@ export interface WorkflowPropertySchema {
      */
     workflows: {}[];
     /**
+     * Compute schema
+     */
+    compute?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * number of nodes used for the job inside the RMS.
+         */
+        nodes: number;
+        /**
+         * number of CPUs used for the job inside the RMS.
+         */
+        ppn: number;
+        /**
+         * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+         */
+        timeLimit: string;
+        /**
+         * Convention to use when reasoning about time limits
+         */
+        timeLimitType?: "per single attempt" | "compound";
+        /**
+         * Job is allowed to restart on termination.
+         */
+        isRestartable?: boolean;
+        /**
+         * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+         */
+        notify?: string;
+        /**
+         * Email address to notify about job execution.
+         */
+        email?: string;
+        /**
+         * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+         */
+        maxCPU?: number;
+        /**
+         * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+         */
+        arguments?: {
+            /**
+             * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+             */
+            nimage?: number;
+            /**
+             * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+             */
+            npools?: number;
+            /**
+             * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+             */
+            nband?: number;
+            /**
+             * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+             */
+            ntg?: number;
+            /**
+             * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+             */
+            ndiag?: number;
+        };
+        /**
+         * Cluster where the job is executed. Optional on create. Required on job submission.
+         */
+        cluster?: {
+            /**
+             * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+             */
+            fqdn?: string;
+            /**
+             * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+             */
+            jid?: string;
+        };
+        /**
+         * Computation error. Optional. Appears only if something happens on jobs execution.
+         */
+        errors?: {
+            /**
+             * Domain of the error appearance (internal).
+             */
+            domain?: "rupy" | "alfred" | "celim" | "webapp";
+            /**
+             * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+             */
+            reason?: string;
+            /**
+             * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+             */
+            message?: string;
+            /**
+             * Full machine-readable error traceback. e.g. FileNotFound
+             */
+            traceback?: string;
+        }[];
+        /**
+         * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+         */
+        excludeFilesPattern?: string;
+    };
+    /**
      * entity identity
      */
     _id?: string;
@@ -48278,10 +53024,6 @@ export interface WorkflowPropertySchema {
      * entity's schema version. Used to distinct between different schemas.
      */
     schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
     metadata?: {};
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -48307,9 +53049,6 @@ export interface WorkflowPropertySchema {
          * entity slug
          */
         slug?: string;
-        /**
-         * system name of the subworkflow
-         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -48460,6 +53199,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -48469,6 +53209,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -48478,6 +53219,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -48487,6 +53229,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -48613,6 +53356,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -48622,6 +53366,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -48631,6 +53376,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -48640,6 +53386,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -48738,6 +53485,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -48747,6 +53495,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -48756,6 +53505,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -48765,6 +53515,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -48838,6 +53589,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -48847,6 +53599,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -48856,6 +53609,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -48865,6 +53619,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -48939,6 +53694,10 @@ export interface WorkflowPropertySchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -48950,6 +53709,19 @@ export interface WorkflowPropertySchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             executable: {
                 /**
@@ -48977,6 +53749,10 @@ export interface WorkflowPropertySchema {
                  * name of the application this executable belongs to
                  */
                 applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -49012,6 +53788,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -49021,6 +53798,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -49030,6 +53808,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -49039,27 +53818,28 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * name of the executable this flavor belongs to
                  */
-                executableName?: string;
+                executableName: string;
                 /**
                  * name of the application this flavor belongs to
                  */
-                applicationName?: string;
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
             };
             input: {
                 template: {
@@ -49080,9 +53860,9 @@ export interface WorkflowPropertySchema {
                      * entity name
                      */
                     name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
                     executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -49094,7 +53874,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -49462,20 +54242,18 @@ export interface WorkflowPropertySchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -49715,6 +54493,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -49724,6 +54503,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -49733,6 +54513,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -49742,6 +54523,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -49963,6 +54745,10 @@ export interface WorkflowPropertySchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -49974,6 +54760,19 @@ export interface WorkflowPropertySchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         isMultiMaterial?: boolean;
         /**
@@ -50014,6 +54813,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -50023,6 +54823,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -50032,6 +54833,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -50041,6 +54843,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -50132,6 +54935,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -50141,6 +54945,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -50150,6 +54955,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -50159,6 +54965,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -50241,6 +55048,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -50250,6 +55058,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -50259,6 +55068,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -50268,6 +55078,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -50317,6 +55128,11 @@ export interface WorkflowPropertySchema {
      * tags for the workflow
      */
     tags?: string[];
+    /**
+     * entity description
+     */
+    description?: string;
+    descriptionObject?: {};
 }
 /** Schema dist/js/schema/properties_directory/reusable/hubbard_parameters.json */
 /**
@@ -51684,6 +56500,110 @@ export interface PropertyHolderSchema {
          */
         workflows: {}[];
         /**
+         * Compute schema
+         */
+        compute?: {
+            /**
+             * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+             */
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            /**
+             * number of nodes used for the job inside the RMS.
+             */
+            nodes: number;
+            /**
+             * number of CPUs used for the job inside the RMS.
+             */
+            ppn: number;
+            /**
+             * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+             */
+            timeLimit: string;
+            /**
+             * Convention to use when reasoning about time limits
+             */
+            timeLimitType?: "per single attempt" | "compound";
+            /**
+             * Job is allowed to restart on termination.
+             */
+            isRestartable?: boolean;
+            /**
+             * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+             */
+            notify?: string;
+            /**
+             * Email address to notify about job execution.
+             */
+            email?: string;
+            /**
+             * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+             */
+            maxCPU?: number;
+            /**
+             * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+             */
+            arguments?: {
+                /**
+                 * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+                 */
+                nimage?: number;
+                /**
+                 * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+                 */
+                npools?: number;
+                /**
+                 * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+                 */
+                nband?: number;
+                /**
+                 * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+                 */
+                ntg?: number;
+                /**
+                 * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+                 */
+                ndiag?: number;
+            };
+            /**
+             * Cluster where the job is executed. Optional on create. Required on job submission.
+             */
+            cluster?: {
+                /**
+                 * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+                 */
+                fqdn?: string;
+                /**
+                 * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+                 */
+                jid?: string;
+            };
+            /**
+             * Computation error. Optional. Appears only if something happens on jobs execution.
+             */
+            errors?: {
+                /**
+                 * Domain of the error appearance (internal).
+                 */
+                domain?: "rupy" | "alfred" | "celim" | "webapp";
+                /**
+                 * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+                 */
+                reason?: string;
+                /**
+                 * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+                 */
+                message?: string;
+                /**
+                 * Full machine-readable error traceback. e.g. FileNotFound
+                 */
+                traceback?: string;
+            }[];
+            /**
+             * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+             */
+            excludeFilesPattern?: string;
+        };
+        /**
          * entity identity
          */
         _id?: string;
@@ -51696,10 +56616,6 @@ export interface PropertyHolderSchema {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
         metadata?: {};
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -51725,9 +56641,6 @@ export interface PropertyHolderSchema {
              * entity slug
              */
             slug?: string;
-            /**
-             * system name of the subworkflow
-             */
             systemName?: string;
             /**
              * entity's schema version. Used to distinct between different schemas.
@@ -51878,6 +56791,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -51887,6 +56801,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -51896,6 +56811,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -51905,6 +56821,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -52031,6 +56948,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -52040,6 +56958,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -52049,6 +56968,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -52058,6 +56978,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -52156,6 +57077,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -52165,6 +57087,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -52174,6 +57097,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -52183,6 +57107,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -52256,6 +57181,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -52265,6 +57191,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -52274,6 +57201,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -52283,6 +57211,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -52357,6 +57286,10 @@ export interface PropertyHolderSchema {
                      */
                     build: string;
                     /**
+                     * Whether the version is the default version
+                     */
+                    isDefaultVersion?: boolean;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -52368,6 +57301,19 @@ export interface PropertyHolderSchema {
                      * Whether the application is using (being passed during a downstream processing routine) a material structure.
                      */
                     isUsingMaterial?: boolean;
+                    /**
+                     * The run configuration of the application
+                     */
+                    runConfig?: {
+                        /**
+                         * The command template of the application
+                         */
+                        commandTemplate: string;
+                        /**
+                         * The output file name of the application
+                         */
+                        outFileName: string;
+                    };
                 };
                 executable: {
                     /**
@@ -52395,6 +57341,10 @@ export interface PropertyHolderSchema {
                      * name of the application this executable belongs to
                      */
                     applicationName: string;
+                    /**
+                     * version of the application this executable belongs to
+                     */
+                    applicationVersion: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -52430,6 +57380,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the post-processors for this calculation
@@ -52439,6 +57390,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the monitors for this calculation
@@ -52448,6 +57400,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * names of the results for this calculation
@@ -52457,27 +57410,28 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
+                        [k: string]: unknown;
                     }[];
                     /**
                      * name of the executable this flavor belongs to
                      */
-                    executableName?: string;
+                    executableName: string;
                     /**
                      * name of the application this flavor belongs to
                      */
-                    applicationName?: string;
+                    applicationName: string;
+                    /**
+                     * version of the application this flavor belongs to
+                     */
+                    applicationVersion: string;
                     input: {
                         templateId?: string;
                         templateName?: string;
                         /**
                          * name of the resulting input file, if different than template name
                          */
-                        name?: string;
+                        name: string;
                     }[];
-                    /**
-                     * list of application versions this flavor supports
-                     */
-                    supportedApplicationVersions?: string[];
                 };
                 input: {
                     template: {
@@ -52498,9 +57452,9 @@ export interface PropertyHolderSchema {
                          * entity name
                          */
                         name: string;
-                        applicationName: string;
-                        applicationVersion?: string;
                         executableName: string;
+                        applicationName: string;
+                        applicationVersion: string;
                         contextProviders: {
                             name: ContextProviderNameEnum;
                         }[];
@@ -52512,7 +57466,7 @@ export interface PropertyHolderSchema {
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
-                    rendered: string;
+                    rendered?: string;
                     isManuallyChanged: boolean;
                 }[];
                 context: ({
@@ -52880,20 +57834,18 @@ export interface PropertyHolderSchema {
                 } | {
                     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                     /**
-                     * Path in reciprocal space for band structure calculations.
+                     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                      *
                      * @minItems 1
                      */
                     data: [
                         {
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         },
                         ...{
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         }[]
                     ];
                     extraData: {
@@ -53133,6 +58085,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -53142,6 +58095,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -53151,6 +58105,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -53160,6 +58115,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * entity tags
@@ -53381,6 +58337,10 @@ export interface PropertyHolderSchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -53392,6 +58352,19 @@ export interface PropertyHolderSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             isMultiMaterial?: boolean;
             /**
@@ -53432,6 +58405,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -53441,6 +58415,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -53450,6 +58425,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -53459,6 +58435,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -53550,6 +58527,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -53559,6 +58537,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -53568,6 +58547,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -53577,6 +58557,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -53659,6 +58640,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -53668,6 +58650,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -53677,6 +58660,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -53686,6 +58670,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -53735,6 +58720,11 @@ export interface PropertyHolderSchema {
          * tags for the workflow
          */
         tags?: string[];
+        /**
+         * entity description
+         */
+        description?: string;
+        descriptionObject?: {};
     } | {
         name: "magnetic_moments";
         values: {
@@ -54253,6 +59243,10 @@ export interface ApplicationSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54264,6 +59258,19 @@ export interface ApplicationSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software/application_properties.json */
 export interface ApplicationPropertiesSchema {
@@ -54288,6 +59295,10 @@ export interface ApplicationPropertiesSchema {
      */
     isDefault?: boolean;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54299,6 +59310,19 @@ export interface ApplicationPropertiesSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
@@ -54370,6 +59394,10 @@ export interface ApplicationWithBuildConfigSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54381,6 +59409,19 @@ export interface ApplicationWithBuildConfigSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software/executable.json */
 export interface ExecutableSchema {
@@ -54413,6 +59454,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -54422,6 +59464,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -54431,6 +59474,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -54440,11 +59484,16 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * name of the application this executable belongs to
      */
     applicationName: string;
+    /**
+     * version of the application this executable belongs to
+     */
+    applicationVersion: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54456,6 +59505,10 @@ export interface ExecutablePropertiesSchema {
      * name of the application this executable belongs to
      */
     applicationName: string;
+    /**
+     * version of the application this executable belongs to
+     */
+    applicationVersion: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54492,6 +59545,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -54501,6 +59555,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -54510,6 +59565,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -54519,50 +59575,51 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * name of the executable this flavor belongs to
      */
-    executableName?: string;
+    executableName: string;
     /**
      * name of the application this flavor belongs to
      */
-    applicationName?: string;
+    applicationName: string;
+    /**
+     * version of the application this flavor belongs to
+     */
+    applicationVersion: string;
     input: {
         templateId?: string;
         templateName?: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     }[];
-    /**
-     * list of application versions this flavor supports
-     */
-    supportedApplicationVersions?: string[];
 }
 /** Schema dist/js/schema/software/flavor_properties.json */
 export interface FlavorPropertiesSchema {
     /**
      * name of the executable this flavor belongs to
      */
-    executableName?: string;
+    executableName: string;
     /**
      * name of the application this flavor belongs to
      */
-    applicationName?: string;
+    applicationName: string;
+    /**
+     * version of the application this flavor belongs to
+     */
+    applicationVersion: string;
     input: {
         templateId?: string;
         templateName?: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     }[];
-    /**
-     * list of application versions this flavor supports
-     */
-    supportedApplicationVersions?: string[];
 }
 /** Schema dist/js/schema/software/template.json */
 export interface TemplateSchema {
@@ -54583,9 +59640,9 @@ export interface TemplateSchema {
      * entity name
      */
     name: string;
-    applicationName: string;
-    applicationVersion?: string;
     executableName: string;
+    applicationName: string;
+    applicationVersion: string;
     contextProviders: {
         name: ContextProviderNameEnum;
     }[];
@@ -54596,9 +59653,9 @@ export interface TemplateSchema {
 }
 /** Schema dist/js/schema/software/template_properties.json */
 export interface TemplatePropertiesSchema {
-    applicationName: string;
-    applicationVersion?: string;
     executableName: string;
+    applicationName: string;
+    applicationVersion: string;
     contextProviders: {
         name: ContextProviderNameEnum;
     }[];
@@ -54648,6 +59705,10 @@ export interface DeePMDAppSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54659,6 +59720,19 @@ export interface DeePMDAppSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
 export interface QuantumEspressoArgumentsSchema {
@@ -54730,6 +59804,10 @@ export interface LAMMPS {
      */
     shortName: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54741,6 +59819,19 @@ export interface LAMMPS {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/modeling/nwchem.json */
 export interface NWChem {
@@ -54783,6 +59874,10 @@ export interface NWChem {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54794,6 +59889,19 @@ export interface NWChem {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
@@ -54826,6 +59934,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -54835,6 +59944,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -54844,6 +59954,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -54853,6 +59964,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -54927,6 +60039,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -54938,6 +60054,19 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -54965,6 +60094,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55000,6 +60133,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -55009,6 +60143,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -55018,6 +60153,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -55027,27 +60163,28 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: ({
         template: {
@@ -55068,9 +60205,9 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -55082,7 +60219,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -55090,7 +60227,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
     context: ({
         name: "input";
@@ -55457,20 +60594,18 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -55723,6 +60858,10 @@ export interface ViennaAbInitoSimulationPackage {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55734,6 +60873,19 @@ export interface ViennaAbInitoSimulationPackage {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
@@ -55777,6 +60929,10 @@ export interface JupyterLabApplicationSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55788,6 +60944,19 @@ export interface JupyterLabApplicationSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
@@ -55843,6 +61012,10 @@ export interface PythonProgramingLanguageSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55854,6 +61027,19 @@ export interface PythonProgramingLanguageSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
@@ -55905,6 +61091,10 @@ export interface ShellScriptingLanguageSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55916,6 +61106,19 @@ export interface ShellScriptingLanguageSchema {
      * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
+    /**
+     * The run configuration of the application
+     */
+    runConfig?: {
+        /**
+         * The command template of the application
+         */
+        commandTemplate: string;
+        /**
+         * The output file name of the application
+         */
+        outFileName: string;
+    };
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
@@ -55948,6 +61151,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -55957,6 +61161,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -55966,6 +61171,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -55975,6 +61181,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -56049,6 +61256,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -56060,6 +61271,19 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -56087,6 +61311,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -56122,6 +61350,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -56131,6 +61360,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -56140,6 +61370,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -56149,27 +61380,28 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: ({
         template: {
@@ -56190,9 +61422,9 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -56204,7 +61436,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -56212,7 +61444,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
     context: ({
         name: "input";
@@ -56579,20 +61811,18 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -56853,11 +62083,11 @@ export interface BankableSchema {
     /**
      * Identity of the corresponding bank entity
      */
-    exabyteId?: string;
+    exabyteId: string;
     /**
      * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
      */
-    hash?: string;
+    hash: string;
 }
 /** Schema dist/js/schema/system/consistency_check.json */
 /**
@@ -56886,7 +62116,7 @@ export interface CreatorEntityReferenceSchema {
     /**
      * Creator class
      */
-    cls?: "User";
+    cls: "User";
     /**
      * entity identity
      */
@@ -56898,7 +62128,7 @@ export interface CreatorEntityReferenceSchema {
 }
 /** Schema dist/js/schema/system/creator_account.json */
 export interface CreatorAccountSchema {
-    creatorAccount?: {
+    creatorAccount: {
         /**
          * entity identity
          */
@@ -57055,7 +62285,7 @@ export declare enum Action {
 }
 /** Schema dist/js/schema/system/in_set.json */
 export interface SystemInSetSchema {
-    inSet?: {
+    inSet: {
         /**
          * entity identity
          */
@@ -57170,7 +62400,7 @@ export interface EntityOwnerReferenceSchema {
     /**
      * Entity owner class
      */
-    cls?: "Account";
+    cls: "Account";
     /**
      * entity identity
      */
@@ -57199,11 +62429,15 @@ export interface PathEntitySchema {
     path?: string;
 }
 /** Schema dist/js/schema/system/runtime_item.json */
+/**
+ * A runtime item is a name of a pre-processor, post-processor, monitor, or result for a calculation. Can contain additional properties basename, filetype etc.
+ */
 export interface RuntimeItemNameObjectSchema {
     /**
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
+    [k: string]: unknown;
 }
 /** Schema dist/js/schema/system/runtime_items.json */
 export interface RuntimeItemsSchema {
@@ -57215,6 +62449,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -57224,6 +62459,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -57233,6 +62469,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -57242,6 +62479,7 @@ export interface RuntimeItemsSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
 }
 /** Schema dist/js/schema/system/schema_version.json */
@@ -57335,9 +62573,6 @@ export interface BaseWorkflowSchema {
          * entity slug
          */
         slug?: string;
-        /**
-         * system name of the subworkflow
-         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -57488,6 +62723,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57497,6 +62733,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57506,6 +62743,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57515,6 +62753,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -57641,6 +62880,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57650,6 +62890,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57659,6 +62900,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57668,6 +62910,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -57766,6 +63009,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57775,6 +63019,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57784,6 +63029,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57793,6 +63039,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -57866,6 +63113,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -57875,6 +63123,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -57884,6 +63133,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -57893,6 +63143,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -57967,6 +63218,10 @@ export interface BaseWorkflowSchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -57978,6 +63233,19 @@ export interface BaseWorkflowSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             executable: {
                 /**
@@ -58005,6 +63273,10 @@ export interface BaseWorkflowSchema {
                  * name of the application this executable belongs to
                  */
                 applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -58040,6 +63312,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -58049,6 +63322,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -58058,6 +63332,7 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -58067,27 +63342,28 @@ export interface BaseWorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * name of the executable this flavor belongs to
                  */
-                executableName?: string;
+                executableName: string;
                 /**
                  * name of the application this flavor belongs to
                  */
-                applicationName?: string;
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
             };
             input: {
                 template: {
@@ -58108,9 +63384,9 @@ export interface BaseWorkflowSchema {
                      * entity name
                      */
                     name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
                     executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -58122,7 +63398,7 @@ export interface BaseWorkflowSchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -58490,20 +63766,18 @@ export interface BaseWorkflowSchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -58743,6 +64017,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -58752,6 +64027,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -58761,6 +64037,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -58770,6 +64047,7 @@ export interface BaseWorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -58991,6 +64269,10 @@ export interface BaseWorkflowSchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -59002,6 +64284,19 @@ export interface BaseWorkflowSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         isMultiMaterial?: boolean;
         /**
@@ -59042,6 +64337,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59051,6 +64347,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59060,6 +64357,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59069,6 +64367,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -59160,6 +64459,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59169,6 +64469,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59178,6 +64479,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59187,6 +64489,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -59269,6 +64572,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59278,6 +64582,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59287,6 +64592,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59296,6 +64602,7 @@ export interface BaseWorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -59630,6 +64937,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59639,6 +64947,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59648,6 +64957,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59657,6 +64967,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -59783,6 +65094,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59792,6 +65104,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59801,6 +65114,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59810,6 +65124,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -59908,6 +65223,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -59917,6 +65233,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -59926,6 +65243,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -59935,6 +65253,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -60008,6 +65327,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -60017,6 +65337,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -60026,6 +65347,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -60035,6 +65357,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -60109,6 +65432,10 @@ export interface SubworkflowMixinSchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -60120,6 +65447,19 @@ export interface SubworkflowMixinSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         executable: {
             /**
@@ -60147,6 +65487,10 @@ export interface SubworkflowMixinSchema {
              * name of the application this executable belongs to
              */
             applicationName: string;
+            /**
+             * version of the application this executable belongs to
+             */
+            applicationVersion: string;
             /**
              * Whether advanced compute options are present
              */
@@ -60182,6 +65526,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -60191,6 +65536,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -60200,6 +65546,7 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -60209,27 +65556,28 @@ export interface SubworkflowMixinSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * name of the executable this flavor belongs to
              */
-            executableName?: string;
+            executableName: string;
             /**
              * name of the application this flavor belongs to
              */
-            applicationName?: string;
+            applicationName: string;
+            /**
+             * version of the application this flavor belongs to
+             */
+            applicationVersion: string;
             input: {
                 templateId?: string;
                 templateName?: string;
                 /**
                  * name of the resulting input file, if different than template name
                  */
-                name?: string;
+                name: string;
             }[];
-            /**
-             * list of application versions this flavor supports
-             */
-            supportedApplicationVersions?: string[];
         };
         input: {
             template: {
@@ -60250,9 +65598,9 @@ export interface SubworkflowMixinSchema {
                  * entity name
                  */
                 name: string;
-                applicationName: string;
-                applicationVersion?: string;
                 executableName: string;
+                applicationName: string;
+                applicationVersion: string;
                 contextProviders: {
                     name: ContextProviderNameEnum;
                 }[];
@@ -60264,7 +65612,7 @@ export interface SubworkflowMixinSchema {
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
-            rendered: string;
+            rendered?: string;
             isManuallyChanged: boolean;
         }[];
         context: ({
@@ -60632,20 +65980,18 @@ export interface SubworkflowMixinSchema {
         } | {
             name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
             /**
-             * Path in reciprocal space for band structure calculations.
+             * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
              *
              * @minItems 1
              */
             data: [
                 {
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 },
                 ...{
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 }[]
             ];
             extraData: {
@@ -60885,6 +66231,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -60894,6 +66241,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -60903,6 +66251,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -60912,6 +66261,7 @@ export interface SubworkflowMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -61133,6 +66483,10 @@ export interface SubworkflowMixinSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61144,16 +66498,25 @@ export interface SubworkflowMixinSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     isMultiMaterial?: boolean;
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
     isDraft?: boolean;
-    /**
-     * system name of the subworkflow
-     */
-    systemName?: string;
 }
 /** Schema dist/js/schema/workflow/subworkflow/unit.json */
 export type WorkflowSubworkflowUnitSchema = {
@@ -61186,6 +66549,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -61195,6 +66559,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -61204,6 +66569,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -61213,6 +66579,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -61339,6 +66706,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -61348,6 +66716,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -61357,6 +66726,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -61366,6 +66736,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -61464,6 +66835,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -61473,6 +66845,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -61482,6 +66855,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -61491,6 +66865,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -61564,6 +66939,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -61573,6 +66949,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -61582,6 +66959,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -61591,6 +66969,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -61665,6 +67044,10 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61676,6 +67059,19 @@ export type WorkflowSubworkflowUnitSchema = {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -61703,6 +67099,10 @@ export type WorkflowSubworkflowUnitSchema = {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -61738,6 +67138,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -61747,6 +67148,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -61756,6 +67158,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -61765,27 +67168,28 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: {
         template: {
@@ -61806,9 +67210,9 @@ export type WorkflowSubworkflowUnitSchema = {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -61820,7 +67224,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -62188,20 +67592,18 @@ export type WorkflowSubworkflowUnitSchema = {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -62441,6 +67843,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -62450,6 +67853,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -62459,6 +67863,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -62468,6 +67873,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -62536,9 +67942,6 @@ export interface SubworkflowSchema {
      * entity slug
      */
     slug?: string;
-    /**
-     * system name of the subworkflow
-     */
     systemName?: string;
     /**
      * entity's schema version. Used to distinct between different schemas.
@@ -62689,6 +68092,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -62698,6 +68102,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -62707,6 +68112,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -62716,6 +68122,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -62842,6 +68249,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -62851,6 +68259,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -62860,6 +68269,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -62869,6 +68279,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -62967,6 +68378,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -62976,6 +68388,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -62985,6 +68398,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -62994,6 +68408,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63067,6 +68482,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63076,6 +68492,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63085,6 +68502,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63094,6 +68512,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -63168,6 +68587,10 @@ export interface SubworkflowSchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -63179,6 +68602,19 @@ export interface SubworkflowSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         executable: {
             /**
@@ -63206,6 +68642,10 @@ export interface SubworkflowSchema {
              * name of the application this executable belongs to
              */
             applicationName: string;
+            /**
+             * version of the application this executable belongs to
+             */
+            applicationVersion: string;
             /**
              * Whether advanced compute options are present
              */
@@ -63241,6 +68681,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -63250,6 +68691,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -63259,6 +68701,7 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -63268,27 +68711,28 @@ export interface SubworkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * name of the executable this flavor belongs to
              */
-            executableName?: string;
+            executableName: string;
             /**
              * name of the application this flavor belongs to
              */
-            applicationName?: string;
+            applicationName: string;
+            /**
+             * version of the application this flavor belongs to
+             */
+            applicationVersion: string;
             input: {
                 templateId?: string;
                 templateName?: string;
                 /**
                  * name of the resulting input file, if different than template name
                  */
-                name?: string;
+                name: string;
             }[];
-            /**
-             * list of application versions this flavor supports
-             */
-            supportedApplicationVersions?: string[];
         };
         input: {
             template: {
@@ -63309,9 +68753,9 @@ export interface SubworkflowSchema {
                  * entity name
                  */
                 name: string;
-                applicationName: string;
-                applicationVersion?: string;
                 executableName: string;
+                applicationName: string;
+                applicationVersion: string;
                 contextProviders: {
                     name: ContextProviderNameEnum;
                 }[];
@@ -63323,7 +68767,7 @@ export interface SubworkflowSchema {
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
-            rendered: string;
+            rendered?: string;
             isManuallyChanged: boolean;
         }[];
         context: ({
@@ -63691,20 +69135,18 @@ export interface SubworkflowSchema {
         } | {
             name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
             /**
-             * Path in reciprocal space for band structure calculations.
+             * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
              *
              * @minItems 1
              */
             data: [
                 {
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 },
                 ...{
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 }[]
             ];
             extraData: {
@@ -63944,6 +69386,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -63953,6 +69396,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -63962,6 +69406,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -63971,6 +69416,7 @@ export interface SubworkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -64192,6 +69638,10 @@ export interface SubworkflowSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -64203,6 +69653,19 @@ export interface SubworkflowSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     isMultiMaterial?: boolean;
     /**
@@ -64241,6 +69704,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -64250,6 +69714,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -64259,6 +69724,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -64268,6 +69734,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -64343,6 +69810,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -64352,6 +69820,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -64361,6 +69830,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -64370,6 +69840,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -64459,6 +69930,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -64468,6 +69940,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -64477,6 +69950,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -64486,6 +69960,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -64553,6 +70028,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -64562,6 +70038,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -64571,6 +70048,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -64580,6 +70058,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -65254,20 +70733,18 @@ export interface NonCollinearMagnetizationContextItemSchema {
 export interface PathContextItemSchema {
     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
     /**
-     * Path in reciprocal space for band structure calculations.
+     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
      *
      * @minItems 1
      */
     data: [
         {
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         },
         ...{
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         }[]
     ];
     extraData: {
@@ -65641,20 +71118,18 @@ export type ContextItemSchema = {
 } | {
     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
     /**
-     * Path in reciprocal space for band structure calculations.
+     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
      *
      * @minItems 1
      */
     data: [
         {
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         },
         ...{
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         }[]
     ];
     extraData: {
@@ -65895,6 +71370,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -65904,6 +71380,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -65913,6 +71390,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -65922,6 +71400,7 @@ export interface ExecutionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -65996,6 +71475,10 @@ export interface ExecutionUnitSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -66007,6 +71490,19 @@ export interface ExecutionUnitSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -66034,6 +71530,10 @@ export interface ExecutionUnitSchema {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -66069,6 +71569,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -66078,6 +71579,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -66087,6 +71589,7 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -66096,27 +71599,28 @@ export interface ExecutionUnitSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: {
         template: {
@@ -66137,9 +71641,9 @@ export interface ExecutionUnitSchema {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -66151,7 +71655,7 @@ export interface ExecutionUnitSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -66519,20 +72023,18 @@ export interface ExecutionUnitSchema {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -66764,9 +72266,9 @@ export interface ExecutionUnitInputSchema {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -66778,7 +72280,7 @@ export interface ExecutionUnitInputSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -66786,7 +72288,7 @@ export interface ExecutionUnitInputSchema {
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
@@ -66809,9 +72311,9 @@ export interface ExecutionUnitInputItemSchema {
          * entity name
          */
         name: string;
-        applicationName: string;
-        applicationVersion?: string;
         executableName: string;
+        applicationName: string;
+        applicationVersion: string;
         contextProviders: {
             name: ContextProviderNameEnum;
         }[];
@@ -66823,7 +72325,7 @@ export interface ExecutionUnitInputItemSchema {
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered: string;
+    rendered?: string;
     isManuallyChanged: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
@@ -66833,7 +72335,7 @@ export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines 
     /**
      * name of the resulting input file, if different than template name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemScope.json */
 export interface WorkflowUnitInputSchema {
@@ -66971,6 +72473,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -66980,6 +72483,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -66989,6 +72493,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -66998,6 +72503,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -67126,6 +72632,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -67135,6 +72642,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -67144,6 +72652,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -67153,6 +72662,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -67363,6 +72873,10 @@ export interface ExecutionUnitMixinSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -67374,6 +72888,19 @@ export interface ExecutionUnitMixinSchema {
          * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
+        /**
+         * The run configuration of the application
+         */
+        runConfig?: {
+            /**
+             * The command template of the application
+             */
+            commandTemplate: string;
+            /**
+             * The output file name of the application
+             */
+            outFileName: string;
+        };
     };
     executable: {
         /**
@@ -67401,6 +72928,10 @@ export interface ExecutionUnitMixinSchema {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -67436,6 +72967,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -67445,6 +72977,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -67454,6 +72987,7 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -67463,27 +72997,28 @@ export interface ExecutionUnitMixinSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: {
         template: {
@@ -67504,9 +73039,9 @@ export interface ExecutionUnitMixinSchema {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -67518,7 +73053,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -67886,20 +73421,18 @@ export interface ExecutionUnitMixinSchema {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -68279,6 +73812,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68288,6 +73822,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68297,6 +73832,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68306,6 +73842,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68461,6 +73998,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68470,6 +74008,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68479,6 +74018,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68488,6 +74028,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68555,6 +74096,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68564,6 +74106,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68573,6 +74116,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68582,6 +74126,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68673,6 +74218,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68682,6 +74228,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68691,6 +74238,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68700,6 +74248,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68782,6 +74331,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the post-processors for this calculation
@@ -68791,6 +74341,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the monitors for this calculation
@@ -68800,6 +74351,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * names of the results for this calculation
@@ -68809,6 +74361,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     }[];
     /**
      * entity tags
@@ -68852,6 +74405,110 @@ export interface WorkflowSchema {
      */
     workflows: {}[];
     /**
+     * Compute schema
+     */
+    compute?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * number of nodes used for the job inside the RMS.
+         */
+        nodes: number;
+        /**
+         * number of CPUs used for the job inside the RMS.
+         */
+        ppn: number;
+        /**
+         * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+         */
+        timeLimit: string;
+        /**
+         * Convention to use when reasoning about time limits
+         */
+        timeLimitType?: "per single attempt" | "compound";
+        /**
+         * Job is allowed to restart on termination.
+         */
+        isRestartable?: boolean;
+        /**
+         * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+         */
+        notify?: string;
+        /**
+         * Email address to notify about job execution.
+         */
+        email?: string;
+        /**
+         * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+         */
+        maxCPU?: number;
+        /**
+         * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+         */
+        arguments?: {
+            /**
+             * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+             */
+            nimage?: number;
+            /**
+             * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+             */
+            npools?: number;
+            /**
+             * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+             */
+            nband?: number;
+            /**
+             * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+             */
+            ntg?: number;
+            /**
+             * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+             */
+            ndiag?: number;
+        };
+        /**
+         * Cluster where the job is executed. Optional on create. Required on job submission.
+         */
+        cluster?: {
+            /**
+             * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+             */
+            fqdn?: string;
+            /**
+             * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+             */
+            jid?: string;
+        };
+        /**
+         * Computation error. Optional. Appears only if something happens on jobs execution.
+         */
+        errors?: {
+            /**
+             * Domain of the error appearance (internal).
+             */
+            domain?: "rupy" | "alfred" | "celim" | "webapp";
+            /**
+             * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+             */
+            reason?: string;
+            /**
+             * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+             */
+            message?: string;
+            /**
+             * Full machine-readable error traceback. e.g. FileNotFound
+             */
+            traceback?: string;
+        }[];
+        /**
+         * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+         */
+        excludeFilesPattern?: string;
+    };
+    /**
      * entity identity
      */
     _id?: string;
@@ -68868,10 +74525,6 @@ export interface WorkflowSchema {
      * entity name
      */
     name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
     metadata?: {};
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -68897,9 +74550,6 @@ export interface WorkflowSchema {
          * entity slug
          */
         slug?: string;
-        /**
-         * system name of the subworkflow
-         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -69050,6 +74700,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -69059,6 +74710,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -69068,6 +74720,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -69077,6 +74730,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -69203,6 +74857,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -69212,6 +74867,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -69221,6 +74877,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -69230,6 +74887,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -69328,6 +74986,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -69337,6 +74996,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -69346,6 +75006,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -69355,6 +75016,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -69428,6 +75090,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -69437,6 +75100,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -69446,6 +75110,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -69455,6 +75120,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -69529,6 +75195,10 @@ export interface WorkflowSchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -69540,6 +75210,19 @@ export interface WorkflowSchema {
                  * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
+                /**
+                 * The run configuration of the application
+                 */
+                runConfig?: {
+                    /**
+                     * The command template of the application
+                     */
+                    commandTemplate: string;
+                    /**
+                     * The output file name of the application
+                     */
+                    outFileName: string;
+                };
             };
             executable: {
                 /**
@@ -69567,6 +75250,10 @@ export interface WorkflowSchema {
                  * name of the application this executable belongs to
                  */
                 applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -69602,6 +75289,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the post-processors for this calculation
@@ -69611,6 +75299,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the monitors for this calculation
@@ -69620,6 +75309,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * names of the results for this calculation
@@ -69629,27 +75319,28 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
+                    [k: string]: unknown;
                 }[];
                 /**
                  * name of the executable this flavor belongs to
                  */
-                executableName?: string;
+                executableName: string;
                 /**
                  * name of the application this flavor belongs to
                  */
-                applicationName?: string;
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
             };
             input: {
                 template: {
@@ -69670,9 +75361,9 @@ export interface WorkflowSchema {
                      * entity name
                      */
                     name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
                     executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -69684,7 +75375,7 @@ export interface WorkflowSchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -70052,20 +75743,18 @@ export interface WorkflowSchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -70305,6 +75994,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the post-processors for this calculation
@@ -70314,6 +76004,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the monitors for this calculation
@@ -70323,6 +76014,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * names of the results for this calculation
@@ -70332,6 +76024,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
+                [k: string]: unknown;
             }[];
             /**
              * entity tags
@@ -70553,6 +76246,10 @@ export interface WorkflowSchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -70564,6 +76261,19 @@ export interface WorkflowSchema {
              * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
+            /**
+             * The run configuration of the application
+             */
+            runConfig?: {
+                /**
+                 * The command template of the application
+                 */
+                commandTemplate: string;
+                /**
+                 * The output file name of the application
+                 */
+                outFileName: string;
+            };
         };
         isMultiMaterial?: boolean;
         /**
@@ -70604,6 +76314,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -70613,6 +76324,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -70622,6 +76334,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -70631,6 +76344,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -70722,6 +76436,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -70731,6 +76446,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -70740,6 +76456,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -70749,6 +76466,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -70831,6 +76549,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the post-processors for this calculation
@@ -70840,6 +76559,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the monitors for this calculation
@@ -70849,6 +76569,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * names of the results for this calculation
@@ -70858,6 +76579,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
+            [k: string]: unknown;
         }[];
         /**
          * entity tags
@@ -70907,4 +76629,9 @@ export interface WorkflowSchema {
      * tags for the workflow
      */
     tags?: string[];
+    /**
+     * entity description
+     */
+    description?: string;
+    descriptionObject?: {};
 }
