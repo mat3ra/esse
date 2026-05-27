@@ -80,6 +80,7 @@
                     "name": "espresso",
                     "shortName": "qe",
                     "summary": "Quantum Espresso",
+                    "build": "GNU",
                     "version": "6.3",
                     "hasAdvancedComputeOptions": true,
                     "isUsingMaterial": true
@@ -93,7 +94,8 @@
                         "type": "pseudopotential"
                     },
                     "subtype": "gga",
-                    "type": "dft"
+                    "type": "dft",
+                    "functional": "pbe"
                 },
                 "name": "Band Structure",
                 "properties": [
@@ -105,23 +107,23 @@
                             "name": "espresso",
                             "shortName": "qe",
                             "summary": "Quantum Espresso",
+                            "build": "GNU",
                             "version": "6.3",
                             "hasAdvancedComputeOptions": true,
                             "isUsingMaterial": true
                         },
                         "compute": null,
                         "executable": {
+                            "name": "pw.x",
+                            "applicationName": "pw.x",
+                            "applicationVersion": "7.0",
                             "advancedComputeOptions": true,
-                            "applicationId": [
-                                "eaJepm4AWfqpaCw59"
-                            ],
                             "isDefault": true,
                             "monitors": [
                                 {
                                     "name": "standard_output"
                                 }
                             ],
-                            "name": "pw.x",
                             "postProcessors": [],
                             "preProcessors": [],
                             "results": [
@@ -131,20 +133,39 @@
                             ]
                         },
                         "flavor": {
-                            "executableId": "4987JFJ3kKbwvFSG7",
+                            "name": "pw_scf",
+                            "executableName": "pw.x",
+                            "applicationName": "pw.x",
+                            "applicationVersion": "7.0",
                             "input": [
                                 {
+                                    "name": "in.scf",
                                     "templateId": "dJ7HYz5pQ4AuN5qc9"
                                 }
                             ],
-                            "name": "pw_scf"
+                            "postProcessors": [],
+                            "preProcessors": [],
+                            "monitors": [],
+                            "results": []
                         },
                         "flowchartId": "execution",
                         "head": true,
                         "input": [
                             {
-                                "content": "K_POINTS automatic\n2 2 2 0 0 0",
-                                "name": "pw_scf.in"
+                                "template": {
+                                    "name": "kpoints_grid",
+                                    "executableName": "pw.x",
+                                    "applicationName": "pw.x",
+                                    "applicationVersion": "7.0",
+                                    "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
+                                    "contextProviders": [
+                                        {
+                                            "name": "KGridManagerMixin"
+                                        }
+                                    ]
+                                },
+                                "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
+                                "isManuallyChanged": false
                             }
                         ],
                         "monitors": [
@@ -165,11 +186,13 @@
                             }
                         ],
                         "status": "idle",
-                        "type": "execution"
+                        "type": "execution",
+                        "context": []
                     }
                 ]
             }
         ],
+        "workflows": [],
         "tags": [
             "workflow"
         ],
@@ -178,7 +201,11 @@
                 "_id": "LCthJ6E2QabYCZqf4",
                 "flowchartId": "05c362dc27ff1bb98d16fd60",
                 "type": "subworkflow",
-                "name": "subworkflow unit"
+                "name": "subworkflow unit",
+                "preProcessors": [],
+                "postProcessors": [],
+                "monitors": [],
+                "results": []
             }
         ]
     }

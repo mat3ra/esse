@@ -126,7 +126,13 @@
             "schemaVersion": "0.2.0",
             "slug": "silicon-fcc",
             "unitCellFormula": "Si2",
-            "updatedAt": "2016-04-04T17:58:42.867Z"
+            "updatedAt": "2016-04-04T17:58:42.867Z",
+            "metadata": {
+                "boundaryConditions": {
+                    "type": "pbc",
+                    "offset": 0
+                }
+            }
         },
         {
             "chemical_element": "Vac"

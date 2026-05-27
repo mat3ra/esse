@@ -3,6 +3,9 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Named defaultable runtime items in-memory entity schema",
     "type": "object",
+    "required": [
+        "name"
+    ],
     "properties": {
         "_id": {
             "description": "entity identity",

@@ -5,6 +5,7 @@
     "type": "object",
     "required": [
         "categories",
+        "name",
         "parameters"
     ],
     "properties": {

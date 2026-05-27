@@ -59,7 +59,8 @@
                     }
                 },
                 "required": [
-                    "flowchartId"
+                    "flowchartId",
+                    "name"
                 ],
                 "properties": {
                     "next": {
@@ -98,7 +99,8 @@
                     }
                 },
                 "required": [
-                    "flowchartId"
+                    "flowchartId",
+                    "name"
                 ],
                 "properties": {
                     "next": {

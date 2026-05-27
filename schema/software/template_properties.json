@@ -1,0 +1,44 @@
+{
+    "$id": "software/template-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "template properties schema",
+    "type": "object",
+    "required": [
+        "contextProviders",
+        "content",
+        "executableName",
+        "applicationName",
+        "applicationVersion"
+    ],
+    "properties": {
+        "executableName": {
+            "type": "string"
+        },
+        "applicationName": {
+            "type": "string"
+        },
+        "applicationVersion": {
+            "type": "string"
+        },
+        "contextProviders": {
+            "type": "array",
+            "items": {
+                "description": "render context provider names",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "tsType": "ContextProviderNameEnum"
+                    }
+                }
+            }
+        },
+        "content": {
+            "description": "Content of the template. e.g. &CONTROL    calculation='scf' ...",
+            "type": "string"
+        }
+    }
+}

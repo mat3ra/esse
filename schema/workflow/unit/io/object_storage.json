@@ -4,10 +4,14 @@
     "title": "object_storage io schema",
     "type": "object",
     "required": [
+        "type",
         "objectData"
     ],
-    "additionalProperties": true,
     "properties": {
+        "type": {
+            "type": "string",
+            "const": "object_storage"
+        },
         "objectData": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Object Storage Container Data",

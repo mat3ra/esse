@@ -1,0 +1,32 @@
+{
+    "$id": "context-providers-directory/points-path-data-provider-rendering",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Points Path Data Provider Rendering Schema",
+    "description": "Path in reciprocal space including derived Cartesian/fractional coordinates for template rendering. Not persisted on the context item.",
+    "type": "array",
+    "minItems": 1,
+    "items": {
+        "type": "object",
+        "required": [
+            "point",
+            "steps",
+            "coordinates"
+        ],
+        "properties": {
+            "point": {
+                "type": "string"
+            },
+            "steps": {
+                "type": "number"
+            },
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number",
+                    "minItems": 3,
+                    "maxItems": 3
+                }
+            }
+        }
+    }
+}
