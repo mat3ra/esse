@@ -2964,6 +2964,7 @@ class DFTGGAModelSchema(BaseModel):
 class Functional29(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
+    other = "other"
 
 
 class BaseMethod18(BaseModel):

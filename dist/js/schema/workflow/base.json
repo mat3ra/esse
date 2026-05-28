@@ -3520,7 +3520,8 @@
                                     "functional": {
                                         "enum": [
                                             "b3lyp",
-                                            "hse06"
+                                            "hse06",
+                                            "other"
                                         ]
                                     },
                                     "method": {

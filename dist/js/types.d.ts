@@ -7583,7 +7583,7 @@ export interface JobSchema {
             } | {
                 type: "dft";
                 subtype: "hybrid";
-                functional: "b3lyp" | "hse06";
+                functional: "b3lyp" | "hse06" | "other";
                 method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
@@ -51453,7 +51453,7 @@ export type AnyModelSchema = {
 } | {
     type: "dft";
     subtype: "hybrid";
-    functional: "b3lyp" | "hse06";
+    functional: "b3lyp" | "hse06" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -51578,7 +51578,7 @@ export type DFTModelSchema = {
 } | {
     type: "dft";
     subtype: "hybrid";
-    functional: "b3lyp" | "hse06";
+    functional: "b3lyp" | "hse06" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -51632,7 +51632,7 @@ export interface DFTGGAModelSchema {
 export interface DFTHybridModelSchema {
     type: "dft";
     subtype: "hybrid";
-    functional: "b3lyp" | "hse06";
+    functional: "b3lyp" | "hse06" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -54621,7 +54621,7 @@ export interface WorkflowPropertySchema {
         } | {
             type: "dft";
             subtype: "hybrid";
-            functional: "b3lyp" | "hse06";
+            functional: "b3lyp" | "hse06" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -58213,7 +58213,7 @@ export interface PropertyHolderSchema {
             } | {
                 type: "dft";
                 subtype: "hybrid";
-                functional: "b3lyp" | "hse06";
+                functional: "b3lyp" | "hse06" | "other";
                 method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
@@ -64145,7 +64145,7 @@ export interface BaseWorkflowSchema {
         } | {
             type: "dft";
             subtype: "hybrid";
-            functional: "b3lyp" | "hse06";
+            functional: "b3lyp" | "hse06" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -66359,7 +66359,7 @@ export interface SubworkflowMixinSchema {
     } | {
         type: "dft";
         subtype: "hybrid";
-        functional: "b3lyp" | "hse06";
+        functional: "b3lyp" | "hse06" | "other";
         method: {
             /**
              * general type of this method, eg. `pseudopotential`
@@ -69514,7 +69514,7 @@ export interface SubworkflowSchema {
     } | {
         type: "dft";
         subtype: "hybrid";
-        functional: "b3lyp" | "hse06";
+        functional: "b3lyp" | "hse06" | "other";
         method: {
             /**
              * general type of this method, eg. `pseudopotential`
@@ -76122,7 +76122,7 @@ export interface WorkflowSchema {
         } | {
             type: "dft";
             subtype: "hybrid";
-            functional: "b3lyp" | "hse06";
+            functional: "b3lyp" | "hse06" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`

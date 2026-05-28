@@ -13,6 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field
 class Functional(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
+    other = "other"
 
 
 class Data(BaseModel):
