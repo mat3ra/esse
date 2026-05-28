@@ -5,7 +5,13 @@
     "type": "object",
     "oneOf": [
         {
-            "$ref": "../../models_directory/legacy/dft.json"
+            "$ref": "../../models_directory/legacy/dft_lda.json"
+        },
+        {
+            "$ref": "../../models_directory/legacy/dft_gga.json"
+        },
+        {
+            "$ref": "../../models_directory/legacy/dft_hybrid.json"
         },
         {
             "$ref": "../../models_directory/legacy/ml.json"
@@ -15,6 +21,6 @@
         }
     ],
     "discriminator": {
-        "propertyName": "type"
+        "propertyName": "subtype"
     }
 }

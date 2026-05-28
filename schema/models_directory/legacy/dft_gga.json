@@ -1,0 +1,31 @@
+{
+    "$id": "models-directory/legacy/dft-gga",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DFT GGA model schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "dft"
+        },
+        "subtype": {
+            "const": "gga"
+        },
+        "functional": {
+            "enum": [
+                "pbe",
+                "pbesol",
+                "pw91",
+                "other"
+            ]
+        },
+        "method": {
+            "$ref": "../../method.json"
+        }
+    },
+    "required": [
+        "type",
+        "subtype",
+        "functional",
+        "method"
+    ]
+}

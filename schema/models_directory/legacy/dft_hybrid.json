@@ -1,0 +1,29 @@
+{
+    "$id": "models-directory/legacy/dft-hybrid",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DFT hybrid model schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "dft"
+        },
+        "subtype": {
+            "const": "hybrid"
+        },
+        "functional": {
+            "enum": [
+                "b3lyp",
+                "hse06"
+            ]
+        },
+        "method": {
+            "$ref": "../../method.json"
+        }
+    },
+    "required": [
+        "type",
+        "subtype",
+        "functional",
+        "method"
+    ]
+}
