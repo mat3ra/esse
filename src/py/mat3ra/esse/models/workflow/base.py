@@ -1600,9 +1600,9 @@ class BaseMethod(BaseModel):
     """
 
 
-class DFTModelSchema(BaseModel):
+class DFTLDAModelSchema(BaseModel):
     type: Literal["dft"]
-    subtype: Literal["lda"]
+    subtype: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional
     method: BaseMethod = Field(..., title="base method")
 
@@ -1633,9 +1633,9 @@ class BaseMethod6(BaseModel):
     """
 
 
-class DFTModelSchema4(BaseModel):
+class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
-    subtype: Literal["gga"]
+    subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional4
     method: BaseMethod6 = Field(..., title="base method")
 
@@ -1643,6 +1643,7 @@ class DFTModelSchema4(BaseModel):
 class Functional5(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
+    other = "other"
 
 
 class BaseMethod7(BaseModel):
@@ -1664,9 +1665,9 @@ class BaseMethod7(BaseModel):
     """
 
 
-class DFTModelSchema5(BaseModel):
+class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
-    subtype: Literal["hybrid"]
+    subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional5
     method: BaseMethod7 = Field(..., title="base method")
 
@@ -1699,8 +1700,8 @@ class BaseMethod8(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype3
+    type: Type9
+    subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod8 = Field(..., title="base method")
 
 
@@ -1732,8 +1733,8 @@ class BaseMethod9(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype4
+    type: Type10
+    subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod9 = Field(..., title="base method")
 
 
@@ -1827,8 +1828,8 @@ class SubworkflowSchema(BaseModel):
     """
     Contains the Units of the subworkflow
     """
-    model: Union[Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5], MLModelSchema, UnknownModelSchema] = Field(
-        ..., discriminator="type", title="Any model schema"
+    model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
+        ..., discriminator="subtype", title="Any model schema"
     )
     application: ApplicationSchema2 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None

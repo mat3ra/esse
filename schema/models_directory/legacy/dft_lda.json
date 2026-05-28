@@ -1,0 +1,31 @@
+{
+    "$id": "models-directory/legacy/dft-lda",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DFT LDA model schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "dft"
+        },
+        "subtype": {
+            "const": "lda"
+        },
+        "functional": {
+            "enum": [
+                "pz",
+                "pw",
+                "vwn",
+                "other"
+            ]
+        },
+        "method": {
+            "$ref": "../../method.json"
+        }
+    },
+    "required": [
+        "type",
+        "subtype",
+        "functional",
+        "method"
+    ]
+}

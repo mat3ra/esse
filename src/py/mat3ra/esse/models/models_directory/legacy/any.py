@@ -43,9 +43,9 @@ class BaseMethod(BaseModel):
     """
 
 
-class DFTModelSchema(BaseModel):
+class DFTLDAModelSchema(BaseModel):
     type: Literal["dft"]
-    subtype: Literal["lda"]
+    subtype: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional
     method: BaseMethod = Field(..., title="base method")
 
@@ -76,9 +76,9 @@ class BaseMethod1(BaseModel):
     """
 
 
-class DFTModelSchema1(BaseModel):
+class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
-    subtype: Literal["gga"]
+    subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional1
     method: BaseMethod1 = Field(..., title="base method")
 
@@ -86,6 +86,7 @@ class DFTModelSchema1(BaseModel):
 class Functional2(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
+    other = "other"
 
 
 class BaseMethod2(BaseModel):
@@ -107,9 +108,9 @@ class BaseMethod2(BaseModel):
     """
 
 
-class DFTModelSchema2(BaseModel):
+class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
-    subtype: Literal["hybrid"]
+    subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional2
     method: BaseMethod2 = Field(..., title="base method")
 
@@ -142,8 +143,8 @@ class BaseMethod3(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype
+    type: Type
+    subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod3 = Field(..., title="base method")
 
 
@@ -175,14 +176,14 @@ class BaseMethod4(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype1
+    type: Type1
+    subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod4 = Field(..., title="base method")
 
 
 class ESSE(
-    RootModel[Union[Union[DFTModelSchema, DFTModelSchema1, DFTModelSchema2], MLModelSchema, UnknownModelSchema]]
+    RootModel[Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema]]
 ):
-    root: Union[Union[DFTModelSchema, DFTModelSchema1, DFTModelSchema2], MLModelSchema, UnknownModelSchema] = Field(
-        ..., discriminator="type", title="Any model schema"
+    root: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
+        ..., discriminator="subtype", title="Any model schema"
     )

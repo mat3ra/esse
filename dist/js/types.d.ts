@@ -7530,7 +7530,7 @@ export interface JobSchema {
                  */
                 value: string | boolean | number;
             })[];
-            model: ({
+            model: {
                 type: "dft";
                 subtype: "lda";
                 functional: "pz" | "pw" | "vwn" | "other";
@@ -7583,7 +7583,7 @@ export interface JobSchema {
             } | {
                 type: "dft";
                 subtype: "hybrid";
-                functional: "b3lyp" | "hse06";
+                functional: "b3lyp" | "hse06" | "other";
                 method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
@@ -7605,7 +7605,7 @@ export interface JobSchema {
                         [k: string]: unknown;
                     };
                 };
-            }) | {
+            } | {
                 type: "ml";
                 subtype: "re";
                 method: {
@@ -51400,7 +51400,7 @@ export interface ModelLocalDensityApproximation {
     tags?: string[];
 }
 /** Schema dist/js/schema/models_directory/legacy/any.json */
-export type AnyModelSchema = ({
+export type AnyModelSchema = {
     type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
@@ -51453,7 +51453,7 @@ export type AnyModelSchema = ({
 } | {
     type: "dft";
     subtype: "hybrid";
-    functional: "b3lyp" | "hse06";
+    functional: "b3lyp" | "hse06" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -51475,7 +51475,7 @@ export type AnyModelSchema = ({
             [k: string]: unknown;
         };
     };
-}) | {
+} | {
     type: "ml";
     subtype: "re";
     method: {
@@ -51527,11 +51527,6 @@ export type AnyModelSchema = ({
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
 export type DFTModelSchema = {
     type: "dft";
-    subtype?: string;
-    functional?: string;
-    method?: {};
-} & ({
-    type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
     method: {
@@ -51583,7 +51578,7 @@ export type DFTModelSchema = {
 } | {
     type: "dft";
     subtype: "hybrid";
-    functional: "b3lyp" | "hse06";
+    functional: "b3lyp" | "hse06" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -51605,42 +51600,9 @@ export type DFTModelSchema = {
             [k: string]: unknown;
         };
     };
-});
-/**
- * This interface was referenced by `undefined`'s JSON-Schema
- * via the `definition` "lda".
- */
-export interface Lda {
-    type: "dft";
-    subtype: "lda";
-    functional: "pz" | "pw" | "vwn" | "other";
-    method: {
-        /**
-         * general type of this method, eg. `pseudopotential`
-         */
-        type: string;
-        /**
-         * general subtype of this method, eg. `ultra-soft`
-         */
-        subtype: string;
-        /**
-         * Object showing the actual possible precision based on theory and implementation
-         */
-        precision?: {};
-        /**
-         * additional data specific to method, eg. array of pseudopotentials
-         */
-        data?: {
-            searchText?: string;
-            [k: string]: unknown;
-        };
-    };
-}
-/**
- * This interface was referenced by `undefined`'s JSON-Schema
- * via the `definition` "gga".
- */
-export interface Gga {
+};
+/** Schema dist/js/schema/models_directory/legacy/dft_gga.json */
+export interface DFTGGAModelSchema {
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
@@ -51666,14 +51628,38 @@ export interface Gga {
         };
     };
 }
-/**
- * This interface was referenced by `undefined`'s JSON-Schema
- * via the `definition` "hybrid".
- */
-export interface Hybrid {
+/** Schema dist/js/schema/models_directory/legacy/dft_hybrid.json */
+export interface DFTHybridModelSchema {
     type: "dft";
     subtype: "hybrid";
-    functional: "b3lyp" | "hse06";
+    functional: "b3lyp" | "hse06" | "other";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+}
+/** Schema dist/js/schema/models_directory/legacy/dft_lda.json */
+export interface DFTLDAModelSchema {
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -54582,7 +54568,7 @@ export interface WorkflowPropertySchema {
              */
             value: string | boolean | number;
         })[];
-        model: ({
+        model: {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
@@ -54635,7 +54621,7 @@ export interface WorkflowPropertySchema {
         } | {
             type: "dft";
             subtype: "hybrid";
-            functional: "b3lyp" | "hse06";
+            functional: "b3lyp" | "hse06" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -54657,7 +54643,7 @@ export interface WorkflowPropertySchema {
                     [k: string]: unknown;
                 };
             };
-        }) | {
+        } | {
             type: "ml";
             subtype: "re";
             method: {
@@ -58174,7 +58160,7 @@ export interface PropertyHolderSchema {
                  */
                 value: string | boolean | number;
             })[];
-            model: ({
+            model: {
                 type: "dft";
                 subtype: "lda";
                 functional: "pz" | "pw" | "vwn" | "other";
@@ -58227,7 +58213,7 @@ export interface PropertyHolderSchema {
             } | {
                 type: "dft";
                 subtype: "hybrid";
-                functional: "b3lyp" | "hse06";
+                functional: "b3lyp" | "hse06" | "other";
                 method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
@@ -58249,7 +58235,7 @@ export interface PropertyHolderSchema {
                         [k: string]: unknown;
                     };
                 };
-            }) | {
+            } | {
                 type: "ml";
                 subtype: "re";
                 method: {
@@ -64106,7 +64092,7 @@ export interface BaseWorkflowSchema {
              */
             value: string | boolean | number;
         })[];
-        model: ({
+        model: {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
@@ -64159,7 +64145,7 @@ export interface BaseWorkflowSchema {
         } | {
             type: "dft";
             subtype: "hybrid";
-            functional: "b3lyp" | "hse06";
+            functional: "b3lyp" | "hse06" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -64181,7 +64167,7 @@ export interface BaseWorkflowSchema {
                     [k: string]: unknown;
                 };
             };
-        }) | {
+        } | {
             type: "ml";
             subtype: "re";
             method: {
@@ -66320,7 +66306,7 @@ export interface SubworkflowMixinSchema {
          */
         value: string | boolean | number;
     })[];
-    model: ({
+    model: {
         type: "dft";
         subtype: "lda";
         functional: "pz" | "pw" | "vwn" | "other";
@@ -66373,7 +66359,7 @@ export interface SubworkflowMixinSchema {
     } | {
         type: "dft";
         subtype: "hybrid";
-        functional: "b3lyp" | "hse06";
+        functional: "b3lyp" | "hse06" | "other";
         method: {
             /**
              * general type of this method, eg. `pseudopotential`
@@ -66395,7 +66381,7 @@ export interface SubworkflowMixinSchema {
                 [k: string]: unknown;
             };
         };
-    }) | {
+    } | {
         type: "ml";
         subtype: "re";
         method: {
@@ -69475,7 +69461,7 @@ export interface SubworkflowSchema {
          */
         value: string | boolean | number;
     })[];
-    model: ({
+    model: {
         type: "dft";
         subtype: "lda";
         functional: "pz" | "pw" | "vwn" | "other";
@@ -69528,7 +69514,7 @@ export interface SubworkflowSchema {
     } | {
         type: "dft";
         subtype: "hybrid";
-        functional: "b3lyp" | "hse06";
+        functional: "b3lyp" | "hse06" | "other";
         method: {
             /**
              * general type of this method, eg. `pseudopotential`
@@ -69550,7 +69536,7 @@ export interface SubworkflowSchema {
                 [k: string]: unknown;
             };
         };
-    }) | {
+    } | {
         type: "ml";
         subtype: "re";
         method: {
@@ -76083,7 +76069,7 @@ export interface WorkflowSchema {
              */
             value: string | boolean | number;
         })[];
-        model: ({
+        model: {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
@@ -76136,7 +76122,7 @@ export interface WorkflowSchema {
         } | {
             type: "dft";
             subtype: "hybrid";
-            functional: "b3lyp" | "hse06";
+            functional: "b3lyp" | "hse06" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -76158,7 +76144,7 @@ export interface WorkflowSchema {
                     [k: string]: unknown;
                 };
             };
-        }) | {
+        } | {
             type: "ml";
             subtype: "re";
             method: {

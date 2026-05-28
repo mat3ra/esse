@@ -3,123 +3,18 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "DFT model schema",
     "type": "object",
-    "allOf": [
+    "oneOf": [
         {
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/lda"
-                },
-                {
-                    "$ref": "#/definitions/gga"
-                },
-                {
-                    "$ref": "#/definitions/hybrid"
-                }
-            ],
-            "discriminator": {
-                "propertyName": "subtype"
-            }
+            "$ref": "dft_lda.json"
         },
         {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "const": "dft"
-                },
-                "subtype": {
-                    "type": "string"
-                },
-                "functional": {
-                    "type": "string"
-                },
-                "method": {
-                    "type": "object"
-                }
-            },
-            "required": [
-                "type"
-            ]
+            "$ref": "dft_gga.json"
+        },
+        {
+            "$ref": "dft_hybrid.json"
         }
     ],
-    "definitions": {
-        "lda": {
-            "properties": {
-                "type": {
-                    "const": "dft"
-                },
-                "subtype": {
-                    "const": "lda"
-                },
-                "functional": {
-                    "enum": [
-                        "pz",
-                        "pw",
-                        "vwn",
-                        "other"
-                    ]
-                },
-                "method": {
-                    "$ref": "../../method.json"
-                }
-            },
-            "required": [
-                "type",
-                "subtype",
-                "functional",
-                "method"
-            ]
-        },
-        "gga": {
-            "properties": {
-                "type": {
-                    "const": "dft"
-                },
-                "subtype": {
-                    "const": "gga"
-                },
-                "functional": {
-                    "enum": [
-                        "pbe",
-                        "pbesol",
-                        "pw91",
-                        "other"
-                    ]
-                },
-                "method": {
-                    "$ref": "../../method.json"
-                }
-            },
-            "required": [
-                "type",
-                "subtype",
-                "functional",
-                "method"
-            ]
-        },
-        "hybrid": {
-            "properties": {
-                "type": {
-                    "const": "dft"
-                },
-                "subtype": {
-                    "const": "hybrid"
-                },
-                "functional": {
-                    "enum": [
-                        "b3lyp",
-                        "hse06"
-                    ]
-                },
-                "method": {
-                    "$ref": "../../method.json"
-                }
-            },
-            "required": [
-                "type",
-                "subtype",
-                "functional",
-                "method"
-            ]
-        }
+    "discriminator": {
+        "propertyName": "subtype"
     }
 }
