@@ -432,30 +432,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name633(Enum):
+class Name634(Enum):
     density = "density"
 
 
-class Units278(Enum):
+class Units280(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units278] = None
+    units: Optional[Units280] = None
     value: float
 
 
-class Units279(Enum):
+class Units281(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units279] = None
+    units: Optional[Units281] = None
     value: float
 
 
-class Name634(Enum):
+class Name635(Enum):
     symmetry = "symmetry"
 
 
@@ -475,7 +475,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name635(Enum):
+class Name636(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -488,7 +488,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name636(Enum):
+class Name637(Enum):
     p_norm = "p-norm"
 
 
@@ -501,7 +501,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name637(Enum):
+class Name638(Enum):
     inchi = "inchi"
 
 
@@ -510,7 +510,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name638(Enum):
+class Name639(Enum):
     inchi_key = "inchi_key"
 
 
@@ -597,7 +597,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name639(Enum):
+class Name640(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -610,7 +610,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name639
+    name: Name640
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -996,44 +996,44 @@ class LatticeSchema65(BaseModel):
     )
 
 
-class Name640(Enum):
+class Name641(Enum):
     volume = "volume"
 
 
-class Units280(Enum):
+class Units282(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema65(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units280] = None
-    value: float
-
-
-class Name641(Enum):
-    density = "density"
-
-
-class Units281(Enum):
-    g_cm_3 = "g/cm^3"
-
-
-class DensitySchema66(BaseModel):
-    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units281] = None
-    value: float
-
-
-class Units282(Enum):
-    angstrom = "angstrom"
-
-
-class ScalarSchema80(BaseModel):
     units: Optional[Units282] = None
     value: float
 
 
 class Name642(Enum):
+    density = "density"
+
+
+class Units283(Enum):
+    g_cm_3 = "g/cm^3"
+
+
+class DensitySchema66(BaseModel):
+    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
+    units: Optional[Units283] = None
+    value: float
+
+
+class Units284(Enum):
+    angstrom = "angstrom"
+
+
+class ScalarSchema80(BaseModel):
+    units: Optional[Units284] = None
+    value: float
+
+
+class Name643(Enum):
     symmetry = "symmetry"
 
 
@@ -1053,7 +1053,7 @@ class SymmetrySchema65(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name643(Enum):
+class Name644(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1066,7 +1066,7 @@ class ElementalRatio66(BaseModel):
     """
 
 
-class Name644(Enum):
+class Name645(Enum):
     p_norm = "p-norm"
 
 
@@ -1079,7 +1079,7 @@ class PNorm65(BaseModel):
     value: float
 
 
-class Name645(Enum):
+class Name646(Enum):
     inchi = "inchi"
 
 
@@ -1088,7 +1088,7 @@ class InChIRepresentationSchema66(BaseModel):
     value: str
 
 
-class Name646(Enum):
+class Name647(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1148,14 +1148,14 @@ class DatabaseSourceSchema65(BaseModel):
     """
 
 
-class Name647(Enum):
+class Name648(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema65(BaseModel):
-    name: Name647
+    name: Name648
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

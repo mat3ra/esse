@@ -3,25 +3,17 @@
     "definitions": {
         "ExternalSource": {
             "type": "string",
-            "enum": [
-                "ICSD",
-                "MaterialsProject",
-                "MaterialsProjectLegacy"
-            ]
+            "enum": ["ICSD", "MaterialsProject", "MaterialsProjectLegacy"]
         },
         "PropertyType": {
             "type": "string",
-            "enum": [
-                "scalar",
-                "non-scalar",
-                "tensor",
-                "object"
-            ]
+            "enum": ["scalar", "non-scalar", "tensor", "object"]
         },
         "ScalarPropertyEnum": {
             "type": "string",
             "enum": [
                 "fermi_energy",
+                "formation_energy",
                 "homo_energy",
                 "ionization_potential",
                 "lumo_energy",
@@ -64,30 +56,19 @@
         },
         "TensorPropertyEnum": {
             "type": "string",
-            "enum": [
-                "atomic_forces",
-                "magnetic_moments",
-                "stress_tensor"
-            ]
+            "enum": ["atomic_forces", "magnetic_moments", "stress_tensor"]
         },
         "ObjectPropertyEnum": {
             "type": "string",
-            "enum": [
-                "total_energy_contributions"
-            ]
+            "enum": ["total_energy_contributions"]
         },
         "ProtoPropertyEnum": {
             "type": "string",
-            "enum": [
-                "atomic_constraints",
-                "boundary_conditions"
-            ]
+            "enum": ["atomic_constraints", "boundary_conditions"]
         },
         "MetaPropertyEnum": {
             "type": "string",
-            "enum": [
-                "pseudopotential"
-            ]
+            "enum": ["pseudopotential"]
         }
     }
 }

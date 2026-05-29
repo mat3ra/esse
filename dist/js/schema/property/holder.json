@@ -413,6 +413,48 @@
                 },
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Formation energy property schema",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "units",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "enum": [
+                                "formation_energy"
+                            ],
+                            "type": "string"
+                        },
+                        "units": {
+                            "oneOf": [
+                                {
+                                    "enum": [
+                                        "kcal/mol",
+                                        "kJ/mol",
+                                        "eV",
+                                        "J/mol",
+                                        "hartree",
+                                        "cm-1",
+                                        "Ry",
+                                        "eV/atom"
+                                    ]
+                                },
+                                {
+                                    "enum": [
+                                        "eV/A^2"
+                                    ]
+                                }
+                            ]
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "HOMO energy property schema",
                     "type": "object",
                     "required": [
