@@ -22,6 +22,7 @@
             "type": "string",
             "enum": [
                 "fermi_energy",
+                "formation_energy",
                 "homo_energy",
                 "ionization_potential",
                 "lumo_energy",
