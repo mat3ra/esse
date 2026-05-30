@@ -151,7 +151,10 @@
                     "$ref": "../core/reference/exabyte.json"
                 }
             },
-            "required": ["type", "info"]
+            "required": [
+                "type",
+                "info"
+            ]
         },
         "exabyteId": {
             "description": "Id of the corresponding item in the entity bank that this property is obtained for",
@@ -176,12 +179,21 @@
             "type": "array",
             "items": {
                 "type": "string",
-                "enum": ["isRefined", "isBest"]
+                "enum": [
+                    "isRefined",
+                    "isBest"
+                ]
             }
         },
         "repetition": {
             "type": "number"
         }
     },
-    "required": ["data", "source", "repetition", "exabyteId"]
+    "required": [
+        "data",
+        "source",
+        "repetition",
+        "exabyteId"
+    ]
 }
+
