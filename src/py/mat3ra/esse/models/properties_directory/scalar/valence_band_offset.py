@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units353(Enum):
+class Units355(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ValenceBandOffsetPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units353]
+    units: Union[Units, Units355]
     value: float

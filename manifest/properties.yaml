@@ -47,6 +47,12 @@ lumo_energy:
   schemaId: properties-directory/scalar/lumo-energy
   isResult: true
 
+formation_energy:
+  defaults:
+    units: eV/atom
+  schemaId: properties-directory/scalar/formation-energy
+  isResult: true
+
 total_force:
   defaults:
     units: eV/angstrom

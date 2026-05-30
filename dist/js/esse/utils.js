@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.applyPatchTree = exports.applyPatchWithDotNotation = void 0;
+exports.applyPatchWithDotNotation = applyPatchWithDotNotation;
+exports.applyPatchTree = applyPatchTree;
 function isPlainObject(value) {
     return value !== null && typeof value === "object" && !Array.isArray(value);
 }
@@ -28,7 +29,6 @@ function applyPatchWithDotNotation(target, path, patchValue) {
     }
     // If existingValue is undefined, we skip;
 }
-exports.applyPatchWithDotNotation = applyPatchWithDotNotation;
 function applyPatchTree(schema, patchNode, pathPrefix) {
     Object.entries(patchNode).forEach(([key, value]) => {
         if (key.includes(".")) {
@@ -49,4 +49,3 @@ function applyPatchTree(schema, patchNode, pathPrefix) {
         }
     });
 }
-exports.applyPatchTree = applyPatchTree;

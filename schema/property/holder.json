@@ -49,6 +49,9 @@
                     "$ref": "../properties_directory/scalar/fermi_energy.json"
                 },
                 {
+                    "$ref": "../properties_directory/scalar/formation_energy.json"
+                },
+                {
                     "$ref": "../properties_directory/scalar/homo_energy.json"
                 },
                 {
@@ -193,3 +196,4 @@
         "exabyteId"
     ]
 }
+
