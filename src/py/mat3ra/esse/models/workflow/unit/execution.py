@@ -542,7 +542,10 @@ class VASPNEBContextProviderSchema(BaseModel):
 
 
 class ExtraDataWithMaterialHashSchema(BaseModel):
-    materialHash: str
+    materialHash: Optional[str] = None
+    """
+    UI only property used to track material change for re-render
+    """
 
 
 class InputContextItemSchema(BaseModel):
@@ -991,4 +994,4 @@ class ExecutionUnitSchema(BaseModel):
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
-    context: List[ContextItemSchema]
+    context: Optional[List[ContextItemSchema]] = []

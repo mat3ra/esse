@@ -5,10 +5,8 @@
     "type": "object",
     "properties": {
         "materialHash": {
-            "type": "string"
+            "type": "string",
+            "description": "UI only property used to track material change for re-render"
         }
-    },
-    "required": [
-        "materialHash"
-    ]
+    }
 }

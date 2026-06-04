@@ -7148,7 +7148,10 @@ export interface JobSchema {
                         contextProviderName: "vasp-neb";
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7184,7 +7187,10 @@ export interface JobSchema {
                         preferGridMetric?: boolean;
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7205,7 +7211,10 @@ export interface JobSchema {
                         }[]
                     ];
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7242,7 +7251,10 @@ export interface JobSchema {
                         hubbardUValue?: number;
                     }[];
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7317,7 +7329,10 @@ export interface JobSchema {
                         targetFermiEnergy?: number;
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7369,7 +7384,10 @@ export interface JobSchema {
                         totalMagnetization: number;
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7407,7 +7425,10 @@ export interface JobSchema {
                         };
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 })[];
@@ -54186,7 +54207,10 @@ export interface WorkflowPropertySchema {
                     contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -54222,7 +54246,10 @@ export interface WorkflowPropertySchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -54243,7 +54270,10 @@ export interface WorkflowPropertySchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -54280,7 +54310,10 @@ export interface WorkflowPropertySchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -54355,7 +54388,10 @@ export interface WorkflowPropertySchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -54407,7 +54443,10 @@ export interface WorkflowPropertySchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -54445,7 +54484,10 @@ export interface WorkflowPropertySchema {
                     };
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             })[];
@@ -57782,7 +57824,10 @@ export interface PropertyHolderSchema {
                         contextProviderName: "vasp-neb";
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -57818,7 +57863,10 @@ export interface PropertyHolderSchema {
                         preferGridMetric?: boolean;
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -57839,7 +57887,10 @@ export interface PropertyHolderSchema {
                         }[]
                     ];
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -57876,7 +57927,10 @@ export interface PropertyHolderSchema {
                         hubbardUValue?: number;
                     }[];
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -57951,7 +58005,10 @@ export interface PropertyHolderSchema {
                         targetFermiEnergy?: number;
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -58003,7 +58060,10 @@ export interface PropertyHolderSchema {
                         totalMagnetization: number;
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -58041,7 +58101,10 @@ export interface PropertyHolderSchema {
                         };
                     };
                     extraData: {
-                        materialHash: string;
+                        /**
+                         * UI only property used to track material change for re-render
+                         */
+                        materialHash?: string;
                     };
                     isEdited: boolean;
                 })[];
@@ -60542,7 +60605,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -60578,7 +60644,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -60599,7 +60668,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             }[]
         ];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -60636,7 +60708,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -60711,7 +60786,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -60763,7 +60841,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             totalMagnetization: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -60801,7 +60882,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             };
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     })[];
@@ -61759,7 +61843,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -61795,7 +61882,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -61816,7 +61906,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             }[]
         ];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -61853,7 +61946,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -61928,7 +62024,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -61980,7 +62079,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -62018,7 +62120,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             };
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     })[];
@@ -63714,7 +63819,10 @@ export interface BaseWorkflowSchema {
                     contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63750,7 +63858,10 @@ export interface BaseWorkflowSchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63771,7 +63882,10 @@ export interface BaseWorkflowSchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63808,7 +63922,10 @@ export interface BaseWorkflowSchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63883,7 +64000,10 @@ export interface BaseWorkflowSchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63935,7 +64055,10 @@ export interface BaseWorkflowSchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63973,7 +64096,10 @@ export interface BaseWorkflowSchema {
                     };
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             })[];
@@ -65928,7 +66054,10 @@ export interface SubworkflowMixinSchema {
                 contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -65964,7 +66093,10 @@ export interface SubworkflowMixinSchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -65985,7 +66117,10 @@ export interface SubworkflowMixinSchema {
                 }[]
             ];
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -66022,7 +66157,10 @@ export interface SubworkflowMixinSchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -66097,7 +66235,10 @@ export interface SubworkflowMixinSchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -66149,7 +66290,10 @@ export interface SubworkflowMixinSchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -66187,7 +66331,10 @@ export interface SubworkflowMixinSchema {
                 };
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         })[];
@@ -67540,7 +67687,10 @@ export type WorkflowSubworkflowUnitSchema = {
             contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -67576,7 +67726,10 @@ export type WorkflowSubworkflowUnitSchema = {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -67597,7 +67750,10 @@ export type WorkflowSubworkflowUnitSchema = {
             }[]
         ];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -67634,7 +67790,10 @@ export type WorkflowSubworkflowUnitSchema = {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -67709,7 +67868,10 @@ export type WorkflowSubworkflowUnitSchema = {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -67761,7 +67923,10 @@ export type WorkflowSubworkflowUnitSchema = {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -67799,7 +67964,10 @@ export type WorkflowSubworkflowUnitSchema = {
             };
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     })[];
@@ -69083,7 +69251,10 @@ export interface SubworkflowSchema {
                 contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -69119,7 +69290,10 @@ export interface SubworkflowSchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -69140,7 +69314,10 @@ export interface SubworkflowSchema {
                 }[]
             ];
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -69177,7 +69354,10 @@ export interface SubworkflowSchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -69252,7 +69432,10 @@ export interface SubworkflowSchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -69304,7 +69487,10 @@ export interface SubworkflowSchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         } | {
@@ -69342,7 +69528,10 @@ export interface SubworkflowSchema {
                 };
             };
             extraData: {
-                materialHash: string;
+                /**
+                 * UI only property used to track material change for re-render
+                 */
+                materialHash?: string;
             };
             isEdited: boolean;
         })[];
@@ -70125,7 +70314,10 @@ export interface BaseContextItemSchema {
 }
 /** Schema dist/js/schema/workflow/unit/context/_extra_data_material_hash.json */
 export interface ExtraDataWithMaterialHashSchema {
-    materialHash: string;
+    /**
+     * UI only property used to track material change for re-render
+     */
+    materialHash?: string;
 }
 /** Schema dist/js/schema/workflow/unit/context/item/boundaryConditions.json */
 export interface BoundaryConditionsContextItemSchema {
@@ -70140,7 +70332,10 @@ export interface BoundaryConditionsContextItemSchema {
         targetFermiEnergy?: number;
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -70160,7 +70355,10 @@ export interface CollinearMagnetizationContextItemSchema {
         totalMagnetization: number;
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -70215,7 +70413,10 @@ export interface GridContextItemSchema {
         preferGridMetric?: boolean;
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -70279,7 +70480,10 @@ export interface HubbardUContextItemSchema {
         hubbardUValue?: number;
     }[];
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -70638,7 +70842,10 @@ export interface InputContextItemSchema {
         contextProviderName: "vasp-neb";
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -70715,7 +70922,10 @@ export interface NonCollinearMagnetizationContextItemSchema {
         };
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -70738,7 +70948,10 @@ export interface PathContextItemSchema {
         }[]
     ];
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 }
@@ -71066,7 +71279,10 @@ export type ContextItemSchema = {
         contextProviderName: "vasp-neb";
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 } | {
@@ -71102,7 +71318,10 @@ export type ContextItemSchema = {
         preferGridMetric?: boolean;
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 } | {
@@ -71123,7 +71342,10 @@ export type ContextItemSchema = {
         }[]
     ];
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 } | {
@@ -71160,7 +71382,10 @@ export type ContextItemSchema = {
         hubbardUValue?: number;
     }[];
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 } | {
@@ -71235,7 +71460,10 @@ export type ContextItemSchema = {
         targetFermiEnergy?: number;
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 } | {
@@ -71287,7 +71515,10 @@ export type ContextItemSchema = {
         totalMagnetization: number;
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 } | {
@@ -71325,7 +71556,10 @@ export type ContextItemSchema = {
         };
     };
     extraData: {
-        materialHash: string;
+        /**
+         * UI only property used to track material change for re-render
+         */
+        materialHash?: string;
     };
     isEdited: boolean;
 };
@@ -71971,7 +72205,10 @@ export interface ExecutionUnitSchema {
             contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -72007,7 +72244,10 @@ export interface ExecutionUnitSchema {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -72028,7 +72268,10 @@ export interface ExecutionUnitSchema {
             }[]
         ];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -72065,7 +72308,10 @@ export interface ExecutionUnitSchema {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -72140,7 +72386,10 @@ export interface ExecutionUnitSchema {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -72192,7 +72441,10 @@ export interface ExecutionUnitSchema {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -72230,7 +72482,10 @@ export interface ExecutionUnitSchema {
             };
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     })[];
@@ -73369,7 +73624,10 @@ export interface ExecutionUnitMixinSchema {
             contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -73405,7 +73663,10 @@ export interface ExecutionUnitMixinSchema {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -73426,7 +73687,10 @@ export interface ExecutionUnitMixinSchema {
             }[]
         ];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -73463,7 +73727,10 @@ export interface ExecutionUnitMixinSchema {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -73538,7 +73805,10 @@ export interface ExecutionUnitMixinSchema {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -73590,7 +73860,10 @@ export interface ExecutionUnitMixinSchema {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     } | {
@@ -73628,7 +73901,10 @@ export interface ExecutionUnitMixinSchema {
             };
         };
         extraData: {
-            materialHash: string;
+            /**
+             * UI only property used to track material change for re-render
+             */
+            materialHash?: string;
         };
         isEdited: boolean;
     })[];
@@ -75691,7 +75967,10 @@ export interface WorkflowSchema {
                     contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -75727,7 +76006,10 @@ export interface WorkflowSchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -75748,7 +76030,10 @@ export interface WorkflowSchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -75785,7 +76070,10 @@ export interface WorkflowSchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -75860,7 +76148,10 @@ export interface WorkflowSchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -75912,7 +76203,10 @@ export interface WorkflowSchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             } | {
@@ -75950,7 +76244,10 @@ export interface WorkflowSchema {
                     };
                 };
                 extraData: {
-                    materialHash: string;
+                    /**
+                     * UI only property used to track material change for re-render
+                     */
+                    materialHash?: string;
                 };
                 isEdited: boolean;
             })[];
