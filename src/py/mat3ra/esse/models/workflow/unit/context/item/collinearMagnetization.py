@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List, Literal
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, Field, confloat
 
@@ -22,7 +22,10 @@ class CollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class ExtraDataWithMaterialHashSchema(BaseModel):
-    materialHash: str
+    materialHash: Optional[str] = None
+    """
+    UI only property used to track material change for re-render
+    """
 
 
 class CollinearMagnetizationContextItemSchema(BaseModel):

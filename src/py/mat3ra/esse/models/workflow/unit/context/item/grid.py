@@ -31,7 +31,10 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class ExtraDataWithMaterialHashSchema(BaseModel):
-    materialHash: str
+    materialHash: Optional[str] = None
+    """
+    UI only property used to track material change for re-render
+    """
 
 
 class GridContextItemSchema(BaseModel):

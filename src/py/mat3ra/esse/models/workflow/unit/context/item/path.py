@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -24,7 +24,10 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class ExtraDataWithMaterialHashSchema(BaseModel):
-    materialHash: str
+    materialHash: Optional[str] = None
+    """
+    UI only property used to track material change for re-render
+    """
 
 
 class PathContextItemSchema(BaseModel):

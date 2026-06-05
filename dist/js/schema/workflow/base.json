@@ -1546,6 +1546,7 @@
                                         },
                                         "context": {
                                             "type": "array",
+                                            "default": [],
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                 "title": "context item schema",
@@ -2247,12 +2248,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },
@@ -2383,12 +2382,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },
@@ -2444,12 +2441,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },
@@ -2558,12 +2553,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },
@@ -2765,12 +2758,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },
@@ -2971,12 +2962,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },
@@ -3120,12 +3109,10 @@
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "extraData with materialHash schema",
                                                                 "type": "object",
-                                                                "required": [
-                                                                    "materialHash"
-                                                                ],
                                                                 "properties": {
                                                                     "materialHash": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "description": "UI only property used to track material change for re-render"
                                                                     }
                                                                 }
                                                             },

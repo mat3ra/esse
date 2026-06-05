@@ -33,6 +33,7 @@
         },
         "context": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "../context/item.json"
             }

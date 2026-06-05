@@ -585,7 +585,10 @@ class VASPNEBContextProviderSchema(BaseModel):
 
 
 class ExtraDataWithMaterialHashSchema(BaseModel):
-    materialHash: str
+    materialHash: Optional[str] = None
+    """
+    UI only property used to track material change for re-render
+    """
 
 
 class InputContextItemSchema(BaseModel):
@@ -1036,4 +1039,4 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     input: List[
         Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines6]
     ] = Field(..., title="execution unit input schema")
-    context: List[ContextItemSchema]
+    context: Optional[List[ContextItemSchema]] = []
