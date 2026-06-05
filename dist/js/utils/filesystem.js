@@ -3,8 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.walkDir = walkDir;
-exports.walkDirSync = walkDirSync;
+exports.walkDirSync = exports.walkDir = void 0;
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 const fs_1 = __importDefault(require("fs"));
@@ -22,6 +21,7 @@ async function walkDir(dir, callback) {
         }
     }
 }
+exports.walkDir = walkDir;
 function walkDirSync(dir, callback) {
     const subDirs = fs_1.default.readdirSync(dir);
     for (const subDir of subDirs) {
@@ -35,3 +35,4 @@ function walkDirSync(dir, callback) {
         }
     }
 }
+exports.walkDirSync = walkDirSync;

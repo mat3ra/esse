@@ -66,5 +66,5 @@ class JSONSchemasInterface {
         return patchedSchema;
     }
 }
-JSONSchemasInterface.schemasCache = new Map();
 exports.default = JSONSchemasInterface;
+JSONSchemasInterface.schemasCache = new Map();

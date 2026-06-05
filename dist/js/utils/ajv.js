@@ -3,9 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getValidator = getValidator;
-exports.validate = validate;
-exports.validateAndClean = validateAndClean;
+exports.validateAndClean = exports.validate = exports.getValidator = void 0;
 const ajv_1 = __importDefault(require("ajv"));
 const ajv_formats_1 = __importDefault(require("ajv-formats"));
 const schemaUtils_1 = require("../esse/schemaUtils");
@@ -25,7 +23,7 @@ function addAdditionalPropertiesToSchema(schema, additionalProperties = false) {
     });
 }
 const ajvConfig = {
-    strict: false, // TODO: adjust schemas and enable strict mode
+    strict: false,
     useDefaults: true,
     /**
      * discriminator fixes default values in oneOf
@@ -82,6 +80,7 @@ function getValidator(jsonSchema, { clean, coerceTypes, useDefaults = true, }) {
     }
     return validate;
 }
+exports.getValidator = getValidator;
 /**
  * Validates a given example against the schema.
  * @param example example to validate.
@@ -96,6 +95,7 @@ function validate(data, jsonSchema) {
         errors: validator.errors,
     };
 }
+exports.validate = validate;
 /**
  * Validates and clean a given example against the schema
  * @param example example to validate.
@@ -110,3 +110,4 @@ function validateAndClean(data, jsonSchema, { coerceTypes = false, useDefaults =
         errors: validator.errors,
     };
 }
+exports.validateAndClean = validateAndClean;
