@@ -7649,9 +7649,7 @@ export interface JobSchema {
                 /**
                  * Full pre-conversion unit payload preserved for debugging
                  */
-                originalUnit: {
-                    [k: string]: unknown;
-                };
+                originalUnit: {};
                 /**
                  * Why conversion happened (validation/hydration message)
                  */
@@ -54814,9 +54812,7 @@ export interface WorkflowPropertySchema {
             /**
              * Full pre-conversion unit payload preserved for debugging
              */
-            originalUnit: {
-                [k: string]: unknown;
-            };
+            originalUnit: {};
             /**
              * Why conversion happened (validation/hydration message)
              */
@@ -58537,9 +58533,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Full pre-conversion unit payload preserved for debugging
                  */
-                originalUnit: {
-                    [k: string]: unknown;
-                };
+                originalUnit: {};
                 /**
                  * Why conversion happened (validation/hydration message)
                  */
@@ -64638,9 +64632,7 @@ export interface BaseWorkflowSchema {
             /**
              * Full pre-conversion unit payload preserved for debugging
              */
-            originalUnit: {
-                [k: string]: unknown;
-            };
+            originalUnit: {};
             /**
              * Why conversion happened (validation/hydration message)
              */
@@ -66979,9 +66971,7 @@ export interface SubworkflowMixinSchema {
         /**
          * Full pre-conversion unit payload preserved for debugging
          */
-        originalUnit: {
-            [k: string]: unknown;
-        };
+        originalUnit: {};
         /**
          * Why conversion happened (validation/hydration message)
          */
@@ -68718,9 +68708,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Full pre-conversion unit payload preserved for debugging
      */
-    originalUnit: {
-        [k: string]: unknown;
-    };
+    originalUnit: {};
     /**
      * Why conversion happened (validation/hydration message)
      */
@@ -70388,9 +70376,7 @@ export interface SubworkflowSchema {
         /**
          * Full pre-conversion unit payload preserved for debugging
          */
-        originalUnit: {
-            [k: string]: unknown;
-        };
+        originalUnit: {};
         /**
          * Why conversion happened (validation/hydration message)
          */
@@ -72405,9 +72391,7 @@ export interface ErrorUnitSchema {
     /**
      * Full pre-conversion unit payload preserved for debugging
      */
-    originalUnit: {
-        [k: string]: unknown;
-    };
+    originalUnit: {};
     /**
      * Why conversion happened (validation/hydration message)
      */
@@ -73932,9 +73916,7 @@ export interface ErrorUnitMixinSchema {
     /**
      * Full pre-conversion unit payload preserved for debugging
      */
-    originalUnit: {
-        [k: string]: unknown;
-    };
+    originalUnit: {};
     /**
      * Why conversion happened (validation/hydration message)
      */
@@ -77332,9 +77314,7 @@ export interface WorkflowSchema {
             /**
              * Full pre-conversion unit payload preserved for debugging
              */
-            originalUnit: {
-                [k: string]: unknown;
-            };
+            originalUnit: {};
             /**
              * Why conversion happened (validation/hydration message)
              */

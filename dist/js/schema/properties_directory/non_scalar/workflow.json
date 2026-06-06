@@ -3751,8 +3751,7 @@
                                         },
                                         "originalUnit": {
                                             "type": "object",
-                                            "description": "Full pre-conversion unit payload preserved for debugging",
-                                            "additionalProperties": true
+                                            "description": "Full pre-conversion unit payload preserved for debugging"
                                         },
                                         "reason": {
                                             "type": "string",
