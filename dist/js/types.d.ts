@@ -8187,6 +8187,110 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "error";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Full pre-conversion unit payload preserved for debugging
+             */
+            originalUnit: {};
+            /**
+             * Why conversion happened (validation/hydration message)
+             */
+            reason: string;
         })[];
         /**
          * information about the main application used for workflow categorization by application in standata.
@@ -55350,6 +55454,110 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "error";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * Full pre-conversion unit payload preserved for debugging
+         */
+        originalUnit: {};
+        /**
+         * Why conversion happened (validation/hydration message)
+         */
+        reason: string;
     })[];
     /**
      * information about the main application used for workflow categorization by application in standata.
@@ -59071,6 +59279,110 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+                [k: string]: unknown;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "error";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Full pre-conversion unit payload preserved for debugging
+             */
+            originalUnit: {};
+            /**
+             * Why conversion happened (validation/hydration message)
+             */
+            reason: string;
         })[];
         /**
          * information about the main application used for workflow categorization by application in standata.
@@ -65170,6 +65482,110 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "error";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * Full pre-conversion unit payload preserved for debugging
+         */
+        originalUnit: {};
+        /**
+         * Why conversion happened (validation/hydration message)
+         */
+        reason: string;
     })[];
     /**
      * information about the main application used for workflow categorization by application in standata.
@@ -75509,6 +75925,110 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+        [k: string]: unknown;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+        [k: string]: unknown;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+        [k: string]: unknown;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+        [k: string]: unknown;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "error";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * Full pre-conversion unit payload preserved for debugging
+     */
+    originalUnit: {};
+    /**
+     * Why conversion happened (validation/hydration message)
+     */
+    reason: string;
 };
 /** Schema dist/js/schema/workflow.json */
 export interface WorkflowSchema {
@@ -77852,6 +78372,110 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+            [k: string]: unknown;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "error";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * Full pre-conversion unit payload preserved for debugging
+         */
+        originalUnit: {};
+        /**
+         * Why conversion happened (validation/hydration message)
+         */
+        reason: string;
     })[];
     /**
      * information about the main application used for workflow categorization by application in standata.
