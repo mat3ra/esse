@@ -35,7 +35,7 @@ class ValenceBandOffsetPropertySchema(BaseModel):
     value: float
 
 
-class Name489(Enum):
+class Name490(Enum):
     zero_point_energy = "zero_point_energy"
 
 
@@ -60,7 +60,7 @@ class ZeroPointEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name490(Enum):
+class Name491(Enum):
     pressure = "pressure"
 
 
@@ -75,7 +75,7 @@ class PressurePropertySchema(BaseModel):
     value: float
 
 
-class Name491(Enum):
+class Name492(Enum):
     reaction_energy_barrier = "reaction_energy_barrier"
 
 
@@ -100,7 +100,7 @@ class ReactionEnergyBarrierPropertySchema(BaseModel):
     value: float
 
 
-class Name492(Enum):
+class Name493(Enum):
     surface_energy = "surface_energy"
 
 
@@ -125,7 +125,7 @@ class SurfaceEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name493(Enum):
+class Name494(Enum):
     thermal_correction_to_energy = "thermal_correction_to_energy"
 
 
@@ -150,7 +150,7 @@ class ThermalCorrectionToEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name494(Enum):
+class Name495(Enum):
     thermal_correction_to_enthalpy = "thermal_correction_to_enthalpy"
 
 
@@ -175,7 +175,7 @@ class ThermalCorrectionToEnthalpyPropertySchema(BaseModel):
     value: float
 
 
-class Name495(Enum):
+class Name496(Enum):
     total_energy = "total_energy"
 
 
@@ -200,7 +200,7 @@ class TotalEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name496(Enum):
+class Name497(Enum):
     total_force = "total_force"
 
 
@@ -219,7 +219,7 @@ class TotalForcesPropertySchema(BaseModel):
     value: float
 
 
-class Name497(Enum):
+class Name498(Enum):
     fermi_energy = "fermi_energy"
 
 
@@ -244,7 +244,7 @@ class FermiEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name498(Enum):
+class Name499(Enum):
     formation_energy = "formation_energy"
 
 
@@ -269,7 +269,7 @@ class FormationEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name499(Enum):
+class Name500(Enum):
     homo_energy = "homo_energy"
 
 
@@ -294,7 +294,7 @@ class HOMOEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name500(Enum):
+class Name501(Enum):
     ionization_potential = "ionization_potential"
 
 
@@ -319,7 +319,7 @@ class IonizationPotentialScalarPropertySchema(BaseModel):
     value: float
 
 
-class Name501(Enum):
+class Name502(Enum):
     lumo_energy = "lumo_energy"
 
 
@@ -348,7 +348,7 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
-class Name502(Enum):
+class Name503(Enum):
     stress_tensor = "stress_tensor"
 
 
@@ -363,7 +363,7 @@ class StressTensorPropertySchema(BaseModel):
     units: Units217
 
 
-class Name503(Enum):
+class Name504(Enum):
     band_gaps = "band_gaps"
 
 
@@ -473,7 +473,7 @@ class AxisSchema12(BaseModel):
     """
 
 
-class Name504(Enum):
+class Name505(Enum):
     band_structure = "band_structure"
 
 
@@ -538,7 +538,7 @@ class AxisSchema14(BaseModel):
     """
 
 
-class Name505(Enum):
+class Name506(Enum):
     phonon_dispersions = "phonon_dispersions"
 
 
@@ -553,133 +553,133 @@ class PhononBandStructurePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name506(Enum):
+class Name507(Enum):
     temperature_entropy = "temperature_entropy"
 
 
 class ScalarSchema(BaseModel):
-    name: Optional[Name506] = None
-    value: float
-
-
-class Name507(Enum):
-    harris_foulkes = "harris_foulkes"
-
-
-class ScalarSchema58(BaseModel):
     name: Optional[Name507] = None
     value: float
 
 
 class Name508(Enum):
-    smearing = "smearing"
+    harris_foulkes = "harris_foulkes"
 
 
-class ScalarSchema59(BaseModel):
+class ScalarSchema58(BaseModel):
     name: Optional[Name508] = None
     value: float
 
 
 class Name509(Enum):
-    one_electron = "one_electron"
+    smearing = "smearing"
 
 
-class ScalarSchema60(BaseModel):
+class ScalarSchema59(BaseModel):
     name: Optional[Name509] = None
     value: float
 
 
 class Name510(Enum):
-    hartree = "hartree"
+    one_electron = "one_electron"
 
 
-class ScalarSchema61(BaseModel):
+class ScalarSchema60(BaseModel):
     name: Optional[Name510] = None
     value: float
 
 
 class Name511(Enum):
-    exchange = "exchange"
+    hartree = "hartree"
 
 
-class ScalarSchema62(BaseModel):
+class ScalarSchema61(BaseModel):
     name: Optional[Name511] = None
     value: float
 
 
 class Name512(Enum):
-    exchange_correlation = "exchange_correlation"
+    exchange = "exchange"
 
 
-class ScalarSchema63(BaseModel):
+class ScalarSchema62(BaseModel):
     name: Optional[Name512] = None
     value: float
 
 
 class Name513(Enum):
-    ewald = "ewald"
+    exchange_correlation = "exchange_correlation"
 
 
-class ScalarSchema64(BaseModel):
+class ScalarSchema63(BaseModel):
     name: Optional[Name513] = None
     value: float
 
 
 class Name514(Enum):
-    alphaZ = "alphaZ"
+    ewald = "ewald"
 
 
-class ScalarSchema65(BaseModel):
+class ScalarSchema64(BaseModel):
     name: Optional[Name514] = None
     value: float
 
 
 class Name515(Enum):
-    atomic_energy = "atomic_energy"
+    alphaZ = "alphaZ"
 
 
-class ScalarSchema66(BaseModel):
+class ScalarSchema65(BaseModel):
     name: Optional[Name515] = None
     value: float
 
 
 class Name516(Enum):
-    eigenvalues = "eigenvalues"
+    atomic_energy = "atomic_energy"
 
 
-class ScalarSchema67(BaseModel):
+class ScalarSchema66(BaseModel):
     name: Optional[Name516] = None
     value: float
 
 
 class Name517(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+    eigenvalues = "eigenvalues"
 
 
-class ScalarSchema68(BaseModel):
+class ScalarSchema67(BaseModel):
     name: Optional[Name517] = None
     value: float
 
 
 class Name518(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
-class ScalarSchema69(BaseModel):
+class ScalarSchema68(BaseModel):
     name: Optional[Name518] = None
     value: float
 
 
 class Name519(Enum):
-    hartree_fock = "hartree_fock"
+    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
 
 
-class ScalarSchema70(BaseModel):
+class ScalarSchema69(BaseModel):
     name: Optional[Name519] = None
     value: float
 
 
 class Name520(Enum):
+    hartree_fock = "hartree_fock"
+
+
+class ScalarSchema70(BaseModel):
+    name: Optional[Name520] = None
+    value: float
+
+
+class Name521(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -755,6 +755,46 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     units: Optional[Units223] = None
 
 
+class Name522(Enum):
+    formation_energy_contributions = "formation_energy_contributions"
+
+
+class Value(BaseModel):
+    formula: str
+    """
+    formula or label for the material used in the formation energy calculation
+    """
+    n_atoms: int
+    """
+    number of atoms in the material
+    """
+    is_elemental: bool
+    """
+    whether the material is an elemental reference
+    """
+    total_energy: float
+    """
+    total energy of the material
+    """
+    total_energy_per_atom: float
+    """
+    total energy per atom of the material
+    """
+    precision_value: float
+    """
+    precision value for the total energy property
+    """
+    precision_metric: str
+    """
+    metric used to report total energy precision
+    """
+
+
+class FormationEnergyContributionsPropertySchema(BaseModel):
+    name: Literal["19#-datamodel-code-generator-#-object-#-special-#"]
+    values: List[Value]
+
+
 class Units224(Enum):
     cm_1 = "cm-1"
     THz = "THz"
@@ -793,14 +833,14 @@ class AxisSchema16(BaseModel):
     """
 
 
-class Name521(Enum):
+class Name523(Enum):
     phonon_dos = "phonon_dos"
 
 
 class PhononDensityOfStatesPropertySchema(BaseModel):
     xAxis: AxisSchema15 = Field(..., title="axis schema")
     yAxis: AxisSchema16 = Field(..., title="axis schema")
-    name: Literal["19#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["20#-datamodel-code-generator-#-object-#-special-#"]
     xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
@@ -849,14 +889,14 @@ class AxisSchema18(BaseModel):
     """
 
 
-class Name522(Enum):
+class Name524(Enum):
     potential_profile = "potential_profile"
 
 
 class PotentialProfilePropertySchema(BaseModel):
     xAxis: AxisSchema17 = Field(..., title="axis schema")
     yAxis: AxisSchema18 = Field(..., title="axis schema")
-    name: Literal["20#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["21#-datamodel-code-generator-#-object-#-special-#"]
     xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
@@ -894,14 +934,14 @@ class AxisSchema20(BaseModel):
     """
 
 
-class Name523(Enum):
+class Name525(Enum):
     wavefunction_amplitude = "wavefunction_amplitude"
 
 
 class WavefunctionAmplitudePropertySchema(BaseModel):
     xAxis: AxisSchema19 = Field(..., title="axis schema")
     yAxis: AxisSchema20 = Field(..., title="axis schema")
-    name: Literal["21#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["22#-datamodel-code-generator-#-object-#-special-#"]
     xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
@@ -939,14 +979,14 @@ class AxisSchema22(BaseModel):
     """
 
 
-class Name524(Enum):
+class Name526(Enum):
     reaction_energy_profile = "reaction_energy_profile"
 
 
 class ReactionEnergyProfilePropertySchema(BaseModel):
     xAxis: AxisSchema21 = Field(..., title="axis schema")
     yAxis: AxisSchema22 = Field(..., title="axis schema")
-    name: Literal["22#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["23#-datamodel-code-generator-#-object-#-special-#"]
     xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
@@ -984,7 +1024,7 @@ class AxisSchema24(BaseModel):
     """
 
 
-class Name525(Enum):
+class Name527(Enum):
     density_of_states = "density_of_states"
 
 
@@ -1015,7 +1055,7 @@ class LegendItem(BaseModel):
 class DensityOfStatesPropertySchema(BaseModel):
     xAxis: AxisSchema23 = Field(..., title="axis schema")
     yAxis: AxisSchema24 = Field(..., title="axis schema")
-    name: Literal["23#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["24#-datamodel-code-generator-#-object-#-special-#"]
     legend: List[LegendItem]
     xDataArray: List[Union[float, List[float]]]
     """
@@ -1024,7 +1064,7 @@ class DensityOfStatesPropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name526(Enum):
+class Name528(Enum):
     dielectric_tensor = "dielectric_tensor"
 
 
@@ -1050,11 +1090,11 @@ class DielectricTensor(BaseModel):
 
 
 class DielectricTensorPropertySchema(BaseModel):
-    name: Literal["24#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["25#-datamodel-code-generator-#-object-#-special-#"]
     values: List[DielectricTensor]
 
 
-class Name527(Enum):
+class Name529(Enum):
     file_content = "file_content"
 
 
@@ -1092,7 +1132,7 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class FileContentPropertySchema(BaseModel):
-    name: Literal["25#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["26#-datamodel-code-generator-#-object-#-special-#"]
     filetype: Filetype
     """
     What kind of file this is, e.g. image / text
@@ -1108,7 +1148,7 @@ class FileContentPropertySchema(BaseModel):
     """
 
 
-class Name528(Enum):
+class Name530(Enum):
     hubbard_u = "hubbard_u"
 
 
@@ -1133,12 +1173,12 @@ class AtomicDataPerOrbitalNumeric(BaseModel):
 
 
 class HubbardUParametersPropertySchema(BaseModel):
-    name: Literal["26#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["27#-datamodel-code-generator-#-object-#-special-#"]
     units: Units230
     values: List[AtomicDataPerOrbitalNumeric]
 
 
-class Name529(Enum):
+class Name531(Enum):
     hubbard_v = "hubbard_v"
 
 
@@ -1172,17 +1212,17 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
 
 
 class HubbardVParametersPropertySchema(BaseModel):
-    name: Literal["27#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["28#-datamodel-code-generator-#-object-#-special-#"]
     units: Units230
     values: List[AtomicDataPerOrbitalPairNumeric]
 
 
-class Name530(Enum):
+class Name532(Enum):
     hubbard_v_nn = "hubbard_v_nn"
 
 
 class HubbardVNNParametersPropertySchema(BaseModel):
-    name: Literal["28#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["29#-datamodel-code-generator-#-object-#-special-#"]
     units: Units230
     values: List[AtomicDataPerOrbitalPairNumeric]
 
@@ -1241,14 +1281,14 @@ class AxisSchema26(BaseModel):
     """
 
 
-class Name531(Enum):
+class Name533(Enum):
     average_potential_profile = "average_potential_profile"
 
 
 class AveragePotentialProfilePropertySchema(BaseModel):
     xAxis: AxisSchema25 = Field(..., title="axis schema")
     yAxis: AxisSchema26 = Field(..., title="axis schema")
-    name: Literal["29#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["30#-datamodel-code-generator-#-object-#-special-#"]
     xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
@@ -1290,14 +1330,14 @@ class AxisSchema28(BaseModel):
     """
 
 
-class Name532(Enum):
+class Name534(Enum):
     charge_density_profile = "charge_density_profile"
 
 
 class ChargeDensityProfilePropertySchema(BaseModel):
     xAxis: AxisSchema27 = Field(..., title="axis schema")
     yAxis: AxisSchema28 = Field(..., title="axis schema")
-    name: Literal["30#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["31#-datamodel-code-generator-#-object-#-special-#"]
     xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
@@ -1305,7 +1345,7 @@ class ChargeDensityProfilePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name533(Enum):
+class Name535(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
@@ -2402,7 +2442,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name534(Enum):
+class Name536(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -2432,7 +2472,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name535(Enum):
+class Name537(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -3459,7 +3499,7 @@ class Application(BaseModel):
 
 
 class WorkflowPropertySchema(BaseModel):
-    name: Literal["31#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["32#-datamodel-code-generator-#-object-#-special-#"]
     """
     entity name
     """
@@ -3520,7 +3560,7 @@ class WorkflowPropertySchema(BaseModel):
     descriptionObject: Optional[Dict[str, Any]] = None
 
 
-class Name536(Enum):
+class Name538(Enum):
     magnetic_moments = "magnetic_moments"
 
 
@@ -3540,12 +3580,12 @@ class Units236(Enum):
 
 
 class MagneticMomentsPropertySchema(BaseModel):
-    name: Literal["32#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["33#-datamodel-code-generator-#-object-#-special-#"]
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
     units: Units236
 
 
-class Name537(Enum):
+class Name539(Enum):
     atomic_forces = "atomic_forces"
 
 
@@ -3559,12 +3599,12 @@ class Units237(Enum):
 
 
 class AtomicForcesPropertySchema(BaseModel):
-    name: Literal["33#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["34#-datamodel-code-generator-#-object-#-special-#"]
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
     units: Units237
 
 
-class Name538(Enum):
+class Name540(Enum):
     convergence_electronic = "convergence_electronic"
 
 
@@ -3575,12 +3615,12 @@ class Units238(Enum):
 
 
 class ConvergenceElectronicPropertySchema(BaseModel):
-    name: Literal["34#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["35#-datamodel-code-generator-#-object-#-special-#"]
     units: Units238
     data: List[List[float]]
 
 
-class Name539(Enum):
+class Name541(Enum):
     convergence_ionic = "convergence_ionic"
 
 
@@ -3618,7 +3658,7 @@ class Datum(BaseModel):
 
 
 class ConvergenceIonicPropertySchema(BaseModel):
-    name: Literal["35#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["36#-datamodel-code-generator-#-object-#-special-#"]
     tolerance: Optional[Any] = None
     """
     for ionic convergence tolerance shows force tolerance
@@ -3633,12 +3673,12 @@ class ConvergenceIonicPropertySchema(BaseModel):
     """
 
 
-class Name540(Enum):
+class Name542(Enum):
     is_relaxed = "is_relaxed"
 
 
 class IsRelaxedPropertySchema(BaseModel):
-    name: Literal["36#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["37#-datamodel-code-generator-#-object-#-special-#"]
     value: bool
     materialId: str
     """
@@ -3646,12 +3686,12 @@ class IsRelaxedPropertySchema(BaseModel):
     """
 
 
-class Name541(Enum):
+class Name543(Enum):
     final_structure = "final_structure"
 
 
 class FinalStructurePropertySchema(BaseModel):
-    name: Literal["37#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["38#-datamodel-code-generator-#-object-#-special-#"]
     isRelaxed: bool
     materialId: str
     """
@@ -3659,12 +3699,12 @@ class FinalStructurePropertySchema(BaseModel):
     """
 
 
-class Name542(Enum):
+class Name544(Enum):
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
 
 
 class JupyterNotebookEndpointPropertySchema(BaseModel):
-    name: Literal["38#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["39#-datamodel-code-generator-#-object-#-special-#"]
     host: str
     port: float
     token: str
@@ -3724,6 +3764,7 @@ class PropertyHolderSchema(BaseModel):
         BandStructurePropertySchema,
         PhononBandStructurePropertySchema,
         TotalEnergyContributionsPropertySchema,
+        FormationEnergyContributionsPropertySchema,
         PhononDensityOfStatesPropertySchema,
         PotentialProfilePropertySchema,
         WavefunctionAmplitudePropertySchema,
