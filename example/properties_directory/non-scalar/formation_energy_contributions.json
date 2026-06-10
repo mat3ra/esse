@@ -1,0 +1,32 @@
+{
+    "name": "formation_energy_contributions",
+    "values": [
+        {
+            "formula": "SiC",
+            "n_atoms": 4,
+            "is_elemental": false,
+            "total_energy": -520.003969643439,
+            "total_energy_per_atom": -130.00099241085975,
+            "precision_value": 8192,
+            "precision_metric": "KPPRA"
+        },
+        {
+            "formula": "Si",
+            "n_atoms": 2,
+            "is_elemental": true,
+            "total_energy": -261.003969643439,
+            "total_energy_per_atom": -130.5019848217195,
+            "precision_value": 8192,
+            "precision_metric": "KPPRA"
+        },
+        {
+            "formula": "C",
+            "n_atoms": 2,
+            "is_elemental": true,
+            "total_energy": -321.003969643439,
+            "total_energy_per_atom": -160.5019848217195,
+            "precision_value": 8000,
+            "precision_metric": "KPPRA"
+        }
+    ]
+}
