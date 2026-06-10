@@ -1,0 +1,63 @@
+{
+    "$id": "properties-directory/non-scalar/formation-energy-contributions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Formation energy contributions property schema",
+    "description": "Elemental reference total energies used to calculate formation energy.",
+    "type": "object",
+    "required": [
+        "name",
+        "values"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "formation_energy_contributions"
+            ]
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "formula",
+                    "n_atoms",
+                    "is_elemental",
+                    "total_energy",
+                    "total_energy_per_atom",
+                    "precision_metric",
+                    "precision_value"
+                ],
+                "properties": {
+                    "formula": {
+                        "description": "formula or label for the material used in the formation energy calculation",
+                        "type": "string"
+                    },
+                    "n_atoms": {
+                        "description": "number of atoms in the material",
+                        "type": "integer"
+                    },
+                    "is_elemental": {
+                        "description": "whether the material is an elemental reference",
+                        "type": "boolean"
+                    },
+                    "total_energy": {
+                        "description": "total energy of the material",
+                        "type": "number"
+                    },
+                    "total_energy_per_atom": {
+                        "description": "total energy per atom of the material",
+                        "type": "number"
+                    },
+                    "precision_value": {
+                        "description": "precision value for the total energy property",
+                        "type": "number"
+                    },
+                    "precision_metric": {
+                        "description": "metric used to report total energy precision",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

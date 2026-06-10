@@ -76,6 +76,9 @@
                     "$ref": "../properties_directory/non-scalar/total_energy_contributions.json"
                 },
                 {
+                    "$ref": "../properties_directory/non-scalar/formation_energy_contributions.json"
+                },
+                {
                     "$ref": "../properties_directory/non-scalar/phonon_dos.json"
                 },
                 {
