@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value124(Enum):
+class Value122(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value124]
+    value: Union[Value, Value122]
     """
     All elements, including extra elements
     """
@@ -610,7 +610,7 @@ class CrystalSchema(BaseModel):
     ] = {}
 
 
-class Value125(Enum):
+class Value123(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -731,13 +731,13 @@ class Value125(Enum):
     Og = "Og"
 
 
-class Value126(Enum):
+class Value124(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema60(BaseModel):
-    value: Union[Value125, Value126]
+    value: Union[Value123, Value124]
     """
     All elements, including extra elements
     """

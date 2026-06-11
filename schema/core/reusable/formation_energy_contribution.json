@@ -1,0 +1,46 @@
+{
+    "$id": "core/reusable/formation-energy-contribution",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Formation energy contribution schema",
+    "description": "Total energy contribution of one material used in formation energy calculation.",
+    "type": "object",
+    "properties": {
+        "formula": {
+            "description": "formula or label for the material used in the formation energy calculation",
+            "type": "string"
+        },
+        "n_atoms": {
+            "description": "number of atoms in the material",
+            "type": "integer"
+        },
+        "is_elemental": {
+            "description": "whether the material is an elemental reference",
+            "type": "boolean"
+        },
+        "total_energy": {
+            "description": "total energy of the material",
+            "type": "number"
+        },
+        "total_energy_per_atom": {
+            "description": "total energy per atom of the material",
+            "type": "number"
+        },
+        "precision_value": {
+            "description": "precision value for the total energy property",
+            "type": "number"
+        },
+        "precision_metric": {
+            "description": "metric used to report total energy precision",
+            "type": "string"
+        }
+    },
+    "required": [
+        "formula",
+        "n_atoms",
+        "is_elemental",
+        "total_energy",
+        "total_energy_per_atom",
+        "precision_metric",
+        "precision_value"
+    ]
+}

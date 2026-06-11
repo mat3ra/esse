@@ -278,13 +278,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value133(Enum):
+class Value131(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value133]
+    value: Union[Value, Value131]
     """
     All elements, including extra elements
     """
@@ -794,7 +794,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class Value134(Enum):
+class Value132(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -915,13 +915,13 @@ class Value134(Enum):
     Og = "Og"
 
 
-class Value135(Enum):
+class Value133(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema64(BaseModel):
-    value: Union[Value134, Value135]
+    value: Union[Value132, Value133]
     """
     All elements, including extra elements
     """
@@ -1287,7 +1287,7 @@ class NanoTapeConfigurationSchema(BaseModel):
     """
 
 
-class Value136(Enum):
+class Value134(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -1408,13 +1408,13 @@ class Value136(Enum):
     Og = "Og"
 
 
-class Value137(Enum):
+class Value135(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema65(BaseModel):
-    value: Union[Value136, Value137]
+    value: Union[Value134, Value135]
     """
     All elements, including extra elements
     """

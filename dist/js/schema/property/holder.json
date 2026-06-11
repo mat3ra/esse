@@ -1268,6 +1268,9 @@
                         "values": {
                             "type": "array",
                             "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "Formation energy contribution schema",
+                                "description": "Total energy contribution of one material used in formation energy calculation.",
                                 "type": "object",
                                 "required": [
                                     "formula",

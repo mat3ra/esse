@@ -5090,6 +5090,40 @@ export interface FileMetadata {
      */
     filetype?: string;
 }
+/** Schema dist/js/schema/core/reusable/formation_energy_contribution.json */
+/**
+ * Total energy contribution of one material used in formation energy calculation.
+ */
+export interface FormationEnergyContributionSchema {
+    /**
+     * formula or label for the material used in the formation energy calculation
+     */
+    formula: string;
+    /**
+     * number of atoms in the material
+     */
+    n_atoms: number;
+    /**
+     * whether the material is an elemental reference
+     */
+    is_elemental: boolean;
+    /**
+     * total energy of the material
+     */
+    total_energy: number;
+    /**
+     * total energy per atom of the material
+     */
+    total_energy_per_atom: number;
+    /**
+     * precision value for the total energy property
+     */
+    precision_value: number;
+    /**
+     * metric used to report total energy precision
+     */
+    precision_metric: string;
+}
 /** Schema dist/js/schema/core/reusable/frequency_function_matrix.json */
 /**
  * Schema for a function of frequency yielding a nx3 matrix

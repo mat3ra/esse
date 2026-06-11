@@ -759,7 +759,7 @@ class Name522(Enum):
     formation_energy_contributions = "formation_energy_contributions"
 
 
-class Value(BaseModel):
+class FormationEnergyContributionSchema(BaseModel):
     formula: str
     """
     formula or label for the material used in the formation energy calculation
@@ -792,7 +792,7 @@ class Value(BaseModel):
 
 class FormationEnergyContributionsPropertySchema(BaseModel):
     name: Literal["19#-datamodel-code-generator-#-object-#-special-#"]
-    values: List[Value]
+    values: List[FormationEnergyContributionSchema]
 
 
 class Units224(Enum):
