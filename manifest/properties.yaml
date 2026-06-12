@@ -129,6 +129,11 @@ total_energy_contributions:
   schemaId: properties-directory/non-scalar/total-energy-contributions
   isResult: true
 
+formation_energy_contributions:
+  defaults:
+  schemaId: properties-directory/non-scalar/formation-energy-contributions
+  isResult: true
+
 band_gaps:
   types:
     - direct

@@ -15,7 +15,8 @@
                 "scalar",
                 "non-scalar",
                 "tensor",
-                "object"
+                "object",
+                "array-of-objects"
             ]
         },
         "ScalarPropertyEnum": {
@@ -75,6 +76,12 @@
             "type": "string",
             "enum": [
                 "total_energy_contributions"
+            ]
+        },
+        "ArrayOfObjectsPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "formation_energy_contributions"
             ]
         },
         "ProtoPropertyEnum": {
