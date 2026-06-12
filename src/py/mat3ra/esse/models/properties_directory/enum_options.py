@@ -25,6 +25,7 @@ class PropertyType(Enum):
     non_scalar = "non-scalar"
     tensor = "tensor"
     object = "object"
+    array_of_objects = "array-of-objects"
 
 
 class ScalarPropertyEnum(Enum):
@@ -76,6 +77,10 @@ class TensorPropertyEnum(Enum):
 
 class ObjectPropertyEnum(Enum):
     total_energy_contributions = "total_energy_contributions"
+
+
+class ArrayOfObjectsPropertyEnum(Enum):
+    formation_energy_contributions = "formation_energy_contributions"
 
 
 class ProtoPropertyEnum(Enum):

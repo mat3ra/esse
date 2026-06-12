@@ -1,0 +1,24 @@
+{
+    "$id": "properties-directory/non-scalar/formation-energy-contributions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Formation energy contributions property schema",
+    "description": "Elemental reference total energies used to calculate formation energy.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "formation_energy_contributions"
+            ]
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "$ref": "../../core/reusable/formation_energy_contribution.json"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "values"
+    ]
+}

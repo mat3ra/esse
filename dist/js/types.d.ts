@@ -5090,6 +5090,40 @@ export interface FileMetadata {
      */
     filetype?: string;
 }
+/** Schema dist/js/schema/core/reusable/formation_energy_contribution.json */
+/**
+ * Total energy contribution of one material used in formation energy calculation.
+ */
+export interface FormationEnergyContributionSchema {
+    /**
+     * formula or label for the material used in the formation energy calculation
+     */
+    formula: string;
+    /**
+     * number of atoms in the material
+     */
+    n_atoms: number;
+    /**
+     * whether the material is an elemental reference
+     */
+    is_elemental: boolean;
+    /**
+     * total energy of the material
+     */
+    total_energy: number;
+    /**
+     * total energy per atom of the material
+     */
+    total_energy_per_atom: number;
+    /**
+     * precision value for the total energy property
+     */
+    precision_value: number;
+    /**
+     * metric used to report total energy precision
+     */
+    precision_metric: "unknown" | "KPPRA" | "spacing";
+}
 /** Schema dist/js/schema/core/reusable/frequency_function_matrix.json */
 /**
  * Schema for a function of frequency yielding a nx3 matrix
@@ -52211,7 +52245,7 @@ export type ExternalSource = "ICSD" | "MaterialsProject" | "MaterialsProjectLega
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "PropertyType".
  */
-export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
+export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object" | "array-of-objects";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ScalarPropertyEnum".
@@ -52232,6 +52266,11 @@ export type TensorPropertyEnum = "atomic_forces" | "magnetic_moments" | "stress_
  * via the `definition` "ObjectPropertyEnum".
  */
 export type ObjectPropertyEnum = "total_energy_contributions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ArrayOfObjectsPropertyEnum".
+ */
+export type ArrayOfObjectsPropertyEnum = "formation_energy_contributions";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ProtoPropertyEnum".
@@ -52512,6 +52551,43 @@ export interface FinalStructurePropertySchema {
      * Material's identity
      */
     materialId: string;
+}
+/** Schema dist/js/schema/properties_directory/non_scalar/formation_energy_contributions.json */
+/**
+ * Elemental reference total energies used to calculate formation energy.
+ */
+export interface FormationEnergyContributionsPropertySchema {
+    name: "formation_energy_contributions";
+    values: {
+        /**
+         * formula or label for the material used in the formation energy calculation
+         */
+        formula: string;
+        /**
+         * number of atoms in the material
+         */
+        n_atoms: number;
+        /**
+         * whether the material is an elemental reference
+         */
+        is_elemental: boolean;
+        /**
+         * total energy of the material
+         */
+        total_energy: number;
+        /**
+         * total energy per atom of the material
+         */
+        total_energy_per_atom: number;
+        /**
+         * precision value for the total energy property
+         */
+        precision_value: number;
+        /**
+         * metric used to report total energy precision
+         */
+        precision_metric: "unknown" | "KPPRA" | "spacing";
+    }[];
 }
 /** Schema dist/js/schema/properties_directory/non_scalar/hubbard_u.json */
 /**
@@ -56178,6 +56254,38 @@ export interface PropertyHolderSchema {
         };
         name: "total_energy_contributions";
         units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+    } | {
+        name: "formation_energy_contributions";
+        values: {
+            /**
+             * formula or label for the material used in the formation energy calculation
+             */
+            formula: string;
+            /**
+             * number of atoms in the material
+             */
+            n_atoms: number;
+            /**
+             * whether the material is an elemental reference
+             */
+            is_elemental: boolean;
+            /**
+             * total energy of the material
+             */
+            total_energy: number;
+            /**
+             * total energy per atom of the material
+             */
+            total_energy_per_atom: number;
+            /**
+             * precision value for the total energy property
+             */
+            precision_value: number;
+            /**
+             * metric used to report total energy precision
+             */
+            precision_metric: "unknown" | "KPPRA" | "spacing";
+        }[];
     } | {
         xAxis: {
             /**
