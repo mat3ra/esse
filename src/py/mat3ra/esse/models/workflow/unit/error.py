@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -102,11 +102,7 @@ class ErrorUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    originalUnit: Dict[str, Any]
-    """
-    Full pre-conversion unit payload preserved for debugging
-    """
     reason: str
     """
-    Why conversion happened (validation/hydration message)
+    JSON string with validation/hydration details: { error, json, schema }
     """

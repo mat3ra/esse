@@ -7647,11 +7647,7 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 /**
-                 * Full pre-conversion unit payload preserved for debugging
-                 */
-                originalUnit: {};
-                /**
-                 * Why conversion happened (validation/hydration message)
+                 * JSON string with validation/hydration details: { error, json, schema }
                  */
                 reason: string;
             })[];
@@ -8284,11 +8280,7 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             /**
-             * Full pre-conversion unit payload preserved for debugging
-             */
-            originalUnit: {};
-            /**
-             * Why conversion happened (validation/hydration message)
+             * JSON string with validation/hydration details: { error, json, schema }
              */
             reason: string;
         })[];
@@ -54914,11 +54906,7 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             /**
-             * Full pre-conversion unit payload preserved for debugging
-             */
-            originalUnit: {};
-            /**
-             * Why conversion happened (validation/hydration message)
+             * JSON string with validation/hydration details: { error, json, schema }
              */
             reason: string;
         })[];
@@ -55551,11 +55539,7 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         /**
-         * Full pre-conversion unit payload preserved for debugging
-         */
-        originalUnit: {};
-        /**
-         * Why conversion happened (validation/hydration message)
+         * JSON string with validation/hydration details: { error, json, schema }
          */
         reason: string;
     })[];
@@ -58739,11 +58723,7 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 /**
-                 * Full pre-conversion unit payload preserved for debugging
-                 */
-                originalUnit: {};
-                /**
-                 * Why conversion happened (validation/hydration message)
+                 * JSON string with validation/hydration details: { error, json, schema }
                  */
                 reason: string;
             })[];
@@ -59376,11 +59356,7 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             /**
-             * Full pre-conversion unit payload preserved for debugging
-             */
-            originalUnit: {};
-            /**
-             * Why conversion happened (validation/hydration message)
+             * JSON string with validation/hydration details: { error, json, schema }
              */
             reason: string;
         })[];
@@ -64942,11 +64918,7 @@ export interface BaseWorkflowSchema {
              */
             enableRender?: boolean;
             /**
-             * Full pre-conversion unit payload preserved for debugging
-             */
-            originalUnit: {};
-            /**
-             * Why conversion happened (validation/hydration message)
+             * JSON string with validation/hydration details: { error, json, schema }
              */
             reason: string;
         })[];
@@ -65579,11 +65551,7 @@ export interface BaseWorkflowSchema {
          */
         enableRender?: boolean;
         /**
-         * Full pre-conversion unit payload preserved for debugging
-         */
-        originalUnit: {};
-        /**
-         * Why conversion happened (validation/hydration message)
+         * JSON string with validation/hydration details: { error, json, schema }
          */
         reason: string;
     })[];
@@ -67385,11 +67353,7 @@ export interface SubworkflowMixinSchema {
          */
         enableRender?: boolean;
         /**
-         * Full pre-conversion unit payload preserved for debugging
-         */
-        originalUnit: {};
-        /**
-         * Why conversion happened (validation/hydration message)
+         * JSON string with validation/hydration details: { error, json, schema }
          */
         reason: string;
     })[];
@@ -69122,11 +69086,7 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     /**
-     * Full pre-conversion unit payload preserved for debugging
-     */
-    originalUnit: {};
-    /**
-     * Why conversion happened (validation/hydration message)
+     * JSON string with validation/hydration details: { error, json, schema }
      */
     reason: string;
 };
@@ -70790,11 +70750,7 @@ export interface SubworkflowSchema {
          */
         enableRender?: boolean;
         /**
-         * Full pre-conversion unit payload preserved for debugging
-         */
-        originalUnit: {};
-        /**
-         * Why conversion happened (validation/hydration message)
+         * JSON string with validation/hydration details: { error, json, schema }
          */
         reason: string;
     })[];
@@ -72805,11 +72761,7 @@ export interface ErrorUnitSchema {
      */
     enableRender?: boolean;
     /**
-     * Full pre-conversion unit payload preserved for debugging
-     */
-    originalUnit: {};
-    /**
-     * Why conversion happened (validation/hydration message)
+     * JSON string with validation/hydration details: { error, json, schema }
      */
     reason: string;
 }
@@ -74330,11 +74282,7 @@ export interface ConditionUnitMixinSchema {
 export interface ErrorUnitMixinSchema {
     type?: "error";
     /**
-     * Full pre-conversion unit payload preserved for debugging
-     */
-    originalUnit: {};
-    /**
-     * Why conversion happened (validation/hydration message)
+     * JSON string with validation/hydration details: { error, json, schema }
      */
     reason: string;
 }
@@ -76022,11 +75970,7 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     /**
-     * Full pre-conversion unit payload preserved for debugging
-     */
-    originalUnit: {};
-    /**
-     * Why conversion happened (validation/hydration message)
+     * JSON string with validation/hydration details: { error, json, schema }
      */
     reason: string;
 };
@@ -77832,11 +77776,7 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             /**
-             * Full pre-conversion unit payload preserved for debugging
-             */
-            originalUnit: {};
-            /**
-             * Why conversion happened (validation/hydration message)
+             * JSON string with validation/hydration details: { error, json, schema }
              */
             reason: string;
         })[];
@@ -78469,11 +78409,7 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         /**
-         * Full pre-conversion unit payload preserved for debugging
-         */
-        originalUnit: {};
-        /**
-         * Why conversion happened (validation/hydration message)
+         * JSON string with validation/hydration details: { error, json, schema }
          */
         reason: string;
     })[];

@@ -4,18 +4,14 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Literal
+from typing import Literal
 
 from pydantic import BaseModel
 
 
 class ErrorUnitMixinSchema(BaseModel):
     type: Literal["error"] = "error"
-    originalUnit: Dict[str, Any]
-    """
-    Full pre-conversion unit payload preserved for debugging
-    """
     reason: str
     """
-    Why conversion happened (validation/hydration message)
+    JSON string with validation/hydration details: { error, json, schema }
     """

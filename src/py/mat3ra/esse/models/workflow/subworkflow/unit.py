@@ -1483,13 +1483,9 @@ class ErrorUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    originalUnit: Dict[str, Any]
-    """
-    Full pre-conversion unit payload preserved for debugging
-    """
     reason: str
     """
-    Why conversion happened (validation/hydration message)
+    JSON string with validation/hydration details: { error, json, schema }
     """
 
 

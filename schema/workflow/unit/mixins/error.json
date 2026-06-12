@@ -7,17 +7,12 @@
         "type": {
             "const": "error"
         },
-        "originalUnit": {
-            "type": "object",
-            "description": "Full pre-conversion unit payload preserved for debugging"
-        },
         "reason": {
             "type": "string",
-            "description": "Why conversion happened (validation/hydration message)"
+            "description": "JSON string with validation/hydration details: { error, json, schema }"
         }
     },
     "required": [
-        "originalUnit",
         "reason"
     ]
 }

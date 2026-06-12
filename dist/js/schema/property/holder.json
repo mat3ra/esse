@@ -5895,7 +5895,6 @@
                                                         "flowchartId",
                                                         "monitors",
                                                         "name",
-                                                        "originalUnit",
                                                         "postProcessors",
                                                         "preProcessors",
                                                         "reason",
@@ -6071,13 +6070,9 @@
                                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                                             "type": "boolean"
                                                         },
-                                                        "originalUnit": {
-                                                            "type": "object",
-                                                            "description": "Full pre-conversion unit payload preserved for debugging"
-                                                        },
                                                         "reason": {
                                                             "type": "string",
-                                                            "description": "Why conversion happened (validation/hydration message)"
+                                                            "description": "JSON string with validation/hydration details: { error, json, schema }"
                                                         }
                                                     }
                                                 }
@@ -7134,7 +7129,6 @@
                                             "flowchartId",
                                             "monitors",
                                             "name",
-                                            "originalUnit",
                                             "postProcessors",
                                             "preProcessors",
                                             "reason",
@@ -7310,13 +7304,9 @@
                                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                                 "type": "boolean"
                                             },
-                                            "originalUnit": {
-                                                "type": "object",
-                                                "description": "Full pre-conversion unit payload preserved for debugging"
-                                            },
                                             "reason": {
                                                 "type": "string",
-                                                "description": "Why conversion happened (validation/hydration message)"
+                                                "description": "JSON string with validation/hydration details: { error, json, schema }"
                                             }
                                         }
                                     }

@@ -4,20 +4,15 @@
     "title": "error unit mixin schema",
     "type": "object",
     "required": [
-        "originalUnit",
         "reason"
     ],
     "properties": {
         "type": {
             "const": "error"
         },
-        "originalUnit": {
-            "type": "object",
-            "description": "Full pre-conversion unit payload preserved for debugging"
-        },
         "reason": {
             "type": "string",
-            "description": "Why conversion happened (validation/hydration message)"
+            "description": "JSON string with validation/hydration details: { error, json, schema }"
         }
     }
 }
