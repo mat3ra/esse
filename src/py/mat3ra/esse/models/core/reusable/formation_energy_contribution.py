@@ -4,7 +4,16 @@
 
 from __future__ import annotations
 
+from enum import Enum
+from typing import Optional
+
 from pydantic import BaseModel
+
+
+class PrecisionMetric(Enum):
+    unknown = "unknown"
+    KPPRA = "KPPRA"
+    spacing = "spacing"
 
 
 class FormationEnergyContributionSchema(BaseModel):
@@ -28,11 +37,11 @@ class FormationEnergyContributionSchema(BaseModel):
     """
     total energy per atom of the material
     """
-    precision_value: float
+    precision_value: Optional[float] = -1
     """
     precision value for the total energy property
     """
-    precision_metric: str
+    precision_metric: Optional[PrecisionMetric] = "unknown"
     """
     metric used to report total energy precision
     """

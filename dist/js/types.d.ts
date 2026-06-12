@@ -5122,7 +5122,7 @@ export interface FormationEnergyContributionSchema {
     /**
      * metric used to report total energy precision
      */
-    precision_metric: string;
+    precision_metric: "unknown" | "KPPRA" | "spacing";
 }
 /** Schema dist/js/schema/core/reusable/frequency_function_matrix.json */
 /**
@@ -52586,7 +52586,7 @@ export interface FormationEnergyContributionsPropertySchema {
         /**
          * metric used to report total energy precision
          */
-        precision_metric: string;
+        precision_metric: "unknown" | "KPPRA" | "spacing";
     }[];
 }
 /** Schema dist/js/schema/properties_directory/non_scalar/hubbard_u.json */
@@ -56284,7 +56284,7 @@ export interface PropertyHolderSchema {
             /**
              * metric used to report total energy precision
              */
-            precision_metric: string;
+            precision_metric: "unknown" | "KPPRA" | "spacing";
         }[];
     } | {
         xAxis: {

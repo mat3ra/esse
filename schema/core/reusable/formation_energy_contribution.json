@@ -27,11 +27,18 @@
         },
         "precision_value": {
             "description": "precision value for the total energy property",
-            "type": "number"
+            "type": "number",
+            "default": -1
         },
         "precision_metric": {
             "description": "metric used to report total energy precision",
-            "type": "string"
+            "type": "string",
+            "enum": [
+                "unknown",
+                "KPPRA",
+                "spacing"
+            ],
+            "default": "unknown"
         }
     },
     "required": [
