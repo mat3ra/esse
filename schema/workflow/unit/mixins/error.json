@@ -1,0 +1,18 @@
+{
+    "$id": "workflow/unit/mixins/error",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "error unit mixin schema",
+    "type": "object",
+    "required": [
+        "reason"
+    ],
+    "properties": {
+        "type": {
+            "const": "error"
+        },
+        "reason": {
+            "type": "string",
+            "description": "JSON string with validation/hydration details: { error, json, schema }"
+        }
+    }
+}
