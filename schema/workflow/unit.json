@@ -12,6 +12,9 @@
         },
         {
             "$ref": "./unit/subworkflow.json"
+        },
+        {
+            "$ref": "./unit/error.json"
         }
     ],
     "discriminator": {

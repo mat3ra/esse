@@ -3,8 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseIncludeReferenceStatements = parseIncludeReferenceStatements;
-exports.parseIncludeReferenceStatementsByDir = parseIncludeReferenceStatementsByDir;
+exports.parseIncludeReferenceStatementsByDir = exports.parseIncludeReferenceStatements = void 0;
 /**
  * Server-side schema parsing utilities.
  *
@@ -38,6 +37,7 @@ function parseIncludeReferenceStatements(filePath) {
     }
     return dereferenced;
 }
+exports.parseIncludeReferenceStatements = parseIncludeReferenceStatements;
 /**
  * Resolves `include` and `$ref` statements for all the JSON files inside a given directory.
  * @param dirPath directory to parse.
@@ -65,3 +65,4 @@ function parseIncludeReferenceStatementsByDir(dirPath, wrapInDataAndPath = false
     });
     return wrapInDataAndPath ? schemasWithPath : schemas;
 }
+exports.parseIncludeReferenceStatementsByDir = parseIncludeReferenceStatementsByDir;

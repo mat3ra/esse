@@ -18,6 +18,9 @@
         },
         {
             "$ref": "./../unit/assignment.json"
+        },
+        {
+            "$ref": "./../unit/error.json"
         }
     ],
     "discriminator": {
