@@ -3,11 +3,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "bankable schema",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "hashed.json"
-        }
-    ],
     "properties": {
         "exabyteId": {
             "description": "Identity of the corresponding bank entity",

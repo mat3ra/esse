@@ -12,7 +12,3 @@ class BankableSchema(BaseModel):
     """
     Identity of the corresponding bank entity
     """
-    hash: str
-    """
-    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-    """
