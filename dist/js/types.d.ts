@@ -63052,6 +63052,13 @@ export interface HasConsistencyCheckSchema {
         message: string;
     }[];
 }
+/** Schema dist/js/schema/system/hashed.json */
+export interface HashedSchema {
+    /**
+     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+     */
+    hash: string;
+}
 /** Schema dist/js/schema/system/history.json */
 export interface HistorySchema {
     history?: {
