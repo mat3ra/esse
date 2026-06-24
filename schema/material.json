@@ -9,6 +9,9 @@
             "$ref": "in_memory_entity/named_defaultable.json"
         },
         {
+            "$ref": "system/hashed.json"
+        },
+        {
             "$ref": "material/material_properties.json"
         },
         {

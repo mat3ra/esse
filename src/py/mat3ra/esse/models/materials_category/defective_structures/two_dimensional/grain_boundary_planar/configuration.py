@@ -713,6 +713,10 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1188,6 +1192,10 @@ class CrystalSchema5(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -1703,6 +1711,10 @@ class CrystalSchema6(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -2178,6 +2190,10 @@ class CrystalSchema7(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -2686,6 +2702,10 @@ class CrystalSchema8(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -3161,6 +3181,10 @@ class CrystalSchema9(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -3657,6 +3681,10 @@ class CrystalSchema10(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -4132,6 +4160,10 @@ class CrystalSchema11(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -4626,6 +4658,10 @@ class CrystalSchema12(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """

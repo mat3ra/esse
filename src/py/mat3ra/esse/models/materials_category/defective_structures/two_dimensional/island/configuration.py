@@ -707,6 +707,10 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1188,6 +1192,10 @@ class CrystalSchema24(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -1695,6 +1703,10 @@ class CrystalSchema25(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -2170,6 +2182,10 @@ class CrystalSchema26(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -2652,6 +2668,10 @@ class CrystalSchema27(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """
@@ -3183,6 +3203,10 @@ class CrystalSchema28(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    hash: str
+    """
+    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """

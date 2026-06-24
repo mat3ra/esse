@@ -21,6 +21,7 @@
                         "type": "object",
                         "required": [
                             "basis",
+                            "hash",
                             "lattice",
                             "metadata",
                             "name"
@@ -51,6 +52,10 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
+                            },
+                            "hash": {
+                                "description": "Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.",
+                                "type": "string"
                             },
                             "formula": {
                                 "description": "reduced chemical formula",
@@ -885,6 +890,7 @@
                                 "type": "object",
                                 "required": [
                                     "basis",
+                                    "hash",
                                     "lattice",
                                     "metadata",
                                     "name"
@@ -914,6 +920,10 @@
                                         "description": "Identifies that entity is defaultable",
                                         "type": "boolean",
                                         "default": false
+                                    },
+                                    "hash": {
+                                        "description": "Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.",
+                                        "type": "string"
                                     },
                                     "formula": {
                                         "description": "reduced chemical formula",
