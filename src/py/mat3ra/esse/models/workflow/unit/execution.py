@@ -959,10 +959,6 @@ class ExecutionUnitSchema(BaseModel):
     status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["execution"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -979,6 +975,7 @@ class ExecutionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    type: Literal["execution"]
     application: ApplicationSchema = Field(..., title="application schema")
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")

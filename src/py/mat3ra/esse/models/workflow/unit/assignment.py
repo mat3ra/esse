@@ -81,10 +81,6 @@ class AssignmentUnitSchema(BaseModel):
     status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["assignment"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -102,6 +98,7 @@ class AssignmentUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     scope: Optional[str] = None
+    type: Literal["assignment"] = "assignment"
     input: Optional[List[WorkflowUnitInputSchema]] = None
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.

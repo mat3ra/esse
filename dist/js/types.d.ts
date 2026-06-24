@@ -6225,10 +6225,6 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "io";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -6244,6 +6240,7 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "io";
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "object_storage";
                 input: ({
@@ -6379,10 +6376,6 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "condition";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -6398,6 +6391,7 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "condition";
                 /**
                  * Input information for condition.
                  */
@@ -6505,10 +6499,6 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "assertion";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -6524,6 +6514,7 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "assertion";
                 /**
                  * The statement to be evaluated
                  */
@@ -6606,10 +6597,6 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "execution";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -6625,6 +6612,7 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type: "execution";
                 application: {
                     /**
                      * entity identity
@@ -7528,10 +7516,6 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "assignment";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -7548,6 +7532,7 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 scope?: string;
+                type?: "assignment";
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
                  */
@@ -7643,10 +7628,6 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "error";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -7662,6 +7643,7 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "error";
                 /**
                  * JSON string with validation/hydration details: { error, json, schema }
                  */
@@ -7942,10 +7924,6 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "map";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -7961,6 +7939,7 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -8061,10 +8040,6 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -8080,6 +8055,7 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -8171,10 +8147,6 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "subworkflow";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -8190,6 +8162,7 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "subworkflow";
         } | {
             /**
              * entity identity
@@ -8264,10 +8237,6 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "error";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -8283,6 +8252,7 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -53896,10 +53866,6 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "io";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -53915,6 +53881,7 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
             input: ({
@@ -54050,10 +54017,6 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -54069,6 +54032,7 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "condition";
             /**
              * Input information for condition.
              */
@@ -54176,10 +54140,6 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -54195,6 +54155,7 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -54277,10 +54238,6 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -54296,6 +54253,7 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type: "execution";
             application: {
                 /**
                  * entity identity
@@ -55199,10 +55157,6 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -55219,6 +55173,7 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             scope?: string;
+            type?: "assignment";
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -55314,10 +55269,6 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "error";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -55333,6 +55284,7 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -55613,10 +55565,6 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "map";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -55632,6 +55580,7 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -55732,10 +55681,6 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -55751,6 +55696,7 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -55842,10 +55788,6 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "subworkflow";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -55861,6 +55803,7 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "subworkflow";
     } | {
         /**
          * entity identity
@@ -55935,10 +55878,6 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "error";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -55954,6 +55893,7 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -57715,10 +57655,6 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "io";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -57734,6 +57670,7 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "io";
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "object_storage";
                 input: ({
@@ -57869,10 +57806,6 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "condition";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -57888,6 +57821,7 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "condition";
                 /**
                  * Input information for condition.
                  */
@@ -57995,10 +57929,6 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "assertion";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -58014,6 +57944,7 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "assertion";
                 /**
                  * The statement to be evaluated
                  */
@@ -58096,10 +58027,6 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "execution";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -58115,6 +58042,7 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type: "execution";
                 application: {
                     /**
                      * entity identity
@@ -59018,10 +58946,6 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "assignment";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -59038,6 +58962,7 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 scope?: string;
+                type?: "assignment";
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
                  */
@@ -59133,10 +59058,6 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
-                 * type of the unit
-                 */
-                type: "error";
-                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -59152,6 +59073,7 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                type?: "error";
                 /**
                  * JSON string with validation/hydration details: { error, json, schema }
                  */
@@ -59432,10 +59354,6 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "map";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -59451,6 +59369,7 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -59551,10 +59470,6 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -59570,6 +59485,7 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -59661,10 +59577,6 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "subworkflow";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -59680,6 +59592,7 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "subworkflow";
         } | {
             /**
              * entity identity
@@ -59754,10 +59667,6 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "error";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -59773,6 +59682,7 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -61049,10 +60959,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -61068,6 +60974,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -62284,10 +62191,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -62303,6 +62206,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -63877,10 +63781,6 @@ export interface BaseWorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "io";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -63896,6 +63796,7 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
             input: ({
@@ -64031,10 +63932,6 @@ export interface BaseWorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -64050,6 +63947,7 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "condition";
             /**
              * Input information for condition.
              */
@@ -64157,10 +64055,6 @@ export interface BaseWorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -64176,6 +64070,7 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -64258,10 +64153,6 @@ export interface BaseWorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -64277,6 +64168,7 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type: "execution";
             application: {
                 /**
                  * entity identity
@@ -65180,10 +65072,6 @@ export interface BaseWorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -65200,6 +65088,7 @@ export interface BaseWorkflowSchema {
              */
             enableRender?: boolean;
             scope?: string;
+            type?: "assignment";
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -65295,10 +65184,6 @@ export interface BaseWorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "error";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -65314,6 +65199,7 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -65594,10 +65480,6 @@ export interface BaseWorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "map";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -65613,6 +65495,7 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -65713,10 +65596,6 @@ export interface BaseWorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -65732,6 +65611,7 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -65823,10 +65703,6 @@ export interface BaseWorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "subworkflow";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -65842,6 +65718,7 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "subworkflow";
     } | {
         /**
          * entity identity
@@ -65916,10 +65793,6 @@ export interface BaseWorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "error";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -65935,6 +65808,7 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -66282,10 +66156,6 @@ export interface SubworkflowMixinSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "io";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -66301,6 +66171,7 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "io";
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "object_storage";
         input: ({
@@ -66436,10 +66307,6 @@ export interface SubworkflowMixinSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "condition";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -66455,6 +66322,7 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "condition";
         /**
          * Input information for condition.
          */
@@ -66562,10 +66430,6 @@ export interface SubworkflowMixinSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "assertion";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -66581,6 +66445,7 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -66663,10 +66528,6 @@ export interface SubworkflowMixinSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -66682,6 +66543,7 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type: "execution";
         application: {
             /**
              * entity identity
@@ -67585,10 +67447,6 @@ export interface SubworkflowMixinSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "assignment";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -67605,6 +67463,7 @@ export interface SubworkflowMixinSchema {
          */
         enableRender?: boolean;
         scope?: string;
+        type?: "assignment";
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -67700,10 +67559,6 @@ export interface SubworkflowMixinSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "error";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -67719,6 +67574,7 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -67997,10 +67853,6 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "io";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -68016,6 +67868,7 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "io";
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "object_storage";
     input: ({
@@ -68151,10 +68004,6 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "condition";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -68170,6 +68019,7 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "condition";
     /**
      * Input information for condition.
      */
@@ -68277,10 +68127,6 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -68296,6 +68142,7 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "assertion";
     /**
      * The statement to be evaluated
      */
@@ -68378,10 +68225,6 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -68397,6 +68240,7 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -69300,10 +69144,6 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "assignment";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -69320,6 +69160,7 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     scope?: string;
+    type?: "assignment";
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -69415,10 +69256,6 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "error";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -69434,6 +69271,7 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
      */
@@ -69643,10 +69481,6 @@ export interface SubworkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "io";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -69662,6 +69496,7 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "io";
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "object_storage";
         input: ({
@@ -69797,10 +69632,6 @@ export interface SubworkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "condition";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -69816,6 +69647,7 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "condition";
         /**
          * Input information for condition.
          */
@@ -69923,10 +69755,6 @@ export interface SubworkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "assertion";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -69942,6 +69770,7 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -70024,10 +69853,6 @@ export interface SubworkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -70043,6 +69868,7 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type: "execution";
         application: {
             /**
              * entity identity
@@ -70946,10 +70772,6 @@ export interface SubworkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "assignment";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -70966,6 +70788,7 @@ export interface SubworkflowSchema {
          */
         enableRender?: boolean;
         scope?: string;
+        type?: "assignment";
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -71061,10 +70884,6 @@ export interface SubworkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "error";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -71080,6 +70899,7 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -71358,10 +71178,6 @@ export interface AssertionUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -71377,6 +71193,7 @@ export interface AssertionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "assertion";
     /**
      * The statement to be evaluated
      */
@@ -71461,10 +71278,6 @@ export interface AssignmentUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "assignment";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -71481,6 +71294,7 @@ export interface AssignmentUnitSchema {
      */
     enableRender?: boolean;
     scope?: string;
+    type?: "assignment";
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -71578,10 +71392,6 @@ export interface WorkflowBaseUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: string;
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -71673,10 +71483,6 @@ export interface ConditionUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "condition";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -71692,6 +71498,7 @@ export interface ConditionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "condition";
     /**
      * Input information for condition.
      */
@@ -73057,10 +72864,6 @@ export interface ErrorUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "error";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -73076,6 +72879,7 @@ export interface ErrorUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
      */
@@ -73156,10 +72960,6 @@ export interface ExecutionUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -73175,6 +72975,7 @@ export interface ExecutionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -74277,10 +74078,6 @@ export interface DataIOUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "io";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -74296,6 +74093,7 @@ export interface DataIOUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "io";
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "object_storage";
     input: ({
@@ -74433,10 +74231,6 @@ export interface MapUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "map";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -74452,6 +74246,7 @@ export interface MapUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -74519,10 +74314,6 @@ export interface AssignmentUnitMixinSchema {
 /** Schema dist/js/schema/workflow/unit/mixins/base.json */
 export interface WorkflowBaseUnitMixinSchema {
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: string;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -75631,10 +75422,6 @@ export interface ReduceUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -75650,6 +75437,7 @@ export interface ReduceUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "reduce";
     /**
      * corresponding map unit flowchart ID
      */
@@ -75814,10 +75602,6 @@ export interface SubworkflowUnitSchema {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "subworkflow";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -75833,6 +75617,7 @@ export interface SubworkflowUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "subworkflow";
 }
 /** Schema dist/js/schema/workflow/unit.json */
 export type WorkflowUnitSchema = {
@@ -75909,10 +75694,6 @@ export type WorkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "map";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -75928,6 +75709,7 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -76028,10 +75810,6 @@ export type WorkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -76047,6 +75825,7 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "reduce";
     /**
      * corresponding map unit flowchart ID
      */
@@ -76138,10 +75917,6 @@ export type WorkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "subworkflow";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -76157,6 +75932,7 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "subworkflow";
 } | {
     /**
      * entity identity
@@ -76231,10 +76007,6 @@ export type WorkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: "error";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -76250,6 +76022,7 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
      */
@@ -76601,10 +76374,6 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "io";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -76620,6 +76389,7 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
             input: ({
@@ -76755,10 +76525,6 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -76774,6 +76540,7 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "condition";
             /**
              * Input information for condition.
              */
@@ -76881,10 +76648,6 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -76900,6 +76663,7 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -76982,10 +76746,6 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -77001,6 +76761,7 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type: "execution";
             application: {
                 /**
                  * entity identity
@@ -77904,10 +77665,6 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -77924,6 +77681,7 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             scope?: string;
+            type?: "assignment";
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -78019,10 +77777,6 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
-             * type of the unit
-             */
-            type: "error";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -78038,6 +77792,7 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -78318,10 +78073,6 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "map";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -78337,6 +78088,7 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -78437,10 +78189,6 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -78456,6 +78204,7 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -78547,10 +78296,6 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "subworkflow";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -78566,6 +78311,7 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "subworkflow";
     } | {
         /**
          * entity identity
@@ -78640,10 +78386,6 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
-         * type of the unit
-         */
-        type: "error";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -78659,6 +78401,7 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */

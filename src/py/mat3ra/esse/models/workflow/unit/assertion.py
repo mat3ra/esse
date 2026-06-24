@@ -70,10 +70,6 @@ class AssertionUnitSchema(BaseModel):
     status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["assertion"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -90,6 +86,7 @@ class AssertionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    type: Literal["assertion"] = "assertion"
     statement: str
     """
     The statement to be evaluated

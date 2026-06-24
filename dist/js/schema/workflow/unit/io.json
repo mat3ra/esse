@@ -12,8 +12,7 @@
         "preProcessors",
         "results",
         "source",
-        "subtype",
-        "type"
+        "subtype"
     ],
     "properties": {
         "_id": {
@@ -155,11 +154,6 @@
         "isDraft": {
             "type": "boolean"
         },
-        "type": {
-            "description": "type of the unit",
-            "type": "string",
-            "const": "io"
-        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -175,6 +169,9 @@
         "enableRender": {
             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
             "type": "boolean"
+        },
+        "type": {
+            "const": "io"
         },
         "subtype": {
             "enum": [

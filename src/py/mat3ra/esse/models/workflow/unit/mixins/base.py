@@ -11,10 +11,6 @@ from pydantic import BaseModel
 
 class WorkflowBaseUnitMixinSchema(BaseModel):
     isDraft: Optional[bool] = None
-    type: str
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.

@@ -70,10 +70,6 @@ class ErrorUnitSchema(BaseModel):
     status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["error"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -90,6 +86,7 @@ class ErrorUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    type: Literal["error"] = "error"
     reason: str
     """
     JSON string with validation/hydration details: { error, json, schema }

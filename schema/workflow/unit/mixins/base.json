@@ -7,10 +7,6 @@
         "isDraft": {
             "type": "boolean"
         },
-        "type": {
-            "description": "type of the unit",
-            "type": "string"
-        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -29,7 +25,6 @@
         }
     },
     "required": [
-        "type",
         "flowchartId"
     ]
 }

@@ -81,10 +81,6 @@ class ConditionUnitSchema(BaseModel):
     status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["condition"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -101,6 +97,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    type: Literal["condition"] = "condition"
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.

@@ -14,8 +14,7 @@
         "preProcessors",
         "results",
         "statement",
-        "then",
-        "type"
+        "then"
     ],
     "properties": {
         "_id": {
@@ -157,11 +156,6 @@
         "isDraft": {
             "type": "boolean"
         },
-        "type": {
-            "description": "type of the unit",
-            "type": "string",
-            "const": "condition"
-        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -177,6 +171,9 @@
         "enableRender": {
             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
             "type": "boolean"
+        },
+        "type": {
+            "const": "condition"
         },
         "input": {
             "description": "Input information for condition.",
