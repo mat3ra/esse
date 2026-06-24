@@ -127,15 +127,7 @@
             }
         },
         "status": {
-            "type": "string",
-            "description": "Status of the unit.",
-            "enum": [
-                "idle",
-                "active",
-                "warning",
-                "error",
-                "finished"
-            ]
+            "type": "string"
         },
         "statusTrack": {
             "type": "array",

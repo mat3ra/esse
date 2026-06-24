@@ -11,21 +11,6 @@
             "description": "type of the unit",
             "type": "string"
         },
-        "name": {
-            "description": "name of the unit. e.g. pw_scf",
-            "type": "string"
-        },
-        "status": {
-            "description": "Status of the unit.",
-            "type": "string",
-            "enum": [
-                "idle",
-                "active",
-                "warning",
-                "error",
-                "finished"
-            ]
-        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"

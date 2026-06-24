@@ -20,14 +20,6 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
 class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
@@ -964,10 +956,7 @@ class ExecutionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["execution"]

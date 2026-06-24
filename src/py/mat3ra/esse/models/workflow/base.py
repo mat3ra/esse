@@ -165,14 +165,6 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
 class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
@@ -300,10 +292,7 @@ class DataIOUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
@@ -384,10 +373,7 @@ class ConditionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
@@ -478,10 +464,7 @@ class AssertionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
@@ -1444,10 +1427,7 @@ class ExecutionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
@@ -1519,10 +1499,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
@@ -1602,10 +1579,7 @@ class ErrorUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
@@ -1990,10 +1964,7 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
@@ -2079,10 +2050,7 @@ class ReduceUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
@@ -2157,10 +2125,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
@@ -2227,10 +2192,7 @@ class ErrorUnitSchema1(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]

@@ -4,18 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel
-
-
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
 
 
 class WorkflowBaseUnitMixinSchema(BaseModel):
@@ -23,14 +14,6 @@ class WorkflowBaseUnitMixinSchema(BaseModel):
     type: str
     """
     type of the unit
-    """
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
     """
     head: Optional[bool] = None
     """

@@ -4,7 +4,6 @@
 
 from __future__ import annotations
 
-from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -18,14 +17,6 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
     The name of this item. e.g. scf_accuracy
     """
-
-
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
 
 
 class StatusTrackItem(BaseModel):
@@ -96,10 +87,7 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
+    status: Optional[str] = None
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     type: Literal["map"]
