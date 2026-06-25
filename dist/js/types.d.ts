@@ -2326,7 +2326,7 @@ export type SystemSchema = ({
 };
 /** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x.json */
 export interface PwxMainSchema {
-    "&CONTROL"?: {
+    CONTROL?: {
         /**
          * A string describing the task to be performed
          */
@@ -2445,7 +2445,7 @@ export interface PwxMainSchema {
          */
         trism?: boolean;
     };
-    "&SYSTEM"?: {
+    SYSTEM?: {
         /**
          * @minItems 6
          * @maxItems 6
@@ -2459,7 +2459,7 @@ export interface PwxMainSchema {
         cosAC?: number;
         cosBC?: number;
     };
-    "&ELECTRONS"?: {
+    ELECTRONS?: {
         /**
          * maximum number of iterations in a scf step. If exact exchange is active, this will affect the inner loops.
          */
@@ -2552,7 +2552,7 @@ export interface PwxMainSchema {
          */
         real_space?: boolean;
     };
-    "&IONS"?: ({
+    IONS?: ({
         /**
          * CASE: calculation == 'relax'
          */
@@ -2573,7 +2573,7 @@ export interface PwxMainSchema {
          */
         ion_dynamics?: "beeman";
     }) | null;
-    "&CELL"?: ({
+    CELL?: ({
         /**
          * CASE ( calculation == 'vc-relax' )
          */

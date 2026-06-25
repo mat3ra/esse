@@ -1,5 +1,5 @@
 {
-    "&CONTROL": {
+    "CONTROL": {
         "calculation": "scf",
         "title": "",
         "verbosity": "low",
@@ -12,7 +12,7 @@
         "prefix": "__prefix__",
         "pseudo_dir": "{{ JOB_WORK_DIR }}/pseudo"
     },
-    "&SYSTEM": {
+    "SYSTEM": {
         "ibrav": 0,
         "nat": 2,
         "ntyp": 2,
@@ -37,15 +37,15 @@
             ]
         ]
     },
-    "&ELECTRONS": {
+    "ELECTRONS": {
         "diagonalization": "david",
         "diago_david_ndim": 4,
         "diago_full_acc": true,
         "mixing_beta": 0.3,
         "startingwfc": "atomic+random"
     },
-    "&IONS": null,
-    "&CELL": null,
+    "IONS": null,
+    "CELL": null,
     "ATOMIC_SPECIES": {
         "values": [
             {
