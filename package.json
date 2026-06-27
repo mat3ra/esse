@@ -17,17 +17,17 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Exabyte-io/esse.git"
+        "url": "https://github.com/mat3ra/esse.git"
     },
     "main": "dist/js/esse/index.js",
     "author": "Mat3ra.com",
     "email": "info@mat3ra.com",
     "bugs": {
-        "url": "https://github.com/Exabyte-io/exabyte-esse/issues"
+        "url": "https://github.com/mat3ra/esse/issues"
     },
-    "homepage": "https://github.com/Exabyte-io/esse",
+    "homepage": "https://github.com/mat3ra/esse",
     "devDependencies": {
-        "@exabyte-io/eslint-config": "^2025.5.13-0",
+        "@exabyte-io/eslint-config": "git+https://github.com/mat3ra/eslint-config.git#7b126d943ffd89c649a72d8067ee03c413564b82",
         "@mat3ra/tsconfig": "^2024.6.3-0",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
         "@typescript-eslint/parser": "^5.62.0",
