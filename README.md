@@ -69,7 +69,7 @@ validate_and_clean(data, schema)
 print(data) # {"a": "x", "b": 1}
 
 # alternative: schema-aware cleaning via generated pydantic models
-# also see how it is used in ade: https://github.com/Exabyte-io/ade/blob/main/src/py/mat3ra/ade/application.py
+# also see how it is used in ade: https://github.com/mat3ra/ade/blob/main/src/py/mat3ra/ade/application.py
 from pydantic import ConfigDict
 from mat3ra.esse.models.software.application import ApplicationSchemaBase
 

@@ -5,7 +5,7 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "&CONTROL": {
+        "CONTROL": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "control schema",
             "type": "object",
@@ -185,7 +185,7 @@
                 }
             }
         },
-        "&SYSTEM": {
+        "SYSTEM": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "system schema",
             "type": "object",
@@ -836,7 +836,7 @@
                 }
             }
         },
-        "&ELECTRONS": {
+        "ELECTRONS": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "electrons schema",
             "type": "object",
@@ -998,7 +998,7 @@
                 }
             }
         },
-        "&IONS": {
+        "IONS": {
             "oneOf": [
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1220,7 +1220,7 @@
                 }
             ]
         },
-        "&CELL": {
+        "CELL": {
             "oneOf": [
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",

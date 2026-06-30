@@ -17,15 +17,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Exabyte-io/esse.git"
+        "url": "https://github.com/mat3ra/esse.git"
     },
     "main": "dist/js/esse/index.js",
     "author": "Mat3ra.com",
     "email": "info@mat3ra.com",
     "bugs": {
-        "url": "https://github.com/Exabyte-io/exabyte-esse/issues"
+        "url": "https://github.com/mat3ra/esse/issues"
     },
-    "homepage": "https://github.com/Exabyte-io/esse",
+    "homepage": "https://github.com/mat3ra/esse",
     "devDependencies": {
         "@exabyte-io/eslint-config": "^2025.5.13-0",
         "@mat3ra/tsconfig": "^2024.6.3-0",
@@ -58,23 +58,23 @@
     },
     "license": "Apache-2.0",
     "dependencies": {
-        "@babel/cli": "^7.28.6",
-        "@babel/core": "^7.29.0",
-        "@babel/eslint-parser": "^7.28.6",
+        "@babel/cli": "^7.29.7",
+        "@babel/core": "^7.29.7",
+        "@babel/eslint-parser": "^7.29.7",
         "@babel/plugin-proposal-class-properties": "^7.18.6",
-        "@babel/preset-env": "^7.29.2",
-        "@babel/preset-react": "^7.28.5",
-        "@babel/preset-typescript": "^7.28.5",
-        "@babel/register": "^7.28.6",
-        "@babel/runtime-corejs3": "^7.29.2",
-        "@mat3ra/utils": "^2026.4.15-1",
+        "@babel/preset-env": "^7.29.7",
+        "@babel/preset-react": "^7.29.7",
+        "@babel/preset-typescript": "^7.29.7",
+        "@babel/register": "^7.29.7",
+        "@babel/runtime-corejs3": "^7.29.7",
+        "@mat3ra/utils": "^2026.6.11-0",
         "@types/chai": "^4.3.20",
         "@types/js-yaml": "^4.0.9",
         "@types/json-schema-merge-allof": "^0.6.5",
         "@types/mocha": "^10.0.10",
         "ajv": "^8.20.0",
         "ajv-formats": "^2.1.1",
-        "js-yaml": "^4.1.1",
+        "js-yaml": "^4.3.0",
         "json-schema": "^0.4.0",
         "json-schema-deref-sync": "^0.14.0",
         "json-schema-merge-allof": "^0.8.1",
