@@ -27,7 +27,7 @@
     },
     "homepage": "https://github.com/mat3ra/esse",
     "devDependencies": {
-        "@exabyte-io/eslint-config": "git+https://github.com/mat3ra/eslint-config.git#7b126d943ffd89c649a72d8067ee03c413564b82",
+        "@exabyte-io/eslint-config": "^2025.5.13-0",
         "@mat3ra/tsconfig": "^2024.6.3-0",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
         "@typescript-eslint/parser": "^5.62.0",
@@ -74,7 +74,7 @@
         "@types/mocha": "^10.0.10",
         "ajv": "^8.20.0",
         "ajv-formats": "^2.1.1",
-        "js-yaml": "^4.2.0",
+        "js-yaml": "^4.3.0",
         "json-schema": "^0.4.0",
         "json-schema-deref-sync": "^0.14.0",
         "json-schema-merge-allof": "^0.8.1",

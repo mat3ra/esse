@@ -356,23 +356,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -411,23 +395,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -483,23 +451,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -538,23 +490,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -610,23 +546,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -665,23 +585,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -992,23 +896,7 @@ export interface BandstructureData {
                  * @minItems 3
                  * @maxItems 3
                  */
-                matrix: [
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ]
-                ];
+                matrix: [[number, number, number], [number, number, number], [number, number, number]];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -1047,23 +935,7 @@ export interface BandstructureData {
                  * @minItems 3
                  * @maxItems 3
                  */
-                matrix: [
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ]
-                ];
+                matrix: [[number, number, number], [number, number, number], [number, number, number]];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -1452,23 +1324,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -3921,23 +3777,7 @@ export type Coordinate3DSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/vector_2d.json */
 /**
  * @minItems 2
@@ -10085,23 +9925,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -11474,23 +11298,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -12864,23 +12672,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -14253,23 +14045,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -15998,23 +15774,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -17387,23 +17147,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -20173,23 +19917,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -21562,23 +21290,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -22952,23 +22664,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -24341,23 +24037,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -36853,23 +36533,7 @@ export type DMillerIndicesSchema = [number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type SupercellMatrix3DSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/materials_category_components/entities/auxiliary/two_dimensional/miller_indices.json */
 /**
  * Miller indices [h, k, l] defining crystallographic planes
