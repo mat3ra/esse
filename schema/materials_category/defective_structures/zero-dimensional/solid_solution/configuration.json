@@ -1,0 +1,47 @@
+{
+    "$id": "materials-category/defective-structures/zero-dimensional/solid-solution/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Solid Solution Configuration Schema",
+    "description": "Configuration for creating a solid solution by partially substituting one element with another in a crystal.",
+    "type": "object",
+    "properties": {
+        "crystal": {
+            "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"
+        },
+        "source_element": {
+            "description": "Element to partially replace (e.g. Hf).",
+            "type": "string"
+        },
+        "target_element": {
+            "description": "Replacement element (e.g. Zr).",
+            "type": "string"
+        },
+        "concentration": {
+            "description": "Fraction of source element sites to replace (0.0-1.0).",
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+        },
+        "supercell_dimensions": {
+            "description": "Scaling factors [a, b, c] for the supercell.",
+            "type": "array",
+            "items": {
+                "type": "integer",
+                "minimum": 1
+            },
+            "minItems": 3,
+            "maxItems": 3,
+            "default": [1, 1, 1]
+        },
+        "seed": {
+            "description": "Random seed for reproducible site selection.",
+            "type": "integer"
+        }
+    },
+    "required": [
+        "crystal",
+        "source_element",
+        "target_element",
+        "concentration"
+    ]
+}

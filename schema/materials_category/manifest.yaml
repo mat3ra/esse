@@ -83,6 +83,8 @@ materials_category:
         - interstitial
         - substitutional
         - vacancy
+      solid_solution:
+        - configuration
       
 
   processed_structures:

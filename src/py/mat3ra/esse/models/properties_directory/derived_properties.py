@@ -24,30 +24,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name457(Enum):
+class Name465(Enum):
     density = "density"
 
 
-class Units178(Enum):
+class Units181(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units178] = None
+    units: Optional[Units181] = None
     value: float
 
 
-class Units179(Enum):
+class Units182(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units179] = None
+    units: Optional[Units182] = None
     value: float
 
 
-class Name458(Enum):
+class Name466(Enum):
     symmetry = "symmetry"
 
 
@@ -67,7 +67,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name459(Enum):
+class Name467(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -80,7 +80,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name460(Enum):
+class Name468(Enum):
     p_norm = "p-norm"
 
 
@@ -93,7 +93,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name461(Enum):
+class Name469(Enum):
     inchi = "inchi"
 
 
@@ -102,7 +102,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name462(Enum):
+class Name470(Enum):
     inchi_key = "inchi_key"
 
 
@@ -135,5 +135,5 @@ class DerivedPropertiesSchema(
     ] = Field(..., discriminator="name")
 
 
-class DerivedPropertiesSchema55(RootModel[List[DerivedPropertiesSchema]]):
+class DerivedPropertiesSchema56(RootModel[List[DerivedPropertiesSchema]]):
     root: List[DerivedPropertiesSchema] = Field(..., title="derived properties schema")
