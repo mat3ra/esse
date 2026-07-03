@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units245(Enum):
+class Units251(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class HOMOEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units245]
+    units: Union[Units, Units251]
     value: float

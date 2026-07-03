@@ -35,7 +35,7 @@ class Label29(Enum):
     Phonon_DOS = "Phonon DOS"
 
 
-class Units294(Enum):
+class Units300(Enum):
     states_cm_1 = "states/cm-1"
     states_THz = "states/THz"
     states_meV = "states/meV"
@@ -46,7 +46,7 @@ class AxisSchema32(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units294] = None
+    units: Optional[Units300] = None
     """
     units for an axis
     """
