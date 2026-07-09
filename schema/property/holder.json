@@ -34,6 +34,9 @@
                     "$ref": "../properties_directory/scalar/surface_energy.json"
                 },
                 {
+                    "$ref": "../properties_directory/scalar/interfacial_energy.json"
+                },
+                {
                     "$ref": "../properties_directory/scalar/thermal_correction_to_energy.json"
                 },
                 {

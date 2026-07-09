@@ -1086,7 +1086,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name774(Enum):
+class Name776(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"

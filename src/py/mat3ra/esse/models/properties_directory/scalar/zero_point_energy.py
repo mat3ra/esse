@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units363(Enum):
+class Units367(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ZeroPointEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units363]
+    units: Union[Units, Units367]
     value: float
