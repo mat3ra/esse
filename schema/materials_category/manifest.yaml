@@ -71,6 +71,8 @@ materials_category:
       - interface
 
   defective_structures:
+    three-dimensional:
+      - solid_solution
     two-dimensional:
       - adatom
       - grain_boundary_planar
@@ -83,9 +85,7 @@ materials_category:
         - interstitial
         - substitutional
         - vacancy
-      solid_solution:
-        - configuration
-      
+
 
   processed_structures:
     two-dimensional:
