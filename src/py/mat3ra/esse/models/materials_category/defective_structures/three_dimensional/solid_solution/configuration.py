@@ -1681,9 +1681,13 @@ class SolidSolutionConfigurationSchema(BaseModel):
     """
     Replacement element (e.g. Zr).
     """
-    concentration: confloat(ge=0.0, le=1.0)
+    target_concentration: confloat(ge=0.0, le=1.0)
     """
-    Fraction of source element sites to replace (0.0-1.0).
+    Requested fraction of source element sites to replace (0.0-1.0).
+    """
+    actual_concentration: confloat(ge=0.0, le=1.0)
+    """
+    Achievable fraction after supercell discretization and site rounding (0.0-1.0).
     """
     merge_components: List[Union[CrystalSchema39, PointDefectSiteSchema]]
     merge_method: Optional[MergeMethodsEnum] = Field("REPLACE", title="Merge Methods Enum")

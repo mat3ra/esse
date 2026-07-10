@@ -20,8 +20,14 @@
             "description": "Replacement element (e.g. Zr).",
             "type": "string"
         },
-        "concentration": {
-            "description": "Fraction of source element sites to replace (0.0-1.0).",
+        "target_concentration": {
+            "description": "Requested fraction of source element sites to replace (0.0-1.0).",
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+        },
+        "actual_concentration": {
+            "description": "Achievable fraction after supercell discretization and site rounding (0.0-1.0).",
             "type": "number",
             "minimum": 0.0,
             "maximum": 1.0
@@ -45,7 +51,8 @@
         "crystal",
         "source_element",
         "target_element",
-        "concentration",
+        "target_concentration",
+        "actual_concentration",
         "merge_components",
         "merge_method"
     ]

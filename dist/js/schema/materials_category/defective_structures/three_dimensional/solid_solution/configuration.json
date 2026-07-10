@@ -4,11 +4,12 @@
     "title": "Solid Solution Configuration Schema",
     "description": "Configuration for a solid solution: a crystal with partial element substitution, using merge operation.",
     "required": [
-        "concentration",
+        "actual_concentration",
         "crystal",
         "merge_components",
         "merge_method",
         "source_element",
+        "target_concentration",
         "target_element"
     ],
     "properties": {
@@ -872,8 +873,14 @@
             "description": "Replacement element (e.g. Zr).",
             "type": "string"
         },
-        "concentration": {
-            "description": "Fraction of source element sites to replace (0.0-1.0).",
+        "target_concentration": {
+            "description": "Requested fraction of source element sites to replace (0.0-1.0).",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+        },
+        "actual_concentration": {
+            "description": "Achievable fraction after supercell discretization and site rounding (0.0-1.0).",
             "type": "number",
             "minimum": 0,
             "maximum": 1
