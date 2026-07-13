@@ -141,6 +141,7 @@
   "schema/material.json",
   "schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json",
   "schema/materials_category/defective_structures/one_dimensional/grain_boundary_linear/configuration.json",
+  "schema/materials_category/defective_structures/three_dimensional/solid_solution/configuration.json",
   "schema/materials_category/defective_structures/two_dimensional/adatom/configuration.json",
   "schema/materials_category/defective_structures/two_dimensional/grain_boundary_planar/configuration.json",
   "schema/materials_category/defective_structures/two_dimensional/island/configuration.json",
