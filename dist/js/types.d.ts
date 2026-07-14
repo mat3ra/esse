@@ -53720,7 +53720,7 @@ export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object" | "arra
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ScalarPropertyEnum".
  */
-export type ScalarPropertyEnum = "fermi_energy" | "formation_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "thermal_correction_to_energy" | "thermal_correction_to_enthalpy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+export type ScalarPropertyEnum = "fermi_energy" | "formation_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "interfacial_energy" | "thermal_correction_to_energy" | "thermal_correction_to_enthalpy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "NonScalarPropertyEnum".
@@ -56967,6 +56967,12 @@ export interface HOMOEnergyPropertySchema {
     units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
+/** Schema dist/js/schema/properties_directory/scalar/interfacial_energy.json */
+export interface InterfacialEnergyPropertySchema {
+    name: "interfacial_energy";
+    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
 /** Schema dist/js/schema/properties_directory/scalar/ionization_potential.json */
 export interface IonizationPotentialScalarPropertySchema {
     name: "ionization_potential";
@@ -57674,6 +57680,10 @@ export interface PropertyHolderSchema {
         value: number;
     } | {
         name: "surface_energy";
+        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        value: number;
+    } | {
+        name: "interfacial_energy";
         units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {

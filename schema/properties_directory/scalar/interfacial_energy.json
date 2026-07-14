@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/scalar/interfacial-energy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interfacial energy property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/reusable/energy.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "interfacial_energy"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

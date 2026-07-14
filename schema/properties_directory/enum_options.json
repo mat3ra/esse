@@ -30,6 +30,7 @@
                 "pressure",
                 "reaction_energy_barrier",
                 "surface_energy",
+                "interfacial_energy",
                 "thermal_correction_to_energy",
                 "thermal_correction_to_enthalpy",
                 "total_energy",
