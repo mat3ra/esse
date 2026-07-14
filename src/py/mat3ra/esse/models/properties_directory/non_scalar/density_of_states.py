@@ -40,7 +40,7 @@ class Label7(Enum):
     density_of_states = "density of states"
 
 
-class Units176(Enum):
+class Units185(Enum):
     states_unitcell = "states/unitcell"
 
 
@@ -49,7 +49,7 @@ class AxisSchema10(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units176] = None
+    units: Optional[Units185] = None
     """
     units for an axis
     """
