@@ -29,6 +29,7 @@ class PropertyType(Enum):
 
 
 class ScalarPropertyEnum(Enum):
+    defect_formation_energy = "defect_formation_energy"
     fermi_energy = "fermi_energy"
     formation_energy = "formation_energy"
     homo_energy = "homo_energy"

@@ -1,0 +1,28 @@
+{
+    "$id": "properties-directory/scalar/defect-formation-energy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Defect formation energy property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "defect_formation_energy"
+            ]
+        },
+        "units": {
+            "enum": [
+                "eV/defect",
+                "eV"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
+}

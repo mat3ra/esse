@@ -257,6 +257,32 @@
                 },
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Defect formation energy property schema",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "units",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "enum": [
+                                "defect_formation_energy"
+                            ]
+                        },
+                        "units": {
+                            "enum": [
+                                "eV/defect",
+                                "eV"
+                            ]
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Thermal correction to energy property schema",
                     "type": "object",
                     "required": [

@@ -22,6 +22,7 @@
         "ScalarPropertyEnum": {
             "type": "string",
             "enum": [
+                "defect_formation_energy",
                 "fermi_energy",
                 "formation_energy",
                 "homo_energy",
