@@ -25,13 +25,13 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units202(Enum):
+class Units203(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ValenceBandOffsetPropertySchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units, Units202]
+    units: Union[Units, Units203]
     value: float
 
 
@@ -39,7 +39,7 @@ class Name515(Enum):
     zero_point_energy = "zero_point_energy"
 
 
-class Units203(Enum):
+class Units204(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -50,13 +50,13 @@ class Units203(Enum):
     eV_atom = "eV/atom"
 
 
-class Units204(Enum):
+class Units205(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ZeroPointEnergyPropertySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units203, Units204]
+    units: Union[Units204, Units205]
     value: float
 
 
@@ -64,14 +64,14 @@ class Name516(Enum):
     pressure = "pressure"
 
 
-class Units205(Enum):
+class Units206(Enum):
     kbar = "kbar"
     pa = "pa"
 
 
 class PressurePropertySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units205
+    units: Units206
     value: float
 
 
@@ -79,7 +79,7 @@ class Name517(Enum):
     reaction_energy_barrier = "reaction_energy_barrier"
 
 
-class Units206(Enum):
+class Units207(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -90,13 +90,13 @@ class Units206(Enum):
     eV_atom = "eV/atom"
 
 
-class Units207(Enum):
+class Units208(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ReactionEnergyBarrierPropertySchema(BaseModel):
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units206, Units207]
+    units: Union[Units207, Units208]
     value: float
 
 
@@ -104,7 +104,7 @@ class Name518(Enum):
     surface_energy = "surface_energy"
 
 
-class Units208(Enum):
+class Units209(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -115,13 +115,13 @@ class Units208(Enum):
     eV_atom = "eV/atom"
 
 
-class Units209(Enum):
+class Units210(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class SurfaceEnergyPropertySchema(BaseModel):
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units208, Units209]
+    units: Union[Units209, Units210]
     value: float
 
 
@@ -129,7 +129,7 @@ class Name519(Enum):
     interfacial_energy = "interfacial_energy"
 
 
-class Units210(Enum):
+class Units211(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -140,33 +140,18 @@ class Units210(Enum):
     eV_atom = "eV/atom"
 
 
-class Units211(Enum):
+class Units212(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class InterfacialEnergyPropertySchema(BaseModel):
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units210, Units211]
+    units: Union[Units211, Units212]
     value: float
 
 
 class Name520(Enum):
     defect_formation_energy = "defect_formation_energy"
-
-
-class Units212(Enum):
-    eV_defect = "eV/defect"
-    eV = "eV"
-
-
-class DefectFormationEnergyPropertySchema(BaseModel):
-    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units212
-    value: float
-
-
-class Name521(Enum):
-    thermal_correction_to_energy = "thermal_correction_to_energy"
 
 
 class Units213(Enum):
@@ -184,14 +169,14 @@ class Units214(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class ThermalCorrectionToEnergyPropertySchema(BaseModel):
-    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
+class DefectFormationEnergyPropertySchema(BaseModel):
+    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     units: Union[Units213, Units214]
     value: float
 
 
-class Name522(Enum):
-    thermal_correction_to_enthalpy = "thermal_correction_to_enthalpy"
+class Name521(Enum):
+    thermal_correction_to_energy = "thermal_correction_to_energy"
 
 
 class Units215(Enum):
@@ -209,14 +194,14 @@ class Units216(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class ThermalCorrectionToEnthalpyPropertySchema(BaseModel):
-    name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
+class ThermalCorrectionToEnergyPropertySchema(BaseModel):
+    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
     units: Union[Units215, Units216]
     value: float
 
 
-class Name523(Enum):
-    total_energy = "total_energy"
+class Name522(Enum):
+    thermal_correction_to_enthalpy = "thermal_correction_to_enthalpy"
 
 
 class Units217(Enum):
@@ -234,36 +219,17 @@ class Units218(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class TotalEnergyPropertySchema(BaseModel):
-    name: Literal["9#-datamodel-code-generator-#-object-#-special-#"]
+class ThermalCorrectionToEnthalpyPropertySchema(BaseModel):
+    name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     units: Union[Units217, Units218]
     value: float
 
 
-class Name524(Enum):
-    total_force = "total_force"
+class Name523(Enum):
+    total_energy = "total_energy"
 
 
 class Units219(Enum):
-    eV_bohr = "eV/bohr"
-    eV_angstrom = "eV/angstrom"
-    Ry_a_u_ = "Ry/a.u."
-    newton = "newton"
-    kg_m_s_2 = "kg*m/s^2"
-    eV_a_u_ = "eV/a.u."
-
-
-class TotalForcesPropertySchema(BaseModel):
-    name: Literal["10#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units219
-    value: float
-
-
-class Name525(Enum):
-    fermi_energy = "fermi_energy"
-
-
-class Units220(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -274,18 +240,37 @@ class Units220(Enum):
     eV_atom = "eV/atom"
 
 
-class Units221(Enum):
+class Units220(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class FermiEnergyPropertySchema(BaseModel):
-    name: Literal["11#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units220, Units221]
+class TotalEnergyPropertySchema(BaseModel):
+    name: Literal["9#-datamodel-code-generator-#-object-#-special-#"]
+    units: Union[Units219, Units220]
     value: float
 
 
-class Name526(Enum):
-    formation_energy = "formation_energy"
+class Name524(Enum):
+    total_force = "total_force"
+
+
+class Units221(Enum):
+    eV_bohr = "eV/bohr"
+    eV_angstrom = "eV/angstrom"
+    Ry_a_u_ = "Ry/a.u."
+    newton = "newton"
+    kg_m_s_2 = "kg*m/s^2"
+    eV_a_u_ = "eV/a.u."
+
+
+class TotalForcesPropertySchema(BaseModel):
+    name: Literal["10#-datamodel-code-generator-#-object-#-special-#"]
+    units: Units221
+    value: float
+
+
+class Name525(Enum):
+    fermi_energy = "fermi_energy"
 
 
 class Units222(Enum):
@@ -303,14 +288,14 @@ class Units223(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class FormationEnergyPropertySchema(BaseModel):
-    name: Literal["12#-datamodel-code-generator-#-object-#-special-#"]
+class FermiEnergyPropertySchema(BaseModel):
+    name: Literal["11#-datamodel-code-generator-#-object-#-special-#"]
     units: Union[Units222, Units223]
     value: float
 
 
-class Name527(Enum):
-    homo_energy = "homo_energy"
+class Name526(Enum):
+    formation_energy = "formation_energy"
 
 
 class Units224(Enum):
@@ -328,14 +313,14 @@ class Units225(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class HOMOEnergyPropertySchema(BaseModel):
-    name: Literal["13#-datamodel-code-generator-#-object-#-special-#"]
+class FormationEnergyPropertySchema(BaseModel):
+    name: Literal["12#-datamodel-code-generator-#-object-#-special-#"]
     units: Union[Units224, Units225]
     value: float
 
 
-class Name528(Enum):
-    ionization_potential = "ionization_potential"
+class Name527(Enum):
+    homo_energy = "homo_energy"
 
 
 class Units226(Enum):
@@ -353,14 +338,14 @@ class Units227(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class IonizationPotentialScalarPropertySchema(BaseModel):
-    name: Literal["14#-datamodel-code-generator-#-object-#-special-#"]
+class HOMOEnergyPropertySchema(BaseModel):
+    name: Literal["13#-datamodel-code-generator-#-object-#-special-#"]
     units: Union[Units226, Units227]
     value: float
 
 
-class Name529(Enum):
-    lumo_energy = "lumo_energy"
+class Name528(Enum):
+    ionization_potential = "ionization_potential"
 
 
 class Units228(Enum):
@@ -378,9 +363,34 @@ class Units229(Enum):
     eV_A_2 = "eV/A^2"
 
 
+class IonizationPotentialScalarPropertySchema(BaseModel):
+    name: Literal["14#-datamodel-code-generator-#-object-#-special-#"]
+    units: Union[Units228, Units229]
+    value: float
+
+
+class Name529(Enum):
+    lumo_energy = "lumo_energy"
+
+
+class Units230(Enum):
+    kcal_mol = "kcal/mol"
+    kJ_mol = "kJ/mol"
+    eV = "eV"
+    J_mol = "J/mol"
+    hartree = "hartree"
+    cm_1 = "cm-1"
+    Ry = "Ry"
+    eV_atom = "eV/atom"
+
+
+class Units231(Enum):
+    eV_A_2 = "eV/A^2"
+
+
 class LUMOEnergyPropertySchema(BaseModel):
     name: Literal["15#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units228, Units229]
+    units: Union[Units230, Units231]
     value: float
 
 
@@ -392,7 +402,7 @@ class Name530(Enum):
     stress_tensor = "stress_tensor"
 
 
-class Units230(Enum):
+class Units232(Enum):
     kbar = "kbar"
     pa = "pa"
 
@@ -400,7 +410,7 @@ class Units230(Enum):
 class StressTensorPropertySchema(BaseModel):
     value: List[ArrayOf3NumberElementsSchema] = Field(..., max_length=3, min_length=3, title="matrix 3x3 schema")
     name: Literal["16#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units230
+    units: Units232
 
 
 class Name531(Enum):
@@ -412,7 +422,7 @@ class Type(Enum):
     indirect = "indirect"
 
 
-class Units231(Enum):
+class Units233(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -442,7 +452,7 @@ class BandGapSchema(BaseModel):
     """
     spin: Optional[float] = None
     type: Type
-    units: Optional[Units231] = None
+    units: Optional[Units233] = None
     value: float
 
 
@@ -471,7 +481,7 @@ class Label(Enum):
     kpoints = "kpoints"
 
 
-class Units232(Enum):
+class Units234(Enum):
     crystal = "crystal"
     cartesian = "cartesian"
 
@@ -481,7 +491,7 @@ class AxisSchema(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units232] = "crystal"
+    units: Optional[Units234] = "crystal"
     """
     units for an axis
     """
@@ -491,7 +501,7 @@ class Label9(Enum):
     energy = "energy"
 
 
-class Units233(Enum):
+class Units235(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -507,7 +517,7 @@ class AxisSchema12(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units233] = None
+    units: Optional[Units235] = None
     """
     units for an axis
     """
@@ -541,7 +551,7 @@ class Label10(Enum):
     qpoints = "qpoints"
 
 
-class Units234(Enum):
+class Units236(Enum):
     crystal = "crystal"
     cartesian = "cartesian"
 
@@ -551,7 +561,7 @@ class AxisSchema13(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units234] = "crystal"
+    units: Optional[Units236] = "crystal"
     """
     units for an axis
     """
@@ -561,7 +571,7 @@ class Label11(Enum):
     frequency = "frequency"
 
 
-class Units235(Enum):
+class Units237(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
@@ -572,7 +582,7 @@ class AxisSchema14(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units235] = None
+    units: Optional[Units237] = None
     """
     units for an axis
     """
@@ -723,7 +733,7 @@ class Name548(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
-class Units236(Enum):
+class Units238(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -792,7 +802,7 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     hartree-fock contribution
     """
     name: Literal["20#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units236] = None
+    units: Optional[Units238] = None
 
 
 class Name549(Enum):
@@ -841,7 +851,7 @@ class FormationEnergyContributionsPropertySchema(BaseModel):
     values: List[FormationEnergyContributionSchema]
 
 
-class Units237(Enum):
+class Units239(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
@@ -852,7 +862,7 @@ class AxisSchema15(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units237] = None
+    units: Optional[Units239] = None
     """
     units for an axis
     """
@@ -862,7 +872,7 @@ class Label13(Enum):
     Phonon_DOS = "Phonon DOS"
 
 
-class Units238(Enum):
+class Units240(Enum):
     states_cm_1 = "states/cm-1"
     states_THz = "states/THz"
     states_meV = "states/meV"
@@ -873,7 +883,7 @@ class AxisSchema16(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units238] = None
+    units: Optional[Units240] = None
     """
     units for an axis
     """
@@ -913,7 +923,7 @@ class Label15(Enum):
     energy = "energy"
 
 
-class Units239(Enum):
+class Units241(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -929,7 +939,7 @@ class AxisSchema18(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units239] = None
+    units: Optional[Units241] = None
     """
     units for an axis
     """
@@ -1019,7 +1029,7 @@ class AxisSchema22(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units239] = None
+    units: Optional[Units241] = None
     """
     units for an axis
     """
@@ -1045,7 +1055,7 @@ class AxisSchema23(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units239] = None
+    units: Optional[Units241] = None
     """
     units for an axis
     """
@@ -1055,7 +1065,7 @@ class Label21(Enum):
     density_of_states = "density of states"
 
 
-class Units242(Enum):
+class Units244(Enum):
     states_unitcell = "states/unitcell"
 
 
@@ -1064,7 +1074,7 @@ class AxisSchema24(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units242] = None
+    units: Optional[Units244] = None
     """
     units for an axis
     """
@@ -1198,7 +1208,7 @@ class Name557(Enum):
     hubbard_u = "hubbard_u"
 
 
-class Units243(Enum):
+class Units245(Enum):
     eV = "eV"
 
 
@@ -1220,7 +1230,7 @@ class AtomicDataPerOrbitalNumeric(BaseModel):
 
 class HubbardUParametersPropertySchema(BaseModel):
     name: Literal["29#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units243
+    units: Units245
     values: List[AtomicDataPerOrbitalNumeric]
 
 
@@ -1259,7 +1269,7 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
 
 class HubbardVParametersPropertySchema(BaseModel):
     name: Literal["30#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units243
+    units: Units245
     values: List[AtomicDataPerOrbitalPairNumeric]
 
 
@@ -1269,7 +1279,7 @@ class Name559(Enum):
 
 class HubbardVNNParametersPropertySchema(BaseModel):
     name: Literal["31#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units243
+    units: Units245
     values: List[AtomicDataPerOrbitalPairNumeric]
 
 
@@ -1277,7 +1287,7 @@ class Label22(Enum):
     z_coordinate = "z coordinate"
 
 
-class Units246(Enum):
+class Units248(Enum):
     km = "km"
     m = "m"
     cm = "cm"
@@ -1295,7 +1305,7 @@ class AxisSchema25(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units246] = None
+    units: Optional[Units248] = None
     """
     units for an axis
     """
@@ -1305,7 +1315,7 @@ class Label23(Enum):
     energy = "energy"
 
 
-class Units247(Enum):
+class Units249(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -1321,7 +1331,7 @@ class AxisSchema26(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units247] = None
+    units: Optional[Units249] = None
     """
     units for an axis
     """
@@ -1361,7 +1371,7 @@ class Label25(Enum):
     charge_density = "charge density"
 
 
-class Units248(Enum):
+class Units250(Enum):
     e_A = "e/A"
 
 
@@ -1370,7 +1380,7 @@ class AxisSchema28(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units248] = None
+    units: Optional[Units250] = None
     """
     units for an axis
     """
@@ -3781,21 +3791,21 @@ class AtomicVectorSchema(BaseModel):
     """
 
 
-class Units249(Enum):
+class Units251(Enum):
     uB = "uB"
 
 
 class MagneticMomentsPropertySchema(BaseModel):
     name: Literal["35#-datamodel-code-generator-#-object-#-special-#"]
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
-    units: Units249
+    units: Units251
 
 
 class Name566(Enum):
     atomic_forces = "atomic_forces"
 
 
-class Units250(Enum):
+class Units252(Enum):
     eV_bohr = "eV/bohr"
     eV_angstrom = "eV/angstrom"
     Ry_a_u_ = "Ry/a.u."
@@ -3807,31 +3817,11 @@ class Units250(Enum):
 class AtomicForcesPropertySchema(BaseModel):
     name: Literal["36#-datamodel-code-generator-#-object-#-special-#"]
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
-    units: Units250
+    units: Units252
 
 
 class Name567(Enum):
     convergence_electronic = "convergence_electronic"
-
-
-class Units251(Enum):
-    eV = "eV"
-    Ry = "Ry"
-    hartree = "hartree"
-
-
-class ConvergenceElectronicPropertySchema(BaseModel):
-    name: Literal["37#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units251
-    data: List[List[float]]
-
-
-class Name568(Enum):
-    convergence_ionic = "convergence_ionic"
-
-
-class Units252(Enum):
-    eV = "eV"
 
 
 class Units253(Enum):
@@ -3840,8 +3830,28 @@ class Units253(Enum):
     hartree = "hartree"
 
 
+class ConvergenceElectronicPropertySchema(BaseModel):
+    name: Literal["37#-datamodel-code-generator-#-object-#-special-#"]
+    units: Units253
+    data: List[List[float]]
+
+
+class Name568(Enum):
+    convergence_ionic = "convergence_ionic"
+
+
+class Units254(Enum):
+    eV = "eV"
+
+
+class Units255(Enum):
+    eV = "eV"
+    Ry = "Ry"
+    hartree = "hartree"
+
+
 class Electronic(BaseModel):
-    units: Optional[Units253] = None
+    units: Optional[Units255] = None
     """
     units for force tolerance
     """
@@ -3869,7 +3879,7 @@ class ConvergenceIonicPropertySchema(BaseModel):
     """
     for ionic convergence tolerance shows force tolerance
     """
-    units: Units252
+    units: Units254
     """
     units for force tolerance
     """

@@ -423,22 +423,22 @@ class Name728(Enum):
     density = "density"
 
 
-class Units322(Enum):
+class Units324(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units322] = None
+    units: Optional[Units324] = None
     value: float
 
 
-class Units323(Enum):
+class Units325(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units323] = None
+    units: Optional[Units325] = None
     value: float
 
 
@@ -979,13 +979,13 @@ class Name735(Enum):
     volume = "volume"
 
 
-class Units324(Enum):
+class Units326(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema74(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units324] = None
+    units: Optional[Units326] = None
     value: float
 
 
@@ -993,22 +993,22 @@ class Name736(Enum):
     density = "density"
 
 
-class Units325(Enum):
+class Units327(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema75(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units325] = None
+    units: Optional[Units327] = None
     value: float
 
 
-class Units326(Enum):
+class Units328(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema90(BaseModel):
-    units: Optional[Units326] = None
+    units: Optional[Units328] = None
     value: float
 
 
@@ -1472,13 +1472,13 @@ class Name743(Enum):
     volume = "volume"
 
 
-class Units327(Enum):
+class Units329(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema75(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units327] = None
+    units: Optional[Units329] = None
     value: float
 
 
@@ -1486,22 +1486,22 @@ class Name744(Enum):
     density = "density"
 
 
-class Units328(Enum):
+class Units330(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema76(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units328] = None
+    units: Optional[Units330] = None
     value: float
 
 
-class Units329(Enum):
+class Units331(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema91(BaseModel):
-    units: Optional[Units329] = None
+    units: Optional[Units331] = None
     value: float
 
 

@@ -167,7 +167,7 @@ class Name494(Enum):
     ionization_potential = "ionization_potential"
 
 
-class Units194(Enum):
+class Units195(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -180,7 +180,7 @@ class Units194(Enum):
 
 class IonizationPotentialElementalPropertySchema(BaseModel):
     name: Name494
-    units: Units194
+    units: Units195
     value: float
 
 

@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Union
 
 from pydantic import BaseModel
 
@@ -14,11 +15,21 @@ class Name(Enum):
 
 
 class Units(Enum):
-    eV_defect = "eV/defect"
+    kcal_mol = "kcal/mol"
+    kJ_mol = "kJ/mol"
     eV = "eV"
+    J_mol = "J/mol"
+    hartree = "hartree"
+    cm_1 = "cm-1"
+    Ry = "Ry"
+    eV_atom = "eV/atom"
+
+
+class Units184(Enum):
+    eV_A_2 = "eV/A^2"
 
 
 class DefectFormationEnergyPropertySchema(BaseModel):
     name: Name
-    units: Units
+    units: Union[Units, Units184]
     value: float

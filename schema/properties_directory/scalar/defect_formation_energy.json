@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../../core/primitive/scalar.json"
+            "$ref": "../../core/reusable/energy.json"
         }
     ],
     "properties": {
@@ -13,16 +13,9 @@
             "enum": [
                 "defect_formation_energy"
             ]
-        },
-        "units": {
-            "enum": [
-                "eV/defect",
-                "eV"
-            ]
         }
     },
     "required": [
-        "name",
-        "units"
+        "name"
     ]
 }

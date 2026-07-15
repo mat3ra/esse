@@ -61,7 +61,7 @@ formation_energy:
 
 defect_formation_energy:
   defaults:
-    units: eV/defect
+    units: eV
   schemaId: properties-directory/scalar/defect-formation-energy
   isResult: true
 

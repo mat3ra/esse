@@ -12,12 +12,28 @@
         "name": {
             "enum": [
                 "defect_formation_energy"
-            ]
+            ],
+            "type": "string"
         },
         "units": {
-            "enum": [
-                "eV/defect",
-                "eV"
+            "oneOf": [
+                {
+                    "enum": [
+                        "kcal/mol",
+                        "kJ/mol",
+                        "eV",
+                        "J/mol",
+                        "hartree",
+                        "cm-1",
+                        "Ry",
+                        "eV/atom"
+                    ]
+                },
+                {
+                    "enum": [
+                        "eV/A^2"
+                    ]
+                }
             ]
         },
         "value": {

@@ -56946,7 +56946,7 @@ export interface HubbardParametersReusableSchema {
 /** Schema dist/js/schema/properties_directory/scalar/defect_formation_energy.json */
 export interface DefectFormationEnergyPropertySchema {
     name: "defect_formation_energy";
-    units: "eV/defect" | "eV";
+    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/electron_affinity.json */
@@ -57694,7 +57694,7 @@ export interface PropertyHolderSchema {
         value: number;
     } | {
         name: "defect_formation_energy";
-        units: "eV/defect" | "eV";
+        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "thermal_correction_to_energy";

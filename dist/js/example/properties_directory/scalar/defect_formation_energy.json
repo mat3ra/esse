@@ -1,5 +1,5 @@
 {
     "name": "defect_formation_energy",
-    "units": "eV/defect",
+    "units": "eV",
     "value": 3.5
 }
