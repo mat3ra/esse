@@ -5,16 +5,16 @@
     "additionalProperties": false,
     "type": "object",
     "properties": {
-        "&CONTROL": {
+        "CONTROL": {
             "$ref": "./pw.x/control.json"
         },
-        "&SYSTEM": {
+        "SYSTEM": {
             "$ref": "./pw.x/system.json"
         },
-        "&ELECTRONS": {
+        "ELECTRONS": {
             "$ref": "./pw.x/electrons.json"
         },
-        "&IONS": {
+        "IONS": {
             "oneOf": [
                 {
                     "$ref": "./pw.x/ions.json"
@@ -24,7 +24,7 @@
                 }
             ]
         },
-        "&CELL": {
+        "CELL": {
             "oneOf": [
                 {
                     "$ref": "./pw.x/cell.json"

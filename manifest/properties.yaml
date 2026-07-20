@@ -29,6 +29,12 @@ surface_energy:
   schemaId: properties-directory/scalar/surface-energy
   isResult: true
 
+interfacial_energy:
+  defaults:
+    units: eV/A^2
+  schemaId: properties-directory/scalar/interfacial-energy
+  isResult: true
+
 fermi_energy:
   defaults:
     units: eV

@@ -58,7 +58,7 @@ git_describe_command = "git describe --tags --long"
 # Consider the below to allow for versions like 2024.1.25.post5.dev1'
 # https://github.com/pypa/setuptools_scm/issues/342#issuecomment-1233118020
 # This won't require a git tag to be present before each publish.
-# See https://github.com/Exabyte-io/actions/blob/main/py/publish/action.yml#L47 also.
+# See https://github.com/mat3ra/actions/blob/main/py/publish/action.yml#L47 also.
 # local_scheme = "no-local-version"
 
 [tool.setuptools.packages.find]

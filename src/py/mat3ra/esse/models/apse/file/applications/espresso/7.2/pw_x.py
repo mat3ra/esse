@@ -1663,7 +1663,7 @@ class CardOption(Enum):
     crystal_sg = "crystal_sg"
 
 
-class Value145(BaseModel):
+class Value151(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1693,7 +1693,7 @@ class AtomicPositionsSchema(BaseModel):
         extra="forbid",
     )
     card_option: Optional[CardOption] = "alat"
-    values: Optional[List[Value145]] = None
+    values: Optional[List[Value151]] = None
 
 
 class CardOption5(Enum):
@@ -1707,7 +1707,7 @@ class CardOption5(Enum):
     crystal_c = "crystal_c"
 
 
-class Value146(BaseModel):
+class Value152(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1756,7 +1756,7 @@ class KPointsSchema(BaseModel):
         extra="forbid",
     )
     card_option: Optional[CardOption5] = None
-    values: Optional[Union[List[Value146], Values]] = None
+    values: Optional[Union[List[Value152], Values]] = None
 
 
 class CardOption6(Enum):
@@ -1853,7 +1853,7 @@ class ParamType(Enum):
     E3 = "E3"
 
 
-class Value147(BaseModel):
+class Value153(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1967,7 +1967,7 @@ class HubbardSchema(BaseModel):
     )
     card_option: Optional[CardOption7] = None
     values: Optional[
-        Union[List[Union[Values9, Values10]], List[Value147], List[Union[Values11, Values12, Values13]]]
+        Union[List[Union[Values9, Values10]], List[Value153], List[Union[Values11, Values12, Values13]]]
     ] = None
 
 
@@ -1975,11 +1975,11 @@ class PwxMainSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    CONTROL: Optional[ControlSchema] = Field(None, alias="&CONTROL", title="control schema")
-    SYSTEM: Optional[Union[SystemSchema, SystemSchema1]] = Field(None, alias="&SYSTEM", title="system schema")
-    ELECTRONS: Optional[ElectronsSchema] = Field(None, alias="&ELECTRONS", title="electrons schema")
-    IONS: Optional[Union[IonsSchema, IonsSchema5, IonsSchema6, IonsSchema7]] = Field(None, alias="&IONS")
-    CELL: Optional[Union[CellSchema, CellSchema3]] = Field(None, alias="&CELL")
+    CONTROL: Optional[ControlSchema] = Field(None, title="control schema")
+    SYSTEM: Optional[Union[SystemSchema, SystemSchema1]] = Field(None, title="system schema")
+    ELECTRONS: Optional[ElectronsSchema] = Field(None, title="electrons schema")
+    IONS: Optional[Union[IonsSchema, IonsSchema5, IonsSchema6, IonsSchema7]] = None
+    CELL: Optional[Union[CellSchema, CellSchema3]] = None
     ATOMIC_SPECIES: Optional[AtomicSpeciesSchema] = Field(None, title="atomic species schema")
     ATOMIC_POSITIONS: Optional[AtomicPositionsSchema] = Field(None, title="atomic positions schema")
     """

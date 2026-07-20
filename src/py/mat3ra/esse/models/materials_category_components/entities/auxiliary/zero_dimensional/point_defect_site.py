@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value143(Enum):
+class Value149(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value143]
+    value: Union[Value, Value149]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name665(Enum):
+class Name691(Enum):
     density = "density"
 
 
-class Units293(Enum):
+class Units306(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units293] = None
+    units: Optional[Units306] = None
     value: float
 
 
-class Units294(Enum):
+class Units307(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units294] = None
+    units: Optional[Units307] = None
     value: float
 
 
-class Name666(Enum):
+class Name692(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name667(Enum):
+class Name693(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name668(Enum):
+class Name694(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name669(Enum):
+class Name695(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name670(Enum):
+class Name696(Enum):
     inchi_key = "inchi_key"
 
 
@@ -450,7 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name671(Enum):
+class Name697(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -463,7 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name671
+    name: Name697
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -739,13 +739,13 @@ class AtomSchema(BaseModel):
     chemical_element: ChemicalElement
 
 
-class ChemicalElement9(Enum):
+class ChemicalElement11(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class VacancySchema(BaseModel):
-    chemical_element: Optional[ChemicalElement9] = "Vac"
+    chemical_element: Optional[ChemicalElement11] = "Vac"
     """
     Extra elements, used for convenience purposed
     """
