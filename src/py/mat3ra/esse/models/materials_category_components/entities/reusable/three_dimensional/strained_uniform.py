@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value171(Enum):
+class Value173(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value171]
+    value: Union[Value, Value173]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name775(Enum):
+class Name783(Enum):
     density = "density"
 
 
-class Units338(Enum):
+class Units341(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units338] = None
+    units: Optional[Units341] = None
     value: float
 
 
-class Units339(Enum):
+class Units342(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units339] = None
+    units: Optional[Units342] = None
     value: float
 
 
-class Name776(Enum):
+class Name784(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name777(Enum):
+class Name785(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name778(Enum):
+class Name786(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name779(Enum):
+class Name787(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name780(Enum):
+class Name788(Enum):
     inchi_key = "inchi_key"
 
 
@@ -450,7 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name781(Enum):
+class Name789(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -463,7 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name781
+    name: Name789
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -572,10 +572,6 @@ class CrystalSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    hash: str
-    """
-    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """
     formula: Optional[str] = None
     """

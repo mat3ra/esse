@@ -573,10 +573,6 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    hash: str
-    """
-    Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-    """
     formula: Optional[str] = None
     """
     reduced chemical formula

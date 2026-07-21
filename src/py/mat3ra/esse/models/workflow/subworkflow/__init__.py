@@ -1060,7 +1060,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name800(Enum):
+class Name808(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1717,7 +1717,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod36 = Field(..., title="base method")
 
 
-class Type138(Enum):
+class Type139(Enum):
     ml = "ml"
 
 
@@ -1745,12 +1745,12 @@ class BaseMethod37(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type138
+    type: Type139
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod37 = Field(..., title="base method")
 
 
-class Type139(Enum):
+class Type140(Enum):
     unknown = "unknown"
 
 
@@ -1778,7 +1778,7 @@ class BaseMethod38(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type139
+    type: Type140
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod38 = Field(..., title="base method")
 
