@@ -8879,10 +8879,6 @@ export interface MaterialSchema {
      */
     isDefault?: boolean;
     /**
-     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-     */
-    hash: string;
-    /**
      * reduced chemical formula
      */
     formula?: string;
@@ -9165,6 +9161,319 @@ export interface MaterialSchema {
         [k: string]: unknown;
     };
 }
+/** Schema dist/js/schema/material_hashed.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
+export interface MaterialHashedSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * reduced chemical formula
+     */
+    formula?: string;
+    /**
+     * chemical formula based on the number of atoms of each element in the supercell
+     */
+    unitCellFormula?: string;
+    basis: {
+        /**
+         * atomic elements schema
+         */
+        elements: {
+            /**
+             * All elements, including extra elements
+             */
+            value: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | ("X" | "Vac")) & string;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic coordinates schema
+         */
+        coordinates: {
+            /**
+             * value of this entry
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            value: [number, number, number];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        units?: "crystal" | "cartesian";
+        /**
+         * atomic labels schema
+         */
+        labels?: {
+            /**
+             * value of this entry
+             */
+            value: (number | string) | number;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+    };
+    lattice: {
+        /**
+         * length of the first lattice vector
+         */
+        a: number;
+        /**
+         * length of the second lattice vector
+         */
+        b: number;
+        /**
+         * length of the third lattice vector
+         */
+        c: number;
+        /**
+         * angle between first and second lattice vector
+         */
+        alpha: number;
+        /**
+         * angle between second and third lattice vector
+         */
+        beta: number;
+        /**
+         * angle between first and third lattice vector
+         */
+        gamma: number;
+        vectors?: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            a: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            b: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            c: [number, number, number];
+            /**
+             * lattice parameter for fractional coordinates
+             */
+            alat?: number;
+            units?: "angstrom" | "bohr";
+        };
+        type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+        units?: {
+            length?: "angstrom" | "bohr";
+            angle?: "degree" | "radian";
+        };
+    };
+    derivedProperties?: ({
+        name?: "volume";
+        units?: "angstrom^3";
+        value: number;
+    } | {
+        name?: "density";
+        units?: "g/cm^3";
+        value: number;
+    } | {
+        /**
+         * point group symbol in Schoenflies notation
+         */
+        pointGroupSymbol?: string;
+        /**
+         * space group symbol in Hermann–Mauguin notation
+         */
+        spaceGroupSymbol?: string;
+        /**
+         * tolerance used for symmetry calculation
+         */
+        tolerance?: {
+            units?: "angstrom";
+            value: number;
+        };
+        name?: "symmetry";
+    } | {
+        name?: "elemental_ratio";
+        value: number;
+        /**
+         * the element this ratio is for
+         */
+        element?: string;
+    } | {
+        name?: "p-norm";
+        /**
+         * degree of the dimensionality of the norm
+         */
+        degree?: number;
+        value: number;
+    } | {
+        name?: "inchi";
+        value: string;
+    } | {
+        name?: "inchi_key";
+        value: string;
+    })[];
+    /**
+     * information about a database source
+     */
+    external?: {
+        /**
+         * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+         */
+        id: string | number;
+        /**
+         * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+         */
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
+        /**
+         * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+         */
+        origin: boolean;
+        /**
+         * Original response from external source.
+         */
+        data?: {};
+        /**
+         * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+         */
+        doi?: string;
+        /**
+         * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+         */
+        url?: string;
+    };
+    /**
+     * file source with the information inside
+     */
+    src?: {
+        /**
+         * file extension
+         */
+        extension?: string;
+        /**
+         * file name without extension
+         */
+        filename: string;
+        /**
+         * file content as raw text
+         */
+        text: string;
+        /**
+         * MD5 hash based on file content
+         */
+        hash: string;
+    };
+    /**
+     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     */
+    scaledHash?: string;
+    /**
+     * Corresponding ICSD id of the material
+     */
+    icsdId?: number;
+    /**
+     * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+     */
+    isNonPeriodic?: boolean;
+    consistencyChecks?: {
+        /**
+         * Name of the consistency check that is performed, which is listed in an enum.
+         */
+        name: "default" | "atomsTooClose" | "atomsOverlap";
+        /**
+         * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+         */
+        key: string;
+        /**
+         * Severity level of the problem, which is used in UI to differentiate.
+         */
+        severity: "info" | "warning" | "error";
+        /**
+         * Message generated by the consistency check describing the problem.
+         */
+        message: string;
+    }[];
+    metadata: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
+    };
+    /**
+     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+     */
+    hash: string;
+}
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
  * A two-dimensional interface between two slabs, optionally including vacuum, with a specified stacking direction.
@@ -9233,10 +9542,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -9559,10 +9864,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -9934,10 +10235,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -10259,10 +10556,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -10623,10 +10916,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -10948,10 +11237,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -11323,10 +11608,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -11648,10 +11929,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -12013,10 +12290,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -12338,10 +12611,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -12713,10 +12982,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -13038,10 +13303,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -13402,10 +13663,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -13727,10 +13984,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -14102,10 +14355,6 @@ export interface InterfaceConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -14427,10 +14676,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -14768,10 +15013,6 @@ export interface InterfaceConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -15151,10 +15392,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -15476,10 +15713,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -15851,10 +16084,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -16176,10 +16405,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -16540,10 +16765,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -16865,10 +17086,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -17240,10 +17457,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -17565,10 +17778,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -17933,10 +18142,6 @@ export interface SolidSolutionConfigurationSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -18259,10 +18464,6 @@ export interface SolidSolutionConfigurationSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -18568,10 +18769,6 @@ export interface SolidSolutionConfigurationSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
             /**
              * reduced chemical formula
              */
@@ -18881,10 +19078,6 @@ export interface SolidSolutionConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -19255,10 +19448,6 @@ export interface AdatomDefectConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -19580,10 +19769,6 @@ export interface AdatomDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -19913,10 +20098,6 @@ export interface AdatomDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -20248,10 +20429,6 @@ export interface AdatomDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -20628,10 +20805,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -20953,10 +21126,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -21328,10 +21497,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -21653,10 +21818,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -22017,10 +22178,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -22342,10 +22499,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -22717,10 +22870,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -23042,10 +23191,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -23407,10 +23552,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -23732,10 +23873,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -24107,10 +24244,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -24432,10 +24565,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -24796,10 +24925,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -25121,10 +25246,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -25496,10 +25617,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -25821,10 +25938,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -26162,10 +26275,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -26539,10 +26648,6 @@ export interface IslandDefectConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -26864,10 +26969,6 @@ export interface IslandDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -27234,10 +27335,6 @@ export interface IslandDefectConfigurationSchema {
                                  */
                                 isDefault?: boolean;
                                 /**
-                                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                                 */
-                                hash: string;
-                                /**
                                  * reduced chemical formula
                                  */
                                 formula?: string;
@@ -27559,10 +27656,6 @@ export interface IslandDefectConfigurationSchema {
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                /**
-                                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                                 */
-                                hash: string;
                                 /**
                                  * reduced chemical formula
                                  */
@@ -27892,10 +27985,6 @@ export interface IslandDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -28275,10 +28364,6 @@ export interface IslandDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -28649,10 +28734,6 @@ export interface TerraceDefectConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -28974,10 +29055,6 @@ export interface TerraceDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -29344,10 +29421,6 @@ export interface TerraceDefectConfigurationSchema {
                                  */
                                 isDefault?: boolean;
                                 /**
-                                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                                 */
-                                hash: string;
-                                /**
                                  * reduced chemical formula
                                  */
                                 formula?: string;
@@ -29669,10 +29742,6 @@ export interface TerraceDefectConfigurationSchema {
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                /**
-                                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                                 */
-                                hash: string;
                                 /**
                                  * reduced chemical formula
                                  */
@@ -30002,10 +30071,6 @@ export interface TerraceDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -30386,10 +30451,6 @@ export interface TerraceDefectConfigurationSchema {
                  */
                 isDefault?: boolean;
                 /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
-                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -30732,10 +30793,6 @@ export interface PointDefectBaseConfigurationSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -31058,10 +31115,6 @@ export interface InterstitialPointDefectSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -31370,10 +31423,6 @@ export interface InterstitialPointDefectSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -31710,10 +31759,6 @@ export interface SubstitutionalPointDefectSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -32022,10 +32067,6 @@ export interface SubstitutionalPointDefectSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -32362,10 +32403,6 @@ export interface VacancyPointDefectSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -32686,10 +32723,6 @@ export interface IdealCrystalSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    /**
-     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-     */
-    hash: string;
     /**
      * reduced chemical formula
      */
@@ -33057,10 +33090,6 @@ export interface NanoribbonConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -33382,10 +33411,6 @@ export interface NanoribbonConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -33723,10 +33748,6 @@ export interface NanoribbonConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -34108,10 +34129,6 @@ export interface NanoTapeConfigurationSchema {
                  */
                 isDefault?: boolean;
                 /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
-                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -34433,10 +34450,6 @@ export interface NanoTapeConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -34801,10 +34814,6 @@ export interface SlabConfigurationSchema {
                  */
                 isDefault?: boolean;
                 /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
-                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -35126,10 +35135,6 @@ export interface SlabConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -35506,10 +35511,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                  */
                 isDefault?: boolean;
                 /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
-                /**
                  * reduced chemical formula
                  */
                 formula?: string;
@@ -35831,10 +35832,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -36170,10 +36167,6 @@ export interface PassivationConfigurationSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -36481,10 +36474,6 @@ export interface PassivationConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -36805,10 +36794,6 @@ export interface PassivationConfigurationSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -37116,10 +37101,6 @@ export interface PassivationConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -37440,10 +37421,6 @@ export interface PassivationConfigurationSchema {
              */
             isDefault?: boolean;
             /**
-             * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-             */
-            hash: string;
-            /**
              * reduced chemical formula
              */
             formula?: string;
@@ -37751,10 +37728,6 @@ export interface PassivationConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -38145,10 +38118,6 @@ export interface CrystalSiteSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -38467,10 +38436,6 @@ export interface PointDefectSiteSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */
@@ -38798,10 +38763,6 @@ export interface VoidRegionSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */
@@ -39167,10 +39128,6 @@ export interface CrystalSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    /**
-     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-     */
-    hash: string;
     /**
      * reduced chemical formula
      */
@@ -39559,10 +39516,6 @@ export interface VacuumConfigurationSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -39900,10 +39853,6 @@ export interface CrystalLatticeLinesSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */
@@ -40264,10 +40213,6 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -40585,10 +40530,6 @@ export interface CrystalLatticeBaseSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */
@@ -40916,10 +40857,6 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -41239,10 +41176,6 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -41560,10 +41493,6 @@ export interface SupercellConfigurationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */
@@ -41918,10 +41847,6 @@ export interface AtomicLayersSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -42274,10 +42199,6 @@ export interface AtomicLayersUniqueSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -42620,10 +42541,6 @@ export interface AtomicLayersUniqueRepeatedSchema {
          */
         isDefault?: boolean;
         /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
-        /**
          * reduced chemical formula
          */
         formula?: string;
@@ -42948,10 +42865,6 @@ export interface CrystalLatticePlanesSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */
@@ -43307,10 +43220,6 @@ export interface SlabStackConfigurationSchema {
                          */
                         isDefault?: boolean;
                         /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
-                        /**
                          * reduced chemical formula
                          */
                         formula?: string;
@@ -43632,10 +43541,6 @@ export interface SlabStackConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        /**
-                         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                         */
-                        hash: string;
                         /**
                          * reduced chemical formula
                          */
@@ -43974,10 +43879,6 @@ export interface SlabStackConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-                 */
-                hash: string;
                 /**
                  * reduced chemical formula
                  */
@@ -44351,10 +44252,6 @@ export interface PerturbationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-         */
-        hash: string;
         /**
          * reduced chemical formula
          */

@@ -1,10 +1,11 @@
 {
-    "$id": "material",
+    "$id": "material-hashed",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "material schema",
+    "title": "material hashed schema",
     "type": "object",
     "required": [
         "basis",
+        "hash",
         "lattice",
         "metadata",
         "name"
@@ -848,6 +849,10 @@
                 }
             ],
             "additionalProperties": true
+        },
+        "hash": {
+            "description": "Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.",
+            "type": "string"
         }
     }
 }
