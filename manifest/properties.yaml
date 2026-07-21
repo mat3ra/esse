@@ -59,6 +59,12 @@ formation_energy:
   schemaId: properties-directory/scalar/formation-energy
   isResult: true
 
+defect_formation_energy:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/defect-formation-energy
+  isResult: true
+
 total_force:
   defaults:
     units: eV/angstrom

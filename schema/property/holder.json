@@ -37,6 +37,9 @@
                     "$ref": "../properties_directory/scalar/interfacial_energy.json"
                 },
                 {
+                    "$ref": "../properties_directory/scalar/defect_formation_energy.json"
+                },
+                {
                     "$ref": "../properties_directory/scalar/thermal_correction_to_energy.json"
                 },
                 {
