@@ -1,0 +1,36 @@
+---
+description: Resolve ESSE merge conflicts by merging source schemas and regenerating derived artifacts
+globs: "{schema,example,manifest,dist/js,src/py}/**/*"
+alwaysApply: false
+---
+
+# ESSE generated merge conflicts
+
+Treat `schema/**`, `example/**`, and `manifest/**` as sources of truth. These outputs are generated:
+
+- `dist/js/**`
+- `src/py/mat3ra/esse/data/**`
+- `src/py/mat3ra/esse/models/**` (`dist/py` points here)
+
+When merging:
+
+1. Merge source schemas, examples, and manifests first, preserving intentional changes from both branches.
+2. Do not hand-merge generated Python enum suffixes such as `Name631`, `Units284`, or `Value137`; their numbering is unstable and regeneration determines it.
+3. Resolve generated files temporarily if Git requires it, then regenerate all derived artifacts from the merged sources:
+
+```bash
+npm run transpile-and-build-assets
+pre-commit run generate-python-modules --all-files
+```
+
+The Python hook only runs when a staged path contains `schema`, so stage the resolved source schema changes before invoking it. Its canonical command and pinned generator options live in `.pre-commit-config.yaml`.
+
+After generation, stage the generated outputs and verify:
+
+```bash
+git diff --name-only --diff-filter=U
+rg -n '^(<<<<<<<|=======|>>>>>>>)' .
+git diff --check
+```
+
+Do not blindly choose `ours` or `theirs` for generated files when source schemas differ. A side may contain real additions (for example, a new property) while the other contains unrelated schema fixes; the regenerated result must include both.

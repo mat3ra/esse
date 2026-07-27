@@ -1108,7 +1108,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name872(Enum):
+class Name874(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1138,7 +1138,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name873(Enum):
+class Name875(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"

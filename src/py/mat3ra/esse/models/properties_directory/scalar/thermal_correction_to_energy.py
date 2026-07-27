@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units357(Enum):
+class Units361(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ThermalCorrectionToEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units357]
+    units: Union[Units, Units361]
     value: float
