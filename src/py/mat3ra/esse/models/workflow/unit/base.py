@@ -28,12 +28,6 @@ class Status(Enum):
     finished = "finished"
 
 
-class StatusTrackSchema(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class WorkflowBaseUnitSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -76,11 +70,12 @@ class WorkflowBaseUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
+    trackedAt: float
+    status: Status
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackSchema]] = None
+    repetition: Optional[float] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """

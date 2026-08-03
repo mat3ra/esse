@@ -28,12 +28,6 @@ class Status(Enum):
     finished = "finished"
 
 
-class StatusTrackSchema(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class Input(BaseModel):
     target: str
     """
@@ -96,11 +90,12 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
+    trackedAt: float
+    status: Status
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackSchema]] = None
+    repetition: Optional[float] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -182,11 +177,12 @@ class ReduceUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
+    trackedAt: float
+    status: Status
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackSchema]] = None
+    repetition: Optional[float] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -257,11 +253,12 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
+    trackedAt: float
+    status: Status
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackSchema]] = None
+    repetition: Optional[float] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -324,11 +321,12 @@ class ErrorUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
+    trackedAt: float
+    status: Status
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackSchema]] = None
+    repetition: Optional[float] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """

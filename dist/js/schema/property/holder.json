@@ -2944,7 +2944,9 @@
                                                         "preProcessors",
                                                         "results",
                                                         "source",
-                                                        "subtype"
+                                                        "status",
+                                                        "subtype",
+                                                        "trackedAt"
                                                     ],
                                                     "properties": {
                                                         "_id": {
@@ -3059,6 +3061,9 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "trackedAt": {
+                                                            "type": "number"
+                                                        },
                                                         "status": {
                                                             "type": "string",
                                                             "description": "Status of the unit.",
@@ -3070,28 +3075,8 @@
                                                                 "finished"
                                                             ]
                                                         },
-                                                        "statusTrack": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "status track schema",
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "trackedAt",
-                                                                    "status"
-                                                                ],
-                                                                "properties": {
-                                                                    "trackedAt": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repetition": {
-                                                                        "type": "number"
-                                                                    }
-                                                                }
-                                                            }
+                                                        "repetition": {
+                                                            "type": "number"
                                                         },
                                                         "isDraft": {
                                                             "type": "boolean"
@@ -3247,7 +3232,9 @@
                                                         "preProcessors",
                                                         "results",
                                                         "statement",
-                                                        "then"
+                                                        "status",
+                                                        "then",
+                                                        "trackedAt"
                                                     ],
                                                     "properties": {
                                                         "_id": {
@@ -3362,6 +3349,9 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "trackedAt": {
+                                                            "type": "number"
+                                                        },
                                                         "status": {
                                                             "type": "string",
                                                             "description": "Status of the unit.",
@@ -3373,28 +3363,8 @@
                                                                 "finished"
                                                             ]
                                                         },
-                                                        "statusTrack": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "status track schema",
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "trackedAt",
-                                                                    "status"
-                                                                ],
-                                                                "properties": {
-                                                                    "trackedAt": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repetition": {
-                                                                        "type": "number"
-                                                                    }
-                                                                }
-                                                            }
+                                                        "repetition": {
+                                                            "type": "number"
                                                         },
                                                         "isDraft": {
                                                             "type": "boolean"
@@ -3474,7 +3444,9 @@
                                                         "postProcessors",
                                                         "preProcessors",
                                                         "results",
-                                                        "statement"
+                                                        "statement",
+                                                        "status",
+                                                        "trackedAt"
                                                     ],
                                                     "properties": {
                                                         "_id": {
@@ -3589,6 +3561,9 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "trackedAt": {
+                                                            "type": "number"
+                                                        },
                                                         "status": {
                                                             "type": "string",
                                                             "description": "Status of the unit.",
@@ -3600,28 +3575,8 @@
                                                                 "finished"
                                                             ]
                                                         },
-                                                        "statusTrack": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "status track schema",
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "trackedAt",
-                                                                    "status"
-                                                                ],
-                                                                "properties": {
-                                                                    "trackedAt": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repetition": {
-                                                                        "type": "number"
-                                                                    }
-                                                                }
-                                                            }
+                                                        "repetition": {
+                                                            "type": "number"
                                                         },
                                                         "isDraft": {
                                                             "type": "boolean"
@@ -3671,6 +3626,8 @@
                                                         "postProcessors",
                                                         "preProcessors",
                                                         "results",
+                                                        "status",
+                                                        "trackedAt",
                                                         "type"
                                                     ],
                                                     "properties": {
@@ -3786,6 +3743,9 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "trackedAt": {
+                                                            "type": "number"
+                                                        },
                                                         "status": {
                                                             "type": "string",
                                                             "description": "Status of the unit.",
@@ -3797,28 +3757,8 @@
                                                                 "finished"
                                                             ]
                                                         },
-                                                        "statusTrack": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "status track schema",
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "trackedAt",
-                                                                    "status"
-                                                                ],
-                                                                "properties": {
-                                                                    "trackedAt": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repetition": {
-                                                                        "type": "number"
-                                                                    }
-                                                                }
-                                                            }
+                                                        "repetition": {
+                                                            "type": "number"
                                                         },
                                                         "isDraft": {
                                                             "type": "boolean"
@@ -5822,6 +5762,8 @@
                                                         "postProcessors",
                                                         "preProcessors",
                                                         "results",
+                                                        "status",
+                                                        "trackedAt",
                                                         "value"
                                                     ],
                                                     "properties": {
@@ -5937,6 +5879,9 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "trackedAt": {
+                                                            "type": "number"
+                                                        },
                                                         "status": {
                                                             "type": "string",
                                                             "description": "Status of the unit.",
@@ -5948,28 +5893,8 @@
                                                                 "finished"
                                                             ]
                                                         },
-                                                        "statusTrack": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "status track schema",
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "trackedAt",
-                                                                    "status"
-                                                                ],
-                                                                "properties": {
-                                                                    "trackedAt": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repetition": {
-                                                                        "type": "number"
-                                                                    }
-                                                                }
-                                                            }
+                                                        "repetition": {
+                                                            "type": "number"
                                                         },
                                                         "isDraft": {
                                                             "type": "boolean"
@@ -6050,7 +5975,9 @@
                                                         "postProcessors",
                                                         "preProcessors",
                                                         "reason",
-                                                        "results"
+                                                        "results",
+                                                        "status",
+                                                        "trackedAt"
                                                     ],
                                                     "properties": {
                                                         "_id": {
@@ -6165,6 +6092,9 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "trackedAt": {
+                                                            "type": "number"
+                                                        },
                                                         "status": {
                                                             "type": "string",
                                                             "description": "Status of the unit.",
@@ -6176,28 +6106,8 @@
                                                                 "finished"
                                                             ]
                                                         },
-                                                        "statusTrack": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "status track schema",
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "trackedAt",
-                                                                    "status"
-                                                                ],
-                                                                "properties": {
-                                                                    "trackedAt": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repetition": {
-                                                                        "type": "number"
-                                                                    }
-                                                                }
-                                                            }
+                                                        "repetition": {
+                                                            "type": "number"
                                                         },
                                                         "isDraft": {
                                                             "type": "boolean"
@@ -6655,6 +6565,8 @@
                                             "postProcessors",
                                             "preProcessors",
                                             "results",
+                                            "status",
+                                            "trackedAt",
                                             "workflowId"
                                         ],
                                         "properties": {
@@ -6770,6 +6682,9 @@
                                                     "type": "string"
                                                 }
                                             },
+                                            "trackedAt": {
+                                                "type": "number"
+                                            },
                                             "status": {
                                                 "type": "string",
                                                 "description": "Status of the unit.",
@@ -6781,28 +6696,8 @@
                                                     "finished"
                                                 ]
                                             },
-                                            "statusTrack": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "status track schema",
-                                                    "type": "object",
-                                                    "required": [
-                                                        "trackedAt",
-                                                        "status"
-                                                    ],
-                                                    "properties": {
-                                                        "trackedAt": {
-                                                            "type": "number"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "repetition": {
-                                                            "type": "number"
-                                                        }
-                                                    }
-                                                }
+                                            "repetition": {
+                                                "type": "number"
                                             },
                                             "isDraft": {
                                                 "type": "boolean"
@@ -6885,7 +6780,9 @@
                                             "name",
                                             "postProcessors",
                                             "preProcessors",
-                                            "results"
+                                            "results",
+                                            "status",
+                                            "trackedAt"
                                         ],
                                         "properties": {
                                             "_id": {
@@ -7000,6 +6897,9 @@
                                                     "type": "string"
                                                 }
                                             },
+                                            "trackedAt": {
+                                                "type": "number"
+                                            },
                                             "status": {
                                                 "type": "string",
                                                 "description": "Status of the unit.",
@@ -7011,28 +6911,8 @@
                                                     "finished"
                                                 ]
                                             },
-                                            "statusTrack": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "status track schema",
-                                                    "type": "object",
-                                                    "required": [
-                                                        "trackedAt",
-                                                        "status"
-                                                    ],
-                                                    "properties": {
-                                                        "trackedAt": {
-                                                            "type": "number"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "repetition": {
-                                                            "type": "number"
-                                                        }
-                                                    }
-                                                }
+                                            "repetition": {
+                                                "type": "number"
                                             },
                                             "isDraft": {
                                                 "type": "boolean"
@@ -7096,7 +6976,9 @@
                                             "name",
                                             "postProcessors",
                                             "preProcessors",
-                                            "results"
+                                            "results",
+                                            "status",
+                                            "trackedAt"
                                         ],
                                         "properties": {
                                             "_id": {
@@ -7211,6 +7093,9 @@
                                                     "type": "string"
                                                 }
                                             },
+                                            "trackedAt": {
+                                                "type": "number"
+                                            },
                                             "status": {
                                                 "type": "string",
                                                 "description": "Status of the unit.",
@@ -7222,28 +7107,8 @@
                                                     "finished"
                                                 ]
                                             },
-                                            "statusTrack": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "status track schema",
-                                                    "type": "object",
-                                                    "required": [
-                                                        "trackedAt",
-                                                        "status"
-                                                    ],
-                                                    "properties": {
-                                                        "trackedAt": {
-                                                            "type": "number"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "repetition": {
-                                                            "type": "number"
-                                                        }
-                                                    }
-                                                }
+                                            "repetition": {
+                                                "type": "number"
                                             },
                                             "isDraft": {
                                                 "type": "boolean"
@@ -7280,7 +7145,9 @@
                                             "postProcessors",
                                             "preProcessors",
                                             "reason",
-                                            "results"
+                                            "results",
+                                            "status",
+                                            "trackedAt"
                                         ],
                                         "properties": {
                                             "_id": {
@@ -7395,6 +7262,9 @@
                                                     "type": "string"
                                                 }
                                             },
+                                            "trackedAt": {
+                                                "type": "number"
+                                            },
                                             "status": {
                                                 "type": "string",
                                                 "description": "Status of the unit.",
@@ -7406,28 +7276,8 @@
                                                     "finished"
                                                 ]
                                             },
-                                            "statusTrack": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "status track schema",
-                                                    "type": "object",
-                                                    "required": [
-                                                        "trackedAt",
-                                                        "status"
-                                                    ],
-                                                    "properties": {
-                                                        "trackedAt": {
-                                                            "type": "number"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "repetition": {
-                                                            "type": "number"
-                                                        }
-                                                    }
-                                                }
+                                            "repetition": {
+                                                "type": "number"
                                             },
                                             "isDraft": {
                                                 "type": "boolean"

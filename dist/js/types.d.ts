@@ -6217,15 +6217,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6371,15 +6368,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6497,15 +6491,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6598,15 +6589,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -7520,15 +7508,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -7635,15 +7620,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -7934,15 +7916,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -8053,15 +8032,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -8163,15 +8139,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -8256,15 +8229,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55071,15 +55041,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55225,15 +55192,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55351,15 +55315,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55452,15 +55413,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -56374,15 +56332,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -56489,15 +56444,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -56788,15 +56740,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -56907,15 +56856,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -57017,15 +56963,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -57110,15 +57053,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -58910,15 +58850,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -59064,15 +59001,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -59190,15 +59124,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -59291,15 +59222,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -60213,15 +60141,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -60328,15 +60253,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
+                trackedAt: number;
                 /**
                  * Status of the unit.
                  */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
+                status: "idle" | "active" | "warning" | "error" | "finished";
+                repetition?: number;
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -60627,15 +60549,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60746,15 +60665,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60856,15 +60772,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60949,15 +60862,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -62244,15 +62154,12 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -63479,15 +63386,12 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -65078,15 +64982,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65232,15 +65133,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65358,15 +65256,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65459,15 +65354,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -66381,15 +66273,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -66496,15 +66385,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -66795,15 +66681,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -66914,15 +66797,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67024,15 +66904,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67117,15 +66994,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67483,15 +67357,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67637,15 +67508,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67763,15 +67631,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67864,15 +67729,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -68786,15 +68648,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -68901,15 +68760,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -69198,15 +69054,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69352,15 +69205,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69478,15 +69328,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69579,15 +69426,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -70501,15 +70345,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -70616,15 +70457,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -70844,15 +70682,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -70998,15 +70833,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -71124,15 +70956,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -71225,15 +71054,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -72147,15 +71973,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -72262,15 +72085,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -72559,15 +72379,12 @@ export interface AssertionUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72662,15 +72479,12 @@ export interface AssignmentUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72779,15 +72593,12 @@ export interface WorkflowBaseUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72873,15 +72684,12 @@ export interface ConditionUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -74257,15 +74065,12 @@ export interface ErrorUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -74356,15 +74161,12 @@ export interface ExecutionUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -75477,15 +75279,12 @@ export interface DataIOUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -75633,15 +75432,12 @@ export interface MapUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -76831,15 +76627,12 @@ export interface ReduceUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77014,15 +76807,12 @@ export interface SubworkflowUnitSchema {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77109,15 +76899,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77228,15 +77015,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77338,15 +77122,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77431,15 +77212,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
+    trackedAt: number;
     /**
      * Status of the unit.
      */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
+    status: "idle" | "active" | "warning" | "error" | "finished";
+    repetition?: number;
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77801,15 +77579,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -77955,15 +77730,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -78081,15 +77853,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -78182,15 +77951,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -79104,15 +78870,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -79219,15 +78982,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
+            trackedAt: number;
             /**
              * Status of the unit.
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
+            status: "idle" | "active" | "warning" | "error" | "finished";
+            repetition?: number;
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -79518,15 +79278,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79637,15 +79394,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79747,15 +79501,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79840,15 +79591,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
+        trackedAt: number;
         /**
          * Status of the unit.
          */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
+        status: "idle" | "active" | "warning" | "error" | "finished";
+        repetition?: number;
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.

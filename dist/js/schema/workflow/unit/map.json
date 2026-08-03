@@ -11,6 +11,8 @@
         "postProcessors",
         "preProcessors",
         "results",
+        "status",
+        "trackedAt",
         "workflowId"
     ],
     "properties": {
@@ -126,6 +128,9 @@
                 "type": "string"
             }
         },
+        "trackedAt": {
+            "type": "number"
+        },
         "status": {
             "type": "string",
             "description": "Status of the unit.",
@@ -137,28 +142,8 @@
                 "finished"
             ]
         },
-        "statusTrack": {
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "status track schema",
-                "type": "object",
-                "required": [
-                    "trackedAt",
-                    "status"
-                ],
-                "properties": {
-                    "trackedAt": {
-                        "type": "number"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "repetition": {
-                        "type": "number"
-                    }
-                }
-            }
+        "repetition": {
+            "type": "number"
         },
         "isDraft": {
             "type": "boolean"
