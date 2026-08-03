@@ -64836,6 +64836,12 @@ export interface StatusSchema {
         repetition?: number;
     }[];
 }
+/** Schema dist/js/schema/system/status_track.json */
+export interface StatusTrackSchema {
+    trackedAt: number;
+    status: string;
+    repetition?: number;
+}
 /** Schema dist/js/schema/system/tags.json */
 export interface EntityTagsSchema {
     /**

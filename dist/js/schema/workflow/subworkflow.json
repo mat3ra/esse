@@ -360,6 +360,8 @@
                             "statusTrack": {
                                 "type": "array",
                                 "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "status track schema",
                                     "type": "object",
                                     "required": [
                                         "trackedAt",
@@ -661,6 +663,8 @@
                             "statusTrack": {
                                 "type": "array",
                                 "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "status track schema",
                                     "type": "object",
                                     "required": [
                                         "trackedAt",
@@ -886,6 +890,8 @@
                             "statusTrack": {
                                 "type": "array",
                                 "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "status track schema",
                                     "type": "object",
                                     "required": [
                                         "trackedAt",
@@ -1081,6 +1087,8 @@
                             "statusTrack": {
                                 "type": "array",
                                 "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "status track schema",
                                     "type": "object",
                                     "required": [
                                         "trackedAt",
@@ -3230,6 +3238,8 @@
                             "statusTrack": {
                                 "type": "array",
                                 "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "status track schema",
                                     "type": "object",
                                     "required": [
                                         "trackedAt",
@@ -3456,6 +3466,8 @@
                             "statusTrack": {
                                 "type": "array",
                                 "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "status track schema",
                                     "type": "object",
                                     "required": [
                                         "trackedAt",

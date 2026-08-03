@@ -251,7 +251,7 @@ class Status(Enum):
     finished = "finished"
 
 
-class StatusTrackItem(BaseModel):
+class StatusTrackSchema(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
@@ -382,7 +382,7 @@ class DataIOUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -463,7 +463,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -554,7 +554,7 @@ class AssertionUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -1517,7 +1517,7 @@ class ExecutionUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -1589,7 +1589,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -1669,7 +1669,7 @@ class ErrorUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -2054,7 +2054,7 @@ class MapUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -2140,7 +2140,7 @@ class ReduceUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -2215,7 +2215,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -2282,7 +2282,7 @@ class ErrorUnitSchema14(BaseModel):
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """

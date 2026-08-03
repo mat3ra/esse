@@ -10,22 +10,7 @@
         "statusTrack": {
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "trackedAt": {
-                        "type": "number"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "repetition": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "trackedAt",
-                    "status"
-                ]
+                "$ref": "status_track.json"
             }
         }
     }

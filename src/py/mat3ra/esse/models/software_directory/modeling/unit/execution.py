@@ -28,7 +28,7 @@ class Status(Enum):
     finished = "finished"
 
 
-class StatusTrackItem(BaseModel):
+class StatusTrackSchema(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
@@ -1011,7 +1011,7 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     """
     Status of the unit.
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    statusTrack: Optional[List[StatusTrackSchema]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
