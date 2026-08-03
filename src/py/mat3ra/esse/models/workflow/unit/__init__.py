@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel
@@ -17,6 +18,14 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
     The name of this item. e.g. scf_accuracy
     """
+
+
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
 
 
 class StatusTrackItem(BaseModel):
@@ -87,7 +96,10 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -170,7 +182,10 @@ class ReduceUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -242,7 +257,10 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -306,7 +324,10 @@ class ErrorUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None

@@ -376,7 +376,15 @@
                                             }
                                         },
                                         "status": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Status of the unit.",
+                                            "enum": [
+                                                "idle",
+                                                "active",
+                                                "warning",
+                                                "error",
+                                                "finished"
+                                            ]
                                         },
                                         "statusTrack": {
                                             "type": "array",
@@ -669,7 +677,15 @@
                                             }
                                         },
                                         "status": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Status of the unit.",
+                                            "enum": [
+                                                "idle",
+                                                "active",
+                                                "warning",
+                                                "error",
+                                                "finished"
+                                            ]
                                         },
                                         "statusTrack": {
                                             "type": "array",
@@ -886,7 +902,15 @@
                                             }
                                         },
                                         "status": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Status of the unit.",
+                                            "enum": [
+                                                "idle",
+                                                "active",
+                                                "warning",
+                                                "error",
+                                                "finished"
+                                            ]
                                         },
                                         "statusTrack": {
                                             "type": "array",
@@ -1073,7 +1097,15 @@
                                             }
                                         },
                                         "status": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Status of the unit.",
+                                            "enum": [
+                                                "idle",
+                                                "active",
+                                                "warning",
+                                                "error",
+                                                "finished"
+                                            ]
                                         },
                                         "statusTrack": {
                                             "type": "array",
@@ -3214,7 +3246,15 @@
                                             }
                                         },
                                         "status": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Status of the unit.",
+                                            "enum": [
+                                                "idle",
+                                                "active",
+                                                "warning",
+                                                "error",
+                                                "finished"
+                                            ]
                                         },
                                         "statusTrack": {
                                             "type": "array",
@@ -3432,7 +3472,15 @@
                                             }
                                         },
                                         "status": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Status of the unit.",
+                                            "enum": [
+                                                "idle",
+                                                "active",
+                                                "warning",
+                                                "error",
+                                                "finished"
+                                            ]
                                         },
                                         "statusTrack": {
                                             "type": "array",
@@ -4027,7 +4075,15 @@
                                 }
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Status of the unit.",
+                                "enum": [
+                                    "idle",
+                                    "active",
+                                    "warning",
+                                    "error",
+                                    "finished"
+                                ]
                             },
                             "statusTrack": {
                                 "type": "array",
@@ -4247,7 +4303,15 @@
                                 }
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Status of the unit.",
+                                "enum": [
+                                    "idle",
+                                    "active",
+                                    "warning",
+                                    "error",
+                                    "finished"
+                                ]
                             },
                             "statusTrack": {
                                 "type": "array",
@@ -4448,7 +4512,15 @@
                                 }
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Status of the unit.",
+                                "enum": [
+                                    "idle",
+                                    "active",
+                                    "warning",
+                                    "error",
+                                    "finished"
+                                ]
                             },
                             "statusTrack": {
                                 "type": "array",
@@ -4622,7 +4694,15 @@
                                 }
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Status of the unit.",
+                                "enum": [
+                                    "idle",
+                                    "active",
+                                    "warning",
+                                    "error",
+                                    "finished"
+                                ]
                             },
                             "statusTrack": {
                                 "type": "array",

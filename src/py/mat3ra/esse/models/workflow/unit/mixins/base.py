@@ -4,9 +4,18 @@
 
 from __future__ import annotations
 
+from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel
+
+
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
 
 
 class WorkflowBaseUnitMixinSchema(BaseModel):
@@ -26,4 +35,8 @@ class WorkflowBaseUnitMixinSchema(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """

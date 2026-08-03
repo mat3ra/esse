@@ -1634,6 +1634,14 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
 class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
@@ -1734,7 +1742,10 @@ class DataIOUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -1812,7 +1823,10 @@ class ConditionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -1900,7 +1914,10 @@ class AssertionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -2860,7 +2877,10 @@ class ExecutionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -2929,7 +2949,10 @@ class AssignmentUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -3006,7 +3029,10 @@ class ErrorUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -3388,7 +3414,10 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -3471,7 +3500,10 @@ class ReduceUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -3543,7 +3575,10 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
@@ -3607,7 +3642,10 @@ class ErrorUnitSchema4(BaseModel):
     """
     entity tags
     """
-    status: Optional[str] = None
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None

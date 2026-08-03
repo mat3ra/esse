@@ -6217,7 +6217,10 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -6368,7 +6371,10 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -6491,7 +6497,10 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -6589,7 +6598,10 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -7508,7 +7520,10 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -7620,7 +7635,10 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -7916,7 +7934,10 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -8032,7 +8053,10 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -8139,7 +8163,10 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -8229,7 +8256,10 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -55041,7 +55071,10 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -55192,7 +55225,10 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -55315,7 +55351,10 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -55413,7 +55452,10 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -56332,7 +56374,10 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -56444,7 +56489,10 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -56740,7 +56788,10 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -56856,7 +56907,10 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -56963,7 +57017,10 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -57053,7 +57110,10 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -58850,7 +58910,10 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -59001,7 +59064,10 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -59124,7 +59190,10 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -59222,7 +59291,10 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -60141,7 +60213,10 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -60253,7 +60328,10 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                status?: string;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
@@ -60549,7 +60627,10 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -60665,7 +60746,10 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -60772,7 +60856,10 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -60862,7 +60949,10 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -62154,7 +62244,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -63386,7 +63479,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -64976,7 +65072,10 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -65127,7 +65226,10 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -65250,7 +65352,10 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -65348,7 +65453,10 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -66267,7 +66375,10 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -66379,7 +66490,10 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -66675,7 +66789,10 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -66791,7 +66908,10 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -66898,7 +67018,10 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -66988,7 +67111,10 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -67351,7 +67477,10 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -67502,7 +67631,10 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -67625,7 +67757,10 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -67723,7 +67858,10 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -68642,7 +68780,10 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -68754,7 +68895,10 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -69048,7 +69192,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -69199,7 +69346,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -69322,7 +69472,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -69420,7 +69573,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -70339,7 +70495,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -70451,7 +70610,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -70676,7 +70838,10 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -70827,7 +70992,10 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -70950,7 +71118,10 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -71048,7 +71219,10 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -71967,7 +72141,10 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -72079,7 +72256,10 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -72373,7 +72553,10 @@ export interface AssertionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -72473,7 +72656,10 @@ export interface AssignmentUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -72587,7 +72773,10 @@ export interface WorkflowBaseUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -72678,7 +72867,10 @@ export interface ConditionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -74059,7 +74251,10 @@ export interface ErrorUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -74155,7 +74350,10 @@ export interface ExecutionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -75273,7 +75471,10 @@ export interface DataIOUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -75426,7 +75627,10 @@ export interface MapUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -75533,6 +75737,10 @@ export interface WorkflowBaseUnitMixinSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
 }
 /** Schema dist/js/schema/workflow/unit/mixins/condition.json */
 export interface ConditionUnitMixinSchema {
@@ -76617,7 +76825,10 @@ export interface ReduceUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -76797,7 +77008,10 @@ export interface SubworkflowUnitSchema {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -76889,7 +77103,10 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -77005,7 +77222,10 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -77112,7 +77332,10 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -77202,7 +77425,10 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    status?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
@@ -77569,7 +77795,10 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -77720,7 +77949,10 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -77843,7 +78075,10 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -77941,7 +78176,10 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -78860,7 +79098,10 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -78972,7 +79213,10 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            status?: string;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
@@ -79268,7 +79512,10 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -79384,7 +79631,10 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -79491,7 +79741,10 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
@@ -79581,7 +79834,10 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        status?: string;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
