@@ -1,0 +1,14 @@
+{
+    "$id": "material-constrained-hashed",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material constrained hashed schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "material_constrained.json"
+        },
+        {
+            "$ref": "system/hashed.json"
+        }
+    ]
+}

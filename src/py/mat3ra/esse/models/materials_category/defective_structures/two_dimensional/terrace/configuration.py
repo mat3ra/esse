@@ -265,13 +265,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value35(Enum):
+class Value37(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value35]
+    value: Union[Value, Value37]
     """
     All elements, including extra elements
     """
@@ -773,7 +773,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class Value36(Enum):
+class Value38(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -894,13 +894,13 @@ class Value36(Enum):
     Og = "Og"
 
 
-class Value37(Enum):
+class Value39(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema17(BaseModel):
-    value: Union[Value36, Value37]
+class AtomicElementSchema18(BaseModel):
+    value: Union[Value38, Value39]
     """
     All elements, including extra elements
     """
@@ -911,7 +911,7 @@ class AtomicElementSchema17(BaseModel):
 
 
 class BasisSchema15(BaseModel):
-    elements: List[AtomicElementSchema17] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema18] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -1279,7 +1279,7 @@ class TerminationSchema8(BaseModel):
     """
 
 
-class Value38(Enum):
+class Value40(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -1400,13 +1400,13 @@ class Value38(Enum):
     Og = "Og"
 
 
-class Value39(Enum):
+class Value41(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema18(BaseModel):
-    value: Union[Value38, Value39]
+class AtomicElementSchema19(BaseModel):
+    value: Union[Value40, Value41]
     """
     All elements, including extra elements
     """
@@ -1417,7 +1417,7 @@ class AtomicElementSchema18(BaseModel):
 
 
 class BasisSchema16(BaseModel):
-    elements: List[AtomicElementSchema18] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema19] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -1755,7 +1755,7 @@ class AtomicLayersUniqueRepeatedSchema6(BaseModel):
     """
 
 
-class Value40(Enum):
+class Value42(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -1876,13 +1876,13 @@ class Value40(Enum):
     Og = "Og"
 
 
-class Value41(Enum):
+class Value43(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema19(BaseModel):
-    value: Union[Value40, Value41]
+class AtomicElementSchema20(BaseModel):
+    value: Union[Value42, Value43]
     """
     All elements, including extra elements
     """
@@ -1893,7 +1893,7 @@ class AtomicElementSchema19(BaseModel):
 
 
 class BasisSchema17(BaseModel):
-    elements: List[AtomicElementSchema19] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema20] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -2237,7 +2237,7 @@ class SlabConfigurationSchema3(BaseModel):
     """
 
 
-class Value42(Enum):
+class Value44(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -2358,13 +2358,13 @@ class Value42(Enum):
     Og = "Og"
 
 
-class Value43(Enum):
+class Value45(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema20(BaseModel):
-    value: Union[Value42, Value43]
+class AtomicElementSchema21(BaseModel):
+    value: Union[Value44, Value45]
     """
     All elements, including extra elements
     """
@@ -2375,7 +2375,7 @@ class AtomicElementSchema20(BaseModel):
 
 
 class BasisSchema18(BaseModel):
-    elements: List[AtomicElementSchema20] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema21] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -2768,7 +2768,7 @@ class MergeSchema(BaseModel):
     """
 
 
-class Value44(Enum):
+class Value46(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -2889,13 +2889,13 @@ class Value44(Enum):
     Og = "Og"
 
 
-class Value45(Enum):
+class Value47(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema21(BaseModel):
-    value: Union[Value44, Value45]
+class AtomicElementSchema22(BaseModel):
+    value: Union[Value46, Value47]
     """
     All elements, including extra elements
     """
@@ -2906,7 +2906,7 @@ class AtomicElementSchema21(BaseModel):
 
 
 class BasisSchema19(BaseModel):
-    elements: List[AtomicElementSchema21] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema22] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """

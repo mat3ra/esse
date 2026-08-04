@@ -1125,7 +1125,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name874(Enum):
+class Name890(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1155,7 +1155,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name875(Enum):
+class Name891(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1821,7 +1821,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod47 = Field(..., title="base method")
 
 
-class Type151(Enum):
+class Type153(Enum):
     ml = "ml"
 
 
@@ -1849,12 +1849,12 @@ class BaseMethod48(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type151
+    type: Type153
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod48 = Field(..., title="base method")
 
 
-class Type152(Enum):
+class Type154(Enum):
     unknown = "unknown"
 
 
@@ -1882,7 +1882,7 @@ class BaseMethod49(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type152
+    type: Type154
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod49 = Field(..., title="base method")
 

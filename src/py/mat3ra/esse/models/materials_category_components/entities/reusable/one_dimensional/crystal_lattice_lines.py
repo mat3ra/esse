@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value117(Enum):
+class Value119(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value117]
+    value: Union[Value, Value119]
     """
     All elements, including extra elements
     """

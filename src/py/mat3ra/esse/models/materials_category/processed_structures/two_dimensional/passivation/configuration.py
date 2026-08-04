@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value109(Enum):
+class Value111(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value109]
+    value: Union[Value, Value111]
     """
     All elements, including extra elements
     """
@@ -610,7 +610,7 @@ class MaterialSchema(BaseModel):
     ] = {}
 
 
-class Value110(Enum):
+class Value112(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -731,13 +731,13 @@ class Value110(Enum):
     Og = "Og"
 
 
-class Value111(Enum):
+class Value113(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema54(BaseModel):
-    value: Union[Value110, Value111]
+class AtomicElementSchema55(BaseModel):
+    value: Union[Value112, Value113]
     """
     All elements, including extra elements
     """
@@ -748,7 +748,7 @@ class AtomicElementSchema54(BaseModel):
 
 
 class BasisSchema52(BaseModel):
-    elements: List[AtomicElementSchema54] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema55] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
