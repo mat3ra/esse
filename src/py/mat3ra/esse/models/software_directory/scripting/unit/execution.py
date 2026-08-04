@@ -20,6 +20,12 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -1001,12 +1007,7 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     entity tags
     """
-    trackedAt: float
-    status: Status
-    """
-    Status of the unit.
-    """
-    repetition: Optional[float] = None
+    statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -1023,6 +1024,10 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """
     type: Literal["execution"]
     application: ApplicationSchema = Field(..., title="application schema")

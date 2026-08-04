@@ -6217,12 +6217,11 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6240,6 +6239,10 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "io";
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "object_storage";
@@ -6368,12 +6371,11 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6391,6 +6393,10 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "condition";
                 /**
                  * Input information for condition.
@@ -6491,12 +6497,11 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6514,6 +6519,10 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "assertion";
                 /**
                  * The statement to be evaluated
@@ -6589,12 +6598,11 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -6612,6 +6620,10 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type: "execution";
                 application: {
                     /**
@@ -7508,12 +7520,11 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -7531,6 +7542,10 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 scope?: string;
                 type?: "assignment";
                 /**
@@ -7620,12 +7635,11 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -7643,6 +7657,10 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "error";
                 /**
                  * JSON string with validation/hydration details: { error, json, schema }
@@ -7916,12 +7934,11 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -7939,6 +7956,10 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "map";
             /**
              * Id of workflow to run inside map
@@ -8032,12 +8053,11 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -8055,6 +8075,10 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "reduce";
             /**
              * corresponding map unit flowchart ID
@@ -8139,12 +8163,11 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -8162,6 +8185,10 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "subworkflow";
         } | {
             /**
@@ -8229,12 +8256,11 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -8252,6 +8278,10 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
@@ -55041,12 +55071,11 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55064,6 +55093,10 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
@@ -55192,12 +55225,11 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55215,6 +55247,10 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "condition";
             /**
              * Input information for condition.
@@ -55315,12 +55351,11 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55338,6 +55373,10 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "assertion";
             /**
              * The statement to be evaluated
@@ -55413,12 +55452,11 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -55436,6 +55474,10 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type: "execution";
             application: {
                 /**
@@ -56332,12 +56374,11 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -56355,6 +56396,10 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             scope?: string;
             type?: "assignment";
             /**
@@ -56444,12 +56489,11 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -56467,6 +56511,10 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
@@ -56740,12 +56788,11 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -56763,6 +56810,10 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "map";
         /**
          * Id of workflow to run inside map
@@ -56856,12 +56907,11 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -56879,6 +56929,10 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "reduce";
         /**
          * corresponding map unit flowchart ID
@@ -56963,12 +57017,11 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -56986,6 +57039,10 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "subworkflow";
     } | {
         /**
@@ -57053,12 +57110,11 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -57076,6 +57132,10 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
@@ -58850,12 +58910,11 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -58873,6 +58932,10 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "io";
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "object_storage";
@@ -59001,12 +59064,11 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -59024,6 +59086,10 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "condition";
                 /**
                  * Input information for condition.
@@ -59124,12 +59190,11 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -59147,6 +59212,10 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "assertion";
                 /**
                  * The statement to be evaluated
@@ -59222,12 +59291,11 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -59245,6 +59313,10 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type: "execution";
                 application: {
                     /**
@@ -60141,12 +60213,11 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -60164,6 +60235,10 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 scope?: string;
                 type?: "assignment";
                 /**
@@ -60253,12 +60328,11 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                trackedAt: number;
-                /**
-                 * Status of the unit.
-                 */
-                status: "idle" | "active" | "warning" | "error" | "finished";
-                repetition?: number;
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
                 isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
@@ -60276,6 +60350,10 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 type?: "error";
                 /**
                  * JSON string with validation/hydration details: { error, json, schema }
@@ -60549,12 +60627,11 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60572,6 +60649,10 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "map";
             /**
              * Id of workflow to run inside map
@@ -60665,12 +60746,11 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60688,6 +60768,10 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "reduce";
             /**
              * corresponding map unit flowchart ID
@@ -60772,12 +60856,11 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60795,6 +60878,10 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "subworkflow";
         } | {
             /**
@@ -60862,12 +60949,11 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -60885,6 +60971,10 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
@@ -62154,12 +62244,11 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -62177,6 +62266,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type: "execution";
     application: {
         /**
@@ -63386,12 +63479,11 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -63409,6 +63501,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type: "execution";
     application: {
         /**
@@ -64742,9 +64838,11 @@ export interface StatusSchema {
 }
 /** Schema dist/js/schema/system/status_track.json */
 export interface StatusTrackSchema {
-    trackedAt: number;
-    status: string;
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
 }
 /** Schema dist/js/schema/system/tags.json */
 export interface EntityTagsSchema {
@@ -64982,12 +65080,11 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65005,6 +65102,10 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
@@ -65133,12 +65234,11 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65156,6 +65256,10 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "condition";
             /**
              * Input information for condition.
@@ -65256,12 +65360,11 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65279,6 +65382,10 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "assertion";
             /**
              * The statement to be evaluated
@@ -65354,12 +65461,11 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -65377,6 +65483,10 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type: "execution";
             application: {
                 /**
@@ -66273,12 +66383,11 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -66296,6 +66405,10 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             scope?: string;
             type?: "assignment";
             /**
@@ -66385,12 +66498,11 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -66408,6 +66520,10 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
@@ -66681,12 +66797,11 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -66704,6 +66819,10 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "map";
         /**
          * Id of workflow to run inside map
@@ -66797,12 +66916,11 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -66820,6 +66938,10 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "reduce";
         /**
          * corresponding map unit flowchart ID
@@ -66904,12 +67026,11 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -66927,6 +67048,10 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "subworkflow";
     } | {
         /**
@@ -66994,12 +67119,11 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67017,6 +67141,10 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
@@ -67357,12 +67485,11 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67380,6 +67507,10 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "io";
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "object_storage";
@@ -67508,12 +67639,11 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67531,6 +67661,10 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "condition";
         /**
          * Input information for condition.
@@ -67631,12 +67765,11 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67654,6 +67787,10 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "assertion";
         /**
          * The statement to be evaluated
@@ -67729,12 +67866,11 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -67752,6 +67888,10 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type: "execution";
         application: {
             /**
@@ -68648,12 +68788,11 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -68671,6 +68810,10 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         scope?: string;
         type?: "assignment";
         /**
@@ -68760,12 +68903,11 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -68783,6 +68925,10 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
@@ -69054,12 +69200,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69077,6 +69222,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "io";
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "object_storage";
@@ -69205,12 +69354,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69228,6 +69376,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "condition";
     /**
      * Input information for condition.
@@ -69328,12 +69480,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69351,6 +69502,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "assertion";
     /**
      * The statement to be evaluated
@@ -69426,12 +69581,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -69449,6 +69603,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type: "execution";
     application: {
         /**
@@ -70345,12 +70503,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -70368,6 +70525,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     scope?: string;
     type?: "assignment";
     /**
@@ -70457,12 +70618,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -70480,6 +70640,10 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
@@ -70682,12 +70846,11 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -70705,6 +70868,10 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "io";
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "object_storage";
@@ -70833,12 +71000,11 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -70856,6 +71022,10 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "condition";
         /**
          * Input information for condition.
@@ -70956,12 +71126,11 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -70979,6 +71148,10 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "assertion";
         /**
          * The statement to be evaluated
@@ -71054,12 +71227,11 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -71077,6 +71249,10 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type: "execution";
         application: {
             /**
@@ -71973,12 +72149,11 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -71996,6 +72171,10 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         scope?: string;
         type?: "assignment";
         /**
@@ -72085,12 +72264,11 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -72108,6 +72286,10 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
@@ -72379,12 +72561,11 @@ export interface AssertionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72402,6 +72583,10 @@ export interface AssertionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "assertion";
     /**
      * The statement to be evaluated
@@ -72479,12 +72664,11 @@ export interface AssignmentUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72502,6 +72686,10 @@ export interface AssignmentUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     scope?: string;
     type?: "assignment";
     /**
@@ -72593,12 +72781,11 @@ export interface WorkflowBaseUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72616,6 +72803,10 @@ export interface WorkflowBaseUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
 }
 /** Schema dist/js/schema/workflow/unit/condition.json */
 export interface ConditionUnitSchema {
@@ -72684,12 +72875,11 @@ export interface ConditionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -72707,6 +72897,10 @@ export interface ConditionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "condition";
     /**
      * Input information for condition.
@@ -74065,12 +74259,11 @@ export interface ErrorUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -74088,6 +74281,10 @@ export interface ErrorUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
@@ -74161,12 +74358,11 @@ export interface ExecutionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -74184,6 +74380,10 @@ export interface ExecutionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type: "execution";
     application: {
         /**
@@ -75279,12 +75479,11 @@ export interface DataIOUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -75302,6 +75501,10 @@ export interface DataIOUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "io";
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "object_storage";
@@ -75432,12 +75635,11 @@ export interface MapUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -75455,6 +75657,10 @@ export interface MapUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "map";
     /**
      * Id of workflow to run inside map
@@ -76627,12 +76833,11 @@ export interface ReduceUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -76650,6 +76855,10 @@ export interface ReduceUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "reduce";
     /**
      * corresponding map unit flowchart ID
@@ -76807,12 +77016,11 @@ export interface SubworkflowUnitSchema {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -76830,6 +77038,10 @@ export interface SubworkflowUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "subworkflow";
 }
 /** Schema dist/js/schema/workflow/unit.json */
@@ -76899,12 +77111,11 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -76922,6 +77133,10 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "map";
     /**
      * Id of workflow to run inside map
@@ -77015,12 +77230,11 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77038,6 +77252,10 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "reduce";
     /**
      * corresponding map unit flowchart ID
@@ -77122,12 +77340,11 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77145,6 +77362,10 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "subworkflow";
 } | {
     /**
@@ -77212,12 +77433,11 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    trackedAt: number;
-    /**
-     * Status of the unit.
-     */
-    status: "idle" | "active" | "warning" | "error" | "finished";
-    repetition?: number;
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
@@ -77235,6 +77455,10 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
@@ -77579,12 +77803,11 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -77602,6 +77825,10 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
@@ -77730,12 +77957,11 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -77753,6 +77979,10 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "condition";
             /**
              * Input information for condition.
@@ -77853,12 +78083,11 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -77876,6 +78105,10 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "assertion";
             /**
              * The statement to be evaluated
@@ -77951,12 +78184,11 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -77974,6 +78206,10 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type: "execution";
             application: {
                 /**
@@ -78870,12 +79106,11 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -78893,6 +79128,10 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             scope?: string;
             type?: "assignment";
             /**
@@ -78982,12 +79221,11 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            trackedAt: number;
-            /**
-             * Status of the unit.
-             */
-            status: "idle" | "active" | "warning" | "error" | "finished";
-            repetition?: number;
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
             isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
@@ -79005,6 +79243,10 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
@@ -79278,12 +79520,11 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79301,6 +79542,10 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "map";
         /**
          * Id of workflow to run inside map
@@ -79394,12 +79639,11 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79417,6 +79661,10 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "reduce";
         /**
          * corresponding map unit flowchart ID
@@ -79501,12 +79749,11 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79524,6 +79771,10 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "subworkflow";
     } | {
         /**
@@ -79591,12 +79842,11 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        trackedAt: number;
-        /**
-         * Status of the unit.
-         */
-        status: "idle" | "active" | "warning" | "error" | "finished";
-        repetition?: number;
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
         isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
@@ -79614,6 +79864,10 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }

@@ -9,7 +9,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
-class StatusTrackSchema(BaseModel):
+class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
@@ -17,4 +17,4 @@ class StatusTrackSchema(BaseModel):
 
 class StatusSchema(BaseModel):
     status: Optional[str] = None
-    statusTrack: Optional[List[StatusTrackSchema]] = None
+    statusTrack: Optional[List[StatusTrackItem]] = None

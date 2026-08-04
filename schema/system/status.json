@@ -3,15 +3,14 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "status schema",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "status_track.json"
+        }
+    ],
     "properties": {
         "status": {
             "type": "string"
-        },
-        "statusTrack": {
-            "type": "array",
-            "items": {
-                "$ref": "status_track.json"
-            }
         }
     }
 }

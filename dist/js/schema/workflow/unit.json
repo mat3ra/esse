@@ -16,8 +16,6 @@
                 "postProcessors",
                 "preProcessors",
                 "results",
-                "status",
-                "trackedAt",
                 "workflowId"
             ],
             "properties": {
@@ -133,22 +131,26 @@
                         "type": "string"
                     }
                 },
-                "trackedAt": {
-                    "type": "number"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "repetition": {
-                    "type": "number"
+                "statusTrack": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "trackedAt",
+                            "status"
+                        ],
+                        "properties": {
+                            "trackedAt": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "repetition": {
+                                "type": "number"
+                            }
+                        }
+                    }
                 },
                 "isDraft": {
                     "type": "boolean"
@@ -168,6 +170,17 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "type": {
                     "const": "map"
@@ -231,9 +244,7 @@
                 "name",
                 "postProcessors",
                 "preProcessors",
-                "results",
-                "status",
-                "trackedAt"
+                "results"
             ],
             "properties": {
                 "_id": {
@@ -348,22 +359,26 @@
                         "type": "string"
                     }
                 },
-                "trackedAt": {
-                    "type": "number"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "repetition": {
-                    "type": "number"
+                "statusTrack": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "trackedAt",
+                            "status"
+                        ],
+                        "properties": {
+                            "trackedAt": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "repetition": {
+                                "type": "number"
+                            }
+                        }
+                    }
                 },
                 "isDraft": {
                     "type": "boolean"
@@ -383,6 +398,17 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "type": {
                     "const": "reduce"
@@ -427,9 +453,7 @@
                 "name",
                 "postProcessors",
                 "preProcessors",
-                "results",
-                "status",
-                "trackedAt"
+                "results"
             ],
             "properties": {
                 "_id": {
@@ -544,22 +568,26 @@
                         "type": "string"
                     }
                 },
-                "trackedAt": {
-                    "type": "number"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "repetition": {
-                    "type": "number"
+                "statusTrack": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "trackedAt",
+                            "status"
+                        ],
+                        "properties": {
+                            "trackedAt": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "repetition": {
+                                "type": "number"
+                            }
+                        }
+                    }
                 },
                 "isDraft": {
                     "type": "boolean"
@@ -579,6 +607,17 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "type": {
                     "const": "subworkflow"
@@ -596,9 +635,7 @@
                 "postProcessors",
                 "preProcessors",
                 "reason",
-                "results",
-                "status",
-                "trackedAt"
+                "results"
             ],
             "properties": {
                 "_id": {
@@ -713,22 +750,26 @@
                         "type": "string"
                     }
                 },
-                "trackedAt": {
-                    "type": "number"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "repetition": {
-                    "type": "number"
+                "statusTrack": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "trackedAt",
+                            "status"
+                        ],
+                        "properties": {
+                            "trackedAt": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "repetition": {
+                                "type": "number"
+                            }
+                        }
+                    }
                 },
                 "isDraft": {
                     "type": "boolean"
@@ -748,6 +789,17 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "type": {
                     "const": "error"

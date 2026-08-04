@@ -4,12 +4,16 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel
 
 
-class StatusTrackSchema(BaseModel):
+class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
+
+
+class StatusTrackSchema(BaseModel):
+    statusTrack: Optional[List[StatusTrackItem]] = None

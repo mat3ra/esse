@@ -20,6 +20,12 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -90,12 +96,7 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    trackedAt: float
-    status: Status
-    """
-    Status of the unit.
-    """
-    repetition: Optional[float] = None
+    statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -112,6 +113,10 @@ class MapUnitSchema(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """
     type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     workflowId: str
@@ -177,12 +182,7 @@ class ReduceUnitSchema(BaseModel):
     """
     entity tags
     """
-    trackedAt: float
-    status: Status
-    """
-    Status of the unit.
-    """
-    repetition: Optional[float] = None
+    statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -199,6 +199,10 @@ class ReduceUnitSchema(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     mapFlowchartId: str
@@ -253,12 +257,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity tags
     """
-    trackedAt: float
-    status: Status
-    """
-    Status of the unit.
-    """
-    repetition: Optional[float] = None
+    statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -275,6 +274,10 @@ class SubworkflowUnitSchema(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
@@ -321,12 +324,7 @@ class ErrorUnitSchema(BaseModel):
     """
     entity tags
     """
-    trackedAt: float
-    status: Status
-    """
-    Status of the unit.
-    """
-    repetition: Optional[float] = None
+    statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
@@ -343,6 +341,10 @@ class ErrorUnitSchema(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """
     type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     reason: str
