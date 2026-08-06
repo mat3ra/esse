@@ -732,10 +732,6 @@ class CrystalSchema(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -1207,10 +1203,6 @@ class CrystalSchema5(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """
@@ -1722,10 +1714,6 @@ class CrystalSchema6(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -2197,10 +2185,6 @@ class CrystalSchema7(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """
@@ -2705,10 +2689,6 @@ class CrystalSchema8(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -3180,10 +3160,6 @@ class CrystalSchema9(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """
@@ -3676,10 +3652,6 @@ class CrystalSchema10(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -4151,10 +4123,6 @@ class CrystalSchema11(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """
@@ -4645,10 +4613,6 @@ class CrystalSchema12(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """

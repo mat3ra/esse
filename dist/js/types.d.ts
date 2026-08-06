@@ -8744,10 +8744,6 @@ export interface MaterialPropertiesSchema {
         hash: string;
     };
     /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
-    /**
      * Corresponding ICSD id of the material
      */
     icsdId?: number;
@@ -9111,10 +9107,6 @@ export interface MaterialSchema {
         hash: string;
     };
     /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
-    /**
      * Corresponding ICSD id of the material
      */
     icsdId?: number;
@@ -9432,10 +9424,6 @@ export interface MaterialConstrainedSchema {
          */
         hash: string;
     };
-    /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
     /**
      * Corresponding ICSD id of the material
      */
@@ -9755,10 +9743,6 @@ export interface MaterialConstrainedHashedSchema {
         hash: string;
     };
     /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
-    /**
      * Corresponding ICSD id of the material
      */
     icsdId?: number;
@@ -9838,6 +9822,10 @@ export interface MaterialConstrainedHashedSchema {
      * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
      */
     hash: string;
+    /**
+     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     */
+    scaledHash?: string;
 }
 /** Schema dist/js/schema/material_hashed.json */
 /**
@@ -10068,10 +10056,6 @@ export interface MaterialHashedSchema {
         hash: string;
     };
     /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
-    /**
      * Corresponding ICSD id of the material
      */
     icsdId?: number;
@@ -10151,6 +10135,10 @@ export interface MaterialHashedSchema {
      * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
      */
     hash: string;
+    /**
+     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     */
+    scaledHash?: string;
 }
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
@@ -10422,10 +10410,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -10744,10 +10728,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -11115,10 +11095,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -11436,10 +11412,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -11796,10 +11768,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -12117,10 +12085,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -12488,10 +12452,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -12809,10 +12769,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -13170,10 +13126,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -13491,10 +13443,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -13862,10 +13810,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -14183,10 +14127,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -14543,10 +14483,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -14864,10 +14800,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -15235,10 +15167,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -15556,10 +15484,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -15893,10 +15817,6 @@ export interface InterfaceConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -16272,10 +16192,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -16593,10 +16509,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -16964,10 +16876,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -17285,10 +17193,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -17645,10 +17549,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -17966,10 +17866,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -18337,10 +18233,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -18658,10 +18550,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -19022,10 +18910,6 @@ export interface SolidSolutionConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -19344,10 +19228,6 @@ export interface SolidSolutionConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -19649,10 +19529,6 @@ export interface SolidSolutionConfigurationSchema {
                  */
                 hash: string;
             };
-            /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
             /**
              * Corresponding ICSD id of the material
              */
@@ -19958,10 +19834,6 @@ export interface SolidSolutionConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -20328,10 +20200,6 @@ export interface AdatomDefectConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -20649,10 +20517,6 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -20978,10 +20842,6 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -21309,10 +21169,6 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -21685,10 +21541,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -22006,10 +21858,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -22377,10 +22225,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -22698,10 +22542,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -23058,10 +22898,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -23379,10 +23215,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -23750,10 +23582,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -24071,10 +23899,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -24432,10 +24256,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -24753,10 +24573,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -25124,10 +24940,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -25445,10 +25257,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -25805,10 +25613,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -26126,10 +25930,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -26497,10 +26297,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -26818,10 +26614,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -27155,10 +26947,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -27528,10 +27316,6 @@ export interface IslandDefectConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -27849,10 +27633,6 @@ export interface IslandDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -28215,10 +27995,6 @@ export interface IslandDefectConfigurationSchema {
                                     hash: string;
                                 };
                                 /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
-                                /**
                                  * Corresponding ICSD id of the material
                                  */
                                 icsdId?: number;
@@ -28536,10 +28312,6 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     hash: string;
                                 };
-                                /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
                                 /**
                                  * Corresponding ICSD id of the material
                                  */
@@ -28865,10 +28637,6 @@ export interface IslandDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -29244,10 +29012,6 @@ export interface IslandDefectConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -29614,10 +29378,6 @@ export interface TerraceDefectConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -29935,10 +29695,6 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -30301,10 +30057,6 @@ export interface TerraceDefectConfigurationSchema {
                                     hash: string;
                                 };
                                 /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
-                                /**
                                  * Corresponding ICSD id of the material
                                  */
                                 icsdId?: number;
@@ -30622,10 +30374,6 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     hash: string;
                                 };
-                                /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
                                 /**
                                  * Corresponding ICSD id of the material
                                  */
@@ -30951,10 +30699,6 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -31331,10 +31075,6 @@ export interface TerraceDefectConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -31673,10 +31413,6 @@ export interface PointDefectBaseConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -31995,10 +31731,6 @@ export interface InterstitialPointDefectSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -32303,10 +32035,6 @@ export interface InterstitialPointDefectSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -32639,10 +32367,6 @@ export interface SubstitutionalPointDefectSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -32947,10 +32671,6 @@ export interface SubstitutionalPointDefectSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -33283,10 +33003,6 @@ export interface VacancyPointDefectSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -33603,10 +33319,6 @@ export interface IdealCrystalSchema {
          */
         hash: string;
     };
-    /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
     /**
      * Corresponding ICSD id of the material
      */
@@ -33970,10 +33682,6 @@ export interface NanoribbonConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -34291,10 +33999,6 @@ export interface NanoribbonConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -34628,10 +34332,6 @@ export interface NanoribbonConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -35009,10 +34709,6 @@ export interface NanoTapeConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -35330,10 +35026,6 @@ export interface NanoTapeConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -35694,10 +35386,6 @@ export interface SlabConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -36015,10 +35703,6 @@ export interface SlabConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -36391,10 +36075,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -36712,10 +36392,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -37047,10 +36723,6 @@ export interface PassivationConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -37354,10 +37026,6 @@ export interface PassivationConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -37674,10 +37342,6 @@ export interface PassivationConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -37981,10 +37645,6 @@ export interface PassivationConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -38301,10 +37961,6 @@ export interface PassivationConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -38608,10 +38264,6 @@ export interface PassivationConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -38998,10 +38650,6 @@ export interface CrystalSiteSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -39316,10 +38964,6 @@ export interface PointDefectSiteSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -39643,10 +39287,6 @@ export interface VoidRegionSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -40008,10 +39648,6 @@ export interface CrystalSchema {
          */
         hash: string;
     };
-    /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
     /**
      * Corresponding ICSD id of the material
      */
@@ -40396,10 +40032,6 @@ export interface VacuumConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -40733,10 +40365,6 @@ export interface CrystalLatticeLinesSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -41093,10 +40721,6 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -41410,10 +41034,6 @@ export interface CrystalLatticeBaseSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -41737,10 +41357,6 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -42056,10 +41672,6 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -42373,10 +41985,6 @@ export interface SupercellConfigurationSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -42727,10 +42335,6 @@ export interface AtomicLayersSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -43079,10 +42683,6 @@ export interface AtomicLayersUniqueSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -43421,10 +43021,6 @@ export interface AtomicLayersUniqueRepeatedSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -43745,10 +43341,6 @@ export interface CrystalLatticePlanesSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -44100,10 +43692,6 @@ export interface SlabStackConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -44421,10 +44009,6 @@ export interface SlabStackConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -44759,10 +44343,6 @@ export interface SlabStackConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -45132,10 +44712,6 @@ export interface PerturbationSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */

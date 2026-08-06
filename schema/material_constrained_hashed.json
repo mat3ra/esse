@@ -8,7 +8,7 @@
             "$ref": "material_constrained.json"
         },
         {
-            "$ref": "system/hashed.json"
+            "$ref": "material_hashed.json"
         }
     ]
 }

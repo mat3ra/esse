@@ -592,10 +592,6 @@ class MaterialHashedSchema(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -611,4 +607,8 @@ class MaterialHashedSchema(BaseModel):
     hash: str
     """
     Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+    """
+    scaledHash: Optional[str] = None
+    """
+    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """

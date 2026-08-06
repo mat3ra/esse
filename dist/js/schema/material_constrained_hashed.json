@@ -746,10 +746,6 @@
                 }
             }
         },
-        "scaledHash": {
-            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
-            "type": "string"
-        },
         "icsdId": {
             "description": "Corresponding ICSD id of the material",
             "type": "integer"
@@ -892,6 +888,10 @@
         },
         "hash": {
             "description": "Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.",
+            "type": "string"
+        },
+        "scaledHash": {
+            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
             "type": "string"
         }
     }
