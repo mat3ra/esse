@@ -20,6 +20,17 @@ export default class JSONSchemasInterface {
     }
 
     /**
+     * Like {@link getSchemaById}, but throws if the schema is not registered.
+     */
+    static getRequiredSchemaById(schemaId: string): JSONSchema {
+        const schema = this.getSchemaById(schemaId);
+        if (!schema) {
+            throw new Error(`ESSE schema not found: ${schemaId}`);
+        }
+        return schema;
+    }
+
+    /**
      * @example <caption>Search by $id regex</caption>
      * JSONSchemasInterface.matchSchema({
      *   $id: {

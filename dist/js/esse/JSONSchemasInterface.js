@@ -14,6 +14,16 @@ class JSONSchemasInterface {
         return this.schemasCache.get(schemaId);
     }
     /**
+     * Like {@link getSchemaById}, but throws if the schema is not registered.
+     */
+    static getRequiredSchemaById(schemaId) {
+        const schema = this.getSchemaById(schemaId);
+        if (!schema) {
+            throw new Error(`ESSE schema not found: ${schemaId}`);
+        }
+        return schema;
+    }
+    /**
      * @example <caption>Search by $id regex</caption>
      * JSONSchemasInterface.matchSchema({
      *   $id: {

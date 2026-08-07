@@ -50,6 +50,17 @@ describe("JSONSchemasInterface", () => {
         assertSystemInSetSchema(schema);
     });
 
+    it("getRequiredSchemaById returns a registered schema", () => {
+        const schema = JSONSchemasInterface.getRequiredSchemaById("system/in-set");
+        assertSystemInSetSchema(schema);
+    });
+
+    it("getRequiredSchemaById throws when schema is missing", () => {
+        expect(() => JSONSchemasInterface.getRequiredSchemaById("missing/schema-id")).to.throw(
+            /ESSE schema not found: missing\/schema-id/,
+        );
+    });
+
     it("getPatchedSchemaById should return a patched schema", () => {
         const schemaId = "boundary-conditions-test";
 
