@@ -9183,11 +9183,11 @@ export interface MaterialSchema {
         [k: string]: unknown;
     };
 }
-/** Schema dist/js/schema/material_enriched.json */
+/** Schema dist/js/schema/material_enhanced.json */
 /**
  * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
  */
-export interface MaterialEnrichedSchema {
+export interface MaterialEnhancedSchema {
     /**
      * entity identity
      */
@@ -9501,11 +9501,11 @@ export interface MaterialEnrichedSchema {
         [k: string]: unknown;
     };
 }
-/** Schema dist/js/schema/material_enriched_hashed.json */
+/** Schema dist/js/schema/material_enhanced_hashed.json */
 /**
  * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
  */
-export interface MaterialEnrichedHashedSchema {
+export interface MaterialEnhancedHashedSchema {
     /**
      * entity identity
      */
