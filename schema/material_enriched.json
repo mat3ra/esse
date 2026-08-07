@@ -1,7 +1,7 @@
 {
-    "$id": "material-constrained",
+    "$id": "material-enriched",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "material constrained schema",
+    "title": "material enriched schema",
     "type": "object",
     "allOf": [
         {

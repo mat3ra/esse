@@ -1,7 +1,7 @@
 {
-    "$id": "material-constrained-hashed",
+    "$id": "material-enriched-hashed",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "material constrained hashed schema",
+    "title": "material enriched hashed schema",
     "type": "object",
     "required": [
         "basis",
