@@ -4,7 +4,7 @@ import * as ajv from "../../src/js/utils/ajv";
 import { removeEmptyAndNullProperties } from "../../src/js/utils/removeEmptyAndNullProperties";
 
 describe("removeEmptyAndNullProperties", () => {
-    it("removes empty strings and nulls from objects, including nested ones", () => {
+    it("removes nulls but keeps empty strings (entity placeholders)", () => {
         const data = {
             name: "Si",
             slug: null,
@@ -22,8 +22,10 @@ describe("removeEmptyAndNullProperties", () => {
 
         expect(data).to.deep.equal({
             name: "Si",
+            description: "",
             lattice: {
                 a: 5.43,
+                units: "",
             },
             tags: ["a", null, "b"],
         });
@@ -37,6 +39,7 @@ describe("validateAndClean", () => {
         properties: {
             name: { type: "string" },
             slug: { type: "string" },
+            description: { type: "string" },
             lattice: {
                 type: "object",
                 properties: {
@@ -50,7 +53,7 @@ describe("validateAndClean", () => {
         additionalProperties: false,
     };
 
-    it("strips null and empty-string properties before schema validation", () => {
+    it("strips null properties before schema validation; keeps empty strings", () => {
         const data = {
             name: "MolView",
             slug: null,
@@ -65,6 +68,7 @@ describe("validateAndClean", () => {
         expect(result.isValid).to.equal(true);
         expect(data).to.deep.equal({
             name: "MolView",
+            description: "",
             lattice: { a: 15.18 },
         });
         expect(Object.prototype.hasOwnProperty.call(data, "slug")).to.equal(false);

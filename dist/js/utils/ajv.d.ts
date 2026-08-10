@@ -19,7 +19,7 @@ export declare function validate(data: AnyObject, jsonSchema: SchemaObject): {
 };
 /**
  * Validates and cleans data against the schema.
- * Drops empty-string and null properties first, then AJV removeAdditional.
+ * Drops null properties first (empty strings kept for entity placeholders), then AJV removeAdditional.
  * @param data data to validate (mutated in place).
  * @param jsonSchema schema to validate the data with.
  * @returns whether data is valid.
