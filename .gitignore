@@ -48,7 +48,8 @@ lib/
 *.egg-info/
 *.py[cod]
 
-# "dist" folder is not ignored on purpose to be able to install intermediate changes from github commits
+# Built by `npm run transpile-and-build-assets` (references:install / publish / local).
+dist/
 
 .npmignore
 .nyc_output

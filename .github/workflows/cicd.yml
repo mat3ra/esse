@@ -165,7 +165,8 @@ jobs:
       - name: Build
         shell: bash -l {0}
         run: |
-          npm install
+          npm install --legacy-peer-deps
+          npm run transpile-and-build-assets
           rm -rf docs/README.md
           cp -r dist/js/example docs
           cp -r dist/js/schema docs
