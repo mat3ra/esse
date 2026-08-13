@@ -1,0 +1,29 @@
+{
+    "$id": "system/status-track",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "status track schema",
+    "type": "object",
+    "properties": {
+        "statusTrack": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "trackedAt": {
+                        "type": "number"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "repetition": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "trackedAt",
+                    "status"
+                ]
+            }
+        }
+    }
+}

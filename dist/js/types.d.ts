@@ -6217,20 +6217,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "io";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -6247,6 +6239,11 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "io";
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "object_storage";
                 input: ({
@@ -6374,20 +6371,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "condition";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -6404,6 +6393,11 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "condition";
                 /**
                  * Input information for condition.
                  */
@@ -6503,20 +6497,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "assertion";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -6533,6 +6519,11 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "assertion";
                 /**
                  * The statement to be evaluated
                  */
@@ -6607,20 +6598,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "execution";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -6637,6 +6620,11 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type: "execution";
                 application: {
                     /**
                      * entity identity
@@ -7532,20 +7520,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "assignment";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -7562,7 +7542,12 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 scope?: string;
+                type?: "assignment";
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
                  */
@@ -7650,20 +7635,12 @@ export interface JobSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "error";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -7680,6 +7657,11 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "error";
                 /**
                  * JSON string with validation/hydration details: { error, json, schema }
                  */
@@ -7952,20 +7934,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "map";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -7982,6 +7956,11 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -8074,20 +8053,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -8104,6 +8075,11 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -8187,20 +8163,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "subworkflow";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -8217,6 +8185,11 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "subworkflow";
         } | {
             /**
              * entity identity
@@ -8283,20 +8256,12 @@ export interface JobSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "error";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -8313,6 +8278,11 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -8774,10 +8744,6 @@ export interface MaterialPropertiesSchema {
         hash: string;
     };
     /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
-    /**
      * Corresponding ICSD id of the material
      */
     icsdId?: number;
@@ -9141,9 +9107,323 @@ export interface MaterialSchema {
         hash: string;
     };
     /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     * Corresponding ICSD id of the material
      */
-    scaledHash?: string;
+    icsdId?: number;
+    /**
+     * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+     */
+    isNonPeriodic?: boolean;
+    consistencyChecks?: {
+        /**
+         * Name of the consistency check that is performed, which is listed in an enum.
+         */
+        name: "default" | "atomsTooClose" | "atomsOverlap";
+        /**
+         * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+         */
+        key: string;
+        /**
+         * Severity level of the problem, which is used in UI to differentiate.
+         */
+        severity: "info" | "warning" | "error";
+        /**
+         * Message generated by the consistency check describing the problem.
+         */
+        message: string;
+    }[];
+    metadata: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/material_enhanced.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
+export interface MaterialEnhancedSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * reduced chemical formula
+     */
+    formula?: string;
+    /**
+     * chemical formula based on the number of atoms of each element in the supercell
+     */
+    unitCellFormula?: string;
+    basis: {
+        /**
+         * atomic elements schema
+         */
+        elements: {
+            /**
+             * All elements, including extra elements
+             */
+            value: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | ("X" | "Vac")) & string;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic coordinates schema
+         */
+        coordinates: {
+            /**
+             * value of this entry
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            value: [number, number, number];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        units?: "crystal" | "cartesian";
+        /**
+         * atomic labels schema
+         */
+        labels?: {
+            /**
+             * value of this entry
+             */
+            value: (number | string) | number;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic constraints schema
+         */
+        constraints: {
+            /**
+             * value of this entry
+             */
+            value: [boolean, boolean, boolean];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+    };
+    lattice: {
+        /**
+         * length of the first lattice vector
+         */
+        a: number;
+        /**
+         * length of the second lattice vector
+         */
+        b: number;
+        /**
+         * length of the third lattice vector
+         */
+        c: number;
+        /**
+         * angle between first and second lattice vector
+         */
+        alpha: number;
+        /**
+         * angle between second and third lattice vector
+         */
+        beta: number;
+        /**
+         * angle between first and third lattice vector
+         */
+        gamma: number;
+        vectors?: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            a: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            b: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            c: [number, number, number];
+            /**
+             * lattice parameter for fractional coordinates
+             */
+            alat?: number;
+            units?: "angstrom" | "bohr";
+        };
+        type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+        units?: {
+            length?: "angstrom" | "bohr";
+            angle?: "degree" | "radian";
+        };
+    };
+    derivedProperties?: ({
+        name?: "volume";
+        units?: "angstrom^3";
+        value: number;
+    } | {
+        name?: "density";
+        units?: "g/cm^3";
+        value: number;
+    } | {
+        /**
+         * point group symbol in Schoenflies notation
+         */
+        pointGroupSymbol?: string;
+        /**
+         * space group symbol in Hermann–Mauguin notation
+         */
+        spaceGroupSymbol?: string;
+        /**
+         * tolerance used for symmetry calculation
+         */
+        tolerance?: {
+            units?: "angstrom";
+            value: number;
+        };
+        name?: "symmetry";
+    } | {
+        name?: "elemental_ratio";
+        value: number;
+        /**
+         * the element this ratio is for
+         */
+        element?: string;
+    } | {
+        name?: "p-norm";
+        /**
+         * degree of the dimensionality of the norm
+         */
+        degree?: number;
+        value: number;
+    } | {
+        name?: "inchi";
+        value: string;
+    } | {
+        name?: "inchi_key";
+        value: string;
+    })[];
+    /**
+     * information about a database source
+     */
+    external?: {
+        /**
+         * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+         */
+        id: string | number;
+        /**
+         * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+         */
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
+        /**
+         * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+         */
+        origin: boolean;
+        /**
+         * Original response from external source.
+         */
+        data?: {};
+        /**
+         * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+         */
+        doi?: string;
+        /**
+         * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+         */
+        url?: string;
+    };
+    /**
+     * file source with the information inside
+     */
+    src?: {
+        /**
+         * file extension
+         */
+        extension?: string;
+        /**
+         * file name without extension
+         */
+        filename: string;
+        /**
+         * file content as raw text
+         */
+        text: string;
+        /**
+         * MD5 hash based on file content
+         */
+        hash: string;
+    };
     /**
      * Corresponding ICSD id of the material
      */
@@ -9220,6 +9500,645 @@ export interface MaterialSchema {
         bulkId?: string;
         [k: string]: unknown;
     };
+}
+/** Schema dist/js/schema/material_enhanced_hashed.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
+export interface MaterialEnhancedHashedSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * reduced chemical formula
+     */
+    formula?: string;
+    /**
+     * chemical formula based on the number of atoms of each element in the supercell
+     */
+    unitCellFormula?: string;
+    basis: {
+        /**
+         * atomic elements schema
+         */
+        elements: {
+            /**
+             * All elements, including extra elements
+             */
+            value: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | ("X" | "Vac")) & string;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic coordinates schema
+         */
+        coordinates: {
+            /**
+             * value of this entry
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            value: [number, number, number];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        units?: "crystal" | "cartesian";
+        /**
+         * atomic labels schema
+         */
+        labels?: {
+            /**
+             * value of this entry
+             */
+            value: (number | string) | number;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic constraints schema
+         */
+        constraints: {
+            /**
+             * value of this entry
+             */
+            value: [boolean, boolean, boolean];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+    };
+    lattice: {
+        /**
+         * length of the first lattice vector
+         */
+        a: number;
+        /**
+         * length of the second lattice vector
+         */
+        b: number;
+        /**
+         * length of the third lattice vector
+         */
+        c: number;
+        /**
+         * angle between first and second lattice vector
+         */
+        alpha: number;
+        /**
+         * angle between second and third lattice vector
+         */
+        beta: number;
+        /**
+         * angle between first and third lattice vector
+         */
+        gamma: number;
+        vectors?: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            a: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            b: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            c: [number, number, number];
+            /**
+             * lattice parameter for fractional coordinates
+             */
+            alat?: number;
+            units?: "angstrom" | "bohr";
+        };
+        type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+        units?: {
+            length?: "angstrom" | "bohr";
+            angle?: "degree" | "radian";
+        };
+    };
+    derivedProperties?: ({
+        name?: "volume";
+        units?: "angstrom^3";
+        value: number;
+    } | {
+        name?: "density";
+        units?: "g/cm^3";
+        value: number;
+    } | {
+        /**
+         * point group symbol in Schoenflies notation
+         */
+        pointGroupSymbol?: string;
+        /**
+         * space group symbol in Hermann–Mauguin notation
+         */
+        spaceGroupSymbol?: string;
+        /**
+         * tolerance used for symmetry calculation
+         */
+        tolerance?: {
+            units?: "angstrom";
+            value: number;
+        };
+        name?: "symmetry";
+    } | {
+        name?: "elemental_ratio";
+        value: number;
+        /**
+         * the element this ratio is for
+         */
+        element?: string;
+    } | {
+        name?: "p-norm";
+        /**
+         * degree of the dimensionality of the norm
+         */
+        degree?: number;
+        value: number;
+    } | {
+        name?: "inchi";
+        value: string;
+    } | {
+        name?: "inchi_key";
+        value: string;
+    })[];
+    /**
+     * information about a database source
+     */
+    external?: {
+        /**
+         * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+         */
+        id: string | number;
+        /**
+         * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+         */
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
+        /**
+         * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+         */
+        origin: boolean;
+        /**
+         * Original response from external source.
+         */
+        data?: {};
+        /**
+         * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+         */
+        doi?: string;
+        /**
+         * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+         */
+        url?: string;
+    };
+    /**
+     * file source with the information inside
+     */
+    src?: {
+        /**
+         * file extension
+         */
+        extension?: string;
+        /**
+         * file name without extension
+         */
+        filename: string;
+        /**
+         * file content as raw text
+         */
+        text: string;
+        /**
+         * MD5 hash based on file content
+         */
+        hash: string;
+    };
+    /**
+     * Corresponding ICSD id of the material
+     */
+    icsdId?: number;
+    /**
+     * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+     */
+    isNonPeriodic?: boolean;
+    consistencyChecks?: {
+        /**
+         * Name of the consistency check that is performed, which is listed in an enum.
+         */
+        name: "default" | "atomsTooClose" | "atomsOverlap";
+        /**
+         * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+         */
+        key: string;
+        /**
+         * Severity level of the problem, which is used in UI to differentiate.
+         */
+        severity: "info" | "warning" | "error";
+        /**
+         * Message generated by the consistency check describing the problem.
+         */
+        message: string;
+    }[];
+    metadata: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
+    };
+    /**
+     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+     */
+    hash: string;
+    /**
+     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     */
+    scaledHash?: string;
+}
+/** Schema dist/js/schema/material_hashed.json */
+/**
+ * Domain-specific fields of a material entity, kept separate from generic in-memory-entity mixins (name, isDefault, etc.). Full entity schemas compose *_properties.json fragments via allOf (see material.json). The _properties filename suffix marks schemas that serve as the input for generated TypeScript entity mixins — MaterialSchemaMixin in @mat3ra/made, following the same pattern as ApplicationSchemaMixin in @mat3ra/ade (scripts/generate-mixins.ts and generateSchemaMixin in @mat3ra/code).
+ */
+export interface MaterialHashedSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * reduced chemical formula
+     */
+    formula?: string;
+    /**
+     * chemical formula based on the number of atoms of each element in the supercell
+     */
+    unitCellFormula?: string;
+    basis: {
+        /**
+         * atomic elements schema
+         */
+        elements: {
+            /**
+             * All elements, including extra elements
+             */
+            value: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | ("X" | "Vac")) & string;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        /**
+         * atomic coordinates schema
+         */
+        coordinates: {
+            /**
+             * value of this entry
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            value: [number, number, number];
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+        units?: "crystal" | "cartesian";
+        /**
+         * atomic labels schema
+         */
+        labels?: {
+            /**
+             * value of this entry
+             */
+            value: (number | string) | number;
+            /**
+             * integer id of this entry
+             */
+            id: number;
+        }[];
+    };
+    lattice: {
+        /**
+         * length of the first lattice vector
+         */
+        a: number;
+        /**
+         * length of the second lattice vector
+         */
+        b: number;
+        /**
+         * length of the third lattice vector
+         */
+        c: number;
+        /**
+         * angle between first and second lattice vector
+         */
+        alpha: number;
+        /**
+         * angle between second and third lattice vector
+         */
+        beta: number;
+        /**
+         * angle between first and third lattice vector
+         */
+        gamma: number;
+        vectors?: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            a: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            b: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            c: [number, number, number];
+            /**
+             * lattice parameter for fractional coordinates
+             */
+            alat?: number;
+            units?: "angstrom" | "bohr";
+        };
+        type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+        units?: {
+            length?: "angstrom" | "bohr";
+            angle?: "degree" | "radian";
+        };
+    };
+    derivedProperties?: ({
+        name?: "volume";
+        units?: "angstrom^3";
+        value: number;
+    } | {
+        name?: "density";
+        units?: "g/cm^3";
+        value: number;
+    } | {
+        /**
+         * point group symbol in Schoenflies notation
+         */
+        pointGroupSymbol?: string;
+        /**
+         * space group symbol in Hermann–Mauguin notation
+         */
+        spaceGroupSymbol?: string;
+        /**
+         * tolerance used for symmetry calculation
+         */
+        tolerance?: {
+            units?: "angstrom";
+            value: number;
+        };
+        name?: "symmetry";
+    } | {
+        name?: "elemental_ratio";
+        value: number;
+        /**
+         * the element this ratio is for
+         */
+        element?: string;
+    } | {
+        name?: "p-norm";
+        /**
+         * degree of the dimensionality of the norm
+         */
+        degree?: number;
+        value: number;
+    } | {
+        name?: "inchi";
+        value: string;
+    } | {
+        name?: "inchi_key";
+        value: string;
+    })[];
+    /**
+     * information about a database source
+     */
+    external?: {
+        /**
+         * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+         */
+        id: string | number;
+        /**
+         * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+         */
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
+        /**
+         * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+         */
+        origin: boolean;
+        /**
+         * Original response from external source.
+         */
+        data?: {};
+        /**
+         * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+         */
+        doi?: string;
+        /**
+         * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+         */
+        url?: string;
+    };
+    /**
+     * file source with the information inside
+     */
+    src?: {
+        /**
+         * file extension
+         */
+        extension?: string;
+        /**
+         * file name without extension
+         */
+        filename: string;
+        /**
+         * file content as raw text
+         */
+        text: string;
+        /**
+         * MD5 hash based on file content
+         */
+        hash: string;
+    };
+    /**
+     * Corresponding ICSD id of the material
+     */
+    icsdId?: number;
+    /**
+     * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+     */
+    isNonPeriodic?: boolean;
+    consistencyChecks?: {
+        /**
+         * Name of the consistency check that is performed, which is listed in an enum.
+         */
+        name: "default" | "atomsTooClose" | "atomsOverlap";
+        /**
+         * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+         */
+        key: string;
+        /**
+         * Severity level of the problem, which is used in UI to differentiate.
+         */
+        severity: "info" | "warning" | "error";
+        /**
+         * Message generated by the consistency check describing the problem.
+         */
+        message: string;
+    }[];
+    metadata: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+        [k: string]: unknown;
+    } | {
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        [k: string]: unknown;
+    } | {
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
+        [k: string]: unknown;
+    };
+    /**
+     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+     */
+    hash: string;
+    /**
+     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+     */
+    scaledHash?: string;
 }
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
@@ -9491,10 +10410,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -9813,10 +10728,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -10184,10 +11095,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -10505,10 +11412,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -10865,10 +11768,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -11186,10 +12085,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -11557,10 +12452,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -11878,10 +12769,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -12239,10 +13126,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -12560,10 +13443,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -12931,10 +13810,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -13252,10 +14127,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -13612,10 +14483,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -13933,10 +14800,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -14304,10 +15167,6 @@ export interface InterfaceConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -14625,10 +15484,6 @@ export interface InterfaceConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -14962,10 +15817,6 @@ export interface InterfaceConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -15341,10 +16192,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -15662,10 +16509,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -16033,10 +16876,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -16354,10 +17193,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -16714,10 +17549,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -17035,10 +17866,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -17406,10 +18233,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -17727,10 +18550,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -18091,10 +18910,6 @@ export interface SolidSolutionConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -18413,10 +19228,6 @@ export interface SolidSolutionConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -18718,10 +19529,6 @@ export interface SolidSolutionConfigurationSchema {
                  */
                 hash: string;
             };
-            /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
             /**
              * Corresponding ICSD id of the material
              */
@@ -19027,10 +19834,6 @@ export interface SolidSolutionConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -19397,10 +20200,6 @@ export interface AdatomDefectConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -19718,10 +20517,6 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -20047,10 +20842,6 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -20378,10 +21169,6 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -20754,10 +21541,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -21075,10 +21858,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -21446,10 +22225,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -21767,10 +22542,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -22127,10 +22898,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -22448,10 +23215,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -22819,10 +23582,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -23140,10 +23899,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -23501,10 +24256,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -23822,10 +24573,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -24193,10 +24940,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -24514,10 +25257,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -24874,10 +25613,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -25195,10 +25930,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -25566,10 +26297,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -25887,10 +26614,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -26224,10 +26947,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -26597,10 +27316,6 @@ export interface IslandDefectConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -26918,10 +27633,6 @@ export interface IslandDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -27284,10 +27995,6 @@ export interface IslandDefectConfigurationSchema {
                                     hash: string;
                                 };
                                 /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
-                                /**
                                  * Corresponding ICSD id of the material
                                  */
                                 icsdId?: number;
@@ -27605,10 +28312,6 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     hash: string;
                                 };
-                                /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
                                 /**
                                  * Corresponding ICSD id of the material
                                  */
@@ -27934,10 +28637,6 @@ export interface IslandDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -28313,10 +29012,6 @@ export interface IslandDefectConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -28683,10 +29378,6 @@ export interface TerraceDefectConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -29004,10 +29695,6 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -29370,10 +30057,6 @@ export interface TerraceDefectConfigurationSchema {
                                     hash: string;
                                 };
                                 /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
-                                /**
                                  * Corresponding ICSD id of the material
                                  */
                                 icsdId?: number;
@@ -29691,10 +30374,6 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     hash: string;
                                 };
-                                /**
-                                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                                 */
-                                scaledHash?: string;
                                 /**
                                  * Corresponding ICSD id of the material
                                  */
@@ -30020,10 +30699,6 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -30400,10 +31075,6 @@ export interface TerraceDefectConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -30742,10 +31413,6 @@ export interface PointDefectBaseConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -31064,10 +31731,6 @@ export interface InterstitialPointDefectSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -31372,10 +32035,6 @@ export interface InterstitialPointDefectSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -31708,10 +32367,6 @@ export interface SubstitutionalPointDefectSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -32016,10 +32671,6 @@ export interface SubstitutionalPointDefectSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -32352,10 +33003,6 @@ export interface VacancyPointDefectSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -32672,10 +33319,6 @@ export interface IdealCrystalSchema {
          */
         hash: string;
     };
-    /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
     /**
      * Corresponding ICSD id of the material
      */
@@ -33039,10 +33682,6 @@ export interface NanoribbonConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -33360,10 +33999,6 @@ export interface NanoribbonConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -33697,10 +34332,6 @@ export interface NanoribbonConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -34078,10 +34709,6 @@ export interface NanoTapeConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -34399,10 +35026,6 @@ export interface NanoTapeConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -34763,10 +35386,6 @@ export interface SlabConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -35084,10 +35703,6 @@ export interface SlabConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -35460,10 +36075,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                     hash: string;
                 };
                 /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
-                /**
                  * Corresponding ICSD id of the material
                  */
                 icsdId?: number;
@@ -35781,10 +36392,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -36116,10 +36723,6 @@ export interface PassivationConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -36423,10 +37026,6 @@ export interface PassivationConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -36743,10 +37342,6 @@ export interface PassivationConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -37050,10 +37645,6 @@ export interface PassivationConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -37370,10 +37961,6 @@ export interface PassivationConfigurationSchema {
                 hash: string;
             };
             /**
-             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-             */
-            scaledHash?: string;
-            /**
              * Corresponding ICSD id of the material
              */
             icsdId?: number;
@@ -37677,10 +38264,6 @@ export interface PassivationConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -38067,10 +38650,6 @@ export interface CrystalSiteSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -38385,10 +38964,6 @@ export interface PointDefectSiteSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -38712,10 +39287,6 @@ export interface VoidRegionSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -39077,10 +39648,6 @@ export interface CrystalSchema {
          */
         hash: string;
     };
-    /**
-     * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-     */
-    scaledHash?: string;
     /**
      * Corresponding ICSD id of the material
      */
@@ -39465,10 +40032,6 @@ export interface VacuumConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -39802,10 +40365,6 @@ export interface CrystalLatticeLinesSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -40162,10 +40721,6 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -40479,10 +41034,6 @@ export interface CrystalLatticeBaseSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -40806,10 +41357,6 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -41125,10 +41672,6 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -41442,10 +41985,6 @@ export interface SupercellConfigurationSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -41796,10 +42335,6 @@ export interface AtomicLayersSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -42148,10 +42683,6 @@ export interface AtomicLayersUniqueSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -42490,10 +43021,6 @@ export interface AtomicLayersUniqueRepeatedSchema {
             hash: string;
         };
         /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
-        /**
          * Corresponding ICSD id of the material
          */
         icsdId?: number;
@@ -42814,10 +43341,6 @@ export interface CrystalLatticePlanesSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -43169,10 +43692,6 @@ export interface SlabStackConfigurationSchema {
                             hash: string;
                         };
                         /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
-                        /**
                          * Corresponding ICSD id of the material
                          */
                         icsdId?: number;
@@ -43490,10 +44009,6 @@ export interface SlabStackConfigurationSchema {
                              */
                             hash: string;
                         };
-                        /**
-                         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                         */
-                        scaledHash?: string;
                         /**
                          * Corresponding ICSD id of the material
                          */
@@ -43828,10 +44343,6 @@ export interface SlabStackConfigurationSchema {
                      */
                     hash: string;
                 };
-                /**
-                 * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-                 */
-                scaledHash?: string;
                 /**
                  * Corresponding ICSD id of the material
                  */
@@ -44201,10 +44712,6 @@ export interface PerturbationSchema {
              */
             hash: string;
         };
-        /**
-         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-         */
-        scaledHash?: string;
         /**
          * Corresponding ICSD id of the material
          */
@@ -54788,20 +55295,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "io";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -54818,6 +55317,11 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
             input: ({
@@ -54945,20 +55449,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -54975,6 +55471,11 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "condition";
             /**
              * Input information for condition.
              */
@@ -55074,20 +55575,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -55104,6 +55597,11 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -55178,20 +55676,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -55208,6 +55698,11 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type: "execution";
             application: {
                 /**
                  * entity identity
@@ -56103,20 +56598,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assignment";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -56133,7 +56620,12 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             scope?: string;
+            type?: "assignment";
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -56221,20 +56713,12 @@ export interface WorkflowPropertySchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "error";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -56251,6 +56735,11 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -56523,20 +57012,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -56553,6 +57034,11 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -56645,20 +57131,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -56675,6 +57153,11 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -56758,20 +57241,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "subworkflow";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -56788,6 +57263,11 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "subworkflow";
     } | {
         /**
          * entity identity
@@ -56854,20 +57334,12 @@ export interface WorkflowPropertySchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "error";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -56884,6 +57356,11 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -57285,6 +57762,65 @@ export interface BasisSchema {
          * value of this entry
          */
         value: (number | string) | number;
+        /**
+         * integer id of this entry
+         */
+        id: number;
+    }[];
+}
+/** Schema dist/js/schema/properties_directory/structural/basis_constrained.json */
+export interface BasisConstrainedSchema {
+    /**
+     * atomic elements schema
+     */
+    elements: {
+        /**
+         * All elements, including extra elements
+         */
+        value: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | ("X" | "Vac")) & string;
+        /**
+         * integer id of this entry
+         */
+        id: number;
+    }[];
+    /**
+     * atomic coordinates schema
+     */
+    coordinates: {
+        /**
+         * value of this entry
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        value: [number, number, number];
+        /**
+         * integer id of this entry
+         */
+        id: number;
+    }[];
+    units?: "crystal" | "cartesian";
+    /**
+     * atomic labels schema
+     */
+    labels?: {
+        /**
+         * value of this entry
+         */
+        value: (number | string) | number;
+        /**
+         * integer id of this entry
+         */
+        id: number;
+    }[];
+    /**
+     * atomic constraints schema
+     */
+    constraints: {
+        /**
+         * value of this entry
+         */
+        value: [boolean, boolean, boolean];
         /**
          * integer id of this entry
          */
@@ -58657,20 +59193,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "io";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -58687,6 +59215,11 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "io";
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "object_storage";
                 input: ({
@@ -58814,20 +59347,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "condition";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -58844,6 +59369,11 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "condition";
                 /**
                  * Input information for condition.
                  */
@@ -58943,20 +59473,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "assertion";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -58973,6 +59495,11 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "assertion";
                 /**
                  * The statement to be evaluated
                  */
@@ -59047,20 +59574,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "execution";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -59077,6 +59596,11 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type: "execution";
                 application: {
                     /**
                      * entity identity
@@ -59972,20 +60496,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "assignment";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -60002,7 +60518,12 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
                 scope?: string;
+                type?: "assignment";
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
                  */
@@ -60090,20 +60611,12 @@ export interface PropertyHolderSchema {
                  * entity tags
                  */
                 tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
                 statusTrack?: {
                     trackedAt: number;
                     status: string;
                     repetition?: number;
                 }[];
                 isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "error";
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -60120,6 +60633,11 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                type?: "error";
                 /**
                  * JSON string with validation/hydration details: { error, json, schema }
                  */
@@ -60392,20 +60910,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "map";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -60422,6 +60932,11 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -60514,20 +61029,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -60544,6 +61051,11 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -60627,20 +61139,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "subworkflow";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -60657,6 +61161,11 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "subworkflow";
         } | {
             /**
              * entity identity
@@ -60723,20 +61232,12 @@ export interface PropertyHolderSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "error";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -60753,6 +61254,11 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -62021,20 +62527,12 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -62051,6 +62549,11 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -63259,20 +63762,12 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -63289,6 +63784,11 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -64177,10 +64677,6 @@ export interface BankableSchema {
      * Identity of the corresponding bank entity
      */
     exabyteId: string;
-    /**
-     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
-     */
-    hash: string;
 }
 /** Schema dist/js/schema/system/consistency_check.json */
 /**
@@ -64341,6 +64837,13 @@ export interface HasConsistencyCheckSchema {
          */
         message: string;
     }[];
+}
+/** Schema dist/js/schema/system/hashed.json */
+export interface HashedSchema {
+    /**
+     * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
+     */
+    hash: string;
 }
 /** Schema dist/js/schema/system/history.json */
 export interface HistorySchema {
@@ -64616,6 +65119,14 @@ export interface StatusSchema {
         repetition?: number;
     }[];
 }
+/** Schema dist/js/schema/system/status_track.json */
+export interface StatusTrackSchema {
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+}
 /** Schema dist/js/schema/system/tags.json */
 export interface EntityTagsSchema {
     /**
@@ -64852,20 +65363,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "io";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -64882,6 +65385,11 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
             input: ({
@@ -65009,20 +65517,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -65039,6 +65539,11 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "condition";
             /**
              * Input information for condition.
              */
@@ -65138,20 +65643,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -65168,6 +65665,11 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -65242,20 +65744,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -65272,6 +65766,11 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type: "execution";
             application: {
                 /**
                  * entity identity
@@ -66167,20 +66666,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assignment";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -66197,7 +66688,12 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             scope?: string;
+            type?: "assignment";
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -66285,20 +66781,12 @@ export interface BaseWorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "error";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -66315,6 +66803,11 @@ export interface BaseWorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -66587,20 +67080,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -66617,6 +67102,11 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -66709,20 +67199,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -66739,6 +67221,11 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -66822,20 +67309,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "subworkflow";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -66852,6 +67331,11 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "subworkflow";
     } | {
         /**
          * entity identity
@@ -66918,20 +67402,12 @@ export interface BaseWorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "error";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -66948,6 +67424,11 @@ export interface BaseWorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -67287,20 +67768,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "io";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -67317,6 +67790,11 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "io";
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "object_storage";
         input: ({
@@ -67444,20 +67922,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -67474,6 +67944,11 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "condition";
         /**
          * Input information for condition.
          */
@@ -67573,20 +68048,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -67603,6 +68070,11 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -67677,20 +68149,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -67707,6 +68171,11 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type: "execution";
         application: {
             /**
              * entity identity
@@ -68602,20 +69071,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assignment";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -68632,7 +69093,12 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         scope?: string;
+        type?: "assignment";
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -68720,20 +69186,12 @@ export interface SubworkflowMixinSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "error";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -68750,6 +69208,11 @@ export interface SubworkflowMixinSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -69020,20 +69483,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "io";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -69050,6 +69505,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "io";
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "object_storage";
     input: ({
@@ -69177,20 +69637,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "condition";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -69207,6 +69659,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "condition";
     /**
      * Input information for condition.
      */
@@ -69306,20 +69763,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "assertion";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -69336,6 +69785,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "assertion";
     /**
      * The statement to be evaluated
      */
@@ -69410,20 +69864,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -69440,6 +69886,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -70335,20 +70786,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "assignment";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -70365,7 +70808,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     scope?: string;
+    type?: "assignment";
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -70453,20 +70901,12 @@ export type WorkflowSubworkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "error";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -70483,6 +70923,11 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
      */
@@ -70684,20 +71129,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "io";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -70714,6 +71151,11 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "io";
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "object_storage";
         input: ({
@@ -70841,20 +71283,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -70871,6 +71305,11 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "condition";
         /**
          * Input information for condition.
          */
@@ -70970,20 +71409,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -71000,6 +71431,11 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -71074,20 +71510,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -71104,6 +71532,11 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type: "execution";
         application: {
             /**
              * entity identity
@@ -71999,20 +72432,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assignment";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -72029,7 +72454,12 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         scope?: string;
+        type?: "assignment";
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -72117,20 +72547,12 @@ export interface SubworkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "error";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -72147,6 +72569,11 @@ export interface SubworkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */
@@ -72417,20 +72844,12 @@ export interface AssertionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "assertion";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -72447,6 +72866,11 @@ export interface AssertionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "assertion";
     /**
      * The statement to be evaluated
      */
@@ -72523,20 +72947,12 @@ export interface AssignmentUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "assignment";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -72553,7 +72969,12 @@ export interface AssignmentUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     scope?: string;
+    type?: "assignment";
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -72643,20 +73064,12 @@ export interface WorkflowBaseUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: string;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -72673,6 +73086,10 @@ export interface WorkflowBaseUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
 }
 /** Schema dist/js/schema/workflow/unit/condition.json */
 export interface ConditionUnitSchema {
@@ -72741,20 +73158,12 @@ export interface ConditionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "condition";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -72771,6 +73180,11 @@ export interface ConditionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "condition";
     /**
      * Input information for condition.
      */
@@ -74128,20 +74542,12 @@ export interface ErrorUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "error";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -74158,6 +74564,11 @@ export interface ErrorUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
      */
@@ -74230,20 +74641,12 @@ export interface ExecutionUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -74260,6 +74663,11 @@ export interface ExecutionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -75354,20 +75762,12 @@ export interface DataIOUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "io";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -75384,6 +75784,11 @@ export interface DataIOUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "io";
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "object_storage";
     input: ({
@@ -75513,20 +75918,12 @@ export interface MapUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "map";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -75543,6 +75940,11 @@ export interface MapUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -75611,18 +76013,6 @@ export interface AssignmentUnitMixinSchema {
 export interface WorkflowBaseUnitMixinSchema {
     isDraft?: boolean;
     /**
-     * type of the unit
-     */
-    type: string;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -75638,6 +76028,10 @@ export interface WorkflowBaseUnitMixinSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
 }
 /** Schema dist/js/schema/workflow/unit/mixins/condition.json */
 export interface ConditionUnitMixinSchema {
@@ -76722,20 +77116,12 @@ export interface ReduceUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "reduce";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -76752,6 +77138,11 @@ export interface ReduceUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "reduce";
     /**
      * corresponding map unit flowchart ID
      */
@@ -76908,20 +77299,12 @@ export interface SubworkflowUnitSchema {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "subworkflow";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -76938,6 +77321,11 @@ export interface SubworkflowUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "subworkflow";
 }
 /** Schema dist/js/schema/workflow/unit.json */
 export type WorkflowUnitSchema = {
@@ -77006,20 +77394,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "map";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -77036,6 +77416,11 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -77128,20 +77513,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "reduce";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -77158,6 +77535,11 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "reduce";
     /**
      * corresponding map unit flowchart ID
      */
@@ -77241,20 +77623,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "subworkflow";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -77271,6 +77645,11 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "subworkflow";
 } | {
     /**
      * entity identity
@@ -77337,20 +77716,12 @@ export type WorkflowUnitSchema = {
      * entity tags
      */
     tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "error";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -77367,6 +77738,11 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    type?: "error";
     /**
      * JSON string with validation/hydration details: { error, json, schema }
      */
@@ -77710,20 +78086,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "io";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -77740,6 +78108,11 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "io";
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "object_storage";
             input: ({
@@ -77867,20 +78240,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -77897,6 +78262,11 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "condition";
             /**
              * Input information for condition.
              */
@@ -77996,20 +78366,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -78026,6 +78388,11 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -78100,20 +78467,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -78130,6 +78489,11 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type: "execution";
             application: {
                 /**
                  * entity identity
@@ -79025,20 +79389,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assignment";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -79055,7 +79411,12 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             scope?: string;
+            type?: "assignment";
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -79143,20 +79504,12 @@ export interface WorkflowSchema {
              * entity tags
              */
             tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "error";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -79173,6 +79526,11 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            type?: "error";
             /**
              * JSON string with validation/hydration details: { error, json, schema }
              */
@@ -79445,20 +79803,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -79475,6 +79825,11 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -79567,20 +79922,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -79597,6 +79944,11 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -79680,20 +80032,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "subworkflow";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -79710,6 +80054,11 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "subworkflow";
     } | {
         /**
          * entity identity
@@ -79776,20 +80125,12 @@ export interface WorkflowSchema {
          * entity tags
          */
         tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "error";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -79806,6 +80147,11 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        type?: "error";
         /**
          * JSON string with validation/hydration details: { error, json, schema }
          */

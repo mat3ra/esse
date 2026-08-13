@@ -726,10 +726,6 @@
                         }
                     }
                 },
-                "scaledHash": {
-                    "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
-                    "type": "string"
-                },
                 "icsdId": {
                     "description": "Corresponding ICSD id of the material",
                     "type": "integer"

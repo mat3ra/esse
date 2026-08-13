@@ -278,13 +278,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value119(Enum):
+class Value121(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value119]
+    value: Union[Value, Value121]
     """
     All elements, including extra elements
     """
@@ -738,10 +738,6 @@ class CrystalSchema(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """

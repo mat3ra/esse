@@ -265,13 +265,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value47(Enum):
+class Value49(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value47]
+    value: Union[Value, Value49]
     """
     All elements, including extra elements
     """
@@ -726,10 +726,6 @@ class CrystalSchema(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -773,7 +769,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class Value48(Enum):
+class Value50(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -894,13 +890,13 @@ class Value48(Enum):
     Og = "Og"
 
 
-class Value49(Enum):
+class Value51(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema23(BaseModel):
-    value: Union[Value48, Value49]
+class AtomicElementSchema24(BaseModel):
+    value: Union[Value50, Value51]
     """
     All elements, including extra elements
     """
@@ -911,7 +907,7 @@ class AtomicElementSchema23(BaseModel):
 
 
 class BasisSchema21(BaseModel):
-    elements: List[AtomicElementSchema23] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema24] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -1208,10 +1204,6 @@ class CrystalSchema20(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -1266,7 +1258,7 @@ class SlabConfigurationSchema(BaseModel):
     """
 
 
-class Value50(Enum):
+class Value52(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -1387,13 +1379,13 @@ class Value50(Enum):
     Og = "Og"
 
 
-class Value51(Enum):
+class Value53(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema24(BaseModel):
-    value: Union[Value50, Value51]
+class AtomicElementSchema25(BaseModel):
+    value: Union[Value52, Value53]
     """
     All elements, including extra elements
     """
@@ -1404,7 +1396,7 @@ class AtomicElementSchema24(BaseModel):
 
 
 class BasisSchema22(BaseModel):
-    elements: List[AtomicElementSchema24] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema25] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -1701,10 +1693,6 @@ class CrystalSchema21(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
     icsdId: Optional[int] = None
     """
     Corresponding ICSD id of the material
@@ -1865,7 +1853,7 @@ class PointDefectSiteSchema(BaseModel):
     element: Union[AtomSchema, VacancySchema]
 
 
-class Value52(Enum):
+class Value54(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -1986,13 +1974,13 @@ class Value52(Enum):
     Og = "Og"
 
 
-class Value53(Enum):
+class Value55(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema25(BaseModel):
-    value: Union[Value52, Value53]
+class AtomicElementSchema26(BaseModel):
+    value: Union[Value54, Value55]
     """
     All elements, including extra elements
     """
@@ -2003,7 +1991,7 @@ class AtomicElementSchema25(BaseModel):
 
 
 class BasisSchema23(BaseModel):
-    elements: List[AtomicElementSchema25] = Field(..., title="atomic elements schema")
+    elements: List[AtomicElementSchema26] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -2299,10 +2287,6 @@ class CrystalSchema22(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """

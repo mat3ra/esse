@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value133(Enum):
+class Value135(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value133]
+    value: Union[Value, Value135]
     """
     All elements, including extra elements
     """
@@ -591,10 +591,6 @@ class MaterialSchema(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """

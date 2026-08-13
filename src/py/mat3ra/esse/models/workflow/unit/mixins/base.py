@@ -20,18 +20,6 @@ class Status(Enum):
 
 class WorkflowBaseUnitMixinSchema(BaseModel):
     isDraft: Optional[bool] = None
-    type: str
-    """
-    type of the unit
-    """
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -47,4 +35,8 @@ class WorkflowBaseUnitMixinSchema(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
     """

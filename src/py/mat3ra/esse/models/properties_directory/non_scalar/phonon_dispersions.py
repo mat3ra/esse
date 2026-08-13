@@ -34,7 +34,7 @@ class Label27(Enum):
     frequency = "frequency"
 
 
-class Units306(Enum):
+class Units315(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
@@ -45,7 +45,7 @@ class AxisSchema30(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units306] = None
+    units: Optional[Units315] = None
     """
     units for an axis
     """

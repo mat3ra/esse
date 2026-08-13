@@ -20,18 +20,18 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
     warning = "warning"
     error = "error"
     finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
 
 
 class RunConfig(BaseModel):
@@ -1007,16 +1007,8 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["execution"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1033,6 +1025,11 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["execution"]
     application: ApplicationSchema = Field(..., title="application schema")
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")

@@ -3,12 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeEmptyAndNullProperties = void 0;
 exports.getValidator = getValidator;
 exports.validate = validate;
 exports.validateAndClean = validateAndClean;
 const ajv_1 = __importDefault(require("ajv"));
 const ajv_formats_1 = __importDefault(require("ajv-formats"));
 const schemaUtils_1 = require("../esse/schemaUtils");
+const jsonSchemaToTypescriptKeywords_1 = __importDefault(require("./ajvKeywords/jsonSchemaToTypescriptKeywords"));
+const removeEmptyAndNullProperties_1 = require("./removeEmptyAndNullProperties");
 function addAdditionalPropertiesToSchema(schema, additionalProperties = false) {
     return (0, schemaUtils_1.mapObjectDeep)(schema, (object) => {
         const schema = object;
@@ -51,11 +54,17 @@ const ajvValidatorAndCleanerWithCoercingTypesNoDefaults = new ajv_1.default({
     coerceTypes: true,
     useDefaults: false,
 });
-(0, ajv_formats_1.default)(ajvValidator);
-(0, ajv_formats_1.default)(ajvValidatorAndCleaner);
-(0, ajv_formats_1.default)(ajvValidatorAndCleanerNoDefaults);
-(0, ajv_formats_1.default)(ajvValidatorAndCleanerWithCoercingTypes);
-(0, ajv_formats_1.default)(ajvValidatorAndCleanerWithCoercingTypesNoDefaults);
+const ajvInstances = [
+    ajvValidator,
+    ajvValidatorAndCleaner,
+    ajvValidatorAndCleanerNoDefaults,
+    ajvValidatorAndCleanerWithCoercingTypes,
+    ajvValidatorAndCleanerWithCoercingTypesNoDefaults,
+];
+ajvInstances.forEach((instance) => {
+    (0, ajv_formats_1.default)(instance);
+    (0, jsonSchemaToTypescriptKeywords_1.default)(instance);
+});
 function getAjvInstance({ clean, coerceTypes, useDefaults }) {
     if (clean && coerceTypes) {
         return useDefaults
@@ -97,12 +106,14 @@ function validate(data, jsonSchema) {
     };
 }
 /**
- * Validates and clean a given example against the schema
- * @param example example to validate.
- * @param schema schema to validate the example with.
- * @returns whether example is valid.
+ * Validates and cleans data against the schema.
+ * Drops null properties first (empty strings kept for entity placeholders), then AJV removeAdditional.
+ * @param data data to validate (mutated in place).
+ * @param jsonSchema schema to validate the data with.
+ * @returns whether data is valid.
  */
 function validateAndClean(data, jsonSchema, { coerceTypes = false, useDefaults = true } = {}) {
+    (0, removeEmptyAndNullProperties_1.removeEmptyAndNullProperties)(data);
     const validator = getValidator(jsonSchema, { clean: true, coerceTypes, useDefaults });
     const isValid = validator(data);
     return {
@@ -110,3 +121,5 @@ function validateAndClean(data, jsonSchema, { coerceTypes = false, useDefaults =
         errors: validator.errors,
     };
 }
+var removeEmptyAndNullProperties_2 = require("./removeEmptyAndNullProperties");
+Object.defineProperty(exports, "removeEmptyAndNullProperties", { enumerable: true, get: function () { return removeEmptyAndNullProperties_2.removeEmptyAndNullProperties; } });
