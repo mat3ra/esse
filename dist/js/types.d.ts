@@ -3078,6 +3078,10 @@ export interface NWChemTotalEnergyContextProviderSchema {
      * Whether atomic positions are expressed in cartesian coordinates.
      */
     CARTESIAN: boolean;
+    /**
+     * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+     */
+    RESTART?: boolean;
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/qe_neb_context_provider.json */
 /**
@@ -6906,6 +6910,10 @@ export interface JobSchema {
                          * Whether atomic positions are expressed in cartesian coordinates.
                          */
                         CARTESIAN: boolean;
+                        /**
+                         * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                         */
+                        RESTART?: boolean;
                     } | {
                         IBRAV: number;
                         RESTART_MODE: "from_scratch" | "restart";
@@ -55477,6 +55485,10 @@ export interface WorkflowPropertySchema {
                      * Whether atomic positions are expressed in cartesian coordinates.
                      */
                     CARTESIAN: boolean;
+                    /**
+                     * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                     */
+                    RESTART?: boolean;
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -59346,6 +59358,10 @@ export interface PropertyHolderSchema {
                          * Whether atomic positions are expressed in cartesian coordinates.
                          */
                         CARTESIAN: boolean;
+                        /**
+                         * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                         */
+                        RESTART?: boolean;
                     } | {
                         IBRAV: number;
                         RESTART_MODE: "from_scratch" | "restart";
@@ -62327,6 +62343,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * Whether atomic positions are expressed in cartesian coordinates.
              */
             CARTESIAN: boolean;
+            /**
+             * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+             */
+            RESTART?: boolean;
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -63565,6 +63585,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * Whether atomic positions are expressed in cartesian coordinates.
              */
             CARTESIAN: boolean;
+            /**
+             * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+             */
+            RESTART?: boolean;
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -65541,6 +65565,10 @@ export interface BaseWorkflowSchema {
                      * Whether atomic positions are expressed in cartesian coordinates.
                      */
                     CARTESIAN: boolean;
+                    /**
+                     * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                     */
+                    RESTART?: boolean;
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -67976,6 +68004,10 @@ export interface SubworkflowMixinSchema {
                  * Whether atomic positions are expressed in cartesian coordinates.
                  */
                 CARTESIAN: boolean;
+                /**
+                 * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                 */
+                RESTART?: boolean;
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -69709,6 +69741,10 @@ export type WorkflowSubworkflowUnitSchema = {
              * Whether atomic positions are expressed in cartesian coordinates.
              */
             CARTESIAN: boolean;
+            /**
+             * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+             */
+            RESTART?: boolean;
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -71373,6 +71409,10 @@ export interface SubworkflowSchema {
                  * Whether atomic positions are expressed in cartesian coordinates.
                  */
                 CARTESIAN: boolean;
+                /**
+                 * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                 */
+                RESTART?: boolean;
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -73064,6 +73104,10 @@ export interface InputContextItemSchema {
          * Whether atomic positions are expressed in cartesian coordinates.
          */
         CARTESIAN: boolean;
+        /**
+         * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+         */
+        RESTART?: boolean;
     } | {
         IBRAV: number;
         RESTART_MODE: "from_scratch" | "restart";
@@ -73501,6 +73545,10 @@ export type ContextItemSchema = {
          * Whether atomic positions are expressed in cartesian coordinates.
          */
         CARTESIAN: boolean;
+        /**
+         * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+         */
+        RESTART?: boolean;
     } | {
         IBRAV: number;
         RESTART_MODE: "from_scratch" | "restart";
@@ -74529,6 +74577,10 @@ export interface ExecutionUnitSchema {
              * Whether atomic positions are expressed in cartesian coordinates.
              */
             CARTESIAN: boolean;
+            /**
+             * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+             */
+            RESTART?: boolean;
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -75956,6 +76008,10 @@ export interface ExecutionUnitMixinSchema {
              * Whether atomic positions are expressed in cartesian coordinates.
              */
             CARTESIAN: boolean;
+            /**
+             * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+             */
+            RESTART?: boolean;
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -78399,6 +78455,10 @@ export interface WorkflowSchema {
                      * Whether atomic positions are expressed in cartesian coordinates.
                      */
                     CARTESIAN: boolean;
+                    /**
+                     * Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+                     */
+                    RESTART?: boolean;
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";

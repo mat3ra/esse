@@ -750,6 +750,10 @@
                                             "CARTESIAN": {
                                                 "type": "boolean",
                                                 "description": "Whether atomic positions are expressed in cartesian coordinates."
+                                            },
+                                            "RESTART": {
+                                                "type": "boolean",
+                                                "description": "Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart."
                                             }
                                         },
                                         "required": [
