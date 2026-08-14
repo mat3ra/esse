@@ -6,45 +6,33 @@ their file list from the `files` field in `package.json` (`["dist"]`), not from 
 tracked in git.
 
 To let a consumer (e.g. `web-app`) install a not-yet-mergeable WIP commit without
-`github:mat3ra/esse#branch` (which has no way to build `dist/` on install), publish a
-pre-release asset instead — automatically via CI (preferred) or manually.
+`github:mat3ra/esse#branch` (which has no way to build `dist/` on install), CI publishes
+a pre-release tarball asset instead.
 
 Releases are tagged per **commit**, not per branch: `wip-<short-commit-sha>` (e.g.
 `wip-e8ed741`). Each commit gets its own immutable tag/asset URL, so a consumer pinned to
 a specific commit's tarball never has the content underneath that URL silently change.
 
-## Automatic (CI)
+## Publishing (CI only)
 
 Include `[release]` anywhere in a commit message and push. `.github/workflows/release-wip.yml`
 runs the `js/release-wip` action (from [`mat3ra/actions`](https://github.com/mat3ra/actions))
 on that push, which builds, packs, and publishes the pre-release tarball asset for that
-commit — no local `gh` setup needed. Commits without the marker don't trigger it, so
-routine pushes stay quiet.
+commit. Commits without the marker don't trigger it, so routine pushes stay quiet.
 
-## Manual (local)
+There is no local/manual equivalent — building and publishing only happens in CI, so the
+tarball a consumer installs is always reproducible from a pushed commit, not from
+whatever happens to be on someone's machine.
 
-```bash
-npm run release:wip
-```
-
-This builds `dist/`, packs it, and creates a GitHub pre-release tagged after the current
-commit (`wip-<short-sha>`), requiring the [GitHub CLI](https://cli.github.com/) (`gh`) to
-be installed and authenticated (`gh auth login`) — the script exits with a clear error if
-`gh` is missing. Pass an explicit tag to override the derived one:
-`npm run release:wip -- <tag>`. Useful for iterating without wanting to push yet, or if
-CI is down — otherwise prefer the `[release]` commit-message marker above, since it's
-identical output with no local setup.
-
-Either path produces the same download URL shape:
+The download URL follows this shape:
 
 ```text
 https://github.com/mat3ra/esse/releases/download/wip-<short-sha>/esse.tgz
 ```
 
-Re-running either path **on the same commit** (e.g. a manual re-trigger, or running
-`release:wip` twice without committing in between) re-uploads over that commit's existing
-asset (`gh release upload ... --clobber`) rather than minting a duplicate. A new commit
-always gets a new tag/URL.
+Re-triggering CI **on the same commit** (e.g. re-running the workflow) re-uploads over
+that commit's existing asset (`gh release upload ... --clobber`) rather than minting a
+duplicate. A new commit always gets a new tag/URL.
 
 ## Reinstalling in a consumer after a same-commit rebuild
 
@@ -75,7 +63,8 @@ Delete a pre-release once its commit merges and a real published version superse
 gh release delete wip-<short-sha> --yes
 ```
 
-See `scripts/release-wip.sh` for the exact steps if you'd rather run them manually.
+(Or let `cleanup-wip-releases.yml`, below, do it automatically once that commit is no
+longer any branch's tip.)
 
 ## Automatic cleanup
 
@@ -84,6 +73,7 @@ See `scripts/release-wip.sh` for the exact steps if you'd rather run them manual
 longer the tip of any branch — i.e. the branch it came from was merged/deleted, or moved
 on to a newer commit that already has its own release. This is branch-aware, not
 age-based: a release from a long-lived branch stays as long as that branch is still
-pointing at it. Trigger it manually from the Actions tab
-(`workflow_dispatch`, defaults to `dry-run: true` so a manual run only logs what it would
-delete unless you uncheck it) to test or force an off-schedule cleanup.
+pointing at it. It never deletes anything that isn't marked pre-release, regardless of
+tag. Trigger it manually from the Actions tab (`workflow_dispatch`, defaults to
+`dry-run: true` so a manual run only logs what it would delete unless you uncheck it) to
+test or force an off-schedule cleanup.

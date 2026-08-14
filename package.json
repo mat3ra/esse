@@ -13,8 +13,7 @@
         "lint:fix": "eslint --fix --cache src/js && prettier --write src/js",
         "prettier": "prettier --check src/js",
         "prepare": "husky install || exit 0",
-        "set-schema-ids": "ts-node set_schema_ids.ts",
-        "release:wip": "bash scripts/release-wip.sh"
+        "set-schema-ids": "ts-node set_schema_ids.ts"
     },
     "repository": {
         "type": "git",
