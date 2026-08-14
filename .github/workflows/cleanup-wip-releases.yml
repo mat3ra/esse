@@ -3,6 +3,8 @@
 name: Clean up stale WIP release tarballs
 
 on:
+  push:
+    branches: [dev]
   schedule:
     - cron: '0 6 * * 1' # every Monday 06:00 UTC
   workflow_dispatch:
@@ -31,6 +33,6 @@ jobs:
       - name: Clean up stale WIP releases
         uses: ./actions/js/cleanup-wip-releases
         with:
-          # Scheduled runs always delete; workflow_dispatch defaults to dry-run.
+          # Scheduled and merge-triggered runs always delete; workflow_dispatch defaults to dry-run.
           dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || 'false' }}
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
