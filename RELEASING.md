@@ -7,7 +7,17 @@ tracked in git.
 
 To let a consumer (e.g. `web-app`) install a not-yet-mergeable WIP branch without
 `github:mat3ra/esse#branch` (which has no way to build `dist/` on install), publish a
-manual pre-release asset instead:
+pre-release asset instead — automatically via CI (preferred) or manually.
+
+## Automatic (CI)
+
+Include `[release]` anywhere in a commit message and push. `.github/workflows/release-wip.yml`
+runs the `js/release-wip` action (from [`mat3ra/actions`](https://github.com/mat3ra/actions))
+on that push, which builds, packs, and publishes/updates the pre-release tarball asset for
+the current branch — no local `gh` setup needed. Commits without the marker don't trigger
+it, so routine pushes stay quiet.
+
+## Manual (local)
 
 ```bash
 npm run release:wip
@@ -17,21 +27,23 @@ This builds `dist/`, packs it, and creates (or updates) a GitHub pre-release tag
 the current branch, requiring the [GitHub CLI](https://cli.github.com/) (`gh`) to be
 installed and authenticated (`gh auth login`) — the script exits with a clear error if
 `gh` is missing. Pass an explicit tag to override the derived one:
-`npm run release:wip -- <tag>`.
+`npm run release:wip -- <tag>`. Useful for iterating without wanting to push yet, or if
+CI is down — otherwise prefer the `[release]` commit-message marker above, since it's
+identical output with no local setup.
 
-The resulting download URL is printed at the end and follows this shape:
+Either path produces the same download URL shape:
 
 ```text
 https://github.com/mat3ra/esse/releases/download/<branch-slug>/esse.tgz
 ```
 
-Re-running `npm run release:wip` on the same branch re-uploads over the existing asset
-(`gh release upload ... --clobber`) rather than minting a new tag, so the URL stays stable
-across snapshots.
+Repeating either path on the same branch (another `[release]`-marked push, or another
+`npm run release:wip`) re-uploads over the existing asset (`gh release upload ...
+--clobber`) rather than minting a new tag, so the URL stays stable across snapshots.
 
 ## Reinstalling in a consumer after a rebuild
 
-Because `release:wip` re-uploads over the same tag/asset, the download URL never changes
+Because a rebuild re-uploads over the same tag/asset, the download URL never changes
 across snapshots — which means a plain `npm install` in the consumer won't pick up a
 rebuild: npm's cache stores the tarball keyed by URL, and `package-lock.json` pins the
 `integrity` hash from the first install, so a same-URL-but-changed-content refetch either
