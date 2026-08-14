@@ -16,7 +16,6 @@
                 "postProcessors",
                 "preProcessors",
                 "results",
-                "type",
                 "workflowId"
             ],
             "properties": {
@@ -132,17 +131,6 @@
                         "type": "string"
                     }
                 },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
                 "statusTrack": {
                     "type": "array",
                     "items": {
@@ -167,11 +155,6 @@
                 "isDraft": {
                     "type": "boolean"
                 },
-                "type": {
-                    "description": "type of the unit",
-                    "type": "string",
-                    "const": "map"
-                },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
                     "type": "boolean"
@@ -187,6 +170,20 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
+                },
+                "type": {
+                    "const": "map"
                 },
                 "workflowId": {
                     "description": "Id of workflow to run inside map",
@@ -247,8 +244,7 @@
                 "name",
                 "postProcessors",
                 "preProcessors",
-                "results",
-                "type"
+                "results"
             ],
             "properties": {
                 "_id": {
@@ -363,17 +359,6 @@
                         "type": "string"
                     }
                 },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
                 "statusTrack": {
                     "type": "array",
                     "items": {
@@ -398,11 +383,6 @@
                 "isDraft": {
                     "type": "boolean"
                 },
-                "type": {
-                    "description": "type of the unit",
-                    "type": "string",
-                    "const": "reduce"
-                },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
                     "type": "boolean"
@@ -418,6 +398,20 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
+                },
+                "type": {
+                    "const": "reduce"
                 },
                 "mapFlowchartId": {
                     "description": "corresponding map unit flowchart ID",
@@ -459,8 +453,7 @@
                 "name",
                 "postProcessors",
                 "preProcessors",
-                "results",
-                "type"
+                "results"
             ],
             "properties": {
                 "_id": {
@@ -575,17 +568,6 @@
                         "type": "string"
                     }
                 },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
                 "statusTrack": {
                     "type": "array",
                     "items": {
@@ -610,11 +592,6 @@
                 "isDraft": {
                     "type": "boolean"
                 },
-                "type": {
-                    "description": "type of the unit",
-                    "type": "string",
-                    "const": "subworkflow"
-                },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
                     "type": "boolean"
@@ -630,6 +607,20 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
+                },
+                "type": {
+                    "const": "subworkflow"
                 }
             }
         },
@@ -644,8 +635,7 @@
                 "postProcessors",
                 "preProcessors",
                 "reason",
-                "results",
-                "type"
+                "results"
             ],
             "properties": {
                 "_id": {
@@ -760,17 +750,6 @@
                         "type": "string"
                     }
                 },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the unit.",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
                 "statusTrack": {
                     "type": "array",
                     "items": {
@@ -795,11 +774,6 @@
                 "isDraft": {
                     "type": "boolean"
                 },
-                "type": {
-                    "description": "type of the unit",
-                    "type": "string",
-                    "const": "error"
-                },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
                     "type": "boolean"
@@ -815,6 +789,20 @@
                 "enableRender": {
                     "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                     "type": "boolean"
+                },
+                "status": {
+                    "description": "Status of the unit.",
+                    "type": "string",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
+                },
+                "type": {
+                    "const": "error"
                 },
                 "reason": {
                     "type": "string",

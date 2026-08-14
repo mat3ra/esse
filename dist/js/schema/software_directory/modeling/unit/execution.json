@@ -130,17 +130,6 @@
                 "type": "string"
             }
         },
-        "status": {
-            "type": "string",
-            "description": "Status of the unit.",
-            "enum": [
-                "idle",
-                "active",
-                "warning",
-                "error",
-                "finished"
-            ]
-        },
         "statusTrack": {
             "type": "array",
             "items": {
@@ -165,11 +154,6 @@
         "isDraft": {
             "type": "boolean"
         },
-        "type": {
-            "description": "type of the unit",
-            "type": "string",
-            "const": "execution"
-        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -185,6 +169,20 @@
         "enableRender": {
             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
             "type": "boolean"
+        },
+        "status": {
+            "description": "Status of the unit.",
+            "type": "string",
+            "enum": [
+                "idle",
+                "active",
+                "warning",
+                "error",
+                "finished"
+            ]
+        },
+        "type": {
+            "const": "execution"
         },
         "application": {
             "$schema": "http://json-schema.org/draft-07/schema#",

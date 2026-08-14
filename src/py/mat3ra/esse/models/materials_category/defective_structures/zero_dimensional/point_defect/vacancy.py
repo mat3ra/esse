@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value179(Enum):
+class Value187(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value179]
+    value: Union[Value, Value187]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name835(Enum):
+class Name859(Enum):
     density = "density"
 
 
-class Units366(Enum):
+class Units375(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units366] = None
+    units: Optional[Units375] = None
     value: float
 
 
-class Units367(Enum):
+class Units376(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units367] = None
+    units: Optional[Units376] = None
     value: float
 
 
-class Name836(Enum):
+class Name860(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name837(Enum):
+class Name861(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name838(Enum):
+class Name862(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name839(Enum):
+class Name863(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name840(Enum):
+class Name864(Enum):
     inchi_key = "inchi_key"
 
 
@@ -450,7 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name841(Enum):
+class Name865(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -463,7 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name841
+    name: Name865
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -591,10 +591,6 @@ class CrystalSchema(BaseModel):
     src: Optional[FileSourceSchema] = Field(None, title="file source schema")
     """
     file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
     icsdId: Optional[int] = None
     """

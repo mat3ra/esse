@@ -239,18 +239,18 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
     warning = "warning"
     error = "error"
     finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
 
 
 class Subtype(Enum):
@@ -374,16 +374,8 @@ class DataIOUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -400,6 +392,11 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     subtype: Subtype
     source: Source
     input: List[Input]
@@ -458,16 +455,8 @@ class ConditionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -484,6 +473,11 @@ class ConditionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
@@ -552,16 +546,8 @@ class AssertionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -578,6 +564,11 @@ class AssertionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     statement: str
     """
     The statement to be evaluated
@@ -1160,7 +1151,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name864(Enum):
+class Name888(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1518,16 +1509,8 @@ class ExecutionUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1544,6 +1527,11 @@ class ExecutionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     application: ApplicationSchema = Field(..., title="application schema")
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
@@ -1593,16 +1581,8 @@ class AssignmentUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1619,7 +1599,12 @@ class AssignmentUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     scope: Optional[str] = None
+    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     input: List[WorkflowUnitInputSchema]
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -1676,16 +1661,8 @@ class ErrorUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1702,6 +1679,11 @@ class ErrorUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     reason: str
     """
     JSON string with validation/hydration details: { error, json, schema }
@@ -1835,7 +1817,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod42 = Field(..., title="base method")
 
 
-class Type147(Enum):
+class Type150(Enum):
     ml = "ml"
 
 
@@ -1863,12 +1845,12 @@ class BaseMethod43(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type147
+    type: Type150
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod43 = Field(..., title="base method")
 
 
-class Type148(Enum):
+class Type151(Enum):
     unknown = "unknown"
 
 
@@ -1896,7 +1878,7 @@ class BaseMethod44(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type148
+    type: Type151
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod44 = Field(..., title="base method")
 
@@ -2064,16 +2046,8 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2090,6 +2064,11 @@ class MapUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     workflowId: str
     """
     Id of workflow to run inside map
@@ -2153,16 +2132,8 @@ class ReduceUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2179,6 +2150,11 @@ class ReduceUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     mapFlowchartId: str
     """
     corresponding map unit flowchart ID
@@ -2231,16 +2207,8 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2257,6 +2225,11 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
 class ErrorUnitSchema12(BaseModel):
@@ -2301,16 +2274,8 @@ class ErrorUnitSchema12(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2327,6 +2292,11 @@ class ErrorUnitSchema12(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     reason: str
     """
     JSON string with validation/hydration details: { error, json, schema }

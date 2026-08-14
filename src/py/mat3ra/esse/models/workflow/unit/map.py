@@ -20,18 +20,18 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
     warning = "warning"
     error = "error"
     finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
 
 
 class Input(BaseModel):
@@ -96,16 +96,8 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["map"]
-    """
-    type of the unit
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -122,6 +114,11 @@ class MapUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    type: Literal["map"] = "map"
     workflowId: str
     """
     Id of workflow to run inside map

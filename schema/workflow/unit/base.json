@@ -14,7 +14,7 @@
             "$ref": "../../system/tags.json"
         },
         {
-            "$ref": "../../system/status.json"
+            "$ref": "../../system/status_track.json"
         },
         {
             "$ref": "./mixins/base.json"

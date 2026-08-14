@@ -1,0 +1,14 @@
+{
+    "$id": "material-enhanced-hashed",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material enhanced hashed schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "material_enhanced.json"
+        },
+        {
+            "$ref": "material_hashed.json"
+        }
+    ]
+}

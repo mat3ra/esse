@@ -18,10 +18,11 @@ export declare function validate(data: AnyObject, jsonSchema: SchemaObject): {
     errors: import("ajv").ErrorObject<string, Record<string, any>, unknown>[] | null | undefined;
 };
 /**
- * Validates and clean a given example against the schema
- * @param example example to validate.
- * @param schema schema to validate the example with.
- * @returns whether example is valid.
+ * Validates and cleans data against the schema.
+ * Drops null properties first (empty strings kept for entity placeholders), then AJV removeAdditional.
+ * @param data data to validate (mutated in place).
+ * @param jsonSchema schema to validate the data with.
+ * @returns whether data is valid.
  */
 export declare function validateAndClean(data: AnyObject, jsonSchema: SchemaObject, { coerceTypes, useDefaults }?: {
     coerceTypes?: boolean | undefined;
@@ -30,4 +31,4 @@ export declare function validateAndClean(data: AnyObject, jsonSchema: SchemaObje
     isValid: boolean | Promise<any>;
     errors: import("ajv").ErrorObject<string, Record<string, any>, unknown>[] | null | undefined;
 };
-export {};
+export { removeEmptyAndNullProperties } from "./removeEmptyAndNullProperties";

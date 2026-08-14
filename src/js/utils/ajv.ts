@@ -5,6 +5,8 @@ import addFormats from "ajv-formats";
 import { mapObjectDeep } from "../esse/schemaUtils";
 import { AnyObject } from "../esse/types";
 import type { JSONSchema } from "../esse/utils";
+import addJsonSchemaToTypescriptKeywords from "./ajvKeywords/jsonSchemaToTypescriptKeywords";
+import { removeEmptyAndNullProperties } from "./removeEmptyAndNullProperties";
 
 function addAdditionalPropertiesToSchema(schema: JSONSchema, additionalProperties = false) {
     return mapObjectDeep(schema, (object) => {
@@ -54,11 +56,18 @@ const ajvValidatorAndCleanerWithCoercingTypesNoDefaults = new Ajv({
     useDefaults: false,
 });
 
-addFormats(ajvValidator);
-addFormats(ajvValidatorAndCleaner);
-addFormats(ajvValidatorAndCleanerNoDefaults);
-addFormats(ajvValidatorAndCleanerWithCoercingTypes);
-addFormats(ajvValidatorAndCleanerWithCoercingTypesNoDefaults);
+const ajvInstances = [
+    ajvValidator,
+    ajvValidatorAndCleaner,
+    ajvValidatorAndCleanerNoDefaults,
+    ajvValidatorAndCleanerWithCoercingTypes,
+    ajvValidatorAndCleanerWithCoercingTypesNoDefaults,
+];
+
+ajvInstances.forEach((instance) => {
+    addFormats(instance);
+    addJsonSchemaToTypescriptKeywords(instance);
+});
 
 interface AjvInstanceOptions {
     clean: boolean;
@@ -123,16 +132,18 @@ export function validate(data: AnyObject, jsonSchema: SchemaObject) {
 }
 
 /**
- * Validates and clean a given example against the schema
- * @param example example to validate.
- * @param schema schema to validate the example with.
- * @returns whether example is valid.
+ * Validates and cleans data against the schema.
+ * Drops null properties first (empty strings kept for entity placeholders), then AJV removeAdditional.
+ * @param data data to validate (mutated in place).
+ * @param jsonSchema schema to validate the data with.
+ * @returns whether data is valid.
  */
 export function validateAndClean(
     data: AnyObject,
     jsonSchema: SchemaObject,
     { coerceTypes = false, useDefaults = true } = {},
 ) {
+    removeEmptyAndNullProperties(data);
     const validator = getValidator(jsonSchema, { clean: true, coerceTypes, useDefaults });
     const isValid = validator(data);
 
@@ -141,3 +152,5 @@ export function validateAndClean(
         errors: validator.errors,
     };
 }
+
+export { removeEmptyAndNullProperties } from "./removeEmptyAndNullProperties";

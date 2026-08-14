@@ -10,6 +10,10 @@ export default class JSONSchemasInterface {
     static addSchema(schema: JSONSchema): void;
     static getSchemaById(schemaId: string): import("json-schema").JSONSchema7 | undefined;
     /**
+     * Like {@link getSchemaById}, but throws if the schema is not registered.
+     */
+    static getRequiredSchemaById(schemaId: string): JSONSchema;
+    /**
      * @example <caption>Search by $id regex</caption>
      * JSONSchemasInterface.matchSchema({
      *   $id: {
