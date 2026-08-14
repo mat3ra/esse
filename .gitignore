@@ -49,6 +49,7 @@ lib/
 *.py[cod]
 
 dist/
+*.tgz
 
 .npmignore
 .nyc_output
