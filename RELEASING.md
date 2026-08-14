@@ -35,17 +35,18 @@ Because `release:wip` re-uploads over the same tag/asset, the download URL never
 across snapshots — which means a plain `npm install` in the consumer won't pick up a
 rebuild: npm's cache stores the tarball keyed by URL, and `package-lock.json` pins the
 `integrity` hash from the first install, so a same-URL-but-changed-content refetch either
-gets served stale from cache or fails with `EINTEGRITY`. Force a real refetch instead:
+gets served stale from cache or fails with `EINTEGRITY`. Force a real refetch instead. In `web-app`, use the wrapper script from repo root:
 
 ```bash
-npm install @mat3ra/esse@https://github.com/mat3ra/esse/releases/download/<branch-slug>/esse.tgz \
-  --legacy-peer-deps --force
+npm run mat3ra:install -- esse <branch-slug>
 ```
 
-`--force` bypasses npm's cache, and re-targeting the dependency explicitly makes npm
-recompute and update the `integrity` hash in `package-lock.json` instead of erroring on a
-mismatch. A plain `npm install --legacy-peer-deps` with no explicit package argument will
-not refetch, since nothing in `package.json`/the lockfile looks changed to npm.
+(`web-app/scripts/mat3ra-install.sh` — installs `@mat3ra/esse@<release-url>` with
+`--legacy-peer-deps --force`.) `--force` bypasses npm's cache, and re-targeting the
+dependency explicitly makes npm recompute and update the `integrity` hash in
+`package-lock.json` instead of erroring on a mismatch. A plain
+`npm install --legacy-peer-deps` with no explicit package argument will not refetch, since
+nothing in `package.json`/the lockfile looks changed to npm.
 
 Delete the pre-release once the branch merges and a real published version supersedes it:
 
