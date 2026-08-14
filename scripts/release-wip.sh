@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Build, pack, and publish a WIP pre-release asset for the current branch so consumers
-# (e.g. web-app) can install it without dist/ being committed to this repo.
+# Build, pack, and publish a WIP pre-release asset for the current commit so consumers
+# (e.g. web-app) can install it without dist/ being committed to this repo. Each commit
+# gets its own immutable tag/asset - no cache/integrity headaches from a URL whose
+# content silently changed underneath the same tag.
 # See RELEASING.md for the manual equivalent and details.
 #
 # Usage:
-#   npm run release:wip                  # tag/asset derived from the current branch
+#   npm run release:wip                  # tag/asset derived from the current commit
 #   npm run release:wip -- <tag>         # explicit tag override
 set -euo pipefail
 
@@ -17,7 +19,7 @@ fi
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
-TAG="${1:-$(git rev-parse --abbrev-ref HEAD | tr '[:upper:]/_' '[:lower:]--' | sed 's/[^a-z0-9-]//g')}"
+TAG="${1:-wip-$(git rev-parse --short HEAD)}"
 ASSET_NAME="esse.tgz"
 
 echo "== Building dist/ =="
