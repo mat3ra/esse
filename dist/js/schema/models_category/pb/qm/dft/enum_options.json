@@ -1,8 +1,0 @@
-{
-    "$id": "models-category/pb/qm/dft/enum-options",
-    "kohnSham": {
-        "enum": [
-            "ksdft"
-        ]
-    }
-}

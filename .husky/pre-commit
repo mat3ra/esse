@@ -1,8 +1,10 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# dist/ is build output (gitignored, not committed) - only source changes under
+# schema/, example/, manifest/, src/ etc. should trigger a rebuild here.
 SRC_PATTERN="\.json$"
-if git diff --cached --name-only | grep --quiet -E "$SRC_PATTERN"
+if git diff --cached --name-only | grep -E "$SRC_PATTERN" | grep --quiet -v '^dist/'
 then
   echo "JSON assets changed. Running build scripts."
   echo "Re-building JS and PY assets using JS script."
@@ -17,15 +19,14 @@ then
   source .venv/bin/activate
   # Note: resolved (no include statements) schemas have to exist by this time
   pre-commit run --all-files
-  #git add dist/py
 else
-  echo "ERROR: Python virtual environment found. Create one in '.venv' and install '.[all]'"
-  exit 1
+  echo "No Python virtual environment found at .venv - skipping Python model regeneration."
+  echo "Create one with 'python -m venv .venv && source .venv/bin/activate && pip install -e \".[tests]\" && pip install pre-commit' to run it."
 fi
 npx lint-staged --allow-empty
 
 # Skip linting after build to preserve generated files
 # npm run lint:fix
 npm run transpile
-git add dist
+# dist/ is gitignored - not staged here
 

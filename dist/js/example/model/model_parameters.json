@@ -1,7 +1,0 @@
-{
-    "functional": "pbe",
-    "dispersionCorrection": "dft-d3",
-    "hubbardType": "u",
-    "spinPolarization": "collinear",
-    "spinOrbitCoupling": true
-}
