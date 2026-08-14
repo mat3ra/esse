@@ -76,3 +76,14 @@ gh release delete wip-<short-sha> --yes
 ```
 
 See `scripts/release-wip.sh` for the exact steps if you'd rather run them manually.
+
+## Automatic cleanup
+
+`.github/workflows/cleanup-wip-releases.yml` runs weekly (Monday 06:00 UTC) via the
+`js/cleanup-wip-releases` action and deletes any `wip-*` release whose commit is no
+longer the tip of any branch — i.e. the branch it came from was merged/deleted, or moved
+on to a newer commit that already has its own release. This is branch-aware, not
+age-based: a release from a long-lived branch stays as long as that branch is still
+pointing at it. Trigger it manually from the Actions tab
+(`workflow_dispatch`, defaults to `dry-run: true` so a manual run only logs what it would
+delete unless you uncheck it) to test or force an off-schedule cleanup.
