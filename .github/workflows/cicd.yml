@@ -170,6 +170,8 @@ jobs:
           cp -r dist/js/example docs
           cp -r dist/js/schema docs
           cp dist/js/schemas.json docs/schemas.json
+          npm run build-entity-graph
+          cp dist/js/graph.json docs/graph.json
           echo "List build directory ./docs"
           ls -l docs
 

@@ -1,11 +1,44 @@
 # Entity graph foundation (Phase 0)
 
-> **Status:** upcoming — agreed direction, not built.
+> **Status:** review — built on `feature/SOF-8026`, waiting on CI and merge.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
-> **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
+> **Parent:** [`../upcoming/2026-08-16-entity-map-and-docs-overview.md`](../upcoming/2026-08-16-entity-map-and-docs-overview.md)
 > **Basis:** measurements in [`../context/2026-08-16-schema-graph-measurements.md`](../context/2026-08-16-schema-graph-measurements.md)
+
+## Status
+
+**What shipped.** `src/js/scripts/buildEntityGraph.ts` (extractor + lint), `build_entity_graph.ts`
+(CLI), `schema/system/entity_graph.json` (the schema `graph.json` validates against),
+`tests/js/entityGraph.tests.ts`, npm scripts `build-entity-graph` / `lint-entity-graph`, and the
+deploy step that publishes `graph.json`. The lint runs on every pull request via `npm test`.
+
+**Divergences from the plan below.**
+
+- **`meta.generatedAt` was dropped.** A timestamp makes output non-deterministic, contradicting the
+  byte-identical acceptance criterion. `meta` instead carries counts that are actually useful:
+  `edgeCountsByKind`, `layerCounts`, `sameDocumentRefCount`, `schemasWithExample`,
+  `isolatedNodeCount`.
+- **Baseline counts corrected.** The plan cited 937 edges (376/384/177) from a throwaway walker
+  that counted same-document `$ref`s as edges. The real figures are **917 cross-schema edges**
+  (372 extends / 375 contains / 170 variant) plus **20 same-document refs**, and 144 — not 164 —
+  edges carry a JSON-pointer fragment. The context document records the correction.
+- **`publishedPath` added to the node model.** The published path is not always the source path:
+  `properties_directory/non-scalar/…` is published as `non_scalar` because the id round-trip
+  converts dashes. Both paths are now carried, since the GitHub link needs one and the Explorer
+  link needs the other.
+- **`publishedPathToSchemaId` is a lookup, not a pure function.** The mapping is not invertible by
+  string rules for the reason above, so the module exports `buildPublishedPathIndex(nodes)`
+  instead. The round-trip test still holds.
+- **Edge labels are preserved for all kinds**, not just `contains`. A union under
+  `properties.data.oneOf` is recorded as a variant *of `data`*, which the detail panel can show.
+- **Isolated-node baseline is 35, not 34** — the new `entity_graph` schema is itself isolated.
+
+**Still open.** Nothing from this document. Layout coordinates (`x`/`y`) remain deliberately
+absent until the map polish phase, as planned.
+
+---
 
 A build-time extraction of the schema reference graph into a single `graph.json` asset, plus a CI
 lint derived from it. This is the shared foundation for the Entity Map and the concept docs, and
@@ -73,8 +106,8 @@ interface EntityGraphEdge {
 }
 ```
 
-Edge-kind mapping from JSON Schema structure (matches the measurement methodology, so counts are
-verifiable against the context doc: 376 / 384 / 177):
+Edge-kind mapping from JSON Schema structure (counts verifiable against the context doc:
+372 extends / 375 contains / 170 variant = 917 edges):
 
 | Structural context of the `$ref` | Kind |
 | --- | --- |
@@ -142,7 +175,7 @@ every pull request (fast — no assets written) and the deploy job (writes `site
 
 ## 6. Tests (`tests/js/entityGraph.tests.ts`)
 
-1. Totals match the measurement baseline (564 nodes / 937 edges — updated intentionally when
+1. Totals match the measurement baseline (565 nodes / 917 edges — updated intentionally when
    schemas change; the test message says how).
 2. Edge-kind partition sums to the total; per-kind counts match baseline.
 3. Spot checks: `material --extends--> in-memory-entity/named-defaultable`;

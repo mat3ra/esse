@@ -5,7 +5,7 @@
 > **Ticket:** [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
 > **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
-> **Depends on:** [`2026-08-16-entity-graph-foundation.md`](./2026-08-16-entity-graph-foundation.md)
+> **Depends on:** [`../review/2026-08-16-entity-graph-foundation.md`](../review/2026-08-16-entity-graph-foundation.md)
 
 An interactive map of the whole schema corpus at `schemas.mat3ra.com/map/` — every schema a
 place, every reference a road. Pan, zoom, search, fly to an entity, inspect it, follow its
