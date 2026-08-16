@@ -1,11 +1,47 @@
 # Entity Map (Phases 1 and 3)
 
-> **Status:** upcoming — agreed direction, not built.
+> **Status:** review — built on `feature/SOF-8027`, waiting on CI and merge.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
-> **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
+> **Parent:** [`../upcoming/2026-08-16-entity-map-and-docs-overview.md`](../upcoming/2026-08-16-entity-map-and-docs-overview.md)
 > **Depends on:** [`../review/2026-08-16-entity-graph-foundation.md`](../review/2026-08-16-entity-graph-foundation.md)
+
+## Status
+
+**What shipped.** `src/html/map/{index.html,map.js,style.css}`, published at
+`schemas.mat3ra.com/map/`, plus `src/js/scripts/entityGraphLayout.ts` which bakes coordinates
+into `graph.json` at build time. Both the MVP and the polish scope landed in one PR.
+
+**Divergences from the plan below.**
+
+- **No force layout, and no Cytoscape layout extensions.** The plan specified `fcose` client-side
+  for the MVP, then baking it later. Force layout places schemas by reference density, which
+  reproduces the directory tree — the very thing review decision 10 rejected. Instead the layout
+  is a deterministic layered-radial arrangement computed at build time: primitives at the centre,
+  root entities in a ring around them, catalogues on the rim. It reads outward as the build-up
+  the concept docs describe. This is strictly better against the plan's own goal and removes
+  three CDN dependencies (`fcose`, `cose-base`, `layout-base`) — Cytoscape renders with
+  `preset` positions and lays nothing out.
+- **Layout stability comes free.** Because placement is a pure function of the graph, unchanged
+  schemas keep their coordinates between releases with no warm-start machinery.
+- **No isolated-node "islands" strip.** That was a workaround for force layout scattering
+  disconnected nodes; a deterministic layout places them in their own layer band correctly, so
+  the strip has nothing to fix.
+- **Label size varies by zoom tier.** Cytoscape scales text with zoom, so a fixed font size
+  disappears entirely once the whole map fits on screen — the "landmarks" tier would have been
+  unreachable. Each tier now uses a font size that lands at roughly the same pixel height.
+- **`window.esseEntityMap` is exposed** as a deliberate debug handle for a page whose purpose is
+  poking at the schema graph.
+- **Deferred:** the in-degree heat overlay. It duplicates what node size already encodes; not
+  worth the extra control. Not filed as a follow-up.
+
+**Still open.** Nothing blocking. Verified in a real browser (Playwright): whole-map render,
+search + fly-to, detail panel and its four link targets, relationship navigation, `#/entity/…`
+deep link in a fresh tab, focus mode, semantic-zoom tiers and edge toggles, with zero console
+errors.
+
+---
 
 An interactive map of the whole schema corpus at `schemas.mat3ra.com/map/` — every schema a
 place, every reference a road. Pan, zoom, search, fly to an entity, inspect it, follow its

@@ -19,6 +19,7 @@ import type { AnyObject } from "../esse/types";
 import type { JSONSchema } from "../esse/utils";
 import { validate } from "../utils/ajv";
 import { walkDirSync } from "../utils/filesystem";
+import { computeEntityGraphLayout } from "./entityGraphLayout";
 
 export type EntityGraphEdgeKind = "extends" | "contains" | "variant";
 
@@ -67,6 +68,9 @@ export interface EntityGraphNode {
     propertyCount: number;
     hasExample: boolean;
     manifest?: EntityGraphNodeManifest;
+    /** Map coordinates, baked at build time so the client renders without laying out. */
+    x?: number;
+    y?: number;
 }
 
 export interface EntityGraphEdge {
@@ -452,7 +456,9 @@ export function buildEntityGraph(): BuildEntityGraphResult {
         };
     });
 
-    const sortedNodes = [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id));
+    const sortedNodes = computeEntityGraphLayout(
+        [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id)),
+    );
     const sortedEdges = edges.sort(
         (a, b) =>
             a.source.localeCompare(b.source) ||

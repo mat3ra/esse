@@ -94,6 +94,14 @@ class Node(BaseModel):
     """
     Whether a mirror file exists under example/
     """
+    x: Optional[float] = None
+    """
+    Map x coordinate, baked at build time so the client renders without laying out
+    """
+    y: Optional[float] = None
+    """
+    Map y coordinate, baked at build time so the client renders without laying out
+    """
     manifest: Optional[Manifest] = None
     """
     Entry from manifest/properties.yaml when this schema is a registered property

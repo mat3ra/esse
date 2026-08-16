@@ -31,6 +31,9 @@ export interface EntityGraphNode {
     propertyCount: number;
     hasExample: boolean;
     manifest?: EntityGraphNodeManifest;
+    /** Map coordinates, baked at build time so the client renders without laying out. */
+    x?: number;
+    y?: number;
 }
 export interface EntityGraphEdge {
     source: string;

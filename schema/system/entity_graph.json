@@ -122,6 +122,14 @@
                         "description": "Whether a mirror file exists under example/",
                         "type": "boolean"
                     },
+                    "x": {
+                        "description": "Map x coordinate, baked at build time so the client renders without laying out",
+                        "type": "number"
+                    },
+                    "y": {
+                        "description": "Map y coordinate, baked at build time so the client renders without laying out",
+                        "type": "number"
+                    },
                     "manifest": {
                         "description": "Entry from manifest/properties.yaml when this schema is a registered property",
                         "type": "object",

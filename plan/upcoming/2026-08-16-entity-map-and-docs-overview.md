@@ -25,7 +25,7 @@ that also acts as a CI lint. Three surfaces, one graph, no drift.
 | Document | Ticket | Scope | Ships as |
 | --- | --- | --- | --- |
 | [`../review/2026-08-16-entity-graph-foundation.md`](../review/2026-08-16-entity-graph-foundation.md) | [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026) | Graph extractor, `graph.json` + its schema, CI lint | Phase 0 PR |
-| [`2026-08-16-entity-map.md`](./2026-08-16-entity-map.md) | [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027) | The map page: UX, visual encoding, technology, phases MVP + polish | Phase 1 and 3 PRs |
+| [`../review/2026-08-16-entity-map.md`](../review/2026-08-16-entity-map.md) | [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027) | The map page: UX, visual encoding, technology, phases MVP + polish | Phase 1 and 3 PRs |
 | [`2026-08-16-concept-documentation.md`](./2026-08-16-concept-documentation.md) | [SOF-8028](https://mat3ra.atlassian.net/browse/SOF-8028) | Ten concept pages, tooling, generated fragments | Phase 2 and 4 PRs |
 | [`2026-08-16-site-integration-and-release.md`](./2026-08-16-site-integration-and-release.md) | [SOF-8029](https://mat3ra.atlassian.net/browse/SOF-8029) | CI restructure (`docs/` vs `site/`), landing page, cross-linking, testing, release | Phase 5 PR (plus enabling changes pulled earlier) |
 
