@@ -7,6 +7,7 @@ import {
     buildPublishedPathIndex,
     classifyLayer,
     collectReferences,
+    publishedPathToSchemaId,
     resolveJsonPointer,
     schemaIdToPublishedPath,
     validateEntityGraph,
@@ -127,10 +128,14 @@ describe("buildEntityGraph", () => {
 
         graph.nodes.forEach((node) => {
             expect(schemaIdToPublishedPath(node.id), node.id).to.equal(node.publishedPath);
+            expect(publishedPathToSchemaId(node.publishedPath), node.publishedPath).to.equal(
+                node.id,
+            );
             expect(index[node.publishedPath], node.publishedPath).to.equal(node.id);
         });
 
-        // Source directories may contain literal dashes, which the published path underscores.
+        // The published path round-trips to the id exactly, but NOT to the source path: this
+        // directory has a literal dash that the trip through $id turns into an underscore.
         const fileContent = graph.nodes.find(
             (node) => node.id === "properties-directory/non-scalar/file-content",
         );

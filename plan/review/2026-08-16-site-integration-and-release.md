@@ -1,10 +1,40 @@
 # Site integration & release (Phase 5, plus enabling changes)
 
-> **Status:** upcoming — agreed direction, not built.
+> **Status:** review — built on `feature/SOF-8029`, waiting on CI and merge.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8029](https://mat3ra.atlassian.net/browse/SOF-8029)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
 > **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
+
+## Status
+
+**What shipped.** The shared Docs / Explorer / Map header on all three surfaces, the explorer's
+"View on map" link and welcome links, `src/js/scripts/checkSiteLinks.ts` + `check_site_links.ts`
+wired into the deploy job, subresource-integrity hashes on both CDN dependencies, and the README
+sections. The `docs/` → `site/` rename landed earlier, with SOF-8028.
+
+**Divergences from the plan below.**
+
+- **`publishedPathToSchemaId` is a pure function after all.** SOF-8026 recorded the inverse as
+  non-invertible; that was wrong. An `$id` is a path with underscores replaced by dashes, so no
+  `$id` contains an underscore and the mapping is injective — only the *source* path is
+  unrecoverable. The explorer therefore links to the map by string rule, without loading
+  `graph.json`. Verified end to end on the awkward case
+  (`schema/properties_directory/non_scalar/file_content.json` ↔
+  `properties-directory/non-scalar/file-content`).
+- **"View on map" sits in the breadcrumb row, not on every tree row.** A control on each of 773
+  rows would be noise; one affordance for the open file does the same job quietly.
+- **No README screenshot.** The plan called for one via Git LFS. Adding LFS tracking and a binary
+  for a decorative image is scope the rest of this work does not need; the README links to the
+  live map instead. Not filed as a follow-up.
+- **Monaco's SRI covers the loader only.** The AMD loader fetches `editor.main` and friends at
+  runtime from the CDN, and those requests cannot carry integrity attributes. Noted rather than
+  solved; vendoring Monaco is the only real fix and was not in scope.
+
+**Still open.** Nothing blocking. The three surfaces build from a clean checkout, the link
+checker passes, and a deliberately broken link fails it.
+
+---
 
 The changes that tie the three surfaces (Docs · Explorer · Entity Map) into one site, and the CI
 restructure that enables them. Two of these changes are *enabling* and get pulled forward into

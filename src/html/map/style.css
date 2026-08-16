@@ -56,9 +56,30 @@ body {
     color: var(--text-primary);
     font-weight: 500;
 }
+#titlebar-tagline {
+    margin-left: 6px;
+}
 #titlebar-counts {
     margin-left: auto;
     font-variant-numeric: tabular-nums;
+}
+
+/* Shared three-surface navigation: Docs / Explorer / Map */
+#surfaces {
+    display: flex;
+    gap: 14px;
+    margin-left: 8px;
+}
+#surfaces a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+#surfaces a:hover {
+    color: var(--text-primary);
+}
+#surfaces a.current {
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent);
 }
 
 /* ── Layout ──────────────────────────────────────────────── */
