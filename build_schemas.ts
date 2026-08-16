@@ -41,7 +41,7 @@ if (process.env.BUILD_ASSETS !== "true") {
     process.exit(0);
 }
 
-const subfolder = process.env.BUILD_PATH || "./docs/js/";
+const subfolder = process.env.BUILD_PATH || "./dist/js/";
 const skipMergeAllOff = process.env.SKIP_MERGE_ALLOF === "true";
 
 generator.writeResolvedSchemas(subfolder, skipMergeAllOff);

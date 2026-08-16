@@ -1,12 +1,39 @@
 # Concept documentation (Phases 2 and 4)
 
-> **Status:** upcoming — agreed direction, not built.
+> **Status:** review — built on `feature/SOF-8028`, waiting on CI and merge.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8028](https://mat3ra.atlassian.net/browse/SOF-8028)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
-> **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
+> **Parent:** [`../upcoming/2026-08-16-entity-map-and-docs-overview.md`](../upcoming/2026-08-16-entity-map-and-docs-overview.md)
 > **Depends on:** [`../review/2026-08-16-entity-graph-foundation.md`](../review/2026-08-16-entity-graph-foundation.md)
 > (generated fragments); benefits from the map (Phase 1) existing first for cross-links.
+
+## Status
+
+**What shipped.** Eleven pages in `docs/` (a landing page plus the ten planned),
+`src/js/scripts/buildDocsPages.ts` + `build_docs_pages.ts` rendering them with `marked`, and the
+enabling `docs/` → `site/` CI rename. Both the core and remainder phases landed in one PR.
+
+**Divergences from the plan below.**
+
+- **The `docs/` → `site/` rename landed here**, as the plan anticipated ("with Phase 2 at the
+  latest"), because docs sources and the staging directory cannot both own `docs/`. The
+  vestigial `BUILD_DOCS` branch in `build_schemas.py` was deleted rather than migrated, and
+  `build_schemas.ts`'s stale default `BUILD_PATH` comment now matches reality.
+- **No Mermaid, and no diagram CDN dependency.** The plan called for Mermaid diagrams. With the
+  Entity Map shipped, a static diagram box would duplicate it worse; pages use generated
+  relationship fragments and deep-link into the live map instead. One fewer CDN dependency.
+- **Six fragment types, not five.** `corpus-totals` was added — several pages need the headline
+  counts, and typing them by hand is exactly the drift the fragments exist to prevent.
+- **Rendering is atomic.** All pages render before any is written, so a bad fragment fails the
+  build instead of leaving a half-written site. Found by observing a partial write during
+  testing.
+- **Snippet smoke testing was not automated.** The plan proposed executing the JS/PY snippets
+  against the built package in Phase 4. The snippets are the README's, which already exercise
+  the same calls; automating a second copy earns little. Not filed as a follow-up.
+
+**Still open.** The newcomer review the acceptance criteria call for — someone outside the schema
+team confirming the 30-minute goal — has not happened and cannot be self-certified.
 
 Markdown pages under `docs/` (real documentation sources — the staging-directory rename is in the
 integration doc), rendered at build time to `schemas.mat3ra.com/docs/`, explaining ESSE's

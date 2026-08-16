@@ -166,24 +166,31 @@ jobs:
         shell: bash -l {0}
         run: |
           npm install
-          rm -rf docs/README.md
-          cp -r dist/js/example docs
-          cp -r dist/js/schema docs
-          cp dist/js/schemas.json docs/schemas.json
+          mkdir -p site
+          cp -r dist/js/example site
+          cp -r dist/js/schema site
+          cp dist/js/schemas.json site/schemas.json
           npm run build-entity-graph
-          cp dist/js/graph.json docs/graph.json
-          echo "List build directory ./docs"
-          ls -l docs
+          cp dist/js/graph.json site/graph.json
+          echo "List build directory ./site"
+          ls -l site
 
-      - name: Generate Schema Explorer
+      - name: Generate concept documentation
+        shell: bash -l {0}
+        run: npm run build-docs-pages -- --output site
+
+      - name: Generate Schema Explorer and Entity Map
         shell: bash -l {0}
         run: |
           # Copy the VS Code-like schema explorer interface
-          cp src/html/index.html docs/index.html
-          cp src/html/style.css docs/style.css
-          cp src/html/app.js docs/app.js
+          cp src/html/index.html site/index.html
+          cp src/html/style.css site/style.css
+          cp src/html/app.js site/app.js
 
-          # Generate files.json manifest (schema + example files, relative to docs/)
+          # Copy the Entity Map
+          cp -r src/html/map site/map
+
+          # Generate files.json manifest (schema + example files, relative to site/)
           node -e "
             const fs   = require('fs');
             const path = require('path');
@@ -203,10 +210,10 @@ jobs:
             }
 
             const files = [
-              ...collect('docs/schema',  'schema'),
-              ...collect('docs/example', 'example'),
+              ...collect('site/schema',  'schema'),
+              ...collect('site/example', 'example'),
             ];
-            fs.writeFileSync('docs/files.json', JSON.stringify(files, null, 2));
+            fs.writeFileSync('site/files.json', JSON.stringify(files, null, 2));
             console.log('Generated files.json with ' + files.length + ' entries');
           "
 
@@ -218,4 +225,4 @@ jobs:
         # if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./site
