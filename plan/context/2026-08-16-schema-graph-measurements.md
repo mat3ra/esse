@@ -3,7 +3,7 @@
 > **Type:** context — measurements backing the entity-map/docs plans; not a plan itself.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)
-> **Measured on:** branch `claude/repo-docs-entity-map-plan-km8xiz` at `ba30397`
+> **Measured on:** branch `epic/SOF-8025` at `ba30397`
 > (schema sources identical to `dev` at the time).
 
 Method: a throwaway Python walker (not committed; the production extractor is specified in
