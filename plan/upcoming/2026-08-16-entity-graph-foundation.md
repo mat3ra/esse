@@ -1,0 +1,166 @@
+# Entity graph foundation (Phase 0)
+
+> **Status:** upcoming — agreed direction, not built.
+> **Created:** 2026-08-16 · **Updated:** 2026-08-16
+> **Ticket:** to be filed (SOF project).
+> **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
+> **Basis:** measurements in [`../context/2026-08-16-schema-graph-measurements.md`](../context/2026-08-16-schema-graph-measurements.md)
+
+A build-time extraction of the schema reference graph into a single `graph.json` asset, plus a CI
+lint derived from it. This is the shared foundation for the Entity Map and the concept docs, and
+it ships first, as its own PR — the lint has standalone value even if nothing else were built.
+
+## 1. Deliverables
+
+1. `src/js/scripts/buildEntityGraph.ts` — extractor + lint (TypeScript, sibling of
+   `setSchemaIds.ts`, reusing `walkDirSync` and `settings.ts`).
+2. `schema/system/entity_graph.json` — the ESSE schema that `graph.json` itself validates against
+   (dogfooding; validated with the already-present `ajv`). Location may move at implementation
+   time if maintainers prefer a different home; it must remain an ordinary ESSE schema.
+3. npm scripts: `build-entity-graph` (emit + validate) and `lint-entity-graph` (validate only,
+   non-zero exit on hard failures) — the latter added to the JS test pipeline so pull requests
+   fail on graph violations (review decision 8).
+4. Mocha tests in `tests/js/entityGraph.tests.ts`.
+
+**Critical constraint:** input is the *source* tree `schema/**/*.json` — never `dist/js/schema`.
+Resolution merges `allOf` and inlines refs; the edges this graph exists to record are destroyed
+there.
+
+## 2. Data model
+
+```typescript
+interface EntityGraph {
+    meta: {
+        generatedAt: string;        // ISO date of the producing build (not committed, so no churn)
+        nodeCount: number;
+        edgeCount: number;
+    };
+    nodes: EntityGraphNode[];
+    edges: EntityGraphEdge[];
+}
+
+interface EntityGraphNode {
+    id: string;                     // "$id", dashed form, e.g. "in-memory-entity/named-defaultable"
+    path: string;                   // source path, e.g. "schema/in_memory_entity/named_defaultable.json"
+    title: string;                  // schema "title", may be ""
+    description: string;            // schema "description", may be ""
+    domain: string;                 // top-level directory, "(root)" for root files
+    layer: EntityGraphLayer;        // see §3 — total classification, no "other"
+    ownerEntity?: string;           // for layer "entity-component": the root entity it belongs to
+    inDegree: number;
+    outDegree: number;
+    propertyCount: number;          // number of keys under "properties" after shallow inspection
+    hasExample: boolean;            // mirror file exists under example/
+    manifest?: {                    // present for property schemas listed in manifest/properties.yaml
+        name: string;               // manifest key, e.g. "total_energy"
+        isResult?: boolean;
+        isMonitor?: boolean;
+        defaultUnits?: string;
+    };
+    x?: number;                     // precomputed layout coordinates — absent until map polish phase
+    y?: number;
+}
+
+type EntityGraphEdgeKind = "extends" | "contains" | "variant";
+
+interface EntityGraphEdge {
+    source: string;                 // node id
+    target: string;                 // node id
+    kind: EntityGraphEdgeKind;
+    label?: string;                 // for "contains": the property name; "[]" appended when via items
+    pointer?: string;               // JSON-pointer fragment when the $ref carried one, e.g. "/physicsBased"
+}
+```
+
+Edge-kind mapping from JSON Schema structure (matches the measurement methodology, so counts are
+verifiable against the context doc: 376 / 384 / 177):
+
+| Structural context of the `$ref` | Kind |
+| --- | --- |
+| Inside an `allOf` item | `extends` |
+| Under `properties.<name>` (any depth within that property's subtree), or under `items` | `contains` (label = property name) |
+| Inside `oneOf` / `anyOf` arrays | `variant` |
+
+A `$ref` matching none of these (none exist today) is a lint **failure**, forcing a conscious
+classification decision rather than silent bucketing.
+
+## 3. Layer classification — total by construction
+
+Review decision 9: the first-pass taxonomy left 123 nodes unclassified; that is a defect of the
+rules, not the data. The extractor implements the table below, applied top to bottom, and **fails
+the lint if no rule matches** — adding a new top-level directory then requires a one-line rule
+addition, keeping the taxonomy total forever.
+
+| Rule (path prefix relative to `schema/`) | Layer |
+| --- | --- |
+| `core/primitive/**` | `primitive` |
+| `core/abstract/**` | `abstract` |
+| `core/reusable/**` | `reusable` |
+| `core/reference/**` | `reference` |
+| `definitions/**` | `definition` |
+| `in_memory_entity/**` | `in-memory-entity` |
+| `system/**` | `system` |
+| Root-level files (`material.json`, `model.json`, …) | `entity` |
+| `material/**`, `model/**`, `method/**`, `property/**`, `workflow/**`, `job/**`, `software/**`, `compute/**` | `entity-component` (with `ownerEntity` = first path segment) |
+| `materials_category/**`, `models_category/**`, `methods_category/**`, `materials_category_components/**` | `category` |
+| `properties_directory/**`, `models_directory/**`, `methods_directory/**`, `software_directory/**`, `context_providers_directory/**` | `directory` |
+| `apse/**` | `application-parsing` (APSE: application parsers/formats — external-facing formats, not platform entities) |
+
+Expected counts after reclassification (from the measurements): `entity-component` absorbs ~106 of
+the former `other` bucket, `application-parsing` the remaining 17.
+
+## 4. Lint rules
+
+| # | Rule | Severity |
+| --- | --- | --- |
+| L1 | Every `$ref` resolves to a file under `schema/` (after stripping fragments) | **fail** |
+| L2 | Every `$id` equals its path relative to `schema/`, extension dropped, `_` → `-` (the `setSchemaIds.ts` contract) | **fail** |
+| L3 | Every path classifies to a layer (§3) | **fail** |
+| L4 | Every `$ref` classifies to an edge kind (§2) | **fail** |
+| L5 | Every fragment ref's pointer exists in the target document | **fail** |
+| L6 | `manifest/properties.yaml` entries' `schemaId` resolves to an existing schema | **fail** (today unchecked and silently breakable) |
+| L7 | No reference cycles (README rule; 0 today) | **fail** |
+| L8 | Newly isolated nodes vs the committed baseline (34 today) | warn |
+| L9 | Example coverage report (schemas without a mirror example; 355 today) | warn, with count in output |
+| L10 | `graph.json` validates against `schema/system/entity_graph.json` via ajv | **fail** |
+
+Warnings print in CI logs; failures exit non-zero. The lint runs in two places: the JS test job on
+every pull request (fast — no assets written) and the deploy job (writes `site/graph.json`).
+
+## 5. Emission and wiring
+
+- `npm run build-entity-graph` → writes `graph.json` (pretty-printed, ~150 KB) into the Pages
+  staging directory (`site/` after the integration-doc rename; `docs/` until then — the script
+  takes the output directory as an argument to stay agnostic).
+- Deterministic output: nodes sorted by `id`, edges by `(source, target, kind, label)` — byte-identical
+  across runs on identical sources, so diffs of the published asset are reviewable.
+- No `Date`-dependent content except `meta.generatedAt`, which exists only in the emitted asset
+  (never committed), so determinism concerns don't arise in git.
+- The emitter takes no site-specific inputs (review decision 6) — packaging `graph.json` into the
+  npm/PyPI payloads later must be a packaging change only.
+
+## 6. Tests (`tests/js/entityGraph.tests.ts`)
+
+1. Totals match the measurement baseline (564 nodes / 937 edges — updated intentionally when
+   schemas change; the test message says how).
+2. Edge-kind partition sums to the total; per-kind counts match baseline.
+3. Spot checks: `material --extends--> in-memory-entity/named-defaultable`;
+   `model --contains[method]--> method`; a known `variant` edge from `property/holder`.
+4. `schemaIdToPublishedPath` / `publishedPathToSchemaId` round-trip for every node (the
+   dash/underscore duality helper, exported for the map and docs builds to reuse).
+5. Layer classification is total and matches expected per-layer counts.
+6. Manifest join: `total_energy` node carries `manifest.isResult === true` and `eV` units.
+7. `graph.json` validates against its schema (L10 exercised in-process).
+
+## 7. Acceptance criteria
+
+- One PR containing extractor, schema, tests, and test-job wiring; green CI.
+- `graph.json` published to the site on the next deploy after merge.
+- A deliberately broken `$ref` in a scratch branch fails the PR's test job with a message naming
+  the offending file and ref.
+- Counts in the emitted asset reconcile with the measurements context doc.
+
+## 8. Out of scope (lives in sibling documents)
+
+Layout precomputation and coordinates (`x`/`y` stay absent — map polish phase), any rendering, the
+`site/` rename itself (integration doc; this script just parameterizes its output path).
