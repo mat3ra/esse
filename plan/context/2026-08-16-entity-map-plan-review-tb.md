@@ -6,6 +6,7 @@
 > written from his perspective. Treat decisions below as provisional until confirmed by Timur
 > directly; they are recorded as decisions so the split plan documents have one consistent basis.*
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
+> **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)
 
 ## Verdict
 
@@ -100,9 +101,12 @@ Structural fixes:
 - Estimates are plausible. Keep each phase a single PR where possible.
 - Mobile: pinch-zoom and pan must work (it is a map); anything beyond graceful degradation is out
   of scope now.
-- Tickets: file one epic for the initiative and one ticket per `upcoming/` document (SOF project),
-  then link them from the document headers per the plan-folder convention. Filing is on me
-  [Timur] or whoever picks this up in Jira; the documents carry placeholders until then.
+- Tickets: filed 2026-08-16 — epic [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025) with
+  one child per `upcoming/` document ([SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026)
+  graph foundation, [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027) entity map,
+  [SOF-8028](https://mat3ra.atlassian.net/browse/SOF-8028) concept documentation,
+  [SOF-8029](https://mat3ra.atlassian.net/browse/SOF-8029) site integration), linked from the
+  document headers per the plan-folder convention.
 - The `BUILD_DOCS=true` path in `build_schemas.py` writes `docs/py/**` output that nothing in CI
   invokes — vestigial. The integration doc should schedule its removal rather than migrate it to
   the new layout.

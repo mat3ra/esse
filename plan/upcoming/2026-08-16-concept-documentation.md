@@ -2,7 +2,8 @@
 
 > **Status:** upcoming — agreed direction, not built.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
-> **Ticket:** to be filed (SOF project).
+> **Ticket:** [SOF-8028](https://mat3ra.atlassian.net/browse/SOF-8028)
+> (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
 > **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
 > **Depends on:** [`2026-08-16-entity-graph-foundation.md`](./2026-08-16-entity-graph-foundation.md)
 > (generated fragments); benefits from the map (Phase 1) existing first for cross-links.

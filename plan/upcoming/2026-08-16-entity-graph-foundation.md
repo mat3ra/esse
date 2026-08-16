@@ -2,7 +2,8 @@
 
 > **Status:** upcoming — agreed direction, not built.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
-> **Ticket:** to be filed (SOF project).
+> **Ticket:** [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026)
+> (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
 > **Parent:** [`2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
 > **Basis:** measurements in [`../context/2026-08-16-schema-graph-measurements.md`](../context/2026-08-16-schema-graph-measurements.md)
 
