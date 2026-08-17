@@ -14,8 +14,7 @@ on:
 
 jobs:
   cleanup-wip-releases:
-    # TODO: switch to @main once mat3ra/actions#43 merges
-    uses: mat3ra/actions/.github/workflows/cleanup-wip-releases.yml@chore/SOF-7942-1
+    uses: mat3ra/actions/.github/workflows/cleanup-wip-releases.yml@main
     with:
       # Scheduled runs always delete; workflow_dispatch defaults to dry-run.
       dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
