@@ -23,8 +23,8 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           repository: mat3ra/actions
-          # TODO: drop `ref` once mat3ra/actions' js/cleanup-wip-releases merges to main
-          ref: chore/SOF-7942-1
+          # TODO: drop `ref` once mat3ra/actions#44 (revert to composite actions) merges
+          ref: revert/reusable-workflow-call-attempt
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
           path: actions
 
