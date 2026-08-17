@@ -54,7 +54,11 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-git_describe_command = "git describe --tags --long"
+# `--match` restricts version inference to release tags (e.g. `2026.8.13-0`, `v1.0.1`).
+# Without it, `git describe` can pick up any tag pointing at (or preceding) the built
+# commit -- e.g. the `wip-<sha>` and branch-name tags created by our WIP release jobs --
+# and the build then fails with "Can't parse version from tag ...".
+git_describe_command = "git describe --tags --long --match [v0-9]*"
 # Consider the below to allow for versions like 2024.1.25.post5.dev1'
 # https://github.com/pypa/setuptools_scm/issues/342#issuecomment-1233118020
 # This won't require a git tag to be present before each publish.
