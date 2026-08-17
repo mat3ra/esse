@@ -6,7 +6,8 @@ on: push
 
 jobs:
   release-wip:
-    uses: mat3ra/actions/.github/workflows/release-wip.yml@main
+    # TODO: switch to @main once mat3ra/actions#43 merges
+    uses: mat3ra/actions/.github/workflows/release-wip.yml@chore/SOF-7942-1
     with:
       package-name: esse
       build-script: transpile-and-build-assets
