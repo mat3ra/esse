@@ -1,8 +1,0 @@
-{
-    "name": "NWChem",
-    "summary": "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations",
-    "shortName": "nwchem",
-    "version": "6.6",
-    "exec": "nwchem",
-    "build": "GNU"
-}

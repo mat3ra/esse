@@ -20,6 +20,9 @@
         "url": "https://github.com/mat3ra/esse.git"
     },
     "main": "dist/js/esse/index.js",
+    "files": [
+        "dist"
+    ],
     "author": "Mat3ra.com",
     "email": "info@mat3ra.com",
     "bugs": {

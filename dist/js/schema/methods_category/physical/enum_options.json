@@ -1,8 +1,0 @@
-{
-    "$id": "methods-category/physical/enum-options",
-    "quantumMechanical": {
-        "enum": [
-            "qm"
-        ]
-    }
-}

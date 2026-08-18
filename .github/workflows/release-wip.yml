@@ -1,0 +1,14 @@
+---
+
+name: Publish WIP release tarball
+
+on: push
+
+jobs:
+  release-wip:
+    uses: mat3ra/actions/.github/workflows/release-wip.yml@main
+    with:
+      package-name: esse
+      build-script: transpile-and-build-assets
+    secrets:
+      github-token: ${{ secrets.BOT_GITHUB_TOKEN }}

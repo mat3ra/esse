@@ -1,9 +1,0 @@
-{
-    "exec": "jupyter",
-    "flavor": "notebook",
-    "name": "jupyterLab",
-    "shortName": "jl",
-    "summary": "Jupyter Lab",
-    "version": "0.33.12",
-    "build": "GNU"
-}
