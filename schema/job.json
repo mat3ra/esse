@@ -5,7 +5,19 @@
     "type": "object",
     "allOf": [
         {
+            "description": "in-memory entity",
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
+            "description": "job own properties",
             "$ref": "job/base.json"
+        },
+        {
+            "description": "Compute Property Schema",
+            "$ref": "job/compute_property.json"
+        },
+        {
+            "$ref": "system/status_track.json"
         }
     ],
     "properties": {
@@ -14,7 +26,5 @@
             "$ref": "workflow.json"
         }
     },
-    "required": [
-        "workflow"
-    ]
+    "required": ["workflow"]
 }

@@ -10,31 +10,11 @@
         "isExternal": {
             "type": "boolean"
         },
-        "_materials": {
-            "type": "array",
-            "items": {
-                "allOf": [
-                    {
-                        "$ref": "entity_reference.json"
-                    }
-                ]
-            }
-        },
-        "_materialsSet": {
-            "allOf": [
-                {
-                    "$ref": "entity_reference.json"
-                }
-            ]
-        },
         "purged": {
             "type": "boolean"
         },
         "purgedAt": {
             "type": "number"
-        },
-        "dataset": {
-            "type": "object"
         }
     }
 }

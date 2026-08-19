@@ -1,0 +1,37 @@
+{
+    "$id": "job/dataset",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "job dataset schema",
+    "type": "object",
+    "properties": {
+        "datasetFilepath": {
+            "type": "string"
+        },
+        "datasetBasename": {
+            "type": "string"
+        },
+        "objectStorageContainerData": {
+            "type": "object",
+            "properties": {
+                "CONTAINER": {
+                    "type": "string"
+                },
+                "NAME": {
+                    "type": "string"
+                },
+                "PROVIDER": {
+                    "type": "string"
+                },
+                "REGION": {
+                    "type": "string"
+                },
+                "SIZE": {
+                    "type": "string"
+                },
+                "TIMESTAMP": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
