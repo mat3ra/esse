@@ -99,6 +99,10 @@
         },
         "purgedAt": {
             "type": "number"
+        },
+        "isExternal": {
+            "description": "Whether the job was submitted from outside the RMS (e.g. via the REST API) - determines which cloud storage bucket its files are read from/written to.",
+            "type": "boolean"
         }
     },
     "required": ["workflow", "status", "_project"]
