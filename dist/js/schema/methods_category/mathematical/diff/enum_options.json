@@ -1,8 +1,0 @@
-{
-    "$id": "methods-category/mathematical/diff/enum-options",
-    "finiteDifference": {
-        "enum": [
-            "fd"
-        ]
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "$id": "methods-category/physical/qm/enum-options",
-    "wavefunction": {
-        "enum": [
-            "wf"
-        ]
-    }
-}

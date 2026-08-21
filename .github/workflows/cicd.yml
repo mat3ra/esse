@@ -166,6 +166,7 @@ jobs:
         shell: bash -l {0}
         run: |
           npm install
+          npm run transpile-and-build-assets
           rm -rf docs/README.md
           cp -r dist/js/example docs
           cp -r dist/js/schema docs
