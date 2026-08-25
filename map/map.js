@@ -419,14 +419,20 @@ function runSearch(query) {
         return;
     }
 
+    // Ids are dashed, but the names people arrive with are underscored: the published
+    // path (properties_directory/scalar/total_energy.json), the Explorer's file tree,
+    // the manifest key. Searching "total_energy" found nothing before this. No $id
+    // contains an underscore, so folding them to dashes only ever widens the match.
+    const idQuery = trimmed.replace(/_/g, "-");
+
     searchHits = graph.nodes
         .map((node) => {
             const id = node.id.toLowerCase();
             const title = (node.title || "").toLowerCase();
             let score = -1;
-            if (id === trimmed) score = 0;
-            else if (id.split("/").pop().startsWith(trimmed)) score = 1;
-            else if (id.includes(trimmed)) score = 2;
+            if (id === idQuery) score = 0;
+            else if (id.split("/").pop().startsWith(idQuery)) score = 1;
+            else if (id.includes(idQuery)) score = 2;
             else if (title.includes(trimmed)) score = 3;
             else if ((node.description || "").toLowerCase().includes(trimmed)) score = 4;
             return { node, score };

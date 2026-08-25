@@ -49,7 +49,15 @@ body {
     padding: 16px 0;
     position: sticky;
     top: 34px;
-    align-self: stretch;
+    /* Not "stretch": that makes this box exactly as tall as #docs-content (the long
+       sibling), leaving sticky no slack to hold its position in -- an element can only
+       stick while it is shorter than the room it is sticking within. flex-start sizes
+       this to its own (short) nav-list content, so it actually stays pinned. The height
+       cap is a second guard: if the nav list ever grows past the viewport, it scrolls
+       internally instead of being clipped or pushing off-screen. */
+    align-self: flex-start;
+    max-height: calc(100vh - 34px);
+    overflow-y: auto;
 }
 .nav-title {
     padding: 0 16px 8px;
@@ -127,6 +135,13 @@ article hr { border: none; border-top: 1px solid var(--border); margin: 26px 0; 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @media (max-width: 760px) {
     #workspace { flex-direction: column; }
-    #docs-nav { width: 100%; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+    #docs-nav {
+        width: 100%;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        max-height: none;
+        overflow-y: visible;
+    }
     #docs-content { padding: 20px; }
 }
