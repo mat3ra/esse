@@ -30,6 +30,21 @@ export function parseIncludeReferenceStatements(filePath: string): JSONSchema {
     const originalId = parsed.$id;
     let dereferenced = deref(parsed, { baseFolder: dirPath, removeIds: true });
     // handle circular references and use non-dereferenced source
+    //
+    // KNOWN LIMITATION: this only catches a schema's own *direct* self-reference (e.g.
+    // workflow.json referencing itself). It does NOT handle a cycle reached transitively
+    // through another schema's own $ref (e.g. job.json -> $ref workflow.json -> $ref back to
+    // workflow.json) - in that case `deref` collapses the nested self-reference to `{}` (losing
+    // its $id) instead of throwing this same "Circular self reference" error, which crashes
+    // `JSONSchemasGenerator.writeResolvedSchemas` ("Schema ID is missing"). This is why
+    // `workflow.json`'s own `workflows` field is declared as `items: { type: "object" }` rather
+    // than a real `$ref` back to itself: consumers (wode's WorkflowSchema, jode's JobEntity,
+    // web-app's CoreJobSchema) hand-override the resulting lossy TS type with a properly
+    // recursive one, but that only fixes the TypeScript side - AJV validation of nested
+    // workflows' own structure is still effectively skipped. Fixing this for real means making
+    // this transitive case hit the same fallback as the direct case (probably by tracking
+    // visited $ids across the whole dereference walk, not just within a single file's own
+    // top-level deref call) - deferred for now.
     if (dereferenced instanceof Error && dereferenced.message === "Circular self reference") {
         dereferenced = parsed;
     }
