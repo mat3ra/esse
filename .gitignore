@@ -33,7 +33,9 @@ _yardoc
 doc/
 *.idea/
 *.html
-!src/html/*.html
+# `!src/html/*.html` alone re-includes only the top level, which silently dropped
+# src/html/map/index.html from every commit. `**` covers subdirectories too.
+!src/html/**/*.html
 node_modules/
 
 # 'compiled' json files with inclusions and references resolved
