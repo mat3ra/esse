@@ -80,9 +80,19 @@ deep. Units are typed: execution, assignment, condition, map, io, processing.
 **Tier** — one level of the CateCom categorization (`tier1`, `tier2`, `tier3`, plus `type` and
 `subtype`), defined by
 [`core/reusable/categories`](../map/#/entity/core%2Freusable%2Fcategories). Categories are a path,
-not a tree node. [Categorization](categorization.html).
+not a tree node. Tiers apply to models and methods only.
+[Categorization](categorization.html).
 
-**Category schema** (`*_category`) — defines the **vocabulary**: which tier values exist.
+**Category schema** (`*_category`) — defines what is allowed, as opposed to enumerating instances.
+Two different mechanisms share the name: `models_category` and `methods_category` hold a **tier
+vocabulary**, each schema narrowing one more field of `core/reusable/categories`;
+`materials_category` holds **recipes** that compose entities and operations from
+`materials_category_components` and use no tiers at all.
+
+**Composition (materials)** — the materials categorization scheme: a structure class is defined as
+an operation (`stack`, `merge`, `strain`, …) applied to entities (`crystal`, `vacuum`, `atom`,
+`vacancy`, …), keyed by structure class and dimensionality. A slab *is* a stack of atomic layers
+and vacuum. [Categorization](categorization.html).
 
 **Directory schema** (`*_directory`) — the **catalogue**: the concrete entries.
 

@@ -125,6 +125,68 @@ function mixinUsageFragment(graph: EntityGraph): string {
     return table(["Mixin", "Schemas extending it"], rows);
 }
 
+/**
+ * The corpus categorizes along more than one scheme, and the difference matters when
+ * reading a `*_category` path. This is derived rather than asserted: the tiered
+ * vocabulary is the transitive `extends` closure into `core/reusable/categories`, so
+ * a materials schema that adopted tiers tomorrow would move rows without an edit here.
+ */
+function categorizationSchemesFragment(graph: EntityGraph): string {
+    const parents = new Map<string, string[]>();
+    graph.edges
+        .filter((edge) => edge.kind === "extends")
+        .forEach((edge) => {
+            if (!parents.has(edge.source)) parents.set(edge.source, []);
+            (parents.get(edge.source) as string[]).push(edge.target);
+        });
+
+    const CATEGORIES = "core/reusable/categories";
+    const reachesCategories = (id: string, seen = new Set<string>()): boolean => {
+        if (id === CATEGORIES) return true;
+        if (seen.has(id)) return false;
+        seen.add(id);
+        return (parents.get(id) ?? []).some((parent) => reachesCategories(parent, seen));
+    };
+
+    const countUnder = (prefix: string) =>
+        graph.nodes.filter((node) => node.id.startsWith(prefix)).length;
+    const carriers = graph.edges
+        .filter((edge) => edge.target === CATEGORIES && edge.kind === "contains")
+        .map((edge) => edge.source)
+        .sort();
+
+    const domains = ["models-category", "methods-category", "materials-category"];
+    const rows = domains.map((domain) => {
+        const prefix = `${domain}/`;
+        const total = countUnder(prefix);
+        const rest = graph.nodes.filter(
+            (node) => node.id.startsWith(prefix) && !reachesCategories(node.id),
+        );
+        const tiered = total - rest.length;
+        if (!tiered) return [`\`${domain}\``, String(total), "none — compositional"];
+
+        // Today the untiered remainder is entirely enum holders; say so only while true.
+        const allEnums = rest.every((node) => /\/enum-options$|\/enums$/.test(node.id));
+        const remainder = rest.length
+            ? ` + ${rest.length} ${allEnums ? "enum holders" : "other"}`
+            : "";
+        return [`\`${domain}\``, String(total), `${tiered} tiered${remainder}`];
+    });
+
+    rows.push([
+        "`materials-category-components`",
+        String(countUnder("materials-category-components/")),
+        `${countUnder("materials-category-components/entities/")} entities + ${countUnder(
+            "materials-category-components/operations/",
+        )} operations`,
+    ]);
+
+    const carrierList = carriers.map(mapLink).join(", ");
+    return `${table(["Category domain", "Schemas", "Scheme"], rows)}
+
+Entities carrying a tiered \`categories\` field: ${carrierList || "_none_"}.`;
+}
+
 function layerInventoryFragment(graph: EntityGraph): string {
     const rows = Object.entries(graph.meta.layerCounts)
         .sort((a, b) => b[1] - a[1])
@@ -160,6 +222,8 @@ export function expandFragments(body: string, graph: EntityGraph): string {
                 );
             case "layer-inventory":
                 return layerInventoryFragment(graph);
+            case "categorization-schemes":
+                return categorizationSchemesFragment(graph);
             case "hub-table":
                 return hubTableFragment(graph);
             case "mixin-usage":

@@ -56,8 +56,9 @@ produced it — and that separating them is what makes results comparable across
 answers a different question: given that there are thousands of models and methods, how do you
 organize them so a person can find the right one and a machine can reason about it? The answer is
 a tiered categorization rather than a flat list or a rigid tree, described in
-[Categorization](categorization.html). Roughly half the schemas in this repository exist to
-express that scheme.
+[Categorization](categorization.html). Models and methods follow it directly. Materials take a
+different route in this repository — categories defined by composition rather than by tiers — and
+between them the vocabulary-and-catalogue schemas account for over half the corpus.
 
 ## Generic by design
 

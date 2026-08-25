@@ -28,6 +28,22 @@ enabling `docs/` → `site/` CI rename. Both the core and remainder phases lande
 - **Rendering is atomic.** All pages render before any is written, so a bad fragment fails the
   build instead of leaving a half-written site. Found by observing a partial write during
   testing.
+- **Page 04 covers two categorization schemes, not one — seven fragment types, not six.** The plan
+  below (and the first draft of the page) treated CateCom tiers as *the* categorization approach
+  and filed `materials_category` under it. That is wrong: nothing under `materials_category`
+  extends `core/reusable/categories`. Models and methods are tiered — 73 vocabulary schemas
+  chaining `allOf` down the tree, each narrowing one more field, reaching data through exactly two
+  carriers (`model/model-without-method`, `method/unit-method`). Materials are **compositional**:
+  a structure class is a recipe over 25 entities and 6 operations, keyed by structure class and
+  dimensionality, so a slab *is* a stack of atomic layers and vacuum. The page now leads with the
+  distinction, and a new `categorization-schemes` fragment derives it from the graph — the tiered
+  set is the transitive `extends` closure into `core/reusable/categories`, so a materials schema
+  adopting tiers would change the table without an edit. Claims in `01-why-esse-exists`,
+  `index`, and the glossary were corrected in step.
+- **The docs builder now has tests** (`tests/js/docsPages.tests.ts`). `expandFragments` throws on
+  an unknown fragment name, but nothing exercised it before the deploy job, so a typo in a page
+  reached CI's Pages step rather than the pull request. Five cases cover fragment expansion
+  against the real pages, front-matter completeness, and unique page ordering.
 - **Snippet smoke testing was not automated.** The plan proposed executing the JS/PY snippets
   against the built package in Phase 4. The snippets are the README's, which already exercise
   the same calls; automating a second copy earns little. Not filed as a follow-up.
@@ -91,7 +107,9 @@ when a consumer should reach for which.
 `core/reusable/categories` (tier1/tier2/tier3/type/subtype), slugified entries, why paths not
 trees. The split that names the directories: `*_category` = taxonomies (the vocabulary),
 `*_directory` = catalogs (the concrete instances), `materials_category_components` = the building
-blocks categories are assembled from. Worked example: locating an exchange-correlation functional
+blocks categories are assembled from.
+*(As shipped this page covers two schemes — see the Status section. `materials_category` is not a
+tier taxonomy, and describing it as one was the plan's error, not the page's.)* Worked example: locating an exchange-correlation functional
 — `models_category/pb` tier walk down to a `models_directory` entry, with live links at every
 step. How `manifest/*.yaml` registries relate (the properties manifest as the platform-facing
 index over `properties_directory`).

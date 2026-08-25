@@ -27,8 +27,9 @@ reference:
    why the layers are separate.
 3. **[Entity anatomy](entity-anatomy.html)** — the root entities, how they compose, and the
    material variant family.
-4. **[Categorization](categorization.html)** — CateCom tiers, and the `*_category` versus
-   `*_directory` split that names half the repository.
+4. **[Categorization](categorization.html)** — CateCom tiers for models and methods,
+   composition for materials, and the `*_category` versus `*_directory` split that names half the
+   repository.
 
 Then, as you need them:
 

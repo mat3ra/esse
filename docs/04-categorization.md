@@ -1,7 +1,7 @@
 ---
 title: Categorization
 order: 4
-summary: CateCom tiers, and the category-versus-directory split that names half the repository.
+summary: Two different category mechanisms — tiers for models and methods, composition for materials — and the category-versus-directory split.
 ---
 
 # Categorization
@@ -11,13 +11,21 @@ way. A strict tree cannot hold them: an exchange-correlation functional is simul
 thing", "a GGA thing" and "a Perdew-Burke-Ernzerhof thing", and different users arrive from
 different directions. A flat list cannot hold them either.
 
-The approach ESSE takes comes from the
+The first thing to know is that **`*_category` names two different mechanisms**, not one. Models
+and methods are categorized by *tiers*: a small ordered vocabulary carried as data on the entity.
+Materials are categorized by *composition*: a structure class is defined as a recipe over building
+blocks. Reading a `materials_category/…` path expecting tiers is the single most likely way to
+misread the corpus.
+
+<!-- generated:categorization-schemes -->
+
+## Scheme 1 — tiers, for models and methods
+
+The tier approach comes from the
 [CateCom paper](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.2c00112): categorize along a small
 number of ordered tiers, and keep the vocabulary separate from the instances.
 
-## The tier scheme
-
-`core/reusable/categories` is the shape every categorized entity uses:
+`core/reusable/categories` is the shape:
 
 | Field | Meaning |
 | --- | --- |
@@ -31,35 +39,88 @@ Each field is a `slugified_entry_or_slug` — either a bare slug string, or an o
 slug plus a human-readable name. That duality is deliberate: compact records stay compact, while
 records that need to render a label can carry one without a second lookup.
 
-Categories are a *path*, not a tree node. Nothing forces `tier2` values to be unique across
-`tier1`s, and nothing prevents an entity from being reachable by more than one route. The tiers
-narrow the search; they do not impose a single taxonomy.
+### The vocabulary is a chain of narrowings
+
+A tier vocabulary is not one schema listing everything. It is a chain down the directory tree in
+which **each schema `allOf`s its parent and narrows exactly one more field** to an enumeration held
+in a sibling `enum_options.json`:
+
+| Schema | Extends | Narrows |
+| --- | --- | --- |
+| [`models-category/pb`](../map/#/entity/models-category%2Fpb) | `core/reusable/categories` | `tier1` → `#/physicsBased` |
+| `models-category/pb/qm` | `…/pb` | `tier2` → `#/quantumMechanical` |
+| `models-category/pb/qm/dft` | `…/qm` | `tier3` |
+| `models-category/pb/qm/dft/ksdft` | `…/dft` | `type` |
+| `models-category/pb/qm/dft/ksdft/gga` | `…/ksdft` | `subtype` |
+
+Depth in the tree therefore tracks depth in the tier scheme, and a leaf schema like
+`…/ksdft/gga` transitively constrains all five fields. Sixty-six of the 73 vocabulary schemas
+narrow exactly one field; the other seven pin `type` and `subtype` together as a leaf shortcut.
+
+The `$ref`-with-a-fragment into `enum_options.json` is how enumerations are shared without
+duplication — 144 references in the corpus carry a JSON pointer, and this is the dominant reason.
+
+### Where the tiers actually land
+
+The vocabulary constrains; it does not enumerate instances. The tiers reach real data through just
+two entity components, listed in the table above: `model/model-without-method` and
+`method/unit-method` each carry a `categories` object. Everything else in the tier tree exists to
+say which combinations are legal.
+
+## Scheme 2 — composition, for materials
+
+Nothing under `materials_category/` extends `core/reusable/categories`. Materials are not placed on
+a tier ladder; a material category is **a recipe**. Three axes combine:
+
+- **Structure class** — `pristine_structures`, `defective_structures`, `compound_pristine_structures`,
+  `processed_structures`. The first path segment.
+- **Dimensionality** — `zero-dimensional` through `three-dimensional`. The second path segment.
+- **Components** — from `materials_category_components/`: *entities* (`crystal`, `vacuum`, `atom`,
+  `vacancy`, `void_region`, atomic layers…) and *operations* (`stack`, `merge`; `repeat`, `strain`,
+  `perturb`).
+
+A category schema names an operation via `allOf` and lists its operands under `stack_components` or
+`merge_components`. [`materials-category/pristine-structures/two-dimensional/slab`](../map/#/entity/materials-category%2Fpristine-structures%2Ftwo-dimensional%2Fslab)
+reads, in full, as *a stack of [repeated unique atomic layers, vacuum]*:
+
+```json
+{
+    "allOf": [{ "$ref": ".../operations/core/combinations/stack.json" }],
+    "properties": {
+        "stack_components": {
+            "items": [
+                { "$ref": ".../entities/reusable/two-dimensional/atomic_layers_unique_repeated.json" },
+                { "$ref": ".../entities/core/two-dimensional/vacuum.json" }
+            ]
+        }
+    }
+}
+```
+
+Categories then compose on top of categories. An *island* defect is a stack of
+*[slab, merge(slab, void_region), vacuum]* — a recipe whose ingredients include another recipe. This
+is why the components layer is larger than the category layer it serves: a small set of entities and
+six operations generates the structure space, and adding a structure type usually means writing a
+new recipe rather than a new vocabulary.
+
+The trade-off is deliberate. Tiers are good for *retrieval* — filter on `tier2 = qm` and you get
+every quantum-mechanical model. Recipes are good for *construction* — the schema for a slab is
+also, quite literally, the instructions for building one.
 
 ## Category versus directory
 
-This is the distinction that names roughly half the directories in `schema/`, and once you see it
-the layout stops looking arbitrary:
+Underneath both schemes sits the distinction that names roughly half the directories in `schema/`:
 
-- **`*_category`** schemas define the **vocabulary** — which tier values exist and how they nest.
-  `models_category/pb`, `methods_category/physical/qm/wf`, `materials_category/pristine_structures`.
-  These constrain; they do not enumerate instances.
+- **`*_category`** schemas define the **vocabulary or the recipe** — what is allowed, or what a
+  structure is made of. They constrain; they do not enumerate instances.
 - **`*_directory`** schemas are the **catalogue** — the concrete, individually described entries.
-  `models_directory/gw`, `methods_directory/physical/…`, `properties_directory/scalar/total_energy`,
+  `models_directory/gw`, `properties_directory/scalar/total_energy`,
   `software_directory/modeling/espresso`.
-- **`materials_category_components`** is a third thing: the building blocks that material
-  categories are assembled from — entities like `crystal` or `slab`, and the operations that
-  transform them.
+- **`materials_category_components`** is the parts bin that scheme 2 draws from.
 
 Two roughly equal-sized layers result:
 
 <!-- generated:layer-inventory -->
-
-A category schema typically composes the reusable categories block and then narrows one tier to an
-enumeration. `models-category/pb` is the pattern in miniature: it `allOf`s
-`core/reusable/categories`, then restricts `tier1` to the physics-based options defined in a
-neighbouring `enum_options.json`. That last part — a `$ref` with a JSON-pointer fragment into
-another document — is how enumerations are shared without duplication, and 144 references in the
-corpus use it.
 
 ## Worked example: finding an exchange-correlation functional
 
@@ -68,14 +129,13 @@ Suppose you want the PBE functional and you do not know where it lives.
 1. **Start at the tier vocabulary.** A DFT functional is physics-based, so `tier1` is `pb`. The
    allowed values are in `models_category/enum_options.json`, referenced by
    [`models-category/pb`](../map/#/entity/models-category%2Fpb).
-2. **Narrow through the tiers.** `tier2` is `qm` (quantum mechanical), `tier3` is `dft`. The
-   `methods_category/physical/qm/wf` subtree carries the corresponding method vocabulary.
+2. **Narrow through the tiers.** `tier2` is `qm`, `tier3` is `dft`, `type` is `ksdft`, and GGA is
+   the `subtype` — which is exactly the path `models_category/pb/qm/dft/ksdft/gga.json`.
 3. **Cross to the catalogue.** The concrete entries live under `models_directory/`. The functional
    itself is a `model/mixins/functional` concern composed into the model schema.
-4. **Check the manifest.** For properties, `manifest/properties.yaml` is the index that maps a
-   name to its schema id and default units. There is an equivalent
-   `manifest/functional_lookup_table.yaml` and `manifest/dft_unit_functionals.yaml` for
-   functionals.
+4. **Check the manifest.** `manifest/functional_lookup_table.yaml` and
+   `manifest/dft_unit_functionals.yaml` are the registries for functionals, as
+   `manifest/properties.yaml` is for properties.
 
 The general shape of the answer: **categories tell you the coordinates, directories hold the
 thing**. If you are looking for "what values are allowed", read a `*_category` schema. If you are
@@ -95,10 +155,16 @@ The manifests are joined to the schemas by `schemaId`, and that join is checked:
 naming a schema that does not exist fails the build. It used to be possible for the two to drift
 apart silently.
 
-## Why not just use directories?
+## Why keep the tiers in the data?
 
-The directory tree already encodes something — that is why `properties_directory/scalar/…` reads
-naturally. But a filesystem gives you exactly one hierarchy, and the whole point of the tier scheme
-is that one hierarchy is not enough. The tiers live *in the data* so an entity can be found by more
-than one route, filtered on any tier, and re-categorized without moving files and breaking every
-`$id` that points at them.
+The tier vocabulary is mirrored in the directory tree, so it is fair to ask why the tiers are also
+carried as fields. Because the tree can express only one hierarchy, and it can express it only for
+schemas. The `categories` object travels with an *instance*: a stored model record can be filtered
+on any tier, surfaced under more than one route, and re-categorized without moving a file and
+breaking every `$id` that points at it.
+
+Materials pay a different price for a different benefit. Their recipes are precise enough to build
+from, but there is no `categories` field on a material configuration to filter on, so retrieval
+across the materials space works by structure class and dimensionality — the path — rather than by
+query. Whether that asymmetry is deliberate or simply the older scheme not yet extended to
+materials is a question for the maintainers; the corpus as it stands does not answer it.
