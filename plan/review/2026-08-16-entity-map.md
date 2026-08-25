@@ -31,6 +31,13 @@ into `graph.json` at build time. Both the MVP and the polish scope landed in one
 - **Label size varies by zoom tier.** Cytoscape scales text with zoom, so a fixed font size
   disappears entirely once the whole map fits on screen — the "landmarks" tier would have been
   unreachable. Each tier now uses a font size that lands at roughly the same pixel height.
+- **Search is ranked substring matching, not fuzzy matching.** The table below says "fuzzy match";
+  what shipped scores each node in five bands (exact id, last-segment prefix, id substring, title
+  substring, description substring) and breaks ties by in-degree, so the most-referenced match
+  surfaces first. No edit distance and no subsequence matching, so `mtrl` will not find
+  `material`. That is a deliberate trade — over 564 ids that a user is usually half-typing from
+  memory, predictable prefix behaviour beat approximate matching — but the plan's word for it was
+  wrong, and no shipped UI text repeats it.
 - **`window.esseEntityMap` is exposed** as a deliberate debug handle for a page whose purpose is
   poking at the schema graph.
 - **Deferred:** the in-degree heat overlay. It duplicates what node size already encodes; not
