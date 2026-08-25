@@ -66,3 +66,6 @@ site
 src/js/types.ts
 
 .python-version
+
+# Pages staging directory, assembled by CI from dist/ + src/html/ + docs/
+site/
