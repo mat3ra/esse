@@ -36,6 +36,12 @@ deploy step that publishes `graph.json`. The lint runs on every pull request via
   Only the source path is unrecoverable. A pure `publishedPathToSchemaId` was added there.)*
 - **Edge labels are preserved for all kinds**, not just `contains`. A union under
   `properties.data.oneOf` is recorded as a variant *of `data`*, which the detail panel can show.
+- **L4 was dead on arrival, and now is not.** The reference walker started at a root context of
+  `contains`, so every `$ref` came back classified and the L4 failure below could never fire —
+  a documented rule enforcing nothing. The root context now carries no kind. No current edge
+  changes (zero refs in the corpus reach a `$ref` without first passing `allOf`, `oneOf`,
+  `anyOf`, `properties` or `items`), but a `$ref` in an unrecognized structural position now
+  fails the lint by name instead of being silently labelled `contains`.
 - **The graph schema lives outside `schema/`.** Deliverable 2 below proposed
   `schema/system/entity_graph.json`, on the reasoning that dogfooding is a virtue. It is not,
   here: the corpus is a vocabulary for digital materials science, and a description of this

@@ -216,6 +216,26 @@ describe("collectReferences", () => {
             label: undefined,
         });
     });
+
+    it("leaves a reference outside every structural keyword unclassified, for L4 to fail on", () => {
+        const references = collectReferences({
+            definitions: { loose: { $ref: "material.json" } },
+        } as never);
+
+        expect(references).to.deep.equal([
+            { ref: "material.json", kind: undefined, label: undefined },
+        ]);
+    });
+
+    it("keeps the enclosing property label while descending into non-structural keys", () => {
+        const references = collectReferences({
+            properties: {
+                data: { additionalProperties: { $ref: "leaf.json" } },
+            },
+        } as never);
+
+        expect(references).to.deep.equal([{ ref: "leaf.json", kind: "contains", label: "data" }]);
+    });
 });
 
 describe("resolveJsonPointer", () => {

@@ -213,12 +213,13 @@ export function resolveJsonPointer(document: unknown, pointer: string): unknown 
 
 interface RawReference {
     ref: string;
-    kind: EntityGraphEdgeKind;
+    /** Absent when no structural keyword encloses the `$ref` — an L4 failure. */
+    kind?: EntityGraphEdgeKind;
     label?: string;
 }
 
 interface WalkContext {
-    kind: EntityGraphEdgeKind;
+    kind?: EntityGraphEdgeKind;
     label?: string;
 }
 
@@ -270,8 +271,11 @@ export function collectReferences(schema: JSONSchema): RawReference[] {
         });
     };
 
-    // A `$ref` reached without passing any structural keyword still expresses containment.
-    walk(schema, { kind: "contains" });
+    // No structural keyword yet, so no relationship yet. Every `$ref` in the corpus today
+    // passes through one before it is reached; a future one that does not gets `kind`
+    // undefined and fails L4, which is the point — the classification stays deliberate
+    // rather than defaulting to `contains` and quietly mislabelling the edge.
+    walk(schema, {});
 
     return references;
 }
@@ -387,6 +391,14 @@ export function buildEntityGraph(): BuildEntityGraphResult {
 
             if (!targetId) {
                 failures.push(`L1 ${relativePath}: $ref "${ref}" does not resolve to a schema`);
+                return;
+            }
+
+            if (!kind) {
+                failures.push(
+                    `L4 ${relativePath}: $ref "${ref}" is not inside allOf, oneOf, anyOf, ` +
+                        `properties or items, so its relationship kind is undecided`,
+                );
                 return;
             }
 
