@@ -1,8 +1,0 @@
-{
-    "$id": "methods-category/mathematical/intgr/transf/enum-options",
-    "fourierTransformation": {
-        "enum": [
-            "fourier"
-        ]
-    }
-}

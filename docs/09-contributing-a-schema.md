@@ -99,13 +99,14 @@ npm run set-schema-ids          # normalize $ids
 npm run transpile-and-build-assets
 ```
 
-This resolves the schemas into `dist/js`, rebuilds `graph.json`, regenerates the TypeScript types
+This resolves the schemas into `dist/js` (build output, gitignored), regenerates the TypeScript types
 and transpiles. The pre-commit hook does it too, but running it yourself makes the diff
 predictable.
 
-Expect the diff to be larger than your one schema: resolved assets and generated pydantic models
-come along, and `datamodel-codegen`'s global class numbering may renumber classes in unrelated
-model files. That is normal, and [The pipeline](the-pipeline.html) explains why.
+Expect the diff to be larger than your one schema: the regenerated pydantic models under
+`src/py/` come along, and `datamodel-codegen`'s global class numbering may renumber classes in
+unrelated model files. That is normal, and [The pipeline](the-pipeline.html) explains why.
+`dist/` itself is gitignored, so resolved assets do not appear in the diff.
 
 ## 5. Check it
 

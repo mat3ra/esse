@@ -166,12 +166,12 @@ jobs:
         shell: bash -l {0}
         run: |
           npm install
+          npm run transpile-and-build-assets
           mkdir -p site
           cp -r dist/js/example site
           cp -r dist/js/schema site
           cp dist/js/schemas.json site/schemas.json
           npm run build-entity-graph
-          cp dist/js/graph.json site/graph.json
           echo "List build directory ./site"
           ls -l site
 

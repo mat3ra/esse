@@ -25,7 +25,7 @@ schema/ + example/            JSON sources — the authority
         |
         +--> datamodel-codegen  -> src/py/mat3ra/esse/models/**   pydantic v2 models
         +--> compile_ts.ts      -> TypeScript types
-        +--> npm run build-entity-graph -> dist/js/graph.json  (from sources, not dist)
+        +--> npm run build-entity-graph -> site/graph.json     (from sources, not dist)
         |
         v
    npm + PyPI packages          and, on the CI deploy job, the site
@@ -85,14 +85,18 @@ remember. `.husky/pre-commit`:
 
 1. Rebuilds JS and PY assets if any `.json` changed (`npm run transpile-and-build-assets`).
 2. Runs `pre-commit run --all-files` — ruff, black, and `datamodel-codegen` for the pydantic
-   models — inside the project's `.venv`.
-3. Runs `lint-staged`, then `npm run transpile`, then `git add dist`.
+   models — inside the project's `.venv`, when one exists. Without a `.venv` the hook skips the
+   Python model regeneration rather than failing.
+3. Runs `lint-staged`, then `npm run transpile`.
 
-Two things follow. First, `dist/` is deliberately committed — it is not gitignored, so that a
-GitHub commit can be installed directly. Second, a schema change is never a one-file diff: the
-regenerated models and resolved assets come with it. That is expected, and the codegen churn in
-unrelated model files is a property of the generator's global class numbering, not a sign
-something went wrong.
+**`dist/` is build output and is not committed.** It is gitignored and rebuilt on demand:
+`prepublishOnly` produces it before an npm publish, and the deploy job builds it before
+assembling the site. `graph.json` is a site asset only — it is written into `site/`, never into
+`dist/`, so it does not ship inside the package.
+
+A schema change is still rarely a one-file diff, because the regenerated **pydantic models**
+under `src/py/` are committed. The codegen churn that appears in unrelated model files is a
+property of the generator's global class numbering, not a sign something went wrong.
 
 Setting up so the hook runs:
 
