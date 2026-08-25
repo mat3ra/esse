@@ -64777,6 +64777,113 @@ export interface DescriptionSchema {
     description?: string;
     descriptionObject?: {};
 }
+/** Schema dist/js/schema/system/entity_graph.json */
+/**
+ * Reference graph extracted from the ESSE schema sources: one node per schema, one edge per cross-schema $ref. Describes the graph.json asset published alongside the resolved schemas.
+ */
+export interface EntityGraphSchema {
+    /**
+     * Summary counts for the graph, used by the site and by the schema lint
+     */
+    meta: {
+        nodeCount: number;
+        edgeCount: number;
+        /**
+         * Number of edges of each relationship kind
+         */
+        edgeCountsByKind: {
+            extends: number;
+            contains: number;
+            variant: number;
+        };
+        /**
+         * Number of schemas assigned to each layer
+         */
+        layerCounts: {
+            [k: string]: number;
+        };
+        /**
+         * Number of $ref statements pointing inside their own document, which are not edges
+         */
+        sameDocumentRefCount: number;
+        schemasWithExample: number;
+        /**
+         * Number of schemas with no incoming or outgoing references
+         */
+        isolatedNodeCount: number;
+    };
+    /**
+     * One entry per schema in the corpus
+     */
+    nodes: {
+        /**
+         * Schema $id, dash-separated
+         */
+        id: string;
+        /**
+         * Source path relative to the repository root
+         */
+        path: string;
+        /**
+         * Path of the resolved copy on the published site, derived from $id
+         */
+        publishedPath: string;
+        description: string;
+        /**
+         * Top-level source directory, or (root) for schemas at the top of schema/
+         */
+        domain: string;
+        /**
+         * Architectural layer the schema belongs to
+         */
+        layer: "primitive" | "abstract" | "reusable" | "reference" | "definition" | "in-memory-entity" | "system" | "entity" | "entity-component" | "category" | "directory" | "application-parsing";
+        /**
+         * For entity-component nodes, the root entity the component belongs to
+         */
+        ownerEntity?: string;
+        inDegree: number;
+        outDegree: number;
+        propertyCount: number;
+        /**
+         * Whether a mirror file exists under example/
+         */
+        hasExample: boolean;
+        /**
+         * Entry from manifest/properties.yaml when this schema is a registered property
+         */
+        manifest?: {
+            name: string;
+            isResult?: boolean;
+            isMonitor?: boolean;
+            defaultUnits?: string;
+        };
+    }[];
+    /**
+     * One entry per cross-schema $ref
+     */
+    edges: {
+        /**
+         * $id of the referencing schema
+         */
+        source: string;
+        /**
+         * $id of the referenced schema
+         */
+        target: string;
+        /**
+         * Relationship expressed by the reference: allOf extends, properties/items contains, oneOf/anyOf is a variant
+         */
+        kind: "extends" | "contains" | "variant";
+        /**
+         * Property name for contains edges, with a [] suffix when reached through items
+         */
+        label?: string;
+        /**
+         * JSON pointer when the $ref carried a fragment
+         */
+        pointer?: string;
+    }[];
+}
 /** Schema dist/js/schema/system/entity_reference.json */
 export interface EntityReferenceSchema {
     /**

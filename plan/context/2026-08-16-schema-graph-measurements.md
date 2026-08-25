@@ -3,30 +3,35 @@
 > **Type:** context — measurements backing the entity-map/docs plans; not a plan itself.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)
-> **Measured on:** branch `epic/SOF-8025` at `ba30397`
-> (schema sources identical to `dev` at the time).
+> **Measured by:** `npm run lint-entity-graph` (`src/js/scripts/buildEntityGraph.ts`), the
+> production extractor built under [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026).
 
-Method: a throwaway Python walker (not committed; the production extractor is specified in
-[`../upcoming/2026-08-16-entity-graph-foundation.md`](../upcoming/2026-08-16-entity-graph-foundation.md))
-parsed every `schema/**/*.json`, recorded each `$ref`, and classified it by structural context:
-inside an `allOf` item → *extends*; under `properties.<name>` or `items` → *contains*; inside
-`oneOf`/`anyOf` → *variant*. Refs were resolved as relative file paths after stripping JSON-pointer
-fragments (`file.json#/pointer`).
+**Corrected 2026-08-16 (SOF-8026).** The first pass used a throwaway Python walker that counted
+*every* `$ref` as an edge, including the 20 that point inside their own document. Those are not
+edges between schemas. The extractor separates them, so the totals below supersede the original
+figures (937 edges / 376 / 384 / 177): the difference is exactly those 20 same-document refs.
+The extractor is now the source of truth, and `tests/js/entityGraph.tests.ts` pins these numbers.
+
+Method: every `schema/**/*.json` is parsed and each `$ref` classified by its innermost enclosing
+structural keyword — inside an `allOf` item → *extends*; under `properties.<name>` or `items` →
+*contains*; inside `oneOf`/`anyOf` → *variant*. Refs resolve as relative file paths after
+stripping JSON-pointer fragments (`file.json#/pointer`).
 
 ## Totals
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 564 |
-| Example files | 209 (a schema has a mirror example in 209/564 = 37% of cases) |
-| Reference edges | 937 |
-| — of kind *extends* (`allOf`) | 376 |
-| — of kind *contains* (`properties`/`items`) | 384 |
-| — of kind *variant* (`oneOf`/`anyOf`) | 177 |
-| Refs carrying a JSON-pointer fragment | 164 (e.g. `enum_options.json#/physicsBased`) |
+| Schema files | 565 (564 in the original corpus, plus `system/entity-graph` added by SOF-8026) |
+| Example files | 209 (a schema has a mirror example in 209/565 = 37% of cases) |
+| Cross-schema reference edges | 917 |
+| — of kind *extends* (`allOf`) | 372 |
+| — of kind *contains* (`properties`/`items`) | 375 |
+| — of kind *variant* (`oneOf`/`anyOf`) | 170 |
+| Same-document refs (`#/…`), which are **not** edges | 20 |
+| Edges carrying a JSON-pointer fragment | 144 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
-| Isolated schemas (no refs in or out) | 34 |
+| Isolated schemas (no refs in or out) | 35 (34 original, plus the new `system/entity-graph`) |
 
 ## Domains (top-level directories), by schema count
 
@@ -45,30 +50,30 @@ fragments (`file.json#/pointer`).
 | `materials_category` | 17 | | `method` | 3 |
 | `model` | 14 | | | |
 
-## Layer taxonomy, first pass
+## Layer taxonomy
 
-Classifying by path prefix (`core/primitive` → primitive, `*_category` → category, root files →
-entity, …) gives:
+The first pass left a 123-node `other` bucket. Review decision 9 rejected that: the bucket was a
+defect of the rules, not a property of the corpus. `classifyLayer` in the extractor now covers
+every path, and an unclassifiable path is a **lint failure** — so a newly added top-level
+directory forces a deliberate decision instead of silently landing in a catch-all.
 
-| Layer | Count |
-| --- | --- |
-| directory (`*_directory` catalogs) | 156 |
-| category (`*_category` + `materials_category_components` taxonomies) | 152 |
-| **other (unclassified)** | **123** |
-| system | 38 |
-| reusable | 31 |
-| primitive | 23 |
-| entity (root files) | 11 |
-| reference (`core/reference`) | 10 |
-| abstract (`core/abstract`) | 9 |
-| in-memory-entity | 7 |
-| definition (`definitions/`) | 4 |
+| Layer | Count | What it holds |
+| --- | --- | --- |
+| directory | 156 | `*_directory` catalogs of concrete instances |
+| category | 152 | `*_category` + `materials_category_components` taxonomies |
+| **entity-component** | **106** | sub-schemas of root entities, keyed by `ownerEntity` |
+| system | 39 | platform mixins (`system/*`), including the new `entity-graph` |
+| reusable | 31 | `core/reusable` domain blocks |
+| primitive | 23 | `core/primitive` custom scalars and arrays |
+| **application-parsing** | **17** | `apse/*` application formats and parsers |
+| entity | 11 | root-level schemas (material, model, workflow, …) |
+| reference | 10 | `core/reference` provenance |
+| abstract | 9 | `core/abstract` unit-less mathematics |
+| in-memory-entity | 7 | behavioral mixins |
+| definition | 4 | `definitions/` shared vocabularies |
 
-The 123-node `other` bucket is sub-schemas of the root entities (`workflow/unit/*`, `material/*`,
-`model/mixins/*`, `method/*`, `software/*`, `job/*`, `property/*`, `compute` — 106 files) plus
-`apse` (17 files). Review decision: these become an **entity-component**
-layer (keyed to the owning entity) with explicit assignments for the rest, and the extractor must
-fail on any path its rules cannot classify, keeping the taxonomy total over time.
+The former `other` bucket resolved exactly as predicted: 106 entity-components plus 17
+application-parsing schemas.
 
 ## Hubs — most referenced (in-degree)
 
@@ -97,7 +102,10 @@ fail on any path its rules cannot classify, keeping the taxonomy total over time
 | `apse/file/applications/espresso/7.2/pw.x` | 10 |
 | `model/model_parameters` | 9 |
 
-## Isolated schemas (sample of the 34)
+The hub and fan-out tables above are unchanged by the same-document correction: those refs never
+contributed to degree counts.
+
+## Isolated schemas (sample of the 35)
 
 `apse/db/materials_project/2025.9.25/summary`, `apse/db/materials_project/legacy/material`,
 `apse/materials/builders/slab/pymatgen/parameters`,
@@ -117,8 +125,11 @@ labeled "islands" strip; the lint reports (but does not fail on) newly isolated 
 2. **The graph must be extracted from `schema/` sources.** The published resolved schemas
    (`dist/js/schema`) have `allOf` merged and refs inlined — the extraction target does not exist
    there.
-3. **Edge kinds partition cleanly into three renderable relationship types** (extends / contains /
+3. **Same-document refs must be excluded from the edge set**, or a schema appears to reference
+   itself. Twenty exist; the extractor counts them separately and checks their pointers resolve.
+4. **Edge kinds partition cleanly into three renderable relationship types** (extends / contains /
    variant) with zero pathological cases (no cycles, no broken refs) — no special-case rendering
    required at launch.
-4. **Fragment refs (164) resolve to file-level edges** and keep the pointer as an edge attribute;
-   they never point to files outside the schema tree.
+5. **Fragment refs (144) resolve to file-level edges** and keep the pointer as an edge attribute;
+   they never point to files outside the schema tree. The lint checks each pointer exists in its
+   target, which nothing verified before.
