@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation — ESSE</title>
+    <meta name="description" content="How ESSE is put together and why — the concepts behind the schemas.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html" class="current">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>ESSE documentation</h1>
+<p>ESSE is the <strong>E</strong>ssential <strong>S</strong>ource of <strong>S</strong>chemas and <strong>E</strong>xamples: data-format definitions for
+the entities of digital materials science — materials, models, methods, properties, workflows,
+jobs — together with worked examples of each.</p>
+<p>The <a href="../index.html">schema explorer</a> shows you any single schema. The
+<a href="../map/index.html">Entity Map</a> shows you how they all relate. These pages explain <em>why</em> the
+schemas are shaped the way they are, which is the part neither of the other two can tell you.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Schemas</th>
+<th>References</th>
+<th>extends</th>
+<th>contains</th>
+<th>variant</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>564</td>
+<td>917</td>
+<td>372</td>
+<td>375</td>
+<td>170</td>
+</tr>
+</tbody></table></div>
+<h2>Where to start</h2>
+<p>If you are new, read the first four pages in order — they are the argument, and the rest are
+reference:</p>
+<ol>
+<li><strong><a href="why-esse-exists.html">Why ESSE exists</a></strong> — schemas as the shared source of truth, and what
+the two papers behind this repository contribute.</li>
+<li><strong><a href="schema-layering.html">Schema layering</a></strong> — the build-up from primitives to entities, and
+why the layers are separate.</li>
+<li><strong><a href="entity-anatomy.html">Entity anatomy</a></strong> — the root entities, how they compose, and the
+material variant family.</li>
+<li><strong><a href="categorization.html">Categorization</a></strong> — CateCom tiers for models and methods,
+composition for materials, and the <code>*_category</code> versus <code>*_directory</code> split that names half the
+repository.</li>
+</ol>
+<p>Then, as you need them:</p>
+<ol start="5">
+<li><strong><a href="behavioural-mixins.html">Behavioural mixins</a></strong> — how <code>allOf</code> stacks platform behaviour onto
+domain payloads.</li>
+<li><strong><a href="conventions.html">Conventions</a></strong> — <code>$id</code>s, includes, generative keys, formatting, and the
+URL contracts.</li>
+<li><strong><a href="the-pipeline.html">The pipeline</a></strong> — how JSON sources become packages, types and this site,
+and what the two runtimes do and do not guarantee.</li>
+<li><strong><a href="consuming-esse.html">Consuming ESSE</a></strong> — using the schemas from Python and JavaScript.</li>
+<li><strong><a href="contributing-a-schema.html">Contributing a schema</a></strong> — a worked example, end to end.</li>
+<li><strong><a href="glossary.html">Glossary</a></strong> — the vocabulary, in one place.</li>
+</ol>
+<h2>Conventions in these pages</h2>
+<p>Every claim about the corpus — counts, relationships, coverage — is generated from the schema
+sources at build time rather than typed by hand, so these pages cannot quietly fall out of step
+with the schemas they describe. Schema names link to their place on the Entity Map.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

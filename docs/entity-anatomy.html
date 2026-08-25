@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity anatomy — ESSE</title>
+    <meta name="description" content="The root entities, how they compose, and why there are four kinds of material.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html" class="current">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Entity anatomy</h1>
+<p>Eleven schemas sit at the top level of <code>schema/</code>. They are the nouns of the domain — the things a
+user creates, names, owns and looks at — and everything else in the repository exists to define,
+categorize or support them.</p>
+<h2>Material</h2>
+<p>A material is a structure plus what is known about it. It is assembled entirely by composition:</p>
+<p><strong>Extends</strong> — <a href="../map/#/entity/in-memory-entity%2Fnamed-defaultable"><code>in-memory-entity/named-defaultable</code></a>, <a href="../map/#/entity/material%2Fmaterial-properties"><code>material/material-properties</code></a>, <a href="../map/#/entity/material%2Fmetadata"><code>material/metadata</code></a></p>
+<p><strong>Used by</strong> — <a href="../map/#/entity/material-enhanced"><code>material-enhanced</code></a>, <a href="../map/#/entity/material-hashed"><code>material-hashed</code></a>, <a href="../map/#/entity/materials-category-components%2Fentities%2Fcore%2Fthree-dimensional%2Fcrystal"><code>materials-category-components/entities/core/three-dimensional/crystal</code></a>, <a href="../map/#/entity/materials-category-components%2Foperations%2Fcore%2Fmodifications%2Fperturb"><code>materials-category-components/operations/core/modifications/perturb</code></a>, <a href="../map/#/entity/materials-category%2Fprocessed-structures%2Ftwo-dimensional%2Fpassivation%2Fconfiguration"><code>materials-category/processed-structures/two-dimensional/passivation/configuration</code></a></p>
+<p><code>material/material_properties</code> carries the structural payload — the basis (atomic species and
+coordinates), the lattice, and derived properties. <code>material/metadata</code> carries descriptive
+metadata. <code>in-memory-entity/named-defaultable</code> supplies the platform behaviour of being a named
+object with defaults.</p>
+<p>Note that <code>material</code> itself declares no properties of its own. It is pure composition, which is
+the idiom you will see throughout: the root schema names the parts, and the parts hold the
+content.</p>
+<h3>The material variant family</h3>
+<p>Four material schemas exist, and the difference between them trips people up.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>What it adds</th>
+<th>Use it when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>material</code></td>
+<td>the canonical entity</td>
+<td>you mean &quot;a material&quot;</td>
+</tr>
+<tr>
+<td><code>material-hashed</code></td>
+<td>content hashes over the structure</td>
+<td>you need to detect that two records describe the same structure</td>
+</tr>
+<tr>
+<td><code>material-enhanced</code></td>
+<td>additional derived payload on top of the base entity</td>
+<td>you are consuming an enriched record</td>
+</tr>
+<tr>
+<td><code>material-enhanced-hashed</code></td>
+<td>both of the above</td>
+<td>both reasons apply</td>
+</tr>
+</tbody></table></div>
+<p>The hashed variants exist because structural equality is not string equality: two records can
+describe the same crystal with different atom ordering, origin or cell choice. Hashing a
+canonicalized form gives a stable identity for deduplication and lookup. Keeping that in a
+separate schema means consumers who do not need identity do not pay for it, and the hash algorithm
+can change without disturbing the base entity.</p>
+<h2>Model and method</h2>
+<p>The separation of <em>model</em> from <em>method</em> is one of the load-bearing ideas from the CateCom paper,
+and it is worth stating plainly:</p>
+<ul>
+<li>A <strong>model</strong> is the physical description of the system — what physics you claim applies. <code>type</code>
+and <code>subtype</code> (for example <code>dft</code> and <code>gga</code>), plus the method it is realized by.</li>
+<li>A <strong>method</strong> is the mathematical and numerical realization — how you actually compute it. Also
+<code>type</code> and <code>subtype</code> (for example <code>pseudopotential</code> and <code>ultra-soft</code>), plus <code>precision</code> and
+method-specific <code>data</code>.</li>
+</ul>
+<p><code>model</code> requires <code>method</code>, so a model is never specified without saying how it is to be computed:</p>
+<p><strong>Contains</strong> — <a href="../map/#/entity/method"><code>method</code></a> <code>method</code></p>
+<p>The reason to separate them is comparability. &quot;PBE&quot; is a model choice; whether it was evaluated
+with norm-conserving or ultrasoft pseudopotentials is a method choice. Two results are comparable
+only if you can see both independently, and you can only see both independently if the format
+keeps them apart.</p>
+<p>Note also that neither refers to <em>software</em>. Which application computed it is a property of the
+job, not of the physics. <code>software/application</code> and the <code>software_directory</code> catalogue cover that
+separately.</p>
+<h2>Workflow, subworkflow and unit</h2>
+<p>A workflow is the executable decomposition of a calculation, and it nests three levels deep:</p>
+<ul>
+<li><strong><code>workflow</code></strong> — the top-level object a user runs.</li>
+<li><strong><code>workflow/subworkflow</code></strong> — a stage, carrying the model and method it applies.</li>
+<li><strong><code>workflow/unit/*</code></strong> — the individual steps. Units are typed: execution, assignment, condition,
+map, io, processing, and so on, each with its own schema under <code>workflow/unit/</code>.</li>
+</ul>
+<p><code>workflow/unit/context/_base</code> is one of the most-referenced schemas in the corpus, because almost
+every unit type needs the context mechanism that carries values between steps.</p>
+<h2>Job</h2>
+<p>A job binds a workflow to everything needed to actually run it:</p>
+<p><strong>Extends</strong> — <a href="../map/#/entity/job%2Fbase"><code>job/base</code></a></p>
+<p><strong>Contains</strong> — <a href="../map/#/entity/workflow"><code>workflow</code></a> <code>workflow</code></p>
+<p><code>job/base</code> composes the platform mixins and the compute configuration; <code>job</code> adds the required
+<code>workflow</code>. Notice <code>_project</code> and <code>_material</code> on the base: these are <code>system/entity_reference</code>
+values — deliberately partial copies of another entity, not full embeddings — so a job record
+stays self-describing without duplicating whole materials into itself.</p>
+<h2>Property and the property holder</h2>
+<p>Properties are the results. Individual property schemas live in <code>properties_directory</code>, grouped by
+shape: <code>scalar</code> (total energy, pressure, band gap), <code>non-scalar</code> (band structure, density of
+states, charge density), <code>structural</code>, <code>elemental</code> and <code>workflow</code> (convergence monitors).</p>
+<p>They are tied together by <code>property/holder</code>, which is the widest schema in the corpus: its <code>data</code>
+field is a union over every property type, on top of one mixin and one provenance reference. That
+one file is why &quot;what property types exist?&quot; has a single answer, and it is the clearest
+illustration of the union idiom in ESSE. On the <a href="../map/index.html">Entity Map</a> it is the node
+with by far the largest fan-out.</p>
+<p><code>manifest/properties.yaml</code> is the registry that sits alongside: it maps a property name to its
+schema id, its default units, and flags for whether it is a computed <em>result</em> or a runtime
+<em>monitor</em>. The Entity Map shows those flags as badges on property nodes.</p>
+<h2>How it fits together</h2>
+<p>Reading the composition from the bottom: a <strong>material</strong> is characterized by <strong>properties</strong>; those
+properties are produced by applying a <strong>model</strong> (realized by a <strong>method</strong>) through a
+<strong>workflow</strong> of <strong>units</strong>; that workflow is executed as a <strong>job</strong> against <strong>compute</strong> resources
+using a <strong>software application</strong>; and the job belongs to a <strong>project</strong>.</p>
+<p>Each arrow in that sentence is a <code>$ref</code> you can follow on the map.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

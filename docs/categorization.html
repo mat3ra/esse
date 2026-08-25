@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorization — ESSE</title>
+    <meta name="description" content="Two different category mechanisms — tiers for models and methods, composition for materials — and the category-versus-directory split.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html" class="current">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Categorization</h1>
+<p>There are thousands of computational models and methods, related to each other in more than one
+way. A strict tree cannot hold them: an exchange-correlation functional is simultaneously &quot;a DFT
+thing&quot;, &quot;a GGA thing&quot; and &quot;a Perdew-Burke-Ernzerhof thing&quot;, and different users arrive from
+different directions. A flat list cannot hold them either.</p>
+<p>The first thing to know is that <strong><code>*_category</code> names two different mechanisms</strong>, not one. Models
+and methods are categorized by <em>tiers</em>: a small ordered vocabulary carried as data on the entity.
+Materials are categorized by <em>composition</em>: a structure class is defined as a recipe over building
+blocks. Reading a <code>materials_category/…</code> path expecting tiers is the single most likely way to
+misread the corpus.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category domain</th>
+<th>Schemas</th>
+<th>Scheme</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>models-category</code></td>
+<td>25</td>
+<td>16 tiered + 9 enum holders</td>
+</tr>
+<tr>
+<td><code>methods-category</code></td>
+<td>79</td>
+<td>57 tiered + 22 enum holders</td>
+</tr>
+<tr>
+<td><code>materials-category</code></td>
+<td>17</td>
+<td>none — compositional</td>
+</tr>
+<tr>
+<td><code>materials-category-components</code></td>
+<td>31</td>
+<td>25 entities + 6 operations</td>
+</tr>
+</tbody></table></div>
+<p>Entities carrying a tiered <code>categories</code> field: <a href="../map/#/entity/method%2Funit-method"><code>method/unit-method</code></a>, <a href="../map/#/entity/model%2Fmodel-without-method"><code>model/model-without-method</code></a>.</p>
+<h2>Scheme 1 — tiers, for models and methods</h2>
+<p>The tier approach comes from the
+<a href="https://pubs.acs.org/doi/abs/10.1021/acs.jcim.2c00112">CateCom paper</a>: categorize along a small
+number of ordered tiers, and keep the vocabulary separate from the instances.</p>
+<p><code>core/reusable/categories</code> is the shape:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tier1</code></td>
+<td>top-level category, e.g. <code>pb</code> (physics-based)</td>
+</tr>
+<tr>
+<td><code>tier2</code></td>
+<td>second level, e.g. <code>qm</code> (quantum mechanical)</td>
+</tr>
+<tr>
+<td><code>tier3</code></td>
+<td>third level, e.g. <code>dft</code></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>general type within that path</td>
+</tr>
+<tr>
+<td><code>subtype</code></td>
+<td>specific variant</td>
+</tr>
+</tbody></table></div>
+<p>Each field is a <code>slugified_entry_or_slug</code> — either a bare slug string, or an object carrying the
+slug plus a human-readable name. That duality is deliberate: compact records stay compact, while
+records that need to render a label can carry one without a second lookup.</p>
+<h3>The vocabulary is a chain of narrowings</h3>
+<p>A tier vocabulary is not one schema listing everything. It is a chain down the directory tree in
+which <strong>each schema <code>allOf</code>s its parent and narrows exactly one more field</strong> to an enumeration held
+in a sibling <code>enum_options.json</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Extends</th>
+<th>Narrows</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../map/#/entity/models-category%2Fpb"><code>models-category/pb</code></a></td>
+<td><code>core/reusable/categories</code></td>
+<td><code>tier1</code> → <code>#/physicsBased</code></td>
+</tr>
+<tr>
+<td><code>models-category/pb/qm</code></td>
+<td><code>…/pb</code></td>
+<td><code>tier2</code> → <code>#/quantumMechanical</code></td>
+</tr>
+<tr>
+<td><code>models-category/pb/qm/dft</code></td>
+<td><code>…/qm</code></td>
+<td><code>tier3</code></td>
+</tr>
+<tr>
+<td><code>models-category/pb/qm/dft/ksdft</code></td>
+<td><code>…/dft</code></td>
+<td><code>type</code></td>
+</tr>
+<tr>
+<td><code>models-category/pb/qm/dft/ksdft/gga</code></td>
+<td><code>…/ksdft</code></td>
+<td><code>subtype</code></td>
+</tr>
+</tbody></table></div>
+<p>Depth in the tree therefore tracks depth in the tier scheme, and a leaf schema like
+<code>…/ksdft/gga</code> transitively constrains all five fields. Sixty-six of the 73 vocabulary schemas
+narrow exactly one field; the other seven pin <code>type</code> and <code>subtype</code> together as a leaf shortcut.</p>
+<p>The <code>$ref</code>-with-a-fragment into <code>enum_options.json</code> is how enumerations are shared without
+duplication — 144 references in the corpus carry a JSON pointer, and this is the dominant reason.</p>
+<h3>Where the tiers actually land</h3>
+<p>The vocabulary constrains; it does not enumerate instances. The tiers reach real data through just
+two entity components, listed in the table above: <code>model/model-without-method</code> and
+<code>method/unit-method</code> each carry a <code>categories</code> object. Everything else in the tier tree exists to
+say which combinations are legal.</p>
+<h2>Scheme 2 — composition, for materials</h2>
+<p>Nothing under <code>materials_category/</code> extends <code>core/reusable/categories</code>. Materials are not placed on
+a tier ladder; a material category is <strong>a recipe</strong>. Three axes combine:</p>
+<ul>
+<li><strong>Structure class</strong> — <code>pristine_structures</code>, <code>defective_structures</code>, <code>compound_pristine_structures</code>,
+<code>processed_structures</code>. The first path segment.</li>
+<li><strong>Dimensionality</strong> — <code>zero-dimensional</code> through <code>three-dimensional</code>. The second path segment.</li>
+<li><strong>Components</strong> — from <code>materials_category_components/</code>: <em>entities</em> (<code>crystal</code>, <code>vacuum</code>, <code>atom</code>,
+<code>vacancy</code>, <code>void_region</code>, atomic layers…) and <em>operations</em> (<code>stack</code>, <code>merge</code>; <code>repeat</code>, <code>strain</code>,
+<code>perturb</code>).</li>
+</ul>
+<p>A category schema names an operation via <code>allOf</code> and lists its operands under <code>stack_components</code> or
+<code>merge_components</code>. <a href="../map/#/entity/materials-category%2Fpristine-structures%2Ftwo-dimensional%2Fslab"><code>materials-category/pristine-structures/two-dimensional/slab</code></a>
+reads, in full, as <em>a stack of [repeated unique atomic layers, vacuum]</em>:</p>
+<pre><code class="language-json">{
+    &quot;allOf&quot;: [{ &quot;$ref&quot;: &quot;.../operations/core/combinations/stack.json&quot; }],
+    &quot;properties&quot;: {
+        &quot;stack_components&quot;: {
+            &quot;items&quot;: [
+                { &quot;$ref&quot;: &quot;.../entities/reusable/two-dimensional/atomic_layers_unique_repeated.json&quot; },
+                { &quot;$ref&quot;: &quot;.../entities/core/two-dimensional/vacuum.json&quot; }
+            ]
+        }
+    }
+}
+</code></pre>
+<p>Categories then compose on top of categories. An <em>island</em> defect is a stack of
+<em>[slab, merge(slab, void_region), vacuum]</em> — a recipe whose ingredients include another recipe. This
+is why the components layer is larger than the category layer it serves: a small set of entities and
+six operations generates the structure space, and adding a structure type usually means writing a
+new recipe rather than a new vocabulary.</p>
+<p>The trade-off is deliberate. Tiers are good for <em>retrieval</em> — filter on <code>tier2 = qm</code> and you get
+every quantum-mechanical model. Recipes are good for <em>construction</em> — the schema for a slab is
+also, quite literally, the instructions for building one.</p>
+<h2>Category versus directory</h2>
+<p>Underneath both schemes sits the distinction that names roughly half the directories in <code>schema/</code>:</p>
+<ul>
+<li><strong><code>*_category</code></strong> schemas define the <strong>vocabulary or the recipe</strong> — what is allowed, or what a
+structure is made of. They constrain; they do not enumerate instances.</li>
+<li><strong><code>*_directory</code></strong> schemas are the <strong>catalogue</strong> — the concrete, individually described entries.
+<code>models_directory/gw</code>, <code>properties_directory/scalar/total_energy</code>,
+<code>software_directory/modeling/espresso</code>.</li>
+<li><strong><code>materials_category_components</code></strong> is the parts bin that scheme 2 draws from.</li>
+</ul>
+<p>Two roughly equal-sized layers result:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Schemas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>directory</code></td>
+<td>156</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>152</td>
+</tr>
+<tr>
+<td><code>entity-component</code></td>
+<td>106</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td>38</td>
+</tr>
+<tr>
+<td><code>reusable</code></td>
+<td>31</td>
+</tr>
+<tr>
+<td><code>primitive</code></td>
+<td>23</td>
+</tr>
+<tr>
+<td><code>application-parsing</code></td>
+<td>17</td>
+</tr>
+<tr>
+<td><code>entity</code></td>
+<td>11</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>abstract</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>in-memory-entity</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>definition</code></td>
+<td>4</td>
+</tr>
+</tbody></table></div>
+<h2>Worked example: finding an exchange-correlation functional</h2>
+<p>Suppose you want the PBE functional and you do not know where it lives.</p>
+<ol>
+<li><strong>Start at the tier vocabulary.</strong> A DFT functional is physics-based, so <code>tier1</code> is <code>pb</code>. The
+allowed values are in <code>models_category/enum_options.json</code>, referenced by
+<a href="../map/#/entity/models-category%2Fpb"><code>models-category/pb</code></a>.</li>
+<li><strong>Narrow through the tiers.</strong> <code>tier2</code> is <code>qm</code>, <code>tier3</code> is <code>dft</code>, <code>type</code> is <code>ksdft</code>, and GGA is
+the <code>subtype</code> — which is exactly the path <code>models_category/pb/qm/dft/ksdft/gga.json</code>.</li>
+<li><strong>Cross to the catalogue.</strong> The concrete entries live under <code>models_directory/</code>. The functional
+itself is a <code>model/mixins/functional</code> concern composed into the model schema.</li>
+<li><strong>Check the manifest.</strong> <code>manifest/functional_lookup_table.yaml</code> and
+<code>manifest/dft_unit_functionals.yaml</code> are the registries for functionals, as
+<code>manifest/properties.yaml</code> is for properties.</li>
+</ol>
+<p>The general shape of the answer: <strong>categories tell you the coordinates, directories hold the
+thing</strong>. If you are looking for &quot;what values are allowed&quot;, read a <code>*_category</code> schema. If you are
+looking for &quot;the actual entry for X&quot;, read a <code>*_directory</code> one.</p>
+<h2>The manifests</h2>
+<p><code>manifest/*.yaml</code> sits outside <code>schema/</code> because it is a registry rather than a format:</p>
+<ul>
+<li><strong><code>properties.yaml</code></strong> — every property, its <code>schemaId</code>, default units, and <code>isResult</code> /
+<code>isMonitor</code> flags. This is what the platform reads to know which properties are computed results
+and which are progress monitors.</li>
+<li><strong><code>models.yaml</code></strong>, <strong><code>functional_lookup_table.yaml</code></strong>, <strong><code>dft_unit_functionals.yaml</code></strong> — the
+equivalent registries for models and functionals.</li>
+</ul>
+<p>The manifests are joined to the schemas by <code>schemaId</code>, and that join is checked: a manifest entry
+naming a schema that does not exist fails the build. It used to be possible for the two to drift
+apart silently.</p>
+<h2>Why keep the tiers in the data?</h2>
+<p>The tier vocabulary is mirrored in the directory tree, so it is fair to ask why the tiers are also
+carried as fields. Because the tree can express only one hierarchy, and it can express it only for
+schemas. The <code>categories</code> object travels with an <em>instance</em>: a stored model record can be filtered
+on any tier, surfaced under more than one route, and re-categorized without moving a file and
+breaking every <code>$id</code> that points at it.</p>
+<p>Materials pay a different price for a different benefit. Their recipes are precise enough to build
+from, but there is no <code>categories</code> field on a material configuration to filter on, so retrieval
+across the materials space works by structure class and dimensionality — the path — rather than by
+query. Whether that asymmetry is deliberate or simply the older scheme not yet extended to
+materials is a question for the maintainers; the corpus as it stands does not answer it.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

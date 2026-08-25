@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioural mixins — ESSE</title>
+    <meta name="description" content="How allOf stacks platform behaviour onto domain payloads, and why they are separate.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html" class="current">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Behavioural mixins</h1>
+<p>Two directories in <code>schema/</code> describe no materials science at all. <code>in_memory_entity</code> and <code>system</code>
+describe how an object behaves <em>as a record</em>: that it has a name, that it can be shared, that it
+was created by someone at some time, that another record can point at it.</p>
+<p>They are composed into entities with <code>allOf</code>, which is JSON Schema&#39;s intersection: a document must
+satisfy every branch. Read an entity schema as <strong>base + mixins + payload</strong>.</p>
+<h2>Reading a composed schema</h2>
+<p><code>material</code> is the clearest example. It declares no properties of its own; it is three <code>allOf</code>
+branches:</p>
+<pre><code class="language-json">{
+    &quot;$id&quot;: &quot;material&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;allOf&quot;: [
+        { &quot;description&quot;: &quot;in-memory entity&quot;, &quot;$ref&quot;: &quot;in_memory_entity/named_defaultable.json&quot; },
+        { &quot;$ref&quot;: &quot;material/material_properties.json&quot; },
+        { &quot;$ref&quot;: &quot;material/metadata.json&quot; }
+    ]
+}
+</code></pre>
+<p>One branch is behaviour (it is a named object with defaults), two are payload (structure and
+metadata). Swap the behaviour branch and you have the same material with different platform
+semantics; drop it and you have the pure domain format.</p>
+<h2><code>in_memory_entity</code> — object identity and shape</h2>
+<p>The in-memory-entity layer is small and composes with itself, building up progressively:</p>
+<ul>
+<li><code>base</code> — the minimum: an object with an identifier.</li>
+<li><code>named</code> — has a <code>name</code>.</li>
+<li><code>defaultable</code> — can be marked as a default choice among siblings.</li>
+<li><code>named_defaultable</code> — both, and the most commonly used.</li>
+<li><code>named_defaultable_has_metadata</code> — adds a metadata bag.</li>
+<li><code>named_defaultable_runtime_items</code> — adds runtime items, for entities that accumulate state.</li>
+<li><code>has_consistency_check_has_metadata_named_defaultable</code> — adds consistency checking.</li>
+</ul>
+<p>The combinatorial naming is doing real work: rather than a deep inheritance chain, each
+combination that is actually used gets a name, and entities reference the one they need. It is
+composition, flattened.</p>
+<h2><code>system</code> — platform concerns</h2>
+<p>The <code>system</code> layer is larger and less regular, because platform concerns are. Some of the more
+widely used:</p>
+<ul>
+<li><strong><code>entity_reference</code></strong> — a partial copy of another entity: enough to identify and display it
+without embedding the whole thing. This is how a job records which project and material it
+belongs to without duplicating them. It is one of the most-referenced schemas in the corpus.</li>
+<li><strong><code>soft_removable</code></strong> — marks a record as removed without deleting it.</li>
+<li><strong><code>sharing</code></strong>, <strong><code>owner</code></strong>, <strong><code>creator</code></strong>, <strong><code>creator_account</code></strong> — who may see it and who made it.</li>
+<li><strong><code>timestampable</code></strong> — creation and modification times.</li>
+<li><strong><code>status</code></strong>, <strong><code>status_track</code></strong> — lifecycle state and its history.</li>
+<li><strong><code>metadata</code></strong>, <strong><code>description</code></strong>, <strong><code>name</code></strong>, <strong><code>tags</code></strong> — descriptive fields.</li>
+<li><strong><code>in_set</code></strong>, <strong><code>set</code></strong> — set membership.</li>
+<li><strong><code>hashed</code></strong> — content hashing, used by the material hashed variants.</li>
+<li><strong><code>schema_version</code></strong> — which version of the format a record claims to follow.</li>
+</ul>
+<h2>Which mixins are actually used</h2>
+<p>Generated from the current schemas — the mixins with the most schemas extending them:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mixin</th>
+<th>Schemas extending it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../map/#/entity/in-memory-entity%2Fbase"><code>in-memory-entity/base</code></a></td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fentity-reference"><code>system/entity-reference</code></a></td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/in-memory-entity%2Fnamed-defaultable"><code>in-memory-entity/named-defaultable</code></a></td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fname"><code>system/name</code></a></td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Ftags"><code>system/tags</code></a></td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fdefaultable"><code>system/defaultable</code></a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fruntime-items"><code>system/runtime-items</code></a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/in-memory-entity%2Fnamed"><code>in-memory-entity/named</code></a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/in-memory-entity%2Fnamed-defaultable-has-metadata"><code>in-memory-entity/named-defaultable-has-metadata</code></a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fpath-entity"><code>system/path-entity</code></a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fmetadata"><code>system/metadata</code></a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fstatus-track"><code>system/status-track</code></a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fconsistency-check"><code>system/consistency-check</code></a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fdatabase-source"><code>system/database-source</code></a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fdescription"><code>system/description</code></a></td>
+<td>1</td>
+</tr>
+</tbody></table></div>
+<h2>Why keep them separate</h2>
+<p><strong>The domain formats stay portable.</strong> A consumer who wants ESSE&#39;s description of a band structure
+does not want the platform&#39;s sharing model. Because platform behaviour is only ever added by
+composition, they can take the payload schemas and ignore the rest.</p>
+<p><strong>Platform changes do not touch science.</strong> Adding a field to <code>system/sharing</code> changes every entity
+that composes it, in one place, without editing a single domain schema.</p>
+<p><strong>It is legible.</strong> An entity&#39;s <code>allOf</code> list is a summary of what kind of object it is. Reading
+<code>job/base</code>&#39;s branches tells you it is a named, defaultable, metadata-carrying record with compute
+properties — before you read a single property.</p>
+<h2>A caution about <code>allOf</code></h2>
+<p><code>allOf</code> is an intersection, not an override. A branch cannot relax a constraint another branch
+imposes; both apply. This matters for two reasons:</p>
+<ul>
+<li>Composing two branches that constrain the same field in incompatible ways yields a schema that
+nothing can satisfy, and JSON Schema will not warn you.</li>
+<li>The published, resolved schemas have their <code>allOf</code> branches <strong>merged</strong> by the build (see
+<a href="the-pipeline.html">The pipeline</a>). That is a convenience for consumers, but it means the
+published copy no longer shows you which mixin a field came from. The source is authoritative
+for provenance — which is exactly why the <a href="../map/index.html">Entity Map</a> is built from the
+sources rather than the published output.</li>
+</ul>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

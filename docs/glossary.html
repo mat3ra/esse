@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary — ESSE</title>
+    <meta name="description" content="The vocabulary of the repository, with pointers to where each idea is explained.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html" class="current">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Glossary</h1>
+<p>Terms as this repository uses them. Where a term names a schema, the name links to its place on
+the <a href="../map/index.html">Entity Map</a>.</p>
+<h2>The corpus</h2>
+<p><strong>Schema</strong> — a JSON Schema (draft-07) file under <code>schema/</code>, declaring a <code>$id</code> derived from its
+path. The authoritative definition of one entity or fragment.</p>
+<p><strong>Example</strong> — an instance under <code>example/</code> conforming to the schema at the mirrored path. A
+versioned, reviewed asset, not documentation garnish. See
+<a href="why-esse-exists.html">Why ESSE exists</a>.</p>
+<p><strong>Resolved schema</strong> — the published copy in <code>dist/js/schema</code> with <code>$ref</code>s inlined and <code>allOf</code>
+merged. Self-contained and convenient, but it no longer shows which mixin a field came from. See
+<a href="the-pipeline.html">The pipeline</a>.</p>
+<p><strong><code>$id</code></strong> — a schema&#39;s identity: its path with <code>.json</code> dropped and underscores replaced by dashes.
+Consumers reference schemas by this, so moving a file is a breaking change.
+<a href="conventions.html">Conventions</a>.</p>
+<p><strong>Published path</strong> — where a schema&#39;s resolved copy lives on the site, derived from the <code>$id</code>.
+Not always the source path, because source directories may contain literal dashes.</p>
+<h2>The layering</h2>
+<p><strong>Layer</strong> — where a schema sits in the build-up: <code>primitive</code>, <code>abstract</code>, <code>reusable</code>, <code>reference</code>,
+<code>definition</code>, <code>in-memory-entity</code>, <code>system</code>, <code>entity</code>, <code>entity-component</code>, <code>category</code>, <code>directory</code>,
+<code>application-parsing</code>. Every schema has exactly one, and the classification is total — an
+unclassifiable path fails the lint. <a href="schema-layering.html">Schema layering</a>.</p>
+<p><strong>Primitive</strong> — a custom type built only from default JSON Schema types, which cannot be
+reconstructed from other primitives. The bottom of the stack.</p>
+<p><strong>Abstract</strong> — a unit-less mathematical structure: vectors, matrices, grids, plots.</p>
+<p><strong>Reusable</strong> — a domain building block carrying physical meaning, such as
+<a href="../map/#/entity/core%2Freusable%2Fenergy"><code>core/reusable/energy</code></a>.</p>
+<p><strong>Mixin</strong> — a schema from <code>in_memory_entity</code> or <code>system</code> composed into an entity with <code>allOf</code> to
+add record behaviour rather than payload. <a href="behavioural-mixins.html">Behavioural mixins</a>.</p>
+<p><strong>Entity reference</strong> — <a href="../map/#/entity/system%2Fentity-reference"><code>system/entity-reference</code></a>, a
+partial copy of another entity: enough to identify and display it without embedding the whole
+thing.</p>
+<h2>The entities</h2>
+<p><strong>Material</strong> — a structure plus what is known about it. Four variants exist: the canonical
+<code>material</code>, the content-addressed <code>material-hashed</code>, the enriched <code>material-enhanced</code>, and both
+combined. <a href="entity-anatomy.html">Entity anatomy</a>.</p>
+<p><strong>Model</strong> — the physical description of a system: what physics you claim applies. Requires a
+method.</p>
+<p><strong>Method</strong> — the mathematical and numerical realization of a model: how it is actually computed.
+Kept separate from the model so results stay comparable.</p>
+<p><strong>Property</strong> — a result. Individual schemas live in <code>properties_directory</code>, grouped by shape:
+scalar, non-scalar, structural, elemental, workflow.</p>
+<p><strong>Property holder</strong> — <a href="../map/#/entity/property%2Fholder"><code>property/holder</code></a>, whose <code>data</code> field
+is a union over every property type. The widest schema in the corpus and the single answer to
+&quot;what property types exist?&quot;.</p>
+<p><strong>Workflow / subworkflow / unit</strong> — the executable decomposition of a calculation, three levels
+deep. Units are typed: execution, assignment, condition, map, io, processing.</p>
+<p><strong>Job</strong> — a workflow bound to the compute, project and material it runs against.</p>
+<h2>Categorization</h2>
+<p><strong>Tier</strong> — one level of the CateCom categorization (<code>tier1</code>, <code>tier2</code>, <code>tier3</code>, plus <code>type</code> and
+<code>subtype</code>), defined by
+<a href="../map/#/entity/core%2Freusable%2Fcategories"><code>core/reusable/categories</code></a>. Categories are a path,
+not a tree node. Tiers apply to models and methods only.
+<a href="categorization.html">Categorization</a>.</p>
+<p><strong>Category schema</strong> (<code>*_category</code>) — defines what is allowed, as opposed to enumerating instances.
+Two different mechanisms share the name: <code>models_category</code> and <code>methods_category</code> hold a <strong>tier
+vocabulary</strong>, each schema narrowing one more field of <code>core/reusable/categories</code>;
+<code>materials_category</code> holds <strong>recipes</strong> that compose entities and operations from
+<code>materials_category_components</code> and use no tiers at all.</p>
+<p><strong>Composition (materials)</strong> — the materials categorization scheme: a structure class is defined as
+an operation (<code>stack</code>, <code>merge</code>, <code>strain</code>, …) applied to entities (<code>crystal</code>, <code>vacuum</code>, <code>atom</code>,
+<code>vacancy</code>, …), keyed by structure class and dimensionality. A slab <em>is</em> a stack of atomic layers
+and vacuum. <a href="categorization.html">Categorization</a>.</p>
+<p><strong>Directory schema</strong> (<code>*_directory</code>) — the <strong>catalogue</strong>: the concrete entries.</p>
+<p><strong>Manifest</strong> — a YAML registry under <code>manifest/</code>, joining names to schema ids plus metadata such
+as default units and the <code>isResult</code> / <code>isMonitor</code> flags. The join is lint-checked.</p>
+<p><strong>Generative key</strong> — a field flagged <code>isGenerative: true</code>, marking user input supplied before a
+calculation rather than a computed result.</p>
+<h2>Tooling</h2>
+<p><strong>Entity graph</strong> — <code>graph.json</code>, the extracted reference graph: one node per schema, one edge per
+cross-schema <code>$ref</code>. Described by <code>src/js/scripts/entity_graph.schema.json</code>, which lives with the
+extractor rather than in <code>schema/</code>: it describes a build artifact, not an entity of digital
+materials science, so it is not part of the corpus it measures.</p>
+<p><strong>Relationship kind</strong> — what a <code>$ref</code> expresses, from its innermost enclosing keyword: <code>extends</code>
+(<code>allOf</code>), <code>contains</code> (<code>properties</code>/<code>items</code>), <code>variant</code> (<code>oneOf</code>/<code>anyOf</code>).</p>
+<p><strong>Same-document reference</strong> — a <code>$ref</code> beginning with <code>#</code>, pointing inside its own document.
+Twenty exist; they are not edges between schemas and are counted separately.</p>
+<p><strong>Isolated schema</strong> — one with no incoming or outgoing references. Mostly leaf definitions and
+externally-consumed formats. Growth is reported by the lint as a warning.</p>
+<p><strong>Schema lint</strong> — the L1–L10 rules run on every pull request. <a href="conventions.html">Conventions</a>.</p>
+<p><strong>Hub</strong> — a heavily referenced schema. The map draws these larger; the top of the list is
+<a href="../map/#/entity/definitions%2Funits"><code>definitions/units</code></a> and
+<a href="../map/#/entity/core%2Fprimitive%2Fscalar"><code>core/primitive/scalar</code></a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Referenced by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../map/#/entity/definitions%2Funits"><code>definitions/units</code></a></td>
+<td>30</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Fprimitive%2Fscalar"><code>core/primitive/scalar</code></a></td>
+<td>28</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Freusable%2Fenergy"><code>core/reusable/energy</code></a></td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/workflow%2Funit%2Fcontext%2F-base"><code>workflow/unit/context/-base</code></a></td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Fprimitive%2Farray-of-3-numbers"><code>core/primitive/array-of-3-numbers</code></a></td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/materials-category-components%2Fentities%2Fcore%2Fthree-dimensional%2Fcrystal"><code>materials-category-components/entities/core/three-dimensional/crystal</code></a></td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fentity-reference"><code>system/entity-reference</code></a></td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Freusable%2Fcategories"><code>core/reusable/categories</code></a></td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/method%2Funit-method"><code>method/unit-method</code></a></td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Fabstract%2F2d-plot"><code>core/abstract/2d-plot</code></a></td>
+<td>10</td>
+</tr>
+</tbody></table></div>
+<h2>The surfaces</h2>
+<p><strong>Schema explorer</strong> — <a href="../index.html">the file browser</a> over resolved schemas and examples.</p>
+<p><strong>Entity Map</strong> — <a href="../map/index.html">the map</a> of all schemas and their references, laid out by
+architectural layer.</p>
+<p><strong>Concept documentation</strong> — these pages.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributing a schema — ESSE</title>
+    <meta name="description" content="Adding a new scalar property, end to end — files, commands, checks and review.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html" class="current">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Contributing a schema</h1>
+<p>A worked example: adding a new scalar property. Most contributions follow this shape, and the
+checks are the same whatever you are adding.</p>
+<h2>Setup, once</h2>
+<p>Both runtimes are needed, because the pre-commit hook regenerates assets with both:</p>
+<pre><code class="language-bash">git clone https://github.com/mat3ra/esse.git &amp;&amp; cd esse
+npm install
+
+python -m venv .venv
+source .venv/bin/activate
+pip install -e &quot;.[all]&quot;
+</code></pre>
+<p>The hook requires <code>.venv</code> at the repository root specifically, and refuses to run without it.</p>
+<h2>1. Write the schema</h2>
+<p>Say we are adding a <em>cohesive energy</em> scalar property. Scalar properties live in
+<code>schema/properties_directory/scalar/</code>, and they compose an existing reusable rather than
+redefining what an energy is:</p>
+<p><code>schema/properties_directory/scalar/cohesive_energy.json</code></p>
+<pre><code class="language-json">{
+    &quot;$id&quot;: &quot;properties-directory/scalar/cohesive-energy&quot;,
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-07/schema#&quot;,
+    &quot;title&quot;: &quot;cohesive energy scalar property schema&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;allOf&quot;: [
+        {
+            &quot;$ref&quot;: &quot;../../core/reusable/energy.json&quot;
+        }
+    ],
+    &quot;properties&quot;: {
+        &quot;name&quot;: {
+            &quot;enum&quot;: [&quot;cohesive_energy&quot;]
+        }
+    },
+    &quot;required&quot;: [&quot;name&quot;, &quot;value&quot;]
+}
+</code></pre>
+<p>Points of style, each of which the lint or review will raise:</p>
+<ul>
+<li>The <code>$id</code> is the path with underscores turned into dashes. Do not hand-write it wrongly — run
+<code>npm run set-schema-ids</code> and let it be correct.</li>
+<li>Compose <code>core/reusable/energy</code> rather than restating <code>value</code> and <code>units</code>. If your quantity is
+not an energy, look for the reusable that fits before writing a new one.</li>
+<li>4-space indent, double quotes, trailing newline.</li>
+<li>No circular references.</li>
+</ul>
+<h2>2. Write the example</h2>
+<p>Examples mirror the schema tree exactly. <code>example/properties_directory/scalar/cohesive_energy.json</code>:</p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;cohesive_energy&quot;,
+    &quot;value&quot;: -4.32,
+    &quot;units&quot;: &quot;eV/atom&quot;
+}
+</code></pre>
+<p>This is not optional decoration. Currently 209 of 564 schemas (37%) have a mirror example, and the coverage
+figure is reported by the lint precisely so it goes up rather than down.</p>
+<h2>3. Register it in the manifest</h2>
+<p>If the property is one the platform should know about, add it to <code>manifest/properties.yaml</code>:</p>
+<pre><code class="language-yaml">cohesive_energy:
+  defaults:
+    units: eV/atom
+  schemaId: properties-directory/scalar/cohesive-energy
+  isResult: true
+</code></pre>
+<p><code>isResult</code> marks a computed output; <code>isMonitor</code> marks something tracked during a run. The
+<code>schemaId</code> must resolve — the lint fails if it does not, which is a check that did not exist
+before and had been silently breakable.</p>
+<h2>4. Regenerate</h2>
+<pre><code class="language-bash">npm run set-schema-ids          # normalize $ids
+npm run transpile-and-build-assets
+</code></pre>
+<p>This resolves the schemas into <code>dist/js</code> (build output, gitignored), regenerates the TypeScript types
+and transpiles. The pre-commit hook does it too, but running it yourself makes the diff
+predictable.</p>
+<p>Expect the diff to be larger than your one schema: the regenerated pydantic models under
+<code>src/py/</code> come along, and <code>datamodel-codegen</code>&#39;s global class numbering may renumber classes in
+unrelated model files. That is normal, and <a href="the-pipeline.html">The pipeline</a> explains why.
+<code>dist/</code> itself is gitignored, so resolved assets do not appear in the diff.</p>
+<h2>5. Check it</h2>
+<pre><code class="language-bash">npm run lint-entity-graph       # the schema lint, L1-L10
+npm test                        # includes the lint plus the JS test suite
+python -m unittest discover --verbose --catch --start-directory tests/py/esse/
+</code></pre>
+<p>The lint messages name the offending file and reference. The rules most likely to catch a new
+contribution:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>What it will tell you</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L1</td>
+<td>a <code>$ref</code> points at a file that is not there — usually a wrong number of <code>../</code></td>
+</tr>
+<tr>
+<td>L2</td>
+<td>the <code>$id</code> does not match the path — run <code>set-schema-ids</code></td>
+</tr>
+<tr>
+<td>L3</td>
+<td>the path is in a directory no layer rule covers — add a rule to <code>classifyLayer</code></td>
+</tr>
+<tr>
+<td>L5</td>
+<td>a <code>$ref</code> fragment names something the target does not define</td>
+</tr>
+<tr>
+<td>L6</td>
+<td>a manifest entry points at a schema that does not exist</td>
+</tr>
+</tbody></table></div>
+<p>If you added a new top-level directory, L3 will fail by design: the layer taxonomy is total, and
+adding a directory is a decision someone should make deliberately rather than let default.</p>
+<h2>6. Update the counts</h2>
+<p><code>tests/js/entityGraph.tests.ts</code> pins the corpus baseline — node count, edge counts by kind, layer
+counts. Adding a schema changes them, which is intended: update the constants in the same commit,
+so the change to the corpus is visible in review rather than buried.</p>
+<h2>7. Open the pull request</h2>
+<p>Fork, branch, and open a pull request against <code>dev</code>. Useful things to say in the description:</p>
+<ul>
+<li>What the entity is and where it fits in the layering.</li>
+<li>Why it composes what it composes — especially if you added a new reusable.</li>
+<li>Whether it is a breaking change. Moving or renaming an existing schema is breaking, because
+consumers reference schemas by <code>$id</code>.</li>
+</ul>
+<h2>Where things go</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adding</th>
+<th>Put it in</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a custom scalar or array type</td>
+<td><code>schema/core/primitive/</code></td>
+</tr>
+<tr>
+<td>unit-less mathematics</td>
+<td><code>schema/core/abstract/</code></td>
+</tr>
+<tr>
+<td>a physical quantity reused across properties</td>
+<td><code>schema/core/reusable/</code></td>
+</tr>
+<tr>
+<td>a shared enumeration</td>
+<td><code>schema/definitions/</code></td>
+</tr>
+<tr>
+<td>a computed result</td>
+<td><code>schema/properties_directory/&lt;shape&gt;/</code></td>
+</tr>
+<tr>
+<td>record behaviour, not science</td>
+<td><code>schema/system/</code> or <code>schema/in_memory_entity/</code></td>
+</tr>
+<tr>
+<td>allowed category values</td>
+<td>a <code>*_category</code> schema</td>
+</tr>
+<tr>
+<td>a concrete catalogue entry</td>
+<td>a <code>*_directory</code> schema</td>
+</tr>
+</tbody></table></div>
+<p>When in doubt, find the closest existing schema and follow it. <a href="schema-layering.html">Schema layering</a>
+is the longer answer.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

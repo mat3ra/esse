@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conventions — ESSE</title>
+    <meta name="description" content="Ids, includes, generative keys, formatting rules, and the URLs that are contracts.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html" class="current">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Conventions</h1>
+<p>The rules that keep the schema corpus coherent. Most are enforced by the schema lint, which runs on
+every pull request; where that is so, it is noted.</p>
+<h2><code>$id</code> is the path</h2>
+<p>Every schema declares an <code>$id</code> derived mechanically from its location under <code>schema/</code>: drop the
+<code>.json</code>, and replace underscores with dashes.</p>
+<pre><code>schema/in_memory_entity/named_defaultable.json   -&gt;   $id: in-memory-entity/named-defaultable
+schema/material.json                             -&gt;   $id: material
+</code></pre>
+<p><code>npm run set-schema-ids</code> rewrites every <code>$id</code> to match its path, and the lint fails if any file
+disagrees. Consequences worth knowing:</p>
+<ul>
+<li><strong>Moving a file changes its identity.</strong> Consumers reference schemas by <code>$id</code>, so a move is a
+breaking change, not a refactor.</li>
+<li><strong>The dash/underscore duality is real and bites.</strong> The published copy of a schema is written at
+the <code>$id</code> with dashes turned <em>back</em> into underscores — which is not always the original path.
+<code>schema/properties_directory/non-scalar/file_content.json</code> has <code>$id</code>
+<code>properties-directory/non-scalar/file-content</code> and publishes at
+<code>schema/properties_directory/non_scalar/file_content.json</code>, because the source directory name
+contains a literal dash. Going from <code>$id</code> to published path is a pure function; going back is
+not, and needs a lookup. Both paths are carried on every node in <code>graph.json</code> for this reason.</li>
+</ul>
+<h2>Draft-07, and no circular references</h2>
+<p>All schemas declare <code>http://json-schema.org/draft-07/schema#</code>. Draft-07 is what the JavaScript and
+Python validators, the pydantic generator and the TypeScript generator all agree on.</p>
+<p><strong>Circular <code>$ref</code>s are forbidden.</strong> The README&#39;s guidance is to leave the type as <code>object</code> and
+explain the relationship in <code>description</code> instead. There are currently none, and the lint fails if
+one appears. The reason is practical: the build resolves and merges references, and a cycle either
+hangs it or forces a silent fallback to the unresolved form.</p>
+<h2><code>include()</code> statements</h2>
+<p>Beyond standard <code>$ref</code>, ESSE supports an <code>include()</code> mechanism (implemented in
+<code>src/js/json_include</code>) that splices one document&#39;s keys into another at build time. It exists for
+cases where <code>$ref</code> cannot express the composition, and it is resolved before validation — no
+consumer of the published schemas ever sees an <code>include()</code>.</p>
+<p>Prefer <code>$ref</code>. It is standard, it is visible on the Entity Map, and it survives into the resolved
+output as structure rather than as a copy.</p>
+<h2>Generative keys</h2>
+<p>Some property schemas describe values a user supplies <em>before</em> a calculation rather than results
+that come out of one. Those fields are flagged in schema comments with <code>isGenerative: true</code>, which
+marks them for inclusion in generated user-input forms. <code>properties_directory/non-scalar/file_content</code>
+is the canonical example of a property carrying additional input-side tagging.</p>
+<h2>Formatting</h2>
+<p>Enforced by prettier and the shared pre-commit hooks:</p>
+<ul>
+<li><strong>4-space indentation</strong>, <strong>100-character</strong> print width</li>
+<li><strong>double quotes</strong> (it is JSON), <strong>trailing newline</strong>, <strong>bracket spacing</strong></li>
+</ul>
+<h2>The manifests</h2>
+<p><code>manifest/*.yaml</code> are registries keyed by name, joining to schemas by <code>schemaId</code>. A manifest entry
+naming a schema that does not exist now fails the lint; previously the two could drift apart
+unnoticed.</p>
+<h2>URLs that are contracts</h2>
+<p>The published site&#39;s URLs are depended on by documentation, pull requests and the platform. These
+are stable, and change only additively:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/#&lt;published path&gt;</code></td>
+<td>schema explorer deep link</td>
+</tr>
+<tr>
+<td><code>/map/#/entity/&lt;$id&gt;</code></td>
+<td>Entity Map: fly to a schema and open its panel</td>
+</tr>
+<tr>
+<td><code>/map/#/view/&lt;x&gt;,&lt;y&gt;,&lt;zoom&gt;</code></td>
+<td>Entity Map viewport</td>
+</tr>
+<tr>
+<td><code>/graph.json</code></td>
+<td>the entity graph asset, described by <code>src/js/scripts/entity_graph.schema.json</code></td>
+</tr>
+<tr>
+<td><code>/docs/&lt;slug&gt;.html</code></td>
+<td>these pages</td>
+</tr>
+</tbody></table></div>
+<h2>What the lint checks</h2>
+<p><code>npm run lint-entity-graph</code>, run on every pull request:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L1</td>
+<td>every <code>$ref</code> resolves to a schema</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>every <code>$id</code> matches its path</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>every path classifies to a layer</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>every <code>$ref</code> classifies to a relationship kind</td>
+</tr>
+<tr>
+<td>L5</td>
+<td>every JSON-pointer fragment exists in its target</td>
+</tr>
+<tr>
+<td>L6</td>
+<td>every manifest <code>schemaId</code> resolves</td>
+</tr>
+<tr>
+<td>L7</td>
+<td>no reference cycles</td>
+</tr>
+<tr>
+<td>L8</td>
+<td>isolated-schema growth (warning)</td>
+</tr>
+<tr>
+<td>L9</td>
+<td>example coverage (warning)</td>
+</tr>
+<tr>
+<td>L10</td>
+<td><code>graph.json</code> validates against its own schema</td>
+</tr>
+</tbody></table></div>
+<p>L3 is the one that will catch you when adding a new top-level directory: the layer taxonomy is
+total by design, so a path no rule covers is a failure rather than a silent fallback. Add a rule
+to <code>classifyLayer</code> in the same change.</p>
+<h2>General advice from the README</h2>
+<ul>
+<li>Use unique ids for schemas.</li>
+<li>Do not use circular references; leave the type as <code>object</code> and explain it in the description.</li>
+<li>Fork, change, and open a pull request — the repository is Apache-2.0 and contributions are
+welcome.</li>
+</ul>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

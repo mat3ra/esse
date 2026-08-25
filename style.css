@@ -1,22 +1,26 @@
 :root {
-    --bg-editor:   #1e1e1e;
-    --bg-sidebar:  #252526;
+    --bg-editor: #1e1e1e;
+    --bg-sidebar: #252526;
     --bg-inactive: #2d2d2d;
-    --bg-hover:    #2a2d2e;
+    --bg-hover: #2a2d2e;
     --bg-selected: #094771;
-    --text-primary:   #d4d4d4;
+    --text-primary: #d4d4d4;
     --text-secondary: #abb2bf;
-    --text-muted:     #858585;
-    --border:  #3e3e3e;
-    --accent:  #0078d4;
+    --text-muted: #858585;
+    --border: #3e3e3e;
+    --accent: #0078d4;
     --icon-folder: #dcb67a;
-    --icon-json:   #9cdcfe;
+    --icon-json: #9cdcfe;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
     background: var(--bg-editor);
     color: var(--text-primary);
     display: flex;
@@ -38,7 +42,31 @@ body {
     color: var(--text-muted);
     gap: 8px;
 }
-#titlebar .app-name { color: var(--text-primary); font-weight: 500; }
+#titlebar .app-name {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+#titlebar-tagline {
+    margin-left: auto;
+}
+
+/* Shared three-surface navigation: Docs / Explorer / Map */
+#surfaces {
+    display: flex;
+    gap: 14px;
+    margin-left: 8px;
+}
+#surfaces a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+#surfaces a:hover {
+    color: var(--text-primary);
+}
+#surfaces a.current {
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent);
+}
 
 /* ── Layout ──────────────────────────────────────────────── */
 #workspace {
@@ -89,8 +117,12 @@ body {
     background-position: 8px 50%;
     background-size: 14px 14px;
 }
-#search-input:focus { border-color: var(--accent); }
-#search-input::placeholder { color: var(--text-muted); }
+#search-input:focus {
+    border-color: var(--accent);
+}
+#search-input::placeholder {
+    color: var(--text-muted);
+}
 
 #file-tree {
     flex: 1;
@@ -98,9 +130,16 @@ body {
     font-size: 13px;
     line-height: 1;
 }
-#file-tree::-webkit-scrollbar { width: 6px; }
-#file-tree::-webkit-scrollbar-thumb { background: #424242; border-radius: 3px; }
-#file-tree::-webkit-scrollbar-track { background: transparent; }
+#file-tree::-webkit-scrollbar {
+    width: 6px;
+}
+#file-tree::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 3px;
+}
+#file-tree::-webkit-scrollbar-track {
+    background: transparent;
+}
 
 /* ── Tree items ──────────────────────────────────────────── */
 .t-item {
@@ -112,8 +151,12 @@ body {
     padding-right: 8px;
     gap: 3px;
 }
-.t-item:hover    { background: var(--bg-hover); }
-.t-item.selected { background: var(--bg-selected); }
+.t-item:hover {
+    background: var(--bg-hover);
+}
+.t-item.selected {
+    background: var(--bg-selected);
+}
 
 .t-chevron {
     flex-shrink: 0;
@@ -123,14 +166,31 @@ body {
     color: var(--text-muted);
     transition: transform 0.1s;
 }
-.t-icon   { flex-shrink: 0; font-size: 14px; width: 18px; text-align: center; }
-.t-label  { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.t-icon {
+    flex-shrink: 0;
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+}
+.t-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-.t-item.folder .t-label { color: var(--text-primary); }
-.t-item.file   .t-label { color: var(--icon-json); }
+.t-item.folder .t-label {
+    color: var(--text-primary);
+}
+.t-item.file .t-label {
+    color: var(--icon-json);
+}
 
-.t-children { display: none; }
-.t-children.open { display: block; }
+.t-children {
+    display: none;
+}
+.t-children.open {
+    display: block;
+}
 
 /* search result: show full path */
 .t-item.flat-result .t-label {
@@ -140,10 +200,26 @@ body {
     padding: 2px 0;
     height: auto;
 }
-.t-item.flat-result { height: auto; min-height: 22px; align-items: flex-start; padding-top: 3px; padding-bottom: 3px; }
-.t-item.flat-result .t-filename { color: var(--icon-json); font-weight: 500; }
-.t-item.flat-result .t-filepath { font-size: 11px; color: var(--text-muted); }
-.t-item.flat-result mark { background: transparent; color: #e6b422; font-weight: 700; }
+.t-item.flat-result {
+    height: auto;
+    min-height: 22px;
+    align-items: flex-start;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.t-item.flat-result .t-filename {
+    color: var(--icon-json);
+    font-weight: 500;
+}
+.t-item.flat-result .t-filepath {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.t-item.flat-result mark {
+    background: transparent;
+    color: #e6b422;
+    font-weight: 700;
+}
 
 /* no-results / loading */
 .tree-msg {
@@ -160,7 +236,10 @@ body {
     flex-shrink: 0;
     transition: background 0.15s;
 }
-#resizer:hover, #resizer.active { background: var(--accent); }
+#resizer:hover,
+#resizer.active {
+    background: var(--accent);
+}
 
 /* ── Editor area ─────────────────────────────────────────── */
 #editor-area {
@@ -204,20 +283,44 @@ body {
 }
 
 /* Breadcrumb */
-#breadcrumb {
+#breadcrumb-row {
     height: 22px;
-    padding: 0 14px;
-    font-size: 12px;
-    color: var(--text-muted);
     background: var(--bg-editor);
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    padding-right: 14px;
+    gap: 12px;
+}
+#breadcrumb {
+    flex: 1;
+    min-width: 0;
+    padding: 0 14px;
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
     overflow: hidden;
     gap: 2px;
 }
-.bc-sep { opacity: 0.4; margin: 0 2px; }
+#view-on-map {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+#view-on-map:hover {
+    text-decoration: underline;
+}
+#view-on-map[hidden] {
+    display: none;
+}
+.bc-sep {
+    opacity: 0.4;
+    margin: 0 2px;
+}
 
 /* Editor container */
 #editor-wrap {
@@ -248,7 +351,21 @@ body {
     font-weight: 300;
     color: var(--text-secondary);
 }
-#welcome p { font-size: 13px; }
+#welcome p {
+    font-size: 13px;
+}
+#welcome .welcome-links {
+    max-width: 46ch;
+    text-align: center;
+    line-height: 1.6;
+}
+#welcome .welcome-links a {
+    color: var(--accent);
+    text-decoration: none;
+}
+#welcome .welcome-links a:hover {
+    text-decoration: underline;
+}
 
 /* Status bar */
 #statusbar {
@@ -262,4 +379,9 @@ body {
     flex-shrink: 0;
     gap: 16px;
 }
-#status-path { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#status-path {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

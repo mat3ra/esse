@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema layering — ESSE</title>
+    <meta name="description" content="The build-up from primitives to entities, and why each layer is kept separate.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html" class="current">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Schema layering</h1>
+<p>ESSE schemas are not a flat pile. They are built up in layers, each one constructed only from the
+layers beneath it. This is the single most useful thing to understand about the repository: once
+you know which layer a schema belongs to, you know roughly what it may contain, what may depend on
+it, and where to add something new.</p>
+<p>The <a href="../map/index.html">Entity Map</a> draws these layers literally — primitives sit at the centre and
+each ring outward is a layer further up the build-up.</p>
+<h2>The layers</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Schemas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>directory</code></td>
+<td>156</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>152</td>
+</tr>
+<tr>
+<td><code>entity-component</code></td>
+<td>106</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td>38</td>
+</tr>
+<tr>
+<td><code>reusable</code></td>
+<td>31</td>
+</tr>
+<tr>
+<td><code>primitive</code></td>
+<td>23</td>
+</tr>
+<tr>
+<td><code>application-parsing</code></td>
+<td>17</td>
+</tr>
+<tr>
+<td><code>entity</code></td>
+<td>11</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>abstract</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>in-memory-entity</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>definition</code></td>
+<td>4</td>
+</tr>
+</tbody></table></div>
+<h3><code>core/primitive</code> — the atoms</h3>
+<p>Custom primitive types that extend what JSON Schema gives you: <code>scalar</code>, <code>array_of_3_numbers</code>,
+<code>array_of_ids</code>, <code>slugified_entry</code>, <code>string</code>. The defining property, and the reason they are their
+own layer, is stated in the repository README: <strong>primitives are defined solely in terms of default
+JSON Schema types and cannot be re-constructed from each other.</strong> They are the bottom of the stack
+by construction.</p>
+<p>If you find yourself wanting a primitive that is &quot;like <code>scalar</code> but…&quot;, it is not a primitive.</p>
+<h3><code>core/abstract</code> — unit-less mathematics</h3>
+<p>Structures with mathematical meaning but no physical interpretation: <code>vector_3d</code>, <code>matrix_3x3</code>,
+<code>coordinate_3d</code>, <code>3d_grid</code>, <code>2d_plot</code>. An <code>array_of_3_numbers</code> is a primitive; a <code>vector_3d</code> is
+that array understood as a vector. Nothing here carries units, because nothing here knows what it
+is measuring.</p>
+<p>Keeping this layer unit-less is what lets one <code>2d_plot</code> definition serve a density of states, a
+convergence trace and a phonon dispersion alike.</p>
+<h3><code>core/reusable</code> — domain building blocks</h3>
+<p>The first layer that means something physically: <code>energy</code>, <code>band_gap</code>, <code>atomic_orbital</code>,
+<code>kpoint</code>, <code>categories</code>, <code>file_metadata</code>. These combine primitives and abstracts and attach
+meaning — an <code>energy</code> is a scalar <em>with units</em>, drawn from <code>definitions/units</code>.</p>
+<p>This layer exists to stop the same block being redefined in a dozen property schemas. When you
+notice two schemas describing the same physical quantity, the answer is usually a reusable.</p>
+<h3><code>core/reference</code> — provenance</h3>
+<p>How a record points at where it came from: <code>literature</code>, <code>experiment</code>, <code>modeling</code>, <code>exabyte</code>.
+Provenance is deliberately separate from the data it describes, so the same property schema can
+carry a computed value or a measured one without changing shape.</p>
+<h3><code>definitions</code> — shared vocabularies</h3>
+<p>Enumerations and constants shared across the whole corpus: <code>units</code>, <code>chemical_elements</code>,
+<code>constants</code>, <code>material</code>. <code>definitions/units</code> is the most-referenced schema in ESSE, which is the
+intended outcome: units are defined once, and every quantity points at that definition rather than
+restating a list of strings.</p>
+<h3><code>in_memory_entity</code> and <code>system</code> — behaviour, not payload</h3>
+<p>These two layers do not describe materials science at all. They describe how an object behaves as
+a record on a platform — that it has a name, that it has defaults, that it can be soft-removed,
+shared, timestamped, referenced from elsewhere. They are mixed into entities with <code>allOf</code>, and
+they are the subject of <a href="behavioural-mixins.html">Behavioural mixins</a>.</p>
+<p>Keeping them out of the domain layers is what allows a consumer to take the science and leave the
+platform behind.</p>
+<h3><code>entity</code> and <code>entity-component</code> — the nouns</h3>
+<p>The eleven root schemas (<code>material</code>, <code>model</code>, <code>method</code>, <code>workflow</code>, <code>job</code>, <code>project</code>, <code>element</code>,
+<code>context-provider</code>, and the material variants) plus the components they are assembled from —
+<code>material/material_properties</code>, <code>workflow/unit/*</code>, <code>model/mixins/*</code>, <code>method/unit_method</code>, and so
+on. <a href="entity-anatomy.html">Entity anatomy</a> covers these in detail.</p>
+<h3><code>category</code>, <code>directory</code> and <code>application-parsing</code> — the catalogues</h3>
+<p>The largest layers by file count, and the least surprising: <code>*_category</code> schemas express the
+CateCom taxonomies, <code>*_directory</code> schemas are the concrete catalogues of models, methods,
+properties and software, and <code>apse/*</code> describes application file formats and parser outputs.
+<a href="categorization.html">Categorization</a> explains the split.</p>
+<h2>The hubs</h2>
+<p>Because each layer is built from the ones below it, the lower layers are referenced far more often
+than the upper ones. The most-referenced schemas in the corpus are exactly what the layering
+predicts:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Referenced by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../map/#/entity/definitions%2Funits"><code>definitions/units</code></a></td>
+<td>30</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Fprimitive%2Fscalar"><code>core/primitive/scalar</code></a></td>
+<td>28</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Freusable%2Fenergy"><code>core/reusable/energy</code></a></td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/workflow%2Funit%2Fcontext%2F-base"><code>workflow/unit/context/-base</code></a></td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Fprimitive%2Farray-of-3-numbers"><code>core/primitive/array-of-3-numbers</code></a></td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/materials-category-components%2Fentities%2Fcore%2Fthree-dimensional%2Fcrystal"><code>materials-category-components/entities/core/three-dimensional/crystal</code></a></td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/system%2Fentity-reference"><code>system/entity-reference</code></a></td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Freusable%2Fcategories"><code>core/reusable/categories</code></a></td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/method%2Funit-method"><code>method/unit-method</code></a></td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="../map/#/entity/core%2Fabstract%2F2d-plot"><code>core/abstract/2d-plot</code></a></td>
+<td>10</td>
+</tr>
+</tbody></table></div>
+<p>A schema high in this table is one you should be careful changing: a great deal depends on it.
+The Entity Map draws these larger than their neighbours for the same reason.</p>
+<h2>Why keep the layers separate at all?</h2>
+<p>It would be less typing to inline everything. Three things are bought by not doing so.</p>
+<p><strong>Change has a blast radius you can see.</strong> Adding a unit to <code>definitions/units</code> is a one-line
+change that correctly reaches every quantity in the corpus. Inlined, it would be a hundred edits
+and a guarantee that some were missed.</p>
+<p><strong>Generated code stays small.</strong> The pydantic models and TypeScript types mirror this structure, so
+a shared block is a shared type rather than a hundred structurally identical anonymous ones.</p>
+<p><strong>It documents intent.</strong> Where a schema sits says what it is for. A new contributor wondering
+where to put something can usually answer it by asking which layer it could be built from — and
+if the answer is &quot;none of them&quot;, that is itself informative.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

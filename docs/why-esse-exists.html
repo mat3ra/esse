@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why ESSE exists — ESSE</title>
+    <meta name="description" content="Schemas as the single source of truth shared by people, validators and code generators.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html" class="current">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Why ESSE exists</h1>
+<p>Computational materials science produces a great deal of structured data — crystal structures,
+simulation parameters, converged energies, band structures, the provenance of all of it — and
+almost none of it is structured the same way twice. Every group, code and database invents its own
+record format. The result is well known: results that cannot be compared, pipelines that break at
+every boundary, and a great deal of glue code whose only job is to translate one dialect into
+another.</p>
+<p>ESSE is one answer to that. It defines the entities of the domain as data, in JSON Schema, once,
+and treats those definitions as the authoritative description that everything else derives from.</p>
+<h2>Schemas first, not code first</h2>
+<p>The tempting alternative is to define entities in code — a <code>Material</code> class in Python, another in
+TypeScript — and let the serialization format fall out of whatever the classes happen to contain.
+That works until there is a second runtime, and then the two drift, because nothing forces them to
+agree.</p>
+<p>ESSE inverts it. The JSON Schema is the definition; the Python and TypeScript representations are
+<em>generated from it</em>. That has several consequences worth being explicit about:</p>
+<ul>
+<li><strong>One definition, many consumers.</strong> The same schema validates an API payload, generates a
+pydantic model, generates a TypeScript type, and documents itself for a human reader.</li>
+<li><strong>Validation is not an afterthought.</strong> Any consumer can check a record against the schema with
+a standard, off-the-shelf validator. There is nothing bespoke to reimplement.</li>
+<li><strong>The format outlives the code.</strong> A JSON document with a <code>$id</code> remains interpretable long after
+whatever wrote it has been rewritten. This matters for scientific records specifically, where
+the data is the deliverable and the code is scaffolding.</li>
+<li><strong>Disagreements surface as schema changes.</strong> When two teams need different shapes, that shows up
+as a visible, reviewable change to a shared file, not as a silent divergence in two codebases.</li>
+</ul>
+<p>The cost is real and worth naming: writing JSON Schema by hand is more tedious than writing a
+dataclass, and expressing some constraints in it is awkward. ESSE accepts that cost because the
+alternative — the drift — is worse and compounds.</p>
+<h2>What the two papers contribute</h2>
+<p>Two publications underpin the design, and they answer different questions.</p>
+<p><strong><a href="https://arxiv.org/pdf/1902.10838.pdf">Data-centric online ecosystem for digital materials science</a></strong>
+sets out the entity model: what the nouns of the domain actually are, and how they connect. A
+<em>material</em> is characterized by <em>properties</em>; those properties are computed by applying a <em>model</em>
+(with its <em>method</em>) through a <em>workflow</em>, executed as a <em>job</em> on some <em>compute</em> resource, using
+some <em>application</em>. The important claim is that these are separable concerns — a model is not
+bound to the software that implements it, and a property is not bound to the workflow that
+produced it — and that separating them is what makes results comparable across sources.</p>
+<p><strong><a href="https://pubs.acs.org/doi/abs/10.1021/acs.jcim.2c00112">CateCom: A Practical Data-Centric Approach to Categorization of Computational Models</a></strong>
+answers a different question: given that there are thousands of models and methods, how do you
+organize them so a person can find the right one and a machine can reason about it? The answer is
+a tiered categorization rather than a flat list or a rigid tree, described in
+<a href="categorization.html">Categorization</a>. Models and methods follow it directly. Materials take a
+different route in this repository — categories defined by composition rather than by tiers — and
+between them the vocabulary-and-catalogue schemas account for over half the corpus.</p>
+<h2>Generic by design</h2>
+<p>The schemas are used to run <a href="https://mat3ra.com">mat3ra.com</a>, but they are deliberately not
+platform-specific. Domain payloads — what a material <em>is</em>, what a band structure <em>contains</em> —
+carry no platform concepts. The platform&#39;s own concerns (ownership, sharing, soft deletion,
+timestamps) live in separate mixin schemas that are composed on top, as
+<a href="behavioural-mixins.html">Behavioural mixins</a> describes. A consumer who wants the domain formats
+without the platform machinery can take exactly the parts they need.</p>
+<h2>What is actually in here</h2>
+<p>Three kinds of asset, described in <a href="the-pipeline.html">The pipeline</a>:</p>
+<ul>
+<li><strong>Schemas</strong> (<code>schema/</code>) — the rules. Every file declares a <code>$id</code> derived from its path.</li>
+<li><strong>Examples</strong> (<code>example/</code>) — instances conforming to those rules, mirroring the schema directory
+layout. They are versioned, reviewed assets rather than documentation garnish: an example is
+often the fastest way to understand a schema, and it fails loudly when the schema changes under
+it. Currently 209 of 564 schemas (37%) have a mirror example.</li>
+<li><strong>Interfaces</strong> (<code>src/</code>) — thin Python and JavaScript accessors, plus the generated models and
+types.</li>
+</ul>
+<p>The corpus at a glance, and how densely it is cross-referenced:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Schemas</th>
+<th>References</th>
+<th>extends</th>
+<th>contains</th>
+<th>variant</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>564</td>
+<td>917</td>
+<td>372</td>
+<td>375</td>
+<td>170</td>
+</tr>
+</tbody></table></div>
+<p>Those references are not incidental. They are what makes the collection a system rather than a
+folder of files, and they are what the <a href="../map/index.html">Entity Map</a> draws.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>

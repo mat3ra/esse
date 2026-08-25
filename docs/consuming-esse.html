@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consuming ESSE — ESSE</title>
+    <meta name="description" content="Reading, validating and typing against the schemas from Python and JavaScript.">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<div id="titlebar">
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="index.html" class="current">Docs</a>
+        <a href="../index.html">Explorer</a>
+        <a href="../map/index.html">Map</a>
+    </nav>
+</div>
+<div id="workspace">
+    <aside id="docs-nav">
+        <div class="nav-title">Concepts</div>
+        <nav>
+            <a href="index.html">Documentation</a>
+            <a href="why-esse-exists.html">Why ESSE exists</a>
+            <a href="schema-layering.html">Schema layering</a>
+            <a href="entity-anatomy.html">Entity anatomy</a>
+            <a href="categorization.html">Categorization</a>
+            <a href="behavioural-mixins.html">Behavioural mixins</a>
+            <a href="conventions.html">Conventions</a>
+            <a href="the-pipeline.html">The pipeline</a>
+            <a href="consuming-esse.html" class="current">Consuming ESSE</a>
+            <a href="contributing-a-schema.html">Contributing a schema</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </aside>
+    <main id="docs-content">
+        <article>
+<h1>Consuming ESSE</h1>
+<p>ESSE ships equivalent interfaces for both runtimes. Neither touches the filesystem at runtime —
+the schemas are baked into generated modules at build time — so both work in restricted
+environments and in the browser.</p>
+<h2>Installing</h2>
+<pre><code class="language-bash">pip install mat3ra-esse
+npm install @mat3ra/esse
+</code></pre>
+<h2>Python</h2>
+<h3>Looking up a schema</h3>
+<pre><code class="language-python">from mat3ra.esse import ESSE
+
+helper = ESSE()
+schema = helper.get_schema_by_id(&quot;material&quot;)
+</code></pre>
+<p>Schema ids are the dash-separated form described in <a href="conventions.html">Conventions</a> —
+<code>material</code>, <code>in-memory-entity/named-defaultable</code>, <code>properties-directory/scalar/total-energy</code>.</p>
+<h3>Validating and cleaning</h3>
+<p><code>validate_and_clean</code> validates a document and strips properties the schema does not declare. It
+mutates in place:</p>
+<pre><code class="language-python">from mat3ra.esse import validate_and_clean
+
+data = {&quot;a&quot;: &quot;x&quot;, &quot;b&quot;: 1, &quot;c&quot;: &quot;drop&quot;}
+schema = {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {&quot;a&quot;: {&quot;type&quot;: &quot;string&quot;}, &quot;b&quot;: {&quot;type&quot;: &quot;integer&quot;}},
+}
+
+validate_and_clean(data, schema)
+print(data)  # {&quot;a&quot;: &quot;x&quot;, &quot;b&quot;: 1}
+</code></pre>
+<p>Null values are removed; empty strings are kept, because an empty string is a meaningful
+placeholder for an entity field that exists but is not yet filled in.</p>
+<h3>Generated pydantic models</h3>
+<p>Every schema has a corresponding pydantic v2 model under <code>mat3ra.esse.models</code>, which is usually
+the more ergonomic route — you get typing, coercion and IDE completion:</p>
+<pre><code class="language-python">from pydantic import ConfigDict
+from mat3ra.esse.models.software.application import ApplicationSchemaBase
+
+
+class Application(ApplicationSchemaBase):
+    # drop keys the schema does not declare, at construction time
+    model_config = ConfigDict(extra=&quot;ignore&quot;)
+
+
+config = {&quot;name&quot;: &quot;espresso&quot;, &quot;version&quot;: &quot;6.3&quot;, &quot;buildConfig&quot;: {&quot;moduleName&quot;: &quot;6.3-gnu&quot;}}
+app = Application(**config)
+print(app.model_dump(exclude_none=True))
+</code></pre>
+<p>Subclassing to set <code>model_config</code> is the established pattern; <a href="https://github.com/mat3ra/ade">ade</a>
+does exactly this in its <code>application.py</code>.</p>
+<p><strong>Depend on the named top-level model, not on generated inner class names.</strong> As
+<a href="the-pipeline.html">The pipeline</a> explains, <code>datamodel-codegen</code> numbers generated classes globally,
+so a name like <code>Units276</code> can change when an unrelated schema is added.</p>
+<h2>JavaScript and TypeScript</h2>
+<h3>Looking up a schema</h3>
+<pre><code class="language-javascript">const { ESSE } = require(&quot;@mat3ra/esse/lib/js/esse&quot;);
+
+const helper = new ESSE();
+const schema = helper.getSchemaById(&quot;material&quot;);
+</code></pre>
+<h3>Validating and cleaning</h3>
+<pre><code class="language-javascript">const { validateAndClean } = require(&quot;@mat3ra/esse/lib/js/esse&quot;);
+
+const data = { a: &quot;x&quot;, b: 1, c: &quot;drop&quot; };
+const schema = {
+    type: &quot;object&quot;,
+    properties: { a: { type: &quot;string&quot; }, b: { type: &quot;integer&quot; } },
+};
+
+const result = validateAndClean(data, schema);
+</code></pre>
+<h3><code>JSONSchemasInterface</code></h3>
+<p>The richer accessor, used across the <code>@mat3ra/*</code> packages:</p>
+<pre><code class="language-typescript">import JSONSchemasInterface from &quot;@mat3ra/esse/dist/js/esse/JSONSchemasInterface&quot;;
+
+// exact lookup, throwing when absent
+const material = JSONSchemasInterface.getRequiredSchemaById(&quot;material&quot;);
+
+// regex search across ids and titles
+const application = JSONSchemasInterface.matchSchema({
+    $id: { $regex: &quot;software-application&quot; },
+});
+
+// a patched copy, leaving the cached original untouched
+const patched = JSONSchemasInterface.getPatchedSchemaById(&quot;boundary-conditions-provider&quot;, {
+    type: { default: &quot;pbc&quot; },
+    offset: { default: 0 },
+});
+</code></pre>
+<p><code>getPatchedSchemaById</code> is worth knowing about: it returns a <em>copy</em> with defaults or constraints
+overridden, which is how UI code specializes a shared schema for one context without mutating the
+registry everyone else reads.</p>
+<p><code>JSONSchemasInterfaceServer</code> is the Node-only variant that can also read schemas from a folder.</p>
+<h3>Generated types</h3>
+<pre><code class="language-typescript">import type { MaterialSchema } from &quot;@mat3ra/esse/dist/js/types&quot;;
+</code></pre>
+<h2>Which to reach for</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>You want to</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>check an untrusted payload</td>
+<td><code>validate_and_clean</code> / <code>validateAndClean</code></td>
+</tr>
+<tr>
+<td>construct entities in application code</td>
+<td>the generated pydantic model or TS type</td>
+</tr>
+<tr>
+<td>build a form or UI from a schema</td>
+<td><code>getSchemaById</code>, plus <code>getPatchedSchemaById</code> to specialize</td>
+</tr>
+<tr>
+<td>find schemas by pattern</td>
+<td><code>matchSchema</code></td>
+</tr>
+<tr>
+<td>understand how schemas relate</td>
+<td><code>graph.json</code>, or the <a href="../map/index.html">Entity Map</a></td>
+</tr>
+</tbody></table></div>
+<h2>Downstream packages</h2>
+<p>The <code>@mat3ra/*</code> ecosystem consumes ESSE throughout — <code>made</code> (materials), <code>mode</code> (models), <code>ade</code>
+(applications), <code>wode</code> (workflows), <code>jode</code> (jobs), <code>prode</code> (properties), <code>code</code> (shared entity
+machinery). They are worth reading as worked examples of entity classes built on these schemas.</p>
+
+    </article>
+    </main>
+</div>
+</body>
+</html>
