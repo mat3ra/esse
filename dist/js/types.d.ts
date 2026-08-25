@@ -64849,6 +64849,14 @@ export interface EntityGraphSchema {
          */
         hasExample: boolean;
         /**
+         * Map x coordinate, baked at build time so the client renders without laying out
+         */
+        x?: number;
+        /**
+         * Map y coordinate, baked at build time so the client renders without laying out
+         */
+        y?: number;
+        /**
          * Entry from manifest/properties.yaml when this schema is a registered property
          */
         manifest?: {

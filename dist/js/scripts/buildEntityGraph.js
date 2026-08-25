@@ -31,6 +31,7 @@ const path_1 = __importDefault(require("path"));
 const settings_1 = require("../esse/settings");
 const ajv_1 = require("../utils/ajv");
 const filesystem_1 = require("../utils/filesystem");
+const entityGraphLayout_1 = require("./entityGraphLayout");
 /**
  * Isolated schemas at the time the lint baseline was taken; growth is reported, not failed.
  * These are leaf definitions and externally-consumed formats that nothing else references.
@@ -329,7 +330,7 @@ function buildEntityGraph() {
             ...(((_a = entry.defaults) === null || _a === void 0 ? void 0 : _a.units) ? { defaultUnits: String(entry.defaults.units) } : {}),
         };
     });
-    const sortedNodes = [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id));
+    const sortedNodes = (0, entityGraphLayout_1.computeEntityGraphLayout)([...nodes.values()].sort((a, b) => a.id.localeCompare(b.id)));
     const sortedEdges = edges.sort((a, b) => {
         var _a, _b, _c, _d;
         return a.source.localeCompare(b.source) ||
