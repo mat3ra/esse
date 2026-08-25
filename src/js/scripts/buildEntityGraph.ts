@@ -125,15 +125,26 @@ const ENTITY_DOMAINS = [
 /**
  * Maps a schema `$id` to the path of its resolved copy on the published site.
  *
- * The inverse is deliberately absent: dashes in `$id` may come from either an underscore
- * or a literal dash in the source path, so the mapping is not invertible by string rules.
- * Use {@link buildPublishedPathIndex} to go the other way.
+ * Exactly invertible by {@link publishedPathToSchemaId}: an `$id` is a path with underscores
+ * replaced by dashes, so no `$id` ever contains an underscore and the mapping is injective.
+ *
+ * What is *not* recoverable is the **source** path, because a source directory may contain a
+ * literal dash (`properties_directory/non-scalar`) that the round-trip through `$id` turns into
+ * an underscore. Read `node.path` for that.
  */
 export function schemaIdToPublishedPath(schemaId: string): string {
     return `schema/${schemaId.replace(/-/g, "_")}.json`;
 }
 
-/** Builds the published-path to `$id` lookup that inverts {@link schemaIdToPublishedPath}. */
+/** Recovers a schema `$id` from the path of its published copy. */
+export function publishedPathToSchemaId(publishedPath: string): string {
+    return publishedPath
+        .replace(/^schema\//, "")
+        .replace(/\.json$/, "")
+        .replace(/_/g, "-");
+}
+
+/** Builds the published-path to `$id` lookup, for callers that prefer a map to a function. */
 export function buildPublishedPathIndex(nodes: EntityGraphNode[]): Record<string, string> {
     return Object.fromEntries(nodes.map((node) => [node.publishedPath, node.id]));
 }

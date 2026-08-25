@@ -217,6 +217,10 @@ jobs:
             console.log('Generated files.json with ' + files.length + ' entries');
           "
 
+      - name: Check internal links
+        shell: bash -l {0}
+        run: npm run check-site-links -- --site site
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         # If you're changing the branch from main,

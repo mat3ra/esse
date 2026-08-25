@@ -1,11 +1,27 @@
 # Entity Map & Concept Docs — overview
 
-> **Status:** upcoming — agreed direction, not built.
+> **Status:** review — all five documents built and on branches, chained for merge.
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025) (epic; one child ticket per document below).
 > **Review:** [`../context/2026-08-16-entity-map-plan-review-tb.md`](../context/2026-08-16-entity-map-plan-review-tb.md)
 > — its decisions are incorporated throughout.
 > **Measurements:** [`../context/2026-08-16-schema-graph-measurements.md`](../context/2026-08-16-schema-graph-measurements.md)
+
+## Status
+
+All four child documents shipped and moved to `review/`. The chain, each PR based on the previous
+branch: `epic/SOF-8025` → `feature/SOF-8026` → `feature/SOF-8027` → `feature/SOF-8028` →
+`feature/SOF-8029`.
+
+The one correction worth carrying forward: the planning figures of 937 edges (376/384/177) counted
+same-document `$ref`s as edges. The real corpus has **917 cross-schema edges** (372 extends / 375
+contains / 170 variant) plus **20 same-document refs**. The extractor is now the source of truth
+and the tests pin the numbers.
+
+Phases 1 and 3 (map MVP and polish) shipped together, as did 2 and 4 (docs core and remainder),
+since the branch-per-ticket structure made splitting them into separate PRs artificial.
+
+---
 
 Two additions to [schemas.mat3ra.com](https://schemas.mat3ra.com/), joining the existing schema
 explorer:
@@ -24,9 +40,9 @@ that also acts as a CI lint. Three surfaces, one graph, no drift.
 
 | Document | Ticket | Scope | Ships as |
 | --- | --- | --- | --- |
-| [`../review/2026-08-16-entity-graph-foundation.md`](../review/2026-08-16-entity-graph-foundation.md) | [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026) | Graph extractor, `graph.json` + its schema, CI lint | Phase 0 PR |
-| [`../review/2026-08-16-entity-map.md`](../review/2026-08-16-entity-map.md) | [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027) | The map page: UX, visual encoding, technology, phases MVP + polish | Phase 1 and 3 PRs |
-| [`../review/2026-08-16-concept-documentation.md`](../review/2026-08-16-concept-documentation.md) | [SOF-8028](https://mat3ra.atlassian.net/browse/SOF-8028) | Ten concept pages, tooling, generated fragments | Phase 2 and 4 PRs |
+| [`./2026-08-16-entity-graph-foundation.md`](./2026-08-16-entity-graph-foundation.md) | [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026) | Graph extractor, `graph.json` + its schema, CI lint | Phase 0 PR |
+| [`./2026-08-16-entity-map.md`](./2026-08-16-entity-map.md) | [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027) | The map page: UX, visual encoding, technology, phases MVP + polish | Phase 1 and 3 PRs |
+| [`./2026-08-16-concept-documentation.md`](./2026-08-16-concept-documentation.md) | [SOF-8028](https://mat3ra.atlassian.net/browse/SOF-8028) | Ten concept pages, tooling, generated fragments | Phase 2 and 4 PRs |
 | [`2026-08-16-site-integration-and-release.md`](./2026-08-16-site-integration-and-release.md) | [SOF-8029](https://mat3ra.atlassian.net/browse/SOF-8029) | CI restructure (`docs/` vs `site/`), landing page, cross-linking, testing, release | Phase 5 PR (plus enabling changes pulled earlier) |
 
 ## Phasing (revised per review)

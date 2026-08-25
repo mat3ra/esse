@@ -4,8 +4,8 @@
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8027](https://mat3ra.atlassian.net/browse/SOF-8027)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
-> **Parent:** [`../upcoming/2026-08-16-entity-map-and-docs-overview.md`](../upcoming/2026-08-16-entity-map-and-docs-overview.md)
-> **Depends on:** [`../review/2026-08-16-entity-graph-foundation.md`](../review/2026-08-16-entity-graph-foundation.md)
+> **Parent:** [`./2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
+> **Depends on:** [`./2026-08-16-entity-graph-foundation.md`](./2026-08-16-entity-graph-foundation.md)
 
 ## Status
 

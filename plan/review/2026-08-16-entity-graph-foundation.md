@@ -4,7 +4,7 @@
 > **Created:** 2026-08-16 · **Updated:** 2026-08-16
 > **Ticket:** [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026)
 > (epic: [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)).
-> **Parent:** [`../upcoming/2026-08-16-entity-map-and-docs-overview.md`](../upcoming/2026-08-16-entity-map-and-docs-overview.md)
+> **Parent:** [`./2026-08-16-entity-map-and-docs-overview.md`](./2026-08-16-entity-map-and-docs-overview.md)
 > **Basis:** measurements in [`../context/2026-08-16-schema-graph-measurements.md`](../context/2026-08-16-schema-graph-measurements.md)
 
 ## Status
@@ -31,6 +31,9 @@ deploy step that publishes `graph.json`. The lint runs on every pull request via
 - **`publishedPathToSchemaId` is a lookup, not a pure function.** The mapping is not invertible by
   string rules for the reason above, so the module exports `buildPublishedPathIndex(nodes)`
   instead. The round-trip test still holds.
+  *(Superseded in [SOF-8029](./2026-08-16-site-integration-and-release.md): the inverse from
+  published path to `$id` **is** exact — no `$id` contains an underscore, so the map is injective.
+  Only the source path is unrecoverable. A pure `publishedPathToSchemaId` was added there.)*
 - **Edge labels are preserved for all kinds**, not just `contains`. A union under
   `properties.data.oneOf` is recorded as a variant *of `data`*, which the detail panel can show.
 - **Isolated-node baseline is 35, not 34** — the new `entity_graph` schema is itself isolated.

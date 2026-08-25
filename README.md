@@ -8,7 +8,13 @@ Essential Source of Schemas and Examples (ESSE) contains data format definitions
 
 Although the schemas are used to facilitate the operations of [mat3ra.com](https://mat3ra.com), they are designed to be generic and can be used in other applications. The open-source packages developed by Mat3ra.com use the schemas available in this repository.
 
-The latest variants of schemas and examples are available at [schemas.mat3ra.com](https://schemas.mat3ra.com/).
+The latest variants of schemas and examples are available at [schemas.mat3ra.com](https://schemas.mat3ra.com/), which has three surfaces:
+
+- **[Documentation](https://schemas.mat3ra.com/docs/)** — how ESSE is put together and why: the schema layering, entity anatomy, categorization, conventions and the build pipeline. Start here if you are new.
+- **[Explorer](https://schemas.mat3ra.com/)** — a file browser over every resolved schema and example.
+- **[Entity Map](https://schemas.mat3ra.com/map/)** — an interactive map of all schemas and the references between them, laid out by architectural layer: primitives at the centre, root entities around them, catalogues on the rim. Search for a schema, fly to it, and follow what it extends, contains and is used by.
+
+The map is built from `graph.json`, an extracted reference graph that is also published at [schemas.mat3ra.com/graph.json](https://schemas.mat3ra.com/graph.json) and doubles as a lint over the corpus.
 
 ESSE has a dual-nature as both a Python and a Node.js package.
 
@@ -110,7 +116,7 @@ console.log(result); // {"a": "x", "b": 1}
 
 ## 3. Directory Structure
 
-ESSE contains 3 main directories, [schema](schema), [example](example) and [src](src) outlined below.
+ESSE contains 3 main directories, [schema](schema), [example](example) and [src](src) outlined below, plus [docs](docs) (documentation sources) and [plan](plan) (design documents).
 
 ### 3.1. Schema
 
@@ -130,6 +136,14 @@ This directory contains the examples formed according to the schemas and impleme
 
 This directory contains Python and Javascript interfaces implementing the functionality to access and validate schemas and examples.
 
+### 3.4. docs
+
+Markdown sources for the [concept documentation](https://schemas.mat3ra.com/docs/), rendered to HTML at deploy time. Pages may embed generated fragments (`<!-- generated:name -->`) that are expanded from the entity graph, so counts and relationship listings cannot drift from the schemas.
+
+### 3.5. plan
+
+Design documents, filed by status (`upcoming/`, `review/`, `implemented/`, `context/`) per the convention in [mat3ra/agents](https://github.com/mat3ra/agents/blob/main/AGENTS.md). See [plan/README.md](plan/README.md).
+
 ## 4. Conventions
 
 ### 4.1. Generative vs Non-generative keys
@@ -146,7 +160,7 @@ The following outlines the development process workflow:
 2. Edit code and commit changes.
 3. Pre commit is used to regenerate the modules.
 4. Push the changes to GitHub.
-5. GH workflow is used to generate the fully resolved file (without "$ref"s and "$allOf" etc.) and examples and publish them to [schemas.mat3ra.com](http://schemas.mat3ra.com/).
+5. GH workflow is used to generate the fully resolved file (without "$ref"s and "$allOf" etc.) and examples, render the documentation and the Entity Map, and publish them to [schemas.mat3ra.com](http://schemas.mat3ra.com/). The site is assembled in a gitignored `site/` staging directory; internal links are checked before it deploys.
 6. Publish the new version of the package to PyPI and npm.
 
 The [pre-commit](.husky/pre-commit) is using both JS and PY runtime(s) to regenerate the schemas and examples.
@@ -196,6 +210,8 @@ Other suggestions:
 
 - Use unique IDs for schemas
 - Do not use circular references in the schemas, instead leave the type as object and add explanation to description.
+
+The schema lint (`npm run lint-entity-graph`, also part of `npm test`) enforces both of the above along with `$id` conventions, JSON-pointer targets and manifest references. [Contributing a schema](https://schemas.mat3ra.com/docs/contributing-a-schema.html) walks through adding one end to end.
 
 ## Links
 
