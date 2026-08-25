@@ -1,0 +1,218 @@
+{
+    "$id": "entity-graph",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "entity graph schema",
+    "description": "Reference graph extracted from the ESSE schema sources: one node per schema, one edge per cross-schema $ref. Describes the graph.json asset published alongside the resolved schemas. This is a build-tool schema, not an ESSE entity, so it lives with the extractor rather than in schema/.",
+    "type": "object",
+    "properties": {
+        "meta": {
+            "description": "Summary counts for the graph, used by the site and by the schema lint",
+            "type": "object",
+            "properties": {
+                "nodeCount": {
+                    "type": "integer"
+                },
+                "edgeCount": {
+                    "type": "integer"
+                },
+                "edgeCountsByKind": {
+                    "description": "Number of edges of each relationship kind",
+                    "type": "object",
+                    "properties": {
+                        "extends": {
+                            "type": "integer"
+                        },
+                        "contains": {
+                            "type": "integer"
+                        },
+                        "variant": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "extends",
+                        "contains",
+                        "variant"
+                    ]
+                },
+                "layerCounts": {
+                    "description": "Number of schemas assigned to each layer",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "sameDocumentRefCount": {
+                    "description": "Number of $ref statements pointing inside their own document, which are not edges",
+                    "type": "integer"
+                },
+                "schemasWithExample": {
+                    "type": "integer"
+                },
+                "isolatedNodeCount": {
+                    "description": "Number of schemas with no incoming or outgoing references",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "nodeCount",
+                "edgeCount",
+                "edgeCountsByKind",
+                "layerCounts",
+                "sameDocumentRefCount",
+                "schemasWithExample",
+                "isolatedNodeCount"
+            ]
+        },
+        "nodes": {
+            "description": "One entry per schema in the corpus",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Schema $id, dash-separated",
+                        "type": "string"
+                    },
+                    "path": {
+                        "description": "Source path relative to the repository root",
+                        "type": "string"
+                    },
+                    "publishedPath": {
+                        "description": "Path of the resolved copy on the published site, derived from $id",
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "domain": {
+                        "description": "Top-level source directory, or (root) for schemas at the top of schema/",
+                        "type": "string"
+                    },
+                    "layer": {
+                        "description": "Architectural layer the schema belongs to",
+                        "enum": [
+                            "primitive",
+                            "abstract",
+                            "reusable",
+                            "reference",
+                            "definition",
+                            "in-memory-entity",
+                            "system",
+                            "entity",
+                            "entity-component",
+                            "category",
+                            "directory",
+                            "application-parsing"
+                        ]
+                    },
+                    "ownerEntity": {
+                        "description": "For entity-component nodes, the root entity the component belongs to",
+                        "type": "string"
+                    },
+                    "inDegree": {
+                        "type": "integer"
+                    },
+                    "outDegree": {
+                        "type": "integer"
+                    },
+                    "propertyCount": {
+                        "type": "integer"
+                    },
+                    "hasExample": {
+                        "description": "Whether a mirror file exists under example/",
+                        "type": "boolean"
+                    },
+                    "x": {
+                        "description": "Map x coordinate, baked at build time so the client renders without laying out",
+                        "type": "number"
+                    },
+                    "y": {
+                        "description": "Map y coordinate, baked at build time so the client renders without laying out",
+                        "type": "number"
+                    },
+                    "manifest": {
+                        "description": "Entry from manifest/properties.yaml when this schema is a registered property",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "isResult": {
+                                "type": "boolean"
+                            },
+                            "isMonitor": {
+                                "type": "boolean"
+                            },
+                            "defaultUnits": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ]
+                    }
+                },
+                "required": [
+                    "id",
+                    "path",
+                    "publishedPath",
+                    "title",
+                    "description",
+                    "domain",
+                    "layer",
+                    "inDegree",
+                    "outDegree",
+                    "propertyCount",
+                    "hasExample"
+                ]
+            }
+        },
+        "edges": {
+            "description": "One entry per cross-schema $ref",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "description": "$id of the referencing schema",
+                        "type": "string"
+                    },
+                    "target": {
+                        "description": "$id of the referenced schema",
+                        "type": "string"
+                    },
+                    "kind": {
+                        "description": "Relationship expressed by the reference: allOf extends, properties/items contains, oneOf/anyOf is a variant",
+                        "enum": [
+                            "extends",
+                            "contains",
+                            "variant"
+                        ]
+                    },
+                    "label": {
+                        "description": "Property name for contains edges, with a [] suffix when reached through items",
+                        "type": "string"
+                    },
+                    "pointer": {
+                        "description": "JSON pointer when the $ref carried a fragment",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "source",
+                    "target",
+                    "kind"
+                ]
+            }
+        }
+    },
+    "required": [
+        "meta",
+        "nodes",
+        "edges"
+    ]
+}

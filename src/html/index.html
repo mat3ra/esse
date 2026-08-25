@@ -11,9 +11,13 @@
 <body>
 
 <div id="titlebar">
-    <span class="app-name">ESSEntial Source of Schemas and Examples (ESSE)</span>
-    <span>—</span>
-    <span>schemas.mat3ra.com</span>
+    <span class="app-name">ESSE</span>
+    <nav id="surfaces">
+        <a href="docs/index.html">Docs</a>
+        <a href="index.html" class="current">Explorer</a>
+        <a href="map/index.html">Map</a>
+    </nav>
+    <span id="titlebar-tagline">Essential Source of Schemas and Examples</span>
 </div>
 
 <div id="workspace">
@@ -32,11 +36,18 @@
 
     <div id="editor-area">
         <div id="tabbar"></div>
-        <div id="breadcrumb">ESSEntial Source of Schemas and Examples (ESSE)</div>
+        <div id="breadcrumb-row">
+            <div id="breadcrumb">Essential Source of Schemas and Examples</div>
+            <a id="view-on-map" href="map/index.html" hidden>View on map ↗</a>
+        </div>
         <div id="editor-wrap">
             <div id="welcome">
-                <h2>ESSEntial Source of Schemas and Examples (ESSE)</h2>
+                <h2>Essential Source of Schemas and Examples</h2>
                 <p>Select a schema from the explorer on the left, or start typing to search.</p>
+                <p class="welcome-links">
+                    New here? Start with the <a href="docs/index.html">concept documentation</a>,
+                    or see how it all connects on the <a href="map/index.html">Entity Map</a>.
+                </p>
             </div>
             <div id="monaco-editor"></div>
         </div>
@@ -50,7 +61,9 @@
 </div>
 
 <!-- Monaco Editor (loaded from CDN) -->
-<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.min.js"
+        integrity="sha384-Hkr2AfNcKGHMmoxGmjI6kPAeCxcdRYpZvil6YKyZAXPqjuGdHJtcX4+xp1GcowZg"
+        crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>

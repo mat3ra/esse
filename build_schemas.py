@@ -13,10 +13,7 @@ Usage (NOTE: "-e" in pip install is required for the file references to be resol
 After that, check for the files `src/py/mat3ra/esse/data/schemas.py` and `src/py/mat3ra/esse/data/examples.py`.
 """
 import os
-import json
 import yaml
-from pathlib import Path
-
 from mat3ra.esse.utils import parse_include_reference_statements_by_dir
 
 TOP_DIR = os.path.dirname(__file__)
@@ -41,20 +38,3 @@ with open("src/py/mat3ra/esse/data/properties.py", "w") as f:
         + f"RESULTS = json.loads(json.dumps({RESULTS}))\n"
     )
     f.write(content)
-
-if os.environ.get("BUILD_DOCS") != "true":
-    exit(0)
-
-for schema in SCHEMAS:
-    id_as_path = schema["$id"].replace("-", "_")
-    full_path = os.path.join(TOP_DIR, "docs/py/schema", id_as_path + ".json")
-    Path(full_path).parent.mkdir(parents=True, exist_ok=True)
-    with open(full_path, "w") as f:
-        f.write(json.dumps(schema, sort_keys=True, indent=4, separators=(",", ": ")))
-
-for example in EXAMPLES:
-    id_as_path = example["path"].replace("-", "_")
-    full_path = os.path.join(TOP_DIR, "docs/py/example", id_as_path + ".json")
-    Path(full_path).parent.mkdir(parents=True, exist_ok=True)
-    with open(full_path, "w") as f:
-        f.write(json.dumps(example, sort_keys=True, indent=4, separators=(",", ": ")))
