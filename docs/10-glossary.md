@@ -95,9 +95,9 @@ calculation rather than a computed result.
 ## Tooling
 
 **Entity graph** — `graph.json`, the extracted reference graph: one node per schema, one edge per
-cross-schema `$ref`. Described by
-[`system/entity-graph`](../map/#/entity/system%2Fentity-graph) — the tooling that documents the
-schemas is itself documented by one.
+cross-schema `$ref`. Described by `src/js/scripts/entity_graph.schema.json`, which lives with the
+extractor rather than in `schema/`: it describes a build artifact, not an entity of digital
+materials science, so it is not part of the corpus it measures.
 
 **Relationship kind** — what a `$ref` expresses, from its innermost enclosing keyword: `extends`
 (`allOf`), `contains` (`properties`/`items`), `variant` (`oneOf`/`anyOf`).

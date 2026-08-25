@@ -98,7 +98,7 @@ Documented in `docs/` page 06 (conventions) as stability commitments:
 | `/#<published path>` | Explorer deep link (existing) | keep as-is |
 | `/map/#/entity/<$id>` | Map: fly to + open panel | additive changes only |
 | `/map/#/view/<x>,<y>,<zoom>` | Map viewport | additive changes only |
-| `/graph.json` | The entity graph asset | schema-versioned via `schema/system/entity_graph.json` |
+| `/graph.json` | The entity graph asset | schema-versioned via `src/js/scripts/entity_graph.schema.json` |
 | `/docs/<slug>.html` | Concept pages | slugs stable once published |
 
 ## 5. Cross-surface verification (Phase 5)

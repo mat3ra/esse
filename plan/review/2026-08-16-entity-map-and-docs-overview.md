@@ -29,7 +29,7 @@ explorer:
 - **Concept documentation** — pages explaining ESSE's approach and main concepts: the schema
   layering, entity anatomy, CateCom categorization, conventions, and the build pipeline — the
   "why" that today lives only in the papers and in maintainers' heads.
-- **Entity Map** — an interactive, zoomable, pannable map of all 565 schemas and their 917
+- **Entity Map** — an interactive, zoomable, pannable map of all 564 schemas and their 917
   references ("Google Maps for the entity graph"), with search, fly-to, permalinks, and a
   per-entity detail panel.
 
@@ -68,7 +68,7 @@ moves `upcoming/ → review/ → implemented/` with it.
 3. CDN dependencies stay (Monaco precedent) with pinned versions + subresource integrity hashes,
    applied to the explorer's existing tags too.
 4. The feature is named **Entity Map** (no "Atlas").
-5. Examples are panel content, not map nodes; example coverage (209/565) becomes a lint-reported
+5. Examples are panel content, not map nodes; example coverage (209/564) becomes a lint-reported
    metric.
 6. `graph.json` is site-only for now; emitter stays packaging-ready.
 7. Landing page gets the Docs · Explorer · Map header.

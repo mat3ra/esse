@@ -1,8 +1,8 @@
 {
-    "$id": "system/entity-graph",
+    "$id": "entity-graph",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "entity graph schema",
-    "description": "Reference graph extracted from the ESSE schema sources: one node per schema, one edge per cross-schema $ref. Describes the graph.json asset published alongside the resolved schemas.",
+    "description": "Reference graph extracted from the ESSE schema sources: one node per schema, one edge per cross-schema $ref. Describes the graph.json asset published alongside the resolved schemas. This is a build-tool schema, not an ESSE entity, so it lives with the extractor rather than in schema/.",
     "type": "object",
     "properties": {
         "meta": {
@@ -29,7 +29,11 @@
                             "type": "integer"
                         }
                     },
-                    "required": ["extends", "contains", "variant"]
+                    "required": [
+                        "extends",
+                        "contains",
+                        "variant"
+                    ]
                 },
                 "layerCounts": {
                     "description": "Number of schemas assigned to each layer",
@@ -147,7 +151,9 @@
                                 "type": "string"
                             }
                         },
-                        "required": ["name"]
+                        "required": [
+                            "name"
+                        ]
                     }
                 },
                 "required": [
@@ -181,7 +187,11 @@
                     },
                     "kind": {
                         "description": "Relationship expressed by the reference: allOf extends, properties/items contains, oneOf/anyOf is a variant",
-                        "enum": ["extends", "contains", "variant"]
+                        "enum": [
+                            "extends",
+                            "contains",
+                            "variant"
+                        ]
                     },
                     "label": {
                         "description": "Property name for contains edges, with a [] suffix when reached through items",
@@ -192,9 +202,17 @@
                         "type": "string"
                     }
                 },
-                "required": ["source", "target", "kind"]
+                "required": [
+                    "source",
+                    "target",
+                    "kind"
+                ]
             }
         }
     },
-    "required": ["meta", "nodes", "edges"]
+    "required": [
+        "meta",
+        "nodes",
+        "edges"
+    ]
 }

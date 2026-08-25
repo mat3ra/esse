@@ -21,8 +21,8 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 565 (564 in the original corpus, plus `system/entity-graph` added by SOF-8026) |
-| Example files | 209 (a schema has a mirror example in 209/565 = 37% of cases) |
+| Schema files | 564 |
+| Example files | 209 (a schema has a mirror example in 209/564 = 37% of cases) |
 | Cross-schema reference edges | 917 |
 | — of kind *extends* (`allOf`) | 372 |
 | — of kind *contains* (`properties`/`items`) | 375 |
@@ -31,7 +31,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | Edges carrying a JSON-pointer fragment | 144 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
-| Isolated schemas (no refs in or out) | 35 (34 original, plus the new `system/entity-graph`) |
+| Isolated schemas (no refs in or out) | 34 |
 
 ## Domains (top-level directories), by schema count
 
@@ -62,7 +62,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | directory | 156 | `*_directory` catalogs of concrete instances |
 | category | 152 | `*_category` + `materials_category_components` taxonomies |
 | **entity-component** | **106** | sub-schemas of root entities, keyed by `ownerEntity` |
-| system | 39 | platform mixins (`system/*`), including the new `entity-graph` |
+| system | 38 | platform mixins (`system/*`) |
 | reusable | 31 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |
 | **application-parsing** | **17** | `apse/*` application formats and parsers |
@@ -105,7 +105,7 @@ application-parsing schemas.
 The hub and fan-out tables above are unchanged by the same-document correction: those refs never
 contributed to degree counts.
 
-## Isolated schemas (sample of the 35)
+## Isolated schemas (sample of the 34)
 
 `apse/db/materials_project/2025.9.25/summary`, `apse/db/materials_project/legacy/material`,
 `apse/materials/builders/slab/pymatgen/parameters`,

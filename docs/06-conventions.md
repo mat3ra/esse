@@ -6,7 +6,7 @@ summary: Ids, includes, generative keys, formatting rules, and the URLs that are
 
 # Conventions
 
-The rules that keep 565 schemas coherent. Most are enforced by the schema lint, which runs on
+The rules that keep the schema corpus coherent. Most are enforced by the schema lint, which runs on
 every pull request; where that is so, it is noted.
 
 ## `$id` is the path
@@ -82,7 +82,7 @@ are stable, and change only additively:
 | `/#<published path>` | schema explorer deep link |
 | `/map/#/entity/<$id>` | Entity Map: fly to a schema and open its panel |
 | `/map/#/view/<x>,<y>,<zoom>` | Entity Map viewport |
-| `/graph.json` | the entity graph asset, itself described by `system/entity-graph` |
+| `/graph.json` | the entity graph asset, described by `src/js/scripts/entity_graph.schema.json` |
 | `/docs/<slug>.html` | these pages |
 
 ## What the lint checks

@@ -10,7 +10,7 @@
 ## Status
 
 **What shipped.** `src/js/scripts/buildEntityGraph.ts` (extractor + lint), `build_entity_graph.ts`
-(CLI), `schema/system/entity_graph.json` (the schema `graph.json` validates against),
+(CLI), `src/js/scripts/entity_graph.schema.json` (the schema `graph.json` validates against),
 `tests/js/entityGraph.tests.ts`, npm scripts `build-entity-graph` / `lint-entity-graph`, and the
 deploy step that publishes `graph.json`. The lint runs on every pull request via `npm test`.
 
@@ -36,7 +36,15 @@ deploy step that publishes `graph.json`. The lint runs on every pull request via
   Only the source path is unrecoverable. A pure `publishedPathToSchemaId` was added there.)*
 - **Edge labels are preserved for all kinds**, not just `contains`. A union under
   `properties.data.oneOf` is recorded as a variant *of `data`*, which the detail panel can show.
-- **Isolated-node baseline is 35, not 34** — the new `entity_graph` schema is itself isolated.
+- **The graph schema lives outside `schema/`.** Deliverable 2 below proposed
+  `schema/system/entity_graph.json`, on the reasoning that dogfooding is a virtue. It is not,
+  here: the corpus is a vocabulary for digital materials science, and a description of this
+  tool's own output is not part of that vocabulary. Shipping it in `schema/` also put it in the
+  published npm/PyPI payload and in `schemas.json`, and it counted itself as a 565th node —
+  a measurement instrument reading its own weight. It now sits beside the extractor as
+  `src/js/scripts/entity_graph.schema.json` with `$id: "entity-graph"`, imported directly
+  (`resolveJsonModule`) rather than read from disk. Node count and the isolated-node baseline
+  are back to 564 and 34.
 
 **Still open.** Nothing from this document. Layout coordinates (`x`/`y`) remain deliberately
 absent until the map polish phase, as planned.
@@ -51,9 +59,10 @@ it ships first, as its own PR — the lint has standalone value even if nothing 
 
 1. `src/js/scripts/buildEntityGraph.ts` — extractor + lint (TypeScript, sibling of
    `setSchemaIds.ts`, reusing `walkDirSync` and `settings.ts`).
-2. `schema/system/entity_graph.json` — the ESSE schema that `graph.json` itself validates against
-   (dogfooding; validated with the already-present `ajv`). Location may move at implementation
-   time if maintainers prefer a different home; it must remain an ordinary ESSE schema.
+2. A JSON Schema that `graph.json` itself validates against (validated with the already-present
+   `ajv`). Location may move at implementation time if maintainers prefer a different home.
+   *(It did: see the Status section — it ships as `src/js/scripts/entity_graph.schema.json`,
+   outside the corpus, because it describes a build artifact rather than an entity.)*
 3. npm scripts: `build-entity-graph` (emit + validate) and `lint-entity-graph` (validate only,
    non-zero exit on hard failures) — the latter added to the JS test pipeline so pull requests
    fail on graph violations (review decision 8).
@@ -159,7 +168,7 @@ the former `other` bucket, `application-parsing` the remaining 17.
 | L7 | No reference cycles (README rule; 0 today) | **fail** |
 | L8 | Newly isolated nodes vs the committed baseline (34 today) | warn |
 | L9 | Example coverage report (schemas without a mirror example; 355 today) | warn, with count in output |
-| L10 | `graph.json` validates against `schema/system/entity_graph.json` via ajv | **fail** |
+| L10 | `graph.json` validates against `src/js/scripts/entity_graph.schema.json` via ajv | **fail** |
 
 Warnings print in CI logs; failures exit non-zero. The lint runs in two places: the JS test job on
 every pull request (fast — no assets written) and the deploy job (writes `site/graph.json`).
@@ -178,7 +187,7 @@ every pull request (fast — no assets written) and the deploy job (writes `site
 
 ## 6. Tests (`tests/js/entityGraph.tests.ts`)
 
-1. Totals match the measurement baseline (565 nodes / 917 edges — updated intentionally when
+1. Totals match the measurement baseline (564 nodes / 917 edges — updated intentionally when
    schemas change; the test message says how).
 2. Edge-kind partition sums to the total; per-kind counts match baseline.
 3. Spot checks: `material --extends--> in-memory-entity/named-defaultable`;

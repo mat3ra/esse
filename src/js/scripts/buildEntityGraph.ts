@@ -19,6 +19,7 @@ import type { AnyObject } from "../esse/types";
 import type { JSONSchema } from "../esse/utils";
 import { validate } from "../utils/ajv";
 import { walkDirSync } from "../utils/filesystem";
+import entityGraphSchema from "./entity_graph.schema.json";
 import { computeEntityGraphLayout } from "./entityGraphLayout";
 
 export type EntityGraphEdgeKind = "extends" | "contains" | "variant";
@@ -108,7 +109,7 @@ export interface EntityGraphLintResult {
  * Isolated schemas at the time the lint baseline was taken; growth is reported, not failed.
  * These are leaf definitions and externally-consumed formats that nothing else references.
  */
-export const ISOLATED_NODE_BASELINE = 35;
+export const ISOLATED_NODE_BASELINE = 34;
 
 const REPOSITORY_ROOT = path.resolve(__dirname, "../../../");
 const ENTITY_DOMAINS = [
@@ -526,17 +527,15 @@ export function buildEntityGraph(): BuildEntityGraphResult {
 }
 
 /**
- * L10 — validates the emitted graph against its own ESSE schema, so the asset that
- * describes the schemas is itself described by one.
+ * L10 — validates the emitted graph against its schema.
+ *
+ * That schema lives here rather than in `schema/`: it describes a build artifact, not an
+ * entity of digital materials science, so it has no business in the corpus this tool
+ * measures. Imported rather than read from disk so it resolves identically whether the
+ * module runs from source or from the transpiled copy in `dist/`.
  */
 export function validateEntityGraph(graph: EntityGraph): string[] {
-    const schemaPath = path.join(SCHEMAS_DIR, "system", "entity_graph.json");
-    if (!fs.existsSync(schemaPath)) {
-        return [`L10 ${path.relative(REPOSITORY_ROOT, schemaPath)} is missing`];
-    }
-
-    const schema = JSON.parse(fs.readFileSync(schemaPath, "utf-8"));
-    const { isValid, errors } = validate(graph as unknown as AnyObject, schema);
+    const { isValid, errors } = validate(graph as unknown as AnyObject, entityGraphSchema);
 
     if (isValid) return [];
 
