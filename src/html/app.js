@@ -258,6 +258,22 @@ function openFile(path) {
     // Status
     document.getElementById("status-path").textContent = path;
 
+    // Entity Map link. A schema's $id is its published path with underscores turned back
+    // into dashes — exact, because no $id contains an underscore. Examples have no node
+    // of their own, so the link points at the schema they illustrate.
+    const viewOnMap = document.getElementById("view-on-map");
+    const schemaPath = path.replace(/^example\//, "schema/");
+    if (schemaPath.startsWith("schema/")) {
+        const schemaId = schemaPath
+            .replace(/^schema\//, "")
+            .replace(/\.json$/, "")
+            .replace(/_/g, "-");
+        viewOnMap.href = `map/index.html#/entity/${encodeURIComponent(schemaId)}`;
+        viewOnMap.hidden = false;
+    } else {
+        viewOnMap.hidden = true;
+    }
+
     // Update URL hash for deep-linking
     window.history.replaceState(null, "", "#" + path);
 
