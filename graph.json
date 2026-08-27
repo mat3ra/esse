@@ -369,7 +369,7 @@
             "layer": "directory",
             "inDegree": 1,
             "outDegree": 0,
-            "propertyCount": 11,
+            "propertyCount": 12,
             "hasExample": false,
             "x": 1350.23,
             "y": 1034.45
