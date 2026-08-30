@@ -1,0 +1,53 @@
+{
+    "schemaId": "models-directory-at-disp-dft-d",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Grimme-type empirical dispersion model for DFT (DFT-D)",
+    "description": "Abbreviations taken from manifest/dft_dispersion.yaml",
+    "allOf": [
+        {
+            "$ref": "../disp.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "enum": [
+                {
+                    "name": "Empirical dispersion DFT-D",
+                    "slug": "empirical-dft-d"
+                }
+            ]
+        },
+        "subtype": {
+            "enum": [
+                {
+                    "name": "DFT-D2",
+                    "slug": "dft-d2"
+                },
+                {
+                    "name": "DFT-CHG",
+                    "slug": "dft-chg"
+                },
+                {
+                    "name": "DFT-D3(0)",
+                    "slug": "dft-d3-0"
+                },
+                {
+                    "name": "DFT-D3(BJ)",
+                    "slug": "dft-d3-bj"
+                },
+                {
+                    "name": "DFT-D3(CSO)",
+                    "slug": "dft-d3-cso"
+                },
+                {
+                    "name": "DFT-D3M(BJ)",
+                    "slug": "dft-d3-bj-m"
+                },
+                {
+                    "name": "DFT-D3(op)",
+                    "slug": "dft-d3-op"
+                }
+            ]
+        }
+    }
+}

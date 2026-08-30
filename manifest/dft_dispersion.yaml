@@ -1,0 +1,87 @@
+#
+# This file contains a collection of DFT dispersion corrections
+# (also known as "DFT methods for van-der-Waals interactions")
+#
+
+# ---------------------------------------
+# Non-local correlation functionals
+# (see also dft_unit_functionals section)
+# ---------------------------------------
+nlc_functionals:
+  usage: intra-SCF
+  - name: vdW-DF-04 by Langreth, Lundqvist, et al.
+    slug: vdw-df-04
+    doi:
+      - 10.1103/PhysRevLett.92.246401
+      - 10.1103/PhysRevLett.95.109902
+  - name: vdW-DF-10 by Lee, et al. (reparametrization of vdW-DF-04)
+    slug: vdw-df-10
+    doi: 10.1103/PhysRevB.82.081101
+  - name: VV09 by Vydrov and Van Voorhis
+    slug: vv09
+    doi:
+      - 10.1103/PhysRevLett.103.063004
+      - 10.1063/1.3398840
+  - name: VV10 by Vydrov and Van Voorhis
+    slug: vv10
+    doi: 10.1063/1.3521275
+  - name: rVV10 by Sabatini, et al.
+    slug: rvv10
+    doi: 10.1103/PhysRevB.87.041108
+# ---------------------------------------
+# Empirical dispersion models
+# ---------------------------------------
+empirical_dispersion:
+  usage: post-SCF
+  - name: DFT-D2 by Grimme
+    slug: dft-d2
+    doi: 10.1002/jcc.20495
+  - name: DFT-CHG by Chai and Head-Gordon
+    slug: dft-chg
+    doi: 10.1039/b810189b
+  - name: DFT-D3(0) by Grimme
+    slug: dft-d3-0
+    doi: 10.1063/1.3382344
+  - name: DFT-D3(BJ) by Becke and Johnson
+    slug: dft-d3-bj
+    doi: 10.1002/jcc.21759
+  - name: DFT-D3(CSO) by Schröder et al.
+    slug: dft-d3-cso
+    doi: 10.1021/acs.jctc.5b00400
+  - name: DFT-D3M(BJ) reparametrized DFT-D3(BJ) by Smith et al.
+    slug: dft-d3-bj-m
+    doi: 10.1021/acs.jpclett.6b00780
+  - name: DFT-D3(op) optimized power approach by Witte et al.
+    slug: dft-d3-op
+    doi: 10.1021/acs.jctc.7b00176
+# -------------------------------------------
+# Exchange-Dipole Model (XDM) of Dispersion
+# -------------------------------------------
+exchange_dipole:
+  usage: post-SCF
+  - name: XDM6 by Becke and Johnson
+    slug: xdm6
+    doi:
+      - 10.1063/1.1884601
+      - 10.1063/1.1949201
+  - name: XDM10
+    slug: xdm10
+    doi: 10.1063/1.1949201
+# ----------------------------------------------------
+# Tkatchenko-Scheffler van der Waals Model (TS-vdW)
+# ----------------------------------------------------
+tkatchenko_scheffler:
+  usage: post-SCF
+  - name: Tkatchenko-Scheffler vdW model
+    slug: ts_vdw
+    doi: 10.1103/PhysRevLett.102.073005
+# -----------------------------------------
+# Many-Body Dispersion (MBD) Method
+# -----------------------------------------
+many_body_dispersion:
+  usage: post-SCF
+  - name: MBD with range-separated self-consistent screening (MBD@rsSCS)
+    slug: mbd-rsscs
+    doi: 10.1063/1.4865104
+
+

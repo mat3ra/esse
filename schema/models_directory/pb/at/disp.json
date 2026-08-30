@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "allOf": [
+        {
+            "$ref": "../at.json"
+        }
+    ],
+    "properties": {
+        "tier3": {
+            "enum": [
+                {
+                    "name": "atomistic dispersion model",
+                    "slug": "disp"
+                }
+            ]
+        }
+    }
+}
