@@ -30,6 +30,9 @@
                         },
                         {
                             "$ref": "../model/mixins/hubbard.json"
+                        },
+                        {
+                            "$ref": "../model/mixins/magnetization.json"
                         }
                     ]
                 }
