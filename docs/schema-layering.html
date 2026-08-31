@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schema layering — ESSE</title>
+    <title>Schema layering — AI4Materials</title>
     <meta name="description" content="The build-up from primitives to entities, and why each layer is kept separate.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -40,7 +41,7 @@
 layers beneath it. This is the single most useful thing to understand about the repository: once
 you know which layer a schema belongs to, you know roughly what it may contain, what may depend on
 it, and where to add something new.</p>
-<p>The <a href="../map/index.html">Entity Map</a> draws these layers literally — primitives sit at the centre and
+<p>The <a href="../map/index.html">ontology map</a> draws these layers literally — primitives sit at the centre and
 each ring outward is a layer further up the build-up.</p>
 <h2>The layers</h2>
 <div class="table-wrap"><table>
@@ -198,7 +199,7 @@ predicts:</p>
 </tr>
 </tbody></table></div>
 <p>A schema high in this table is one you should be careful changing: a great deal depends on it.
-The Entity Map draws these larger than their neighbours for the same reason.</p>
+The ontology map draws these larger than their neighbours for the same reason.</p>
 <h2>Why keep the layers separate at all?</h2>
 <p>It would be less typing to inline everything. Three things are bought by not doing so.</p>
 <p><strong>Change has a blast radius you can see.</strong> Adding a unit to <code>definitions/units</code> is a one-line

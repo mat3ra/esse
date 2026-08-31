@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conventions — ESSE</title>
+    <title>Conventions — AI4Materials</title>
     <meta name="description" content="Ids, includes, generative keys, formatting rules, and the URLs that are contracts.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -69,7 +70,7 @@ hangs it or forces a silent fallback to the unresolved form.</p>
 <code>src/js/json_include</code>) that splices one document&#39;s keys into another at build time. It exists for
 cases where <code>$ref</code> cannot express the composition, and it is resolved before validation — no
 consumer of the published schemas ever sees an <code>include()</code>.</p>
-<p>Prefer <code>$ref</code>. It is standard, it is visible on the Entity Map, and it survives into the resolved
+<p>Prefer <code>$ref</code>. It is standard, it is visible on the ontology map, and it survives into the resolved
 output as structure rather than as a copy.</p>
 <h2>Generative keys</h2>
 <p>Some property schemas describe values a user supplies <em>before</em> a calculation rather than results
@@ -102,11 +103,11 @@ are stable, and change only additively:</p>
 </tr>
 <tr>
 <td><code>/map/#/entity/&lt;$id&gt;</code></td>
-<td>Entity Map: fly to a schema and open its panel</td>
+<td>Ontology map: fly to a schema and open its panel</td>
 </tr>
 <tr>
 <td><code>/map/#/view/&lt;x&gt;,&lt;y&gt;,&lt;zoom&gt;</code></td>
-<td>Entity Map viewport</td>
+<td>Ontology map viewport</td>
 </tr>
 <tr>
 <td><code>/graph.json</code></td>

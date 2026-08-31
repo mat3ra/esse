@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why ESSE exists — ESSE</title>
+    <title>Why ESSE exists — AI4Materials</title>
     <meta name="description" content="Schemas as the single source of truth shared by people, validators and code generators.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -44,6 +45,54 @@ every boundary, and a great deal of glue code whose only job is to translate one
 another.</p>
 <p>ESSE is one answer to that. It defines the entities of the domain as data, in JSON Schema, once,
 and treats those definitions as the authoritative description that everything else derives from.</p>
+<h2>An ontology, written as JSON Schema</h2>
+<p>It is worth naming what this corpus actually is. An ontology, in the working sense, is a formal
+and explicit specification of a shared conceptualization: it fixes <em>what kinds of thing exist</em> in
+a domain and <em>how they relate</em>. ESSE does exactly that, and the relationships are not editorial —
+they are declared in the schemas and mechanically extractable:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Relation</th>
+<th>Declared by</th>
+<th>Reads as</th>
+<th>Edges</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>extends</code></td>
+<td><code>allOf</code></td>
+<td><strong>is a</strong> (subsumption)</td>
+<td>372</td>
+</tr>
+<tr>
+<td><code>contains</code></td>
+<td><code>properties</code> / <code>items</code></td>
+<td><strong>has a</strong> (composition)</td>
+<td>375</td>
+</tr>
+<tr>
+<td><code>variant</code></td>
+<td><code>oneOf</code> / <code>anyOf</code></td>
+<td><strong>is one of</strong> (disjunction)</td>
+<td>170</td>
+</tr>
+</tbody></table></div>
+<p>Across 564 entity types, 917 declared relationships.</p>
+<p>Those three relation kinds are the familiar ontological ones. <code>extends</code> is subsumption: a
+<code>material</code> <strong>is a</strong> named, defaultable in-memory entity. <code>contains</code> is composition: a <code>model</code>
+<strong>has a</strong> <code>method</code>. <code>variant</code> is disjunction: a property holder&#39;s <code>data</code> <strong>is one of</strong> the
+property types. On top of them sit controlled vocabularies — <code>definitions/units</code>, the tier
+enumerations — that constrain what the leaves may say.</p>
+<p>What ESSE deliberately is <em>not</em> is an OWL/RDF ontology with a description-logic reasoner behind
+it. There are no inferred axioms and nothing computes a subsumption closure at runtime. The trade
+is intentional: because the ontology is expressed in JSON Schema, it <em>validates real records
+directly</em> with an off-the-shelf validator, rather than describing a world that some other artifact
+is then trusted to conform to. The conceptual model and the wire format are the same file.</p>
+<p>That is also what makes the corpus useful to machine learning and to agents. A model trained on,
+or an agent navigating, this data does not have to infer the schema from examples: the entity
+types, their fields, their units and their relationships are all declared, checkable, and stable
+under a <code>$id</code>.</p>
 <h2>Schemas first, not code first</h2>
 <p>The tempting alternative is to define entities in code — a <code>Material</code> class in Python, another in
 TypeScript — and let the serialization format fall out of whatever the classes happen to contain.
@@ -119,7 +168,7 @@ types.</li>
 </tr>
 </tbody></table></div>
 <p>Those references are not incidental. They are what makes the collection a system rather than a
-folder of files, and they are what the <a href="../map/index.html">Entity Map</a> draws.</p>
+folder of files, and they are what the <a href="../map/index.html">ontology map</a> draws.</p>
 
     </article>
     </main>

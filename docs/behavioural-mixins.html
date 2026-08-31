@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behavioural mixins — ESSE</title>
+    <title>Behavioural mixins — AI4Materials</title>
     <meta name="description" content="How allOf stacks platform behaviour onto domain payloads, and why they are separate.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -175,7 +176,7 @@ nothing can satisfy, and JSON Schema will not warn you.</li>
 <li>The published, resolved schemas have their <code>allOf</code> branches <strong>merged</strong> by the build (see
 <a href="the-pipeline.html">The pipeline</a>). That is a convenience for consumers, but it means the
 published copy no longer shows you which mixin a field came from. The source is authoritative
-for provenance — which is exactly why the <a href="../map/index.html">Entity Map</a> is built from the
+for provenance — which is exactly why the <a href="../map/index.html">ontology map</a> is built from the
 sources rather than the published output.</li>
 </ul>
 

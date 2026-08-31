@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation — ESSE</title>
+    <title>Documentation — AI4Materials</title>
     <meta name="description" content="How ESSE is put together and why — the concepts behind the schemas.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -35,13 +36,19 @@
     </aside>
     <main id="docs-content">
         <article>
-<h1>ESSE documentation</h1>
-<p>ESSE is the <strong>E</strong>ssential <strong>S</strong>ource of <strong>S</strong>chemas and <strong>E</strong>xamples: data-format definitions for
-the entities of digital materials science — materials, models, methods, properties, workflows,
-jobs — together with worked examples of each.</p>
+<h1>Documentation</h1>
+<p>ESSE — the <strong>E</strong>ssential <strong>S</strong>ource of <strong>S</strong>chemas and <strong>E</strong>xamples — is an <strong>ontology for digital
+materials science, written as JSON Schema</strong>. It fixes what kinds of thing exist in the domain —
+materials, models, methods, properties, workflows, jobs — and how they relate, then ships worked
+examples of each. Because the ontology is expressed as JSON Schema rather than OWL, it validates
+real records directly instead of describing a world something else must conform to.</p>
+<p>That combination is what makes it useful as a data standard for machine learning and for agents:
+the entity types, their fields, their units and their relationships are all declared, checkable,
+and stable under a <code>$id</code>, so nothing has to be inferred from examples.</p>
 <p>The <a href="../index.html">schema explorer</a> shows you any single schema. The
-<a href="../map/index.html">Entity Map</a> shows you how they all relate. These pages explain <em>why</em> the
-schemas are shaped the way they are, which is the part neither of the other two can tell you.</p>
+<a href="../map/index.html">ontology map</a> shows you the ontology whole — every entity type and every
+relationship between them. These pages explain <em>why</em> the schemas are shaped the way they are,
+which is the part neither of the other two can tell you.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -89,7 +96,7 @@ and what the two runtimes do and do not guarantee.</li>
 <h2>Conventions in these pages</h2>
 <p>Every claim about the corpus — counts, relationships, coverage — is generated from the schema
 sources at build time rather than typed by hand, so these pages cannot quietly fall out of step
-with the schemas they describe. Schema names link to their place on the Entity Map.</p>
+with the schemas they describe. Schema names link to their place on the ontology map.</p>
 
     </article>
     </main>

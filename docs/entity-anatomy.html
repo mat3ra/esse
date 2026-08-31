@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entity anatomy — ESSE</title>
+    <title>Entity anatomy — AI4Materials</title>
     <meta name="description" content="The root entities, how they compose, and why there are four kinds of material.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -130,11 +131,11 @@ states, charge density), <code>structural</code>, <code>elemental</code> and <co
 <p>They are tied together by <code>property/holder</code>, which is the widest schema in the corpus: its <code>data</code>
 field is a union over every property type, on top of one mixin and one provenance reference. That
 one file is why &quot;what property types exist?&quot; has a single answer, and it is the clearest
-illustration of the union idiom in ESSE. On the <a href="../map/index.html">Entity Map</a> it is the node
+illustration of the union idiom in ESSE. On the <a href="../map/index.html">ontology map</a> it is the node
 with by far the largest fan-out.</p>
 <p><code>manifest/properties.yaml</code> is the registry that sits alongside: it maps a property name to its
 schema id, its default units, and flags for whether it is a computed <em>result</em> or a runtime
-<em>monitor</em>. The Entity Map shows those flags as badges on property nodes.</p>
+<em>monitor</em>. The ontology map shows those flags as badges on property nodes.</p>
 <h2>How it fits together</h2>
 <p>Reading the composition from the bottom: a <strong>material</strong> is characterized by <strong>properties</strong>; those
 properties are produced by applying a <strong>model</strong> (realized by a <strong>method</strong>) through a

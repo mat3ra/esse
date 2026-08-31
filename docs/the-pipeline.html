@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The pipeline — ESSE</title>
+    <title>The pipeline — AI4Materials</title>
     <meta name="description" content="How JSON sources become packages, types and this site — and what the two runtimes guarantee.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -59,7 +60,7 @@ sources. This page describes how, and what that dual nature does and does not gu
 </code></pre>
 <p>The site is assembled in a <code>site/</code> staging directory by the <code>deploy-docs</code> job — resolved schemas
 and examples, <code>schemas.json</code>, <code>graph.json</code>, these documentation pages, the schema explorer and the
-Entity Map — and published to GitHub Pages, which <code>schemas.mat3ra.com</code> fronts.</p>
+Ontology map — and published to GitHub Pages, which <code>schemas.mat3ra.com</code> fronts.</p>
 <h2>Resolution, and what it destroys</h2>
 <p><code>build-schemas</code> does two things to every schema:</p>
 <ol>
@@ -70,7 +71,7 @@ and a consumer needs no resolver.</li>
 <p>This is a genuine convenience — the published <code>material.json</code> shows you every field a material has,
 in one document. But it is lossy in a specific way: <strong>after merging, you can no longer see which
 mixin a field came from, or that there was a mixin at all.</strong></p>
-<p>That is why the Entity Map and the schema lint read <code>schema/</code>, never <code>dist/js/schema/</code>. The
+<p>That is why the ontology map and the schema lint read <code>schema/</code>, never <code>dist/js/schema/</code>. The
 relationships they exist to describe are precisely what resolution removes. If you write a tool
 that cares about structure rather than content, read the sources.</p>
 <h2>The dual-runtime equivalence contract</h2>

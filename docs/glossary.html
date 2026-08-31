@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glossary — ESSE</title>
+    <title>Glossary — AI4Materials</title>
     <meta name="description" content="The vocabulary of the repository, with pointers to where each idea is explained.">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -37,8 +38,18 @@
         <article>
 <h1>Glossary</h1>
 <p>Terms as this repository uses them. Where a term names a schema, the name links to its place on
-the <a href="../map/index.html">Entity Map</a>.</p>
+the <a href="../map/index.html">ontology map</a>.</p>
 <h2>The corpus</h2>
+<p><strong>Ontology</strong> — a formal, explicit specification of a shared conceptualization: what kinds of thing
+exist in a domain, and how they relate. ESSE is one, expressed as JSON Schema rather than OWL/RDF.
+The three relationship kinds are the familiar ontological ones — <code>extends</code> is subsumption (<em>is a</em>),
+<code>contains</code> is composition (<em>has a</em>), <code>variant</code> is disjunction (<em>is one of</em>) — and controlled
+vocabularies such as <a href="../map/#/entity/definitions%2Funits"><code>definitions/units</code></a> constrain the
+leaves. There is no description-logic reasoner; the trade is that the ontology validates records
+directly. <a href="why-esse-exists.html">Why ESSE exists</a>.</p>
+<p><strong>Data standard</strong> — the same corpus seen from the consumer&#39;s side: a fixed, versioned, publicly
+addressable set of definitions that independent tools can agree on, so records written by one are
+readable by another without translation glue.</p>
 <p><strong>Schema</strong> — a JSON Schema (draft-07) file under <code>schema/</code>, declaring a <code>$id</code> derived from its
 path. The authoritative definition of one entity or fragment.</p>
 <p><strong>Example</strong> — an instance under <code>example/</code> conforming to the schema at the mirrored path. A
@@ -168,7 +179,7 @@ externally-consumed formats. Growth is reported by the lint as a warning.</p>
 </tbody></table></div>
 <h2>The surfaces</h2>
 <p><strong>Schema explorer</strong> — <a href="../index.html">the file browser</a> over resolved schemas and examples.</p>
-<p><strong>Entity Map</strong> — <a href="../map/index.html">the map</a> of all schemas and their references, laid out by
+<p><strong>Ontology map</strong> — <a href="../map/index.html">the map</a> of all schemas and their references, laid out by
 architectural layer.</p>
 <p><strong>Concept documentation</strong> — these pages.</p>
 
