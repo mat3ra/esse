@@ -56,6 +56,19 @@ body {
     color: var(--text-primary);
     font-weight: 500;
 }
+/* The suffix completes the wordmark, so "AI4Materials" never reads as a
+   dangling fragment. Muted and lighter so the name still carries the emphasis;
+   dropped on narrow screens where the nav needs the room. */
+#titlebar .app-name-suffix {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+@media (max-width: 700px) {
+    #titlebar .app-name-suffix {
+        display: none;
+    }
+}
+
 #titlebar-tagline {
     margin-left: 6px;
 }

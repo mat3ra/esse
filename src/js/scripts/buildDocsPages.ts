@@ -288,19 +288,19 @@ function renderPage(page: DocsPage, pages: DocsPage[], html: string): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(page.title)} — AI for Materials</title>
+    <title>${escapeHtml(page.title)} — AI4Materials</title>
     <meta name="description" content="${escapeHtml(page.summary)}">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">AI for Materials</span>
+    <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
         <a href="../map/index.html">Ontology</a>
     </nav>
-    <span id="titlebar-tagline">ESSE &middot; data standards &amp; ontology</span>
+    <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -358,6 +358,9 @@ body {
     z-index: 5;
 }
 #titlebar .app-name { color: var(--text-primary); font-weight: 600; }
+/* Completes the wordmark so the name never reads as a dangling fragment. */
+#titlebar .app-name-suffix { color: var(--text-muted); font-weight: 400; }
+@media (max-width: 700px) { #titlebar .app-name-suffix { display: none; } }
 #surfaces { display: flex; gap: 14px; }
 #surfaces a { color: var(--text-muted); text-decoration: none; }
 #surfaces a:hover { color: var(--text-primary); }
