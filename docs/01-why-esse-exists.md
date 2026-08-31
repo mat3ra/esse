@@ -16,6 +16,32 @@ another.
 ESSE is one answer to that. It defines the entities of the domain as data, in JSON Schema, once,
 and treats those definitions as the authoritative description that everything else derives from.
 
+## An ontology, written as JSON Schema
+
+It is worth naming what this corpus actually is. An ontology, in the working sense, is a formal
+and explicit specification of a shared conceptualization: it fixes *what kinds of thing exist* in
+a domain and *how they relate*. ESSE does exactly that, and the relationships are not editorial —
+they are declared in the schemas and mechanically extractable:
+
+<!-- generated:ontology-relations -->
+
+Those three relation kinds are the familiar ontological ones. `extends` is subsumption: a
+`material` **is a** named, defaultable in-memory entity. `contains` is composition: a `model`
+**has a** `method`. `variant` is disjunction: a property holder's `data` **is one of** the
+property types. On top of them sit controlled vocabularies — `definitions/units`, the tier
+enumerations — that constrain what the leaves may say.
+
+What ESSE deliberately is *not* is an OWL/RDF ontology with a description-logic reasoner behind
+it. There are no inferred axioms and nothing computes a subsumption closure at runtime. The trade
+is intentional: because the ontology is expressed in JSON Schema, it *validates real records
+directly* with an off-the-shelf validator, rather than describing a world that some other artifact
+is then trusted to conform to. The conceptual model and the wire format are the same file.
+
+That is also what makes the corpus useful to machine learning and to agents. A model trained on,
+or an agent navigating, this data does not have to infer the schema from examples: the entity
+types, their fields, their units and their relationships are all declared, checkable, and stable
+under a `$id`.
+
 ## Schemas first, not code first
 
 The tempting alternative is to define entities in code — a `Material` class in Python, another in
@@ -86,4 +112,4 @@ The corpus at a glance, and how densely it is cross-referenced:
 <!-- generated:corpus-totals -->
 
 Those references are not incidental. They are what makes the collection a system rather than a
-folder of files, and they are what the [Entity Map](../map/index.html) draws.
+folder of files, and they are what the [ontology map](../map/index.html) draws.

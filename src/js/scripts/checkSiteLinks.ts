@@ -2,7 +2,7 @@
  * Verifies that every internal link in the assembled site resolves.
  *
  * The site is stitched together from four sources — resolved schemas, the concept docs, the
- * explorer and the Entity Map — each of which links into the others. Nothing else checks that
+ * explorer and the ontology map — each of which links into the others. Nothing else checks that
  * those links land anywhere, and a stale href is invisible until someone clicks it.
  *
  * External URLs are not fetched; this is a build step, not a crawler.

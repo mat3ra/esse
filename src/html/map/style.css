@@ -56,6 +56,19 @@ body {
     color: var(--text-primary);
     font-weight: 500;
 }
+/* The suffix completes the wordmark, so "AI4Materials" never reads as a
+   dangling fragment. Muted and lighter so the name still carries the emphasis;
+   dropped on narrow screens where the nav needs the room. */
+#titlebar .app-name-suffix {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+@media (max-width: 700px) {
+    #titlebar .app-name-suffix {
+        display: none;
+    }
+}
+
 #titlebar-tagline {
     margin-left: 6px;
 }
@@ -403,6 +416,12 @@ body {
 .detail-description {
     color: var(--text-muted);
     line-height: 1.5;
+}
+/* The how-to-drive-it line, set apart from the what-this-is paragraph above it. */
+.detail-empty-hint {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
 }
 #detail-body[hidden] {
     display: none;

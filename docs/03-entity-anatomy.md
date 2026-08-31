@@ -98,12 +98,12 @@ states, charge density), `structural`, `elemental` and `workflow` (convergence m
 They are tied together by `property/holder`, which is the widest schema in the corpus: its `data`
 field is a union over every property type, on top of one mixin and one provenance reference. That
 one file is why "what property types exist?" has a single answer, and it is the clearest
-illustration of the union idiom in ESSE. On the [Entity Map](../map/index.html) it is the node
+illustration of the union idiom in ESSE. On the [ontology map](../map/index.html) it is the node
 with by far the largest fan-out.
 
 `manifest/properties.yaml` is the registry that sits alongside: it maps a property name to its
 schema id, its default units, and flags for whether it is a computed *result* or a runtime
-*monitor*. The Entity Map shows those flags as badges on property nodes.
+*monitor*. The ontology map shows those flags as badges on property nodes.
 
 ## How it fits together
 

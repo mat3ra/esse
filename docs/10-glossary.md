@@ -7,9 +7,21 @@ summary: The vocabulary of the repository, with pointers to where each idea is e
 # Glossary
 
 Terms as this repository uses them. Where a term names a schema, the name links to its place on
-the [Entity Map](../map/index.html).
+the [ontology map](../map/index.html).
 
 ## The corpus
+
+**Ontology** — a formal, explicit specification of a shared conceptualization: what kinds of thing
+exist in a domain, and how they relate. ESSE is one, expressed as JSON Schema rather than OWL/RDF.
+The three relationship kinds are the familiar ontological ones — `extends` is subsumption (*is a*),
+`contains` is composition (*has a*), `variant` is disjunction (*is one of*) — and controlled
+vocabularies such as [`definitions/units`](../map/#/entity/definitions%2Funits) constrain the
+leaves. There is no description-logic reasoner; the trade is that the ontology validates records
+directly. [Why ESSE exists](why-esse-exists.html).
+
+**Data standard** — the same corpus seen from the consumer's side: a fixed, versioned, publicly
+addressable set of definitions that independent tools can agree on, so records written by one are
+readable by another without translation glue.
 
 **Schema** — a JSON Schema (draft-07) file under `schema/`, declaring a `$id` derived from its
 path. The authoritative definition of one entity or fragment.
@@ -130,7 +142,7 @@ externally-consumed formats. Growth is reported by the lint as a warning.
 
 **Schema explorer** — [the file browser](../index.html) over resolved schemas and examples.
 
-**Entity Map** — [the map](../map/index.html) of all schemas and their references, laid out by
+**Ontology map** — [the map](../map/index.html) of all schemas and their references, laid out by
 architectural layer.
 
 **Concept documentation** — these pages.

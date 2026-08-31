@@ -33,7 +33,7 @@ schema/ + example/            JSON sources — the authority
 
 The site is assembled in a `site/` staging directory by the `deploy-docs` job — resolved schemas
 and examples, `schemas.json`, `graph.json`, these documentation pages, the schema explorer and the
-Entity Map — and published to GitHub Pages, which `schemas.mat3ra.com` fronts.
+Ontology map — and published to GitHub Pages, which `schemas.mat3ra.com` fronts.
 
 ## Resolution, and what it destroys
 
@@ -47,7 +47,7 @@ This is a genuine convenience — the published `material.json` shows you every 
 in one document. But it is lossy in a specific way: **after merging, you can no longer see which
 mixin a field came from, or that there was a mixin at all.**
 
-That is why the Entity Map and the schema lint read `schema/`, never `dist/js/schema/`. The
+That is why the ontology map and the schema lint read `schema/`, never `dist/js/schema/`. The
 relationships they exist to describe are precisely what resolution removes. If you write a tool
 that cares about structure rather than content, read the sources.
 

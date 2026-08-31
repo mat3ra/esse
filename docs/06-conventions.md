@@ -49,7 +49,7 @@ Beyond standard `$ref`, ESSE supports an `include()` mechanism (implemented in
 cases where `$ref` cannot express the composition, and it is resolved before validation — no
 consumer of the published schemas ever sees an `include()`.
 
-Prefer `$ref`. It is standard, it is visible on the Entity Map, and it survives into the resolved
+Prefer `$ref`. It is standard, it is visible on the ontology map, and it survives into the resolved
 output as structure rather than as a copy.
 
 ## Generative keys
@@ -80,8 +80,8 @@ are stable, and change only additively:
 | URL | Meaning |
 | --- | --- |
 | `/#<published path>` | schema explorer deep link |
-| `/map/#/entity/<$id>` | Entity Map: fly to a schema and open its panel |
-| `/map/#/view/<x>,<y>,<zoom>` | Entity Map viewport |
+| `/map/#/entity/<$id>` | Ontology map: fly to a schema and open its panel |
+| `/map/#/view/<x>,<y>,<zoom>` | Ontology map viewport |
 | `/graph.json` | the entity graph asset, described by `src/js/scripts/entity_graph.schema.json` |
 | `/docs/<slug>.html` | these pages |
 
