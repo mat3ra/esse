@@ -7,7 +7,7 @@ summary: The vocabulary of the repository, with pointers to where each idea is e
 # Glossary
 
 Terms as this repository uses them. Where a term names a schema, the name links to its place on
-the [Entity Map](../map/index.html).
+the [ontology map](../map/index.html).
 
 ## The corpus
 
@@ -142,7 +142,7 @@ externally-consumed formats. Growth is reported by the lint as a warning.
 
 **Schema explorer** — [the file browser](../index.html) over resolved schemas and examples.
 
-**Entity Map** — [the map](../map/index.html) of all schemas and their references, laid out by
+**Ontology map** — [the map](../map/index.html) of all schemas and their references, laid out by
 architectural layer.
 
 **Concept documentation** — these pages.

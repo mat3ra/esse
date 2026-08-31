@@ -112,4 +112,4 @@ The corpus at a glance, and how densely it is cross-referenced:
 <!-- generated:corpus-totals -->
 
 Those references are not incidental. They are what makes the collection a system rather than a
-folder of files, and they are what the [Entity Map](../map/index.html) draws.
+folder of files, and they are what the [ontology map](../map/index.html) draws.

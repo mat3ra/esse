@@ -12,7 +12,7 @@ The latest variants of schemas and examples are available at [schemas.mat3ra.com
 
 - **[Documentation](https://schemas.mat3ra.com/docs/)** — how ESSE is put together and why: the schema layering, entity anatomy, categorization, conventions and the build pipeline. Start here if you are new.
 - **[Explorer](https://schemas.mat3ra.com/)** — a file browser over every resolved schema and example.
-- **[Entity Map](https://schemas.mat3ra.com/map/)** — an interactive map of all schemas and the references between them, laid out by architectural layer: primitives at the centre, root entities around them, catalogues on the rim. Search for a schema, fly to it, and follow what it extends, contains and is used by.
+- **[Ontology](https://schemas.mat3ra.com/map/)** — an interactive map of the ontology: every entity type and every relationship the schemas declare between them (`extends`, `contains`, `variant`), laid out by architectural layer — primitives at the centre, root entities around them, catalogues on the rim. Search for a schema, fly to it, and follow what it extends, contains and is used by.
 
 The map is built from `graph.json`, an extracted reference graph that is also published at [schemas.mat3ra.com/graph.json](https://schemas.mat3ra.com/graph.json) and doubles as a lint over the corpus.
 
@@ -160,7 +160,7 @@ The following outlines the development process workflow:
 2. Edit code and commit changes.
 3. Pre commit is used to regenerate the modules.
 4. Push the changes to GitHub.
-5. GH workflow is used to generate the fully resolved file (without "$ref"s and "$allOf" etc.) and examples, render the documentation and the Entity Map, and publish them to [schemas.mat3ra.com](http://schemas.mat3ra.com/). The site is assembled in a gitignored `site/` staging directory; internal links are checked before it deploys.
+5. GH workflow is used to generate the fully resolved file (without "$ref"s and "$allOf" etc.) and examples, render the documentation and the ontology map, and publish them to [schemas.mat3ra.com](http://schemas.mat3ra.com/). The site is assembled in a gitignored `site/` staging directory; internal links are checked before it deploys.
 6. Publish the new version of the package to PyPI and npm.
 
 The [pre-commit](.husky/pre-commit) is using both JS and PY runtime(s) to regenerate the schemas and examples.

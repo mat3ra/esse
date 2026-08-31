@@ -298,7 +298,7 @@ function renderPage(page: DocsPage, pages: DocsPage[], html: string): string {
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
-        <a href="../map/index.html">Map</a>
+        <a href="../map/index.html">Ontology</a>
     </nav>
     <span id="titlebar-tagline">ESSE &middot; data standards &amp; ontology</span>
 </div>

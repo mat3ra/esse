@@ -96,5 +96,5 @@ imposes; both apply. This matters for two reasons:
 - The published, resolved schemas have their `allOf` branches **merged** by the build (see
   [The pipeline](the-pipeline.html)). That is a convenience for consumers, but it means the
   published copy no longer shows you which mixin a field came from. The source is authoritative
-  for provenance — which is exactly why the [Entity Map](../map/index.html) is built from the
+  for provenance — which is exactly why the [ontology map](../map/index.html) is built from the
   sources rather than the published output.

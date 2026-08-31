@@ -146,7 +146,7 @@ import type { MaterialSchema } from "@mat3ra/esse/dist/js/types";
 | construct entities in application code | the generated pydantic model or TS type |
 | build a form or UI from a schema | `getSchemaById`, plus `getPatchedSchemaById` to specialize |
 | find schemas by pattern | `matchSchema` |
-| understand how schemas relate | `graph.json`, or the [Entity Map](../map/index.html) |
+| understand how schemas relate | `graph.json`, or the [ontology map](../map/index.html) |
 
 ## Downstream packages
 

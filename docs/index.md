@@ -17,7 +17,7 @@ the entity types, their fields, their units and their relationships are all decl
 and stable under a `$id`, so nothing has to be inferred from examples.
 
 The [schema explorer](../index.html) shows you any single schema. The
-[Entity Map](../map/index.html) shows you the ontology whole — every entity type and every
+[ontology map](../map/index.html) shows you the ontology whole — every entity type and every
 relationship between them. These pages explain *why* the schemas are shaped the way they are,
 which is the part neither of the other two can tell you.
 
@@ -54,4 +54,4 @@ Then, as you need them:
 
 Every claim about the corpus — counts, relationships, coverage — is generated from the schema
 sources at build time rather than typed by hand, so these pages cannot quietly fall out of step
-with the schemas they describe. Schema names link to their place on the Entity Map.
+with the schemas they describe. Schema names link to their place on the ontology map.

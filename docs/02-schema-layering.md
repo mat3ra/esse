@@ -11,7 +11,7 @@ layers beneath it. This is the single most useful thing to understand about the 
 you know which layer a schema belongs to, you know roughly what it may contain, what may depend on
 it, and where to add something new.
 
-The [Entity Map](../map/index.html) draws these layers literally — primitives sit at the centre and
+The [ontology map](../map/index.html) draws these layers literally — primitives sit at the centre and
 each ring outward is a layer further up the build-up.
 
 ## The layers
@@ -93,7 +93,7 @@ predicts:
 <!-- generated:hub-table -->
 
 A schema high in this table is one you should be careful changing: a great deal depends on it.
-The Entity Map draws these larger than their neighbours for the same reason.
+The ontology map draws these larger than their neighbours for the same reason.
 
 ## Why keep the layers separate at all?
 
