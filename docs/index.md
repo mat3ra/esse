@@ -4,15 +4,22 @@ order: 0
 summary: How ESSE is put together and why — the concepts behind the schemas.
 ---
 
-# ESSE documentation
+# Documentation
 
-ESSE is the **E**ssential **S**ource of **S**chemas and **E**xamples: data-format definitions for
-the entities of digital materials science — materials, models, methods, properties, workflows,
-jobs — together with worked examples of each.
+ESSE — the **E**ssential **S**ource of **S**chemas and **E**xamples — is an **ontology for digital
+materials science, written as JSON Schema**. It fixes what kinds of thing exist in the domain —
+materials, models, methods, properties, workflows, jobs — and how they relate, then ships worked
+examples of each. Because the ontology is expressed as JSON Schema rather than OWL, it validates
+real records directly instead of describing a world something else must conform to.
+
+That combination is what makes it useful as a data standard for machine learning and for agents:
+the entity types, their fields, their units and their relationships are all declared, checkable,
+and stable under a `$id`, so nothing has to be inferred from examples.
 
 The [schema explorer](../index.html) shows you any single schema. The
-[Entity Map](../map/index.html) shows you how they all relate. These pages explain *why* the
-schemas are shaped the way they are, which is the part neither of the other two can tell you.
+[Entity Map](../map/index.html) shows you the ontology whole — every entity type and every
+relationship between them. These pages explain *why* the schemas are shaped the way they are,
+which is the part neither of the other two can tell you.
 
 <!-- generated:corpus-totals -->
 

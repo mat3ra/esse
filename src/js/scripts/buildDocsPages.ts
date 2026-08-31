@@ -187,6 +187,31 @@ function categorizationSchemesFragment(graph: EntityGraph): string {
 Entities carrying a tiered \`categories\` field: ${carrierList || "_none_"}.`;
 }
 
+/**
+ * The three relation kinds, with their ontological reading alongside the JSON Schema
+ * keyword that expresses each. Counts come from the graph, so the prose calling these
+ * "the familiar ontological relations" cannot drift from what the corpus declares.
+ */
+function ontologyRelationsFragment(graph: EntityGraph): string {
+    const kinds: [string, string, string, string][] = [
+        ["`extends`", "`allOf`", "**is a** (subsumption)", "extends"],
+        ["`contains`", "`properties` / `items`", "**has a** (composition)", "contains"],
+        ["`variant`", "`oneOf` / `anyOf`", "**is one of** (disjunction)", "variant"],
+    ];
+
+    const counts = graph.meta.edgeCountsByKind as unknown as Record<string, number>;
+    const rows = kinds.map(([relation, keyword, reading, key]) => [
+        relation,
+        keyword,
+        reading,
+        String(counts[key]),
+    ]);
+
+    return `${table(["Relation", "Declared by", "Reads as", "Edges"], rows)}
+
+Across ${graph.meta.nodeCount} entity types, ${graph.meta.edgeCount} declared relationships.`;
+}
+
 function layerInventoryFragment(graph: EntityGraph): string {
     const rows = Object.entries(graph.meta.layerCounts)
         .sort((a, b) => b[1] - a[1])
@@ -222,6 +247,8 @@ export function expandFragments(body: string, graph: EntityGraph): string {
                 );
             case "layer-inventory":
                 return layerInventoryFragment(graph);
+            case "ontology-relations":
+                return ontologyRelationsFragment(graph);
             case "categorization-schemes":
                 return categorizationSchemesFragment(graph);
             case "hub-table":
@@ -261,18 +288,19 @@ function renderPage(page: DocsPage, pages: DocsPage[], html: string): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(page.title)} — ESSE</title>
+    <title>${escapeHtml(page.title)} — AI for Materials</title>
     <meta name="description" content="${escapeHtml(page.summary)}">
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 <div id="titlebar">
-    <span class="app-name">ESSE</span>
+    <span class="app-name">AI for Materials</span>
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
         <a href="../map/index.html">Map</a>
     </nav>
+    <span id="titlebar-tagline">ESSE &middot; data standards &amp; ontology</span>
 </div>
 <div id="workspace">
     <aside id="docs-nav">
@@ -334,6 +362,8 @@ body {
 #surfaces a { color: var(--text-muted); text-decoration: none; }
 #surfaces a:hover { color: var(--text-primary); }
 #surfaces a.current { color: var(--text-primary); border-bottom: 2px solid var(--accent); }
+#titlebar-tagline { margin-left: auto; color: var(--text-muted); }
+@media (max-width: 640px) { #titlebar-tagline { display: none; } }
 #workspace { display: flex; flex: 1; align-items: flex-start; }
 #docs-nav {
     width: 250px;

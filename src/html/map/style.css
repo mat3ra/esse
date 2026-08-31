@@ -404,6 +404,12 @@ body {
     color: var(--text-muted);
     line-height: 1.5;
 }
+/* The how-to-drive-it line, set apart from the what-this-is paragraph above it. */
+.detail-empty-hint {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
 #detail-body[hidden] {
     display: none;
 }
