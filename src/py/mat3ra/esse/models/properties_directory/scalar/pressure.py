@@ -16,6 +16,11 @@ class Name(Enum):
 class Units(Enum):
     kbar = "kbar"
     pa = "pa"
+    Torr = "Torr"
+    mTorr = "mTorr"
+    mbar = "mbar"
+    bar = "bar"
+    atm = "atm"
 
 
 class PressurePropertySchema(BaseModel):

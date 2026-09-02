@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     spline = "spline"
 
 
-class SlugifiedEntryOrSlug251(Enum):
+class SlugifiedEntryOrSlug377(Enum):
     ipol = "ipol"
 
 
-class SlugifiedEntryOrSlug252(Enum):
+class SlugifiedEntryOrSlug378(Enum):
     fapprx = "fapprx"
 
 
@@ -38,11 +38,11 @@ class SplineInterpolationCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug251]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug377]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug252]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug378]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

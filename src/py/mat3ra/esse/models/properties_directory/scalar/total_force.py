@@ -20,6 +20,8 @@ class Units(Enum):
     newton = "newton"
     kg_m_s_2 = "kg*m/s^2"
     eV_a_u_ = "eV/a.u."
+    nN = "nN"
+    pN = "pN"
 
 
 class TotalForcesPropertySchema(BaseModel):

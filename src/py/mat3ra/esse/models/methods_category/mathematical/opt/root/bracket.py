@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     bracket = "bracket"
 
 
-class SlugifiedEntryOrSlug12(Enum):
+class SlugifiedEntryOrSlug57(Enum):
     root = "root"
 
 
-class SlugifiedEntryOrSlug13(Enum):
+class SlugifiedEntryOrSlug58(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class BracketingMethodForFindingRootsCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug12]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug57]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug13]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug58]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

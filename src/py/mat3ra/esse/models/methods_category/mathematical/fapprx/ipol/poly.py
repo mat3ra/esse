@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     poly = "poly"
 
 
-class SlugifiedEntryOrSlug195(Enum):
+class SlugifiedEntryOrSlug291(Enum):
     ipol = "ipol"
 
 
-class SlugifiedEntryOrSlug196(Enum):
+class SlugifiedEntryOrSlug292(Enum):
     fapprx = "fapprx"
 
 
@@ -38,11 +38,11 @@ class PolynomialInterpolationCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug195]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug291]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug196]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug292]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

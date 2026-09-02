@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     direct = "direct"
 
 
-class SlugifiedEntryOrSlug50(Enum):
+class SlugifiedEntryOrSlug100(Enum):
     ndiff = "ndiff"
 
 
-class SlugifiedEntryOrSlug51(Enum):
+class SlugifiedEntryOrSlug101(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class DirectAlgorithmsForTheOptimizationOfNonDifferentiableFunctionsCategorySche
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug50]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug100]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug51]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug101]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

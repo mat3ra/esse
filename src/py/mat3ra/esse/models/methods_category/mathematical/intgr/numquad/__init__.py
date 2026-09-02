@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     numquad = "numquad"
 
 
-class SlugifiedEntryOrSlug168(Enum):
+class SlugifiedEntryOrSlug264(Enum):
     intgr = "intgr"
 
 
@@ -34,7 +34,7 @@ class MethodsForTheNumericalQuadratureSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug168]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug264]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

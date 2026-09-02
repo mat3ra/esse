@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     gauss = "gauss"
 
 
-class SlugifiedEntryOrSlug78(Enum):
+class SlugifiedEntryOrSlug129(Enum):
     numquad = "numquad"
 
 
-class SlugifiedEntryOrSlug79(Enum):
+class SlugifiedEntryOrSlug130(Enum):
     intgr = "intgr"
 
 
@@ -38,11 +38,11 @@ class GaussianQuadratureRulesSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug78]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug129]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug79]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug130]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     davidson = "davidson"
 
 
-class SlugifiedEntryOrSlug33(Enum):
+class SlugifiedEntryOrSlug83(Enum):
     diag = "diag"
 
 
-class SlugifiedEntryOrSlug34(Enum):
+class SlugifiedEntryOrSlug84(Enum):
     linalg = "linalg"
 
 
@@ -38,11 +38,11 @@ class DavidsonDiagonalizationMethodSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug33]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug83]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug34]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug84]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

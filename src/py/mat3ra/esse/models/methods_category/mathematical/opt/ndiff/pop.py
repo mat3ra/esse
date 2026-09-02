@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     pop = "pop"
 
 
-class SlugifiedEntryOrSlug198(Enum):
+class SlugifiedEntryOrSlug294(Enum):
     ndiff = "ndiff"
 
 
-class SlugifiedEntryOrSlug199(Enum):
+class SlugifiedEntryOrSlug295(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class PopulationAlgorithmsForTheOptmizationOfNonDifferentiableFunctionsCategoryS
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug198]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug294]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug199]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug295]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

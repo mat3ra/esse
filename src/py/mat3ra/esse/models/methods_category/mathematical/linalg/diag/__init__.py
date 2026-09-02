@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     diag = "diag"
 
 
-class SlugifiedEntryOrSlug43(Enum):
+class SlugifiedEntryOrSlug93(Enum):
     linalg = "linalg"
 
 
@@ -34,7 +34,7 @@ class MatrixDiagonalizationMethodsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug43]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug93]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

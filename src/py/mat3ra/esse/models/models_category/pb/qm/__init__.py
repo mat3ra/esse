@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug223(Enum):
+class SlugifiedEntryOrSlug349(Enum):
     pb = "pb"
 
 
@@ -34,7 +34,7 @@ class QuantumMechanicalCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug223]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug349]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

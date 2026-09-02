@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     order2 = "order2"
 
 
-class SlugifiedEntryOrSlug177(Enum):
+class SlugifiedEntryOrSlug273(Enum):
     diffeq = "diffeq"
 
 
-class SlugifiedEntryOrSlug178(Enum):
+class SlugifiedEntryOrSlug274(Enum):
     intgr = "intgr"
 
 
@@ -38,11 +38,11 @@ class Order2Schema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug177]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug273]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug178]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug274]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

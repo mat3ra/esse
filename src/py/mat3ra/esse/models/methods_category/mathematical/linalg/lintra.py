@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     lintra = "lintra"
 
 
-class SlugifiedEntryOrSlug138(Enum):
+class SlugifiedEntryOrSlug219(Enum):
     linalg = "linalg"
 
 
@@ -34,7 +34,7 @@ class LinearTransformationMethodsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug138]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug219]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

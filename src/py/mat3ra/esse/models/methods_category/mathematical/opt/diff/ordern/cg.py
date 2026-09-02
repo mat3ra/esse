@@ -25,15 +25,15 @@ class SlugifiedEntryOrSlug(Enum):
     cg = "cg"
 
 
-class SlugifiedEntryOrSlug26(Enum):
+class SlugifiedEntryOrSlug71(Enum):
     ordern = "ordern"
 
 
-class SlugifiedEntryOrSlug27(Enum):
+class SlugifiedEntryOrSlug72(Enum):
     diff = "diff"
 
 
-class SlugifiedEntryOrSlug28(Enum):
+class SlugifiedEntryOrSlug73(Enum):
     opt = "opt"
 
 
@@ -42,15 +42,15 @@ class ConjugateGradientMethodSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug26]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug71]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug27]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug72]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug28]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug73]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

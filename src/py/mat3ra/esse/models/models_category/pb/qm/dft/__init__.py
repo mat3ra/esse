@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     dft = "dft"
 
 
-class SlugifiedEntryOrSlug40(Enum):
+class SlugifiedEntryOrSlug90(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug41(Enum):
+class SlugifiedEntryOrSlug91(Enum):
     pb = "pb"
 
 
@@ -38,11 +38,11 @@ class DensityFunctionalTheoryCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug40]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug90]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug41]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug91]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -25,15 +25,15 @@ class SlugifiedEntryOrSlug(Enum):
     re = "re"
 
 
-class SlugifiedEntryOrSlug230(Enum):
+class SlugifiedEntryOrSlug356(Enum):
     ml = "ml"
 
 
-class SlugifiedEntryOrSlug231(Enum):
+class SlugifiedEntryOrSlug357(Enum):
     det = "det"
 
 
-class SlugifiedEntryOrSlug232(Enum):
+class SlugifiedEntryOrSlug358(Enum):
     st = "st"
 
 
@@ -42,15 +42,15 @@ class RegressionModelCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug230]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug356]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug231]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug357]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug232]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug358]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     ipol = "ipol"
 
 
-class SlugifiedEntryOrSlug115(Enum):
+class SlugifiedEntryOrSlug196(Enum):
     fapprx = "fapprx"
 
 
@@ -34,7 +34,7 @@ class InterpolationCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug115]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug196]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

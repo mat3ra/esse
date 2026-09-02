@@ -836,6 +836,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1151,7 +1155,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name610(Enum):
+class Name615(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1817,7 +1821,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod23 = Field(..., title="base method")
 
 
-class Type95(Enum):
+class Type98(Enum):
     ml = "ml"
 
 
@@ -1845,12 +1849,12 @@ class BaseMethod24(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type95
+    type: Type98
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod24 = Field(..., title="base method")
 
 
-class Type96(Enum):
+class Type99(Enum):
     unknown = "unknown"
 
 
@@ -1878,12 +1882,12 @@ class BaseMethod25(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type96
+    type: Type99
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod25 = Field(..., title="base method")
 
 
-class ApplicationSchema10(BaseModel):
+class ApplicationSchema15(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1976,7 +1980,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema10 = Field(..., title="application schema")
+    application: ApplicationSchema15 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
@@ -2378,7 +2382,7 @@ class WorkflowSchema(BaseModel):
     descriptionObject: Optional[Dict[str, Any]] = None
 
 
-class Status41(Enum):
+class Status46(Enum):
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -2496,7 +2500,7 @@ class JobSchema(BaseModel):
     """
     Identity used to track jobs originated from command-line
     """
-    status: Status41
+    status: Status46
     """
     job status
     """

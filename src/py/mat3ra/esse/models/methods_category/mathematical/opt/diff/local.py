@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     local = "local"
 
 
-class SlugifiedEntryOrSlug140(Enum):
+class SlugifiedEntryOrSlug221(Enum):
     diff = "diff"
 
 
-class SlugifiedEntryOrSlug141(Enum):
+class SlugifiedEntryOrSlug222(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class LocalDescentMethodsForTheOptimizationOfDifferentiableFunctionsSchema(BaseM
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug140]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug221]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug141]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug222]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

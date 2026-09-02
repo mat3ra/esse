@@ -840,6 +840,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1125,7 +1129,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name890(Enum):
+class Name898(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1155,7 +1159,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name891(Enum):
+class Name899(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1821,7 +1825,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod47 = Field(..., title="base method")
 
 
-class Type153(Enum):
+class Type165(Enum):
     ml = "ml"
 
 
@@ -1849,12 +1853,12 @@ class BaseMethod48(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type153
+    type: Type165
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod48 = Field(..., title="base method")
 
 
-class Type154(Enum):
+class Type166(Enum):
     unknown = "unknown"
 
 
@@ -1882,12 +1886,12 @@ class BaseMethod49(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type154
+    type: Type166
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod49 = Field(..., title="base method")
 
 
-class ApplicationSchema19(BaseModel):
+class ApplicationSchema27(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1980,7 +1984,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema19 = Field(..., title="application schema")
+    application: ApplicationSchema27 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """

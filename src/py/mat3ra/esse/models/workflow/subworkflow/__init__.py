@@ -762,6 +762,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1077,7 +1081,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name826(Enum):
+class Name833(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1743,7 +1747,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod36 = Field(..., title="base method")
 
 
-class Type141(Enum):
+class Type153(Enum):
     ml = "ml"
 
 
@@ -1771,12 +1775,12 @@ class BaseMethod37(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type141
+    type: Type153
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod37 = Field(..., title="base method")
 
 
-class Type142(Enum):
+class Type154(Enum):
     unknown = "unknown"
 
 
@@ -1804,12 +1808,12 @@ class BaseMethod38(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type142
+    type: Type154
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod38 = Field(..., title="base method")
 
 
-class ApplicationSchema14(BaseModel):
+class ApplicationSchema22(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1902,7 +1906,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema14 = Field(..., title="application schema")
+    application: ApplicationSchema22 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """

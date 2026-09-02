@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units266(Enum):
+class Units299(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class InterfacialEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units266]
+    units: Union[Units, Units299]
     value: float

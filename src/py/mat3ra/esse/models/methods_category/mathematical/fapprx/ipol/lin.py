@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     lin = "lin"
 
 
-class SlugifiedEntryOrSlug134(Enum):
+class SlugifiedEntryOrSlug215(Enum):
     ipol = "ipol"
 
 
-class SlugifiedEntryOrSlug135(Enum):
+class SlugifiedEntryOrSlug216(Enum):
     fapprx = "fapprx"
 
 
@@ -38,11 +38,11 @@ class LinearInterpolationCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug134]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug215]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug135]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug216]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

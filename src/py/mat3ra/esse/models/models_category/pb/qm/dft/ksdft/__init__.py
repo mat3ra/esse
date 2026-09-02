@@ -25,15 +25,15 @@ class SlugifiedEntryOrSlug(Enum):
     ksdft = "ksdft"
 
 
-class SlugifiedEntryOrSlug120(Enum):
+class SlugifiedEntryOrSlug201(Enum):
     dft = "dft"
 
 
-class SlugifiedEntryOrSlug121(Enum):
+class SlugifiedEntryOrSlug202(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug122(Enum):
+class SlugifiedEntryOrSlug203(Enum):
     pb = "pb"
 
 
@@ -42,15 +42,15 @@ class KohnShamDFTCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug120]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug201]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug121]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug202]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug122]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug203]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

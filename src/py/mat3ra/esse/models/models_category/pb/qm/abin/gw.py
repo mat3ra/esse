@@ -25,21 +25,21 @@ class SlugifiedEntryOrSlug(Enum):
     gw = "gw"
 
 
-class SlugifiedEntryOrSlug91(Enum):
+class SlugifiedEntryOrSlug142(Enum):
     g0w0 = "g0w0"
     evgw0 = "evgw0"
     evgw = "evgw"
 
 
-class SlugifiedEntryOrSlug92(Enum):
+class SlugifiedEntryOrSlug143(Enum):
     abin = "abin"
 
 
-class SlugifiedEntryOrSlug93(Enum):
+class SlugifiedEntryOrSlug144(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug94(Enum):
+class SlugifiedEntryOrSlug145(Enum):
     pb = "pb"
 
 
@@ -48,19 +48,19 @@ class GWCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug91]] = Field(None, title="slugified entry or slug")
+    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug142]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug92]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug143]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug93]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug144]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug94]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug145]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

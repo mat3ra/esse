@@ -19,6 +19,10 @@ class Units(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
+    Hz = "Hz"
+    kHz = "kHz"
+    MHz = "MHz"
+    GHz = "GHz"
 
 
 class AxisSchema(BaseModel):
@@ -38,19 +42,19 @@ class Label35(Enum):
     Absorption_coefficient = "Absorption coefficient"
 
 
-class Units383(Enum):
+class Units505(Enum):
     debye_angstrom__2 = "(debye/angstrom)^2"
     km_mol = "km/mol"
     m_mol = "m/mol"
     a_u_ = "a.u."
 
 
-class AxisSchema38(BaseModel):
+class AxisSchema56(BaseModel):
     label: Label35
     """
     label of an axis object
     """
-    units: Optional[Units383] = None
+    units: Optional[Units505] = None
     """
     units for an axis
     """
@@ -62,7 +66,7 @@ class Name(Enum):
 
 class VibrationalSpectrumPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema38 = Field(..., title="axis schema")
+    yAxis: AxisSchema56 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

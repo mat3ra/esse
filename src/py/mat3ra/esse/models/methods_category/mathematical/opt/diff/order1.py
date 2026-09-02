@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     order1 = "order1"
 
 
-class SlugifiedEntryOrSlug174(Enum):
+class SlugifiedEntryOrSlug270(Enum):
     diff = "diff"
 
 
-class SlugifiedEntryOrSlug175(Enum):
+class SlugifiedEntryOrSlug271(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class FirstOrderAlgorithmsForTheOptimizationOfDifferentiableFunctionsSchema(Base
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug174]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug270]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug175]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug271]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

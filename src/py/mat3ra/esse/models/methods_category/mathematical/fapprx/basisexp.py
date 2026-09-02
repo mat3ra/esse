@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     basisExp = "basisExp"
 
 
-class SlugifiedEntryOrSlug10(Enum):
+class SlugifiedEntryOrSlug55(Enum):
     fapprx = "fapprx"
 
 
@@ -34,7 +34,7 @@ class BasisExpansionCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug10]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug55]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
