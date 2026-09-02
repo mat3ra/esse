@@ -2,7 +2,7 @@
     "$id": "instrument/instrument-properties",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "instrument properties schema",
-    "description": "Domain-specific fields of an instrument entity, mirroring software/application_properties: shortName and summary carry over unchanged; version becomes firmware and build becomes serialNumber, because those are what identify a physical unit; vendor, model, techniques, components and location are what an apparatus adds over a program.",
+    "description": "Domain-specific fields of an instrument entity, mirroring software/application_properties: shortName and summary carry over unchanged; version becomes firmware and build becomes serialNumber, because those are what identify a physical unit; vendor, model, techniques, components and location are what an apparatus adds over a program. None of them is required: an instrument is identified by the name it inherits from the entity mixin, and a laboratory record often names a chamber only by the short name its operators use, with the vendor and model known separately or not at all.",
     "type": "object",
     "properties": {
         "shortName": {
@@ -72,9 +72,5 @@
                 }
             }
         }
-    },
-    "required": [
-        "vendor",
-        "model"
-    ]
+    }
 }

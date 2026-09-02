@@ -28,10 +28,27 @@
             "format": "date-time"
         },
         "operators": {
-            "description": "People who ran the activity.",
+            "description": "People who ran the activity. A name and an optional affiliation rather than the bibliographic author shape used for citations: a laboratory record identifies an operator by whatever the instrument logged, often a single username, and a citation's requirement of a surname does not hold there.",
             "type": "array",
             "items": {
-                "$ref": "../core/reference/literature/name.json"
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Operator's name as recorded, e.g. a username.",
+                        "type": "string"
+                    },
+                    "affiliation": {
+                        "description": "Institution the operator belongs to.",
+                        "type": "string"
+                    },
+                    "_account": {
+                        "description": "Subset of the full information about the platform account of the operator, when they have one.",
+                        "$ref": "entity_reference.json"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
             }
         },
         "_project": {
