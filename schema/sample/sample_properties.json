@@ -38,7 +38,7 @@
         },
         "_parent": {
             "description": "Subset of the full information about the sample this one was cut, diced or selected from, e.g. the library a position belongs to.",
-            "$ref": "../system/entity_reference.json"
+            "$ref": "../system/_sample.json"
         },
         "position": {
             "description": "Location of this sample on its parent, e.g. which position of a combinatorial library it is.",

@@ -2,7 +2,7 @@
     "$id": "techniques-category/experimental/synthesis",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "synthesis technique category schema",
-    "description": "Techniques that create or modify a sample: vapor deposition, solution processing, bulk growth and post-processing such as annealing.",
+    "description": "Techniques that create or modify a sample: vapor deposition, solution processing, bulk growth and post-processing such as annealing. tier3, type and subtype are each drawn from the branch's vocabulary; tying subtype to type (so that a sputtering subtype cannot sit under chemical vapor deposition) is the job of the leaf files a later phase adds, one per narrowing, as models_category does.",
     "type": "object",
     "allOf": [
         {
@@ -18,6 +18,9 @@
         },
         "type": {
             "$ref": "../enum_options.json#/synthesisTypes"
+        },
+        "subtype": {
+            "$ref": "../enum_options.json#/synthesisSubtypes"
         }
     }
 }

@@ -40,7 +40,7 @@
             "$ref": "../core/reusable/environment.json"
         },
         "parameters": {
-            "description": "Technique-specific acquisition parameters. Left open at this level and narrowed by the entries in measurements_directory, the way a model's parameters are narrowed by models_directory.",
+            "description": "Technique-specific acquisition parameters. Unconstrained here, the way a model's parameters are unconstrained until a models_directory entry narrows them; measurement/parameters/scanning_probe_microscopy describes the expected shape for scanning probe techniques and will be bound per technique by catalogue entries in a later phase.",
             "type": "object"
         },
         "data": {

@@ -33,6 +33,26 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
 | Isolated schemas (no refs in or out) | 34 |
 
+## Addendum 2026-09-02 (experimental data entities)
+
+The experimental-data change (`sample`, `instrument`, `measurement`, `process` and the pieces they
+compose) moved the baseline. Measured with the same extractor; `tests/js/entityGraph.tests.ts` pins
+these figures.
+
+| Measure | Before | After |
+| --- | --- | --- |
+| Schema files | 564 | 610 |
+| Example files | 209 (37%) | 254 (42%) |
+| Cross-schema reference edges | 917 | 1059 |
+| — *extends* / *contains* / *variant* | 372 / 375 / 170 | 411 / 461 / 187 |
+| Same-document refs | 20 | 20 |
+| Root entities | 11 | 15 |
+| Isolated schemas | 34 | 33 |
+
+`property/holder` now has 49 edges: 1 *extends*, 45 *variant* on `data` and 3 *variant* on
+`source.info` (the exabyte, measurement and process references); the single *contains* edge to
+`core/reference/exabyte` became one of those variants.
+
 ## Domains (top-level directories), by schema count
 
 | Domain | Count | | Domain | Count |

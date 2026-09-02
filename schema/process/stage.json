@@ -2,7 +2,7 @@
     "$id": "process/stage",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "process stage schema",
-    "description": "One stage of a process, the analogue of a subworkflow: it binds a technique and an instrument to an ordered list of steps, and names the material sources those steps draw on. Deposition then anneal is two stages, because they run on different instruments.",
+    "description": "One stage of a process, the analogue of a subworkflow: it binds a technique and an instrument to an ordered list of steps, and names the material sources those steps draw on. Deposition then anneal is two stages, because they run on different instruments. Status and timing come from the activity mixin so a stage and its process share one vocabulary.",
     "type": "object",
     "allOf": [
         {
@@ -11,6 +11,10 @@
         {
             "description": "Instrument Property Schema",
             "$ref": "../instrument/instrument_property.json"
+        },
+        {
+            "description": "status, timing, operators and project",
+            "$ref": "../system/activity.json"
         }
     ],
     "properties": {
@@ -21,7 +25,7 @@
         },
         "categories": {
             "description": "Technique this stage applies.",
-            "oneOf": [
+            "anyOf": [
                 {
                     "$ref": "../techniques_category/experimental/synthesis.json"
                 },
@@ -42,7 +46,7 @@
             "$ref": "../core/reusable/environment.json"
         },
         "parameters": {
-            "description": "Technique-specific parameters. Left open here and narrowed by the entries in processes_directory, the way a model's parameters are narrowed by models_directory.",
+            "description": "Technique-specific parameters. Unconstrained here, the way a model's parameters are unconstrained until a models_directory entry narrows them; technique blocks such as measurement/parameters/scanning_probe_microscopy describe the expected shape and will be bound per technique by catalogue entries in a later phase.",
             "type": "object"
         },
         "steps": {
@@ -54,17 +58,6 @@
         },
         "duration": {
             "$ref": "../core/reusable/quantity/time.json"
-        },
-        "status": {
-            "type": "string",
-            "enum": [
-                "draft",
-                "planned",
-                "active",
-                "finished",
-                "error",
-                "cancelled"
-            ]
         },
         "notes": {
             "description": "Operator notes, kept verbatim: laboratory records carry context that no schema anticipates.",

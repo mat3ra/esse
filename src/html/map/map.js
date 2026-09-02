@@ -4,8 +4,9 @@
 // ── Encoding ──────────────────────────────────────────────────────────────────
 // Colour groups the source directories into nine families. One hue per directory
 // would be indistinguishable; these nine are the divisions a reader actually
-// navigates by. The experiment family covers the four experimental root entities
-// and their technique vocabulary, which mirror the computational ones.
+// navigates by. The experiment family covers the components of the four experimental
+// root entities (sample, instrument, measurement, process) and their technique
+// vocabulary; the root files themselves take the root-entity colour like every root.
 const FAMILIES = [
     { key: "entities", label: "Root entities", color: "#e6b422", domains: ["(root)"] },
     {
@@ -53,7 +54,7 @@ const FAMILIES = [
     },
     {
         key: "experiment",
-        label: "Samples, instruments & experiments",
+        label: "Experimental components & techniques",
         color: "#f47067",
         domains: [
             "sample",

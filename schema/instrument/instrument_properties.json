@@ -33,7 +33,7 @@
             "description": "Techniques this instrument can perform.",
             "type": "array",
             "items": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../techniques_category/experimental/characterization.json"
                     },

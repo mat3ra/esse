@@ -42,7 +42,14 @@
             "ultraviolet_visible_near_infrared"
         ]
     },
-    "scanningProbeMicroscopySubtypes": {
+    "synthesisTypes": {
+        "enum": [
+            "physical_vapor_deposition",
+            "chemical_vapor_deposition",
+            "annealing"
+        ]
+    },
+    "characterizationSubtypes": {
         "enum": [
             "atomic_force_microscopy",
             "scanning_tunneling_microscopy",
@@ -53,24 +60,13 @@
             "magnetic_force_microscopy"
         ]
     },
-    "synthesisTypes": {
-        "enum": [
-            "physical_vapor_deposition",
-            "chemical_vapor_deposition",
-            "annealing"
-        ]
-    },
-    "physicalVaporDepositionSubtypes": {
+    "synthesisSubtypes": {
         "enum": [
             "pulsed_laser_deposition",
             "sputtering",
             "molecular_beam_epitaxy",
             "thermal_evaporation",
-            "electron_beam_evaporation"
-        ]
-    },
-    "chemicalVaporDepositionSubtypes": {
-        "enum": [
+            "electron_beam_evaporation",
             "atomic_layer_deposition",
             "plasma_enhanced_atomic_layer_deposition",
             "thermal_chemical_vapor_deposition",

@@ -2,7 +2,7 @@
     "$id": "process/step",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "process step schema",
-    "description": "One step of a stage, the analogue of a workflow unit. It composes the workflow unit sequencing mixin unchanged, so a process is walked with the same head, next and flowchartId mechanics as a workflow. repeat is the only place a cycle count lives: an atomic layer deposition of 200 cycles is one step with repeat 200, not a nested list.",
+    "description": "One step of a stage, the analogue of a workflow unit. It composes the workflow unit sequencing mixin unchanged, so a process is walked with the same head, next and flowchartId mechanics as a workflow, and a step carries the unit status vocabulary (idle, active, warning, error, finished) for the same reason a unit inside a job does: run-level states such as draft, planned and cancelled belong to the stage and the process, which compose the activity mixin. repeat is the only place a cycle count lives: an atomic layer deposition of 200 cycles is one step with repeat 200, not a nested list.",
     "type": "object",
     "allOf": [
         {

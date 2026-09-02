@@ -101,7 +101,8 @@ shape: `scalar` (total energy, pressure, band gap), `non-scalar` (band structure
 states, charge density), `structural`, `elemental` and `workflow` (convergence monitors).
 
 They are tied together by `property/holder`, which is the widest schema in the corpus: its `data`
-field is a union over every property type, on top of one mixin and one provenance reference. That
+field is a union over every property type, on top of one mixin and a `source` whose `info` is
+itself a small union over where the value came from: a job, a measurement or a process. That
 one file is why "what property types exist?" has a single answer, and it is the clearest
 illustration of the union idiom in ESSE. On the [ontology map](../map/index.html) it is the node
 with by far the largest fan-out.

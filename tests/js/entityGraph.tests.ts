@@ -19,8 +19,8 @@ import {
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
 const EXPECTED_NODE_COUNT = 610;
-const EXPECTED_EDGE_COUNT = 1056;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 410, contains: 459, variant: 187 };
+const EXPECTED_EDGE_COUNT = 1059;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 411, contains: 461, variant: 187 };
 const EXPECTED_SAME_DOCUMENT_REFS = 20;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 10,

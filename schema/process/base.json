@@ -12,8 +12,8 @@
     ],
     "properties": {
         "categories": {
-            "description": "Technique this process applies. A measurement protocol is a process with characterization categories, which is why both branches are allowed here.",
-            "oneOf": [
+            "description": "Technique this process applies. A measurement protocol is a process with characterization categories, which is why both branches are allowed; anyOf rather than oneOf because a record classified only to tier1 satisfies both and must not be rejected as ambiguous.",
+            "anyOf": [
                 {
                     "$ref": "../techniques_category/experimental/synthesis.json"
                 },
