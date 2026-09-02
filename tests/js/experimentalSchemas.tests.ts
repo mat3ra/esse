@@ -96,6 +96,18 @@ describe("experimental data schemas", () => {
         expect(ajv.validate(measured, holder).isValid).to.equal(false);
     });
 
+    it("validates the measurement example's parameters against the scanning probe block", () => {
+        // Nothing narrows measurement.parameters yet (that is the job of catalogue entries in a
+        // later phase), so the example's parameters are checked against the block explicitly.
+        const parameters = readJson(
+            path.join(resolvedSchemasPath, "measurement/parameters/scanning_probe_microscopy.json"),
+        );
+        const measurement = readJson(path.join(resolvedExamplesPath, "measurement.json"));
+
+        const result = ajv.validate(measurement.parameters, parameters);
+        expect(result.isValid, JSON.stringify(result.errors)).to.equal(true);
+    });
+
     it("describes every schema it adds", () => {
         const undocumented = EXPERIMENTAL_SCHEMA_ROOTS.flatMap(listSchemaFiles)
             .filter((filePath) => {
