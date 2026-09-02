@@ -1,0 +1,90 @@
+{
+    "$id": "sample/library",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample library schema",
+    "description": "A combinatorial library: one substrate carrying a spread of composition, thickness or temperature, measured at a grid of positions. Positions are listed here so the grid can be read without fetching the child sample of every point.",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "What varies across the library.",
+            "type": "string",
+            "enum": [
+                "composition_spread",
+                "thickness_gradient",
+                "temperature_gradient",
+                "discrete_array",
+                "other"
+            ]
+        },
+        "grid": {
+            "description": "Regular arrangement of the positions.",
+            "type": "object",
+            "properties": {
+                "rows": {
+                    "type": "integer"
+                },
+                "columns": {
+                    "type": "integer"
+                },
+                "pitch": {
+                    "description": "Spacing between adjacent positions.",
+                    "$ref": "../core/reusable/quantity/length.json"
+                }
+            }
+        },
+        "gradients": {
+            "description": "Quantities that vary across the library and the direction they vary in.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "quantity": {
+                        "type": "string",
+                        "enum": [
+                            "composition",
+                            "thickness",
+                            "temperature",
+                            "other"
+                        ]
+                    },
+                    "element": {
+                        "description": "Element the gradient is in, when the quantity is composition.",
+                        "type": "string"
+                    },
+                    "axis": {
+                        "type": "string",
+                        "enum": [
+                            "x",
+                            "y",
+                            "radial",
+                            "custom"
+                        ]
+                    },
+                    "minimum": {
+                        "type": "number"
+                    },
+                    "maximum": {
+                        "type": "number"
+                    },
+                    "units": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "quantity"
+                ]
+            }
+        },
+        "positions": {
+            "description": "The positions themselves, in index order.",
+            "type": "array",
+            "items": {
+                "$ref": "position.json"
+            }
+        }
+    },
+    "required": [
+        "type",
+        "positions"
+    ]
+}

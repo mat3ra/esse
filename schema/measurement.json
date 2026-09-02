@@ -1,0 +1,12 @@
+{
+    "$id": "measurement",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement schema",
+    "description": "A characterization run: one acquisition on one instrument against one sample. The experimental mirror of job, which binds a workflow to compute and a material; a measurement binds a technique to an instrument and a sample. Results are not embedded here: they are property holders whose source names this measurement, exactly as job results name a job.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "measurement/base.json"
+        }
+    ]
+}

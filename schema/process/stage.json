@@ -1,0 +1,71 @@
+{
+    "$id": "process/stage",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "process stage schema",
+    "description": "One stage of a process, the analogue of a subworkflow: it binds a technique and an instrument to an ordered list of steps, and names the material sources those steps draw on. Deposition then anneal is two stages, because they run on different instruments. Status and timing come from the activity mixin so a stage and its process share one vocabulary.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../in_memory_entity/named.json"
+        },
+        {
+            "description": "Instrument Property Schema",
+            "$ref": "../instrument/instrument_property.json"
+        },
+        {
+            "description": "status, timing, operators and project",
+            "$ref": "../system/activity.json"
+        }
+    ],
+    "properties": {
+        "index": {
+            "description": "Order of the stage within the process, starting at 1.",
+            "type": "integer",
+            "minimum": 1
+        },
+        "categories": {
+            "description": "Technique this stage applies.",
+            "anyOf": [
+                {
+                    "$ref": "../techniques_category/experimental/synthesis.json"
+                },
+                {
+                    "$ref": "../techniques_category/experimental/characterization.json"
+                }
+            ]
+        },
+        "sources": {
+            "description": "Material sources available to the steps of this stage: sputtering targets, precursors, process gases.",
+            "type": "array",
+            "items": {
+                "$ref": "source.json"
+            }
+        },
+        "environment": {
+            "description": "Chamber conditions for the stage, e.g. base pressure and substrate temperature.",
+            "$ref": "../core/reusable/environment.json"
+        },
+        "parameters": {
+            "description": "Technique-specific parameters. Unconstrained here, the way a model's parameters are unconstrained until a models_directory entry narrows them; technique blocks such as measurement/parameters/scanning_probe_microscopy describe the expected shape and will be bound per technique by catalogue entries in a later phase.",
+            "type": "object"
+        },
+        "steps": {
+            "description": "Ordered steps of the stage, the analogue of a subworkflow's units.",
+            "type": "array",
+            "items": {
+                "$ref": "step.json"
+            }
+        },
+        "duration": {
+            "$ref": "../core/reusable/quantity/time.json"
+        },
+        "notes": {
+            "description": "Operator notes, kept verbatim: laboratory records carry context that no schema anticipates.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "categories",
+        "steps"
+    ]
+}

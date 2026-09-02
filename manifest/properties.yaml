@@ -332,3 +332,23 @@ hubbard_v_nn:
     units: eV
   schemaId: properties-directory/non-scalar/hubbard-v-nn
   isResult: true
+
+film_thickness:
+  defaults:
+    units: nm
+  schemaId: properties-directory/scalar/film-thickness
+
+surface_roughness:
+  defaults:
+    units: nm
+  schemaId: properties-directory/scalar/surface-roughness
+
+hysteresis_loop:
+  defaults:
+    xAxis:
+      label: bias
+      units: V
+    yAxis:
+      label: phase
+      units: degree
+  schemaId: properties-directory/non-scalar/hysteresis-loop

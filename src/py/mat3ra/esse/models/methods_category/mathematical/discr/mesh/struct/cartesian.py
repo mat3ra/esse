@@ -25,15 +25,15 @@ class SlugifiedEntryOrSlug(Enum):
     cartesian = "cartesian"
 
 
-class SlugifiedEntryOrSlug18(Enum):
+class SlugifiedEntryOrSlug63(Enum):
     struct = "struct"
 
 
-class SlugifiedEntryOrSlug19(Enum):
+class SlugifiedEntryOrSlug64(Enum):
     mesh = "mesh"
 
 
-class SlugifiedEntryOrSlug20(Enum):
+class SlugifiedEntryOrSlug65(Enum):
     discr = "discr"
 
 
@@ -42,15 +42,15 @@ class CartesianGridSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug18]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug63]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug19]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug64]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug20]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug65]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     ml = "ml"
 
 
-class SlugifiedEntryOrSlug157(Enum):
+class SlugifiedEntryOrSlug253(Enum):
     det = "det"
 
 
-class SlugifiedEntryOrSlug158(Enum):
+class SlugifiedEntryOrSlug254(Enum):
     st = "st"
 
 
@@ -38,11 +38,11 @@ class MachineLearningModelCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug157]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug253]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug158]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug254]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

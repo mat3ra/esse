@@ -1,0 +1,11 @@
+{
+    "temperature": {
+        "value": 295,
+        "units": "K"
+    },
+    "atmosphere": "ambient",
+    "humidity": {
+        "value": 38,
+        "units": "percent"
+    }
+}

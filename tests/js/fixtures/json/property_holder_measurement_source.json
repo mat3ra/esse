@@ -1,0 +1,21 @@
+{
+    "_id": "hLoopPhase0005",
+    "data": {
+        "name": "hysteresis_loop",
+        "loopType": "phase_bias",
+        "legend": ["on_field", "off_field"],
+        "xAxis": { "label": "bias", "units": "V" },
+        "yAxis": { "label": "phase", "units": "degree" },
+        "xDataArray": [-9, -4.5, 0, 4.5, 9],
+        "yDataSeries": [
+            [178.2, 175.4, 20.1, 4.3, 3.1],
+            [176.5, 170.2, 90.4, 6.1, 4.2]
+        ]
+    },
+    "source": {
+        "type": "measurement",
+        "info": { "measurementId": "mPfmSpectroscopy0005", "channel": "piezoresponsePhase" }
+    },
+    "exabyteId": ["mPfmSpectroscopy0005"],
+    "repetition": 0
+}

@@ -1,0 +1,31 @@
+{
+    "$id": "core/reusable/identifier",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "identifier schema",
+    "description": "An identifier a record carries in a system other than this one, e.g. an HTEM sample id or a lab-system run number. Kept as a scheme and a value rather than a named field per source, so a new source does not need a schema change.",
+    "type": "object",
+    "properties": {
+        "scheme": {
+            "description": "Namespace the value is unique within.",
+            "type": "string",
+            "enum": [
+                "internal",
+                "htem",
+                "lmc",
+                "igsn",
+                "doi",
+                "barcode",
+                "vendor",
+                "other"
+            ]
+        },
+        "value": {
+            "description": "The identifier itself.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "scheme",
+        "value"
+    ]
+}

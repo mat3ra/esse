@@ -2,9 +2,11 @@
 /* eslint-disable no-use-before-define */
 
 // ── Encoding ──────────────────────────────────────────────────────────────────
-// Colour groups the 22 source directories into eight families. Twenty-two hues
-// would be indistinguishable; these eight are the divisions a reader actually
-// navigates by.
+// Colour groups the source directories into nine families. One hue per directory
+// would be indistinguishable; these nine are the divisions a reader actually
+// navigates by. The experiment family covers the components of the four experimental
+// root entities (sample, instrument, measurement, process) and their technique
+// vocabulary; the root files themselves take the root-entity colour like every root.
 const FAMILIES = [
     { key: "entities", label: "Root entities", color: "#e6b422", domains: ["(root)"] },
     {
@@ -49,6 +51,18 @@ const FAMILIES = [
         label: "Software & parsing",
         color: "#d7ba7d",
         domains: ["software", "software_directory", "apse", "context_providers_directory"],
+    },
+    {
+        key: "experiment",
+        label: "Experimental components & techniques",
+        color: "#f47067",
+        domains: [
+            "sample",
+            "instrument",
+            "measurement",
+            "process",
+            "techniques_category",
+        ],
     },
     {
         key: "platform",

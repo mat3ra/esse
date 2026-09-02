@@ -24,14 +24,16 @@
             "enum": [
                 "defect_formation_energy",
                 "fermi_energy",
+                "film_thickness",
                 "formation_energy",
                 "homo_energy",
+                "interfacial_energy",
                 "ionization_potential",
                 "lumo_energy",
                 "pressure",
                 "reaction_energy_barrier",
                 "surface_energy",
-                "interfacial_energy",
+                "surface_roughness",
                 "thermal_correction_to_energy",
                 "thermal_correction_to_enthalpy",
                 "total_energy",
@@ -56,6 +58,7 @@
                 "hubbard_u",
                 "hubbard_v",
                 "hubbard_v_nn",
+                "hysteresis_loop",
                 "is_relaxed",
                 "jupyter_notebook_endpoint",
                 "phonon_dispersions",
@@ -101,4 +104,3 @@
         }
     }
 }
-

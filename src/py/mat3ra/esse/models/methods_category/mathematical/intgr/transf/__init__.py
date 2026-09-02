@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     transf = "transf"
 
 
-class SlugifiedEntryOrSlug269(Enum):
+class SlugifiedEntryOrSlug420(Enum):
     intgr = "intgr"
 
 
@@ -34,7 +34,7 @@ class IntegralTransformMethodsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug269]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug420]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

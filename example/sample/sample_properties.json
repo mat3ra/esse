@@ -1,0 +1,41 @@
+{
+    "form": "thin_film",
+    "formula": "Al0.7Sc0.3N",
+    "composition": [
+        {
+            "name": "elemental_ratio",
+            "value": 0.35,
+            "element": "Al"
+        },
+        {
+            "name": "elemental_ratio",
+            "value": 0.15,
+            "element": "Sc"
+        },
+        {
+            "name": "elemental_ratio",
+            "value": 0.5,
+            "element": "N"
+        }
+    ],
+    "_parent": {
+        "_id": "sAlScN6705",
+        "cls": "Sample",
+        "slug": "alscn-combinatorial-library-6705"
+    },
+    "position": {
+        "index": 17,
+        "coordinate": [
+            25.4,
+            19.15
+        ],
+        "units": "mm",
+        "coordinateSystem": "library_grid"
+    },
+    "identifiers": [
+        {
+            "scheme": "htem",
+            "value": "262118"
+        }
+    ]
+}

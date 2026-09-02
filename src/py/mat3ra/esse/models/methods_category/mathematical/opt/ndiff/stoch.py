@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     stoch = "stoch"
 
 
-class SlugifiedEntryOrSlug255(Enum):
+class SlugifiedEntryOrSlug401(Enum):
     ndiff = "ndiff"
 
 
-class SlugifiedEntryOrSlug256(Enum):
+class SlugifiedEntryOrSlug402(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class StochasticAlgorithmsForTheOptmizationOfNonDifferentiableFunctionsCategoryS
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug255]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug401]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug256]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug402]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

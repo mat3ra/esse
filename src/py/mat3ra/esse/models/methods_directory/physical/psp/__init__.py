@@ -29,7 +29,7 @@ class SlugifiedEntryOrSlug(Enum):
     psp = "psp"
 
 
-class SlugifiedEntryOrSlug209(Enum):
+class SlugifiedEntryOrSlug335(Enum):
     us = "us"
     nc = "nc"
     nc_fr = "nc-fr"
@@ -37,11 +37,11 @@ class SlugifiedEntryOrSlug209(Enum):
     coulomb = "coulomb"
 
 
-class SlugifiedEntryOrSlug210(Enum):
+class SlugifiedEntryOrSlug336(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug211(Enum):
+class SlugifiedEntryOrSlug337(Enum):
     qm = "qm"
 
 
@@ -50,15 +50,15 @@ class PseudopotentialCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug209]] = Field(None, title="slugified entry or slug")
+    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug335]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug210]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug336]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug211]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug337]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

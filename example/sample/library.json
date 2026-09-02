@@ -1,0 +1,34 @@
+{
+    "type": "composition_spread",
+    "grid": {
+        "rows": 4,
+        "columns": 11,
+        "pitch": {
+            "value": 4,
+            "units": "mm"
+        }
+    },
+    "gradients": [
+        {
+            "quantity": "composition",
+            "element": "Sc",
+            "axis": "x",
+            "minimum": 0.1,
+            "maximum": 0.43,
+            "units": "fraction"
+        }
+    ],
+    "positions": [
+        {
+            "index": 1,
+            "row": 1,
+            "column": 1,
+            "coordinate": [
+                5.4,
+                6.65
+            ],
+            "units": "mm",
+            "coordinateSystem": "library_grid"
+        }
+    ]
+}

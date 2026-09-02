@@ -1,0 +1,44 @@
+{
+    "$id": "process/source/precursor",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "precursor source schema",
+    "description": "A chemical precursor delivered into the chamber, as used in chemical vapor and atomic layer deposition. The delivery mechanism is what sets the parameters that matter, e.g. a bubbler has a vessel temperature and a carrier flow.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "base.json"
+        }
+    ],
+    "properties": {
+        "kind": {
+            "enum": [
+                "precursor"
+            ]
+        },
+        "delivery": {
+            "description": "How the precursor is brought into the chamber.",
+            "type": "string",
+            "enum": [
+                "bubbler",
+                "flash_evaporator",
+                "mist",
+                "direct_liquid_injection",
+                "solid_sublimation",
+                "gas_cylinder",
+                "gas_line"
+            ]
+        },
+        "vesselTemperature": {
+            "description": "Temperature of the precursor vessel, which sets its vapor pressure.",
+            "$ref": "../../core/reusable/quantity/temperature.json"
+        },
+        "carrierGasId": {
+            "description": "Identifier of the gas source carrying this precursor.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "kind",
+        "id"
+    ]
+}

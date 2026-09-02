@@ -1,0 +1,40 @@
+{
+    "mode": "tapping",
+    "scanRange": {
+        "x": {
+            "value": 2,
+            "units": "um"
+        },
+        "y": {
+            "value": 2,
+            "units": "um"
+        }
+    },
+    "scanPoints": {
+        "x": 256,
+        "y": 256
+    },
+    "scanRate": {
+        "value": 1,
+        "units": "Hz"
+    },
+    "scanDirection": "down",
+    "setpoint": {
+        "value": 0.7,
+        "units": "V"
+    },
+    "driveFrequency": {
+        "value": 305.2,
+        "units": "kHz"
+    },
+    "probe": {
+        "kind": "cantilever",
+        "name": "AC160TS",
+        "parameters": {
+            "springConstant": {
+                "value": 26,
+                "units": "N/m"
+            }
+        }
+    }
+}

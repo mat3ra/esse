@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     nstruct = "nstruct"
 
 
-class SlugifiedEntryOrSlug165(Enum):
+class SlugifiedEntryOrSlug261(Enum):
     mesh = "mesh"
 
 
-class SlugifiedEntryOrSlug166(Enum):
+class SlugifiedEntryOrSlug262(Enum):
     discr = "discr"
 
 
@@ -38,11 +38,11 @@ class UnstructuredMeshingCategoryNstructSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug165]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug261]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug166]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug262]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

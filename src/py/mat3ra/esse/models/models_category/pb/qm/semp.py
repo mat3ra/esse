@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     semp = "semp"
 
 
-class SlugifiedEntryOrSlug240(Enum):
+class SlugifiedEntryOrSlug366(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug241(Enum):
+class SlugifiedEntryOrSlug367(Enum):
     pb = "pb"
 
 
@@ -38,11 +38,11 @@ class SemiEmpiricalCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug240]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug366]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug241]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug367]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

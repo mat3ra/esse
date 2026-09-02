@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     fourier = "fourier"
 
 
-class SlugifiedEntryOrSlug75(Enum):
+class SlugifiedEntryOrSlug126(Enum):
     transf = "transf"
 
 
-class SlugifiedEntryOrSlug76(Enum):
+class SlugifiedEntryOrSlug127(Enum):
     intgr = "intgr"
 
 
@@ -38,11 +38,11 @@ class FourierTransformMethodsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug75]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug126]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug76]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug127]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -1,0 +1,65 @@
+{
+    "$id": "measurement/base",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement base schema",
+    "description": "Mirror of job/base: the same platform mixin, an instrument in place of compute, a sample in place of a material, and the activity mixin for status, timing and operators.",
+    "type": "object",
+    "allOf": [
+        {
+            "description": "in-memory entity",
+            "$ref": "../in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
+            "description": "Instrument Property Schema",
+            "$ref": "../instrument/instrument_property.json"
+        },
+        {
+            "description": "status, timing, operators and project",
+            "$ref": "../system/activity.json"
+        }
+    ],
+    "properties": {
+        "categories": {
+            "description": "Technique this measurement applies, on the same tier ladder that categorizes a model.",
+            "$ref": "../techniques_category/experimental/characterization.json"
+        },
+        "_sample": {
+            "description": "Subset of the full information about the sample that was measured, the analogue of job._material.",
+            "$ref": "../system/_sample.json"
+        },
+        "samplePosition": {
+            "description": "Where on the sample the measurement was taken. Together with _sample this is the join key for per-position data on a combinatorial library.",
+            "$ref": "../sample/position.json"
+        },
+        "parent": {
+            "description": "Subset of the full information about the parent measurement, e.g. the grid acquisition that a single extracted spectrum belongs to.",
+            "$ref": "../system/entity_reference.json"
+        },
+        "environment": {
+            "description": "Ambient conditions during acquisition.",
+            "$ref": "../core/reusable/environment.json"
+        },
+        "parameters": {
+            "description": "Technique-specific acquisition parameters. Unconstrained here, the way a model's parameters are unconstrained until a models_directory entry narrows them; measurement/parameters/scanning_probe_microscopy describes the expected shape for scanning probe techniques and will be bound per technique by catalogue entries in a later phase.",
+            "type": "object"
+        },
+        "data": {
+            "description": "Channels acquired during the measurement.",
+            "type": "array",
+            "items": {
+                "$ref": "data/channel.json"
+            }
+        },
+        "rawFiles": {
+            "description": "Vendor files this record was derived from, referenced rather than embedded.",
+            "type": "array",
+            "items": {
+                "$ref": "../core/reusable/file_reference.json"
+            }
+        }
+    },
+    "required": [
+        "categories",
+        "_sample"
+    ]
+}

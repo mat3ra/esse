@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     volume = "volume"
 
 
-class SlugifiedEntryOrSlug271(Enum):
+class SlugifiedEntryOrSlug422(Enum):
     sphere = "sphere"
     cube = "cube"
     rect_prism = "rect-prism"
@@ -36,11 +36,11 @@ class SlugifiedEntryOrSlug271(Enum):
     sq_pyr = "sq-pyr"
 
 
-class SlugifiedEntryOrSlug272(Enum):
+class SlugifiedEntryOrSlug423(Enum):
     analytic = "analytic"
 
 
-class SlugifiedEntryOrSlug273(Enum):
+class SlugifiedEntryOrSlug424(Enum):
     intgr = "intgr"
 
 
@@ -49,15 +49,15 @@ class AnalyticVolumeIntegralCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug271]] = Field(None, title="slugified entry or slug")
+    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug422]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug272]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug423]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug273]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug424]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

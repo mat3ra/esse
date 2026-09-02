@@ -1,0 +1,15 @@
+{
+    "shortName": "pdac_com5",
+    "summary": "Combinatorial magnetron sputtering chamber",
+    "vendor": "National Laboratory of the Rockies",
+    "model": "PDAC COM5",
+    "techniques": [
+        {
+            "tier1": "experimental",
+            "tier2": "synthesis",
+            "tier3": "vapor_deposition",
+            "type": "physical_vapor_deposition",
+            "subtype": "sputtering"
+        }
+    ]
+}

@@ -762,6 +762,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1077,7 +1081,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name659(Enum):
+class Name664(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1743,7 +1747,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod29 = Field(..., title="base method")
 
 
-class Type107(Enum):
+class Type112(Enum):
     ml = "ml"
 
 
@@ -1771,12 +1775,12 @@ class BaseMethod30(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type107
+    type: Type112
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod30 = Field(..., title="base method")
 
 
-class Type108(Enum):
+class Type113(Enum):
     unknown = "unknown"
 
 
@@ -1804,12 +1808,12 @@ class BaseMethod31(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type108
+    type: Type113
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod31 = Field(..., title="base method")
 
 
-class ApplicationSchema12(BaseModel):
+class ApplicationSchema18(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1885,7 +1889,7 @@ class SubworkflowMixinSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema12 = Field(..., title="application schema")
+    application: ApplicationSchema18 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """

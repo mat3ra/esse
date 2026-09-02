@@ -1,0 +1,12 @@
+{
+    "kind": "precursor",
+    "id": "trimethylaluminium",
+    "name": "trimethylaluminium",
+    "formula": "Al(CH3)3",
+    "delivery": "bubbler",
+    "vesselTemperature": {
+        "value": 20,
+        "units": "degC"
+    },
+    "carrierGasId": "argon"
+}

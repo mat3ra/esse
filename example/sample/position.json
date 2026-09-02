@@ -1,0 +1,12 @@
+{
+    "index": 17,
+    "label": "R12",
+    "row": 2,
+    "column": 6,
+    "coordinate": [
+        25.4,
+        19.15
+    ],
+    "units": "mm",
+    "coordinateSystem": "library_grid"
+}

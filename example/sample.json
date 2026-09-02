@@ -1,0 +1,86 @@
+{
+    "_id": "sAlScN6705",
+    "name": "AlScN combinatorial library 6705",
+    "isDefault": false,
+    "form": "library",
+    "formula": "AlScN",
+    "identifiers": [
+        {
+            "scheme": "htem",
+            "value": "6705"
+        },
+        {
+            "scheme": "internal",
+            "value": "NREL library 53"
+        }
+    ],
+    "layers": [
+        {
+            "index": 0,
+            "role": "substrate",
+            "name": "glass",
+            "formula": "SiO2"
+        },
+        {
+            "index": 1,
+            "role": "film",
+            "formula": "AlScN",
+            "crystallinity": "textured"
+        }
+    ],
+    "library": {
+        "type": "composition_spread",
+        "grid": {
+            "rows": 4,
+            "columns": 11,
+            "pitch": {
+                "value": 4,
+                "units": "mm"
+            }
+        },
+        "gradients": [
+            {
+                "quantity": "composition",
+                "element": "Sc",
+                "axis": "x",
+                "minimum": 0.1,
+                "maximum": 0.43,
+                "units": "fraction"
+            }
+        ],
+        "positions": [
+            {
+                "index": 1,
+                "row": 1,
+                "column": 1,
+                "coordinate": [
+                    5.4,
+                    6.65
+                ],
+                "units": "mm",
+                "coordinateSystem": "library_grid"
+            },
+            {
+                "index": 17,
+                "row": 2,
+                "column": 6,
+                "coordinate": [
+                    25.4,
+                    19.15
+                ],
+                "units": "mm",
+                "coordinateSystem": "library_grid"
+            }
+        ]
+    },
+    "external": {
+        "id": "6705",
+        "source": "HTEM",
+        "origin": true,
+        "url": "https://htem.nlr.gov/finder/sample-libraries/88044180-8476-4811-92fa-5682fe1819c3"
+    },
+    "metadata": {
+        "sampleDate": "2015-12-18",
+        "ownerName": "Kevin Talley"
+    }
+}

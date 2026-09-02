@@ -1,0 +1,151 @@
+{
+    "$id": "measurement/parameters/scanning-probe-microscopy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "scanning probe microscopy parameters schema",
+    "description": "Acquisition parameters shared by the scanning probe techniques. Field names follow the NeXus NXspm application definition so a record can be exported to NeXus without a translation table, and cover what an Asylum Research or Nanonis file records about a scan.",
+    "type": "object",
+    "properties": {
+        "mode": {
+            "description": "Feedback or imaging mode the scan was taken in.",
+            "type": "string",
+            "enum": [
+                "contact",
+                "tapping",
+                "non_contact",
+                "peak_force",
+                "lateral_force",
+                "constant_current",
+                "constant_height",
+                "single_frequency",
+                "dual_ac_resonance_tracking",
+                "band_excitation",
+                "contact_resonance"
+            ]
+        },
+        "scanRange": {
+            "description": "Size of the scanned area.",
+            "type": "object",
+            "properties": {
+                "x": {
+                    "$ref": "../../core/reusable/quantity/length.json"
+                },
+                "y": {
+                    "$ref": "../../core/reusable/quantity/length.json"
+                }
+            }
+        },
+        "scanOffset": {
+            "description": "Offset of the scan centre from the stage origin.",
+            "type": "object",
+            "properties": {
+                "x": {
+                    "$ref": "../../core/reusable/quantity/length.json"
+                },
+                "y": {
+                    "$ref": "../../core/reusable/quantity/length.json"
+                }
+            }
+        },
+        "scanAngle": {
+            "description": "Rotation of the fast scan axis.",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/angle"
+                }
+            }
+        },
+        "scanPoints": {
+            "description": "Number of points along each axis, i.e. the pixel dimensions of the image.",
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                }
+            }
+        },
+        "scanRate": {
+            "description": "Line rate of the scan.",
+            "$ref": "../../core/reusable/quantity/frequency.json"
+        },
+        "scanDirection": {
+            "description": "Slow-axis direction.",
+            "type": "string",
+            "enum": [
+                "up",
+                "down"
+            ]
+        },
+        "setpoint": {
+            "description": "Feedback setpoint, in whichever quantity the mode controls on (amplitude in volts, deflection in newtons, current in amperes).",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "units": {
+                    "type": "string"
+                }
+            }
+        },
+        "biasVoltage": {
+            "description": "Sample bias applied during the scan.",
+            "$ref": "../../core/reusable/quantity/voltage.json"
+        },
+        "currentSetpoint": {
+            "description": "Tunneling current setpoint, for scanning tunneling techniques.",
+            "$ref": "../../core/reusable/quantity/current.json"
+        },
+        "driveAmplitude": {
+            "description": "Amplitude of the cantilever or tip drive signal.",
+            "$ref": "../../core/reusable/quantity/voltage.json"
+        },
+        "driveFrequency": {
+            "description": "Frequency of the cantilever or tip drive signal.",
+            "$ref": "../../core/reusable/quantity/frequency.json"
+        },
+        "biasWaveform": {
+            "description": "Bias waveform applied during switching spectroscopy, e.g. the triangle-square sequence a piezoresponse hysteresis loop is measured with.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "triangular",
+                        "bipolar_triangular",
+                        "triangle_square",
+                        "sinusoidal",
+                        "step",
+                        "custom"
+                    ]
+                },
+                "amplitude": {
+                    "$ref": "../../core/reusable/quantity/voltage.json"
+                },
+                "frequency": {
+                    "$ref": "../../core/reusable/quantity/frequency.json"
+                },
+                "cycles": {
+                    "type": "integer"
+                },
+                "pointsPerSecond": {
+                    "type": "number"
+                },
+                "offField": {
+                    "description": "Whether the response is read with the dc bias off, which separates the electrostatic background from the piezoresponse.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "probe": {
+            "description": "Probe or cantilever used, referencing the instrument component so the same shape describes a probe listed on an instrument and one recorded per scan.",
+            "$ref": "../../instrument/component.json"
+        }
+    }
+}

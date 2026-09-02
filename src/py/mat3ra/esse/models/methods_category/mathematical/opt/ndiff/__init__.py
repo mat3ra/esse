@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     ndiff = "ndiff"
 
 
-class SlugifiedEntryOrSlug160(Enum):
+class SlugifiedEntryOrSlug256(Enum):
     opt = "opt"
 
 
@@ -34,7 +34,7 @@ class OptimizationMethodsForNonDifferentiableFunctionsCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug160]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug256]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

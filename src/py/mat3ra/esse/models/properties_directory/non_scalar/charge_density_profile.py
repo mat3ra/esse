@@ -33,7 +33,7 @@ class Units(Enum):
     e_A = "e/A"
 
 
-class AxisSchema8(BaseModel):
+class AxisSchema14(BaseModel):
     label: Label5
     """
     label of an axis object
@@ -50,7 +50,7 @@ class Name(Enum):
 
 class ChargeDensityProfilePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema8 = Field(..., title="axis schema")
+    yAxis: AxisSchema14 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

@@ -1,0 +1,31 @@
+{
+    "name": "piezoresponsePhase",
+    "direction": "backward",
+    "description": "Off-field phase against tip bias at one point of a switching-spectroscopy grid",
+    "data": {
+        "xAxis": {
+            "label": "bias",
+            "units": "V"
+        },
+        "yAxis": {
+            "label": "phase",
+            "units": "degree"
+        },
+        "xDataArray": [
+            -9,
+            -4.5,
+            0,
+            4.5,
+            9
+        ],
+        "yDataSeries": [
+            [
+                178.2,
+                175.4,
+                20.1,
+                4.3,
+                3.1
+            ]
+        ]
+    }
+}

@@ -419,30 +419,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name752(Enum):
+class Name759(Enum):
     density = "density"
 
 
-class Units333(Enum):
+class Units416(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units333] = None
+    units: Optional[Units416] = None
     value: float
 
 
-class Units334(Enum):
+class Units417(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units334] = None
+    units: Optional[Units417] = None
     value: float
 
 
-class Name753(Enum):
+class Name760(Enum):
     symmetry = "symmetry"
 
 
@@ -462,7 +462,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name754(Enum):
+class Name761(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -475,7 +475,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name755(Enum):
+class Name762(Enum):
     p_norm = "p-norm"
 
 
@@ -488,7 +488,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name756(Enum):
+class Name763(Enum):
     inchi = "inchi"
 
 
@@ -497,7 +497,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name757(Enum):
+class Name764(Enum):
     inchi_key = "inchi_key"
 
 
@@ -584,7 +584,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name758(Enum):
+class Name765(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -597,7 +597,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name758
+    name: Name765
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -971,44 +971,44 @@ class LatticeSchema77(BaseModel):
     )
 
 
-class Name759(Enum):
+class Name766(Enum):
     volume = "volume"
 
 
-class Units335(Enum):
+class Units418(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema77(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units335] = None
+    units: Optional[Units418] = None
     value: float
 
 
-class Name760(Enum):
+class Name767(Enum):
     density = "density"
 
 
-class Units336(Enum):
+class Units419(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema78(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units336] = None
+    units: Optional[Units419] = None
     value: float
 
 
-class Units337(Enum):
+class Units420(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema93(BaseModel):
-    units: Optional[Units337] = None
+    units: Optional[Units420] = None
     value: float
 
 
-class Name761(Enum):
+class Name768(Enum):
     symmetry = "symmetry"
 
 
@@ -1028,11 +1028,11 @@ class SymmetrySchema77(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name762(Enum):
+class Name769(Enum):
     elemental_ratio = "elemental_ratio"
 
 
-class ElementalRatio78(BaseModel):
+class ElementalRatio80(BaseModel):
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -1041,7 +1041,7 @@ class ElementalRatio78(BaseModel):
     """
 
 
-class Name763(Enum):
+class Name770(Enum):
     p_norm = "p-norm"
 
 
@@ -1054,7 +1054,7 @@ class PNorm78(BaseModel):
     value: float
 
 
-class Name764(Enum):
+class Name771(Enum):
     inchi = "inchi"
 
 
@@ -1063,7 +1063,7 @@ class InChIRepresentationSchema78(BaseModel):
     value: str
 
 
-class Name765(Enum):
+class Name772(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1078,7 +1078,7 @@ class DerivedPropertiesSchema78(
             VolumeSchema77,
             DensitySchema78,
             SymmetrySchema77,
-            ElementalRatio78,
+            ElementalRatio80,
             PNorm78,
             InChIRepresentationSchema78,
             InChIKeyRepresentationSchema78,
@@ -1089,14 +1089,14 @@ class DerivedPropertiesSchema78(
         VolumeSchema77,
         DensitySchema78,
         SymmetrySchema77,
-        ElementalRatio78,
+        ElementalRatio80,
         PNorm78,
         InChIRepresentationSchema78,
         InChIKeyRepresentationSchema78,
     ] = Field(..., discriminator="name")
 
 
-class DatabaseSourceSchema77(BaseModel):
+class DatabaseSourceSchema79(BaseModel):
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -1123,14 +1123,14 @@ class DatabaseSourceSchema77(BaseModel):
     """
 
 
-class Name766(Enum):
+class Name773(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema77(BaseModel):
-    name: Name766
+    name: Name773
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1196,7 +1196,7 @@ class CrystalSchema68(BaseModel):
     basis: BasisSchema77 = Field(..., title="basis schema")
     lattice: LatticeSchema77 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema78]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema77] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema79] = Field(None, title="database source schema")
     """
     information about a database source
     """
@@ -1460,44 +1460,44 @@ class LatticeSchema78(BaseModel):
     )
 
 
-class Name767(Enum):
+class Name774(Enum):
     volume = "volume"
 
 
-class Units338(Enum):
+class Units421(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema78(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units338] = None
+    units: Optional[Units421] = None
     value: float
 
 
-class Name768(Enum):
+class Name775(Enum):
     density = "density"
 
 
-class Units339(Enum):
+class Units422(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema79(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units339] = None
+    units: Optional[Units422] = None
     value: float
 
 
-class Units340(Enum):
+class Units423(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema94(BaseModel):
-    units: Optional[Units340] = None
+    units: Optional[Units423] = None
     value: float
 
 
-class Name769(Enum):
+class Name776(Enum):
     symmetry = "symmetry"
 
 
@@ -1517,11 +1517,11 @@ class SymmetrySchema78(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name770(Enum):
+class Name777(Enum):
     elemental_ratio = "elemental_ratio"
 
 
-class ElementalRatio79(BaseModel):
+class ElementalRatio81(BaseModel):
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -1530,7 +1530,7 @@ class ElementalRatio79(BaseModel):
     """
 
 
-class Name771(Enum):
+class Name778(Enum):
     p_norm = "p-norm"
 
 
@@ -1543,7 +1543,7 @@ class PNorm79(BaseModel):
     value: float
 
 
-class Name772(Enum):
+class Name779(Enum):
     inchi = "inchi"
 
 
@@ -1552,7 +1552,7 @@ class InChIRepresentationSchema79(BaseModel):
     value: str
 
 
-class Name773(Enum):
+class Name780(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1567,7 +1567,7 @@ class DerivedPropertiesSchema79(
             VolumeSchema78,
             DensitySchema79,
             SymmetrySchema78,
-            ElementalRatio79,
+            ElementalRatio81,
             PNorm79,
             InChIRepresentationSchema79,
             InChIKeyRepresentationSchema79,
@@ -1578,14 +1578,14 @@ class DerivedPropertiesSchema79(
         VolumeSchema78,
         DensitySchema79,
         SymmetrySchema78,
-        ElementalRatio79,
+        ElementalRatio81,
         PNorm79,
         InChIRepresentationSchema79,
         InChIKeyRepresentationSchema79,
     ] = Field(..., discriminator="name")
 
 
-class DatabaseSourceSchema78(BaseModel):
+class DatabaseSourceSchema80(BaseModel):
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -1612,14 +1612,14 @@ class DatabaseSourceSchema78(BaseModel):
     """
 
 
-class Name774(Enum):
+class Name781(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema78(BaseModel):
-    name: Name774
+    name: Name781
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1685,7 +1685,7 @@ class CrystalSchema69(BaseModel):
     basis: BasisSchema78 = Field(..., title="basis schema")
     lattice: LatticeSchema78 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema79]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema78] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema80] = Field(None, title="database source schema")
     """
     information about a database source
     """

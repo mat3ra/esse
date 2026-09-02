@@ -1,0 +1,76 @@
+{
+    "$id": "instrument/instrument-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "instrument properties schema",
+    "description": "Domain-specific fields of an instrument entity, mirroring software/application_properties: shortName and summary carry over unchanged; version becomes firmware and build becomes serialNumber, because those are what identify a physical unit; vendor, model, techniques, components and location are what an apparatus adds over a program. None of them is required: an instrument is identified by the name it inherits from the entity mixin, and a laboratory record often names a chamber only by the short name its operators use, with the vendor and model known separately or not at all.",
+    "type": "object",
+    "properties": {
+        "shortName": {
+            "description": "The short name of the instrument, e.g. jupiter, pdac_com5",
+            "type": "string"
+        },
+        "summary": {
+            "description": "Instrument's short description.",
+            "type": "string"
+        },
+        "vendor": {
+            "description": "Manufacturer of the instrument, e.g. Asylum Research",
+            "type": "string"
+        },
+        "model": {
+            "description": "Model name, e.g. Jupiter",
+            "type": "string"
+        },
+        "serialNumber": {
+            "description": "Vendor serial number identifying this particular unit.",
+            "type": "string"
+        },
+        "firmware": {
+            "description": "Controller or acquisition-software version, the analogue of an application version, e.g. 19.34.88",
+            "type": "string"
+        },
+        "techniques": {
+            "description": "Techniques this instrument can perform.",
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../techniques_category/experimental/characterization.json"
+                    },
+                    {
+                        "$ref": "../techniques_category/experimental/synthesis.json"
+                    }
+                ]
+            }
+        },
+        "components": {
+            "description": "Parts of the instrument that matter to a result, e.g. the probe a scan was taken with or the source a film was grown from.",
+            "type": "array",
+            "items": {
+                "$ref": "component.json"
+            }
+        },
+        "controlSoftware": {
+            "description": "Software driving the instrument, reusing the application entity rather than restating a name and a version.",
+            "type": "array",
+            "items": {
+                "$ref": "../software/application.json"
+            }
+        },
+        "location": {
+            "description": "Where the instrument is, which for a multi-institution project is part of the provenance.",
+            "type": "object",
+            "properties": {
+                "facility": {
+                    "type": "string"
+                },
+                "laboratory": {
+                    "type": "string"
+                },
+                "room": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

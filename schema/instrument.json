@@ -1,0 +1,15 @@
+{
+    "$id": "instrument",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "instrument schema",
+    "description": "A physical apparatus used to measure or fabricate a sample: a microscope, a deposition chamber, a furnace. The experimental mirror of software/application, composed the same way, because what an application is to a job an instrument is to a measurement.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named_defaultable.json"
+        },
+        {
+            "$ref": "instrument/instrument_properties.json"
+        }
+    ]
+}

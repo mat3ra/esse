@@ -6,9 +6,14 @@ summary: The root entities, how they compose, and why there are four kinds of ma
 
 # Entity anatomy
 
-Eleven schemas sit at the top level of `schema/`. They are the nouns of the domain — the things a
+Fifteen schemas sit at the top level of `schema/`. They are the nouns of the domain — the things a
 user creates, names, owns and looks at — and everything else in the repository exists to define,
 categorize or support them.
+
+Eleven of them describe computational work. The other four — `sample`, `instrument`, `measurement`
+and `process` — describe experimental work, and each is built as the mirror of a computational one
+rather than as a separate vocabulary. [Experimental data](experimental-data.html) sets out the
+correspondence; the sections below cover the computational originals.
 
 ## Material
 
@@ -96,7 +101,8 @@ shape: `scalar` (total energy, pressure, band gap), `non-scalar` (band structure
 states, charge density), `structural`, `elemental` and `workflow` (convergence monitors).
 
 They are tied together by `property/holder`, which is the widest schema in the corpus: its `data`
-field is a union over every property type, on top of one mixin and one provenance reference. That
+field is a union over every property type, on top of one mixin and a `source` whose `info` is
+itself a small union over where the value came from: a job, a measurement or a process. That
 one file is why "what property types exist?" has a single answer, and it is the clearest
 illustration of the union idiom in ESSE. On the [ontology map](../map/index.html) it is the node
 with by far the largest fan-out.

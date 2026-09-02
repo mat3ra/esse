@@ -25,15 +25,15 @@ class SlugifiedEntryOrSlug(Enum):
     dunning = "dunning"
 
 
-class SlugifiedEntryOrSlug64(Enum):
+class SlugifiedEntryOrSlug114(Enum):
     ao = "ao"
 
 
-class SlugifiedEntryOrSlug65(Enum):
+class SlugifiedEntryOrSlug115(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug66(Enum):
+class SlugifiedEntryOrSlug116(Enum):
     qm = "qm"
 
 
@@ -42,15 +42,15 @@ class DunningCorrelationConsistentBasisSetCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug64]] = Field(None, title="slugified entry or slug")
+    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug114]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug65]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug115]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug66]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug116]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -34,18 +34,22 @@ class Label27(Enum):
     frequency = "frequency"
 
 
-class Units315(Enum):
+class Units356(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
+    Hz = "Hz"
+    kHz = "kHz"
+    MHz = "MHz"
+    GHz = "GHz"
 
 
-class AxisSchema30(BaseModel):
+class AxisSchema42(BaseModel):
     label: Label27
     """
     label of an axis object
     """
-    units: Optional[Units315] = None
+    units: Optional[Units356] = None
     """
     units for an axis
     """
@@ -57,7 +61,7 @@ class Name(Enum):
 
 class PhononBandStructurePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema30 = Field(..., title="axis schema")
+    yAxis: AxisSchema42 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

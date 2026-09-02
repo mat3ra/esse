@@ -1,0 +1,21 @@
+{
+    "$id": "core/reusable/quantity/length",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "length quantity schema",
+    "description": "A scalar with length units, e.g. a film thickness or a scan range. Follows the core/reusable/energy pattern (a scalar plus a units enum) without requiring a property name, so it can be embedded as a field of any schema.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "units": {
+            "$ref": "../../../definitions/units.json#/length"
+        }
+    },
+    "required": [
+        "value",
+        "units"
+    ]
+}

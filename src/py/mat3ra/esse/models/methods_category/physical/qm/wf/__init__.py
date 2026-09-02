@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug275(Enum):
+class SlugifiedEntryOrSlug426(Enum):
     qm = "qm"
 
 
@@ -34,7 +34,7 @@ class MethodsRelatedToWaveFunctionsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug275]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug426]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

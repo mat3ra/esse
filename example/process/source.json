@@ -1,0 +1,18 @@
+{
+    "kind": "target",
+    "id": "aluminium-scandium",
+    "formula": "AlSc",
+    "position": "TL",
+    "supply": "rf",
+    "power": {
+        "forward": {
+            "value": 150,
+            "units": "W"
+        },
+        "reflected": {
+            "value": 0,
+            "units": "W"
+        }
+    },
+    "gunAngle": 0.3
+}

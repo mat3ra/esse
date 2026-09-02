@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     iterative = "iterative"
 
 
-class SlugifiedEntryOrSlug117(Enum):
+class SlugifiedEntryOrSlug198(Enum):
     root = "root"
 
 
-class SlugifiedEntryOrSlug118(Enum):
+class SlugifiedEntryOrSlug199(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class IterativeMethodForRootFindingCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug117]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug198]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug118]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug199]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

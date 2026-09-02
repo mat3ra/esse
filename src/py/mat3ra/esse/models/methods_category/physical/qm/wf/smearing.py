@@ -25,18 +25,18 @@ class SlugifiedEntryOrSlug(Enum):
     smearing = "smearing"
 
 
-class SlugifiedEntryOrSlug247(Enum):
+class SlugifiedEntryOrSlug373(Enum):
     gaussian = "gaussian"
     marzari_vanderbilt = "marzari-vanderbilt"
     methfessel_paxton = "methfessel-paxton"
     fermi_dirac = "fermi-dirac"
 
 
-class SlugifiedEntryOrSlug248(Enum):
+class SlugifiedEntryOrSlug374(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug249(Enum):
+class SlugifiedEntryOrSlug375(Enum):
     qm = "qm"
 
 
@@ -45,15 +45,15 @@ class SmearingMethodsCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug247]] = Field(None, title="slugified entry or slug")
+    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug373]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug248]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug374]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug249]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug375]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

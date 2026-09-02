@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     pw = "pw"
 
 
-class SlugifiedEntryOrSlug217(Enum):
+class SlugifiedEntryOrSlug343(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug218(Enum):
+class SlugifiedEntryOrSlug344(Enum):
     qm = "qm"
 
 
@@ -38,11 +38,11 @@ class PlaneWaveCatgeorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug217]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug343]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug218]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug344]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

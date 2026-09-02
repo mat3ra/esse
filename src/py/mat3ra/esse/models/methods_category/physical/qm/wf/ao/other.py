@@ -25,15 +25,15 @@ class SlugifiedEntryOrSlug(Enum):
     other = "other"
 
 
-class SlugifiedEntryOrSlug190(Enum):
+class SlugifiedEntryOrSlug286(Enum):
     ao = "ao"
 
 
-class SlugifiedEntryOrSlug191(Enum):
+class SlugifiedEntryOrSlug287(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug192(Enum):
+class SlugifiedEntryOrSlug288(Enum):
     qm = "qm"
 
 
@@ -42,15 +42,15 @@ class OtherNeitherPopleNorDunningBasisSetCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug190]] = Field(None, title="slugified entry or slug")
+    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug286]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug191]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug287]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug192]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug288]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

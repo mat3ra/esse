@@ -1,0 +1,23 @@
+{
+    "$id": "process/source",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "process source schema",
+    "description": "A material source a deposition draws on. Discriminated on kind, the way a workflow unit is discriminated on type: a sputtering target, a chemical precursor and a process gas are described by different fields.",
+    "oneOf": [
+        {
+            "$ref": "source/target.json"
+        },
+        {
+            "$ref": "source/precursor.json"
+        },
+        {
+            "$ref": "source/gas.json"
+        }
+    ],
+    "discriminator": {
+        "propertyName": "kind"
+    },
+    "required": [
+        "kind"
+    ]
+}

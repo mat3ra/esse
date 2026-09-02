@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     diffeq = "diffeq"
 
 
-class SlugifiedEntryOrSlug48(Enum):
+class SlugifiedEntryOrSlug98(Enum):
     intgr = "intgr"
 
 
@@ -34,7 +34,7 @@ class MethodsForTheNumericalIntegrationOfDifferentialEquationsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug48]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug98]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

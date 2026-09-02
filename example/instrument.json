@@ -1,0 +1,39 @@
+{
+    "_id": "iJupiter01",
+    "name": "Jupiter scanning probe microscope",
+    "isDefault": true,
+    "shortName": "jupiter",
+    "summary": "Asylum Research Jupiter atomic force microscope with dual-frequency resonance tracking",
+    "vendor": "Asylum Research",
+    "model": "Jupiter",
+    "firmware": "19.34.88",
+    "techniques": [
+        {
+            "tier1": "experimental",
+            "tier2": "characterization",
+            "tier3": "microscopy",
+            "type": "scanning_probe_microscopy",
+            "subtype": "piezoresponse_force_microscopy"
+        }
+    ],
+    "components": [
+        {
+            "kind": "cantilever",
+            "name": "Multi75-EG",
+            "parameters": {
+                "springConstant": {
+                    "value": 2.1868,
+                    "units": "N/m"
+                },
+                "inverseOpticalLeverSensitivity": {
+                    "value": 82.055,
+                    "units": "nm/V"
+                }
+            }
+        }
+    ],
+    "location": {
+        "facility": "University of Tennessee, Knoxville",
+        "laboratory": "Kalinin group"
+    }
+}

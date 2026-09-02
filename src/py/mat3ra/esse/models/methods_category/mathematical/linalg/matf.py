@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     matf = "matf"
 
 
-class SlugifiedEntryOrSlug143(Enum):
+class SlugifiedEntryOrSlug224(Enum):
     linalg = "linalg"
 
 
@@ -34,7 +34,7 @@ class MatrixFunctionMethodsSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug143]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug224]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

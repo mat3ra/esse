@@ -1,0 +1,29 @@
+{
+    "$id": "core/reference/process",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "info for a value obtained from a process",
+    "description": "Provenance of a property that is a property of a fabrication run rather than of a measurement, e.g. a growth rate read off the deposition record. The process analogue of core/reference/exabyte.",
+    "type": "object",
+    "properties": {
+        "type": {
+            "enum": [
+                "process"
+            ]
+        },
+        "processId": {
+            "description": "Process's identity",
+            "type": "string"
+        },
+        "stepFlowchartId": {
+            "description": "flowchartId of the step the value came from, the analogue of unitId",
+            "type": "string"
+        },
+        "sampleId": {
+            "description": "Identity of the sample the process produced",
+            "type": "string"
+        }
+    },
+    "required": [
+        "processId"
+    ]
+}

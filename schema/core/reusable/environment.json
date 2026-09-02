@@ -1,0 +1,43 @@
+{
+    "$id": "core/reusable/environment",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "environment schema",
+    "description": "Ambient or chamber conditions during a measurement or a process step.",
+    "type": "object",
+    "properties": {
+        "temperature": {
+            "$ref": "quantity/temperature.json"
+        },
+        "pressure": {
+            "$ref": "quantity/pressure.json"
+        },
+        "atmosphere": {
+            "description": "Gas or vacuum the sample sits in.",
+            "type": "string",
+            "enum": [
+                "ambient",
+                "vacuum",
+                "high_vacuum",
+                "ultra_high_vacuum",
+                "nitrogen",
+                "argon",
+                "oxygen",
+                "forming_gas",
+                "liquid",
+                "other"
+            ]
+        },
+        "humidity": {
+            "description": "Relative humidity, as a percentage.",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/dimensionless"
+                }
+            }
+        }
+    }
+}

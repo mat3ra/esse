@@ -1,0 +1,42 @@
+{
+    "$id": "process/source/base",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "process source base schema",
+    "description": "Fields common to every material source. The identifier is what a step's setpoints point at, so a step can say which source it is pulsing without repeating the source itself.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "Identifier for this source within the stage, referenced from a step's setpoints.",
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "formula": {
+            "description": "Chemical formula of the source material, e.g. Al(CH3)3",
+            "type": "string"
+        },
+        "purity": {
+            "description": "Purity of the source material.",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/dimensionless"
+                }
+            }
+        },
+        "vendor": {
+            "type": "string"
+        },
+        "_material": {
+            "description": "Subset of the full information about the material this source is made of.",
+            "$ref": "../../system/_material.json"
+        }
+    },
+    "required": [
+        "id"
+    ]
+}

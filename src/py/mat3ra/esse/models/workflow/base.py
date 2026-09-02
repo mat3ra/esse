@@ -762,6 +762,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1743,7 +1747,7 @@ class DFTHybridModelSchema(BaseModel):
     method: BaseMethod7 = Field(..., title="base method")
 
 
-class Type9(Enum):
+class Type10(Enum):
     ml = "ml"
 
 
@@ -1771,12 +1775,12 @@ class BaseMethod8(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type9
+    type: Type10
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod8 = Field(..., title="base method")
 
 
-class Type10(Enum):
+class Type11(Enum):
     unknown = "unknown"
 
 
@@ -1804,12 +1808,12 @@ class BaseMethod9(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type10
+    type: Type11
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     method: BaseMethod9 = Field(..., title="base method")
 
 
-class ApplicationSchema2(BaseModel):
+class ApplicationSchema3(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1902,7 +1906,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema2 = Field(..., title="application schema")
+    application: ApplicationSchema3 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """

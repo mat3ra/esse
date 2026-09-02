@@ -25,19 +25,19 @@ class SlugifiedEntryOrSlug(Enum):
     double_hybrid = "double-hybrid"
 
 
-class SlugifiedEntryOrSlug59(Enum):
+class SlugifiedEntryOrSlug109(Enum):
     ksdft = "ksdft"
 
 
-class SlugifiedEntryOrSlug60(Enum):
+class SlugifiedEntryOrSlug110(Enum):
     dft = "dft"
 
 
-class SlugifiedEntryOrSlug61(Enum):
+class SlugifiedEntryOrSlug111(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug62(Enum):
+class SlugifiedEntryOrSlug112(Enum):
     pb = "pb"
 
 
@@ -46,19 +46,19 @@ class DFTDoubleHybridFunctionalCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug59]] = Field(None, title="slugified entry or slug")
+    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug109]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug60]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug110]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug61]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug111]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug62]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug112]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

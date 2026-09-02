@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     mesh = "mesh"
 
 
-class SlugifiedEntryOrSlug145(Enum):
+class SlugifiedEntryOrSlug241(Enum):
     discr = "discr"
 
 
@@ -34,7 +34,7 @@ class MeshingMethodCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug145]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug241]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

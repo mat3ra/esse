@@ -1,0 +1,43 @@
+{
+    "$id": "core/reusable/array-data",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "array data schema",
+    "description": "A multidimensional array with units on its values and axes, held either inline or in a referenced file. Exactly one of the two should be present; this is stated here rather than as an anyOf over required lists because a type-less anyOf makes the pydantic generator emit a root union.",
+    "$comment": "Inline values are meant for examples and small results: keep them under 65536 elements (a 256x256 image) and reference a file for anything larger.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../abstract/multidimensional_array.json"
+        }
+    ],
+    "properties": {
+        "units": {
+            "description": "Units of the values, e.g. nm for a topography channel.",
+            "type": "string"
+        },
+        "dataType": {
+            "description": "Storage type of the values in the referenced file.",
+            "type": "string",
+            "enum": [
+                "float32",
+                "float64",
+                "int8",
+                "int16",
+                "int32",
+                "int64",
+                "uint8",
+                "uint16",
+                "uint32",
+                "uint64"
+            ]
+        },
+        "file": {
+            "description": "File the values live in, when they are not inline.",
+            "$ref": "file_reference.json"
+        },
+        "datasetPath": {
+            "description": "Path to the dataset inside the file, e.g. an HDF5 path or an Igor layer label such as HeightRetrace.",
+            "type": "string"
+        }
+    }
+}

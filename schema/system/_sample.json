@@ -1,0 +1,21 @@
+{
+    "$id": "system/-sample",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Sample entity reference schema",
+    "description": "Reference to a sample entity, the experimental mirror of system/_material.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "entity_reference.json"
+        }
+    ],
+    "properties": {
+        "cls": {
+            "description": "Sample class",
+            "type": "string",
+            "enum": [
+                "Sample"
+            ]
+        }
+    }
+}

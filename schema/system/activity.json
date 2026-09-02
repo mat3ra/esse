@@ -1,0 +1,59 @@
+{
+    "$id": "system/activity",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "activity schema",
+    "description": "Behaviour of a record of something that was done: its status, when it started and ended, who ran it and which project it belongs to. Measurement and process both compose this, so the two cannot drift apart the way two hand-maintained status lists would.",
+    "type": "object",
+    "properties": {
+        "status": {
+            "description": "Lifecycle state. 'draft' marks a recipe or protocol that has not been executed.",
+            "type": "string",
+            "enum": [
+                "draft",
+                "planned",
+                "active",
+                "finished",
+                "error",
+                "cancelled"
+            ]
+        },
+        "startTime": {
+            "description": "When the activity started, as an ISO 8601 timestamp. A string rather than an epoch number so it stays readable without a converter, matching job.startTime.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "endTime": {
+            "description": "When the activity finished, as an ISO 8601 timestamp.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "operators": {
+            "description": "People who ran the activity. A name and an optional affiliation rather than the bibliographic author shape used for citations: a laboratory record identifies an operator by whatever the instrument logged, often a single username, and a citation's requirement of a surname does not hold there.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Operator's name as recorded, e.g. a username.",
+                        "type": "string"
+                    },
+                    "affiliation": {
+                        "description": "Institution the operator belongs to.",
+                        "type": "string"
+                    },
+                    "_account": {
+                        "description": "Subset of the full information about the platform account of the operator, when they have one.",
+                        "$ref": "entity_reference.json"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "_project": {
+            "description": "Subset of the full information about the project that this activity belongs to.",
+            "$ref": "entity_reference.json"
+        }
+    }
+}

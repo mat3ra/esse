@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     root = "root"
 
 
-class SlugifiedEntryOrSlug238(Enum):
+class SlugifiedEntryOrSlug364(Enum):
     opt = "opt"
 
 
@@ -34,7 +34,7 @@ class RootFindingCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug238]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug364]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

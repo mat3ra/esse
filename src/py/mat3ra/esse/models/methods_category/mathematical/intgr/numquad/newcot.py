@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     newcot = "newcot"
 
 
-class SlugifiedEntryOrSlug162(Enum):
+class SlugifiedEntryOrSlug258(Enum):
     numquad = "numquad"
 
 
-class SlugifiedEntryOrSlug163(Enum):
+class SlugifiedEntryOrSlug259(Enum):
     intgr = "intgr"
 
 
@@ -38,11 +38,11 @@ class NewtonCotesQuadratureRulesSchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug162]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug258]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug163]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug259]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

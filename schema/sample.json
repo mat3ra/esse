@@ -1,0 +1,19 @@
+{
+    "$id": "sample",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample schema",
+    "description": "A physical specimen: a substrate, a film stack, a combinatorial library, a piece cut from one, or a device. The experimental mirror of material, composed exactly as material.json is, with sample_properties in place of material_properties. A sample does not require a basis and a lattice because a specimen may have unknown or non-crystalline structure; the nominal structure is referenced through _material instead.",
+    "type": "object",
+    "allOf": [
+        {
+            "description": "in-memory entity",
+            "$ref": "in_memory_entity/named_defaultable.json"
+        },
+        {
+            "$ref": "sample/sample_properties.json"
+        },
+        {
+            "$ref": "sample/metadata.json"
+        }
+    ]
+}

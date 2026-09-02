@@ -1,0 +1,24 @@
+{
+    "$id": "process",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "process schema",
+    "description": "A synthesis or fabrication run and the recipe it followed: a deposition, an anneal, a sequence of both. The experimental mirror of workflow, composed the same way, with stages in place of subworkflows and steps in place of units. One record covers both recipe and run, as a workflow embedded in a job does: a recipe has status draft and no start time, an executed run carries per-step status and logs.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named.json"
+        },
+        {
+            "$ref": "system/metadata.json"
+        },
+        {
+            "$ref": "process/base.json"
+        },
+        {
+            "$ref": "system/description.json"
+        },
+        {
+            "$ref": "system/tags.json"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "tier1": "experimental",
+    "tier2": "characterization",
+    "tier3": "microscopy",
+    "type": "scanning_probe_microscopy",
+    "subtype": "piezoresponse_force_microscopy"
+}

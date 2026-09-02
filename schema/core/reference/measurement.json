@@ -1,0 +1,33 @@
+{
+    "$id": "core/reference/measurement",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "info for a value obtained by measurement",
+    "description": "Provenance of a property obtained from a measurement: the experimental analogue of core/reference/exabyte, where measurementId plays the role of jobId and channel the role of unitId.",
+    "type": "object",
+    "properties": {
+        "type": {
+            "enum": [
+                "measurement"
+            ]
+        },
+        "measurementId": {
+            "description": "Measurement's identity",
+            "type": "string"
+        },
+        "channel": {
+            "description": "Data channel or analysis step the value was extracted from, e.g. the phase channel of a switching-spectroscopy acquisition",
+            "type": "string"
+        },
+        "sampleId": {
+            "description": "Identity of the sample the measurement was taken on",
+            "type": "string"
+        },
+        "instrumentId": {
+            "description": "Identity of the instrument the measurement was taken with",
+            "type": "string"
+        }
+    },
+    "required": [
+        "measurementId"
+    ]
+}

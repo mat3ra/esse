@@ -1,0 +1,15 @@
+{
+    "kind": "cantilever",
+    "name": "Multi75-EG",
+    "vendor": "BudgetSensors",
+    "parameters": {
+        "springConstant": {
+            "value": 2.1868,
+            "units": "N/m"
+        },
+        "resonanceFrequency": {
+            "value": 372.177,
+            "units": "kHz"
+        }
+    }
+}

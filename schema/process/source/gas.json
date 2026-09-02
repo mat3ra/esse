@@ -1,0 +1,47 @@
+{
+    "$id": "process/source/gas",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "process gas source schema",
+    "description": "A gas fed into the chamber. The role distinguishes a gas that reacts into the film from one that only carries or sputters, which is what decides whether its flow affects stoichiometry.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "base.json"
+        }
+    ],
+    "properties": {
+        "kind": {
+            "enum": [
+                "gas"
+            ]
+        },
+        "role": {
+            "description": "What the gas does in the process.",
+            "type": "string",
+            "enum": [
+                "carrier",
+                "reactive",
+                "purge",
+                "sputtering",
+                "plasma",
+                "background"
+            ]
+        },
+        "flowRate": {
+            "description": "Flow rate of the gas.",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/flow_rate"
+                }
+            }
+        }
+    },
+    "required": [
+        "kind",
+        "id"
+    ]
+}

@@ -143,6 +143,15 @@
                 },
                 {
                     "$ref": "../properties_directory/jupyter_notebook_endpoint.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/film_thickness.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/surface_roughness.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/hysteresis_loop.json"
                 }
             ],
             "discriminator": {
@@ -157,13 +166,24 @@
                     "type": "string"
                 },
                 "info": {
-                    "$ref": "../core/reference/exabyte.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../core/reference/exabyte.json"
+                        },
+                        {
+                            "$ref": "../core/reference/measurement.json"
+                        },
+                        {
+                            "$ref": "../core/reference/process.json"
+                        }
+                    ]
                 }
             },
             "required": [
                 "type",
                 "info"
-            ]
+            ],
+            "$comment": "type is a free string today (\"exabyte\" in existing records); making source a discriminated union on it is a separate migration with its own ticket."
         },
         "exabyteId": {
             "description": "Id of the corresponding item in the entity bank that this property is obtained for",
@@ -205,4 +225,3 @@
         "exabyteId"
     ]
 }
-

@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     det = "det"
 
 
-class SlugifiedEntryOrSlug38(Enum):
+class SlugifiedEntryOrSlug88(Enum):
     st = "st"
 
 
@@ -34,7 +34,7 @@ class DeterministicModelCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug38]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug88]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

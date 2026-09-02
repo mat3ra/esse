@@ -1,0 +1,77 @@
+{
+    "$id": "sample/sample-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample properties schema",
+    "description": "Domain-specific fields of a sample entity, mirroring material/material_properties: formula, external and src are kept as they are on a material; basis and lattice are replaced by an optional reference to the nominal material; form, layers, library, position, _parent, composition and identifiers describe the physical specimen.",
+    "type": "object",
+    "properties": {
+        "formula": {
+            "description": "Nominal reduced chemical formula of the sample, or of its top layer for a stack, e.g. Al0.7Sc0.3N",
+            "type": "string"
+        },
+        "form": {
+            "description": "Physical form of the specimen.",
+            "type": "string",
+            "enum": [
+                "bulk",
+                "thin_film",
+                "multilayer",
+                "powder",
+                "wafer",
+                "library",
+                "piece",
+                "device",
+                "liquid",
+                "other"
+            ]
+        },
+        "composition": {
+            "description": "Measured or nominal elemental fractions, reusing the elemental ratio property so a composition from XRF and one from a calculation have the same shape.",
+            "type": "array",
+            "items": {
+                "$ref": "../properties_directory/structural/elemental_ratio.json"
+            }
+        },
+        "_material": {
+            "description": "Subset of the full information about the nominal (idealized) material structure of this sample.",
+            "$ref": "../system/_material.json"
+        },
+        "_parent": {
+            "description": "Subset of the full information about the sample this one was cut, diced or selected from, e.g. the library a position belongs to.",
+            "$ref": "../system/_sample.json"
+        },
+        "position": {
+            "description": "Location of this sample on its parent, e.g. which position of a combinatorial library it is.",
+            "$ref": "position.json"
+        },
+        "identifiers": {
+            "description": "Identifiers this sample carries in other systems, e.g. an HTEM sample id or a lab-system run number.",
+            "type": "array",
+            "items": {
+                "$ref": "../core/reusable/identifier.json"
+            }
+        },
+        "layers": {
+            "description": "Layer stack, ordered from the substrate upward.",
+            "type": "array",
+            "items": {
+                "$ref": "layer.json"
+            }
+        },
+        "library": {
+            "description": "Combinatorial library definition, present when form is library.",
+            "$ref": "library.json"
+        },
+        "external": {
+            "description": "Record of this sample in a third-party database, e.g. HTEM.",
+            "$ref": "../system/database_source.json"
+        },
+        "src": {
+            "description": "File information if the sample record was imported from a file such as a sample sheet.",
+            "$ref": "../system/file_source.json"
+        }
+    },
+    "required": [
+        "form"
+    ]
+}

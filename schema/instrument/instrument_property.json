@@ -1,0 +1,13 @@
+{
+    "$id": "instrument/instrument-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Instrument Property Schema",
+    "description": "Behaviour of a record that was produced on an instrument, mirroring job/compute_property. Defined once so a measurement and a process stage say 'has an instrument' the same way. Not required, because records imported from an external database may not name the instrument.",
+    "type": "object",
+    "properties": {
+        "instrument": {
+            "description": "Instrument the record was produced on.",
+            "$ref": "../instrument.json"
+        }
+    }
+}

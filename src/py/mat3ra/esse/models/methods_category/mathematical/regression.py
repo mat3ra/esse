@@ -26,7 +26,7 @@ class SlugifiedEntryOrSlug(Enum):
     kernel_ridge = "kernel_ridge"
 
 
-class SlugifiedEntryOrSlug236(Enum):
+class SlugifiedEntryOrSlug362(Enum):
     least_squares = "least_squares"
     ridge = "ridge"
 
@@ -36,7 +36,7 @@ class LinearMethodsCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug236]] = Field(None, title="slugified entry or slug")
+    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug362]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

@@ -25,7 +25,7 @@ class SlugifiedEntryOrSlug(Enum):
     fd = "fd"
 
 
-class SlugifiedEntryOrSlug73(Enum):
+class SlugifiedEntryOrSlug124(Enum):
     diff = "diff"
 
 
@@ -34,7 +34,7 @@ class FiniteDifferenceMethodCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug73]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug124]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

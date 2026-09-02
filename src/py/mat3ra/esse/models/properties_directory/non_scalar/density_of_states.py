@@ -40,16 +40,16 @@ class Label7(Enum):
     density_of_states = "density of states"
 
 
-class Units187(Enum):
+class Units211(Enum):
     states_unitcell = "states/unitcell"
 
 
-class AxisSchema10(BaseModel):
+class AxisSchema16(BaseModel):
     label: Label7
     """
     label of an axis object
     """
-    units: Optional[Units187] = None
+    units: Optional[Units211] = None
     """
     units for an axis
     """
@@ -85,7 +85,7 @@ class LegendItem(BaseModel):
 
 class DensityOfStatesPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema10 = Field(..., title="axis schema")
+    yAxis: AxisSchema16 = Field(..., title="axis schema")
     name: Name
     legend: List[LegendItem]
     xDataArray: List[Union[float, List[float]]]

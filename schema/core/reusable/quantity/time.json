@@ -1,0 +1,21 @@
+{
+    "$id": "core/reusable/quantity/time",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "time quantity schema",
+    "description": "A scalar with time units, e.g. a process step duration. Follows the core/reusable/energy pattern (a scalar plus a units enum) without requiring a property name, so it can be embedded as a field of any schema.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "units": {
+            "$ref": "../../../definitions/units.json#/time"
+        }
+    },
+    "required": [
+        "value",
+        "units"
+    ]
+}
