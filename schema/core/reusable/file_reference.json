@@ -1,0 +1,86 @@
+{
+    "$id": "core/reusable/file-reference",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "file reference schema",
+    "description": "A file kept outside the record: its metadata, the vendor format it is written in, a checksum and where it lives. Unlike system/file_source, which requires the file content as text, this references binary instrument output (an Igor binary wave, a Nanonis scan) without embedding it.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "file_metadata.json"
+        }
+    ],
+    "properties": {
+        "format": {
+            "description": "Vendor or interchange format the file is written in.",
+            "type": "string",
+            "enum": [
+                "asylum_ibw",
+                "nanonis_sxm",
+                "nanonis_dat",
+                "gwyddion_gwy",
+                "bruker_nanoscope",
+                "nexus_hdf5",
+                "usid_hdf5",
+                "hdf5",
+                "npy",
+                "csv",
+                "tsv",
+                "xlsx",
+                "tiff",
+                "png",
+                "json",
+                "txt",
+                "other"
+            ]
+        },
+        "size": {
+            "description": "Size of the file in bytes.",
+            "type": "integer",
+            "minimum": 0
+        },
+        "checksum": {
+            "description": "Content hash, so a referenced file can be identified after it moves.",
+            "type": "object",
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "enum": [
+                        "md5",
+                        "sha1",
+                        "sha256"
+                    ]
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "algorithm",
+                "value"
+            ]
+        },
+        "url": {
+            "description": "Location the file can be retrieved from.",
+            "type": "string"
+        },
+        "objectData": {
+            "description": "Object storage location, for files held in a bucket.",
+            "$ref": "object_storage_container_data.json"
+        },
+        "role": {
+            "description": "What the file is to the record that references it.",
+            "type": "string",
+            "enum": [
+                "raw",
+                "processed",
+                "log",
+                "image",
+                "metadata",
+                "other"
+            ]
+        }
+    },
+    "required": [
+        "basename"
+    ]
+}

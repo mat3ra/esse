@@ -1,0 +1,72 @@
+{
+    "$id": "process/base",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "base process schema",
+    "description": "Mirror of workflow/base: properties (the names of what the run yields) carries over; units become steps grouped into stages; the application a workflow names becomes the instrument each stage runs on; the samples consumed and produced are what a physical process adds.",
+    "type": "object",
+    "allOf": [
+        {
+            "description": "status, timing, operators and project",
+            "$ref": "../system/activity.json"
+        }
+    ],
+    "properties": {
+        "categories": {
+            "description": "Technique this process applies. A measurement protocol is a process with characterization categories, which is why both branches are allowed here.",
+            "oneOf": [
+                {
+                    "$ref": "../techniques_category/experimental/synthesis.json"
+                },
+                {
+                    "$ref": "../techniques_category/experimental/characterization.json"
+                }
+            ]
+        },
+        "properties": {
+            "description": "Array of characteristic properties produced by this process, by name, e.g. film_thickness",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "stages": {
+            "description": "Ordered stages, the analogue of workflow.subworkflows. A stage is the level that binds a technique and an instrument, because a run can move between chambers.",
+            "type": "array",
+            "items": {
+                "$ref": "stage.json"
+            }
+        },
+        "_inputSamples": {
+            "description": "Subsets of the full information about the samples consumed, e.g. the substrates loaded into the chamber.",
+            "type": "array",
+            "items": {
+                "$ref": "../system/_sample.json"
+            }
+        },
+        "_outputSamples": {
+            "description": "Subsets of the full information about the samples produced or modified by the run.",
+            "type": "array",
+            "items": {
+                "$ref": "../system/_sample.json"
+            }
+        },
+        "identifiers": {
+            "description": "Identifiers this run carries in other systems, e.g. a lab-system run number.",
+            "type": "array",
+            "items": {
+                "$ref": "../core/reusable/identifier.json"
+            }
+        },
+        "logFiles": {
+            "description": "Tool logs this record was derived from.",
+            "type": "array",
+            "items": {
+                "$ref": "../core/reusable/file_reference.json"
+            }
+        }
+    },
+    "required": [
+        "categories",
+        "stages"
+    ]
+}

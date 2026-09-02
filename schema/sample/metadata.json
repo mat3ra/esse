@@ -1,0 +1,14 @@
+{
+    "$id": "sample/metadata",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample metadata schema",
+    "description": "Open metadata bag for a sample, mirroring material/metadata. Deliberately unconstrained so a laboratory can record what its workflow needs without a schema change.",
+    "type": "object",
+    "properties": {
+        "metadata": {
+            "type": "object",
+            "default": {},
+            "additionalProperties": true
+        }
+    }
+}

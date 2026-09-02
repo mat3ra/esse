@@ -1,0 +1,23 @@
+{
+    "$id": "techniques-category/experimental/characterization",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "characterization technique category schema",
+    "description": "Techniques that measure a sample without intending to change it: microscopy, spectroscopy, diffraction, electrical and optical.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../experimental.json"
+        }
+    ],
+    "properties": {
+        "tier2": {
+            "$ref": "../enum_options.json#/characterization"
+        },
+        "tier3": {
+            "$ref": "../enum_options.json#/characterizationTier3"
+        },
+        "type": {
+            "$ref": "../enum_options.json#/characterizationTypes"
+        }
+    }
+}

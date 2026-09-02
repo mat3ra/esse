@@ -1,0 +1,30 @@
+{
+    "$id": "properties-directory/scalar/film-thickness",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Film thickness property schema",
+    "description": "Physical thickness of a deposited film, as measured. Distinct from the slab thickness in material metadata, which counts atomic layers.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "film_thickness"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/length"
+        },
+        "layerIndex": {
+            "description": "Index of the layer in the sample's stack this thickness refers to.",
+            "type": "integer"
+        }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
+}

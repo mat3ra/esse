@@ -1,0 +1,188 @@
+{
+    "_id": "mPfmImage0004",
+    "name": "PFM scan of AlScN library 6705 position 17, 2 um",
+    "isDefault": false,
+    "status": "finished",
+    "startTime": "2026-03-13T18:05:58Z",
+    "endTime": "2026-03-13T18:13:24Z",
+    "operators": [
+        {
+            "first": "Boris",
+            "last": "Slautin",
+            "affiliation": "University of Tennessee, Knoxville"
+        }
+    ],
+    "categories": {
+        "tier1": "experimental",
+        "tier2": "characterization",
+        "tier3": "microscopy",
+        "type": "scanning_probe_microscopy",
+        "subtype": "piezoresponse_force_microscopy"
+    },
+    "_sample": {
+        "_id": "sAlScN6705p17",
+        "cls": "Sample",
+        "slug": "alscn-library-6705-position-17"
+    },
+    "samplePosition": {
+        "index": 17,
+        "coordinate": [
+            25.4,
+            19.15
+        ],
+        "units": "mm",
+        "coordinateSystem": "library_grid"
+    },
+    "instrument": {
+        "_id": "iJupiter01",
+        "name": "Jupiter scanning probe microscope",
+        "shortName": "jupiter",
+        "vendor": "Asylum Research",
+        "model": "Jupiter",
+        "firmware": "19.34.88"
+    },
+    "environment": {
+        "temperature": {
+            "value": 295,
+            "units": "K"
+        },
+        "atmosphere": "ambient",
+        "humidity": {
+            "value": 38,
+            "units": "percent"
+        }
+    },
+    "parameters": {
+        "mode": "dual_ac_resonance_tracking",
+        "scanRange": {
+            "x": {
+                "value": 2,
+                "units": "um"
+            },
+            "y": {
+                "value": 2,
+                "units": "um"
+            }
+        },
+        "scanOffset": {
+            "x": {
+                "value": -1.476,
+                "units": "um"
+            },
+            "y": {
+                "value": 0.8707,
+                "units": "um"
+            }
+        },
+        "scanAngle": {
+            "value": 90,
+            "units": "degree"
+        },
+        "scanPoints": {
+            "x": 256,
+            "y": 256
+        },
+        "scanRate": {
+            "value": 2.0032,
+            "units": "Hz"
+        },
+        "scanDirection": "down",
+        "setpoint": {
+            "value": 0.8,
+            "units": "V"
+        },
+        "driveAmplitude": {
+            "value": 0.5,
+            "units": "V"
+        },
+        "driveFrequency": {
+            "value": 372.177,
+            "units": "kHz"
+        },
+        "probe": {
+            "kind": "cantilever",
+            "name": "Multi75-EG",
+            "parameters": {
+                "springConstant": {
+                    "value": 2.1868,
+                    "units": "N/m"
+                }
+            }
+        }
+    },
+    "data": [
+        {
+            "name": "height",
+            "direction": "backward",
+            "description": "Topography, from the HeightRetrace layer of the source file",
+            "data": {
+                "shape": [
+                    256,
+                    256
+                ],
+                "axes": [
+                    {
+                        "name": "y",
+                        "start": 0,
+                        "step": 0.0078125
+                    },
+                    {
+                        "name": "x",
+                        "start": 0,
+                        "step": 0.0078125
+                    }
+                ],
+                "units": "um",
+                "dataType": "float32",
+                "file": {
+                    "basename": "PFM_DART_raw.ibw",
+                    "format": "asylum_ibw",
+                    "size": 1688293,
+                    "role": "raw"
+                },
+                "datasetPath": "HeightRetrace"
+            }
+        },
+        {
+            "name": "piezoresponsePhase",
+            "direction": "backward",
+            "data": {
+                "shape": [
+                    256,
+                    256
+                ],
+                "axes": [
+                    {
+                        "name": "y",
+                        "start": 0,
+                        "step": 0.0078125
+                    },
+                    {
+                        "name": "x",
+                        "start": 0,
+                        "step": 0.0078125
+                    }
+                ],
+                "units": "degree",
+                "dataType": "float32",
+                "file": {
+                    "basename": "PFM_DART_raw.ibw",
+                    "format": "asylum_ibw",
+                    "role": "raw"
+                },
+                "datasetPath": "Phase1Retrace"
+            }
+        }
+    ],
+    "rawFiles": [
+        {
+            "basename": "PFM_DART_raw.ibw",
+            "format": "asylum_ibw",
+            "size": 1688293,
+            "role": "raw"
+        }
+    ],
+    "metadata": {
+        "imagingMode": "PFM Mode"
+    }
+}

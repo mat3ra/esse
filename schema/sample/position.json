@@ -1,0 +1,47 @@
+{
+    "$id": "sample/position",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample position schema",
+    "description": "A location on a sample. Together with the identity of the sample it is the join key that ties a per-position measurement on a combinatorial library to the point it was taken at.",
+    "type": "object",
+    "properties": {
+        "index": {
+            "description": "Position number within the parent, e.g. 1 to 44 on an HTEM library.",
+            "type": "integer",
+            "minimum": 0
+        },
+        "label": {
+            "description": "Human-readable label for the position, e.g. a sub-sample identifier such as R12.",
+            "type": "string"
+        },
+        "row": {
+            "type": "integer"
+        },
+        "column": {
+            "type": "integer"
+        },
+        "coordinate": {
+            "description": "In-plane coordinate of the position, reusing the abstract 2D coordinate.",
+            "$ref": "../core/abstract/coordinate_2d.json"
+        },
+        "units": {
+            "$ref": "../definitions/units.json#/length"
+        },
+        "coordinateSystem": {
+            "description": "Origin and orientation the coordinate is given in.",
+            "type": "string",
+            "enum": [
+                "wafer_center",
+                "wafer_flat",
+                "library_grid",
+                "stage",
+                "custom"
+            ],
+            "default": "wafer_center"
+        }
+    },
+    "required": [
+        "coordinate",
+        "units"
+    ]
+}

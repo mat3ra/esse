@@ -75,7 +75,9 @@
             "Ry/a.u.",
             "newton",
             "kg*m/s^2",
-            "eV/a.u."
+            "eV/a.u.",
+            "nN",
+            "pN"
         ]
     },
     "volume": {
@@ -98,13 +100,22 @@
         "enum": [
             "cm-1",
             "THz",
-            "meV"
+            "meV",
+            "Hz",
+            "kHz",
+            "MHz",
+            "GHz"
         ]
     },
     "pressure": {
         "enum": [
             "kbar",
-            "pa"
+            "pa",
+            "Torr",
+            "mTorr",
+            "mbar",
+            "bar",
+            "atm"
         ]
     },
     "phononDOS": {
@@ -135,6 +146,135 @@
             "km/mol",
             "m/mol",
             "a.u."
+        ]
+    },
+    "temperature": {
+        "enum": [
+            "K",
+            "degC"
+        ],
+        "default": "K"
+    },
+    "time": {
+        "enum": [
+            "s",
+            "ms",
+            "us",
+            "ns",
+            "min",
+            "h"
+        ],
+        "default": "s"
+    },
+    "voltage": {
+        "enum": [
+            "V",
+            "mV",
+            "uV",
+            "kV"
+        ]
+    },
+    "current": {
+        "enum": [
+            "A",
+            "mA",
+            "uA",
+            "nA",
+            "pA"
+        ]
+    },
+    "current_density": {
+        "enum": [
+            "A/cm^2",
+            "mA/cm^2",
+            "uA/cm^2",
+            "nA/cm^2",
+            "A/m^2"
+        ]
+    },
+    "power": {
+        "enum": [
+            "W",
+            "mW",
+            "kW"
+        ]
+    },
+    "flow_rate": {
+        "enum": [
+            "sccm",
+            "slm"
+        ]
+    },
+    "deposition_rate": {
+        "enum": [
+            "nm/s",
+            "angstrom/s",
+            "nm/min",
+            "angstrom/pulse",
+            "nm/cycle",
+            "angstrom/cycle"
+        ]
+    },
+    "fluence": {
+        "enum": [
+            "J/cm^2",
+            "mJ/cm^2"
+        ]
+    },
+    "spring_constant": {
+        "enum": [
+            "N/m"
+        ]
+    },
+    "resistivity": {
+        "enum": [
+            "ohm*m",
+            "ohm*cm"
+        ]
+    },
+    "sheet_resistance": {
+        "enum": [
+            "ohm/sq"
+        ]
+    },
+    "conductivity": {
+        "enum": [
+            "S/m",
+            "S/cm"
+        ]
+    },
+    "electric_field": {
+        "enum": [
+            "V/m",
+            "V/cm",
+            "kV/cm",
+            "MV/cm",
+            "V/nm"
+        ]
+    },
+    "polarization": {
+        "enum": [
+            "uC/cm^2",
+            "C/m^2"
+        ]
+    },
+    "piezoelectric_coefficient": {
+        "enum": [
+            "pm/V",
+            "pC/N"
+        ]
+    },
+    "rotation_rate": {
+        "enum": [
+            "rpm"
+        ]
+    },
+    "dimensionless": {
+        "enum": [
+            "unitless",
+            "percent",
+            "ppm",
+            "fraction"
         ]
     }
 }

@@ -1,0 +1,38 @@
+{
+    "$id": "measurement/data/channel",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement data channel schema",
+    "description": "One channel of acquired data. An array for rasters and grids, a 2D plot for curves and spectra. The two branches require different fields, so the union is unambiguous.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Channel name, e.g. height, deflection, amplitude, phase, current, bias, piezoresponsePhase.",
+            "type": "string"
+        },
+        "direction": {
+            "description": "Scan direction the channel was recorded in, where forward and backward traces are kept separately.",
+            "type": "string",
+            "enum": [
+                "forward",
+                "backward"
+            ]
+        },
+        "description": {
+            "type": "string"
+        },
+        "data": {
+            "oneOf": [
+                {
+                    "$ref": "../../core/reusable/array_data.json"
+                },
+                {
+                    "$ref": "../../core/abstract/2d_plot.json"
+                }
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "data"
+    ]
+}

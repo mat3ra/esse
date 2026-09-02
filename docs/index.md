@@ -48,7 +48,9 @@ Then, as you need them:
    and what the two runtimes do and do not guarantee.
 8. **[Consuming ESSE](consuming-esse.html)** — using the schemas from Python and JavaScript.
 9. **[Contributing a schema](contributing-a-schema.html)** — a worked example, end to end.
-10. **[Glossary](glossary.html)** — the vocabulary, in one place.
+10. **[Experimental data](experimental-data.html)** — the four experimental entities, and
+    why each mirrors a computational one.
+11. **[Glossary](glossary.html)** — the vocabulary, in one place.
 
 ## Conventions in these pages
 

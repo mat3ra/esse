@@ -1,0 +1,9 @@
+{
+    "id": "argon",
+    "name": "argon",
+    "formula": "Ar",
+    "purity": {
+        "value": 99.999,
+        "units": "percent"
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "_id": "mPfmSpectroscopy0005",
+    "name": "PFM switching spectroscopy, PLZT film",
+    "status": "finished",
+    "startTime": "2026-07-07T17:36:48Z",
+    "categories": {
+        "tier1": "experimental",
+        "tier2": "characterization",
+        "tier3": "microscopy",
+        "type": "scanning_probe_microscopy",
+        "subtype": "piezoresponse_force_microscopy"
+    },
+    "_sample": {
+        "_id": "sPlzt0005",
+        "cls": "Sample",
+        "slug": "plzt-sol-gel-film"
+    },
+    "parameters": {
+        "mode": "dual_ac_resonance_tracking",
+        "scanRange": {
+            "x": {
+                "value": 3.75,
+                "units": "um"
+            },
+            "y": {
+                "value": 3.75,
+                "units": "um"
+            }
+        },
+        "driveAmplitude": {
+            "value": 0.5,
+            "units": "V"
+        },
+        "driveFrequency": {
+            "value": 372.7,
+            "units": "kHz"
+        },
+        "biasWaveform": {
+            "type": "triangle_square",
+            "amplitude": {
+                "value": 9,
+                "units": "V"
+            },
+            "frequency": {
+                "value": 0.9058,
+                "units": "Hz"
+            },
+            "cycles": 2,
+            "pointsPerSecond": 2000,
+            "offField": true
+        }
+    },
+    "rawFiles": [
+        {
+            "basename": "PLZT_0005.ibw",
+            "format": "asylum_ibw",
+            "size": 226514,
+            "role": "raw"
+        }
+    ]
+}

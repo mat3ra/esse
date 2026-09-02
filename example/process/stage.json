@@ -1,0 +1,57 @@
+{
+    "name": "Rapid thermal anneal",
+    "index": 2,
+    "categories": {
+        "tier1": "experimental",
+        "tier2": "synthesis",
+        "tier3": "post_processing",
+        "type": "annealing"
+    },
+    "instrument": {
+        "_id": "iRta1",
+        "name": "Rapid thermal annealer 1",
+        "shortName": "rta1",
+        "vendor": "National Laboratory of the Rockies",
+        "model": "RTA1"
+    },
+    "sources": [
+        {
+            "kind": "gas",
+            "id": "nitrogen",
+            "formula": "N2",
+            "role": "background",
+            "flowRate": {
+                "value": 100,
+                "units": "sccm"
+            }
+        }
+    ],
+    "steps": [
+        {
+            "name": "Ramp",
+            "flowchartId": "ramp",
+            "head": true,
+            "next": "hold",
+            "type": "ramp",
+            "duration": {
+                "value": 1,
+                "units": "min"
+            }
+        },
+        {
+            "name": "Hold at temperature",
+            "flowchartId": "hold",
+            "type": "hold",
+            "duration": {
+                "value": 3,
+                "units": "min"
+            },
+            "setpoints": {
+                "temperature": {
+                    "value": 900,
+                    "units": "degC"
+                }
+            }
+        }
+    ]
+}

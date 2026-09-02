@@ -6,9 +6,14 @@ summary: The root entities, how they compose, and why there are four kinds of ma
 
 # Entity anatomy
 
-Eleven schemas sit at the top level of `schema/`. They are the nouns of the domain — the things a
+Fifteen schemas sit at the top level of `schema/`. They are the nouns of the domain — the things a
 user creates, names, owns and looks at — and everything else in the repository exists to define,
 categorize or support them.
+
+Eleven of them describe computational work. The other four — `sample`, `instrument`, `measurement`
+and `process` — describe experimental work, and each is built as the mirror of a computational one
+rather than as a separate vocabulary. [Experimental data](experimental-data.html) sets out the
+correspondence; the sections below cover the computational originals.
 
 ## Material
 

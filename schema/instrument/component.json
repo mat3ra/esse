@@ -1,0 +1,53 @@
+{
+    "$id": "instrument/component",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "instrument component schema",
+    "description": "A part of an instrument that is worth recording per result, such as the cantilever a scan was taken with or the target a film was sputtered from. Parameters are left open because what matters differs by kind: a cantilever has a spring constant, a laser has a wavelength.",
+    "type": "object",
+    "properties": {
+        "kind": {
+            "type": "string",
+            "enum": [
+                "probe",
+                "cantilever",
+                "scanner",
+                "laser",
+                "detector",
+                "lock_in_amplifier",
+                "controller",
+                "heater",
+                "cryostat",
+                "chamber",
+                "stage",
+                "evaporation_source",
+                "target_holder",
+                "gas_line",
+                "mass_flow_controller",
+                "pump",
+                "gauge",
+                "other"
+            ]
+        },
+        "name": {
+            "type": "string"
+        },
+        "vendor": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "serialNumber": {
+            "type": "string"
+        },
+        "parameters": {
+            "description": "Component-specific parameters, e.g. springConstant and resonanceFrequency for a cantilever.",
+            "type": "object",
+            "additionalProperties": true
+        }
+    },
+    "required": [
+        "kind",
+        "name"
+    ]
+}

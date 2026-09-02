@@ -1,0 +1,23 @@
+{
+    "$id": "techniques-category/experimental/synthesis",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "synthesis technique category schema",
+    "description": "Techniques that create or modify a sample: vapor deposition, solution processing, bulk growth and post-processing such as annealing.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../experimental.json"
+        }
+    ],
+    "properties": {
+        "tier2": {
+            "$ref": "../enum_options.json#/synthesis"
+        },
+        "tier3": {
+            "$ref": "../enum_options.json#/synthesisTier3"
+        },
+        "type": {
+            "$ref": "../enum_options.json#/synthesisTypes"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "name": "surface_roughness",
+    "statistic": "root_mean_square",
+    "value": 1.42,
+    "units": "nm"
+}

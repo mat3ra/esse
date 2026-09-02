@@ -1,0 +1,10 @@
+{
+    "kind": "gas",
+    "id": "nitrogen",
+    "formula": "N2",
+    "role": "reactive",
+    "flowRate": {
+        "value": 5,
+        "units": "sccm"
+    }
+}

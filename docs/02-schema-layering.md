@@ -72,10 +72,13 @@ platform behind.
 
 ### `entity` and `entity-component` — the nouns
 
-The eleven root schemas (`material`, `model`, `method`, `workflow`, `job`, `project`, `element`,
-`context-provider`, and the material variants) plus the components they are assembled from —
-`material/material_properties`, `workflow/unit/*`, `model/mixins/*`, `method/unit_method`, and so
-on. [Entity anatomy](entity-anatomy.html) covers these in detail.
+The fifteen root schemas — `material`, `model`, `method`, `workflow`, `job`, `project`, `element`,
+`context-provider` and the material variants on the computational side, `sample`, `instrument`,
+`measurement` and `process` on the experimental one — plus the components they are assembled from:
+`material/material_properties`, `workflow/unit/*`, `model/mixins/*`, `method/unit_method`,
+`sample/layer`, `process/step` and so on. [Entity anatomy](entity-anatomy.html) covers these in
+detail, and [Experimental data](experimental-data.html) covers how the two families mirror each
+other.
 
 ### `category`, `directory` and `application-parsing` — the catalogues
 

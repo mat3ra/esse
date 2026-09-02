@@ -1,0 +1,113 @@
+{
+    "$id": "process/step",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "process step schema",
+    "description": "One step of a stage, the analogue of a workflow unit. It composes the workflow unit sequencing mixin unchanged, so a process is walked with the same head, next and flowchartId mechanics as a workflow. repeat is the only place a cycle count lives: an atomic layer deposition of 200 cycles is one step with repeat 200, not a nested list.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../in_memory_entity/named.json"
+        },
+        {
+            "description": "workflow unit sequencing: head, next, flowchartId and status",
+            "$ref": "../workflow/unit/mixins/base.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "description": "What the step does.",
+            "type": "string",
+            "enum": [
+                "setup",
+                "pump_down",
+                "heat",
+                "ramp",
+                "hold",
+                "pre_sputter",
+                "deposition",
+                "pulse",
+                "purge",
+                "plasma",
+                "cycle",
+                "anneal",
+                "cool",
+                "vent",
+                "transfer",
+                "subsample",
+                "other"
+            ]
+        },
+        "duration": {
+            "$ref": "../core/reusable/quantity/time.json"
+        },
+        "repeat": {
+            "description": "Number of times this step is repeated, e.g. the number of atomic layer deposition cycles.",
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+        },
+        "setpoints": {
+            "description": "Values held or targeted during the step.",
+            "type": "object",
+            "properties": {
+                "temperature": {
+                    "$ref": "../core/reusable/quantity/temperature.json"
+                },
+                "pressure": {
+                    "$ref": "../core/reusable/quantity/pressure.json"
+                },
+                "sourceId": {
+                    "description": "Identifier of the source in the stage's sources list that this step draws on.",
+                    "type": "string"
+                },
+                "flowRate": {
+                    "description": "Gas flow rate held during the step.",
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number"
+                        },
+                        "units": {
+                            "$ref": "../definitions/units.json#/flow_rate"
+                        }
+                    }
+                },
+                "power": {
+                    "description": "Power applied during the step, e.g. to a plasma source.",
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number"
+                        },
+                        "units": {
+                            "$ref": "../definitions/units.json#/power"
+                        }
+                    }
+                },
+                "substrateRotation": {
+                    "description": "Substrate rotation rate held during the step.",
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number"
+                        },
+                        "units": {
+                            "$ref": "../definitions/units.json#/rotation_rate"
+                        }
+                    }
+                }
+            }
+        },
+        "logs": {
+            "description": "Quantities logged over time during the step, as plots against a time axis. A measured trace and its setpoint are two series on one plot.",
+            "type": "array",
+            "items": {
+                "$ref": "../core/abstract/2d_plot.json"
+            }
+        }
+    },
+    "required": [
+        "type",
+        "flowchartId"
+    ]
+}

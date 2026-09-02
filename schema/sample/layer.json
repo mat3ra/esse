@@ -1,0 +1,66 @@
+{
+    "$id": "sample/layer",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample layer schema",
+    "description": "One layer of a sample's stack. The role says what the layer is for, which is what distinguishes an electrode from the film under study when both are the same material.",
+    "type": "object",
+    "properties": {
+        "index": {
+            "description": "Order in the stack, 0 being the substrate and increasing upward.",
+            "type": "integer",
+            "minimum": 0
+        },
+        "role": {
+            "description": "What this layer does in the stack.",
+            "type": "string",
+            "enum": [
+                "substrate",
+                "buffer",
+                "seed",
+                "adhesion",
+                "bottom_electrode",
+                "film",
+                "top_electrode",
+                "capping",
+                "other"
+            ]
+        },
+        "name": {
+            "type": "string"
+        },
+        "formula": {
+            "description": "Chemical formula of the layer, e.g. AlScN",
+            "type": "string"
+        },
+        "_material": {
+            "description": "Subset of the full information about the material this layer is made of.",
+            "$ref": "../system/_material.json"
+        },
+        "thickness": {
+            "description": "Physical thickness of the layer, in length units. Note that material/metadata/slab_properties thickness counts atomic layers instead.",
+            "$ref": "../core/reusable/quantity/length.json"
+        },
+        "crystallinity": {
+            "type": "string",
+            "enum": [
+                "single_crystal",
+                "epitaxial",
+                "textured",
+                "polycrystalline",
+                "amorphous",
+                "unknown"
+            ]
+        },
+        "orientation": {
+            "description": "Out-of-plane orientation, e.g. (0001)",
+            "type": "string"
+        },
+        "_process": {
+            "description": "Subset of the full information about the process that produced this layer.",
+            "$ref": "../system/entity_reference.json"
+        }
+    },
+    "required": [
+        "role"
+    ]
+}

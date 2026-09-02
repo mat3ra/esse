@@ -1,0 +1,96 @@
+{
+    "categories": {
+        "tier1": "experimental",
+        "tier2": "synthesis",
+        "tier3": "vapor_deposition",
+        "type": "chemical_vapor_deposition",
+        "subtype": "atomic_layer_deposition"
+    },
+    "properties": [
+        "film_thickness"
+    ],
+    "status": "finished",
+    "stages": [
+        {
+            "name": "AlN plasma atomic layer deposition",
+            "index": 1,
+            "categories": {
+                "tier1": "experimental",
+                "tier2": "synthesis",
+                "tier3": "vapor_deposition",
+                "type": "chemical_vapor_deposition",
+                "subtype": "atomic_layer_deposition"
+            },
+            "sources": [
+                {
+                    "kind": "precursor",
+                    "id": "trimethylaluminium",
+                    "name": "trimethylaluminium",
+                    "formula": "Al(CH3)3",
+                    "delivery": "bubbler",
+                    "vesselTemperature": {
+                        "value": 20,
+                        "units": "degC"
+                    },
+                    "carrierGasId": "argon"
+                },
+                {
+                    "kind": "gas",
+                    "id": "ammonia",
+                    "formula": "NH3",
+                    "role": "plasma"
+                },
+                {
+                    "kind": "gas",
+                    "id": "argon",
+                    "formula": "Ar",
+                    "role": "carrier",
+                    "flowRate": {
+                        "value": 30,
+                        "units": "sccm"
+                    }
+                }
+            ],
+            "environment": {
+                "temperature": {
+                    "value": 300,
+                    "units": "degC"
+                },
+                "pressure": {
+                    "value": 0.15,
+                    "units": "Torr"
+                }
+            },
+            "steps": [
+                {
+                    "name": "Heat to deposition temperature",
+                    "flowchartId": "heat",
+                    "head": true,
+                    "next": "cycle",
+                    "type": "heat",
+                    "status": "finished",
+                    "setpoints": {
+                        "temperature": {
+                            "value": 300,
+                            "units": "degC"
+                        }
+                    }
+                },
+                {
+                    "name": "Deposition cycles",
+                    "flowchartId": "cycle",
+                    "next": "cool",
+                    "type": "cycle",
+                    "status": "finished",
+                    "repeat": 200
+                },
+                {
+                    "name": "Cool down",
+                    "flowchartId": "cool",
+                    "type": "cool",
+                    "status": "finished"
+                }
+            ]
+        }
+    ]
+}

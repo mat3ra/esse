@@ -1,0 +1,17 @@
+{
+    "$id": "techniques-category/experimental",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "experimental technique category schema",
+    "description": "Root of the experimental technique vocabulary: the mirror of models_category and methods_category, narrowing the same core/reusable/categories tiers. Techniques are named in full here; the CateCom tier ladder is reused so an experimental record is categorized exactly the way a model is.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../core/reusable/categories.json"
+        }
+    ],
+    "properties": {
+        "tier1": {
+            "$ref": "enum_options.json#/experimental"
+        }
+    }
+}

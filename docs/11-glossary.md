@@ -1,6 +1,6 @@
 ---
 title: Glossary
-order: 10
+order: 11
 summary: The vocabulary of the repository, with pointers to where each idea is explained.
 ---
 

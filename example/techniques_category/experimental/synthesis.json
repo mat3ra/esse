@@ -1,0 +1,7 @@
+{
+    "tier1": "experimental",
+    "tier2": "synthesis",
+    "tier3": "vapor_deposition",
+    "type": "chemical_vapor_deposition",
+    "subtype": "atomic_layer_deposition"
+}

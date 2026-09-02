@@ -1,0 +1,283 @@
+{
+    "_id": "pLmc1699",
+    "name": "LaMoN deposition and anneal, run 1699",
+    "description": "Three-stage combinatorial sputter run recorded by the National Laboratory of the Rockies lab system: an aluminium deposition, a lanthanum and molybdenum co-deposition with an in-situ anneal, and a second aluminium deposition.",
+    "status": "finished",
+    "startTime": "2022-11-14T00:00:00Z",
+    "operators": [
+        {
+            "first": "Rebecca",
+            "last": "Smaha",
+            "affiliation": "National Laboratory of the Rockies"
+        }
+    ],
+    "categories": {
+        "tier1": "experimental",
+        "tier2": "synthesis",
+        "tier3": "vapor_deposition",
+        "type": "physical_vapor_deposition",
+        "subtype": "sputtering"
+    },
+    "properties": [
+        "film_thickness"
+    ],
+    "identifiers": [
+        {
+            "scheme": "lmc",
+            "value": "1699"
+        }
+    ],
+    "_inputSamples": [
+        {
+            "_id": "sSubstratePSi",
+            "cls": "Sample",
+            "slug": "p-type-silicon-substrate"
+        }
+    ],
+    "stages": [
+        {
+            "name": "Aluminium deposition",
+            "index": 1,
+            "categories": {
+                "tier1": "experimental",
+                "tier2": "synthesis",
+                "tier3": "vapor_deposition",
+                "type": "physical_vapor_deposition",
+                "subtype": "sputtering"
+            },
+            "instrument": {
+                "_id": "iPdacCom5",
+                "name": "PDAC COM5 combinatorial sputtering chamber",
+                "shortName": "pdac_com5",
+                "vendor": "National Laboratory of the Rockies",
+                "model": "PDAC COM5"
+            },
+            "sources": [
+                {
+                    "kind": "target",
+                    "id": "aluminium",
+                    "formula": "Al",
+                    "position": "BC",
+                    "supply": "rf",
+                    "power": {
+                        "forward": {
+                            "value": 60,
+                            "units": "W"
+                        },
+                        "reflected": {
+                            "value": 0,
+                            "units": "W"
+                        }
+                    },
+                    "voltage": {
+                        "value": 245,
+                        "units": "V"
+                    }
+                },
+                {
+                    "kind": "gas",
+                    "id": "nitrogen",
+                    "formula": "N2",
+                    "role": "reactive",
+                    "flowRate": {
+                        "value": 5,
+                        "units": "sccm"
+                    }
+                },
+                {
+                    "kind": "gas",
+                    "id": "argon",
+                    "formula": "Ar",
+                    "role": "sputtering",
+                    "flowRate": {
+                        "value": 8,
+                        "units": "sccm"
+                    }
+                }
+            ],
+            "environment": {
+                "pressure": {
+                    "value": 0.004,
+                    "units": "Torr"
+                },
+                "atmosphere": "vacuum"
+            },
+            "notes": "Base pressure measured before deposition. Substrate: half a p-type Si(100) wafer with tungsten on the back. Rotation 60 rpm.",
+            "steps": [
+                {
+                    "name": "Pre-sputter",
+                    "flowchartId": "s1-presputter",
+                    "head": true,
+                    "next": "s1-deposition",
+                    "type": "pre_sputter",
+                    "status": "finished",
+                    "duration": {
+                        "value": 30,
+                        "units": "min"
+                    }
+                },
+                {
+                    "name": "Deposition",
+                    "flowchartId": "s1-deposition",
+                    "type": "deposition",
+                    "status": "finished",
+                    "duration": {
+                        "value": 30,
+                        "units": "min"
+                    },
+                    "setpoints": {
+                        "temperature": {
+                            "value": 20,
+                            "units": "degC"
+                        },
+                        "pressure": {
+                            "value": 0.004,
+                            "units": "Torr"
+                        },
+                        "substrateRotation": {
+                            "value": 60,
+                            "units": "rpm"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Lanthanum and molybdenum co-deposition with anneal",
+            "index": 2,
+            "categories": {
+                "tier1": "experimental",
+                "tier2": "synthesis",
+                "tier3": "vapor_deposition",
+                "type": "physical_vapor_deposition",
+                "subtype": "sputtering"
+            },
+            "instrument": {
+                "_id": "iPdacCom5",
+                "name": "PDAC COM5 combinatorial sputtering chamber",
+                "shortName": "pdac_com5",
+                "vendor": "National Laboratory of the Rockies",
+                "model": "PDAC COM5"
+            },
+            "sources": [
+                {
+                    "kind": "target",
+                    "id": "lanthanum",
+                    "formula": "La",
+                    "position": "L",
+                    "supply": "rf",
+                    "power": {
+                        "forward": {
+                            "value": 73,
+                            "units": "W"
+                        },
+                        "reflected": {
+                            "value": 1,
+                            "units": "W"
+                        }
+                    },
+                    "voltage": {
+                        "value": 207,
+                        "units": "V"
+                    }
+                },
+                {
+                    "kind": "target",
+                    "id": "molybdenum",
+                    "formula": "Mo",
+                    "position": "R",
+                    "supply": "rf",
+                    "power": {
+                        "forward": {
+                            "value": 54,
+                            "units": "W"
+                        },
+                        "reflected": {
+                            "value": 3,
+                            "units": "W"
+                        }
+                    },
+                    "voltage": {
+                        "value": 201,
+                        "units": "V"
+                    }
+                }
+            ],
+            "environment": {
+                "pressure": {
+                    "value": 0.0031,
+                    "units": "Torr"
+                },
+                "atmosphere": "vacuum"
+            },
+            "notes": "Post-deposition anneal 30 min in N2 with the cracker on, heater set point 850 C, read 747 C.",
+            "steps": [
+                {
+                    "name": "Deposition",
+                    "flowchartId": "s2-deposition",
+                    "head": true,
+                    "next": "s2-anneal",
+                    "type": "deposition",
+                    "status": "finished",
+                    "duration": {
+                        "value": 90,
+                        "units": "min"
+                    }
+                },
+                {
+                    "name": "In-situ anneal",
+                    "flowchartId": "s2-anneal",
+                    "type": "anneal",
+                    "status": "finished",
+                    "duration": {
+                        "value": 30,
+                        "units": "min"
+                    },
+                    "setpoints": {
+                        "temperature": {
+                            "value": 850,
+                            "units": "degC"
+                        },
+                        "sourceId": "nitrogen"
+                    },
+                    "logs": [
+                        {
+                            "xAxis": {
+                                "label": "time",
+                                "units": "min"
+                            },
+                            "yAxis": {
+                                "label": "temperature",
+                                "units": "degC"
+                            },
+                            "xDataArray": [
+                                0,
+                                15,
+                                30
+                            ],
+                            "yDataSeries": [
+                                [
+                                    742,
+                                    747,
+                                    747
+                                ],
+                                [
+                                    850,
+                                    850,
+                                    850
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "tags": [
+        "alphafilm",
+        "nlr"
+    ],
+    "metadata": {
+        "sourceFormat": "lmc-1.0"
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "$id": "system/activity",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "activity schema",
+    "description": "Behaviour of a record of something that was done: its status, when it started and ended, who ran it and which project it belongs to. Measurement and process both compose this, so the two cannot drift apart the way two hand-maintained status lists would.",
+    "type": "object",
+    "properties": {
+        "status": {
+            "description": "Lifecycle state. 'draft' marks a recipe or protocol that has not been executed.",
+            "type": "string",
+            "enum": [
+                "draft",
+                "planned",
+                "active",
+                "finished",
+                "error",
+                "cancelled"
+            ]
+        },
+        "startTime": {
+            "description": "When the activity started, as an ISO 8601 timestamp. A string rather than an epoch number so it stays readable without a converter, matching job.startTime.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "endTime": {
+            "description": "When the activity finished, as an ISO 8601 timestamp.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "operators": {
+            "description": "People who ran the activity.",
+            "type": "array",
+            "items": {
+                "$ref": "../core/reference/literature/name.json"
+            }
+        },
+        "_project": {
+            "description": "Subset of the full information about the project that this activity belongs to.",
+            "$ref": "entity_reference.json"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "$id": "core/reusable/quantity/frequency",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "frequency quantity schema",
+    "description": "A scalar with frequency units, e.g. a cantilever drive frequency. Follows the core/reusable/energy pattern (a scalar plus a units enum) without requiring a property name, so it can be embedded as a field of any schema.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "units": {
+            "$ref": "../../../definitions/units.json#/frequency"
+        }
+    },
+    "required": [
+        "value",
+        "units"
+    ]
+}

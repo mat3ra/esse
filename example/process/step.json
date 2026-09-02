@@ -1,0 +1,14 @@
+{
+    "name": "Trimethylaluminium pulse",
+    "flowchartId": "half-cycle-1",
+    "head": true,
+    "next": "half-cycle-2",
+    "type": "pulse",
+    "duration": {
+        "value": 0.06,
+        "units": "s"
+    },
+    "setpoints": {
+        "sourceId": "trimethylaluminium"
+    }
+}

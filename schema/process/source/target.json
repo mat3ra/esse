@@ -1,0 +1,73 @@
+{
+    "$id": "process/source/target",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sputtering target source schema",
+    "description": "A sputtering or ablation target: a solid source driven by a power supply. Forward and reflected power are recorded separately because their difference is what actually reaches the target.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "base.json"
+        }
+    ],
+    "properties": {
+        "kind": {
+            "enum": [
+                "target"
+            ]
+        },
+        "position": {
+            "description": "Gun position in the chamber, e.g. TL or BC in a multi-gun system.",
+            "type": "string"
+        },
+        "supply": {
+            "description": "Type of power supply driving the target.",
+            "type": "string",
+            "enum": [
+                "rf",
+                "dc",
+                "pulsed_dc",
+                "hipims"
+            ]
+        },
+        "power": {
+            "description": "Forward and reflected power at the target.",
+            "type": "object",
+            "properties": {
+                "forward": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number"
+                        },
+                        "units": {
+                            "$ref": "../../definitions/units.json#/power"
+                        }
+                    }
+                },
+                "reflected": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number"
+                        },
+                        "units": {
+                            "$ref": "../../definitions/units.json#/power"
+                        }
+                    }
+                }
+            }
+        },
+        "voltage": {
+            "description": "Measured target voltage.",
+            "$ref": "../../core/reusable/quantity/voltage.json"
+        },
+        "gunAngle": {
+            "description": "Tilt of the gun toward the substrate, which sets the composition gradient in a combinatorial deposition.",
+            "type": "number"
+        }
+    },
+    "required": [
+        "kind",
+        "id"
+    ]
+}

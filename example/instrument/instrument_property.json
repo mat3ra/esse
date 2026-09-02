@@ -1,0 +1,9 @@
+{
+    "instrument": {
+        "_id": "iJupiter01",
+        "name": "Jupiter scanning probe microscope",
+        "vendor": "Asylum Research",
+        "model": "Jupiter",
+        "firmware": "19.34.88"
+    }
+}

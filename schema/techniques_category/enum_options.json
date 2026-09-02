@@ -1,0 +1,81 @@
+{
+    "$id": "techniques-category/enum-options",
+    "experimental": {
+        "enum": [
+            "experimental"
+        ]
+    },
+    "characterization": {
+        "enum": [
+            "characterization"
+        ]
+    },
+    "synthesis": {
+        "enum": [
+            "synthesis"
+        ]
+    },
+    "characterizationTier3": {
+        "enum": [
+            "microscopy",
+            "spectroscopy",
+            "diffraction",
+            "electrical",
+            "optical"
+        ]
+    },
+    "synthesisTier3": {
+        "enum": [
+            "vapor_deposition",
+            "solution_processing",
+            "bulk_growth",
+            "post_processing"
+        ]
+    },
+    "characterizationTypes": {
+        "enum": [
+            "scanning_probe_microscopy",
+            "electron_microscopy",
+            "x_ray",
+            "transport",
+            "dielectric",
+            "ultraviolet_visible_near_infrared"
+        ]
+    },
+    "scanningProbeMicroscopySubtypes": {
+        "enum": [
+            "atomic_force_microscopy",
+            "scanning_tunneling_microscopy",
+            "scanning_tunneling_spectroscopy",
+            "piezoresponse_force_microscopy",
+            "kelvin_probe_force_microscopy",
+            "conductive_atomic_force_microscopy",
+            "magnetic_force_microscopy"
+        ]
+    },
+    "synthesisTypes": {
+        "enum": [
+            "physical_vapor_deposition",
+            "chemical_vapor_deposition",
+            "annealing"
+        ]
+    },
+    "physicalVaporDepositionSubtypes": {
+        "enum": [
+            "pulsed_laser_deposition",
+            "sputtering",
+            "molecular_beam_epitaxy",
+            "thermal_evaporation",
+            "electron_beam_evaporation"
+        ]
+    },
+    "chemicalVaporDepositionSubtypes": {
+        "enum": [
+            "atomic_layer_deposition",
+            "plasma_enhanced_atomic_layer_deposition",
+            "thermal_chemical_vapor_deposition",
+            "metalorganic_chemical_vapor_deposition",
+            "plasma_enhanced_chemical_vapor_deposition"
+        ]
+    }
+}

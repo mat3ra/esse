@@ -1,0 +1,21 @@
+{
+    "kind": "target",
+    "id": "molybdenum",
+    "formula": "Mo",
+    "position": "R",
+    "supply": "rf",
+    "power": {
+        "forward": {
+            "value": 54,
+            "units": "W"
+        },
+        "reflected": {
+            "value": 3,
+            "units": "W"
+        }
+    },
+    "voltage": {
+        "value": 201,
+        "units": "V"
+    }
+}

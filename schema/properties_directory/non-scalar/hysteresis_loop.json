@@ -1,0 +1,41 @@
+{
+    "$id": "properties-directory/non-scalar/hysteresis-loop",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hysteresis loop property schema",
+    "description": "A hysteresis loop measured against a swept field or bias, e.g. the piezoresponse phase against tip bias that a switching-spectroscopy measurement produces. Built on the same 2D plot as a density of states, with the legend naming each series: on-field and off-field branches are two series of one loop.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/abstract/2d_plot.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "hysteresis_loop"
+            ]
+        },
+        "loopType": {
+            "description": "Which pair of quantities the loop relates.",
+            "type": "string",
+            "enum": [
+                "polarization_electric_field",
+                "piezoresponse_bias",
+                "amplitude_bias",
+                "phase_bias",
+                "current_voltage"
+            ]
+        },
+        "legend": {
+            "description": "Label for each series in yDataSeries, e.g. on_field and off_field.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "loopType"
+    ]
+}

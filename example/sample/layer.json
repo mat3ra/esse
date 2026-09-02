@@ -1,0 +1,12 @@
+{
+    "index": 1,
+    "role": "film",
+    "name": "AlScN gradient film",
+    "formula": "AlScN",
+    "thickness": {
+        "value": 140,
+        "units": "nm"
+    },
+    "crystallinity": "textured",
+    "orientation": "(0001)"
+}

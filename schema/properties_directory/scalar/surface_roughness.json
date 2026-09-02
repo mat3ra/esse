@@ -1,0 +1,35 @@
+{
+    "$id": "properties-directory/scalar/surface-roughness",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Surface roughness property schema",
+    "description": "Roughness of a measured surface. The statistic is part of the value: a root-mean-square roughness and a peak-to-valley height of the same scan are different numbers.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "surface_roughness"
+            ]
+        },
+        "statistic": {
+            "description": "Estimator the value was computed with.",
+            "type": "string",
+            "enum": [
+                "root_mean_square",
+                "arithmetic_average",
+                "peak_to_valley"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/length"
+        }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
+}
