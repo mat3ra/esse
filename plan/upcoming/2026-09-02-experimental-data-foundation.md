@@ -16,9 +16,11 @@ already a valid `property/holder`.
 
 ## 1. Deliverables
 
-**Critical constraint (review, change request l):** before starting, confirm how the pre-commit
-`datamodel-codegen` output in `dist/py` is synced into the committed `src/py/mat3ra/esse/models/`
-tree. A foundation PR that cannot regenerate models correctly blocks every later phase.
+**Resolved (review, change request l):** the pre-commit hook writes `datamodel-codegen` output to
+the gitignored `dist/py`; the committed `src/py/mat3ra/esse/models/` tree is that output copied
+verbatim, generated with the `datamodel-code-generator==0.28.5` that `pyproject.toml` pins. Adding
+schemas renumbers the generator's de-duplicated class names in unrelated modules, so a model commit
+carries mechanical churn; the PR description states what is substantive and what is renumbering.
 
 New schemas (each with a mirror example under `example/`, except `enum_options.json`):
 

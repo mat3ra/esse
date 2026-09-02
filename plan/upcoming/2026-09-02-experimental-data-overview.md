@@ -1,6 +1,8 @@
 # Experimental data support: sample, instrument, measurement, process (overview)
 
-> **Status:** upcoming — agreed direction, nothing built.
+> **Status:** upcoming — agreed direction; a minimal first implementation is in review as
+> [mat3ra/esse#428](https://github.com/mat3ra/esse/pull/428) (phases 0–3 collapsed into one PR),
+> with its parser round trip in [mat3ra/parsers#3](https://github.com/mat3ra/parsers/pull/3).
 > **Created:** 2026-09-02 · **Updated:** 2026-09-02
 > **Ticket:** *epic to be filed* (one child per phase document below).
 > **Driver:** [SOF-7988](https://mat3ra.atlassian.net/browse/SOF-7988) — prototype cross-org
@@ -111,8 +113,10 @@ Count estimates, to be recomputed from the lint and never pasted from here: toda
 
 ## 6. Risks and open questions
 
-1. **Blocker before Phase 0:** how `dist/py` codegen output is synced into
-   `src/py/mat3ra/esse/models/` (the pre-commit hook writes one, the repository commits the other).
+1. **Resolved (2026-09-02):** `dist/py` codegen output is copied verbatim over the committed
+   `src/py/mat3ra/esse/models/` tree, generated with the pinned `datamodel-code-generator==0.28.5`;
+   the committed tree is the generator's output and nothing else. Done in mat3ra/esse#428, whose
+   description separates substantive model changes from the generator's renumbering churn.
 2. Inline arrays: `src/py/mat3ra/esse/data/examples.py` embeds every example as source and
    `schemas.json` ships in npm — examples keep `values` to tens of numbers; real data goes out of
    line; a test guards the budget.
