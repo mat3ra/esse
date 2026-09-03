@@ -14,6 +14,9 @@
         },
         {
             "$ref": "system/status_track.json"
+        },
+        {
+            "$ref": "system/has_project.json"
         }
     ],
     "properties": {
@@ -47,10 +50,6 @@
         "workDir": {
             "description": "The path to the working directory of this job, when the job originates from command-line",
             "type": "string"
-        },
-        "_project": {
-            "description": "Subset of the full information about the project that this job belongs to.",
-            "$ref": "system/entity_reference.json"
         },
         "_material": {
             "description": "Subset of the full information about the materials used inside this job.",
@@ -101,5 +100,5 @@
             "type": "number"
         }
     },
-    "required": ["workflow", "status", "_project"]
+    "required": ["workflow", "status"]
 }
