@@ -145,21 +145,6 @@
                     "$ref": "../properties_directory/non-scalar/hysteresis_loop.json"
                 },
                 {
-                    "$ref": "../properties_directory/scalar/imprint.json"
-                },
-                {
-                    "$ref": "../properties_directory/scalar/coercive_voltage.json"
-                },
-                {
-                    "$ref": "../properties_directory/scalar/loop_width.json"
-                },
-                {
-                    "$ref": "../properties_directory/scalar/loop_height.json"
-                },
-                {
-                    "$ref": "../properties_directory/scalar/remanent_response.json"
-                },
-                {
                     "$ref": "../properties_directory/jupyter_notebook_endpoint.json"
                 }
             ],

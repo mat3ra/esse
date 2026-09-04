@@ -1,0 +1,26 @@
+{
+    "$id": "core/reusable/combined-value",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Combined value schema",
+    "description": "A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "uncertainty": {
+            "description": "spread of the repeated measurements about the mean",
+            "type": "number"
+        },
+        "count": {
+            "description": "number of measurements the value is combined over",
+            "type": "integer"
+        }
+    },
+    "required": [
+        "uncertainty",
+        "count"
+    ]
+}

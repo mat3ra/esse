@@ -18,22 +18,22 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 575;
-const EXPECTED_EDGE_COUNT = 951;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 381, contains: 392, variant: 178 };
+const EXPECTED_NODE_COUNT = 571;
+const EXPECTED_EDGE_COUNT = 939;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 377, contains: 389, variant: 173 };
 const EXPECTED_SAME_DOCUMENT_REFS = 20;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
     "application-parsing": 17,
     category: 152,
     definition: 4,
-    directory: 162,
+    directory: 157,
     entity: 13,
     "entity-component": 106,
     "in-memory-entity": 7,
     primitive: 23,
     reference: 11,
-    reusable: 33,
+    reusable: 34,
     system: 38,
 };
 
@@ -100,10 +100,10 @@ describe("buildEntityGraph", () => {
         // variant of its `data` field, and its `source.info` is a variant of the two
         // reference kinds (exabyte, external), on top of one mixin.
         const holderEdges = edgesFrom("property/holder");
-        expect(holderEdges).to.have.lengthOf(51);
+        expect(holderEdges).to.have.lengthOf(46);
         const holderVariants = holderEdges.filter((edge) => edge.kind === "variant");
-        expect(holderVariants).to.have.lengthOf(50);
-        expect(holderVariants.filter((edge) => edge.label === "data")).to.have.lengthOf(48);
+        expect(holderVariants).to.have.lengthOf(45);
+        expect(holderVariants.filter((edge) => edge.label === "data")).to.have.lengthOf(43);
         expect(holderVariants.filter((edge) => edge.label === "info")).to.have.lengthOf(2);
         expect(holderEdges.filter((edge) => edge.kind === "extends")).to.have.lengthOf(1);
         expect(holderEdges.filter((edge) => edge.kind === "contains")).to.be.empty;
@@ -174,7 +174,7 @@ describe("buildEntityGraph", () => {
     });
 
     it("reports example coverage as a warning", () => {
-        expect(graph.meta.schemasWithExample).to.equal(218);
+        expect(graph.meta.schemasWithExample).to.equal(213);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be
             .true;
     });

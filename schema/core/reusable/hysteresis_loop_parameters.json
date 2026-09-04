@@ -1,0 +1,60 @@
+{
+    "$id": "core/reusable/hysteresis-loop-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hysteresis loop parameters schema",
+    "description": "Parameters read from a hysteresis loop, each combined over the loops measured at one field condition. Voltages are in the loop's xAxis units, responses in its yAxis units",
+    "type": "object",
+    "properties": {
+        "imprint": {
+            "description": "bias at the centre of the loop: half the sum of the two coercive voltages",
+            "$ref": "combined_value.json"
+        },
+        "coerciveVoltage": {
+            "description": "bias at which the response crosses the loop's offset, on the rising and the falling branch",
+            "type": "object",
+            "properties": {
+                "rising": {
+                    "$ref": "combined_value.json"
+                },
+                "falling": {
+                    "$ref": "combined_value.json"
+                }
+            },
+            "required": [
+                "rising",
+                "falling"
+            ]
+        },
+        "loopWidth": {
+            "description": "bias separation of the two coercive voltages",
+            "$ref": "combined_value.json"
+        },
+        "loopHeight": {
+            "description": "response separation of the two remanent responses",
+            "$ref": "combined_value.json"
+        },
+        "remanentResponse": {
+            "description": "response at zero bias, on the rising and the falling branch",
+            "type": "object",
+            "properties": {
+                "rising": {
+                    "$ref": "combined_value.json"
+                },
+                "falling": {
+                    "$ref": "combined_value.json"
+                }
+            },
+            "required": [
+                "rising",
+                "falling"
+            ]
+        }
+    },
+    "required": [
+        "imprint",
+        "coerciveVoltage",
+        "loopWidth",
+        "loopHeight",
+        "remanentResponse"
+    ]
+}

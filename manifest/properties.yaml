@@ -112,36 +112,6 @@ valence_band_offset:
     units: eV
   schemaId: properties-directory/scalar/valence-band-offset
 
-imprint:
-  defaults:
-    units: V
-  schemaId: properties-directory/scalar/imprint
-  isResult: true
-
-coercive_voltage:
-  defaults:
-    units: V
-  schemaId: properties-directory/scalar/coercive-voltage
-  isResult: true
-
-loop_width:
-  defaults:
-    units: V
-  schemaId: properties-directory/scalar/loop-width
-  isResult: true
-
-loop_height:
-  defaults:
-    units: m
-  schemaId: properties-directory/scalar/loop-height
-  isResult: true
-
-remanent_response:
-  defaults:
-    units: m
-  schemaId: properties-directory/scalar/remanent-response
-  isResult: true
-
 # NON-SCALAR
 phonon_dos:
   defaults:
