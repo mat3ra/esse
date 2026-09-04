@@ -291,6 +291,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -606,7 +610,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name498(Enum):
+class Name499(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"

@@ -432,30 +432,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name454(Enum):
+class Name455(Enum):
     density = "density"
 
 
-class Units175(Enum):
+class Units176(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units175] = None
-    value: float
-
-
-class Units176(Enum):
-    angstrom = "angstrom"
-
-
-class ScalarSchema(BaseModel):
     units: Optional[Units176] = None
     value: float
 
 
-class Name455(Enum):
+class Units177(Enum):
+    angstrom = "angstrom"
+
+
+class ScalarSchema(BaseModel):
+    units: Optional[Units177] = None
+    value: float
+
+
+class Name456(Enum):
     symmetry = "symmetry"
 
 
@@ -475,7 +475,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name456(Enum):
+class Name457(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -488,7 +488,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name457(Enum):
+class Name458(Enum):
     p_norm = "p-norm"
 
 
@@ -501,7 +501,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name458(Enum):
+class Name459(Enum):
     inchi = "inchi"
 
 
@@ -510,7 +510,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name459(Enum):
+class Name460(Enum):
     inchi_key = "inchi_key"
 
 
@@ -597,7 +597,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name460(Enum):
+class Name461(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -610,7 +610,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name460
+    name: Name461
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

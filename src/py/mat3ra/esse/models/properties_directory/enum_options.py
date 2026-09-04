@@ -29,14 +29,19 @@ class PropertyType(Enum):
 
 
 class ScalarPropertyEnum(Enum):
+    coercive_voltage = "coercive_voltage"
     defect_formation_energy = "defect_formation_energy"
     fermi_energy = "fermi_energy"
     formation_energy = "formation_energy"
     homo_energy = "homo_energy"
+    imprint = "imprint"
     ionization_potential = "ionization_potential"
     lumo_energy = "lumo_energy"
+    loop_height = "loop_height"
+    loop_width = "loop_width"
     pressure = "pressure"
     reaction_energy_barrier = "reaction_energy_barrier"
+    remanent_response = "remanent_response"
     surface_energy = "surface_energy"
     interfacial_energy = "interfacial_energy"
     thermal_correction_to_energy = "thermal_correction_to_energy"
@@ -61,6 +66,7 @@ class NonScalarPropertyEnum(Enum):
     hubbard_u = "hubbard_u"
     hubbard_v = "hubbard_v"
     hubbard_v_nn = "hubbard_v_nn"
+    hysteresis_loop = "hysteresis_loop"
     is_relaxed = "is_relaxed"
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
     phonon_dispersions = "phonon_dispersions"
