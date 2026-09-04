@@ -17,6 +17,8 @@ The extractor is now the source of truth, and `tests/js/entityGraph.tests.ts` pi
 `properties_directory/non-scalar/hysteresis_loop`, which carries the loop parameters itself — plus
 `property/holder`'s `source.info` becoming a `oneOf` over the two reference kinds (its one *contains*
 edge became two *variant* edges). Previous totals: 564 schemas / 917 edges (372 / 375 / 170).
+The loop parameters reuse `combined_value` through `allOf` so their descriptions survive, and define their
+`{rising, falling}` pair once in their own `definitions` — the two refs to it raise the same-document count to 22.
 
 Method: every `schema/**/*.json` is parsed and each `$ref` classified by its innermost enclosing
 structural keyword — inside an `allOf` item → *extends*; under `properties.<name>` or `items` →
@@ -29,12 +31,12 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | --- | --- |
 | Schema files | 571 |
 | Example files | 213 (a schema has a mirror example in 213/571 = 37% of cases) |
-| Cross-schema reference edges | 939 |
-| — of kind *extends* (`allOf`) | 377 |
-| — of kind *contains* (`properties`/`items`) | 389 |
+| Cross-schema reference edges | 938 |
+| — of kind *extends* (`allOf`) | 380 |
+| — of kind *contains* (`properties`/`items`) | 385 |
 | — of kind *variant* (`oneOf`/`anyOf`) | 173 |
-| Same-document refs (`#/…`), which are **not** edges | 20 |
-| Edges carrying a JSON-pointer fragment | 147 (e.g. `enum_options.json#/physicsBased`) |
+| Same-document refs (`#/…`), which are **not** edges | 22 |
+| Edges carrying a JSON-pointer fragment | 148 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
 | Isolated schemas (no refs in or out) | 34 |
@@ -85,7 +87,7 @@ application-parsing schemas.
 
 | Schema | In-degree |
 | --- | --- |
-| `definitions/units` | 32 |
+| `definitions/units` | 33 |
 | `core/primitive/scalar` | 29 |
 | `core/reusable/energy` | 15 |
 | `workflow/unit/context/_base` | 15 |

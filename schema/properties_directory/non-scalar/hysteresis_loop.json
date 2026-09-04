@@ -30,6 +30,9 @@
                     "enum": [
                         "response"
                     ]
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/length"
                 }
             }
         },
@@ -60,22 +63,6 @@
                 "on",
                 "off"
             ]
-        },
-        "loopCount": {
-            "description": "number of loops combined into the series of each field condition",
-            "type": "object",
-            "properties": {
-                "on": {
-                    "type": "integer"
-                },
-                "off": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "on",
-                "off"
-            ]
         }
     },
     "required": [
@@ -83,8 +70,6 @@
         "legend",
         "xAxis",
         "yAxis",
-        "xDataArray",
-        "yDataSeries",
         "parameters"
     ]
 }

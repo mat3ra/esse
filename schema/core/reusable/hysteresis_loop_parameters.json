@@ -7,34 +7,56 @@
     "properties": {
         "imprint": {
             "description": "bias at the centre of the loop: half the sum of the two coercive voltages",
-            "$ref": "combined_value.json"
+            "allOf": [
+                {
+                    "$ref": "combined_value.json"
+                }
+            ]
         },
         "coerciveVoltage": {
             "description": "bias at which the response crosses the loop's offset, on the rising and the falling branch",
             "type": "object",
-            "properties": {
-                "rising": {
-                    "$ref": "combined_value.json"
-                },
-                "falling": {
-                    "$ref": "combined_value.json"
+            "allOf": [
+                {
+                    "$ref": "#/definitions/branch-pair"
                 }
-            },
-            "required": [
-                "rising",
-                "falling"
             ]
         },
         "loopWidth": {
             "description": "bias separation of the two coercive voltages",
-            "$ref": "combined_value.json"
+            "allOf": [
+                {
+                    "$ref": "combined_value.json"
+                }
+            ]
         },
         "loopHeight": {
             "description": "response separation of the two remanent responses",
-            "$ref": "combined_value.json"
+            "allOf": [
+                {
+                    "$ref": "combined_value.json"
+                }
+            ]
         },
         "remanentResponse": {
             "description": "response at zero bias, on the rising and the falling branch",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/branch-pair"
+                }
+            ]
+        }
+    },
+    "required": [
+        "imprint",
+        "coerciveVoltage",
+        "loopWidth",
+        "loopHeight",
+        "remanentResponse"
+    ],
+    "definitions": {
+        "branch-pair": {
             "type": "object",
             "properties": {
                 "rising": {
@@ -49,12 +71,5 @@
                 "falling"
             ]
         }
-    },
-    "required": [
-        "imprint",
-        "coerciveVoltage",
-        "loopWidth",
-        "loopHeight",
-        "remanentResponse"
-    ]
+    }
 }

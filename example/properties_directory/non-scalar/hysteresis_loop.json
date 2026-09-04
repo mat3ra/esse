@@ -618,40 +618,40 @@
         "on": {
             "imprint": {
                 "value": -0.0945645,
-                "uncertainty": 0.201563,
+                "standardDeviation": 0.201563,
                 "count": 8
             },
             "coerciveVoltage": {
                 "rising": {
                     "value": -1.69559,
-                    "uncertainty": 0.563452,
+                    "standardDeviation": 0.563452,
                     "count": 8
                 },
                 "falling": {
                     "value": 1.50646,
-                    "uncertainty": 0.390574,
+                    "standardDeviation": 0.390574,
                     "count": 8
                 }
             },
             "loopWidth": {
                 "value": 3.20206,
-                "uncertainty": 0.881783,
+                "standardDeviation": 0.881783,
                 "count": 8
             },
             "loopHeight": {
                 "value": 1.87428e-10,
-                "uncertainty": 7.31456e-11,
+                "standardDeviation": 7.31456e-11,
                 "count": 8
             },
             "remanentResponse": {
                 "rising": {
                     "value": 2.52078e-10,
-                    "uncertainty": 3.3268e-11,
+                    "standardDeviation": 3.3268e-11,
                     "count": 8
                 },
                 "falling": {
                     "value": 6.465e-11,
-                    "uncertainty": 4.74947e-11,
+                    "standardDeviation": 4.74947e-11,
                     "count": 8
                 }
             }
@@ -659,47 +659,43 @@
         "off": {
             "imprint": {
                 "value": 0.264414,
-                "uncertainty": 0.199464,
+                "standardDeviation": 0.199464,
                 "count": 8
             },
             "coerciveVoltage": {
                 "rising": {
                     "value": 5.54018,
-                    "uncertainty": 0.390596,
+                    "standardDeviation": 0.390596,
                     "count": 8
                 },
                 "falling": {
                     "value": -5.01135,
-                    "uncertainty": 0.462897,
+                    "standardDeviation": 0.462897,
                     "count": 8
                 }
             },
             "loopWidth": {
                 "value": 10.5515,
-                "uncertainty": 0.757981,
+                "standardDeviation": 0.757981,
                 "count": 8
             },
             "loopHeight": {
                 "value": 1.84282e-10,
-                "uncertainty": 7.23293e-11,
+                "standardDeviation": 7.23293e-11,
                 "count": 8
             },
             "remanentResponse": {
                 "rising": {
                     "value": -2.48029e-10,
-                    "uncertainty": 3.33361e-11,
+                    "standardDeviation": 3.33361e-11,
                     "count": 8
                 },
                 "falling": {
                     "value": -6.37461e-11,
-                    "uncertainty": 4.74305e-11,
+                    "standardDeviation": 4.74305e-11,
                     "count": 8
                 }
             }
         }
-    },
-    "loopCount": {
-        "on": 8,
-        "off": 8
     }
 }
