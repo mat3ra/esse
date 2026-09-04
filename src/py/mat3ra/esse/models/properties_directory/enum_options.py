@@ -29,19 +29,14 @@ class PropertyType(Enum):
 
 
 class ScalarPropertyEnum(Enum):
-    coercive_voltage = "coercive_voltage"
     defect_formation_energy = "defect_formation_energy"
     fermi_energy = "fermi_energy"
     formation_energy = "formation_energy"
     homo_energy = "homo_energy"
-    imprint = "imprint"
     ionization_potential = "ionization_potential"
-    loop_height = "loop_height"
-    loop_width = "loop_width"
     lumo_energy = "lumo_energy"
     pressure = "pressure"
     reaction_energy_barrier = "reaction_energy_barrier"
-    remanent_response = "remanent_response"
     surface_energy = "surface_energy"
     interfacial_energy = "interfacial_energy"
     thermal_correction_to_energy = "thermal_correction_to_energy"

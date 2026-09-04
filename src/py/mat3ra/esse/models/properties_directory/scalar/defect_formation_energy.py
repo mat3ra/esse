@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units185(Enum):
+class Units184(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class DefectFormationEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units185]
+    units: Union[Units, Units184]
     value: float

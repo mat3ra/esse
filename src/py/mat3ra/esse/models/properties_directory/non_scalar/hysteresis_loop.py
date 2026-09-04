@@ -31,11 +31,6 @@ class AxisSchema(BaseModel):
 
 
 class Label29(Enum):
-    amplitude = "amplitude"
-    phase = "phase"
-    frequency = "frequency"
-    x = "x"
-    y = "y"
     response = "response"
 
 
@@ -59,13 +54,139 @@ class FieldConditionSchema(Enum):
     off = "off"
 
 
+class CombinedValueSchema(BaseModel):
+    uncertainty: float
+    """
+    spread of the repeated measurements about the mean
+    """
+    count: int
+    """
+    number of measurements the value is combined over
+    """
+    value: float
+
+
+class CoerciveVoltage(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+
+
+class RemanentResponse(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+
+
+class HysteresisLoopParametersSchema(BaseModel):
+    imprint: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    coerciveVoltage: CoerciveVoltage
+    """
+    bias at which the response crosses the loop's offset, on the rising and the falling branch
+    """
+    loopWidth: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    loopHeight: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    remanentResponse: RemanentResponse
+    """
+    response at zero bias, on the rising and the falling branch
+    """
+
+
+class CoerciveVoltage3(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+
+
+class RemanentResponse3(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+
+
+class HysteresisLoopParametersSchema3(BaseModel):
+    imprint: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    coerciveVoltage: CoerciveVoltage3
+    """
+    bias at which the response crosses the loop's offset, on the rising and the falling branch
+    """
+    loopWidth: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    loopHeight: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    """
+    remanentResponse: RemanentResponse3
+    """
+    response at zero bias, on the rising and the falling branch
+    """
+
+
+class Parameters(BaseModel):
+    on: HysteresisLoopParametersSchema = Field(..., title="Hysteresis loop parameters schema")
+    """
+    Parameters read from a hysteresis loop, each combined over the loops measured at one field condition. Voltages are in the loop's xAxis units, responses in its yAxis units
+    """
+    off: HysteresisLoopParametersSchema3 = Field(..., title="Hysteresis loop parameters schema")
+    """
+    Parameters read from a hysteresis loop, each combined over the loops measured at one field condition. Voltages are in the loop's xAxis units, responses in its yAxis units
+    """
+
+
+class LoopCount(BaseModel):
+    on: int
+    off: int
+
+
 class HysteresisLoopPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
     yAxis: AxisSchema32 = Field(..., title="axis schema")
     name: Name
-    field: FieldConditionSchema = Field(..., title="Field condition schema")
+    legend: List[FieldConditionSchema]
     """
-    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
+    the field condition of each series in yDataSeries
+    """
+    parameters: Parameters
+    """
+    parameters read from the loop of each field condition; their voltages are in xAxis units and their responses in yAxis units
+    """
+    loopCount: Optional[LoopCount] = None
+    """
+    number of loops combined into the series of each field condition
     """
     xDataArray: List[Union[float, List[float]]]
     """
