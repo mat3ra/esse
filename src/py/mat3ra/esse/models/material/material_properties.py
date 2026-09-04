@@ -289,22 +289,22 @@ class Name651(Enum):
     density = "density"
 
 
-class Units296(Enum):
+class Units298(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units296] = None
+    units: Optional[Units298] = None
     value: float
 
 
-class Units297(Enum):
+class Units299(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units297] = None
+    units: Optional[Units299] = None
     value: float
 
 

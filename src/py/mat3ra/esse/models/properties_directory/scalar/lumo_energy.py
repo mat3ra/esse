@@ -25,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units281(Enum):
+class Units283(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class LUMOEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units281]
+    units: Union[Units, Units283]
     value: float

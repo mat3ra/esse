@@ -8,12 +8,15 @@ from pydantic import BaseModel
 
 
 class CombinedValueSchema(BaseModel):
-    uncertainty: float
+    value: float
     """
-    spread of the repeated measurements about the mean
+    mean over the combined measurements
+    """
+    standardDeviation: float
+    """
+    population standard deviation over the combined measurements (not the standard error of the mean)
     """
     count: int
     """
-    number of measurements the value is combined over
+    number of measurements combined
     """
-    value: float

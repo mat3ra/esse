@@ -8,43 +8,46 @@ from pydantic import BaseModel, Field
 
 
 class CombinedValueSchema(BaseModel):
-    uncertainty: float
+    value: float
     """
-    spread of the repeated measurements about the mean
+    mean over the combined measurements
+    """
+    standardDeviation: float
+    """
+    population standard deviation over the combined measurements (not the standard error of the mean)
     """
     count: int
     """
-    number of measurements the value is combined over
+    number of measurements combined
     """
-    value: float
 
 
 class CoerciveVoltage(BaseModel):
     rising: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
     """
     falling: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
     """
 
 
 class RemanentResponse(BaseModel):
     rising: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
     """
     falling: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
     """
 
 
 class HysteresisLoopParametersSchema(BaseModel):
     imprint: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    bias at the centre of the loop: half the sum of the two coercive voltages
     """
     coerciveVoltage: CoerciveVoltage
     """
@@ -52,13 +55,24 @@ class HysteresisLoopParametersSchema(BaseModel):
     """
     loopWidth: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    bias separation of the two coercive voltages
     """
     loopHeight: CombinedValueSchema = Field(..., title="Combined value schema")
     """
-    A value combined over repeated measurements: mean, spread, count. Units come from the context the value appears in
+    response separation of the two remanent responses
     """
     remanentResponse: RemanentResponse
     """
     response at zero bias, on the rising and the falling branch
+    """
+
+
+class BranchPair(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
     """

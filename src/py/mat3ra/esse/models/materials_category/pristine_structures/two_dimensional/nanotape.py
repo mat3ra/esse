@@ -436,22 +436,22 @@ class Name692(Enum):
     density = "density"
 
 
-class Units308(Enum):
+class Units310(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units308] = None
+    units: Optional[Units310] = None
     value: float
 
 
-class Units309(Enum):
+class Units311(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units309] = None
+    units: Optional[Units311] = None
     value: float
 
 
@@ -996,13 +996,13 @@ class Name699(Enum):
     volume = "volume"
 
 
-class Units310(Enum):
+class Units312(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema71(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units310] = None
+    units: Optional[Units312] = None
     value: float
 
 
@@ -1010,22 +1010,22 @@ class Name700(Enum):
     density = "density"
 
 
-class Units311(Enum):
+class Units313(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema72(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units311] = None
+    units: Optional[Units313] = None
     value: float
 
 
-class Units312(Enum):
+class Units314(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema86(BaseModel):
-    units: Optional[Units312] = None
+    units: Optional[Units314] = None
     value: float
 
 
