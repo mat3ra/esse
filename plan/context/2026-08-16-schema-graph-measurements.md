@@ -27,7 +27,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | Measure | Value |
 | --- | --- |
 | Schema files | 573 |
-| Example files | 217 (a schema has a mirror example in 217/573 = 38% of cases) |
+| Example files | 218 (a schema has a mirror example in 218/573 = 38% of cases) |
 | Cross-schema reference edges | 943 |
 | — of kind *extends* (`allOf`) | 380 |
 | — of kind *contains* (`properties`/`items`) | 385 |
