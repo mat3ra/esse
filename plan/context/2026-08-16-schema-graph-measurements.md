@@ -1,7 +1,7 @@
 # Schema graph measurements
 
 > **Type:** context — measurements backing the entity-map/docs plans; not a plan itself.
-> **Created:** 2026-08-16 · **Updated:** 2026-08-16
+> **Created:** 2026-08-16 · **Updated:** 2026-09-04
 > **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)
 > **Measured by:** `npm run lint-entity-graph` (`src/js/scripts/buildEntityGraph.ts`), the
 > production extractor built under [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026).
@@ -12,6 +12,14 @@ edges between schemas. The extractor separates them, so the totals below superse
 figures (937 edges / 376 / 384 / 177): the difference is exactly those 20 same-document refs.
 The extractor is now the source of truth, and `tests/js/entityGraph.tests.ts` pins these numbers.
 
+**Updated 2026-09-04 (SOF-8050).** Seven schemas added for experimental data — `sample`, `measurement`,
+`core/reference/external`, `core/reusable/{field_condition,combined_value,hysteresis_loop_parameters}` and
+`properties_directory/non-scalar/hysteresis_loop`, which carries the loop parameters itself — plus
+`property/holder`'s `source.info` becoming a `oneOf` over the two reference kinds (its one *contains*
+edge became two *variant* edges). Previous totals: 564 schemas / 917 edges (372 / 375 / 170).
+The loop parameters reuse `combined_value` through `allOf` so their descriptions survive, and define their
+`{rising, falling}` pair once in their own `definitions` — the two refs to it raise the same-document count to 22.
+
 Method: every `schema/**/*.json` is parsed and each `$ref` classified by its innermost enclosing
 structural keyword — inside an `allOf` item → *extends*; under `properties.<name>` or `items` →
 *contains*; inside `oneOf`/`anyOf` → *variant*. Refs resolve as relative file paths after
@@ -21,14 +29,14 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 564 |
-| Example files | 209 (a schema has a mirror example in 209/564 = 37% of cases) |
-| Cross-schema reference edges | 917 |
-| — of kind *extends* (`allOf`) | 372 |
-| — of kind *contains* (`properties`/`items`) | 375 |
-| — of kind *variant* (`oneOf`/`anyOf`) | 170 |
-| Same-document refs (`#/…`), which are **not** edges | 20 |
-| Edges carrying a JSON-pointer fragment | 144 (e.g. `enum_options.json#/physicsBased`) |
+| Schema files | 571 |
+| Example files | 213 (a schema has a mirror example in 213/571 = 37% of cases) |
+| Cross-schema reference edges | 938 |
+| — of kind *extends* (`allOf`) | 380 |
+| — of kind *contains* (`properties`/`items`) | 385 |
+| — of kind *variant* (`oneOf`/`anyOf`) | 173 |
+| Same-document refs (`#/…`), which are **not** edges | 22 |
+| Edges carrying a JSON-pointer fragment | 148 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
 | Isolated schemas (no refs in or out) | 34 |
@@ -37,9 +45,9 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Domain | Count | | Domain | Count |
 | --- | --- | --- | --- | --- |
-| `properties_directory` | 85 | | `models_directory` | 14 |
-| `methods_category` | 79 | | *(root files)* | 11 |
-| `core` | 73 | | `software_directory` | 11 |
+| `properties_directory` | 86 | | `models_directory` | 14 |
+| `methods_category` | 79 | | *(root files)* | 13 |
+| `core` | 77 | | `software_directory` | 11 |
 | `workflow` | 62 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
 | `materials_category_components` | 31 | | `in_memory_entity` | 7 |
@@ -59,15 +67,15 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 
 | Layer | Count | What it holds |
 | --- | --- | --- |
-| directory | 156 | `*_directory` catalogs of concrete instances |
+| directory | 157 | `*_directory` catalogs of concrete instances |
 | category | 152 | `*_category` + `materials_category_components` taxonomies |
 | **entity-component** | **106** | sub-schemas of root entities, keyed by `ownerEntity` |
 | system | 38 | platform mixins (`system/*`) |
-| reusable | 31 | `core/reusable` domain blocks |
+| reusable | 34 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |
 | **application-parsing** | **17** | `apse/*` application formats and parsers |
-| entity | 11 | root-level schemas (material, model, workflow, …) |
-| reference | 10 | `core/reference` provenance |
+| entity | 13 | root-level schemas (material, model, workflow, sample, measurement, …) |
+| reference | 11 | `core/reference` provenance |
 | abstract | 9 | `core/abstract` unit-less mathematics |
 | in-memory-entity | 7 | behavioral mixins |
 | definition | 4 | `definitions/` shared vocabularies |
@@ -79,24 +87,24 @@ application-parsing schemas.
 
 | Schema | In-degree |
 | --- | --- |
-| `definitions/units` | 30 |
-| `core/primitive/scalar` | 28 |
+| `definitions/units` | 33 |
+| `core/primitive/scalar` | 29 |
 | `core/reusable/energy` | 15 |
 | `workflow/unit/context/_base` | 15 |
 | `core/primitive/array_of_3_numbers` | 14 |
 | `materials_category_components/entities/core/three-dimensional/crystal` | 14 |
-| `system/entity_reference` | 13 |
+| `system/entity_reference` | 14 |
 | `core/reusable/categories` | 12 |
 | `method/unit_method` | 11 |
 | `method` (root) | 10 |
-| `core/abstract/2d_plot` | 10 |
+| `core/abstract/2d_plot` | 11 |
 | `methods_category/physical/qm/wf/enum_options` | 10 |
 
 ## Largest fan-out (out-degree)
 
 | Schema | Out-degree |
 | --- | --- |
-| `property/holder` | 44 (the union over all property types) |
+| `property/holder` | 46 (the union over all property types, plus the two source kinds) |
 | `properties_directory/non-scalar/total_energy_contributions` | 15 |
 | `workflow/unit/context/item` | 15 |
 | `apse/file/applications/espresso/7.2/pw.x` | 10 |

@@ -1,0 +1,75 @@
+{
+    "$id": "properties-directory/non-scalar/hysteresis-loop",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hysteresis loop property schema",
+    "description": "Response of a sample versus applied bias, combined over the switching cycles measured at each field condition, with the loop parameters read from it",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/abstract/2d_plot.json"
+        }
+    ],
+    "properties": {
+        "xAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "bias"
+                    ]
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/voltage"
+                }
+            }
+        },
+        "yAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "response"
+                    ]
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/length"
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "hysteresis_loop"
+            ]
+        },
+        "legend": {
+            "description": "the field condition of each series in yDataSeries",
+            "type": "array",
+            "items": {
+                "$ref": "../../core/reusable/field_condition.json"
+            }
+        },
+        "parameters": {
+            "description": "parameters read from the loop of each field condition; their voltages are in xAxis units and their responses in yAxis units",
+            "type": "object",
+            "properties": {
+                "on": {
+                    "$ref": "../../core/reusable/hysteresis_loop_parameters.json"
+                },
+                "off": {
+                    "$ref": "../../core/reusable/hysteresis_loop_parameters.json"
+                }
+            },
+            "required": [
+                "on",
+                "off"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "legend",
+        "xAxis",
+        "yAxis",
+        "parameters"
+    ]
+}

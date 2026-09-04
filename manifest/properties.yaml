@@ -254,6 +254,18 @@ dielectric_tensor:
   schemaId: properties-directory/non-scalar/dielectric-tensor
   isResult: true
 
+hysteresis_loop:
+  defaults:
+    xAxis:
+      label: bias
+      units: V
+    yAxis:
+      label: response
+      units: m
+
+  schemaId: properties-directory/non-scalar/hysteresis-loop
+  isResult: true
+
 # STRUCTURAL
 basis:
   defaults:

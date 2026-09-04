@@ -56,6 +56,7 @@
                 "hubbard_u",
                 "hubbard_v",
                 "hubbard_v_nn",
+                "hysteresis_loop",
                 "is_relaxed",
                 "jupyter_notebook_endpoint",
                 "phonon_dispersions",

@@ -155,7 +155,7 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
-class Error13(BaseModel):
+class Error15(BaseModel):
     domain: Optional[Domain] = None
     """
     Domain of the error appearance (internal).
@@ -174,7 +174,7 @@ class Error13(BaseModel):
     """
 
 
-class ComputeArgumentsSchema13(BaseModel):
+class ComputeArgumentsSchema15(BaseModel):
     queue: Queue
     """
     Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
@@ -219,7 +219,7 @@ class ComputeArgumentsSchema13(BaseModel):
     """
     Cluster where the job is executed. Optional on create. Required on job submission.
     """
-    errors: Optional[List[Error13]] = None
+    errors: Optional[List[Error15]] = None
     """
     Computation error. Optional. Appears only if something happens on jobs execution.
     """
@@ -836,6 +836,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1151,7 +1155,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name888(Enum):
+class Name892(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1367,7 +1371,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem27(BaseModel):
+class StartingMagnetizationItem29(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1402,7 +1406,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem27]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem29]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1752,14 +1756,14 @@ class DFTLDAModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Functional60(Enum):
+class Functional63(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class BaseMethod41(BaseModel):
+class BaseMethod46(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1781,17 +1785,17 @@ class BaseMethod41(BaseModel):
 class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional60
-    method: BaseMethod41 = Field(..., title="base method")
+    functional: Functional63
+    method: BaseMethod46 = Field(..., title="base method")
 
 
-class Functional61(Enum):
+class Functional64(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
     other = "other"
 
 
-class BaseMethod42(BaseModel):
+class BaseMethod47(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1813,19 +1817,19 @@ class BaseMethod42(BaseModel):
 class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional61
-    method: BaseMethod42 = Field(..., title="base method")
+    functional: Functional64
+    method: BaseMethod47 = Field(..., title="base method")
 
 
-class Type150(Enum):
+class Type153(Enum):
     ml = "ml"
 
 
-class Subtype25(Enum):
+class Subtype28(Enum):
     re = "re"
 
 
-class BaseMethod43(BaseModel):
+class BaseMethod48(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1845,20 +1849,20 @@ class BaseMethod43(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type150
+    type: Type153
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod43 = Field(..., title="base method")
+    method: BaseMethod48 = Field(..., title="base method")
 
 
-class Type151(Enum):
+class Type154(Enum):
     unknown = "unknown"
 
 
-class Subtype26(Enum):
+class Subtype29(Enum):
     unknown = "unknown"
 
 
-class BaseMethod44(BaseModel):
+class BaseMethod49(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1878,12 +1882,12 @@ class BaseMethod44(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type151
+    type: Type154
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod44 = Field(..., title="base method")
+    method: BaseMethod49 = Field(..., title="base method")
 
 
-class ApplicationSchema17(BaseModel):
+class ApplicationSchema19(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1965,7 +1969,7 @@ class SubworkflowSchema(BaseModel):
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema13] = Field(None, title="compute arguments schema")
+    compute: Optional[ComputeArgumentsSchema15] = Field(None, title="compute arguments schema")
     """
     Compute schema
     """
@@ -1976,7 +1980,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema17 = Field(..., title="application schema")
+    application: ApplicationSchema19 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
@@ -1984,7 +1988,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class Input15(BaseModel):
+class Input17(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -2073,7 +2077,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input15
+    input: Input17
     """
     Input information for map.
     """
@@ -2232,7 +2236,7 @@ class SubworkflowUnitSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class ErrorUnitSchema12(BaseModel):
+class ErrorUnitSchema14(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2303,8 +2307,8 @@ class ErrorUnitSchema12(BaseModel):
     """
 
 
-class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema12]]):
-    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema12] = Field(
+class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema14]]):
+    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema14] = Field(
         ..., discriminator="type", title="workflow unit schema"
     )
 

@@ -2204,6 +2204,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -3885,12 +3889,204 @@ class FinalStructurePropertySchema(BaseModel):
     """
 
 
+class Label26(Enum):
+    bias = "bias"
+
+
+class Units256(Enum):
+    V = "V"
+    mV = "mV"
+
+
+class AxisSchema29(BaseModel):
+    label: Label26
+    """
+    label of an axis object
+    """
+    units: Optional[Units256] = None
+    """
+    units for an axis
+    """
+
+
+class Label27(Enum):
+    response = "response"
+
+
+class Units257(Enum):
+    km = "km"
+    m = "m"
+    cm = "cm"
+    mm = "mm"
+    um = "um"
+    nm = "nm"
+    angstrom = "angstrom"
+    a_u_ = "a.u."
+    bohr = "bohr"
+    pm = "pm"
+
+
+class AxisSchema30(BaseModel):
+    label: Label27
+    """
+    label of an axis object
+    """
+    units: Optional[Units257] = None
+    """
+    units for an axis
+    """
+
+
 class Name571(Enum):
+    hysteresis_loop = "hysteresis_loop"
+
+
+class FieldConditionSchema(Enum):
+    on = "on"
+    off = "off"
+
+
+class CombinedValueSchema(BaseModel):
+    value: float
+    """
+    mean over the combined measurements
+    """
+    standardDeviation: float
+    """
+    population standard deviation over the combined measurements (not the standard error of the mean)
+    """
+    count: int
+    """
+    number of measurements combined
+    """
+
+
+class CoerciveVoltage(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+
+
+class RemanentResponse(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+
+
+class HysteresisLoopParametersSchema(BaseModel):
+    imprint: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    bias at the centre of the loop: half the sum of the two coercive voltages
+    """
+    coerciveVoltage: CoerciveVoltage
+    """
+    bias at which the response crosses the loop's offset, on the rising and the falling branch
+    """
+    loopWidth: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    bias separation of the two coercive voltages
+    """
+    loopHeight: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    response separation of the two remanent responses
+    """
+    remanentResponse: RemanentResponse
+    """
+    response at zero bias, on the rising and the falling branch
+    """
+
+
+class CoerciveVoltage1(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+
+
+class RemanentResponse1(BaseModel):
+    rising: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+    falling: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    A value combined over repeated measurements: mean, standard deviation, count. Units come from the context the value appears in
+    """
+
+
+class HysteresisLoopParametersSchema1(BaseModel):
+    imprint: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    bias at the centre of the loop: half the sum of the two coercive voltages
+    """
+    coerciveVoltage: CoerciveVoltage1
+    """
+    bias at which the response crosses the loop's offset, on the rising and the falling branch
+    """
+    loopWidth: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    bias separation of the two coercive voltages
+    """
+    loopHeight: CombinedValueSchema = Field(..., title="Combined value schema")
+    """
+    response separation of the two remanent responses
+    """
+    remanentResponse: RemanentResponse1
+    """
+    response at zero bias, on the rising and the falling branch
+    """
+
+
+class Parameters(BaseModel):
+    on: HysteresisLoopParametersSchema = Field(..., title="Hysteresis loop parameters schema")
+    """
+    Parameters read from a hysteresis loop, each combined over the loops measured at one field condition. Voltages are in the loop's xAxis units, responses in its yAxis units
+    """
+    off: HysteresisLoopParametersSchema1 = Field(..., title="Hysteresis loop parameters schema")
+    """
+    Parameters read from a hysteresis loop, each combined over the loops measured at one field condition. Voltages are in the loop's xAxis units, responses in its yAxis units
+    """
+
+
+class HysteresisLoopPropertySchema(BaseModel):
+    xAxis: AxisSchema29 = Field(..., title="axis schema")
+    yAxis: AxisSchema30 = Field(..., title="axis schema")
+    name: Literal["41#-datamodel-code-generator-#-object-#-special-#"]
+    legend: List[FieldConditionSchema]
+    """
+    the field condition of each series in yDataSeries
+    """
+    parameters: Parameters
+    """
+    parameters read from the loop of each field condition; their voltages are in xAxis units and their responses in yAxis units
+    """
+    xDataArray: List[Union[float, List[float]]]
+    """
+    array containing values of x Axis
+    """
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+
+
+class Name572(Enum):
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
 
 
 class JupyterNotebookEndpointPropertySchema(BaseModel):
-    name: Literal["41#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["42#-datamodel-code-generator-#-object-#-special-#"]
     host: str
     port: float
     token: str
@@ -3907,12 +4103,27 @@ class Info(BaseModel):
     """
 
 
+class Info1(BaseModel):
+    measurementId: str
+    """
+    Measurement's identity
+    """
+    sampleId: Optional[str] = None
+    """
+    Identity of the sample the result is about
+    """
+    unitId: str
+    """
+    Id of the unit that extracted the result
+    """
+
+
 class Source61(BaseModel):
     type: str
     """
     Type of the material property's source.
     """
-    info: Info
+    info: Union[Info, Info1]
 
 
 class Precision(BaseModel):
@@ -3972,6 +4183,7 @@ class PropertyHolderSchema(BaseModel):
         ConvergenceIonicPropertySchema,
         IsRelaxedPropertySchema,
         FinalStructurePropertySchema,
+        HysteresisLoopPropertySchema,
         JupyterNotebookEndpointPropertySchema,
     ] = Field(..., discriminator="name")
     """

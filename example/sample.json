@@ -1,0 +1,15 @@
+{
+    "_id": "aScN01448r0c00Xy1",
+    "label": "r0c00",
+    "metadata": {},
+    "name": "PDAC_COM5_01448 r0c00",
+    "position": {
+        "coordinates": [
+            0.021064,
+            0.020812999
+        ],
+        "units": "m"
+    },
+    "schemaVersion": "0.2.0",
+    "slug": "pdac-com5-01448-r0c00"
+}

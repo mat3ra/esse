@@ -1,0 +1,38 @@
+{
+    "$id": "sample",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample schema",
+    "description": "A physical specimen at a fixed position on a substrate: the entity an experimental result is about. It has no crystal structure of its own; a material it is later matched to is referenced from its properties.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        }
+    ],
+    "properties": {
+        "label": {
+            "description": "Identity of the sample on its substrate, e.g. the grid label r0c00 of a contact pad",
+            "type": "string"
+        },
+        "position": {
+            "description": "Planned position of the sample in the substrate frame",
+            "type": "object",
+            "properties": {
+                "coordinates": {
+                    "$ref": "core/primitive/array_of_2_numbers.json"
+                },
+                "units": {
+                    "$ref": "definitions/units.json#/length"
+                }
+            },
+            "required": [
+                "coordinates",
+                "units"
+            ]
+        }
+    },
+    "required": [
+        "label",
+        "position"
+    ]
+}
