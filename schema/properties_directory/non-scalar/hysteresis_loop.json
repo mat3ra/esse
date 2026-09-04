@@ -35,9 +35,6 @@
                         "y",
                         "response"
                     ]
-                },
-                "units": {
-                    "type": "string"
                 }
             }
         },
@@ -47,11 +44,7 @@
             ]
         },
         "field": {
-            "description": "whether the response was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)",
-            "enum": [
-                "on",
-                "off"
-            ]
+            "$ref": "../../core/reusable/field_condition.json"
         }
     },
     "required": [

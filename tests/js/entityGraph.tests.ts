@@ -18,9 +18,9 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 573;
-const EXPECTED_EDGE_COUNT = 943;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 380, contains: 385, variant: 178 };
+const EXPECTED_NODE_COUNT = 575;
+const EXPECTED_EDGE_COUNT = 951;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 381, contains: 392, variant: 178 };
 const EXPECTED_SAME_DOCUMENT_REFS = 20;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
@@ -33,7 +33,7 @@ const EXPECTED_LAYER_COUNTS = {
     "in-memory-entity": 7,
     primitive: 23,
     reference: 11,
-    reusable: 31,
+    reusable: 33,
     system: 38,
 };
 
@@ -106,7 +106,7 @@ describe("buildEntityGraph", () => {
         expect(holderVariants.filter((edge) => edge.label === "data")).to.have.lengthOf(48);
         expect(holderVariants.filter((edge) => edge.label === "info")).to.have.lengthOf(2);
         expect(holderEdges.filter((edge) => edge.kind === "extends")).to.have.lengthOf(1);
-        expect(holderEdges.filter((edge) => edge.kind === "contains")).to.have.lengthOf(0);
+        expect(holderEdges.filter((edge) => edge.kind === "contains")).to.be.empty;
     });
 
     it("carries manifest flags onto property nodes", () => {

@@ -112,6 +112,36 @@ valence_band_offset:
     units: eV
   schemaId: properties-directory/scalar/valence-band-offset
 
+imprint:
+  defaults:
+    units: V
+  schemaId: properties-directory/scalar/imprint
+  isResult: true
+
+coercive_voltage:
+  defaults:
+    units: V
+  schemaId: properties-directory/scalar/coercive-voltage
+  isResult: true
+
+loop_width:
+  defaults:
+    units: V
+  schemaId: properties-directory/scalar/loop-width
+  isResult: true
+
+loop_height:
+  defaults:
+    units: m
+  schemaId: properties-directory/scalar/loop-height
+  isResult: true
+
+remanent_response:
+  defaults:
+    units: m
+  schemaId: properties-directory/scalar/remanent-response
+  isResult: true
+
 # NON-SCALAR
 phonon_dos:
   defaults:
@@ -254,6 +284,18 @@ dielectric_tensor:
   schemaId: properties-directory/non-scalar/dielectric-tensor
   isResult: true
 
+hysteresis_loop:
+  defaults:
+    xAxis:
+      label: bias
+      units: V
+    yAxis:
+      label: response
+      units: m
+
+  schemaId: properties-directory/non-scalar/hysteresis-loop
+  isResult: true
+
 # STRUCTURAL
 basis:
   defaults:
@@ -331,47 +373,4 @@ hubbard_v_nn:
   defaults:
     units: eV
   schemaId: properties-directory/non-scalar/hubbard-v-nn
-  isResult: true
-
-# EXPERIMENTAL
-hysteresis_loop:
-  defaults:
-    xAxis:
-      label: bias
-      units: V
-    yAxis:
-      label: response
-      units: m
-
-  schemaId: properties-directory/non-scalar/hysteresis-loop
-  isResult: true
-
-imprint:
-  defaults:
-    units: V
-  schemaId: properties-directory/scalar/imprint
-  isResult: true
-
-coercive_voltage:
-  defaults:
-    units: V
-  schemaId: properties-directory/scalar/coercive-voltage
-  isResult: true
-
-loop_width:
-  defaults:
-    units: V
-  schemaId: properties-directory/scalar/loop-width
-  isResult: true
-
-loop_height:
-  defaults:
-    units: m
-  schemaId: properties-directory/scalar/loop-height
-  isResult: true
-
-remanent_response:
-  defaults:
-    units: m
-  schemaId: properties-directory/scalar/remanent-response
   isResult: true

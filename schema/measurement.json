@@ -22,7 +22,13 @@
             "$ref": "workflow.json"
         },
         "status": {
-            "$ref": "job/base.json#/properties/status"
+            "type": "string",
+            "description": "Status of the measurement; finished when it reaches the platform",
+            "allOf": [
+                {
+                    "$ref": "job/base.json#/properties/status"
+                }
+            ]
         },
         "workDir": {
             "description": "The path to the working directory of this measurement, where the instrument and the analysis wrote their files",

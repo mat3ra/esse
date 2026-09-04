@@ -19,18 +19,10 @@
             "$ref": "../../definitions/units.json#/length"
         },
         "field": {
-            "description": "whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)",
-            "enum": [
-                "on",
-                "off"
-            ]
+            "$ref": "../../core/reusable/field_condition.json"
         },
         "branch": {
-            "description": "the branch of the loop the value is read from",
-            "enum": [
-                "rising",
-                "falling"
-            ]
+            "$ref": "../../core/reusable/loop_branch.json"
         }
     },
     "required": [

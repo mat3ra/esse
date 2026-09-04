@@ -1,0 +1,11 @@
+{
+    "$id": "core/reusable/loop-branch",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Loop branch schema",
+    "description": "The branch of a hysteresis loop a value is read from: bias rising or falling",
+    "type": "string",
+    "enum": [
+        "rising",
+        "falling"
+    ]
+}

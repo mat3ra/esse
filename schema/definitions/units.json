@@ -36,18 +36,18 @@
             "pm"
         ]
     },
-    "voltage": {
-        "enum": [
-            "V",
-            "mV"
-        ]
-    },
     "length_atomic": {
         "enum": [
             "angstrom",
             "bohr"
         ],
         "default": "angstrom"
+    },
+    "voltage": {
+        "enum": [
+            "V",
+            "mV"
+        ]
     },
     "energy": {
         "enum": [

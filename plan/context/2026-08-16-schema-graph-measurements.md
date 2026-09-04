@@ -12,8 +12,9 @@ edges between schemas. The extractor separates them, so the totals below superse
 figures (937 edges / 376 / 384 / 177): the difference is exactly those 20 same-document refs.
 The extractor is now the source of truth, and `tests/js/entityGraph.tests.ts` pins these numbers.
 
-**Updated 2026-09-03 (SOF-8050).** Nine schemas added for experimental data — `sample`, `measurement`,
-`core/reference/external`, `properties_directory/non-scalar/hysteresis_loop` and five scalars — plus
+**Updated 2026-09-03 (SOF-8050).** Eleven schemas added for experimental data — `sample`, `measurement`,
+`core/reference/external`, `core/reusable/{field_condition,loop_branch}`, `properties_directory/non-scalar/hysteresis_loop`
+and five scalars — plus
 `property/holder`'s `source.info` becoming a `oneOf` over the two reference kinds (its one *contains*
 edge became two *variant* edges). Previous totals: 564 schemas / 917 edges (372 / 375 / 170).
 
@@ -26,11 +27,11 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 573 |
-| Example files | 218 (a schema has a mirror example in 218/573 = 38% of cases) |
-| Cross-schema reference edges | 943 |
-| — of kind *extends* (`allOf`) | 380 |
-| — of kind *contains* (`properties`/`items`) | 385 |
+| Schema files | 575 |
+| Example files | 218 (a schema has a mirror example in 218/575 = 38% of cases) |
+| Cross-schema reference edges | 951 |
+| — of kind *extends* (`allOf`) | 381 |
+| — of kind *contains* (`properties`/`items`) | 392 |
 | — of kind *variant* (`oneOf`/`anyOf`) | 178 |
 | Same-document refs (`#/…`), which are **not** edges | 20 |
 | Edges carrying a JSON-pointer fragment | 152 (e.g. `enum_options.json#/physicsBased`) |
@@ -44,7 +45,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | --- | --- | --- | --- | --- |
 | `properties_directory` | 91 | | `models_directory` | 14 |
 | `methods_category` | 79 | | *(root files)* | 13 |
-| `core` | 74 | | `software_directory` | 11 |
+| `core` | 76 | | `software_directory` | 11 |
 | `workflow` | 62 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
 | `materials_category_components` | 31 | | `in_memory_entity` | 7 |
@@ -68,7 +69,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | category | 152 | `*_category` + `materials_category_components` taxonomies |
 | **entity-component** | **106** | sub-schemas of root entities, keyed by `ownerEntity` |
 | system | 38 | platform mixins (`system/*`) |
-| reusable | 31 | `core/reusable` domain blocks |
+| reusable | 33 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |
 | **application-parsing** | **17** | `apse/*` application formats and parsers |
 | entity | 13 | root-level schemas (material, model, workflow, sample, measurement, …) |
