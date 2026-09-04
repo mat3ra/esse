@@ -1,0 +1,37 @@
+{
+    "$id": "measurement",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement schema",
+    "description": "One procedure applied to one or more samples by an instrument, recorded once finished: the experimental analogue of a job.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        }
+    ],
+    "properties": {
+        "_samples": {
+            "description": "Samples the measurement was performed on",
+            "type": "array",
+            "items": {
+                "$ref": "system/entity_reference.json"
+            }
+        },
+        "workflow": {
+            "description": "The procedure: acquisition and analysis units, with the instrument as the application",
+            "$ref": "workflow.json"
+        },
+        "status": {
+            "$ref": "job/base.json#/properties/status"
+        },
+        "workDir": {
+            "description": "The path to the working directory of this measurement, where the instrument and the analysis wrote their files",
+            "type": "string"
+        }
+    },
+    "required": [
+        "_samples",
+        "workflow",
+        "status"
+    ]
+}

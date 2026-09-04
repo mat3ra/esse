@@ -1,0 +1,63 @@
+{
+    "$id": "properties-directory/non-scalar/hysteresis-loop",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hysteresis loop property schema",
+    "description": "Response of a sample versus applied bias over one or more switching cycles, as measured in switching spectroscopy",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/abstract/2d_plot.json"
+        }
+    ],
+    "properties": {
+        "xAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "bias"
+                    ]
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/voltage"
+                }
+            }
+        },
+        "yAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "amplitude",
+                        "phase",
+                        "frequency",
+                        "x",
+                        "y",
+                        "response"
+                    ]
+                },
+                "units": {
+                    "type": "string"
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "hysteresis_loop"
+            ]
+        },
+        "field": {
+            "description": "whether the response was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)",
+            "enum": [
+                "on",
+                "off"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "field",
+        "xAxis",
+        "yAxis"
+    ]
+}

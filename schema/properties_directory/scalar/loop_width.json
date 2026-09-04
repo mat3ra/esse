@@ -1,0 +1,34 @@
+{
+    "$id": "properties-directory/scalar/loop-width",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Loop width property schema",
+    "description": "Width of a hysteresis loop: the difference between the rising and falling coercive voltages",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "loop_width"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/voltage"
+        },
+        "field": {
+            "description": "whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)",
+            "enum": [
+                "on",
+                "off"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "units",
+        "field"
+    ]
+}

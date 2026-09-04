@@ -1,0 +1,34 @@
+{
+    "$id": "properties-directory/scalar/imprint",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Imprint property schema",
+    "description": "Imprint of a hysteresis loop: half the sum of the rising and falling coercive voltages",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "imprint"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/voltage"
+        },
+        "field": {
+            "description": "whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)",
+            "enum": [
+                "on",
+                "off"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "units",
+        "field"
+    ]
+}

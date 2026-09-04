@@ -1,0 +1,42 @@
+{
+    "$id": "properties-directory/scalar/remanent-response",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Remanent response property schema",
+    "description": "Response of a hysteresis loop at zero bias on one branch",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "remanent_response"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/length"
+        },
+        "field": {
+            "description": "whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)",
+            "enum": [
+                "on",
+                "off"
+            ]
+        },
+        "branch": {
+            "description": "the branch of the loop the value is read from",
+            "enum": [
+                "rising",
+                "falling"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "units",
+        "field",
+        "branch"
+    ]
+}

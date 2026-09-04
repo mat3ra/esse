@@ -1,0 +1,23 @@
+{
+    "$id": "core/reference/external",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "measurementId": {
+            "description": "Measurement's identity",
+            "type": "string"
+        },
+        "sampleId": {
+            "description": "Identity of the sample the result is about",
+            "type": "string"
+        },
+        "unitId": {
+            "description": "Id of the unit that extracted the result",
+            "type": "string"
+        }
+    },
+    "required": [
+        "measurementId",
+        "unitId"
+    ]
+}

@@ -36,6 +36,12 @@
             "pm"
         ]
     },
+    "voltage": {
+        "enum": [
+            "V",
+            "mV"
+        ]
+    },
     "length_atomic": {
         "enum": [
             "angstrom",
