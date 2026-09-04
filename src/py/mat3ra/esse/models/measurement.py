@@ -2418,7 +2418,7 @@ class MeasurementSchema(BaseModel):
     workflow: WorkflowSchema = Field(..., title="workflow schema")
     status: Status53
     """
-    job status
+    Status of the measurement; finished when it reaches the platform
     """
     workDir: Optional[str] = None
     """

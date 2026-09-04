@@ -3933,7 +3933,7 @@ class Name572(Enum):
     hysteresis_loop = "hysteresis_loop"
 
 
-class Field1(Enum):
+class FieldConditionSchema(Enum):
     on = "on"
     off = "off"
 
@@ -3942,9 +3942,9 @@ class HysteresisLoopPropertySchema(BaseModel):
     xAxis: AxisSchema29 = Field(..., title="axis schema")
     yAxis: AxisSchema30 = Field(..., title="axis schema")
     name: Literal["41#-datamodel-code-generator-#-object-#-special-#"]
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the response was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
     xDataArray: List[Union[float, List[float]]]
     """
@@ -3960,9 +3960,9 @@ class Name573(Enum):
 class ImprintPropertySchema(BaseModel):
     name: Literal["42#-datamodel-code-generator-#-object-#-special-#"]
     units: Units257
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
     value: float
 
@@ -3971,7 +3971,7 @@ class Name574(Enum):
     coercive_voltage = "coercive_voltage"
 
 
-class Branch(Enum):
+class LoopBranchSchema(Enum):
     rising = "rising"
     falling = "falling"
 
@@ -3979,13 +3979,13 @@ class Branch(Enum):
 class CoerciveVoltagePropertySchema(BaseModel):
     name: Literal["43#-datamodel-code-generator-#-object-#-special-#"]
     units: Units257
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
-    branch: Branch
+    branch: LoopBranchSchema = Field(..., title="Loop branch schema")
     """
-    the branch of the loop the value is read from
+    The branch of a hysteresis loop a value is read from: bias rising or falling
     """
     value: float
 
@@ -3997,9 +3997,9 @@ class Name575(Enum):
 class LoopWidthPropertySchema(BaseModel):
     name: Literal["44#-datamodel-code-generator-#-object-#-special-#"]
     units: Units257
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
     value: float
 
@@ -4024,9 +4024,9 @@ class Units261(Enum):
 class LoopHeightPropertySchema(BaseModel):
     name: Literal["45#-datamodel-code-generator-#-object-#-special-#"]
     units: Units261
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
     value: float
 
@@ -4038,13 +4038,13 @@ class Name577(Enum):
 class RemanentResponsePropertySchema(BaseModel):
     name: Literal["46#-datamodel-code-generator-#-object-#-special-#"]
     units: Units261
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
-    branch: Branch
+    branch: LoopBranchSchema = Field(..., title="Loop branch schema")
     """
-    the branch of the loop the value is read from
+    The branch of a hysteresis loop a value is read from: bias rising or falling
     """
     value: float
 

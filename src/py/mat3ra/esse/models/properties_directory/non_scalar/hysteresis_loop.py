@@ -54,7 +54,7 @@ class Name(Enum):
     hysteresis_loop = "hysteresis_loop"
 
 
-class Field1(Enum):
+class FieldConditionSchema(Enum):
     on = "on"
     off = "off"
 
@@ -63,9 +63,9 @@ class HysteresisLoopPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
     yAxis: AxisSchema32 = Field(..., title="axis schema")
     name: Name
-    field: Field1
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the response was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
     xDataArray: List[Union[float, List[float]]]
     """

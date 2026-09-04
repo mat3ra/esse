@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
@@ -26,12 +26,12 @@ class Units(Enum):
     pm = "pm"
 
 
-class Field(Enum):
+class FieldConditionSchema(Enum):
     on = "on"
     off = "off"
 
 
-class Branch(Enum):
+class LoopBranchSchema(Enum):
     rising = "rising"
     falling = "falling"
 
@@ -39,12 +39,12 @@ class Branch(Enum):
 class RemanentResponsePropertySchema(BaseModel):
     name: Name
     units: Units
-    field: Field
+    field: FieldConditionSchema = Field(..., title="Field condition schema")
     """
-    whether the loop was read with the bias applied (on, in-field) or after each pulse (off, out-of-field)
+    Whether a switching-spectroscopy reading was taken with the bias applied (on, in-field) or after each pulse at zero bias (off, out-of-field)
     """
-    branch: Branch
+    branch: LoopBranchSchema = Field(..., title="Loop branch schema")
     """
-    the branch of the loop the value is read from
+    The branch of a hysteresis loop a value is read from: bias rising or falling
     """
     value: float
