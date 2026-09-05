@@ -1,7 +1,7 @@
 ---
 title: Categorization
 order: 4
-summary: Two different category mechanisms — tiers for models and methods, composition for materials — and the category-versus-directory split.
+summary: Two categorization schemes, each with its own paper — CateCom tiers for models and methods, M-CODE composition for materials — and the category-versus-directory split.
 ---
 
 # Categorization
@@ -11,15 +11,16 @@ way. A strict tree cannot hold them: an exchange-correlation functional is simul
 thing", "a GGA thing" and "a Perdew-Burke-Ernzerhof thing", and different users arrive from
 different directions. A flat list cannot hold them either.
 
-The first thing to know is that **`*_category` names two different mechanisms**, not one. Models
-and methods are categorized by *tiers*: a small ordered vocabulary carried as data on the entity.
-Materials are categorized by *composition*: a structure class is defined as a recipe over building
-blocks. Reading a `materials_category/…` path expecting tiers is the single most likely way to
-misread the corpus.
+The first thing to know is that **`*_category` names two different schemes**, not one, and that
+each is a published design rather than an accident of history. Models and methods follow
+**CateCom**: a small ordered vocabulary of *tiers*, carried as data on the entity. Materials follow
+**M-CODE**: a structure class defined as a recipe over building blocks, positioned on three axes.
+Reading a `materials_category/…` path expecting tiers is the single most likely way to misread the
+corpus.
 
 <!-- generated:categorization-schemes -->
 
-## Scheme 1 — tiers, for models and methods
+## Scheme 1 — CateCom, for models and methods
 
 The tier approach comes from the
 [CateCom paper](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.2c00112): categorize along a small
@@ -67,17 +68,23 @@ two entity components, listed in the table above: `model/model-without-method` a
 `method/unit-method` each carry a `categories` object. Everything else in the tier tree exists to
 say which combinations are legal.
 
-## Scheme 2 — composition, for materials
+## Scheme 2 — M-CODE, for materials
 
 Nothing under `materials_category/` extends `core/reusable/categories`. Materials are not placed on
-a tier ladder; a material category is **a recipe**. Three axes combine:
+a tier ladder; a material category is **a recipe**. The scheme is
+[M-CODE](https://arxiv.org/abs/2602.14384) — *Materials Categorization via Ontology, Dimensionality
+and Evolution* (Biryukov, Choudhary, Bazhirov) — and its three axes are not merely *related* to the
+`materials_category` tree: they **are** its directory structure.
 
-- **Structure class** — `pristine_structures`, `defective_structures`, `compound_pristine_structures`,
-  `processed_structures`. The first path segment.
-- **Dimensionality** — `zero-dimensional` through `three-dimensional`. The second path segment.
-- **Components** — from `materials_category_components/`: *entities* (`crystal`, `vacuum`, `atom`,
-  `vacancy`, `void_region`, atomic layers…) and *operations* (`stack`, `merge`; `repeat`, `strain`,
-  `perturb`).
+| M-CODE axis | Where it lives | Values |
+| --- | --- | --- |
+| Structural complexity (ontology) | first path segment | `pristine_structures`, `compound_pristine_structures`, `defective_structures`, `processed_structures` |
+| Dimensionality | second path segment | `zero-dimensional` through `three-dimensional` |
+| Evolution | the operation reached through `allOf` | combinations `stack`, `merge`; modifications `repeat`, `strain`, `perturb` |
+
+The third axis draws on `materials_category_components/`, which holds both the *entities* the
+recipes are built from (`crystal`, `vacuum`, `atom`, `vacancy`, `void_region`, atomic layers…) and
+the *operations* that combine them. The component entities carry the dimensionality axis too.
 
 A category schema names an operation via `allOf` and lists its operands under `stack_components` or
 `merge_components`. [`materials-category/pristine-structures/two-dimensional/slab`](../map/#/entity/materials-category%2Fpristine-structures%2Ftwo-dimensional%2Fslab)
@@ -166,5 +173,9 @@ breaking every `$id` that points at it.
 Materials pay a different price for a different benefit. Their recipes are precise enough to build
 from, but there is no `categories` field on a material configuration to filter on, so retrieval
 across the materials space works by structure class and dimensionality — the path — rather than by
-query. Whether that asymmetry is deliberate or simply the older scheme not yet extended to
-materials is a question for the maintainers; the corpus as it stands does not answer it.
+query.
+
+That asymmetry is deliberate. It is not the older scheme waiting to be extended to materials: the
+two schemes were designed separately, by different papers, for domains whose questions differ —
+the retrieval-versus-construction trade-off above. Encoding a recipe as five tier slugs would
+flatten out exactly the part that makes it useful.
