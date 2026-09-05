@@ -111,7 +111,7 @@ unrelated model files. That is normal, and [The pipeline](the-pipeline.html) exp
 ## 5. Check it
 
 ```bash
-npm run lint-entity-graph       # the schema lint, L1-L10
+npm run lint-entity-graph       # the schema lint, L1-L11
 npm test                        # includes the lint plus the JS test suite
 python -m unittest discover --verbose --catch --start-directory tests/py/esse/
 ```

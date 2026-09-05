@@ -8,6 +8,7 @@
         "build-entity-graph": "ts-node build_entity_graph.ts --output ./site",
         "lint-entity-graph": "ts-node build_entity_graph.ts",
         "build-docs-pages": "ts-node build_docs_pages.ts",
+        "build-site": "npm run transpile-and-build-assets && ts-node build_site.ts && npm run check-site-links -- --site site",
         "check-site-links": "ts-node check_site_links.ts",
         "compile-types": "ts-node compile_ts.ts",
         "transpile-and-build-assets": "npm run set-schema-ids && npm run build-schemas && npm run compile-types && npm run transpile",

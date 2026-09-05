@@ -1,0 +1,14 @@
+# Deploy previews for the published site (schemas.mat3ra.com is served from GitHub Pages
+# off `dev`; Netlify previews any branch or pull request from the same build).
+[build]
+  command = "npm run build-site"
+  publish = "site"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The explorer, docs and map are static; graph.json is fetched relative to /map/.
+[[headers]]
+  for = "/graph.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300"

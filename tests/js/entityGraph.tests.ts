@@ -175,6 +175,109 @@ describe("buildEntityGraph", () => {
         expect(errors, errors.join("\n")).to.deep.equal([]);
     });
 
+    it("derives facets on exactly the category and directory layers", () => {
+        const facetted = graph.nodes.filter((node) => node.facets);
+        const expected = graph.nodes.filter(
+            (node) => node.layer === "category" || node.layer === "directory",
+        );
+
+        expect(facetted).to.have.lengthOf(expected.length);
+        expect(facetted).to.have.lengthOf(
+            EXPECTED_LAYER_COUNTS.category + EXPECTED_LAYER_COUNTS.directory,
+        );
+        facetted.forEach((node) => {
+            const keys = Object.keys(node.facets as Record<string, string>);
+            expect(keys, `${node.id} has facets`).to.not.be.empty;
+            expect(keys, `${node.id} facet keys sorted`).to.deep.equal([...keys].sort());
+        });
+    });
+
+    it("reads the CateCom coordinate from the narrowed enum, not the path depth", () => {
+        const facetsOf = (id: string) => graph.nodes.find((node) => node.id === id)?.facets;
+
+        // Five path segments, five ladder fields — the regular case.
+        expect(facetsOf("models-category/pb/qm/dft/ksdft/gga")).to.include({
+            tier1: "pb",
+            tier2: "qm",
+            tier3: "dft",
+            type: "ksdft",
+            subtype: "gga",
+        });
+
+        // Methods are offset: "mathematical" is a branch, not a tier, and two schemas at the
+        // same depth narrow different fields. Counting segments would get both of these wrong.
+        expect(facetsOf("methods-category/mathematical/opt/diff/ordern/cg")).to.include({
+            branch: "mathematical",
+            tier1: "opt",
+            tier2: "diff",
+            tier3: "ordern",
+            type: "cg",
+        });
+        expect(facetsOf("methods-category/physical/qm/wf/ao/pople")).to.include({
+            branch: "physical",
+            tier1: "qm",
+            tier2: "wf",
+            type: "ao",
+            subtype: "pople",
+        });
+    });
+
+    it("gives catalogue entries the coordinate they are filed at", () => {
+        const filed = graph.edges.filter(
+            (edge) =>
+                edge.kind === "contains" &&
+                edge.label === "categories" &&
+                graph.nodes.find((node) => node.id === edge.source)?.layer === "directory",
+        );
+        expect(filed).to.have.lengthOf(17);
+
+        filed.forEach((edge) => {
+            const source = graph.nodes.find((node) => node.id === edge.source);
+            const target = graph.nodes.find((node) => node.id === edge.target);
+            (["tier1", "tier2", "tier3", "type", "subtype"] as const).forEach((field) => {
+                if (target?.facets?.[field]) {
+                    expect(source?.facets?.[field], `${edge.source} ${field}`).to.equal(
+                        target.facets[field],
+                    );
+                }
+            });
+        });
+
+        expect(
+            graph.nodes.find((node) => node.id === "models-directory/gga")?.facets,
+        ).to.deep.equal({
+            catalogue: "models",
+            subtype: "gga",
+            tier1: "pb",
+            tier2: "qm",
+            tier3: "dft",
+            type: "ksdft",
+        });
+    });
+
+    it("carries the M-CODE axes and the catalogue axes", () => {
+        const facetsOf = (id: string) => graph.nodes.find((node) => node.id === id)?.facets;
+
+        expect(
+            facetsOf("materials-category/pristine-structures/two-dimensional/slab"),
+        ).to.deep.equal({
+            dimensionality: "two-dimensional",
+            operation: "stack",
+            role: "recipe",
+            scheme: "mcode",
+            structuralClass: "pristine",
+        });
+        // Edge-unreachable today, so the facet is the only way to find it.
+        expect(facetsOf("software-directory/modeling/vasp")).to.deep.equal({
+            catalogue: "software",
+            softwareKind: "modeling",
+        });
+        expect(facetsOf("properties-directory/scalar/total-energy")).to.deep.equal({
+            catalogue: "properties",
+            valueShape: "scalar",
+        });
+    });
+
     it("reports example coverage as a warning", () => {
         expect(graph.meta.schemasWithExample).to.equal(209);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be

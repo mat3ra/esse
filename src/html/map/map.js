@@ -82,11 +82,21 @@ const SHAPE_GROUPS = [
         shape: "round-tag",
         layers: ["system", "in-memory-entity"],
     },
+    // Vocabulary and catalogue are opposites -- one says what is allowed, the other lists
+    // what exists -- so they get their own shapes rather than the single "taxonomy" glyph
+    // that used to cover 325 nodes.
+    { key: "category", label: "Vocabulary (category)", shape: "triangle", layers: ["category"] },
     {
-        key: "taxonomy",
-        label: "Category / catalogue",
+        key: "directory",
+        label: "Catalogue (directory)",
         shape: "round-rectangle",
-        layers: ["category", "directory", "application-parsing"],
+        layers: ["directory"],
+    },
+    {
+        key: "parsing",
+        label: "Application format",
+        shape: "rhomboid",
+        layers: ["application-parsing"],
     },
 ];
 
@@ -143,6 +153,7 @@ function toElements(data) {
             family: familyFor(node.domain).key,
             color: familyFor(node.domain).color,
             shape: (SHAPE_BY_LAYER[node.layer] || SHAPE_GROUPS[2]).shape,
+            group: (SHAPE_BY_LAYER[node.layer] || SHAPE_GROUPS[2]).key,
             size: nodeSize(node),
             inDegree: node.inDegree,
         },
@@ -307,6 +318,7 @@ function showDetail(id) {
         `<div class="detail-id">${escHtml(node.id)}</div>` +
         (node.description ? `<p class="detail-description">${escHtml(node.description)}</p>` : "") +
         `<div class="badges">${badges}</div>` +
+        facetChips(node) +
         `<div class="detail-stats">` +
         `<div><strong>${node.inDegree}</strong>used by</div>` +
         `<div><strong>${node.outDegree}</strong>references</div>` +
@@ -327,6 +339,12 @@ function showDetail(id) {
             node.path,
         )}" target="_blank" rel="noopener">Source on GitHub</a>` +
         `</div></div>`;
+
+    body.querySelectorAll("button.facet").forEach((chip) => {
+        chip.addEventListener("click", () =>
+            isolateFacet(chip.getAttribute("data-axis"), chip.getAttribute("data-value")),
+        );
+    });
 
     body.querySelectorAll("[data-goto]").forEach((row) => {
         const target = row.getAttribute("data-goto");
@@ -350,6 +368,10 @@ function clearDetail() {
 
 // ── Selection & navigation ────────────────────────────────────────────────────
 function selectNode(id, fly) {
+    // A facet is a transient lens: flying outside it would leave the map showing nothing.
+    // Family and kind toggles are deliberate settings and are left alone.
+    if (activeFacet && !nodeMatchesFacet(id)) clearFacet();
+
     const element = cy.getElementById(id);
     if (element.empty()) return;
 
@@ -496,9 +518,89 @@ function moveActiveHit(delta) {
     });
 }
 
+// ── Facets ────────────────────────────────────────────────────────────────────
+// Chip order, so a coordinate reads as a ladder rather than alphabetically.
+const FACET_ORDER = [
+    "tier1",
+    "tier2",
+    "tier3",
+    "type",
+    "subtype",
+    "branch",
+    "structuralClass",
+    "dimensionality",
+    "operation",
+    "entityRole",
+    "operationKind",
+    "catalogue",
+    "valueShape",
+    "softwareKind",
+    "scope",
+    "application",
+    "legacy",
+    "scheme",
+    "role",
+];
+
+function facetRank(axis) {
+    const index = FACET_ORDER.indexOf(axis);
+    return index === -1 ? FACET_ORDER.length : index;
+}
+
+function facetChips(node) {
+    if (!node.facets) return "";
+
+    const chips = Object.entries(node.facets)
+        .sort((a, b) => facetRank(a[0]) - facetRank(b[0]) || a[0].localeCompare(b[0]))
+        .map(
+            ([axis, value]) =>
+                `<button type="button" class="badge facet" data-axis="${escHtml(axis)}" ` +
+                `data-value="${escHtml(value)}" title="Show only schemas where ${escHtml(
+                    axis,
+                )} is ${escHtml(value)}">${escHtml(axis)}: ${escHtml(value)}</button>`,
+        )
+        .join("");
+
+    return (
+        `<div class="detail-group"><h3>Facets <span class="legend-hint">click to isolate</span></h3>` +
+        `<div class="badges">${chips}</div></div>`
+    );
+}
+
+function isolateFacet(axis, value) {
+    activeFacet = { axis, value };
+    applyFilters();
+
+    // Count from the predicate, not from ":visible" -- the class changes applyFilters made
+    // inside cy.batch() have not flushed yet, so the rendered state is a frame behind.
+    const matching = cy.nodes().filter((node) => nodeMatchesFacet(node.id()));
+    document.getElementById("facet-label").textContent = `${axis} = ${value} · ${
+        matching.length
+    } schema${matching.length === 1 ? "" : "s"}`;
+    document.getElementById("facet-banner").hidden = false;
+    if (matching.nonempty())
+        cy.animate({ fit: { eles: matching, padding: 80 } }, { duration: 260 });
+    setHash(`#/facet/${encodeURIComponent(axis)}/${encodeURIComponent(value)}`);
+}
+
+function clearFacet() {
+    if (!activeFacet) return;
+    activeFacet = null;
+    document.getElementById("facet-banner").hidden = true;
+    applyFilters();
+}
+
 // ── Filters ───────────────────────────────────────────────────────────────────
 const hiddenKinds = new Set();
 const hiddenFamilies = new Set();
+const hiddenGroups = new Set();
+let activeFacet = null;
+
+function nodeMatchesFacet(id) {
+    if (!activeFacet) return true;
+    const node = nodeById.get(id);
+    return Boolean(node && node.facets && node.facets[activeFacet.axis] === activeFacet.value);
+}
 
 function applyFilters() {
     cy.batch(() => {
@@ -506,7 +608,12 @@ function applyFilters() {
             edge.toggleClass("hidden", hiddenKinds.has(edge.data("kind")));
         });
         cy.nodes().forEach((node) => {
-            node.toggleClass("hidden", hiddenFamilies.has(node.data("family")));
+            node.toggleClass(
+                "hidden",
+                hiddenFamilies.has(node.data("family")) ||
+                    hiddenGroups.has(node.data("group")) ||
+                    !nodeMatchesFacet(node.id()),
+            );
         });
     });
     drawMinimap();
@@ -589,6 +696,12 @@ function applyHash() {
         return;
     }
 
+    const facetMatch = hash.match(/^\/facet\/([A-Za-z0-9]+)\/(.+)$/);
+    if (facetMatch) {
+        isolateFacet(facetMatch[1], decodeURIComponent(facetMatch[2]));
+        return;
+    }
+
     const viewMatch = hash.match(/^\/view\/(-?[\d.]+),(-?[\d.]+),([\d.]+)$/);
     if (viewMatch) {
         const zoom = parseFloat(viewMatch[3]);
@@ -601,7 +714,7 @@ function applyHash() {
 }
 
 function recordViewport() {
-    if (cy.$(":selected").nonempty() || focusedId) return;
+    if (cy.$(":selected").nonempty() || focusedId || activeFacet) return;
     const centre = {
         x: (cy.extent().x1 + cy.extent().x2) / 2,
         y: (cy.extent().y1 + cy.extent().y2) / 2,
@@ -621,17 +734,24 @@ function buildLegend() {
 
     document.getElementById("legend-shapes").innerHTML = SHAPE_GROUPS.map(
         (group) =>
-            `<div class="legend-row"><span class="legend-shape ${group.key}"></span>${escHtml(
+            `<div class="legend-row legend-toggle legend-group" data-group="${group.key}" ` +
+            `role="button" tabindex="0"><span class="legend-shape ${group.key}"></span>${escHtml(
                 group.label,
-            )}</div>`,
+            )}<span class="legend-count">${
+                graph.meta.layerCounts
+                    ? group.layers.reduce(
+                          (total, layer) => total + (graph.meta.layerCounts[layer] || 0),
+                          0,
+                      )
+                    : ""
+            }</span></div>`,
     ).join("");
 
-    document.querySelectorAll(".legend-family").forEach((row) => {
+    const wireToggleRow = (row, key, hiddenSet) => {
         const toggle = () => {
-            const key = row.getAttribute("data-family");
-            if (hiddenFamilies.has(key)) hiddenFamilies.delete(key);
-            else hiddenFamilies.add(key);
-            row.classList.toggle("muted", hiddenFamilies.has(key));
+            if (hiddenSet.has(key)) hiddenSet.delete(key);
+            else hiddenSet.add(key);
+            row.classList.toggle("muted", hiddenSet.has(key));
             applyFilters();
         };
         row.addEventListener("click", toggle);
@@ -641,7 +761,14 @@ function buildLegend() {
                 toggle();
             }
         });
-    });
+    };
+
+    document
+        .querySelectorAll(".legend-family")
+        .forEach((row) => wireToggleRow(row, row.getAttribute("data-family"), hiddenFamilies));
+    document
+        .querySelectorAll(".legend-group")
+        .forEach((row) => wireToggleRow(row, row.getAttribute("data-group"), hiddenGroups));
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
@@ -780,6 +907,7 @@ document.addEventListener("keydown", (event) => {
 
 document.getElementById("reset-view").addEventListener("click", resetView);
 document.getElementById("focus-exit").addEventListener("click", exitFocus);
+document.getElementById("facet-clear").addEventListener("click", clearFacet);
 
 document.getElementById("legend-toggle").addEventListener("click", (event) => {
     const body = document.getElementById("legend-body");
