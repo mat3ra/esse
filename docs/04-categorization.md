@@ -122,6 +122,13 @@ Two roughly equal-sized layers result:
 
 <!-- generated:layer-inventory -->
 
+Both are browsable. The schema explorer carries a
+[**Categories**](../index.html#/categories) view, which walks the CateCom ladders and the three
+M-CODE axes and shows each catalogue entry at the coordinate it is filed under, and a
+[**Directories**](../index.html#/directories) view, which lists every catalogue entry grouped by
+its own facet — properties by value shape, software by kind, models and methods by their ladder
+position. The file tree cannot show either: a ladder is a chain of `allOf`, not a path.
+
 ## Worked example: finding an exchange-correlation functional
 
 Suppose you want the PBE functional and you do not know where it lives.

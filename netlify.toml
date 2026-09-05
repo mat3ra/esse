@@ -7,8 +7,14 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# The explorer, docs and map are static; graph.json is fetched relative to /map/.
+# The explorer, docs and map are static. graph.json and views.json are the two data assets
+# the client fetches at runtime, and both are rebuilt on every deploy.
 [[headers]]
   for = "/graph.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/views.json"
   [headers.values]
     Cache-Control = "public, max-age=300"

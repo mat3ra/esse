@@ -19,6 +19,11 @@ import {
     validateEntityGraph,
     writeEntityGraph,
 } from "./src/js/scripts/buildEntityGraph";
+import {
+    buildExplorerViews,
+    lintExplorerViews,
+    writeExplorerViews,
+} from "./src/js/scripts/buildExplorerViews";
 
 const DIST = path.resolve(__dirname, "dist/js");
 const HTML = path.resolve(__dirname, "src/html");
@@ -61,13 +66,19 @@ fs.copyFileSync(path.join(DIST, "schemas.json"), path.join(outputDir, "schemas.j
 
 // The entity graph, which the ontology map and the docs fragments both read.
 const { graph, lint } = buildEntityGraph();
-const failures = [...lint.failures, ...validateEntityGraph(graph)];
+const views = buildExplorerViews(graph);
+const failures = [
+    ...lint.failures,
+    ...validateEntityGraph(graph),
+    ...lintExplorerViews(graph, views),
+];
 lint.warnings.forEach((warning) => console.warn(`WARNING: ${warning}`));
 if (failures.length > 0) {
     failures.forEach((failure) => console.error(`FAILURE: ${failure}`));
     throw new Error(`Schema lint failed with ${failures.length} problem(s)`);
 }
 console.log(`Wrote ${writeEntityGraph(graph, outputDir)}`);
+console.log(`Wrote ${writeExplorerViews(views, outputDir)}`);
 
 const pages = buildDocsPages(outputDir);
 console.log(`Rendered ${pages.length} documentation page(s) to ${outputDir}/docs`);

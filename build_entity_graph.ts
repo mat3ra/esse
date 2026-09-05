@@ -10,6 +10,11 @@ import {
     validateEntityGraph,
     writeEntityGraph,
 } from "./src/js/scripts/buildEntityGraph";
+import {
+    buildExplorerViews,
+    lintExplorerViews,
+    writeExplorerViews,
+} from "./src/js/scripts/buildExplorerViews";
 
 function getOutputDir(argv: string[]): string | undefined {
     const index = argv.indexOf("--output");
@@ -24,7 +29,12 @@ function getOutputDir(argv: string[]): string | undefined {
 
 const outputDir = getOutputDir(process.argv.slice(2));
 const { graph, lint } = buildEntityGraph();
-const failures = [...lint.failures, ...validateEntityGraph(graph)];
+const views = buildExplorerViews(graph);
+const failures = [
+    ...lint.failures,
+    ...validateEntityGraph(graph),
+    ...lintExplorerViews(graph, views),
+];
 
 const { nodeCount, edgeCount, edgeCountsByKind, sameDocumentRefCount } = graph.meta;
 console.log(
@@ -43,6 +53,10 @@ if (failures.length > 0) {
 
 if (outputDir) {
     console.log(`Wrote ${writeEntityGraph(graph, outputDir)}`);
+    console.log(
+        `Wrote ${writeExplorerViews(views, outputDir)} ` +
+            `(${views.categories.length} category rows, ${views.directories.length} directory rows)`,
+    );
 }
 
 console.log("Schema lint passed.");

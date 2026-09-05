@@ -298,6 +298,8 @@ function renderPage(page: DocsPage, pages: DocsPage[], html: string): string {
     <nav id="surfaces">
         <a href="index.html" class="current">Docs</a>
         <a href="../index.html">Explorer</a>
+        <a href="../index.html#/categories">Categories</a>
+        <a href="../index.html#/directories">Directories</a>
         <a href="../map/index.html">Ontology</a>
     </nav>
     <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>

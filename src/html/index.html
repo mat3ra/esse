@@ -14,7 +14,9 @@
     <span class="app-name">AI4Materials<span class="app-name-suffix">: data standards</span></span>
     <nav id="surfaces">
         <a href="docs/index.html">Docs</a>
-        <a href="index.html" class="current">Explorer</a>
+        <a href="index.html" data-view="files" class="current">Explorer</a>
+        <a href="index.html#/categories" data-view="categories">Categories</a>
+        <a href="index.html#/directories" data-view="directories">Directories</a>
         <a href="map/index.html">Ontology</a>
     </nav>
     <span id="titlebar-tagline">ESSE &middot; materials science ontology</span>
@@ -24,6 +26,11 @@
 
     <div id="sidebar">
         <div id="sidebar-title">Explorer</div>
+        <div id="view-switch" role="tablist" aria-label="Browse by">
+            <button type="button" role="tab" data-view="files" class="active" aria-selected="true">Files</button>
+            <button type="button" role="tab" data-view="categories" aria-selected="false">Categories</button>
+            <button type="button" role="tab" data-view="directories" aria-selected="false">Directories</button>
+        </div>
         <div id="search-wrap">
             <input id="search-input" type="search" placeholder="Search schemas…" autocomplete="off" spellcheck="false">
         </div>
