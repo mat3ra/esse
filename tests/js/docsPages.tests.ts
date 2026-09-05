@@ -1,8 +1,13 @@
 import { expect } from "chai";
 import fs from "fs";
+import { marked } from "marked";
 import path from "path";
 
-import { expandFragments, parseFrontMatter } from "../../src/js/scripts/buildDocsPages";
+import {
+    expandFragments,
+    extractHeadings,
+    parseFrontMatter,
+} from "../../src/js/scripts/buildDocsPages";
 import { type EntityGraph, buildEntityGraph } from "../../src/js/scripts/buildEntityGraph";
 
 const DOCS_DIR = path.resolve(__dirname, "../../docs");
@@ -61,6 +66,62 @@ describe("expandFragments", () => {
         );
         expect(rendered).to.contain("method/unit-method");
         expect(rendered).to.contain("model/model-without-method");
+    });
+});
+
+describe("extractHeadings", () => {
+    it("gives every h2 and h3 an id and returns them in document order", () => {
+        const { html, headings } = extractHeadings(
+            "<h2>Scheme 1</h2><p>x</p><h3>The <code>enum</code> rule</h3><h2>Scheme 2</h2>",
+        );
+
+        expect(headings.map((heading) => [heading.level, heading.id, heading.text])).to.deep.equal([
+            [2, "scheme-1", "Scheme 1"],
+            [3, "the-enum-rule", "The enum rule"],
+            [2, "scheme-2", "Scheme 2"],
+        ]);
+        headings.forEach((heading) => expect(html).to.contain(`id="${heading.id}"`));
+    });
+
+    /** Two sections may legitimately share a title; the anchors still have to differ. */
+    it("de-duplicates ids for repeated headings", () => {
+        const { headings } = extractHeadings("<h2>Notes</h2><h2>Notes</h2><h2>Notes</h2>");
+
+        expect(headings.map((heading) => heading.id)).to.deep.equal([
+            "notes",
+            "notes-1",
+            "notes-2",
+        ]);
+    });
+
+    it("leaves h1 and h4 alone", () => {
+        const { html, headings } = extractHeadings("<h1>Title</h1><h4>Aside</h4>");
+
+        expect(headings).to.deep.equal([]);
+        expect(html).to.equal("<h1>Title</h1><h4>Aside</h4>");
+    });
+});
+
+/**
+ * The table of contents links to `#<id>`, so a page whose ids collide would send the
+ * reader to the wrong section. Checked against the real documentation, not a fixture.
+ */
+describe("documentation anchors", () => {
+    let graph: EntityGraph;
+
+    before(() => {
+        ({ graph } = buildEntityGraph());
+    });
+
+    it("produces unique heading ids on every page", () => {
+        docsSources().forEach(({ file, source }) => {
+            const { body } = parseFrontMatter(source);
+            const rendered = marked.parse(expandFragments(body, graph), { async: false }) as string;
+            const ids = extractHeadings(rendered).headings.map((heading) => heading.id);
+
+            expect(new Set(ids).size, `${file} has duplicate heading ids`).to.equal(ids.length);
+            ids.forEach((id) => expect(id, `${file} produced an empty id`).to.not.be.empty);
+        });
     });
 });
 

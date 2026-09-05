@@ -274,7 +274,93 @@ function escapeHtml(value: string): string {
     return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-function renderPage(page: DocsPage, pages: DocsPage[], html: string): string {
+/** A heading the in-page table of contents can link to. */
+export interface DocsHeading {
+    id: string;
+    text: string;
+    level: number;
+}
+
+function slugifyHeading(text: string): string {
+    return text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Gives every `h2`/`h3` an id and returns them in document order.
+ *
+ * `marked` emits bare heading tags, so without this there is nothing for a table of
+ * contents — or an external deep link — to point at. Ids are de-duplicated because two
+ * sections may legitimately share a title.
+ */
+export function extractHeadings(html: string): { html: string; headings: DocsHeading[] } {
+    const headings: DocsHeading[] = [];
+    const seen = new Map<string, number>();
+
+    const withIds = html.replace(
+        /<h([23])>([\s\S]*?)<\/h\1>/g,
+        (_match, level: string, inner: string) => {
+            const text = inner.replace(/<[^>]+>/g, "").trim();
+            const base = slugifyHeading(text) || `section-${headings.length + 1}`;
+            const count = seen.get(base) ?? 0;
+            seen.set(base, count + 1);
+            const id = count === 0 ? base : `${base}-${count}`;
+
+            headings.push({ id, text, level: Number(level) });
+            return `<h${level} id="${id}">${inner}</h${level}>`;
+        },
+    );
+
+    return { html: withIds, headings };
+}
+
+function renderTableOfContents(headings: DocsHeading[]): string {
+    // One heading is the page title's own section; a list of one is noise.
+    if (headings.length < 2) return "";
+
+    const items = headings
+        .map(
+            (heading) =>
+                `<a href="#${heading.id}" class="toc-h${heading.level}">` +
+                `${escapeHtml(heading.text)}</a>`,
+        )
+        .join("\n            ");
+
+    return `<aside id="docs-toc">
+        <div class="nav-title">On this page</div>
+        <nav>
+            ${items}
+        </nav>
+    </aside>`;
+}
+
+/** Sequential links, so the pages can be read in the order they are written in. */
+function renderPageNav(page: DocsPage, pages: DocsPage[]): string {
+    const index = pages.findIndex((item) => item.slug === page.slug);
+    const previous = index > 0 ? pages[index - 1] : undefined;
+    const next = index < pages.length - 1 ? pages[index + 1] : undefined;
+
+    const link = (target: DocsPage | undefined, direction: string, label: string): string =>
+        target
+            ? `<a class="page-nav-${direction}" href="${target.slug}.html">` +
+              `<span class="page-nav-label">${label}</span>` +
+              `<span class="page-nav-title">${escapeHtml(target.title)}</span></a>`
+            : `<span class="page-nav-${direction}"></span>`;
+
+    return `<nav class="page-nav">
+        ${link(previous, "prev", "Previous")}
+        ${link(next, "next", "Next")}
+    </nav>`;
+}
+
+function renderPage(
+    page: DocsPage,
+    pages: DocsPage[],
+    html: string,
+    headings: DocsHeading[],
+): string {
     const nav = pages
         .map(
             (item) =>
@@ -304,16 +390,26 @@ function renderPage(page: DocsPage, pages: DocsPage[], html: string): string {
 </div>
 <div id="workspace">
     <aside id="docs-nav">
-        <div class="nav-title">Concepts</div>
-        <nav>
-            ${nav}
-        </nav>
+        <div class="docs-nav-inner">
+            <div class="nav-title">Concepts</div>
+            <nav>
+                ${nav}
+            </nav>
+        </div>
     </aside>
     <main id="docs-content">
         <article>
 ${html}
     </article>
+        ${renderPageNav(page, pages)}
     </main>
+    ${renderTableOfContents(headings)}
+</div>
+<div id="statusbar">
+    <span id="status-page">${escapeHtml(page.summary || page.title)}</span>
+    <span id="status-position">Page ${pages.findIndex((item) => item.slug === page.slug) + 1} of ${
+        pages.length
+    }</span>
 </div>
 </body>
 </html>
@@ -331,6 +427,8 @@ const DOCS_STYLESHEET = `/* Concept documentation — shares the explorer's pale
     --text-muted: #858585;
     --border: #3e3e3e;
     --accent: #4ea1ff;
+    /* The Explorer and the Ontology map both paint their status bar in this blue. */
+    --accent-bar: #0078d4;
     --code: #9cdcfe;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -367,22 +465,29 @@ body {
 #surfaces a.current { color: var(--text-primary); border-bottom: 2px solid var(--accent); }
 #titlebar-tagline { margin-left: auto; color: var(--text-muted); }
 @media (max-width: 640px) { #titlebar-tagline { display: none; } }
-#workspace { display: flex; flex: 1; align-items: flex-start; }
+#workspace { display: flex; flex: 1; }
+/*
+ * Two boxes, two jobs. The panel (#docs-nav) stretches for the full height of the
+ * workspace, so its background and border run the length of the page instead of stopping
+ * where the link list ends. The inner box is what sticks.
+ *
+ * Sticking the panel itself does not work: an element can only stick while it is shorter
+ * than the space it sticks within, so a full-height panel has no slack to hold a position
+ * in. Sizing the panel to its own content instead (align-self: flex-start) restores the
+ * sticking but leaves the panel visibly cut off part-way down the page. Separating the
+ * two concerns gets both.
+ */
 #docs-nav {
     width: 250px;
     flex-shrink: 0;
     background: var(--bg-sidebar);
     border-right: 1px solid var(--border);
-    padding: 16px 0;
+}
+.docs-nav-inner {
     position: sticky;
     top: 34px;
-    /* Not "stretch": that makes this box exactly as tall as #docs-content (the long
-       sibling), leaving sticky no slack to hold its position in -- an element can only
-       stick while it is shorter than the room it is sticking within. flex-start sizes
-       this to its own (short) nav-list content, so it actually stays pinned. The height
-       cap is a second guard: if the nav list ever grows past the viewport, it scrolls
-       internally instead of being clipped or pushing off-screen. */
-    align-self: flex-start;
+    padding: 16px 0;
+    /* If the list ever outgrows the viewport it scrolls itself rather than being clipped. */
     max-height: calc(100vh - 34px);
     overflow-y: auto;
 }
@@ -409,7 +514,8 @@ body {
     border-left-color: var(--accent);
 }
 #docs-content { flex: 1; min-width: 0; padding: 32px 40px 80px; }
-article { max-width: 68ch; }
+/* A fixed measure, centred: on a wide screen the text should not hug the sidebar. */
+article { max-width: 68ch; margin: 0 auto; }
 article h1 { font-size: 27px; font-weight: 600; margin-bottom: 18px; text-wrap: balance; }
 article h2 {
     font-size: 19px;
@@ -460,17 +566,88 @@ article th { background: var(--bg-sidebar); font-weight: 600; }
 article td:not(:first-child) { font-variant-numeric: tabular-nums; }
 article hr { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* In-page contents. Mirrors the concept nav opposite it, one weight lighter. */
+#docs-toc {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 16px 0;
+    position: sticky;
+    top: 34px;
+    align-self: flex-start;
+    max-height: calc(100vh - 34px);
+    overflow-y: auto;
+}
+#docs-toc nav { display: flex; flex-direction: column; }
+#docs-toc a {
+    padding: 4px 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 1.4;
+    border-left: 2px solid transparent;
+}
+#docs-toc a:hover { color: var(--text-primary); border-left-color: var(--border); }
+#docs-toc a.toc-h3 { padding-left: 28px; font-size: 11.5px; }
+
+/* The pages are written as a sequence; give the reader a way to follow it. */
+.page-nav {
+    display: flex;
+    gap: 12px;
+    max-width: 68ch;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+.page-nav > * { flex: 1 1 0; min-width: 0; }
+.page-nav a {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+.page-nav a:hover { background: var(--bg-hover); border-color: var(--accent); }
+.page-nav-next { text-align: right; }
+.page-nav-label { font-size: 11px; color: var(--text-muted); }
+.page-nav-title { font-size: 13px; }
+
+/* Matches the Explorer's and the map's, so the three surfaces end the same way. */
+#statusbar {
+    height: 22px;
+    background: var(--accent-bar);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 12px;
+    flex-shrink: 0;
+    gap: 16px;
+    position: sticky;
+    bottom: 0;
+}
+#status-page { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* The contents column is the first thing to go when it stops earning its width. */
+@media (max-width: 1100px) { #docs-toc { display: none; } }
 @media (max-width: 760px) {
     #workspace { flex-direction: column; }
     #docs-nav {
         width: 100%;
-        position: static;
         border-right: none;
         border-bottom: 1px solid var(--border);
+    }
+    .docs-nav-inner {
+        position: static;
         max-height: none;
         overflow-y: visible;
     }
     #docs-content { padding: 20px; }
+    .page-nav { flex-direction: column; }
+    .page-nav-next { text-align: left; }
 }
 `;
 
@@ -501,12 +678,13 @@ export function buildDocsPages(outputDir: string): DocsPage[] {
     // should fail the build outright, not leave a half-written site behind.
     const rendered = pages.map((page) => {
         const expanded = expandFragments(page.body, graph);
-        const html = (marked.parse(expanded, { async: false }) as string)
+        const parsed = (marked.parse(expanded, { async: false }) as string)
             // Wide tables scroll inside their own container rather than the page body.
             .replace(/<table>/g, '<div class="table-wrap"><table>')
             .replace(/<\/table>/g, "</table></div>");
+        const { html, headings } = extractHeadings(parsed);
 
-        return { page, html: renderPage(page, pages, html) };
+        return { page, html: renderPage(page, pages, html, headings) };
     });
 
     const targetDir = path.join(outputDir, "docs");
