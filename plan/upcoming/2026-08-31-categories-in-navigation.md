@@ -1,7 +1,11 @@
 # Categories in navigation (M-CODE and CateCom made visible)
 
-> **Status:** upcoming — agreed direction, not built.
-> **Created:** 2026-08-31 · **Updated:** 2026-08-31
+> **Status:** in progress — the MVP shipped in
+> [#430](https://github.com/mat3ra/esse/pull/430)
+> ([preview](https://deploy-preview-430--mat3ra-esse.netlify.app/map/)): facets on every
+> category and directory node, the map's shape split, the Kind filter and facet isolation.
+> The catalogue browser and the functional-registry join are still to build.
+> **Created:** 2026-08-31 · **Updated:** 2026-09-05
 > **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025) (follow-on)
 > **Basis:** the two categorization schemes documented in
 > [`../../docs/04-categorization.md`](../../docs/04-categorization.md), now each
