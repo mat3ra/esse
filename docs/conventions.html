@@ -110,6 +110,10 @@ are stable, and change only additively:</p>
 <td>Ontology map viewport</td>
 </tr>
 <tr>
+<td><code>/map/#/facet/&lt;axis&gt;/&lt;value&gt;</code></td>
+<td>Ontology map: isolate every schema at one facet coordinate</td>
+</tr>
+<tr>
 <td><code>/graph.json</code></td>
 <td>the entity graph asset, described by <code>src/js/scripts/entity_graph.schema.json</code></td>
 </tr>
@@ -166,6 +170,10 @@ are stable, and change only additively:</p>
 <tr>
 <td>L10</td>
 <td><code>graph.json</code> validates against its own schema</td>
+</tr>
+<tr>
+<td>L11</td>
+<td>every category and directory node has well-formed navigation facets</td>
 </tr>
 </tbody></table></div>
 <p>L3 is the one that will catch you when adding a new top-level directory: the layer taxonomy is

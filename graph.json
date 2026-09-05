@@ -356,6 +356,10 @@
             "outDegree": 2,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 1387.27,
             "y": 984.99
         },
@@ -371,6 +375,11 @@
             "outDegree": 0,
             "propertyCount": 12,
             "hasExample": false,
+            "facets": {
+                "application": "nwchem",
+                "catalogue": "context-providers",
+                "scope": "by-application"
+            },
             "x": 1350.23,
             "y": 1034.45
         },
@@ -386,6 +395,11 @@
             "outDegree": 4,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "application": "qe",
+                "catalogue": "context-providers",
+                "scope": "by-application"
+            },
             "x": 1317.21,
             "y": 1087.28
         },
@@ -401,6 +415,11 @@
             "outDegree": 8,
             "propertyCount": 10,
             "hasExample": false,
+            "facets": {
+                "application": "qe",
+                "catalogue": "context-providers",
+                "scope": "by-application"
+            },
             "x": 1277.09,
             "y": 1134.6
         },
@@ -416,6 +435,11 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "application": "qe",
+                "catalogue": "context-providers",
+                "scope": "by-application"
+            },
             "x": 1231.12,
             "y": 1176.46
         },
@@ -431,6 +455,11 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "application": "vasp",
+                "catalogue": "context-providers",
+                "scope": "by-application"
+            },
             "x": 1183.84,
             "y": 1216.54
         },
@@ -446,6 +475,11 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "application": "vasp",
+                "catalogue": "context-providers",
+                "scope": "by-application"
+            },
             "x": 1152.97,
             "y": 1274.28
         },
@@ -461,6 +495,10 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 1097.79,
             "y": 1305.61
         },
@@ -476,6 +514,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "role": "enum-options"
+            },
             "x": 1054.96,
             "y": 1351.41
         },
@@ -491,6 +533,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 1007.83,
             "y": 1392.47
         },
@@ -506,6 +552,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 946.78,
             "y": 1413.48
         },
@@ -521,6 +571,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 895.55,
             "y": 1448.09
         },
@@ -536,6 +590,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 843.03,
             "y": 1480.8
         },
@@ -551,6 +609,10 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 793.65,
             "y": 1519.91
         },
@@ -566,6 +628,10 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 735,
             "y": 1541.55
         },
@@ -581,6 +647,10 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 675.74,
             "y": 1560.77
         },
@@ -596,6 +666,10 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 617.39,
             "y": 1581.12
         },
@@ -611,6 +685,10 @@
             "outDegree": 0,
             "propertyCount": 11,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 561.1,
             "y": 1606.88
         },
@@ -626,6 +704,10 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 508.06,
             "y": 1644.57
         },
@@ -641,6 +723,10 @@
             "outDegree": 0,
             "propertyCount": 6,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 442.15,
             "y": 1640.19
         },
@@ -656,6 +742,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 383.69,
             "y": 1661.17
         },
@@ -671,6 +761,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "context-providers",
+                "scope": "generic"
+            },
             "x": 323.23,
             "y": 1674.62
         },
@@ -2199,6 +2293,12 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "one-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 1138.49,
             "y": 964.25
         },
@@ -2214,6 +2314,12 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 1110.25,
             "y": 1022.06
         },
@@ -2229,6 +2335,12 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 1055.47,
             "y": 1055.47
         },
@@ -2244,6 +2356,12 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 1007.71,
             "y": 1094.66
         },
@@ -2259,6 +2377,12 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 961.05,
             "y": 1134.71
         },
@@ -2274,6 +2398,12 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 921.03,
             "y": 1183.34
         },
@@ -2289,6 +2419,12 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 877.08,
             "y": 1228.42
         },
@@ -2304,6 +2440,12 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "entityRole": "auxiliary",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 818.18,
             "y": 1252.32
         },
@@ -2319,6 +2461,12 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "core",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 769.63,
             "y": 1291.61
         },
@@ -2334,6 +2482,12 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "core",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 711.49,
             "y": 1314.71
         },
@@ -2349,6 +2503,12 @@
             "outDegree": 2,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "core",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 653.38,
             "y": 1336.52
         },
@@ -2364,6 +2524,12 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "entityRole": "core",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 605.65,
             "y": 1380.73
         },
@@ -2379,6 +2545,12 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "entityRole": "core",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 544.64,
             "y": 1395.79
         },
@@ -2394,6 +2566,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "one-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 490.5,
             "y": 1428.78
         },
@@ -2409,6 +2587,12 @@
             "outDegree": 3,
             "propertyCount": 4,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "one-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 428.82,
             "y": 1440.39
         },
@@ -2424,6 +2608,12 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 367.06,
             "y": 1449.51
         },
@@ -2439,6 +2629,12 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 305.73,
             "y": 1458.09
         },
@@ -2454,6 +2650,12 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 244.66,
             "y": 1466.15
         },
@@ -2469,6 +2671,12 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 184.06,
             "y": 1476.62
         },
@@ -2484,6 +2692,12 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 124.16,
             "y": 1498.43
         },
@@ -2499,6 +2713,12 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 62.11,
             "y": 1501.57
         },
@@ -2514,6 +2734,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": 0,
             "y": 1505.52
         },
@@ -2529,6 +2755,12 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": -62,
             "y": 1499.03
         },
@@ -2544,6 +2776,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": -123.55,
             "y": 1491.05
         },
@@ -2559,6 +2797,12 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "entityRole": "reusable",
+                "role": "entity",
+                "scheme": "mcode"
+            },
             "x": -185.29,
             "y": 1486.52
         },
@@ -2574,6 +2818,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "operationKind": "combinations",
+                "role": "enum-options",
+                "scheme": "mcode"
+            },
             "x": -248.29,
             "y": 1487.94
         },
@@ -2589,6 +2838,11 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "operationKind": "combinations",
+                "role": "operation",
+                "scheme": "mcode"
+            },
             "x": -305.49,
             "y": 1456.96
         },
@@ -2604,6 +2858,11 @@
             "outDegree": 2,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "operationKind": "combinations",
+                "role": "operation",
+                "scheme": "mcode"
+            },
             "x": -370.96,
             "y": 1464.9
         },
@@ -2619,6 +2878,11 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "operationKind": "modifications",
+                "role": "operation",
+                "scheme": "mcode"
+            },
             "x": -429.03,
             "y": 1441.09
         },
@@ -2634,6 +2898,11 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "operationKind": "modifications",
+                "role": "operation",
+                "scheme": "mcode"
+            },
             "x": -490.07,
             "y": 1427.53
         },
@@ -2649,6 +2918,11 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "operationKind": "modifications",
+                "role": "operation",
+                "scheme": "mcode"
+            },
             "x": -542.8,
             "y": 1391.08
         },
@@ -2664,6 +2938,13 @@
             "outDegree": 7,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "compound-pristine"
+            },
             "x": 1498.56,
             "y": 0
         },
@@ -2679,6 +2960,13 @@
             "outDegree": 2,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "one-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1506.24,
             "y": 62.3
         },
@@ -2694,6 +2982,13 @@
             "outDegree": 4,
             "propertyCount": 7,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1494.38,
             "y": 123.83
         },
@@ -2709,6 +3004,13 @@
             "outDegree": 4,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1482.62,
             "y": 184.81
         },
@@ -2724,6 +3026,13 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1493.51,
             "y": 249.22
         },
@@ -2739,6 +3048,13 @@
             "outDegree": 6,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1460.82,
             "y": 306.3
         },
@@ -2754,6 +3070,13 @@
             "outDegree": 7,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1465.3,
             "y": 371.07
         },
@@ -2769,6 +3092,13 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1448.81,
             "y": 431.33
         },
@@ -2784,6 +3114,13 @@
             "outDegree": 3,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1431.55,
             "y": 491.45
         },
@@ -2799,6 +3136,13 @@
             "outDegree": 3,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1408.72,
             "y": 549.69
         },
@@ -2814,6 +3158,13 @@
             "outDegree": 3,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "zero-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "defective"
+            },
             "x": 1372.42,
             "y": 602
         },
@@ -2829,6 +3180,12 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "dimensionality": "three-dimensional",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "pristine"
+            },
             "x": 1346.02,
             "y": 658.03
         },
@@ -2844,6 +3201,13 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "pristine"
+            },
             "x": 1323.61,
             "y": 716.3
         },
@@ -2859,6 +3223,13 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "pristine"
+            },
             "x": 1278.89,
             "y": 762.05
         },
@@ -2874,6 +3245,13 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "pristine"
+            },
             "x": 1258.02,
             "y": 821.9
         },
@@ -2889,6 +3267,13 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "stack",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "pristine"
+            },
             "x": 1217.77,
             "y": 869.47
         },
@@ -2904,6 +3289,13 @@
             "outDegree": 4,
             "propertyCount": 4,
             "hasExample": true,
+            "facets": {
+                "dimensionality": "two-dimensional",
+                "operation": "merge",
+                "role": "recipe",
+                "scheme": "mcode",
+                "structuralClass": "processed"
+            },
             "x": 1189.86,
             "y": 926.11
         },
@@ -2982,6 +3374,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "diff"
+            },
             "x": -597.02,
             "y": 1361.07
         },
@@ -2997,6 +3395,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -659.04,
             "y": 1348.09
         },
@@ -3012,6 +3415,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "diff",
+                "tier2": "fd"
+            },
             "x": -716.8,
             "y": 1324.52
         },
@@ -3027,6 +3437,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "discr"
+            },
             "x": -760.45,
             "y": 1276.2
         },
@@ -3042,6 +3458,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -816.99,
             "y": 1250.5
         },
@@ -3057,6 +3478,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "discr",
+                "tier2": "mesh"
+            },
             "x": -869.84,
             "y": 1218.28
         },
@@ -3072,6 +3500,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -917.46,
             "y": 1178.75
         },
@@ -3087,6 +3520,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "discr",
+                "tier2": "mesh",
+                "tier3": "hybrid"
+            },
             "x": -964.24,
             "y": 1138.48
         },
@@ -3102,6 +3543,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "discr",
+                "tier2": "mesh",
+                "tier3": "nstruct"
+            },
             "x": -1006.26,
             "y": 1093.09
         },
@@ -3117,6 +3566,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "discr",
+                "tier2": "mesh",
+                "tier3": "struct"
+            },
             "x": -1054.84,
             "y": 1054.84
         },
@@ -3132,6 +3589,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "discr",
+                "tier2": "mesh",
+                "tier3": "struct",
+                "type": "cartesian"
+            },
             "x": -1111.2,
             "y": 1022.93
         },
@@ -3147,6 +3613,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1147.66,
             "y": 972.02
         },
@@ -3162,6 +3633,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1177.11,
             "y": 916.18
         },
@@ -3177,6 +3653,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "fapprx"
+            },
             "x": -1227.52,
             "y": 876.43
         },
@@ -3192,6 +3674,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "fapprx",
+                "tier2": "basisExp"
+            },
             "x": -1262.97,
             "y": 825.14
         },
@@ -3207,6 +3696,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1291.39,
             "y": 769.5
         },
@@ -3222,6 +3716,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "fapprx",
+                "tier2": "ipol"
+            },
             "x": -1324.75,
             "y": 716.92
         },
@@ -3237,6 +3738,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1347.51,
             "y": 658.76
         },
@@ -3252,6 +3758,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "fapprx",
+                "tier2": "ipol",
+                "tier3": "lin"
+            },
             "x": -1365.48,
             "y": 598.96
         },
@@ -3267,6 +3781,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "fapprx",
+                "tier2": "ipol",
+                "tier3": "poly"
+            },
             "x": -1400.21,
             "y": 546.37
         },
@@ -3282,6 +3804,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "fapprx",
+                "tier2": "ipol",
+                "tier3": "spline"
+            },
             "x": -1417.61,
             "y": 486.67
         },
@@ -3297,6 +3827,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr"
+            },
             "x": -1449.03,
             "y": 431.4
         },
@@ -3312,6 +3848,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "analytic"
+            },
             "x": -1442.17,
             "y": 365.21
         },
@@ -3327,6 +3870,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1481.48,
             "y": 310.63
         },
@@ -3342,6 +3890,15 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "sphere|cube|rect-prism|tri-prism|cylinder|cone|tetrahedron|sq-pyr",
+                "tier1": "intgr",
+                "tier2": "analytic",
+                "type": "volume"
+            },
             "x": -1474.04,
             "y": 245.97
         },
@@ -3357,6 +3914,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "diffeq"
+            },
             "x": -1497.7,
             "y": 186.69
         },
@@ -3372,6 +3936,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1485.57,
             "y": 123.1
         },
@@ -3387,6 +3956,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "diffeq",
+                "tier3": "order1"
+            },
             "x": -1495.14,
             "y": 61.84
         },
@@ -3402,6 +3979,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "diffeq",
+                "tier3": "order2"
+            },
             "x": -1505.11,
             "y": 0
         },
@@ -3417,6 +4002,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1511.1,
             "y": -62.5
         },
@@ -3432,6 +4022,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "numquad"
+            },
             "x": -1482.67,
             "y": -122.86
         },
@@ -3447,6 +4044,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1499.39,
             "y": -186.9
         },
@@ -3462,6 +4064,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "numquad",
+                "tier3": "gauss"
+            },
             "x": -1470.66,
             "y": -245.41
         },
@@ -3477,6 +4087,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "numquad",
+                "tier3": "newcot"
+            },
             "x": -1455.34,
             "y": -305.15
         },
@@ -3492,6 +4110,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "transf"
+            },
             "x": -1457.08,
             "y": -368.98
         },
@@ -3507,6 +4132,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1434.36,
             "y": -427.03
         },
@@ -3522,6 +4152,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "intgr",
+                "tier2": "transf",
+                "type": "fourier"
+            },
             "x": -1416.15,
             "y": -486.16
         },
@@ -3537,6 +4175,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "linalg"
+            },
             "x": -1404.75,
             "y": -548.14
         },
@@ -3552,6 +4196,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "linalg",
+                "tier2": "dcomp"
+            },
             "x": -1372.73,
             "y": -602.13
         },
@@ -3567,6 +4218,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "linalg",
+                "tier2": "diag"
+            },
             "x": -1344.93,
             "y": -657.5
         },
@@ -3582,6 +4240,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "linalg",
+                "tier2": "diag",
+                "type": "davidson"
+            },
             "x": -1324.86,
             "y": -716.98
         },
@@ -3597,6 +4263,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1278.66,
             "y": -761.91
         },
@@ -3612,6 +4283,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1246.35,
             "y": -814.28
         },
@@ -3627,6 +4303,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "linalg",
+                "tier2": "lintra"
+            },
             "x": -1209.62,
             "y": -863.65
         },
@@ -3642,6 +4325,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "linalg",
+                "tier2": "matf"
+            },
             "x": -1180.99,
             "y": -919.2
         },
@@ -3657,6 +4347,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt"
+            },
             "x": -1136.49,
             "y": -962.56
         },
@@ -3672,6 +4368,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff"
+            },
             "x": -1108.65,
             "y": -1020.58
         },
@@ -3687,6 +4390,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "bracket"
+            },
             "x": -1059.77,
             "y": -1059.77
         },
@@ -3702,6 +4413,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -1012.64,
             "y": -1100.02
         },
@@ -3717,6 +4433,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "local"
+            },
             "x": -974.26,
             "y": -1150.31
         },
@@ -3732,6 +4456,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "order1"
+            },
             "x": -929.69,
             "y": -1194.46
         },
@@ -3747,6 +4479,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "order2"
+            },
             "x": -875.33,
             "y": -1225.97
         },
@@ -3762,6 +4502,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "ordern"
+            },
             "x": -816.79,
             "y": -1250.19
         },
@@ -3777,6 +4525,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "ordern",
+                "type": "cg"
+            },
             "x": -766.27,
             "y": -1285.97
         },
@@ -3792,6 +4549,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -715.28,
             "y": -1321.71
         },
@@ -3807,6 +4569,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -662.7,
             "y": -1355.58
         },
@@ -3822,6 +4589,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "ndiff"
+            },
             "x": -607.66,
             "y": -1385.33
         },
@@ -3837,6 +4611,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "ndiff",
+                "tier3": "direct"
+            },
             "x": -540.53,
             "y": -1385.27
         },
@@ -3852,6 +4634,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -483.48,
             "y": -1408.32
         },
@@ -3867,6 +4654,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "ndiff",
+                "tier3": "pop"
+            },
             "x": -423.97,
             "y": -1424.1
         },
@@ -3882,6 +4677,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "ndiff",
+                "tier3": "stoch"
+            },
             "x": -370.11,
             "y": -1461.52
         },
@@ -3897,6 +4700,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "root"
+            },
             "x": -308.12,
             "y": -1469.48
         },
@@ -3912,6 +4722,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "root",
+                "tier3": "bracket"
+            },
             "x": -244.44,
             "y": -1464.82
         },
@@ -3927,6 +4745,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": -186.86,
             "y": -1499.11
         },
@@ -3942,6 +4765,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "opt",
+                "tier2": "root",
+                "tier3": "iterative"
+            },
             "x": -125.11,
             "y": -1509.83
         },
@@ -3957,6 +4788,13 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "least_squares|ridge",
+                "type": "linear|kernel_ridge"
+            },
             "x": -61.42,
             "y": -1484.98
         },
@@ -3972,6 +4810,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 0,
             "y": -1501.38
         },
@@ -3987,6 +4830,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "qm"
+            },
             "x": 62.4,
             "y": -1508.7
         },
@@ -4002,6 +4851,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 123.79,
             "y": -1493.97
         },
@@ -4017,6 +4871,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "qm",
+                "tier2": "wf"
+            },
             "x": 184.33,
             "y": -1478.78
         },
@@ -4032,6 +4893,15 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "pople|dunning|other",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": 246.06,
             "y": -1474.53
         },
@@ -4047,6 +4917,15 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "dunning",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": 305.82,
             "y": -1458.5
         },
@@ -4062,6 +4941,15 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "other",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": 368.87,
             "y": -1456.63
         },
@@ -4077,6 +4965,15 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "pople",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": 424.93,
             "y": -1427.33
         },
@@ -4092,6 +4989,11 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 486,
             "y": -1415.68
         },
@@ -4107,6 +5009,15 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "us|nc|nc-fr|paw|coulomb",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "psp"
+            },
             "x": 544.33,
             "y": -1395
         },
@@ -4122,6 +5033,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "pw"
+            },
             "x": 602.71,
             "y": -1374.04
         },
@@ -4137,6 +5056,15 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "gaussian|marzari-vanderbilt|methfessel-paxton|fermi-dirac",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "smearing"
+            },
             "x": 656.94,
             "y": -1343.8
         },
@@ -4152,6 +5080,15 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "linear|optimized|bloechl",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "tetrahedron"
+            },
             "x": 707.23,
             "y": -1306.84
         },
@@ -4167,6 +5104,10 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "methods",
+                "legacy": "true"
+            },
             "x": 261.72,
             "y": 1682.09
         },
@@ -4182,6 +5123,10 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "methods",
+                "legacy": "true"
+            },
             "x": 201.95,
             "y": 1702.92
         },
@@ -4197,6 +5142,10 @@
             "outDegree": 3,
             "propertyCount": 4,
             "hasExample": true,
+            "facets": {
+                "catalogue": "methods",
+                "legacy": "true"
+            },
             "x": 139.13,
             "y": 1698.75
         },
@@ -4212,6 +5161,10 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "methods",
+                "legacy": "true"
+            },
             "x": 78.12,
             "y": 1719.51
         },
@@ -4227,6 +5180,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods",
+                "tier1": "opt",
+                "tier2": "diff",
+                "tier3": "ordern",
+                "type": "cg"
+            },
             "x": 15.59,
             "y": 1716.96
         },
@@ -4242,6 +5203,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods",
+                "tier1": "linalg",
+                "tier2": "diag",
+                "type": "davidson"
+            },
             "x": -46.33,
             "y": 1700.55
         },
@@ -4257,6 +5225,12 @@
             "outDegree": 4,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods",
+                "subtype": "least_squares|ridge",
+                "type": "linear|kernel_ridge"
+            },
             "x": -108.63,
             "y": 1706.91
         },
@@ -4272,6 +5246,10 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -171.47,
             "y": 1711.13
         },
@@ -4287,6 +5265,10 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -233.65,
             "y": 1704.9
         },
@@ -4302,6 +5284,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -295.44,
             "y": 1695.51
         },
@@ -4317,6 +5303,10 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -355.35,
             "y": 1676.78
         },
@@ -4332,6 +5322,10 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -414.72,
             "y": 1657.64
         },
@@ -4347,6 +5341,10 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -475.52,
             "y": 1644.55
         },
@@ -4362,6 +5360,10 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "branch": "mathematical",
+                "catalogue": "methods"
+            },
             "x": -533.34,
             "y": 1621.38
         },
@@ -4377,6 +5379,14 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "subtype": "dunning",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": -587.26,
             "y": 1588.51
         },
@@ -4392,6 +5402,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "methods",
+                "role": "enum-options"
+            },
             "x": -646.32,
             "y": 1570.44
         },
@@ -4407,6 +5421,14 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "subtype": "other",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": -709.28,
             "y": 1559.91
         },
@@ -4422,6 +5444,14 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "subtype": "pople",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "ao"
+            },
             "x": -757.02,
             "y": 1516.24
         },
@@ -4437,6 +5467,14 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "subtype": "us|nc|nc-fr|paw|coulomb",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "psp"
+            },
             "x": -820.88,
             "y": 1504.81
         },
@@ -4452,6 +5490,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods"
+            },
             "x": -868.22,
             "y": 1462.62
         },
@@ -4467,6 +5509,10 @@
             "outDegree": 5,
             "propertyCount": 12,
             "hasExample": false,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods"
+            },
             "x": -925.76,
             "y": 1437.9
         },
@@ -4482,6 +5528,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "pw"
+            },
             "x": -982.19,
             "y": 1410.27
         },
@@ -4497,6 +5550,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "subtype": "gaussian|marzari-vanderbilt|methfessel-paxton|fermi-dirac",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "smearing"
+            },
             "x": -1017.38,
             "y": 1353.24
         },
@@ -4512,6 +5573,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "branch": "physical",
+                "catalogue": "methods",
+                "subtype": "linear|optimized|bloechl",
+                "tier1": "qm",
+                "tier2": "wf",
+                "type": "tetrahedron"
+            },
             "x": -1078.73,
             "y": 1331.29
         },
@@ -4766,6 +5835,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 772.99,
             "y": -1297.25
         },
@@ -4781,6 +5854,11 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "pb"
+            },
             "x": 824.19,
             "y": -1261.52
         },
@@ -4796,6 +5874,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 865.17,
             "y": -1211.75
         },
@@ -4811,6 +5893,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "pb",
+                "tier2": "qm"
+            },
             "x": 921.27,
             "y": -1183.65
         },
@@ -4826,6 +5914,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "abin"
+            },
             "x": 970.59,
             "y": -1145.97
         },
@@ -4841,6 +5936,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1008.59,
             "y": -1095.62
         },
@@ -4856,6 +5955,15 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "g0w0|evgw0|evgw",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "abin",
+                "type": "gw"
+            },
             "x": 1068.89,
             "y": -1068.89
         },
@@ -4871,6 +5979,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft"
+            },
             "x": 1104.55,
             "y": -1016.81
         },
@@ -4886,6 +6001,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1133.41,
             "y": -959.95
         },
@@ -4901,6 +6020,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": 1187.04,
             "y": -923.91
         },
@@ -4916,6 +6043,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "double-hybrid",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": 1209.8,
             "y": -863.78
         },
@@ -4931,6 +6067,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1249.77,
             "y": -816.52
         },
@@ -4946,6 +6086,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "gga",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": 1295.35,
             "y": -771.86
         },
@@ -4961,6 +6110,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "hybrid",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": 1322.06,
             "y": -715.46
         },
@@ -4976,6 +6134,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "lda",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": 1358.55,
             "y": -664.15
         },
@@ -4991,6 +6158,15 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "subtype": "mgga",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": 1375.36,
             "y": -603.29
         },
@@ -5006,6 +6182,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1391.91,
             "y": -543.13
         },
@@ -5021,6 +6201,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "semp"
+            },
             "x": 1420.03,
             "y": -487.5
         },
@@ -5036,6 +6223,11 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "st"
+            },
             "x": 1426.64,
             "y": -424.73
         },
@@ -5051,6 +6243,12 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "st",
+                "tier2": "det"
+            },
             "x": 1460.07,
             "y": -369.74
         },
@@ -5066,6 +6264,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1460.86,
             "y": -306.31
         },
@@ -5081,6 +6283,13 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "st",
+                "tier2": "det",
+                "tier3": "ml"
+            },
             "x": 1482.8,
             "y": -247.43
         },
@@ -5096,6 +6305,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1499.45,
             "y": -186.91
         },
@@ -5111,6 +6324,14 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "role": "vocabulary",
+                "scheme": "catecom",
+                "tier1": "st",
+                "tier2": "det",
+                "tier3": "ml",
+                "type": "re"
+            },
             "x": 1507.48,
             "y": -124.91
         },
@@ -5126,6 +6347,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "role": "enum-options",
+                "scheme": "catecom"
+            },
             "x": 1496.03,
             "y": -61.88
         },
@@ -5141,6 +6366,14 @@
             "outDegree": 6,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "models",
+                "subtype": "double-hybrid",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": -1128.33,
             "y": 1293.5
         },
@@ -5156,6 +6389,14 @@
             "outDegree": 7,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "subtype": "gga",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": -1160.27,
             "y": 1236.46
         },
@@ -5171,6 +6412,14 @@
             "outDegree": 8,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "subtype": "g0w0|evgw0|evgw",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "abin",
+                "type": "gw"
+            },
             "x": -1203.46,
             "y": 1192.59
         },
@@ -5186,6 +6435,14 @@
             "outDegree": 7,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "subtype": "hybrid",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": -1253.18,
             "y": 1154.74
         },
@@ -5201,6 +6458,14 @@
             "outDegree": 7,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "subtype": "lda",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": -1290.7,
             "y": 1105.41
         },
@@ -5216,6 +6481,10 @@
             "outDegree": 5,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1333.42,
             "y": 1060.54
         },
@@ -5231,6 +6500,10 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1381.48,
             "y": 1019.11
         },
@@ -5246,6 +6519,10 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1409.12,
             "y": 962.51
         },
@@ -5261,6 +6538,10 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1454.81,
             "y": 918.07
         },
@@ -5276,6 +6557,10 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1470.97,
             "y": 855.21
         },
@@ -5291,6 +6576,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1503.29,
             "y": 802.43
         },
@@ -5306,6 +6595,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "legacy": "true"
+            },
             "x": -1528.76,
             "y": 746.01
         },
@@ -5321,6 +6614,14 @@
             "outDegree": 7,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "models",
+                "subtype": "mgga",
+                "tier1": "pb",
+                "tier2": "qm",
+                "tier3": "dft",
+                "type": "ksdft"
+            },
             "x": -1567.01,
             "y": 695.41
         },
@@ -5336,6 +6637,13 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "models",
+                "tier1": "st",
+                "tier2": "det",
+                "tier3": "ml",
+                "type": "re"
+            },
             "x": -1572.77,
             "y": 630.65
         },
@@ -5366,6 +6674,9 @@
             "outDegree": 7,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties"
+            },
             "x": -1602.74,
             "y": 576.04
         },
@@ -5381,6 +6692,9 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties"
+            },
             "x": -1615.83,
             "y": 515.3
         },
@@ -5396,6 +6710,10 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "elemental"
+            },
             "x": -1644.32,
             "y": 459.32
         },
@@ -5411,6 +6729,10 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "elemental"
+            },
             "x": -1672.56,
             "y": 402.35
         },
@@ -5426,6 +6748,10 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "elemental"
+            },
             "x": -1674.94,
             "y": 339.1
         },
@@ -5441,6 +6767,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "role": "enum-options"
+            },
             "x": -1685.24,
             "y": 277.91
         },
@@ -5456,6 +6786,9 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties"
+            },
             "x": -1695.83,
             "y": 216.74
         },
@@ -5474,6 +6807,10 @@
             "manifest": {
                 "name": "average_potential_profile",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1704.76,
             "y": 155.21
@@ -5495,6 +6832,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1703.96,
             "y": 92.92
         },
@@ -5513,6 +6854,10 @@
             "manifest": {
                 "name": "band_structure",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1706.62,
             "y": 30.99
@@ -5533,6 +6878,10 @@
                 "name": "charge_density_profile",
                 "isResult": true
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1699.74,
             "y": -30.87
         },
@@ -5551,6 +6900,10 @@
             "manifest": {
                 "name": "density_of_states",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1716.11,
             "y": -93.58
@@ -5571,6 +6924,10 @@
                 "name": "dielectric_tensor",
                 "isResult": true
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1689.9,
             "y": -153.86
         },
@@ -5590,6 +6947,10 @@
                 "name": "file_content",
                 "isResult": true
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1692.68,
             "y": -216.33
         },
@@ -5605,6 +6966,10 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1683.18,
             "y": -277.57
         },
@@ -5623,6 +6988,10 @@
             "manifest": {
                 "name": "formation_energy_contributions",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1664.96,
             "y": -337.08
@@ -5644,6 +7013,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1668.72,
             "y": -401.43
         },
@@ -5663,6 +7036,10 @@
                 "name": "hubbard_v",
                 "isResult": true,
                 "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1632.13,
             "y": -455.91
@@ -5684,6 +7061,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1635.49,
             "y": -521.57
         },
@@ -5699,6 +7080,10 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1601.36,
             "y": -575.54
         },
@@ -5717,6 +7102,10 @@
             "manifest": {
                 "name": "phonon_dispersions",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1593.64,
             "y": -639.01
@@ -5737,6 +7126,10 @@
                 "name": "phonon_dos",
                 "isResult": true
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1568.04,
             "y": -695.86
         },
@@ -5756,6 +7149,10 @@
                 "name": "potential_profile",
                 "isResult": true
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1542.27,
             "y": -752.6
         },
@@ -5774,6 +7171,10 @@
             "manifest": {
                 "name": "reaction_energy_profile",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1502.07,
             "y": -801.77
@@ -5795,6 +7196,10 @@
                 "isResult": true,
                 "defaultUnits": "kbar"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1481.16,
             "y": -861.14
         },
@@ -5815,6 +7220,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1448.39,
             "y": -914.02
         },
@@ -5833,6 +7242,10 @@
             "manifest": {
                 "name": "vibrational_spectrum",
                 "isResult": true
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
             },
             "x": -1397.17,
             "y": -954.35
@@ -5853,6 +7266,10 @@
                 "name": "wavefunction_amplitude",
                 "isResult": true
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1365.77,
             "y": -1007.53
         },
@@ -5868,6 +7285,10 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "non-scalar"
+            },
             "x": -1346.29,
             "y": -1070.78
         },
@@ -5883,6 +7304,9 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties"
+            },
             "x": -1305.33,
             "y": -1117.94
         },
@@ -5902,6 +7326,10 @@
                 "name": "defect_formation_energy",
                 "isResult": true,
                 "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -1246.97,
             "y": -1149.02
@@ -5923,6 +7351,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -1216.61,
             "y": -1205.61
         },
@@ -5942,6 +7374,10 @@
                 "name": "fermi_energy",
                 "isResult": true,
                 "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -1168.48,
             "y": -1245.21
@@ -5963,6 +7399,10 @@
                 "isResult": true,
                 "defaultUnits": "eV/atom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -1127.8,
             "y": -1292.89
         },
@@ -5982,6 +7422,10 @@
                 "name": "homo_energy",
                 "isResult": true,
                 "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -1075.34,
             "y": -1327.11
@@ -6003,6 +7447,10 @@
                 "isResult": true,
                 "defaultUnits": "eV/A^2"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -1026.56,
             "y": -1365.44
         },
@@ -6022,6 +7470,10 @@
                 "name": "ionization_potential",
                 "isResult": true,
                 "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -982.19,
             "y": -1410.27
@@ -6043,6 +7495,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -923.46,
             "y": -1434.32
         },
@@ -6062,6 +7518,10 @@
                 "name": "pressure",
                 "isResult": true,
                 "defaultUnits": "kbar"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -865.04,
             "y": -1457.26
@@ -6083,6 +7543,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -823.89,
             "y": -1510.33
         },
@@ -6102,6 +7566,10 @@
                 "name": "surface_energy",
                 "isResult": true,
                 "defaultUnits": "eV/A^2"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -764.94,
             "y": -1532.1
@@ -6123,6 +7591,10 @@
                 "isResult": true,
                 "defaultUnits": "kcal/mol"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -711.32,
             "y": -1564.41
         },
@@ -6142,6 +7614,10 @@
                 "name": "thermal_correction_to_enthalpy",
                 "isResult": true,
                 "defaultUnits": "kcal/mol"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -655.18,
             "y": -1591.96
@@ -6163,6 +7639,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -588.47,
             "y": -1591.78
         },
@@ -6183,6 +7663,10 @@
                 "isResult": true,
                 "defaultUnits": "eV/angstrom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -537.85,
             "y": -1635.11
         },
@@ -6201,6 +7685,10 @@
             "manifest": {
                 "name": "valence_band_offset",
                 "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
             },
             "x": -473.57,
             "y": -1637.8
@@ -6222,6 +7710,10 @@
                 "isResult": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
             "x": -414.84,
             "y": -1658.14
         },
@@ -6242,6 +7734,10 @@
                 "isResult": true,
                 "defaultUnits": "eV/angstrom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": -353.89,
             "y": -1669.88
         },
@@ -6261,6 +7757,10 @@
                 "name": "basis",
                 "defaultUnits": "angstrom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": -292.4,
             "y": -1678.09
         },
@@ -6276,6 +7776,10 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": -231.76,
             "y": -1691.11
         },
@@ -6291,6 +7795,10 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": -170.91,
             "y": -1705.49
         },
@@ -6309,6 +7817,10 @@
             "manifest": {
                 "name": "atomic_constraints"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": -108.58,
             "y": -1706.12
         },
@@ -6324,6 +7836,10 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": -46.89,
             "y": -1720.96
         },
@@ -6339,6 +7855,10 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 15.42,
             "y": -1698.7
         },
@@ -6354,6 +7874,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 77.97,
             "y": -1716.16
         },
@@ -6369,6 +7893,10 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 140.52,
             "y": -1715.8
         },
@@ -6384,6 +7912,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 201.27,
             "y": -1697.26
         },
@@ -6399,6 +7931,10 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 261.77,
             "y": -1682.38
         },
@@ -6414,6 +7950,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 323.1,
             "y": -1673.94
         },
@@ -6433,6 +7973,10 @@
                 "name": "bonds",
                 "defaultUnits": "angstrom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 387.11,
             "y": -1675.99
         },
@@ -6448,6 +7992,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 446.05,
             "y": -1654.65
         },
@@ -6463,6 +8011,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 506.05,
             "y": -1638.07
         },
@@ -6482,6 +8034,10 @@
                 "name": "density",
                 "defaultUnits": "g/cm^3"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 562.99,
             "y": -1612.28
         },
@@ -6499,6 +8055,10 @@
             "hasExample": true,
             "manifest": {
                 "name": "elemental_ratio"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
             },
             "x": 620.47,
             "y": -1589.01
@@ -6518,6 +8078,10 @@
             "manifest": {
                 "name": "inchi"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 677.33,
             "y": -1564.43
         },
@@ -6535,6 +8099,10 @@
             "hasExample": true,
             "manifest": {
                 "name": "inchi_key"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
             },
             "x": 739.5,
             "y": -1551
@@ -6555,6 +8123,10 @@
                 "name": "lattice",
                 "defaultUnits": "angstrom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 787.86,
             "y": -1508.82
         },
@@ -6570,6 +8142,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 843.69,
             "y": -1481.96
         },
@@ -6585,6 +8161,10 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 903.9,
             "y": -1461.6
         },
@@ -6600,6 +8180,10 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 951.21,
             "y": -1420.09
         },
@@ -6615,6 +8199,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1000.55,
             "y": -1382.41
         },
@@ -6630,6 +8218,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1057.38,
             "y": -1354.51
         },
@@ -6645,6 +8237,10 @@
             "outDegree": 4,
             "propertyCount": 5,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1097.6,
             "y": -1305.39
         },
@@ -6660,6 +8256,10 @@
             "outDegree": 1,
             "propertyCount": 0,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1155.15,
             "y": -1276.7
         },
@@ -6680,6 +8280,10 @@
                 "isResult": true,
                 "defaultUnits": "uB"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1186.84,
             "y": -1219.62
         },
@@ -6695,6 +8299,10 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1225.24,
             "y": -1170.84
         },
@@ -6713,6 +8321,10 @@
             "manifest": {
                 "name": "p-norm"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1274.41,
             "y": -1132.21
         },
@@ -6728,6 +8340,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1325.63,
             "y": -1094.23
         },
@@ -6743,6 +8359,10 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1347.88,
             "y": -1032.64
         },
@@ -6758,6 +8378,10 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": false,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1399.93,
             "y": -993.99
         },
@@ -6777,6 +8401,10 @@
                 "name": "symmetry",
                 "defaultUnits": "angstrom"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
+            },
             "x": 1434.06,
             "y": -941.82
         },
@@ -6795,6 +8423,10 @@
             "manifest": {
                 "name": "volume",
                 "defaultUnits": "angstrom^3"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "structural"
             },
             "x": 1448.46,
             "y": -877.7
@@ -6816,6 +8448,10 @@
                 "isMonitor": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "workflow"
+            },
             "x": 1487.35,
             "y": -828.97
         },
@@ -6836,6 +8472,10 @@
                 "isMonitor": true,
                 "defaultUnits": "eV"
             },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "workflow"
+            },
             "x": 1508.3,
             "y": -770.24
         },
@@ -6851,6 +8491,10 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": true,
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "workflow"
+            },
             "x": 1554.8,
             "y": -724.06
         },
@@ -6930,6 +8574,10 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1575.62,
             "y": -665.25
         },
@@ -6945,6 +8593,10 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1597,
             "y": -606.94
         },
@@ -6960,6 +8612,10 @@
             "outDegree": 0,
             "propertyCount": 5,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1610.74,
             "y": -546.09
         },
@@ -6975,6 +8631,10 @@
             "outDegree": 1,
             "propertyCount": 5,
             "hasExample": false,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1641.17,
             "y": -490.73
         },
@@ -6990,6 +8650,10 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1656.21,
             "y": -430.38
         },
@@ -7005,6 +8669,10 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1654.2,
             "y": -366.29
         },
@@ -7020,6 +8688,10 @@
             "outDegree": 1,
             "propertyCount": 5,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "modeling"
+            },
             "x": 1689.06,
             "y": -310.14
         },
@@ -7035,6 +8707,10 @@
             "outDegree": 1,
             "propertyCount": 5,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "scripting"
+            },
             "x": 1694.18,
             "y": -247.87
         },
@@ -7050,6 +8726,10 @@
             "outDegree": 1,
             "propertyCount": 8,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "scripting"
+            },
             "x": 1699.5,
             "y": -185.91
         },
@@ -7065,6 +8745,10 @@
             "outDegree": 1,
             "propertyCount": 7,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "scripting"
+            },
             "x": 1708.53,
             "y": -124.32
         },
@@ -7080,6 +8764,10 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
+            "facets": {
+                "catalogue": "software",
+                "softwareKind": "scripting"
+            },
             "x": 1699.32,
             "y": -61.74
         },
