@@ -3,7 +3,7 @@
 
 // ── Monaco bootstrap ──────────────────────────────────────────────────────────
 let monacoEditor = null;
-let pendingContent = null;
+let pendingPath = null; // a file opened before the editor finished loading
 
 require.config({ paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs" } });
 require(["vs/editor/editor.main"], () => {
@@ -20,21 +20,48 @@ require(["vs/editor/editor.main"], () => {
         automaticLayout: true,
         renderLineHighlight: "all",
     });
-    if (pendingContent !== null) {
-        applyContent(pendingContent);
-        pendingContent = null;
+    if (pendingPath !== null) {
+        const path = pendingPath;
+        pendingPath = null;
+        showInEditor(path);
     }
 });
 
-function applyContent(text) {
+/**
+ * One Monaco model per open file, so each tab keeps its own folding and undo history
+ * rather than sharing a single buffer that gets overwritten on every switch.
+ */
+function modelFor(path) {
+    let model = models.get(path);
+    if (!model) {
+        model = monaco.editor.createModel(
+            fileContent.get(path) || "",
+            "json",
+            monaco.Uri.from({ scheme: "esse", path: `/${path}` }),
+        );
+        models.set(path, model);
+    }
+    return model;
+}
+
+function showInEditor(path) {
     if (!monacoEditor) {
-        pendingContent = text;
+        pendingPath = path;
         return;
     }
     document.getElementById("welcome").style.display = "none";
     document.getElementById("monaco-editor").style.display = "block";
-    monacoEditor.setValue(text);
-    monacoEditor.revealLine(1);
+
+    // Remember where the outgoing file was, so coming back lands where you left.
+    if (shownPath && shownPath !== path) {
+        viewStates.set(shownPath, monacoEditor.saveViewState());
+    }
+
+    monacoEditor.setModel(modelFor(path));
+    const state = viewStates.get(path);
+    if (state) monacoEditor.restoreViewState(state);
+    else monacoEditor.revealLine(1);
+    shownPath = path;
 }
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -42,6 +69,14 @@ let allFiles = [];
 const expandedSet = new Set(); // set of folder paths that are expanded
 let selectedFile = null; // currently selected file path
 let currentQuery = "";
+
+// Open files, left to right as they appear in the tab bar. Everything below is keyed
+// by path and cleared when the tab closes, so nothing accumulates for a closed file.
+const openTabs = [];
+const fileContent = new Map(); // path -> text, so switching back does not refetch
+const models = new Map(); // path -> Monaco model
+const viewStates = new Map(); // path -> scroll/cursor position
+let shownPath = null; // the file whose model the editor currently holds
 
 // ── Build nested tree object from flat path list ──────────────────────────────
 function pathsToTree(paths) {
@@ -224,8 +259,116 @@ function focusSelectedFileInTree(path) {
     }
 }
 
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+/**
+ * Basenames repeat across the corpus (`model.json` exists under both `schema/` and
+ * `example/`), so a tab shows its parent folder as soon as another open tab would
+ * otherwise look identical.
+ */
+function tabLabel(path) {
+    const parts = path.split("/");
+    const name = parts[parts.length - 1];
+    const ambiguous = openTabs.some((other) => other !== path && other.split("/").pop() === name);
+    return ambiguous && parts.length > 1 ? `${parts[parts.length - 2]}/${name}` : name;
+}
+
+/** Built as DOM rather than markup: paths go in unescaped and listeners attach directly. */
+function renderTabs() {
+    const bar = document.getElementById("tabbar");
+    bar.innerHTML = "";
+
+    openTabs.forEach((path) => {
+        const tab = document.createElement("div");
+        tab.className = path === selectedFile ? "tab active" : "tab";
+        tab.title = path;
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-selected", String(path === selectedFile));
+        tab.tabIndex = 0;
+
+        const icon = document.createElement("span");
+        icon.textContent = "📄";
+        const label = document.createElement("span");
+        label.className = "tab-name";
+        label.textContent = tabLabel(path);
+
+        const close = document.createElement("button");
+        close.className = "tab-close";
+        close.type = "button";
+        close.textContent = "\u00d7";
+        close.setAttribute("aria-label", `Close ${tabLabel(path)}`);
+        close.addEventListener("click", (event) => {
+            event.stopPropagation();
+            closeTab(path);
+        });
+
+        tab.append(icon, label, close);
+        tab.addEventListener("click", () => activateTab(path));
+        tab.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                activateTab(path);
+            }
+        });
+        // Middle-click closes, as it does in an editor and in a browser.
+        tab.addEventListener("auxclick", (event) => {
+            if (event.button === 1) {
+                event.preventDefault();
+                closeTab(path);
+            }
+        });
+
+        bar.appendChild(tab);
+    });
+
+    const active = bar.querySelector(".tab.active");
+    if (active) active.scrollIntoView({ block: "nearest", inline: "nearest" });
+}
+
+function clearEditor() {
+    selectedFile = null;
+    shownPath = null;
+    if (monacoEditor) monacoEditor.setModel(null);
+
+    document.getElementById("monaco-editor").style.display = "none";
+    document.getElementById("welcome").style.display = "";
+    document.getElementById("tabbar").innerHTML = "";
+    document.getElementById("breadcrumb").textContent = "Essential Source of Schemas and Examples";
+    document.getElementById("status-path").textContent = "No file selected";
+    document.getElementById("view-on-map").hidden = true;
+    document.querySelectorAll(".t-item.selected").forEach((el) => el.classList.remove("selected"));
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+}
+
+function closeTab(path) {
+    const index = openTabs.indexOf(path);
+    if (index === -1) return;
+
+    openTabs.splice(index, 1);
+    const model = models.get(path);
+    if (model) model.dispose();
+    models.delete(path);
+    viewStates.delete(path);
+    fileContent.delete(path);
+    if (shownPath === path) shownPath = null;
+
+    if (selectedFile !== path) {
+        renderTabs();
+        return;
+    }
+
+    // The tab that slid into this one's place, else the one before it.
+    const successor = openTabs[index] || openTabs[index - 1];
+    if (successor) activateTab(successor);
+    else clearEditor();
+}
+
 // ── Open / display a file ─────────────────────────────────────────────────────
 function openFile(path) {
+    if (!openTabs.includes(path)) openTabs.push(path);
+    activateTab(path);
+}
+
+function activateTab(path) {
     selectedFile = path;
     expandToFile(path);
 
@@ -239,11 +382,7 @@ function openFile(path) {
     // Highlight in tree (works for both tree and search views)
     focusSelectedFileInTree(path);
 
-    // Tab
-    const fname = path.split("/").pop();
-    document.getElementById(
-        "tabbar",
-    ).innerHTML = `<div class="tab active"><span>📄</span><span>${escHtml(fname)}</span></div>`;
+    renderTabs();
 
     // Breadcrumb
     const parts = path.split("/");
@@ -277,14 +416,25 @@ function openFile(path) {
     // Update URL hash for deep-linking
     window.history.replaceState(null, "", "#" + path);
 
-    // Fetch
+    if (fileContent.has(path)) {
+        showInEditor(path);
+        return;
+    }
+
     fetch(path)
         .then((r) => {
             if (!r.ok) throw new Error("HTTP " + r.status);
             return r.json();
         })
-        .then((data) => applyContent(JSON.stringify(data, null, 2)))
-        .catch((err) => applyContent(`// Error loading file\n// ${err.message}`));
+        .then((data) => JSON.stringify(data, null, 2))
+        .catch((err) => `// Error loading file\n// ${err.message}`)
+        .then((text) => {
+            fileContent.set(path, text);
+            // A slow response must not overwrite whatever tab is showing by now, and a
+            // tab closed while in flight should not be resurrected.
+            if (selectedFile === path) showInEditor(path);
+            else if (!openTabs.includes(path)) fileContent.delete(path);
+        });
 }
 
 // ── Expand all ancestor folders for a given file path ────────────────────────

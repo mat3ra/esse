@@ -69,9 +69,11 @@ body {
     }
 }
 
-#titlebar-tagline {
-    margin-left: 6px;
-}
+/*
+ * The Explorer and the docs both end their title bar with this tagline, so the map does
+ * too; the live counts sit just inside it. Pushing the counts rather than the tagline
+ * keeps the counts right-aligned if the tagline is ever hidden on a narrow screen.
+ */
 #titlebar-counts {
     margin-left: auto;
     font-variant-numeric: tabular-nums;
