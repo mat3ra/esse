@@ -5,8 +5,6 @@
   publish = "site"
 
 [build.environment]
-  # The Python data modules are not part of the site payload.
-  BUILD_PYTHON_MODULES = "false"
   NODE_VERSION = "20"
 
 # The explorer, docs and map are static; graph.json is fetched relative to /map/.
