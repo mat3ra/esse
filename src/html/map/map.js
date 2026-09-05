@@ -333,6 +333,13 @@ function showDetail(id) {
         ) +
         `<div class="detail-group"><h3>Open</h3><div class="detail-links">` +
         `<a href="../#${escHtml(node.publishedPath)}">In the schema explorer</a>` +
+        // The map shows how a schema relates; the Explorer's views show where it is filed.
+        (node.layer === "category"
+            ? `<a href="../#/categories/${escHtml(node.publishedPath)}">Browse in Categories</a>`
+            : "") +
+        (node.layer === "directory"
+            ? `<a href="../#/directories/${escHtml(node.publishedPath)}">Browse in Directories</a>`
+            : "") +
         `<a href="../${escHtml(node.publishedPath)}">Resolved JSON</a>` +
         (example ? `<a href="${escHtml(example)}">Example</a>` : "") +
         `<a href="${GITHUB_BLOB}${escHtml(

@@ -59,8 +59,16 @@ body {
     }
 }
 
+/* Five nav items leave the tagline no room to sit on one line; it is decoration, and the
+   navigation is not, so it goes first rather than wrapping the 34px bar into two. */
 #titlebar-tagline {
     margin-left: auto;
+    white-space: nowrap;
+}
+@media (max-width: 900px) {
+    #titlebar-tagline {
+        display: none;
+    }
 }
 
 /* Shared three-surface navigation: Docs / Explorer / Map */
@@ -109,6 +117,40 @@ body {
     letter-spacing: 0.1em;
     color: var(--text-muted);
     flex-shrink: 0;
+}
+
+/* Files | Categories | Directories — the same schemas, three arrangements. */
+#view-switch {
+    display: flex;
+    margin: 0 8px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+#view-switch button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 4px 2px;
+    border: none;
+    background: var(--bg-inactive);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#view-switch button + button {
+    border-left: 1px solid var(--border);
+}
+#view-switch button:hover {
+    color: var(--text-primary);
+}
+#view-switch button.active {
+    background: var(--accent);
+    color: #fff;
 }
 
 #search-wrap {
@@ -196,6 +238,12 @@ body {
 }
 .t-item.file .t-label {
     color: var(--icon-json);
+}
+/* Category labels carry a title as well as a slug, so rows can be long. */
+.t-item .t-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .t-children {
@@ -357,8 +405,19 @@ body {
     color: var(--text-muted);
     display: flex;
     align-items: center;
-    overflow: hidden;
     gap: 2px;
+    /* A category coordinate is far longer than a file path and must not wrap out of the
+       22px row; the strip scrolls instead. */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+#breadcrumb::-webkit-scrollbar {
+    height: 0;
+}
+#breadcrumb span {
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 #view-on-map {
     font-size: 12px;

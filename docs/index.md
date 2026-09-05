@@ -16,10 +16,11 @@ That combination is what makes it useful as a data standard for machine learning
 the entity types, their fields, their units and their relationships are all declared, checkable,
 and stable under a `$id`, so nothing has to be inferred from examples.
 
-The [schema explorer](../index.html) shows you any single schema. The
-[ontology map](../map/index.html) shows you the ontology whole — every entity type and every
-relationship between them. These pages explain *why* the schemas are shaped the way they are,
-which is the part neither of the other two can tell you.
+The [schema explorer](../index.html) shows you any single schema, and browses the corpus three
+ways — by file, by [category](../index.html#/categories), or by
+[directory](../index.html#/directories). The [ontology map](../map/index.html) shows you the
+ontology whole — every entity type and every relationship between them. These pages explain *why*
+the schemas are shaped the way they are, which is the part neither of the other two can tell you.
 
 <!-- generated:corpus-totals -->
 

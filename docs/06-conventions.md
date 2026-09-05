@@ -83,6 +83,8 @@ are stable, and change only additively:
 | `/map/#/entity/<$id>` | Ontology map: fly to a schema and open its panel |
 | `/map/#/view/<x>,<y>,<zoom>` | Ontology map viewport |
 | `/map/#/facet/<axis>/<value>` | Ontology map: isolate every schema at one facet coordinate |
+| `/#/categories[/<published path>]` | Explorer, Categories view — optionally opening one file |
+| `/#/directories[/<published path>]` | Explorer, Directories view — optionally opening one file |
 | `/graph.json` | the entity graph asset, described by `src/js/scripts/entity_graph.schema.json` |
 | `/docs/<slug>.html` | these pages |
 
@@ -103,6 +105,7 @@ are stable, and change only additively:
 | L9 | example coverage (warning) |
 | L10 | `graph.json` validates against its own schema |
 | L11 | every category and directory node has well-formed navigation facets |
+| L12 | the Categories and Directories trees cover the corpus and open files that exist |
 
 L3 is the one that will catch you when adding a new top-level directory: the layer taxonomy is
 total by design, so a path no rule covers is a failure rather than a silent fallback. Add a rule
