@@ -310,6 +310,13 @@ body {
     border-radius: 50%;
     flex-shrink: 0;
 }
+.legend-count {
+    margin-left: auto;
+    padding-left: 8px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+.legend-toggle,
 .legend-family {
     cursor: pointer;
     user-select: none;
@@ -587,4 +594,64 @@ body {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* Facet chips: a badge that filters. The axis colour tells you which scheme it comes from. */
+.badge.facet {
+    font: inherit;
+    font-size: 10.5px;
+    line-height: inherit;
+    cursor: pointer;
+}
+.badge.facet:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* Sits below the titlebar, above the focus banner, so both can show at once. */
+#facet-banner {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 10px;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-size: 12px;
+}
+#facet-banner button {
+    padding: 2px 8px;
+    background: var(--bg-inactive);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+}
+#facet-banner button:hover {
+    border-color: var(--accent);
+}
+
+/* The vocabulary triangle and the apse rhomboid, matching the Cytoscape node shapes. */
+.legend-shape.category {
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.legend-shape.directory {
+    border-radius: 3px;
+}
+.legend-shape.parsing {
+    clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
+}
+
+#facet-banner[hidden] {
+    display: none;
+}
+/* Both banners can be up at once; the focus banner keeps the higher slot. */
+#facet-banner:not([hidden]) ~ #focus-banner {
+    top: 52px;
 }

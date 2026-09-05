@@ -45,6 +45,19 @@ export interface EntityGraphNodeManifest {
     defaultUnits?: string;
 }
 
+/**
+ * Navigation facets derived at build time. Keys are sorted; a value is the slug as the
+ * corpus spells it — the enum a CateCom vocabulary schema narrows, or a path segment for
+ * M-CODE and the catalogues. A narrowing to several values is joined with "|" in enum
+ * order, because such a schema is the branch rather than a point on the ladder.
+ *
+ * Present on every `category` and `directory` node, absent on every other layer.
+ */
+export type EntityGraphFacets = Record<string, string>;
+
+/** The five coordinate fields of `core/reusable/categories`, in ladder order. */
+export const CATECOM_FIELDS = ["tier1", "tier2", "tier3", "type", "subtype"] as const;
+
 export interface EntityGraphNode {
     /** Schema `$id`, dash-separated, e.g. "in-memory-entity/named-defaultable". */
     id: string;
@@ -69,6 +82,8 @@ export interface EntityGraphNode {
     propertyCount: number;
     hasExample: boolean;
     manifest?: EntityGraphNodeManifest;
+    /** Navigation facets — see EntityGraphFacets. Category and directory nodes only. */
+    facets?: EntityGraphFacets;
     /** Map coordinates, baked at build time so the client renders without laying out. */
     x?: number;
     y?: number;
@@ -307,6 +322,187 @@ function readPropertiesManifest(): Record<string, any> {
     >;
 }
 
+// ── Facets ────────────────────────────────────────────────────────────────────
+
+const ENUM_HOLDER = /^(enum_options|enum|enums)$/;
+const DIMENSIONALITY = /^(zero|one|two|three)-dimensional$/;
+const OPERATIONS_PREFIX = "materials-category-components/operations/";
+const VALUE_SHAPES = ["scalar", "non-scalar", "structural", "elemental", "workflow"];
+const METHOD_BRANCHES = ["mathematical", "physical"];
+
+interface FacetContext {
+    nodes: Map<string, EntityGraphNode>;
+    schemaById: Map<string, LoadedSchema>;
+    schemasBySourcePath: Map<string, LoadedSchema>;
+    /** `extends` targets per source id, sorted, so the upward walk is deterministic. */
+    extendsTargets: Map<string, string[]>;
+    /** Target of the `categories` property edge, per directory node id. */
+    categoriesTarget: Map<string, string>;
+    coordinateMemo: Map<string, EntityGraphFacets>;
+}
+
+/** Source path segments below `schema/`, so `non-scalar` keeps the dash its `$id` loses. */
+function sourceSegments(node: EntityGraphNode): string[] {
+    return node.path
+        .replace(/^schema\//, "")
+        .replace(/\.json$/, "")
+        .split("/");
+}
+
+function sortedFacets(facets: EntityGraphFacets): EntityGraphFacets {
+    return Object.fromEntries(Object.entries(facets).sort(([a], [b]) => a.localeCompare(b)));
+}
+
+/**
+ * Which of the five CateCom fields this vocabulary schema narrows, each resolved to its enum.
+ *
+ * The enum is the coordinate, not the path segment: `fapprx/basisexp.json` narrows `tier2`
+ * to `basisExp`, and for methods the first segment (`mathematical`, `physical`) is not a tier
+ * at all — so counting path depth gets the ladder wrong.
+ */
+function ownNarrowings(id: string, context: FacetContext): EntityGraphFacets {
+    const loaded = context.schemaById.get(id);
+    if (!loaded) return {};
+
+    const properties = (loaded.schema.properties ?? {}) as Record<string, any>;
+    const narrowed: EntityGraphFacets = {};
+
+    CATECOM_FIELDS.forEach((field) => {
+        const property = properties[field];
+        if (!property) return;
+
+        let values: unknown = Array.isArray(property.enum) ? property.enum : undefined;
+        if (!values && typeof property.$ref === "string") {
+            const [filePart, pointerPart] = property.$ref.split("#");
+            const target = context.schemasBySourcePath.get(
+                path.resolve(path.dirname(loaded.sourcePath), filePart),
+            )?.schema;
+            const fragment = resolveJsonPointer(
+                target,
+                `/${(pointerPart ?? "").replace(/^\//, "")}`,
+            );
+            values = (fragment as { enum?: unknown } | undefined)?.enum;
+        }
+        if (Array.isArray(values) && values.length > 0) {
+            narrowed[field] = values.map(String).join("|");
+        }
+    });
+
+    return narrowed;
+}
+
+/** Ancestors' narrowings (walking `extends` within the category layer), then this node's; own wins. */
+function catecomCoordinate(id: string, context: FacetContext): EntityGraphFacets {
+    const memoised = context.coordinateMemo.get(id);
+    if (memoised) return memoised;
+
+    context.coordinateMemo.set(id, {});
+    const coordinate: EntityGraphFacets = {};
+    (context.extendsTargets.get(id) ?? [])
+        .filter((parent) => context.nodes.get(parent)?.layer === "category")
+        .forEach((parent) => Object.assign(coordinate, catecomCoordinate(parent, context)));
+    Object.assign(coordinate, ownNarrowings(id, context));
+
+    context.coordinateMemo.set(id, coordinate);
+    return coordinate;
+}
+
+/** Last segment of the first operation reached walking `extends` upward. */
+function mcodeOperation(
+    id: string,
+    context: FacetContext,
+    seen = new Set<string>(),
+): string | undefined {
+    if (seen.has(id)) return undefined;
+    seen.add(id);
+
+    const parents = context.extendsTargets.get(id) ?? [];
+    const direct = parents.find((parent) => parent.startsWith(OPERATIONS_PREFIX));
+    if (direct) return direct.split("/").pop();
+
+    return parents.map((parent) => mcodeOperation(parent, context, seen)).find(Boolean);
+}
+
+/**
+ * Facets for one node, or undefined when no rule covers it.
+ *
+ * Category nodes carry their scheme's coordinate (CateCom's ladder or M-CODE's axes);
+ * directory nodes carry the catalogue they belong to, that catalogue's own axis, and — when
+ * the entry declares a `categories` property — the coordinate it is filed at.
+ */
+export function deriveFacets(
+    node: EntityGraphNode,
+    context: FacetContext,
+): EntityGraphFacets | undefined {
+    if (node.layer !== "category" && node.layer !== "directory") return undefined;
+
+    const segments = sourceSegments(node);
+    const [, second, third, fourth] = segments;
+    const holder = ENUM_HOLDER.test(segments[segments.length - 1]);
+    const facets: EntityGraphFacets = {};
+
+    if (node.layer === "category") {
+        if (node.domain === "models_category" || node.domain === "methods_category") {
+            facets.scheme = "catecom";
+            if (node.domain === "methods_category") facets.branch = second;
+            if (holder) {
+                facets.role = "enum-options";
+            } else {
+                facets.role = "vocabulary";
+                Object.assign(facets, catecomCoordinate(node.id, context));
+            }
+        } else if (node.domain === "materials_category") {
+            facets.scheme = "mcode";
+            facets.role = "recipe";
+            facets.structuralClass = second.replace(/_structures$/, "").replace(/_/g, "-");
+            facets.dimensionality = third;
+            const operation = mcodeOperation(node.id, context);
+            if (operation) facets.operation = operation;
+        } else if (node.domain === "materials_category_components" && second === "entities") {
+            facets.scheme = "mcode";
+            facets.role = "entity";
+            facets.entityRole = third;
+            // Dimensionality sits one segment deeper here than under materials_category.
+            facets.dimensionality = fourth;
+        } else if (node.domain === "materials_category_components" && second === "operations") {
+            facets.scheme = "mcode";
+            facets.role = holder ? "enum-options" : "operation";
+            facets.operationKind = fourth;
+        } else {
+            return undefined;
+        }
+        return sortedFacets(facets);
+    }
+
+    facets.catalogue = node.domain.replace(/_directory$/, "").replace(/_/g, "-");
+    if (holder) {
+        facets.role = "enum-options";
+        return sortedFacets(facets);
+    }
+    if (second === "legacy") facets.legacy = "true";
+    if (node.domain === "properties_directory" && VALUE_SHAPES.includes(second)) {
+        facets.valueShape = second;
+    }
+    if (node.domain === "software_directory") facets.softwareKind = second;
+    if (node.domain === "methods_directory" && METHOD_BRANCHES.includes(second)) {
+        facets.branch = second;
+    }
+    if (node.domain === "context_providers_directory") {
+        facets.scope = second === "by_application" ? "by-application" : "generic";
+        if (second === "by_application") [facets.application] = third.split("_");
+    }
+
+    const coordinate = context.categoriesTarget.get(node.id);
+    if (coordinate) {
+        const inherited = catecomCoordinate(coordinate, context);
+        CATECOM_FIELDS.forEach((field) => {
+            if (inherited[field]) facets[field] = inherited[field];
+        });
+    }
+
+    return sortedFacets(facets);
+}
+
 export interface BuildEntityGraphResult {
     graph: EntityGraph;
     lint: EntityGraphLintResult;
@@ -478,6 +674,59 @@ export function buildEntityGraph(): BuildEntityGraphResult {
             ...(entry.isMonitor ? { isMonitor: true } : {}),
             ...(entry.defaults?.units ? { defaultUnits: String(entry.defaults.units) } : {}),
         };
+    });
+
+    // L11 — facets are total on the category and directory layers, and well formed.
+    // Assigned after the edges exist (the CateCom walk and the `categories` join both need
+    // them) and before layout, so node key order stays deterministic.
+    const extendsTargets = new Map<string, string[]>();
+    const categoriesTarget = new Map<string, string>();
+    edges.forEach((edge) => {
+        if (edge.kind === "extends") {
+            if (!extendsTargets.has(edge.source)) extendsTargets.set(edge.source, []);
+            (extendsTargets.get(edge.source) as string[]).push(edge.target);
+        }
+        if (edge.kind === "contains" && edge.label === "categories") {
+            if (
+                nodes.get(edge.source)?.layer === "directory" &&
+                nodes.get(edge.target)?.layer === "category"
+            ) {
+                categoriesTarget.set(edge.source, edge.target);
+            }
+        }
+    });
+    extendsTargets.forEach((targets) => targets.sort());
+
+    const facetContext: FacetContext = {
+        nodes,
+        schemaById: new Map(
+            loadedSchemas
+                .map((item) => [nodeIdBySourcePath.get(item.sourcePath) as string, item] as const)
+                .filter(([id]) => Boolean(id)),
+        ),
+        schemasBySourcePath,
+        extendsTargets,
+        categoriesTarget,
+        coordinateMemo: new Map(),
+    };
+
+    [...nodes.keys()].sort().forEach((id) => {
+        const node = nodes.get(id) as EntityGraphNode;
+        if (node.layer !== "category" && node.layer !== "directory") return;
+
+        const facets = deriveFacets(node, facetContext);
+        if (!facets || Object.keys(facets).length === 0) {
+            failures.push(
+                `L11 ${node.path}: no facet rule covers this ${node.layer} path — add one to deriveFacets`,
+            );
+            return;
+        }
+        if (facets.dimensionality && !DIMENSIONALITY.test(facets.dimensionality)) {
+            failures.push(
+                `L11 ${node.path}: dimensionality "${facets.dimensionality}" is not <zero|one|two|three>-dimensional`,
+            );
+        }
+        node.facets = facets;
     });
 
     const sortedNodes = computeEntityGraphLayout(

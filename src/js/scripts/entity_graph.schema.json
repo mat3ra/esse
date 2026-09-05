@@ -154,6 +154,13 @@
                         "required": [
                             "name"
                         ]
+                    },
+                    "facets": {
+                        "description": "Navigation facets derived at build time: the CateCom coordinate a vocabulary schema narrows to, the M-CODE axes carried in a materials path, or the catalogue and axis a directory entry belongs to. Present on every category and directory node.",
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
                     }
                 },
                 "required": [

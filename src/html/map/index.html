@@ -65,13 +65,18 @@
                     <div class="legend-row"><span class="legend-edge variant"></span>variant (oneOf)</div>
                 </div>
                 <div class="legend-section">
-                    <h4>Layer shapes</h4>
+                    <h4>Kinds <span class="legend-hint">click to filter</span></h4>
                     <div id="legend-shapes"></div>
                 </div>
             </div>
         </div>
 
         <canvas id="minimap" width="180" height="180" aria-hidden="true" title="Overview — click to jump"></canvas>
+
+        <div id="facet-banner" hidden>
+            <span id="facet-label"></span>
+            <button type="button" id="facet-clear">Clear</button>
+        </div>
 
         <div id="focus-banner" hidden>
             <span id="focus-label"></span>
