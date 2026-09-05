@@ -66,9 +66,9 @@ The cost is real and worth naming: writing JSON Schema by hand is more tedious t
 dataclass, and expressing some constraints in it is awkward. ESSE accepts that cost because the
 alternative — the drift — is worse and compounds.
 
-## What the two papers contribute
+## What the three papers contribute
 
-Two publications underpin the design, and they answer different questions.
+Three publications underpin the design, and they answer different questions.
 
 **[Data-centric online ecosystem for digital materials science](https://arxiv.org/pdf/1902.10838.pdf)**
 sets out the entity model: what the nouns of the domain actually are, and how they connect. A
@@ -82,9 +82,14 @@ produced it — and that separating them is what makes results comparable across
 answers a different question: given that there are thousands of models and methods, how do you
 organize them so a person can find the right one and a machine can reason about it? The answer is
 a tiered categorization rather than a flat list or a rigid tree, described in
-[Categorization](categorization.html). Models and methods follow it directly. Materials take a
-different route in this repository — categories defined by composition rather than by tiers — and
-between them the vocabulary-and-catalogue schemas account for over half the corpus.
+[Categorization](categorization.html). Models and methods follow it directly.
+
+**[M-CODE: Materials Categorization via Ontology, Dimensionality and Evolution](https://arxiv.org/abs/2602.14384)**
+asks the same question of materials and gets a different answer, because the need is different. A
+model is looked up; a structure is built. So a material category is a *recipe* positioned on three
+axes — structural complexity, dimensionality, and the operation that produces it — rather than a
+point on a tier ladder. Between them the two schemes' vocabulary-and-catalogue schemas account for
+over half the corpus.
 
 ## Generic by design
 

@@ -163,7 +163,7 @@ function categorizationSchemesFragment(graph: EntityGraph): string {
             (node) => node.id.startsWith(prefix) && !reachesCategories(node.id),
         );
         const tiered = total - rest.length;
-        if (!tiered) return [`\`${domain}\``, String(total), "none — compositional"];
+        if (!tiered) return [`\`${domain}\``, String(total), "M-CODE — compositional"];
 
         // Today the untiered remainder is entirely enum holders; say so only while true.
         const allEnums = rest.every((node) => /\/enum-options$|\/enums$/.test(node.id));

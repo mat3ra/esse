@@ -101,10 +101,13 @@ vocabulary**, each schema narrowing one more field of `core/reusable/categories`
 `materials_category` holds **recipes** that compose entities and operations from
 `materials_category_components` and use no tiers at all.
 
-**Composition (materials)** — the materials categorization scheme: a structure class is defined as
-an operation (`stack`, `merge`, `strain`, …) applied to entities (`crystal`, `vacuum`, `atom`,
-`vacancy`, …), keyed by structure class and dimensionality. A slab *is* a stack of atomic layers
-and vacuum. [Categorization](categorization.html).
+**M-CODE** — *Materials Categorization via Ontology, Dimensionality and Evolution*
+([arXiv:2602.14384](https://arxiv.org/abs/2602.14384)), the materials categorization scheme and the
+counterpart to CateCom. A structure class is defined as an operation (`stack`, `merge`, `strain`, …)
+applied to entities (`crystal`, `vacuum`, `atom`, `vacancy`, …), positioned on three axes —
+structural complexity, dimensionality, and the operation itself — which are the `materials_category`
+directory structure. A slab *is* a stack of atomic layers and vacuum.
+[Categorization](categorization.html).
 
 **Directory schema** (`*_directory`) — the **catalogue**: the concrete entries.
 

@@ -57,7 +57,7 @@ describe("expandFragments", () => {
         expect(rendered).to.match(/\|\s*`models-category`\s*\|\s*\d+\s*\|\s*\d+ tiered/);
         expect(rendered).to.match(/\|\s*`methods-category`\s*\|\s*\d+\s*\|\s*\d+ tiered/);
         expect(rendered).to.match(
-            /\|\s*`materials-category`\s*\|\s*\d+\s*\|\s*none — compositional/,
+            /\|\s*`materials-category`\s*\|\s*\d+\s*\|\s*M-CODE — compositional/,
         );
         expect(rendered).to.contain("method/unit-method");
         expect(rendered).to.contain("model/model-without-method");

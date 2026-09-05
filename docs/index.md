@@ -29,12 +29,12 @@ If you are new, read the first four pages in order — they are the argument, an
 reference:
 
 1. **[Why ESSE exists](why-esse-exists.html)** — schemas as the shared source of truth, and what
-   the two papers behind this repository contribute.
+   the three papers behind this repository contribute.
 2. **[Schema layering](schema-layering.html)** — the build-up from primitives to entities, and
    why the layers are separate.
 3. **[Entity anatomy](entity-anatomy.html)** — the root entities, how they compose, and the
    material variant family.
-4. **[Categorization](categorization.html)** — CateCom tiers for models and methods,
+4. **[Categorization](categorization.html)** — CateCom tiers for models and methods, M-CODE
    composition for materials, and the `*_category` versus `*_directory` split that names half the
    repository.
 
