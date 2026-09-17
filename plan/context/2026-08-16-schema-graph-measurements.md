@@ -21,11 +21,11 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 564 |
-| Example files | 209 (a schema has a mirror example in 209/564 = 37% of cases) |
-| Cross-schema reference edges | 917 |
+| Schema files | 565 |
+| Example files | 209 (a schema has a mirror example in 209/565 = 37% of cases) |
+| Cross-schema reference edges | 920 |
 | — of kind *extends* (`allOf`) | 372 |
-| — of kind *contains* (`properties`/`items`) | 375 |
+| — of kind *contains* (`properties`/`items`) | 378 |
 | — of kind *variant* (`oneOf`/`anyOf`) | 170 |
 | Same-document refs (`#/…`), which are **not** edges | 20 |
 | Edges carrying a JSON-pointer fragment | 144 (e.g. `enum_options.json#/physicsBased`) |
@@ -61,7 +61,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | --- | --- | --- |
 | directory | 156 | `*_directory` catalogs of concrete instances |
 | category | 152 | `*_category` + `materials_category_components` taxonomies |
-| **entity-component** | **106** | sub-schemas of root entities, keyed by `ownerEntity` |
+| **entity-component** | **107** | sub-schemas of root entities, keyed by `ownerEntity` |
 | system | 38 | platform mixins (`system/*`) |
 | reusable | 31 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |

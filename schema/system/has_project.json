@@ -1,0 +1,15 @@
+{
+    "$id": "system/has-project",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Has project schema",
+    "type": "object",
+    "properties": {
+        "_project": {
+            "description": "Subset of the full information about the project that this entity belongs to.",
+            "$ref": "entity_reference.json"
+        }
+    },
+    "required": [
+        "_project"
+    ]
+}

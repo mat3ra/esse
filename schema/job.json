@@ -5,16 +5,14 @@
     "type": "object",
     "allOf": [
         {
+            "description": "in-memory entity",
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
             "$ref": "job/base.json"
+        },
+        {
+            "$ref": "system/has_project.json"
         }
-    ],
-    "properties": {
-        "workflow": {
-            "description": "Arch-workflow for the job",
-            "$ref": "workflow.json"
-        }
-    },
-    "required": [
-        "workflow"
     ]
 }

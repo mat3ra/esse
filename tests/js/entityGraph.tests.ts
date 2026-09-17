@@ -18,9 +18,9 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 564;
-const EXPECTED_EDGE_COUNT = 917;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 372, contains: 375, variant: 170 };
+const EXPECTED_NODE_COUNT = 565;
+const EXPECTED_EDGE_COUNT = 920;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 372, contains: 378, variant: 170 };
 const EXPECTED_SAME_DOCUMENT_REFS = 20;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
@@ -29,7 +29,7 @@ const EXPECTED_LAYER_COUNTS = {
     definition: 4,
     directory: 156,
     entity: 11,
-    "entity-component": 106,
+    "entity-component": 107,
     "in-memory-entity": 7,
     primitive: 23,
     reference: 10,
