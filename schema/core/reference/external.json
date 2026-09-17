@@ -2,15 +2,16 @@
     "$id": "core/reference/external",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "external reference schema",
+    "description": "Where a result produced outside the compute stack came from. Both ends are entity references carrying their own class, so a reader resolves them without knowing which kind of entity to expect - unlike core/reference/exabyte, which names the job in the field itself and is kept as it is for jobs.",
     "type": "object",
     "properties": {
-        "measurementId": {
-            "description": "Measurement's identity",
-            "type": "string"
+        "origin": {
+            "description": "The entity that produced the result, e.g. a measurement",
+            "$ref": "../../system/entity_reference.json"
         },
-        "sampleId": {
-            "description": "Identity of the sample the result is about",
-            "type": "string"
+        "subject": {
+            "description": "The entity the result is about, e.g. a sample",
+            "$ref": "../../system/entity_reference.json"
         },
         "unitId": {
             "description": "Id of the unit that extracted the result",
@@ -18,7 +19,7 @@
         }
     },
     "required": [
-        "measurementId",
+        "origin",
         "unitId"
     ]
 }
