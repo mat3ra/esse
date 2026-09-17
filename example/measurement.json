@@ -1,0 +1,46 @@
+{
+    "_id": "mSrUn20260901ALSc1",
+    "_sample": {
+        "_id": "aScN01448r0c00Xy1",
+        "cls": "Sample",
+        "slug": "pdac-com5-01448-r0c00"
+    },
+    "setup": {
+        "name": "utk-asylum-cypher-1",
+        "description": {
+            "vendor": "Asylum Research",
+            "model": "Cypher",
+            "software": "afm-lib"
+        },
+        "session": {
+            "name": "20260901_171601_alscn_01448",
+            "started": "2026-09-01T17:16:02Z",
+            "directory": "/data/afm/asylum/260831"
+        },
+        "settings": {
+            "drive_amplitude_v": 1.0,
+            "bias_points": 64,
+            "loops_per_site": 8
+        },
+        "registration": {
+            "frame": "asylum-spm stage",
+            "units": "m",
+            "anchor": "100 um below the left bottom electrode",
+            "r0c00_stage_m": [
+                0.021064,
+                0.020812999
+            ]
+        }
+    },
+    "metadata": {
+        "run_dir": "/data/afm/runs/20260901_171601_alscn_01448",
+        "recordsCount": 8
+    },
+    "name": "20260901_171601_alscn_01448",
+    "schemaVersion": "0.2.0",
+    "slug": "20260901-171601-alscn-01448",
+    "status": "finished",
+    "workflow": {
+        "...": "include(workflow.json)"
+    }
+}

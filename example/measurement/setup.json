@@ -1,0 +1,27 @@
+{
+    "name": "utk-asylum-cypher-1",
+    "description": {
+        "vendor": "Asylum Research",
+        "model": "Cypher",
+        "software": "afm-lib"
+    },
+    "session": {
+        "name": "20260901_171601_alscn_01448",
+        "started": "2026-09-01T17:16:02Z",
+        "directory": "/data/afm/asylum/260831"
+    },
+    "settings": {
+        "drive_amplitude_v": 1.0,
+        "bias_points": 64,
+        "loops_per_site": 8
+    },
+    "registration": {
+        "frame": "asylum-spm stage",
+        "units": "m",
+        "anchor": "100 um below the left bottom electrode",
+        "r0c00_stage_m": [
+            0.021064,
+            0.020812999
+        ]
+    }
+}

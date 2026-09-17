@@ -1,0 +1,56 @@
+{
+    "$id": "measurement/setup",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement setup schema",
+    "description": "The setup a measurement was performed with: the machine and the sitting — the experimental analogue of a job's compute. The technique is the workflow's application, not repeated here.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Identity of the instrument, as a cluster's fqdn identifies a cluster",
+            "type": "string"
+        },
+        "description": {
+            "description": "Vendor, model, serial and whatever else describes the machine",
+            "type": "object"
+        },
+        "session": {
+            "description": "The sitting during which the measurement was taken",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "started": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "finished": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "operator": {
+                    "type": "string"
+                },
+                "directory": {
+                    "description": "Where the instrument wrote its raw data",
+                    "type": "string"
+                }
+            }
+        },
+        "settings": {
+            "description": "Instrument parameters as set for this measurement",
+            "type": "object"
+        },
+        "environment": {
+            "description": "Conditions during the measurement: temperature, pressure, atmosphere",
+            "type": "object"
+        },
+        "registration": {
+            "description": "How the instrument frame maps onto the sample: frame, anchor, coordinates",
+            "type": "object"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}
