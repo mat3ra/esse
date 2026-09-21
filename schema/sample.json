@@ -2,7 +2,7 @@
     "$id": "sample",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "sample schema",
-    "description": "A physical specimen, or a site on one, that an experimental result is about. It has no crystal structure of its own.",
+    "description": "A place on a wafer where a measurement was taken",
     "type": "object",
     "allOf": [
         {
@@ -11,15 +11,21 @@
     ],
     "properties": {
         "label": {
-            "description": "Identity of the sample on its substrate, e.g. the grid label r0c00 of a contact pad",
+            "description": "The instrument recipe's name for the place, e.g. r7c10",
             "type": "string"
         },
         "position": {
-            "description": "Position of the sample in the substrate frame, when it is a site on a larger specimen",
+            "description": "The instrument's position reading for the place, in the frame of its sample set",
             "type": "object",
             "properties": {
                 "coordinates": {
-                    "$ref": "core/primitive/array_of_2_numbers.json"
+                    "description": "The reading's axes, in the instrument's order",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 3
                 },
                 "units": {
                     "$ref": "definitions/units.json#/length"
@@ -29,6 +35,10 @@
                 "coordinates",
                 "units"
             ]
+        },
+        "wafer": {
+            "description": "The wafer's identity, synthesis record and layout",
+            "$ref": "wafer.json"
         }
     },
     "required": [

@@ -15,10 +15,6 @@ class Session(BaseModel):
     started: Optional[datetime] = None
     finished: Optional[datetime] = None
     operator: Optional[str] = None
-    directory: Optional[str] = None
-    """
-    Where the instrument wrote its raw data
-    """
 
 
 class MeasurementSetupSchema(BaseModel):
@@ -28,7 +24,7 @@ class MeasurementSetupSchema(BaseModel):
     """
     description: Optional[Dict[str, Any]] = None
     """
-    Vendor, model, serial and whatever else describes the machine
+    Vendor, model, serial
     """
     session: Optional[Session] = None
     """
@@ -37,12 +33,4 @@ class MeasurementSetupSchema(BaseModel):
     settings: Optional[Dict[str, Any]] = None
     """
     Instrument parameters as set for this measurement
-    """
-    environment: Optional[Dict[str, Any]] = None
-    """
-    Conditions during the measurement: temperature, pressure, atmosphere
-    """
-    registration: Optional[Dict[str, Any]] = None
-    """
-    How the instrument frame maps onto the sample: frame, anchor, coordinates
     """

@@ -1,0 +1,38 @@
+{
+    "$id": "sample/set",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample set schema",
+    "description": "One placement of a wafer on an instrument: the frame of its samples' positions",
+    "type": "object",
+    "properties": {
+        "wafer": {
+            "description": "The wafer the placement is of",
+            "type": "object",
+            "properties": {
+                "physicalId": {
+                    "description": "The identifier written on the wafer's case",
+                    "type": "string"
+                },
+                "_id": {
+                    "description": "The wafer's record",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "physicalId"
+            ]
+        },
+        "origin": {
+            "description": "The instrument's position reading at the placement's starting point",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../sample.json#/properties/position"
+                }
+            ]
+        }
+    },
+    "required": [
+        "wafer"
+    ]
+}

@@ -24,18 +24,40 @@ class Units(Enum):
 
 
 class Position(BaseModel):
-    coordinates: List[float] = Field(..., max_length=2, min_length=2, title="array of 2 number elements schema")
+    coordinates: List[float] = Field(..., max_length=3, min_length=2)
+    """
+    The reading's axes, in the instrument's order
+    """
     units: Units
+
+
+class WaferSchema(BaseModel):
+    physicalId: str
+    """
+    The identifier written on the wafer's case
+    """
+    synthesis: Optional[Dict[str, Any]] = None
+    """
+    The fabricator's record of how the piece was made, as delivered
+    """
+    layout: Optional[Dict[str, Any]] = None
+    """
+    The piece's shape and its named features, with their coordinates in the wafer's frame
+    """
 
 
 class SampleSchema(BaseModel):
     label: str
     """
-    Identity of the sample on its substrate, e.g. the grid label r0c00 of a contact pad
+    The instrument recipe's name for the place, e.g. r7c10
     """
     position: Optional[Position] = None
     """
-    Position of the sample in the substrate frame, when it is a site on a larger specimen
+    The instrument's position reading for the place, in the frame of its sample set
+    """
+    wafer: Optional[WaferSchema] = Field(None, title="wafer schema")
+    """
+    The physical piece: identity, synthesis record, layout
     """
     id: Optional[str] = Field(None, alias="_id")
     """

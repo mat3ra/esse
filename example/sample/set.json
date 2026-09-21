@@ -1,0 +1,13 @@
+{
+    "origin": {
+        "coordinates": [
+            0.021064,
+            0.020812999
+        ],
+        "units": "m"
+    },
+    "wafer": {
+        "_id": "wPDACCOM501448Xy1",
+        "physicalId": "PDAC_COM5_01448"
+    }
+}
