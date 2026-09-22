@@ -43,6 +43,12 @@
         ],
         "default": "angstrom"
     },
+    "voltage": {
+        "enum": [
+            "V",
+            "mV"
+        ]
+    },
     "energy": {
         "enum": [
             "kcal/mol",

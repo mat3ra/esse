@@ -61,6 +61,7 @@ class NonScalarPropertyEnum(Enum):
     hubbard_u = "hubbard_u"
     hubbard_v = "hubbard_v"
     hubbard_v_nn = "hubbard_v_nn"
+    hysteresis_loop = "hysteresis_loop"
     is_relaxed = "is_relaxed"
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
     phonon_dispersions = "phonon_dispersions"

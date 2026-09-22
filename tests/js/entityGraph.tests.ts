@@ -18,22 +18,22 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 564;
-const EXPECTED_EDGE_COUNT = 917;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 372, contains: 375, variant: 170 };
-const EXPECTED_SAME_DOCUMENT_REFS = 20;
+const EXPECTED_NODE_COUNT = 572;
+const EXPECTED_EDGE_COUNT = 940;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 380, contains: 387, variant: 173 };
+const EXPECTED_SAME_DOCUMENT_REFS = 22;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
     "application-parsing": 17,
     category: 152,
     definition: 4,
-    directory: 156,
-    entity: 11,
-    "entity-component": 106,
+    directory: 157,
+    entity: 13,
+    "entity-component": 107,
     "in-memory-entity": 7,
     primitive: 23,
-    reference: 10,
-    reusable: 31,
+    reference: 11,
+    reusable: 34,
     system: 38,
 };
 
@@ -97,18 +97,19 @@ describe("buildEntityGraph", () => {
         ).to.be.true;
 
         // The property holder is the corpus' widest union: every property type is a
-        // variant of its `data` field, on top of one mixin and one reference.
+        // variant of its `data` field, and its `source.info` is a union of the internal
+        // (exabyte) and external (measurement) references, on top of one mixin.
         const holderEdges = edgesFrom("property/holder");
-        expect(holderEdges).to.have.lengthOf(44);
-        expect(holderEdges.filter((edge) => edge.kind === "variant")).to.have.lengthOf(42);
+        expect(holderEdges).to.have.lengthOf(46);
+        expect(holderEdges.filter((edge) => edge.kind === "variant")).to.have.lengthOf(45);
         expect(
             holderEdges
                 .filter((edge) => edge.kind === "variant")
-                .every((edge) => edge.label === "data"),
-            "every variant hangs off the data property",
+                .every((edge) => edge.label === "data" || edge.label === "info"),
+            "every variant hangs off the data property or the source info",
         ).to.be.true;
         expect(holderEdges.filter((edge) => edge.kind === "extends")).to.have.lengthOf(1);
-        expect(holderEdges.filter((edge) => edge.kind === "contains")).to.have.lengthOf(1);
+        expect(holderEdges.filter((edge) => edge.kind === "contains")).to.have.lengthOf(0);
     });
 
     it("carries manifest flags onto property nodes", () => {
@@ -279,7 +280,7 @@ describe("buildEntityGraph", () => {
     });
 
     it("reports example coverage as a warning", () => {
-        expect(graph.meta.schemasWithExample).to.equal(209);
+        expect(graph.meta.schemasWithExample).to.equal(214);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be
             .true;
     });

@@ -1,0 +1,44 @@
+{
+    "$id": "measurement/setup",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement setup schema",
+    "description": "The instrument and the session a measurement was taken in — the experimental analogue of a job's compute",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Identity of the instrument, as a cluster's fqdn identifies a cluster",
+            "type": "string"
+        },
+        "description": {
+            "description": "Vendor, model, serial",
+            "type": "object"
+        },
+        "session": {
+            "description": "The sitting during which the measurement was taken",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "started": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "finished": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "operator": {
+                    "type": "string"
+                }
+            }
+        },
+        "settings": {
+            "description": "Instrument parameters as set for this measurement",
+            "type": "object"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

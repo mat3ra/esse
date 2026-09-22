@@ -1,0 +1,47 @@
+{
+    "$id": "sample",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample schema",
+    "description": "A place or portion of a physical thing that a measurement is about",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        }
+    ],
+    "properties": {
+        "label": {
+            "description": "The instrument recipe's name for the place, e.g. r7c10",
+            "type": "string"
+        },
+        "position": {
+            "description": "The instrument's position reading for the place, as read",
+            "type": "object",
+            "properties": {
+                "coordinates": {
+                    "description": "The reading's axes, in the instrument's order",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 3
+                },
+                "units": {
+                    "$ref": "definitions/units.json#/length"
+                }
+            },
+            "required": [
+                "coordinates",
+                "units"
+            ]
+        },
+        "physicalId": {
+            "description": "The identifier written on the physical thing this sample is part of",
+            "type": "string"
+        }
+    },
+    "required": [
+        "label"
+    ]
+}

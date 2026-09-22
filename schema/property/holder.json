@@ -142,6 +142,9 @@
                     "$ref": "../properties_directory/non-scalar/final_structure.json"
                 },
                 {
+                    "$ref": "../properties_directory/non-scalar/hysteresis_loop.json"
+                },
+                {
                     "$ref": "../properties_directory/jupyter_notebook_endpoint.json"
                 }
             ],
@@ -157,7 +160,14 @@
                     "type": "string"
                 },
                 "info": {
-                    "$ref": "../core/reference/exabyte.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../core/reference/exabyte.json"
+                        },
+                        {
+                            "$ref": "../core/reference/external.json"
+                        }
+                    ]
                 }
             },
             "required": [
