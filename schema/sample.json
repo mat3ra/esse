@@ -2,7 +2,7 @@
     "$id": "sample",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "sample schema",
-    "description": "A place on a wafer where a measurement was taken",
+    "description": "A place or portion of a physical thing that a measurement is about",
     "type": "object",
     "allOf": [
         {
@@ -15,7 +15,7 @@
             "type": "string"
         },
         "position": {
-            "description": "The instrument's position reading for the place, in the frame of its sample set",
+            "description": "The instrument's position reading for the place, as read",
             "type": "object",
             "properties": {
                 "coordinates": {
@@ -36,9 +36,9 @@
                 "units"
             ]
         },
-        "wafer": {
-            "description": "The wafer's identity, synthesis record and layout",
-            "$ref": "wafer.json"
+        "physicalId": {
+            "description": "The identifier written on the physical thing this sample is part of",
+            "type": "string"
         }
     },
     "required": [

@@ -31,21 +31,6 @@ class Position(BaseModel):
     units: Units
 
 
-class WaferSchema(BaseModel):
-    physicalId: str
-    """
-    The identifier written on the wafer's case
-    """
-    synthesis: Optional[Dict[str, Any]] = None
-    """
-    The fabricator's record of how the piece was made, as delivered
-    """
-    layout: Optional[Dict[str, Any]] = None
-    """
-    The piece's shape and its named features, with their coordinates in the wafer's frame
-    """
-
-
 class SampleSchema(BaseModel):
     label: str
     """
@@ -53,11 +38,11 @@ class SampleSchema(BaseModel):
     """
     position: Optional[Position] = None
     """
-    The instrument's position reading for the place, in the frame of its sample set
+    The instrument's position reading for the place, as read
     """
-    wafer: Optional[WaferSchema] = Field(None, title="wafer schema")
+    physicalId: Optional[str] = None
     """
-    The physical piece: identity, synthesis record, layout
+    The identifier written on the physical thing this sample is part of
     """
     id: Optional[str] = Field(None, alias="_id")
     """
