@@ -43,7 +43,7 @@ class Origin(BaseModel):
 
 
 class SampleSetSchema(BaseModel):
-    wafer: Wafer
+    wafer: Optional[Wafer] = None
     """
     The wafer the placement is of
     """
