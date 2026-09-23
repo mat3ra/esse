@@ -26,7 +26,7 @@ class Units(Enum):
 class Position(BaseModel):
     coordinates: List[float] = Field(..., max_length=3, min_length=2)
     """
-    The reading's axes, in the instrument's order
+    Position coordinates, in the instrument's axis order
     """
     units: Units
 
@@ -34,15 +34,15 @@ class Position(BaseModel):
 class SampleSchema(BaseModel):
     label: str
     """
-    The instrument recipe's name for the place, e.g. r7c10
+    Site identifier from the measurement recipe, e.g. r7c10
     """
     position: Optional[Position] = None
     """
-    The instrument's position reading for the place, as read
+    Stage position of the site as reported by the instrument
     """
     physicalId: Optional[str] = None
     """
-    The identifier written on the physical thing this sample is part of
+    Identifier of the specimen the sample belongs to, e.g. a wafer or substrate ID
     """
     id: Optional[str] = Field(None, alias="_id")
     """

@@ -2,7 +2,7 @@
     "$id": "measurement",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "measurement schema",
-    "description": "One procedure applied to one sample by an instrument, recorded once finished: the experimental analogue of a job.",
+    "description": "Experimental measurement performed on a sample with a given instrument setup; the experimental counterpart of a job",
     "type": "object",
     "allOf": [
         {
@@ -11,20 +11,20 @@
     ],
     "properties": {
         "_sample": {
-            "description": "The sample the measurement was performed on",
+            "description": "Sample on which the measurement was performed",
             "$ref": "system/entity_reference.json"
         },
         "workflow": {
-            "description": "The procedure: acquisition and analysis units, with the technique (the control software) as the application; the machine is the instrument",
+            "description": "Data acquisition and analysis procedure; the application is the instrument control software",
             "$ref": "workflow.json"
         },
         "setup": {
-            "description": "The setup: machine and sitting, the experimental analogue of a job's compute",
+            "description": "Instrument and session used for the measurement; the counterpart of a job's compute",
             "$ref": "measurement/setup.json"
         },
         "status": {
             "type": "string",
-            "description": "Status of the measurement; finished when it reaches the platform",
+            "description": "Measurement status; finished once the data is uploaded",
             "allOf": [
                 {
                     "$ref": "job/base.json#/properties/status"

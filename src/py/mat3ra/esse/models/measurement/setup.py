@@ -20,17 +20,17 @@ class Session(BaseModel):
 class MeasurementSetupSchema(BaseModel):
     name: str
     """
-    Identity of the instrument, as a cluster's fqdn identifies a cluster
+    Unique instrument identifier, e.g. utk-asylum-cypher-1
     """
     description: Optional[Dict[str, Any]] = None
     """
-    Vendor, model, serial
+    Instrument details, e.g. vendor, model, serial number
     """
     session: Optional[Session] = None
     """
-    The sitting during which the measurement was taken
+    Measurement session: name, start and end times, operator
     """
     settings: Optional[Dict[str, Any]] = None
     """
-    Instrument parameters as set for this measurement
+    Instrument parameters used for the measurement
     """

@@ -2,7 +2,7 @@
     "$id": "sample",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "sample schema",
-    "description": "A place or portion of a physical thing that a measurement is about",
+    "description": "Region of a physical specimen on which measurements are performed, e.g. a single pad of a patterned thin film",
     "type": "object",
     "allOf": [
         {
@@ -11,15 +11,15 @@
     ],
     "properties": {
         "label": {
-            "description": "The instrument recipe's name for the place, e.g. r7c10",
+            "description": "Site identifier from the measurement recipe, e.g. r7c10",
             "type": "string"
         },
         "position": {
-            "description": "The instrument's position reading for the place, as read",
+            "description": "Stage position of the site as reported by the instrument",
             "type": "object",
             "properties": {
                 "coordinates": {
-                    "description": "The reading's axes, in the instrument's order",
+                    "description": "Position coordinates, in the instrument's axis order",
                     "type": "array",
                     "items": {
                         "type": "number"
@@ -37,7 +37,7 @@
             ]
         },
         "physicalId": {
-            "description": "The identifier written on the physical thing this sample is part of",
+            "description": "Identifier of the specimen the sample belongs to, e.g. a wafer or substrate ID",
             "type": "string"
         }
     },
