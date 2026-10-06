@@ -1,5 +1,5 @@
 {
     "name": "film_thickness",
-    "units": "m",
-    "value": 2.2491e-7
+    "units": "um",
+    "value": 0.22491
 }
