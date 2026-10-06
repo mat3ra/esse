@@ -24,5 +24,8 @@
             "type": "string",
             "description": "the element this ratio is for"
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

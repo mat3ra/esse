@@ -1,0 +1,47 @@
+{
+    "$id": "sample",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "sample schema",
+    "description": "Region of a physical specimen on which measurements are performed, e.g. a single pad of a patterned thin film",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        }
+    ],
+    "properties": {
+        "label": {
+            "description": "Site identifier from the measurement recipe, e.g. r7c10",
+            "type": "string"
+        },
+        "position": {
+            "description": "Stage position of the site as reported by the instrument",
+            "type": "object",
+            "properties": {
+                "coordinates": {
+                    "description": "Position coordinates, in the instrument's axis order",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 3
+                },
+                "units": {
+                    "$ref": "definitions/units.json#/length"
+                }
+            },
+            "required": [
+                "coordinates",
+                "units"
+            ]
+        },
+        "physicalId": {
+            "description": "Identifier of the specimen the sample belongs to, e.g. a wafer or substrate ID",
+            "type": "string"
+        }
+    },
+    "required": [
+        "label"
+    ]
+}

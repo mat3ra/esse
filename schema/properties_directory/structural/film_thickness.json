@@ -1,0 +1,27 @@
+{
+    "$id": "properties-directory/structural/film-thickness",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "film thickness schema",
+    "description": "thickness of the deposited film at the measured position",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "film_thickness"
+            ]
+        },
+        "units": {
+            "enum": [
+                "um"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

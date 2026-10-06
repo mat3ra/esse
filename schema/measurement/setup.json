@@ -1,0 +1,44 @@
+{
+    "$id": "measurement/setup",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement setup schema",
+    "description": "Instrument and session in which a measurement was performed; the counterpart of a job's compute",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Unique instrument identifier, e.g. utk-asylum-cypher-1",
+            "type": "string"
+        },
+        "description": {
+            "description": "Instrument details, e.g. vendor, model, serial number",
+            "type": "object"
+        },
+        "session": {
+            "description": "Measurement session: name, start and end times, operator",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "started": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "finished": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "operator": {
+                    "type": "string"
+                }
+            }
+        },
+        "settings": {
+            "description": "Instrument parameters used for the measurement",
+            "type": "object"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

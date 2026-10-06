@@ -136,6 +136,7 @@ const ENTITY_DOMAINS = [
     "job",
     "software",
     "compute",
+    "measurement",
 ];
 
 /**

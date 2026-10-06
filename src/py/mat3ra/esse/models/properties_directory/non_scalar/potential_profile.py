@@ -25,7 +25,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label31(Enum):
+class Label35(Enum):
     energy = "energy"
 
 
@@ -40,8 +40,8 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class AxisSchema34(BaseModel):
-    label: Label31
+class AxisSchema38(BaseModel):
+    label: Label35
     """
     label of an axis object
     """
@@ -57,7 +57,7 @@ class Name(Enum):
 
 class PotentialProfilePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema34 = Field(..., title="axis schema")
+    yAxis: AxisSchema38 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

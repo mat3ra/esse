@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     bracket = "bracket"
 
 
-class SlugifiedEntryOrSlug15(Enum):
+class SlugifiedEntryOrSlug12(Enum):
     diff = "diff"
 
 
-class SlugifiedEntryOrSlug16(Enum):
+class SlugifiedEntryOrSlug13(Enum):
     opt = "opt"
 
 
@@ -38,11 +38,11 @@ class BracketAlgorithmsForTheOptimizationOfDifferentiableFunctionsSchema(BaseMod
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug15]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug12]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug16]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug13]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
