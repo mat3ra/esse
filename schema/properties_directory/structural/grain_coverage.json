@@ -1,8 +1,8 @@
 {
-    "$id": "properties-directory/structural/elemental-ratio",
+    "$id": "properties-directory/structural/grain-coverage",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "elemental-ratio",
-    "description": "ration of this element in the compound",
+    "title": "grain coverage schema",
+    "description": "Fraction of the measured surface area covered by resolved grains",
     "type": "object",
     "allOf": [
         {
@@ -12,17 +12,13 @@
     "properties": {
         "name": {
             "enum": [
-                "elemental_ratio"
+                "grain_coverage"
             ]
         },
         "value": {
             "type": "number",
             "minimum": 0,
             "maximum": 1
-        },
-        "element": {
-            "type": "string",
-            "description": "the element this ratio is for"
         }
     },
     "required": [

@@ -18,16 +18,16 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 572;
-const EXPECTED_EDGE_COUNT = 940;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 380, contains: 387, variant: 173 };
+const EXPECTED_NODE_COUNT = 577;
+const EXPECTED_EDGE_COUNT = 952;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 385, contains: 388, variant: 179 };
 const EXPECTED_SAME_DOCUMENT_REFS = 22;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
     "application-parsing": 17,
     category: 152,
     definition: 4,
-    directory: 157,
+    directory: 162,
     entity: 13,
     "entity-component": 107,
     "in-memory-entity": 7,
@@ -100,8 +100,8 @@ describe("buildEntityGraph", () => {
         // variant of its `data` field, and its `source.info` is a union of the internal
         // (exabyte) and external (measurement) references, on top of one mixin.
         const holderEdges = edgesFrom("property/holder");
-        expect(holderEdges).to.have.lengthOf(46);
-        expect(holderEdges.filter((edge) => edge.kind === "variant")).to.have.lengthOf(45);
+        expect(holderEdges).to.have.lengthOf(52);
+        expect(holderEdges.filter((edge) => edge.kind === "variant")).to.have.lengthOf(51);
         expect(
             holderEdges
                 .filter((edge) => edge.kind === "variant")
@@ -280,7 +280,7 @@ describe("buildEntityGraph", () => {
     });
 
     it("reports example coverage as a warning", () => {
-        expect(graph.meta.schemasWithExample).to.equal(214);
+        expect(graph.meta.schemasWithExample).to.equal(219);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be
             .true;
     });

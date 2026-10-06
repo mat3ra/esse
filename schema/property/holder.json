@@ -146,6 +146,24 @@
                 },
                 {
                     "$ref": "../properties_directory/jupyter_notebook_endpoint.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/film_thickness.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/elemental_ratio.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/current_voltage_curve.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/areal_surface_texture.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/grain_size.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/grain_coverage.json"
                 }
             ],
             "discriminator": {
@@ -215,4 +233,3 @@
         "exabyteId"
     ]
 }
-
