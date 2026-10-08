@@ -1,10 +1,10 @@
 {
     "meta": {
-        "nodeCount": 564,
-        "edgeCount": 917,
+        "nodeCount": 566,
+        "edgeCount": 920,
         "edgeCountsByKind": {
             "extends": 372,
-            "contains": 375,
+            "contains": 378,
             "variant": 170
         },
         "layerCounts": {
@@ -14,7 +14,7 @@
             "definition": 4,
             "directory": 156,
             "entity": 11,
-            "entity-component": 106,
+            "entity-component": 108,
             "in-memory-entity": 7,
             "primitive": 23,
             "reference": 10,
@@ -23,7 +23,7 @@
         },
         "sameDocumentRefCount": 20,
         "schemasWithExample": 209,
-        "isolatedNodeCount": 34
+        "isolatedNodeCount": 35
     },
     "nodes": [
         {
@@ -310,8 +310,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": 1203.63,
-            "y": 71.43
+            "x": 1203.71,
+            "y": 70.11
         },
         {
             "id": "compute/queue",
@@ -326,8 +326,24 @@
             "outDegree": 0,
             "propertyCount": 7,
             "hasExample": false,
-            "x": 1221.31,
-            "y": 145.47
+            "x": 1221.62,
+            "y": 142.79
+        },
+        {
+            "id": "compute/queue-name-enum",
+            "path": "schema/compute/queue_name_enum.json",
+            "publishedPath": "schema/compute/queue_name_enum.json",
+            "title": "",
+            "description": "",
+            "domain": "compute",
+            "layer": "entity-component",
+            "ownerEntity": "compute",
+            "inDegree": 0,
+            "outDegree": 0,
+            "propertyCount": 0,
+            "hasExample": false,
+            "x": 1206.4,
+            "y": 212.72
         },
         {
             "id": "context-provider",
@@ -2052,8 +2068,8 @@
             "domain": "(root)",
             "layer": "entity",
             "inDegree": 0,
-            "outDegree": 2,
-            "propertyCount": 1,
+            "outDegree": 3,
+            "propertyCount": 0,
             "hasExample": true,
             "x": 420.86,
             "y": 921.56
@@ -2062,17 +2078,17 @@
             "id": "job/base",
             "path": "schema/job/base.json",
             "publishedPath": "schema/job/base.json",
-            "title": "job base schema",
+            "title": "base job schema",
             "description": "",
             "domain": "job",
             "layer": "entity-component",
             "ownerEntity": "job",
             "inDegree": 1,
-            "outDegree": 6,
-            "propertyCount": 9,
+            "outDegree": 9,
+            "propertyCount": 14,
             "hasExample": false,
-            "x": 1211.5,
-            "y": 217.74
+            "x": 1197.73,
+            "y": 283.87
         },
         {
             "id": "job/compute",
@@ -2087,8 +2103,8 @@
             "outDegree": 2,
             "propertyCount": 13,
             "hasExample": true,
-            "x": 1180.52,
-            "y": 285.27
+            "x": 1163.48,
+            "y": 348.32
         },
         {
             "id": "job/compute-property",
@@ -2103,8 +2119,24 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1167.38,
-            "y": 356.48
+            "x": 1146.99,
+            "y": 417.47
+        },
+        {
+            "id": "job/dataset",
+            "path": "schema/job/dataset.json",
+            "publishedPath": "schema/job/dataset.json",
+            "title": "job dataset schema",
+            "description": "",
+            "domain": "job",
+            "layer": "entity-component",
+            "ownerEntity": "job",
+            "inDegree": 1,
+            "outDegree": 0,
+            "propertyCount": 3,
+            "hasExample": false,
+            "x": 1122.45,
+            "y": 484.18
         },
         {
             "id": "material",
@@ -2182,8 +2214,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1127.98,
-            "y": 418.99
+            "x": 1075.3,
+            "y": 540.03
         },
         {
             "id": "material/conventional",
@@ -2198,8 +2230,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1104.17,
-            "y": 486.39
+            "x": 1044.9,
+            "y": 603.27
         },
         {
             "id": "material/material-properties",
@@ -2214,8 +2246,8 @@
             "outDegree": 7,
             "propertyCount": 10,
             "hasExample": false,
-            "x": 1072.37,
-            "y": 550.41
+            "x": 1007.08,
+            "y": 662.37
         },
         {
             "id": "material/metadata",
@@ -2230,8 +2262,8 @@
             "outDegree": 3,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1042.83,
-            "y": 615.89
+            "x": 971.47,
+            "y": 723.23
         },
         {
             "id": "material/metadata/boundary-conditions",
@@ -2246,8 +2278,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1018.35,
-            "y": 685.91
+            "x": 940.55,
+            "y": 789.22
         },
         {
             "id": "material/metadata/bulk-properties",
@@ -2262,8 +2294,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 960.84,
-            "y": 733.52
+            "x": 879.27,
+            "y": 829.55
         },
         {
             "id": "material/metadata/slab-properties",
@@ -2278,8 +2310,8 @@
             "outDegree": 0,
             "propertyCount": 8,
             "hasExample": false,
-            "x": 931.42,
-            "y": 802.7
+            "x": 843.79,
+            "y": 894.37
         },
         {
             "id": "materials-category-components/entities/auxiliary/one-dimensional/miller-indices-2d",
@@ -3327,8 +3359,8 @@
             "outDegree": 3,
             "propertyCount": 1,
             "hasExample": true,
-            "x": 862.06,
-            "y": 836.88
+            "x": 772.29,
+            "y": 920.37
         },
         {
             "id": "method/method-parameters",
@@ -3343,8 +3375,8 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
-            "x": 814.66,
-            "y": 890.52
+            "x": 720.73,
+            "y": 968.11
         },
         {
             "id": "method/unit-method",
@@ -3359,8 +3391,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": 771.52,
-            "y": 950.82
+            "x": 672.85,
+            "y": 1023.02
         },
         {
             "id": "methods-category/mathematical/diff",
@@ -5612,8 +5644,8 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": true,
-            "x": 704.79,
-            "y": 982.25
+            "x": 604.47,
+            "y": 1046.97
         },
         {
             "id": "model/mixins/dft/double-hybrid-functional",
@@ -5628,8 +5660,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 655.04,
-            "y": 1037.61
+            "x": 550.71,
+            "y": 1096.56
         },
         {
             "id": "model/mixins/dft/enum-options",
@@ -5644,8 +5676,8 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
-            "x": 594.14,
-            "y": 1077.7
+            "x": 487.43,
+            "y": 1129.98
         },
         {
             "id": "model/mixins/dft/gga-functional",
@@ -5660,8 +5692,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 529.26,
-            "y": 1111.02
+            "x": 420.9,
+            "y": 1156.42
         },
         {
             "id": "model/mixins/dft/hybrid-functional",
@@ -5676,8 +5708,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 452.33,
-            "y": 1115.32
+            "x": 345.18,
+            "y": 1153
         },
         {
             "id": "model/mixins/dft/lda-functional",
@@ -5692,8 +5724,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 392.2,
-            "y": 1160.08
+            "x": 282.41,
+            "y": 1191.57
         },
         {
             "id": "model/mixins/dft/mgga-functional",
@@ -5708,8 +5740,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 324.5,
-            "y": 1187.56
+            "x": 213.78,
+            "y": 1212.39
         },
         {
             "id": "model/mixins/dispersion-correction",
@@ -5724,8 +5756,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 250.64,
-            "y": 1190.74
+            "x": 141.27,
+            "y": 1208.61
         },
         {
             "id": "model/mixins/enum-options",
@@ -5740,8 +5772,8 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
-            "x": 180.73,
-            "y": 1210.65
+            "x": 71.17,
+            "y": 1221.99
         },
         {
             "id": "model/mixins/hubbard",
@@ -5756,8 +5788,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 107.22,
-            "y": 1202.76
+            "x": 0,
+            "y": 1207.53
         },
         {
             "id": "model/mixins/spin-orbit-coupling",
@@ -5772,8 +5804,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 36.14,
-            "y": 1219.05
+            "x": -70.91,
+            "y": 1217.53
         },
         {
             "id": "model/mixins/spin-polarization",
@@ -5788,8 +5820,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -35.69,
-            "y": 1203.74
+            "x": -139.81,
+            "y": 1196.13
         },
         {
             "id": "model/model-parameters",
@@ -5804,8 +5836,8 @@
             "outDegree": 9,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -107.15,
-            "y": 1201.99
+            "x": -209.55,
+            "y": 1188.42
         },
         {
             "id": "model/model-without-method",
@@ -5820,8 +5852,8 @@
             "outDegree": 4,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -181,
-            "y": 1212.45
+            "x": -282.71,
+            "y": 1192.84
         },
         {
             "id": "models-category/enum-options",
@@ -8511,8 +8543,8 @@
             "outDegree": 44,
             "propertyCount": 7,
             "hasExample": true,
-            "x": -251.83,
-            "y": 1196.41
+            "x": -350.65,
+            "y": 1171.26
         },
         {
             "id": "property/meta-holder",
@@ -8527,8 +8559,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -319.58,
-            "y": 1169.54
+            "x": -414.67,
+            "y": 1139.3
         },
         {
             "id": "property/proto-holder",
@@ -8543,8 +8575,8 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -386.68,
-            "y": 1143.76
+            "x": -478.21,
+            "y": 1108.62
         },
         {
             "id": "property/source",
@@ -8559,8 +8591,8 @@
             "outDegree": 2,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -454.68,
-            "y": 1121.12
+            "x": -542.96,
+            "y": 1081.13
         },
         {
             "id": "software-directory/modeling/deepmd",
@@ -8784,8 +8816,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -519.03,
-            "y": 1089.55
+            "x": -603.43,
+            "y": 1045.17
         },
         {
             "id": "software/application-properties",
@@ -8800,8 +8832,8 @@
             "outDegree": 0,
             "propertyCount": 10,
             "hasExample": false,
-            "x": -580.09,
-            "y": 1052.22
+            "x": -660.25,
+            "y": 1003.87
         },
         {
             "id": "software/application-with-build-config",
@@ -8816,8 +8848,8 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -644.5,
-            "y": 1020.91
+            "x": -720.96,
+            "y": 968.42
         },
         {
             "id": "software/application/build-config",
@@ -8832,8 +8864,8 @@
             "outDegree": 0,
             "propertyCount": 7,
             "hasExample": false,
-            "x": -701.9,
-            "y": 978.22
+            "x": -773.91,
+            "y": 922.3
         },
         {
             "id": "software/executable",
@@ -8848,8 +8880,8 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -772.61,
-            "y": 952.17
+            "x": -841.46,
+            "y": 891.9
         },
         {
             "id": "software/executable-properties",
@@ -8864,8 +8896,8 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -828.5,
-            "y": 905.64
+            "x": -892.8,
+            "y": 842.32
         },
         {
             "id": "software/flavor",
@@ -8880,8 +8912,8 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -868.35,
-            "y": 842.98
+            "x": -927.09,
+            "y": 777.92
         },
         {
             "id": "software/flavor-properties",
@@ -8896,8 +8928,8 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
-            "x": -914.86,
-            "y": 788.43
+            "x": -968.74,
+            "y": 721.2
         },
         {
             "id": "software/template",
@@ -8912,8 +8944,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -974.37,
-            "y": 743.84
+            "x": -1024.18,
+            "y": 673.61
         },
         {
             "id": "software/template-properties",
@@ -8928,8 +8960,8 @@
             "outDegree": 0,
             "propertyCount": 5,
             "hasExample": false,
-            "x": -1005.56,
-            "y": 677.3
+            "x": -1049.96,
+            "y": 606.19
         },
         {
             "id": "system/-material",
@@ -9127,6 +9159,21 @@
             "y": 391.64
         },
         {
+            "id": "system/has-project",
+            "path": "schema/system/has_project.json",
+            "publishedPath": "schema/system/has_project.json",
+            "title": "Has project schema",
+            "description": "",
+            "domain": "system",
+            "layer": "system",
+            "inDegree": 1,
+            "outDegree": 1,
+            "propertyCount": 1,
+            "hasExample": false,
+            "x": -784.75,
+            "y": 285.62
+        },
+        {
             "id": "system/hashed",
             "path": "schema/system/hashed.json",
             "publishedPath": "schema/system/hashed.json",
@@ -9138,8 +9185,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -790.66,
-            "y": 287.78
+            "x": -823.01,
+            "y": 174.94
         },
         {
             "id": "system/history",
@@ -9153,8 +9200,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -827.62,
-            "y": 175.92
+            "x": -844.05,
+            "y": 59.02
         },
         {
             "id": "system/iframe-message",
@@ -9169,7 +9216,7 @@
             "propertyCount": 3,
             "hasExample": true,
             "x": -820.8,
-            "y": 57.4
+            "y": -57.4
         },
         {
             "id": "system/in-set",
@@ -9183,8 +9230,8 @@
             "outDegree": 1,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -827.63,
-            "y": -57.87
+            "x": -811.52,
+            "y": -172.49
         },
         {
             "id": "system/is-multi-material",
@@ -9198,8 +9245,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -832.27,
-            "y": -176.9
+            "x": -799.55,
+            "y": -291.01
         },
         {
             "id": "system/is-outdated",
@@ -9213,23 +9260,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -788.66,
-            "y": -287.05
-        },
-        {
-            "id": "system/job-extended",
-            "path": "schema/system/job_extended.json",
-            "publishedPath": "schema/system/job_extended.json",
-            "title": "extended job schema",
-            "description": "",
-            "domain": "system",
-            "layer": "system",
-            "inDegree": 0,
-            "outDegree": 2,
-            "propertyCount": 7,
-            "hasExample": false,
-            "x": -729.58,
-            "y": -387.93
+            "x": -741.03,
+            "y": -394.01
         },
         {
             "id": "system/message",
@@ -9449,7 +9481,7 @@
             "description": "",
             "domain": "system",
             "layer": "system",
-            "inDegree": 2,
+            "inDegree": 3,
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
@@ -9529,8 +9561,8 @@
             "outDegree": 2,
             "propertyCount": 7,
             "hasExample": false,
-            "x": -1036.21,
-            "y": 611.99
+            "x": -1075.43,
+            "y": 540.1
         },
         {
             "id": "workflow/base-flow",
@@ -9545,8 +9577,8 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
-            "x": -1084.68,
-            "y": 556.73
+            "x": -1119.5,
+            "y": 482.9
         },
         {
             "id": "workflow/scope",
@@ -9561,8 +9593,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -1120.65,
-            "y": 493.65
+            "x": -1150.71,
+            "y": 418.82
         },
         {
             "id": "workflow/subworkflow",
@@ -9577,8 +9609,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -1132.69,
-            "y": 420.73
+            "x": -1157.54,
+            "y": 346.55
         },
         {
             "id": "workflow/subworkflow/convergence/enum-options",
@@ -9593,8 +9625,8 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -1176.87,
-            "y": 359.38
+            "x": -1197.35,
+            "y": 283.78
         },
         {
             "id": "workflow/subworkflow/mixin",
@@ -9609,8 +9641,8 @@
             "outDegree": 4,
             "propertyCount": 7,
             "hasExample": false,
-            "x": -1183.51,
-            "y": 285.99
+            "x": -1199.08,
+            "y": 211.43
         },
         {
             "id": "workflow/subworkflow/unit",
@@ -9625,8 +9657,8 @@
             "outDegree": 6,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -1203.22,
-            "y": 216.25
+            "x": -1214.24,
+            "y": 141.92
         },
         {
             "id": "workflow/unit",
@@ -9641,8 +9673,8 @@
             "outDegree": 4,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -1194.8,
-            "y": 142.31
+            "x": -1201.21,
+            "y": 69.96
         },
         {
             "id": "workflow/unit/assertion",
@@ -9657,8 +9689,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -1227.24,
-            "y": 72.83
+            "x": -1229.4,
+            "y": 0
         },
         {
             "id": "workflow/unit/assignment",
@@ -9673,8 +9705,8 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -1229.88,
-            "y": 0
+            "x": -1227.8,
+            "y": -71.51
         },
         {
             "id": "workflow/unit/base",
@@ -9689,8 +9721,8 @@
             "outDegree": 5,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -1229.26,
-            "y": -72.95
+            "x": -1223.1,
+            "y": -142.96
         },
         {
             "id": "workflow/unit/condition",
@@ -9705,8 +9737,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -1213.75,
-            "y": -144.57
+            "x": -1203.76,
+            "y": -212.25
         },
         {
             "id": "workflow/unit/context/-base",
@@ -9721,8 +9753,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -1194.53,
-            "y": -214.69
+            "x": -1180.96,
+            "y": -279.89
         },
         {
             "id": "workflow/unit/context/-extra-data-material-hash",
@@ -9737,8 +9769,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -1193.21,
-            "y": -288.33
+            "x": -1175.98,
+            "y": -352.06
         },
         {
             "id": "workflow/unit/context/item",
@@ -9753,8 +9785,8 @@
             "outDegree": 15,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -1151.56,
-            "y": -351.65
+            "x": -1131.44,
+            "y": -411.81
         },
         {
             "id": "workflow/unit/context/item/boundaryConditions",
@@ -9769,8 +9801,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -1138.37,
-            "y": -422.85
+            "x": -1115.05,
+            "y": -480.99
         },
         {
             "id": "workflow/unit/context/item/collinearMagnetization",
@@ -9785,8 +9817,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -1104.86,
-            "y": -486.69
+            "x": -1078.88,
+            "y": -541.84
         },
         {
             "id": "workflow/unit/context/item/cutoffs",
@@ -9801,8 +9833,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -1081.81,
-            "y": -555.25
+            "x": -1053.07,
+            "y": -607.99
         },
         {
             "id": "workflow/unit/context/item/dynamics",
@@ -9817,8 +9849,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -1041.43,
-            "y": -615.07
+            "x": -1010.52,
+            "y": -664.63
         },
         {
             "id": "workflow/unit/context/item/grid",
@@ -9833,8 +9865,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -1017.73,
-            "y": -685.5
+            "x": -984.26,
+            "y": -732.75
         },
         {
             "id": "workflow/unit/context/item/hubbard-j",
@@ -9849,8 +9881,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -960.52,
-            "y": -733.27
+            "x": -925.7,
+            "y": -776.76
         },
         {
             "id": "workflow/unit/context/item/hubbard-legacy",
@@ -9865,8 +9897,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -918.58,
-            "y": -791.63
+            "x": -882.04,
+            "y": -832.16
         },
         {
             "id": "workflow/unit/context/item/hubbard-u",
@@ -9881,8 +9913,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -880.55,
-            "y": -854.84
+            "x": -842.18,
+            "y": -892.66
         },
         {
             "id": "workflow/unit/context/item/hubbard-v",
@@ -9897,8 +9929,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -812.73,
-            "y": -888.41
+            "x": -773.97,
+            "y": -922.38
         },
         {
             "id": "workflow/unit/context/item/input",
@@ -9913,8 +9945,8 @@
             "outDegree": 7,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -757.57,
-            "y": -933.63
+            "x": -717.98,
+            "y": -964.41
         },
         {
             "id": "workflow/unit/context/item/mlSettings",
@@ -9929,8 +9961,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -713.12,
-            "y": -993.86
+            "x": -672.18,
+            "y": -1022
         },
         {
             "id": "workflow/unit/context/item/mlTrainTestSplit",
@@ -9945,8 +9977,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -647.8,
-            "y": -1026.13
+            "x": -606.75,
+            "y": -1050.93
         },
         {
             "id": "workflow/unit/context/item/neb",
@@ -9961,8 +9993,8 @@
             "outDegree": 2,
             "propertyCount": 2,
             "hasExample": false,
-            "x": -583.5,
-            "y": -1058.41
+            "x": -542.42,
+            "y": -1080.04
         },
         {
             "id": "workflow/unit/context/item/nonCollinearMagnetization",
@@ -9977,8 +10009,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -520.65,
-            "y": -1092.95
+            "x": -479.5,
+            "y": -1111.62
         },
         {
             "id": "workflow/unit/context/item/path",
@@ -9993,8 +10025,8 @@
             "outDegree": 3,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -456.1,
-            "y": -1124.62
+            "x": -415.07,
+            "y": -1140.4
         },
         {
             "id": "workflow/unit/error",
@@ -10009,8 +10041,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": false,
-            "x": -393.13,
-            "y": -1162.83
+            "x": -352.05,
+            "y": -1175.92
         },
         {
             "id": "workflow/unit/execution",
@@ -10025,8 +10057,8 @@
             "outDegree": 3,
             "propertyCount": 0,
             "hasExample": true,
-            "x": -323.69,
-            "y": -1184.59
+            "x": -283.2,
+            "y": -1194.92
         },
         {
             "id": "workflow/unit/input/-input",
@@ -10041,8 +10073,8 @@
             "outDegree": 2,
             "propertyCount": 1,
             "hasExample": false,
-            "x": -249.81,
-            "y": -1186.79
+            "x": -210.6,
+            "y": -1194.38
         },
         {
             "id": "workflow/unit/input/-inputItem",
@@ -10057,8 +10089,8 @@
             "outDegree": 1,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -179.7,
-            "y": -1203.74
+            "x": -141.29,
+            "y": -1208.85
         },
         {
             "id": "workflow/unit/input/-inputItemId",
@@ -10073,8 +10105,8 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
-            "x": -106.99,
-            "y": -1200.17
+            "x": -70.06,
+            "y": -1202.89
         },
         {
             "id": "workflow/unit/input/-inputItemScope",
@@ -10089,8 +10121,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": true,
-            "x": -36.5,
-            "y": -1231.03
+            "x": 0,
+            "y": -1231.57
         },
         {
             "id": "workflow/unit/input/-map-input",
@@ -10105,8 +10137,8 @@
             "outDegree": 0,
             "propertyCount": 5,
             "hasExample": false,
-            "x": 35.68,
-            "y": -1203.48
+            "x": 70.01,
+            "y": -1201.97
         },
         {
             "id": "workflow/unit/input/-map-input/values",
@@ -10121,8 +10153,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 107.22,
-            "y": -1202.71
+            "x": 140.18,
+            "y": -1199.32
         },
         {
             "id": "workflow/unit/io",
@@ -10137,8 +10169,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": 181.47,
-            "y": -1215.64
+            "x": 213.43,
+            "y": -1210.44
         },
         {
             "id": "workflow/unit/io/api",
@@ -10153,8 +10185,8 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": true,
-            "x": 248.06,
-            "y": -1178.5
+            "x": 277.74,
+            "y": -1171.86
         },
         {
             "id": "workflow/unit/io/db-collection",
@@ -10169,8 +10201,8 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": true,
-            "x": 319.67,
-            "y": -1169.88
+            "x": 347.83,
+            "y": -1161.82
         },
         {
             "id": "workflow/unit/io/db-ids",
@@ -10185,8 +10217,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": true,
-            "x": 386.32,
-            "y": -1142.7
+            "x": 412.56,
+            "y": -1133.49
         },
         {
             "id": "workflow/unit/io/object-storage",
@@ -10201,8 +10233,8 @@
             "outDegree": 2,
             "propertyCount": 3,
             "hasExample": true,
-            "x": 458.64,
-            "y": -1130.88
+            "x": 483.35,
+            "y": -1120.54
         },
         {
             "id": "workflow/unit/map",
@@ -10217,8 +10249,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": 520.87,
-            "y": -1093.42
+            "x": 543.56,
+            "y": -1082.32
         },
         {
             "id": "workflow/unit/mixins/assertion",
@@ -10233,8 +10265,8 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
-            "x": 583.28,
-            "y": -1058.02
+            "x": 604.07,
+            "y": -1046.29
         },
         {
             "id": "workflow/unit/mixins/assignment",
@@ -10249,8 +10281,8 @@
             "outDegree": 1,
             "propertyCount": 4,
             "hasExample": false,
-            "x": 652.75,
-            "y": -1033.98
+            "x": 671.93,
+            "y": -1021.62
         },
         {
             "id": "workflow/unit/mixins/base",
@@ -10265,8 +10297,8 @@
             "outDegree": 0,
             "propertyCount": 6,
             "hasExample": false,
-            "x": 709.03,
-            "y": -988.17
+            "x": 726.28,
+            "y": -975.56
         },
         {
             "id": "workflow/unit/mixins/condition",
@@ -10281,8 +10313,8 @@
             "outDegree": 1,
             "propertyCount": 7,
             "hasExample": false,
-            "x": 758.13,
-            "y": -934.32
+            "x": 773.41,
+            "y": -921.71
         },
         {
             "id": "workflow/unit/mixins/error",
@@ -10297,8 +10329,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
-            "x": 814.29,
-            "y": -890.11
+            "x": 827.88,
+            "y": -877.5
         },
         {
             "id": "workflow/unit/mixins/execution",
@@ -10313,8 +10345,8 @@
             "outDegree": 6,
             "propertyCount": 6,
             "hasExample": false,
-            "x": 882.47,
-            "y": -856.69
+            "x": 894.6,
+            "y": -844.01
         },
         {
             "id": "workflow/unit/mixins/io",
@@ -10329,8 +10361,8 @@
             "outDegree": 2,
             "propertyCount": 4,
             "hasExample": false,
-            "x": 920.39,
-            "y": -793.19
+            "x": 930.76,
+            "y": -781
         },
         {
             "id": "workflow/unit/mixins/map",
@@ -10345,8 +10377,8 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
-            "x": 961.4,
-            "y": -733.94
+            "x": 970.19,
+            "y": -722.28
         },
         {
             "id": "workflow/unit/mixins/processing",
@@ -10361,8 +10393,8 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": false,
-            "x": 1005.24,
-            "y": -677.08
+            "x": 1012.61,
+            "y": -666
         },
         {
             "id": "workflow/unit/mixins/reduce",
@@ -10377,8 +10409,8 @@
             "outDegree": 0,
             "propertyCount": 3,
             "hasExample": false,
-            "x": 1035.18,
-            "y": -611.38
+            "x": 1041.17,
+            "y": -601.12
         },
         {
             "id": "workflow/unit/mixins/subworkflow",
@@ -10393,8 +10425,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1082.63,
-            "y": -555.67
+            "x": 1087.47,
+            "y": -546.15
         },
         {
             "id": "workflow/unit/reduce",
@@ -10409,8 +10441,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": true,
-            "x": 1101,
-            "y": -484.99
+            "x": 1104.7,
+            "y": -476.52
         },
         {
             "id": "workflow/unit/runtime/-runtime-item-full-object",
@@ -10425,8 +10457,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1136.55,
-            "y": -422.17
+            "x": 1139.3,
+            "y": -414.67
         },
         {
             "id": "workflow/unit/runtime/-runtime-item-name-object",
@@ -10441,8 +10473,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1150.95,
-            "y": -351.47
+            "x": 1152.86,
+            "y": -345.14
         },
         {
             "id": "workflow/unit/runtime/-runtime-item-string",
@@ -10457,8 +10489,8 @@
             "outDegree": 0,
             "propertyCount": 0,
             "hasExample": false,
-            "x": 1173.39,
-            "y": -283.55
+            "x": 1174.63,
+            "y": -278.39
         },
         {
             "id": "workflow/unit/runtime/runtime-item",
@@ -10473,8 +10505,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": false,
-            "x": 1202.84,
-            "y": -216.18
+            "x": 1203.54,
+            "y": -212.22
         },
         {
             "id": "workflow/unit/runtime/runtime-items",
@@ -10489,8 +10521,8 @@
             "outDegree": 4,
             "propertyCount": 4,
             "hasExample": true,
-            "x": 1202.51,
-            "y": -143.23
+            "x": 1202.82,
+            "y": -140.59
         },
         {
             "id": "workflow/unit/subworkflow",
@@ -10505,8 +10537,8 @@
             "outDegree": 2,
             "propertyCount": 0,
             "hasExample": false,
-            "x": 1204.49,
-            "y": -71.48
+            "x": 1204.57,
+            "y": -70.16
         }
     ],
     "edges": [
@@ -11322,24 +11354,29 @@
         },
         {
             "source": "job",
+            "target": "in-memory-entity/named-defaultable-has-metadata",
+            "kind": "extends"
+        },
+        {
+            "source": "job",
             "target": "job/base",
             "kind": "extends"
         },
         {
             "source": "job",
-            "target": "workflow",
-            "kind": "contains",
-            "label": "workflow"
-        },
-        {
-            "source": "job/base",
-            "target": "in-memory-entity/named-defaultable-has-metadata",
+            "target": "system/has-project",
             "kind": "extends"
         },
         {
             "source": "job/base",
             "target": "job/compute-property",
             "kind": "extends"
+        },
+        {
+            "source": "job/base",
+            "target": "job/dataset",
+            "kind": "contains",
+            "label": "dataset"
         },
         {
             "source": "job/base",
@@ -11351,13 +11388,30 @@
             "source": "job/base",
             "target": "system/entity-reference",
             "kind": "contains",
-            "label": "_project"
+            "label": "_materials[]"
+        },
+        {
+            "source": "job/base",
+            "target": "system/entity-reference",
+            "kind": "contains",
+            "label": "_materialsSet"
         },
         {
             "source": "job/base",
             "target": "system/entity-reference",
             "kind": "contains",
             "label": "parent"
+        },
+        {
+            "source": "job/base",
+            "target": "system/status-track",
+            "kind": "extends"
+        },
+        {
+            "source": "job/base",
+            "target": "workflow",
+            "kind": "contains",
+            "label": "workflow"
         },
         {
             "source": "job/base",
@@ -15024,22 +15078,16 @@
             "label": "consistencyChecks[]"
         },
         {
+            "source": "system/has-project",
+            "target": "system/entity-reference",
+            "kind": "contains",
+            "label": "_project"
+        },
+        {
             "source": "system/in-set",
             "target": "system/entity-reference",
             "kind": "extends",
             "label": "inSet[]"
-        },
-        {
-            "source": "system/job-extended",
-            "target": "system/entity-reference",
-            "kind": "extends",
-            "label": "_materials[]"
-        },
-        {
-            "source": "system/job-extended",
-            "target": "system/entity-reference",
-            "kind": "extends",
-            "label": "_materialsSet"
         },
         {
             "source": "system/owner",

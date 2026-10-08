@@ -122,8 +122,7 @@ map, io, processing, and so on, each with its own schema under <code>workflow/un
 every unit type needs the context mechanism that carries values between steps.</p>
 <h2 id="job">Job</h2>
 <p>A job binds a workflow to everything needed to actually run it:</p>
-<p><strong>Extends</strong> — <a href="../map/#/entity/job%2Fbase"><code>job/base</code></a></p>
-<p><strong>Contains</strong> — <a href="../map/#/entity/workflow"><code>workflow</code></a> <code>workflow</code></p>
+<p><strong>Extends</strong> — <a href="../map/#/entity/in-memory-entity%2Fnamed-defaultable-has-metadata"><code>in-memory-entity/named-defaultable-has-metadata</code></a>, <a href="../map/#/entity/job%2Fbase"><code>job/base</code></a>, <a href="../map/#/entity/system%2Fhas-project"><code>system/has-project</code></a></p>
 <p><code>job/base</code> composes the platform mixins and the compute configuration; <code>job</code> adds the required
 <code>workflow</code>. Notice <code>_project</code> and <code>_material</code> on the base: these are <code>system/entity_reference</code>
 values — deliberately partial copies of another entity, not full embeddings — so a job record

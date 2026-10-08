@@ -81,29 +81,34 @@
                         ],
                         "properties": {
                             "queue": {
-                                "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
+                                "description": "Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.",
                                 "type": "string",
                                 "enum": [
                                     "D",
                                     "OR",
-                                    "OF",
-                                    "OFplus",
-                                    "SR",
-                                    "SF",
-                                    "SFplus",
                                     "OR4",
                                     "OR8",
                                     "OR16",
+                                    "SR",
                                     "SR4",
                                     "SR8",
                                     "SR16",
+                                    "OF",
+                                    "OFplus",
+                                    "SF",
+                                    "SFplus",
                                     "GOF",
                                     "G4OF",
                                     "G8OF",
+                                    "GP4OF",
                                     "GSF",
                                     "G4SF",
-                                    "G8SF"
-                                ]
+                                    "G8SF",
+                                    "GPSF",
+                                    "GP2SF",
+                                    "GP4SF"
+                                ],
+                                "tsType": "QueueNameEnum"
                             },
                             "nodes": {
                                 "description": "number of nodes used for the job inside the RMS.",
@@ -3335,16 +3340,10 @@
                                         },
                                         "value": {
                                             "description": "Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)",
-                                            "oneOf": [
-                                                {
-                                                    "type": "string"
-                                                },
-                                                {
-                                                    "type": "boolean"
-                                                },
-                                                {
-                                                    "type": "number"
-                                                }
+                                            "type": [
+                                                "string",
+                                                "boolean",
+                                                "number"
                                             ]
                                         }
                                     }

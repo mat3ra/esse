@@ -1,0 +1,59 @@
+{
+    "$id": "compute/queue-name-enum",
+    "definitions": {
+        "QueueNameEnum": {
+            "description": "Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.",
+            "type": "string",
+            "enum": [
+                "D",
+                "OR",
+                "OR4",
+                "OR8",
+                "OR16",
+                "SR",
+                "SR4",
+                "SR8",
+                "SR16",
+                "OF",
+                "OFplus",
+                "SF",
+                "SFplus",
+                "GOF",
+                "G4OF",
+                "G8OF",
+                "GP4OF",
+                "GSF",
+                "G4SF",
+                "G8SF",
+                "GPSF",
+                "GP2SF",
+                "GP4SF"
+            ],
+            "tsEnumNames": [
+                "debug",
+                "ordinaryRegular",
+                "ordinaryRegular4",
+                "ordinaryRegular8",
+                "ordinaryRegular16",
+                "savingRegular",
+                "savingRegular4",
+                "savingRegular8",
+                "savingRegular16",
+                "ordinaryFast",
+                "ordinaryFastPlus",
+                "savingFast",
+                "savingFastPlus",
+                "gpuOrdinaryFast",
+                "gpu4OrdinaryFast",
+                "gpu8OrdinaryFast",
+                "gpuP4OrdinaryFast",
+                "gpuSavingFast",
+                "gpu4SavingFast",
+                "gpu8SavingFast",
+                "gpuPSavingFast",
+                "gpuP2SavingFast",
+                "gpuP4SavingFast"
+            ]
+        }
+    }
+}

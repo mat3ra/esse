@@ -12,29 +12,34 @@
     ],
     "properties": {
         "name": {
-            "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
+            "description": "Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.",
             "type": "string",
             "enum": [
                 "D",
                 "OR",
-                "OF",
-                "OFplus",
-                "SR",
-                "SF",
-                "SFplus",
                 "OR4",
                 "OR8",
                 "OR16",
+                "SR",
                 "SR4",
                 "SR8",
                 "SR16",
+                "OF",
+                "OFplus",
+                "SF",
+                "SFplus",
                 "GOF",
                 "G4OF",
                 "G8OF",
+                "GP4OF",
                 "GSF",
                 "G4SF",
-                "G8SF"
-            ]
+                "G8SF",
+                "GPSF",
+                "GP2SF",
+                "GP4SF"
+            ],
+            "tsType": "QueueNameEnum"
         },
         "maxPPN": {
             "description": "Maximum processors per node.",
