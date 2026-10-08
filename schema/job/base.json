@@ -1,19 +1,22 @@
 {
     "$id": "job/base",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "job base schema",
+    "title": "base job schema",
     "type": "object",
     "allOf": [
         {
-            "description": "in-memory entity",
-            "$ref": "../in_memory_entity/named_defaultable_has_metadata.json"
+            "description": "Compute Property Schema",
+            "$ref": "compute_property.json"
         },
         {
-            "description": "Compute Property Schema",
-            "$ref": "./compute_property.json"
+            "$ref": "../system/status_track.json"
         }
     ],
     "properties": {
+        "workflow": {
+            "description": "Arch-workflow for the job",
+            "$ref": "../workflow.json"
+        },
         "rmsId": {
             "description": "Identity used to track jobs originated from command-line",
             "type": "string"
@@ -41,12 +44,19 @@
             "description": "The path to the working directory of this job, when the job originates from command-line",
             "type": "string"
         },
-        "_project": {
-            "description": "Subset of the full information about the project that this job belongs to.",
-            "$ref": "../system/entity_reference.json"
-        },
         "_material": {
             "description": "Subset of the full information about the materials used inside this job.",
+            "$ref": "../system/entity_reference.json"
+        },
+        "_materials": {
+            "description": "Subset of the full information about the materials used inside a multi-material job.",
+            "type": "array",
+            "items": {
+                "$ref": "../system/entity_reference.json"
+            }
+        },
+        "_materialsSet": {
+            "description": "Subset of the full information about the materials set used inside a multi-material job.",
             "$ref": "../system/entity_reference.json"
         },
         "parent": {
@@ -71,10 +81,17 @@
                     }
                 }
             }
+        },
+        "dataset": {
+            "description": "Dataset configuration for a data-driven job",
+            "$ref": "dataset.json"
+        },
+        "purged": {
+            "type": "boolean"
+        },
+        "purgedAt": {
+            "type": "number"
         }
     },
-    "required": [
-        "status",
-        "_project"
-    ]
+    "required": ["workflow", "status"]
 }
