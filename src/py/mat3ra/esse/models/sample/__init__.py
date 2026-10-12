@@ -26,7 +26,7 @@ class Units(Enum):
 class Position(BaseModel):
     coordinates: List[float] = Field(..., max_length=3, min_length=2)
     """
-    Position coordinates, in the instrument's axis order
+    Position coordinates, in the axis order of the Library's frame
     """
     units: Units
 
@@ -38,7 +38,7 @@ class SampleSchema(BaseModel):
     """
     position: Optional[Position] = None
     """
-    Stage position of the site as reported by the instrument
+    Position of the sample in the frame of the Library it belongs to
     """
     physicalId: Optional[str] = None
     """

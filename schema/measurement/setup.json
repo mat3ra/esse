@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "name": {
-            "description": "Unique instrument identifier, e.g. utk-asylum-cypher-1",
+            "description": "Unique instrument identifier, e.g. instrument-1",
             "type": "string"
         },
         "description": {

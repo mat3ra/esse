@@ -1,0 +1,31 @@
+{
+    "$id": "sample/library",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "library schema",
+    "description": "A physical piece samples are taken on, e.g. a combinatorial thin-film library on a wafer: the sample set that every set measured on the piece belongs to. Sample positions are given in its frame.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
+            "$ref": "../system/set.json"
+        },
+        {
+            "$ref": "../system/description.json"
+        }
+    ],
+    "properties": {
+        "physicalId": {
+            "description": "Identifier written on the physical piece",
+            "type": "string"
+        },
+        "metadata": {
+            "description": "Free-form until formalized: the frame sample positions are given in, the layout of sites on the piece, its dimensions and its synthesis record",
+            "type": "object"
+        }
+    },
+    "required": [
+        "physicalId"
+    ]
+}

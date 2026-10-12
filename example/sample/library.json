@@ -1,0 +1,78 @@
+{
+    "name": "PDAC_COM5_01448",
+    "physicalId": "PDAC_COM5_01448",
+    "description": "AlScN combinatorial library, Sc-rich to Al-rich across x, thick to thin down y, on 2-inch Pt/SiO2/Si",
+    "isEntitySet": true,
+    "entitySetType": "unordered",
+    "metadata": {
+        "frame": {
+            "origin": "wafer corner",
+            "axes": "x, y",
+            "units": "mm"
+        },
+        "dimensions": {
+            "shape": "square",
+            "side": 50.8,
+            "units": "mm"
+        },
+        "layout": [
+            {
+                "label": "pad_r0c00",
+                "row": 0,
+                "column": 0
+            },
+            {
+                "label": "pad_r0c01",
+                "row": 0,
+                "column": 1
+            }
+        ],
+        "synthesis": [
+            {
+                "form": "htem:deposition",
+                "format": "lmc-1.0",
+                "instrument": "pdac_com5",
+                "number": 1448,
+                "sputter_time": 35,
+                "notes": "Box label (PXL_20260820_184146995.jpg):\nPDAC_COM5_01448\nAlScN/Pt/Si\nAl: 90W, Sc: 98W\nN2: 0W, Cryo: On\nAr/N2= 14/4.6 sccm 3 mTorr\n400C w/ Ag, 35min\nNote: 1 library.",
+                "gas": {
+                    "cracker": {
+                        "fwd_pwr": 0
+                    },
+                    "cryoshroud": true,
+                    "dep_torr": 0.003,
+                    "gasses": [
+                        {
+                            "gas": "Ar",
+                            "flow": 14
+                        },
+                        {
+                            "gas": "N2",
+                            "flow": 4.6
+                        }
+                    ]
+                },
+                "targets": [
+                    {
+                        "material": "Al",
+                        "fwd_pwr": 90
+                    },
+                    {
+                        "material": "Sc",
+                        "fwd_pwr": 98
+                    }
+                ],
+                "substrate": {
+                    "substrates": [
+                        {
+                            "material": "Pt/Si"
+                        }
+                    ]
+                },
+                "temp": {
+                    "setpoint": 400
+                }
+            }
+        ]
+    }
+}

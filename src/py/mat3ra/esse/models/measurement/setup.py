@@ -20,7 +20,7 @@ class Session(BaseModel):
 class MeasurementSetupSchema(BaseModel):
     name: str
     """
-    Unique instrument identifier, e.g. utk-asylum-cypher-1
+    Unique instrument identifier, e.g. instrument-1
     """
     description: Optional[Dict[str, Any]] = None
     """

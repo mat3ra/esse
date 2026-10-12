@@ -15,11 +15,11 @@
             "type": "string"
         },
         "position": {
-            "description": "Stage position of the site as reported by the instrument",
+            "description": "Position of the sample in the frame of the Library it belongs to",
             "type": "object",
             "properties": {
                 "coordinates": {
-                    "description": "Position coordinates, in the instrument's axis order",
+                    "description": "Position coordinates, in the axis order of the Library's frame",
                     "type": "array",
                     "items": {
                         "type": "number"
