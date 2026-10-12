@@ -5,44 +5,29 @@
     "description": "How a position on the piece is read: origin, axis directions, units. After SEMI M20 (wafer coordinate system) and SEMI E142 (substrate map origin and axis direction); NeXus NXcoordinate_system.",
     "type": "object",
     "properties": {
-        "type": {
-            "enum": [
-                "cartesian"
-            ],
-            "default": "cartesian"
-        },
         "origin": {
-            "description": "Where the origin is, as a physical feature of the piece, e.g. wafer corner, wafer center",
+            "description": "Where the origin is, as a physical feature of the piece, e.g. wafer corner",
             "type": "string"
         },
         "corner": {
-            "description": "Which corner the origin is at when it is a corner, seen with the film face up (SEMI E142 vocabulary); null until the lab states it",
-            "enum": [
-                "lower-left",
-                "lower-right",
-                "upper-left",
-                "upper-right",
-                null
+            "description": "Which corner the origin is at, seen with the film face up, e.g. lower-left; null until the lab states it",
+            "type": [
+                "string",
+                "null"
             ]
         },
         "xDirection": {
-            "description": "Direction x increases in, seen with the film face up; null until the lab states it",
-            "enum": [
-                "right",
-                "left",
-                "up",
-                "down",
-                null
+            "description": "Direction x increases in, seen with the film face up, e.g. right; null until the lab states it",
+            "type": [
+                "string",
+                "null"
             ]
         },
         "yDirection": {
-            "description": "Direction y increases in, seen with the film face up; null until the lab states it",
-            "enum": [
-                "right",
-                "left",
-                "up",
-                "down",
-                null
+            "description": "Direction y increases in, seen with the film face up, e.g. up; null until the lab states it",
+            "type": [
+                "string",
+                "null"
             ]
         },
         "units": {

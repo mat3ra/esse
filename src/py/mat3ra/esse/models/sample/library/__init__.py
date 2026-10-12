@@ -4,39 +4,10 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field, conint
-
-
-class Type(Enum):
-    cartesian = "cartesian"
-
-
-class Corner(Enum):
-    lower_left = "lower-left"
-    lower_right = "lower-right"
-    upper_left = "upper-left"
-    upper_right = "upper-right"
-    NoneType_None = None
-
-
-class XDirection(Enum):
-    right = "right"
-    left = "left"
-    up = "up"
-    down = "down"
-    NoneType_None = None
-
-
-class YDirection(Enum):
-    right = "right"
-    left = "left"
-    up = "up"
-    down = "down"
-    NoneType_None = None
 
 
 class Units(Enum):
@@ -53,34 +24,30 @@ class Units(Enum):
 
 
 class LibraryCoordinateSystemSchema(BaseModel):
-    type: Optional[Type] = "cartesian"
     origin: str
     """
-    Where the origin is, as a physical feature of the piece, e.g. wafer corner, wafer center
+    Where the origin is, as a physical feature of the piece, e.g. wafer corner
     """
-    corner: Optional[Corner] = None
+    corner: Optional[str] = None
     """
-    Which corner the origin is at when it is a corner, seen with the film face up (SEMI E142 vocabulary); null until the lab states it
+    Which corner the origin is at, seen with the film face up, e.g. lower-left; null until the lab states it
     """
-    xDirection: Optional[XDirection] = None
+    xDirection: Optional[str] = None
     """
-    Direction x increases in, seen with the film face up; null until the lab states it
+    Direction x increases in, seen with the film face up, e.g. right; null until the lab states it
     """
-    yDirection: Optional[YDirection] = None
+    yDirection: Optional[str] = None
     """
-    Direction y increases in, seen with the film face up; null until the lab states it
+    Direction y increases in, seen with the film face up, e.g. up; null until the lab states it
     """
     units: Units
 
 
-class Shape(Enum):
-    square = "square"
-    rectangle = "rectangle"
-    round = "round"
-
-
 class LibrarySubstrateSchema(BaseModel):
-    shape: Shape
+    shape: str
+    """
+    e.g. square, round
+    """
     size: float
     """
     Side of a square, diameter of a round piece, in units
@@ -88,14 +55,8 @@ class LibrarySubstrateSchema(BaseModel):
     units: Units
     material: Optional[str] = None
     """
-    Substrate material, e.g. Si
+    e.g. Si
     """
-
-
-class Kind(Enum):
-    pad = "pad"
-    fiducial = "fiducial"
-    region = "region"
 
 
 class Position(BaseModel):
@@ -114,7 +75,6 @@ class LibraryLayoutFeatureSchema(BaseModel):
     """
     Identifier of the feature; a sample measured on it carries the same label
     """
-    kind: Kind
     row: Optional[int] = None
     column: Optional[int] = None
     position: Optional[Position] = None
@@ -139,11 +99,6 @@ class LibraryFabricationStepSchema(BaseModel):
     tool: Optional[str] = None
     """
     The lab's name for the tool, e.g. pdac_com5
-    """
-    date: Optional[datetime] = None
-    produces: Optional[str] = None
-    """
-    What the step produced, e.g. the AlScN film
     """
     record: Optional[Dict[str, Any]] = None
     """

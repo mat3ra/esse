@@ -2,19 +2,12 @@
     "$id": "sample/library/feature",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "library layout feature schema",
-    "description": "One feature on the surface of the piece - a pad, a fiducial mark, a region - where it is and how big, in the library's coordinate system. After the GDSII layout model (a feature has a layer, a shape and a position).",
+    "description": "One feature on the surface of the piece - a pad, a mark - where it is and how big, in the library's coordinate system. After the GDSII layout model (a feature has a shape and a position).",
     "type": "object",
     "properties": {
         "label": {
             "description": "Identifier of the feature; a sample measured on it carries the same label",
             "type": "string"
-        },
-        "kind": {
-            "enum": [
-                "pad",
-                "fiducial",
-                "region"
-            ]
         },
         "row": {
             "type": "integer"
@@ -71,7 +64,6 @@
         }
     },
     "required": [
-        "label",
-        "kind"
+        "label"
     ]
 }

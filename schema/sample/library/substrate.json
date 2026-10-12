@@ -6,11 +6,8 @@
     "type": "object",
     "properties": {
         "shape": {
-            "enum": [
-                "square",
-                "rectangle",
-                "round"
-            ]
+            "description": "e.g. square, round",
+            "type": "string"
         },
         "size": {
             "description": "Side of a square, diameter of a round piece, in units",
@@ -20,7 +17,7 @@
             "$ref": "../../definitions/units.json#/length"
         },
         "material": {
-            "description": "Substrate material, e.g. Si",
+            "description": "e.g. Si",
             "type": "string"
         }
     },

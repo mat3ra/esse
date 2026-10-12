@@ -10,12 +10,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class Shape(Enum):
-    square = "square"
-    rectangle = "rectangle"
-    round = "round"
-
-
 class Units(Enum):
     km = "km"
     m = "m"
@@ -30,7 +24,10 @@ class Units(Enum):
 
 
 class LibrarySubstrateSchema(BaseModel):
-    shape: Shape
+    shape: str
+    """
+    e.g. square, round
+    """
     size: float
     """
     Side of a square, diameter of a round piece, in units
@@ -38,5 +35,5 @@ class LibrarySubstrateSchema(BaseModel):
     units: Units
     material: Optional[str] = None
     """
-    Substrate material, e.g. Si
+    e.g. Si
     """

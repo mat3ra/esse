@@ -4,7 +4,6 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Any, Dict, Optional
 
 from pydantic import BaseModel, conint
@@ -22,11 +21,6 @@ class LibraryFabricationStepSchema(BaseModel):
     tool: Optional[str] = None
     """
     The lab's name for the tool, e.g. pdac_com5
-    """
-    date: Optional[datetime] = None
-    produces: Optional[str] = None
-    """
-    What the step produced, e.g. the AlScN film
     """
     record: Optional[Dict[str, Any]] = None
     """

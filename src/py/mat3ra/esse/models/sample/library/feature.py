@@ -10,12 +10,6 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class Kind(Enum):
-    pad = "pad"
-    fiducial = "fiducial"
-    region = "region"
-
-
 class Units(Enum):
     km = "km"
     m = "m"
@@ -45,7 +39,6 @@ class LibraryLayoutFeatureSchema(BaseModel):
     """
     Identifier of the feature; a sample measured on it carries the same label
     """
-    kind: Kind
     row: Optional[int] = None
     column: Optional[int] = None
     position: Optional[Position] = None

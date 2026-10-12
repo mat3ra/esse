@@ -10,34 +10,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class Type(Enum):
-    cartesian = "cartesian"
-
-
-class Corner(Enum):
-    lower_left = "lower-left"
-    lower_right = "lower-right"
-    upper_left = "upper-left"
-    upper_right = "upper-right"
-    NoneType_None = None
-
-
-class XDirection(Enum):
-    right = "right"
-    left = "left"
-    up = "up"
-    down = "down"
-    NoneType_None = None
-
-
-class YDirection(Enum):
-    right = "right"
-    left = "left"
-    up = "up"
-    down = "down"
-    NoneType_None = None
-
-
 class Units(Enum):
     km = "km"
     m = "m"
@@ -52,21 +24,20 @@ class Units(Enum):
 
 
 class LibraryCoordinateSystemSchema(BaseModel):
-    type: Optional[Type] = "cartesian"
     origin: str
     """
-    Where the origin is, as a physical feature of the piece, e.g. wafer corner, wafer center
+    Where the origin is, as a physical feature of the piece, e.g. wafer corner
     """
-    corner: Optional[Corner] = None
+    corner: Optional[str] = None
     """
-    Which corner the origin is at when it is a corner, seen with the film face up (SEMI E142 vocabulary); null until the lab states it
+    Which corner the origin is at, seen with the film face up, e.g. lower-left; null until the lab states it
     """
-    xDirection: Optional[XDirection] = None
+    xDirection: Optional[str] = None
     """
-    Direction x increases in, seen with the film face up; null until the lab states it
+    Direction x increases in, seen with the film face up, e.g. right; null until the lab states it
     """
-    yDirection: Optional[YDirection] = None
+    yDirection: Optional[str] = None
     """
-    Direction y increases in, seen with the film face up; null until the lab states it
+    Direction y increases in, seen with the film face up, e.g. up; null until the lab states it
     """
     units: Units

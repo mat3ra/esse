@@ -2,7 +2,6 @@
     "step": 1,
     "process": "sputter deposition",
     "tool": "pdac_com5",
-    "produces": "AlScN film",
     "record": {
         "form": "htem:deposition",
         "format": "lmc-1.0",
