@@ -1,0 +1,69 @@
+{
+    "$id": "sample/library/feature",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "library layout feature schema",
+    "description": "One feature on the surface of the piece - a pad, a mark - where it is and how big, in the library's coordinate system. After the GDSII layout model (a feature has a shape and a position).",
+    "type": "object",
+    "properties": {
+        "label": {
+            "description": "Identifier of the feature; a sample measured on it carries the same label",
+            "type": "string"
+        },
+        "row": {
+            "type": "integer"
+        },
+        "column": {
+            "type": "integer"
+        },
+        "position": {
+            "description": "Center of the feature in the library's coordinate system; null until the lab states it",
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 3
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/length"
+                }
+            },
+            "required": [
+                "coordinates",
+                "units"
+            ]
+        },
+        "size": {
+            "description": "Extent of the feature; null until the lab states it",
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/length"
+                }
+            },
+            "required": [
+                "width",
+                "height",
+                "units"
+            ]
+        }
+    },
+    "required": [
+        "label"
+    ]
+}

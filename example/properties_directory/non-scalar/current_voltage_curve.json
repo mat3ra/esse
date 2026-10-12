@@ -1,0 +1,21 @@
+{
+    "name": "current_voltage_curve",
+    "xAxis": {
+        "label": "voltage",
+        "units": "V"
+    },
+    "yAxis": {
+        "label": "current",
+        "units": "A"
+    },
+    "xDataArray": [ -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0 ],
+    "yDataSeries": [ [ -3.6e-9,
+        -1.1e-9,
+        0.0,
+        1.1e-9,
+        3.6e-9 ] ]
+}

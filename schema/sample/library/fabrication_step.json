@@ -1,0 +1,34 @@
+{
+    "$id": "sample/library/fabrication-step",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "library fabrication step schema",
+    "description": "One step that made the piece: what was done, on which tool, and the lab's own record of it, verbatim. After NeXus NXhistory/NXactivity and the CHADA (CWA 17815) workflow stage.",
+    "type": "object",
+    "properties": {
+        "step": {
+            "description": "Order of the step, counting from 1",
+            "type": "integer",
+            "minimum": 1
+        },
+        "process": {
+            "description": "What was done, e.g. sputter deposition, anneal, lithography",
+            "type": "string"
+        },
+        "tool": {
+            "description": "The lab's name for the tool, e.g. pdac_com5",
+            "type": "string"
+        },
+        "record": {
+            "description": "The lab's own record of the step, in the lab's format, unchanged",
+            "type": "object"
+        },
+        "source": {
+            "description": "Where the record came from, e.g. a file name or a photograph of the label",
+            "type": "string"
+        }
+    },
+    "required": [
+        "step",
+        "process"
+    ]
+}

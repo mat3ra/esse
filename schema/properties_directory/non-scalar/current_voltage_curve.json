@@ -1,0 +1,53 @@
+{
+    "$id": "properties-directory/non-scalar/current-voltage-curve",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Current-voltage curve property schema",
+    "description": "Current through the sample versus the voltage applied across it, as swept",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/abstract/2d_plot.json"
+        }
+    ],
+    "properties": {
+        "xAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "voltage"
+                    ]
+                },
+                "units": {
+                    "$ref": "../../definitions/units.json#/voltage"
+                }
+            }
+        },
+        "yAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "current"
+                    ]
+                },
+                "units": {
+                    "enum": [
+                        "A",
+                        "mA",
+                        "uA",
+                        "nA"
+                    ]
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "current_voltage_curve"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

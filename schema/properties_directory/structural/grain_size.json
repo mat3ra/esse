@@ -1,0 +1,37 @@
+{
+    "$id": "properties-directory/structural/grain-size",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "grain size schema",
+    "description": "One statistic of the grain radius distribution over the measured surface",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "grain_size"
+            ]
+        },
+        "statistic": {
+            "description": "which statistic of the distribution this value is",
+            "enum": [
+                "median",
+                "mean",
+                "std",
+                "iqr"
+            ]
+        },
+        "units": {
+            "enum": [
+                "nm"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "statistic"
+    ]
+}

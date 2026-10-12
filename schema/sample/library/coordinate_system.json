@@ -1,0 +1,41 @@
+{
+    "$id": "sample/library/coordinate-system",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "library coordinate system schema",
+    "description": "How a position on the piece is read: origin, axis directions, units. After SEMI M20 (wafer coordinate system) and SEMI E142 (substrate map origin and axis direction); NeXus NXcoordinate_system.",
+    "type": "object",
+    "properties": {
+        "origin": {
+            "description": "Where the origin is, as a physical feature of the piece, e.g. wafer corner",
+            "type": "string"
+        },
+        "corner": {
+            "description": "Which corner the origin is at, seen with the film face up, e.g. lower-left; null until the lab states it",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "xDirection": {
+            "description": "Direction x increases in, seen with the film face up, e.g. right; null until the lab states it",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "yDirection": {
+            "description": "Direction y increases in, seen with the film face up, e.g. up; null until the lab states it",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/length"
+        }
+    },
+    "required": [
+        "origin",
+        "units"
+    ]
+}

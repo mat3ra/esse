@@ -1,0 +1,38 @@
+{
+    "_id": "mSrUn20260901ALSc1",
+    "_sample": {
+        "_id": "aScN01448r0c00Xy1",
+        "cls": "Sample",
+        "slug": "pdac-com5-01448-r0c00"
+    },
+    "setup": {
+        "name": "instrument-1",
+        "description": {
+            "instrument_directory": "C:\\Users\\Asylum User\\Documents\\Asylum Research Data\\260831"
+        },
+        "session": {
+            "name": "20260901_171601_alscn_01448",
+            "started": "2026-09-01T21:16:02Z"
+        },
+        "settings": {
+            "scan_size_m": 2.4200001e-05,
+            "n_points": 256,
+            "scan_rate_hz": 0.70067263,
+            "v_ac_v": 0.5,
+            "v_dc_max": 20.0,
+            "n_cycles": 3,
+            "loop_frequency": 0.30048078
+        }
+    },
+    "metadata": {
+        "run_dir": "C:\\Users\\Asylum User\\Documents\\GitHub\\AFM_Combinatorial_Libraries\\runs\\20260901_171601_alscn_01448",
+        "recordsCount": 8
+    },
+    "name": "20260901_171601_alscn_01448",
+    "schemaVersion": "0.2.0",
+    "slug": "20260901-171601-alscn-01448",
+    "status": "finished",
+    "workflow": {
+        "...": "include(workflow.json)"
+    }
+}

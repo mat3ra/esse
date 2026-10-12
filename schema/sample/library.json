@@ -1,0 +1,47 @@
+{
+    "$id": "sample/library",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "library schema",
+    "description": "A physical piece samples are taken on, e.g. a combinatorial thin-film library on a wafer (NREL HTEM's sample library): the sample set every set measured on the piece belongs to. Sample positions are given in its coordinate system. Anything not yet formalized goes in metadata.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
+            "$ref": "../system/set.json"
+        },
+        {
+            "$ref": "../system/description.json"
+        }
+    ],
+    "properties": {
+        "physicalId": {
+            "description": "Identifier written on the physical piece; everything measured on it is joined by it",
+            "type": "string"
+        },
+        "coordinateSystem": {
+            "$ref": "library/coordinate_system.json"
+        },
+        "substrate": {
+            "$ref": "library/substrate.json"
+        },
+        "layout": {
+            "description": "Features on the surface of the piece",
+            "type": "array",
+            "items": {
+                "$ref": "library/feature.json"
+            }
+        },
+        "fabrication": {
+            "description": "The steps that made the piece, in order",
+            "type": "array",
+            "items": {
+                "$ref": "library/fabrication_step.json"
+            }
+        }
+    },
+    "required": [
+        "physicalId"
+    ]
+}

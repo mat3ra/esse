@@ -762,6 +762,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1077,7 +1081,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name826(Enum):
+class Name830(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1293,7 +1297,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem23(BaseModel):
+class StartingMagnetizationItem25(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1328,7 +1332,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem23]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem25]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1678,14 +1682,14 @@ class DFTLDAModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Functional57(Enum):
+class Functional60(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class BaseMethod35(BaseModel):
+class BaseMethod40(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1707,17 +1711,17 @@ class BaseMethod35(BaseModel):
 class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional57
-    method: BaseMethod35 = Field(..., title="base method")
+    functional: Functional60
+    method: BaseMethod40 = Field(..., title="base method")
 
 
-class Functional58(Enum):
+class Functional61(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
     other = "other"
 
 
-class BaseMethod36(BaseModel):
+class BaseMethod41(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1739,19 +1743,19 @@ class BaseMethod36(BaseModel):
 class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional58
-    method: BaseMethod36 = Field(..., title="base method")
+    functional: Functional61
+    method: BaseMethod41 = Field(..., title="base method")
 
 
-class Type141(Enum):
+class Type144(Enum):
     ml = "ml"
 
 
-class Subtype20(Enum):
+class Subtype23(Enum):
     re = "re"
 
 
-class BaseMethod37(BaseModel):
+class BaseMethod42(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1771,20 +1775,20 @@ class BaseMethod37(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type141
+    type: Type144
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod37 = Field(..., title="base method")
+    method: BaseMethod42 = Field(..., title="base method")
 
 
-class Type142(Enum):
+class Type145(Enum):
     unknown = "unknown"
 
 
-class Subtype21(Enum):
+class Subtype24(Enum):
     unknown = "unknown"
 
 
-class BaseMethod38(BaseModel):
+class BaseMethod43(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1804,12 +1808,12 @@ class BaseMethod38(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type142
+    type: Type145
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod38 = Field(..., title="base method")
+    method: BaseMethod43 = Field(..., title="base method")
 
 
-class ApplicationSchema14(BaseModel):
+class ApplicationSchema16(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1902,7 +1906,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema14 = Field(..., title="application schema")
+    application: ApplicationSchema16 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """

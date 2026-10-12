@@ -1,0 +1,41 @@
+{
+    "$id": "properties-directory/structural/areal-surface-texture",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "areal surface texture schema",
+    "description": "One ISO 25178 areal surface texture parameter of the measured surface. Height parameters (Sq, Sa, Sz, Sal) are in metres; Ssk and Sku are dimensionless and carry no units.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "areal_surface_texture"
+            ]
+        },
+        "parameter": {
+            "description": "the ISO 25178 parameter this value is",
+            "enum": [
+                "Sq",
+                "Sa",
+                "Sz",
+                "Ssk",
+                "Sku",
+                "Sal",
+                "Sdq",
+                "Sdr"
+            ]
+        },
+        "units": {
+            "enum": [
+                "nm"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "parameter"
+    ]
+}
