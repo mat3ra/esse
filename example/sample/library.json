@@ -4,31 +4,45 @@
     "description": "AlScN combinatorial library, Sc-rich to Al-rich across x, thick to thin down y, on 2-inch Pt/SiO2/Si",
     "isEntitySet": true,
     "entitySetType": "unordered",
-    "metadata": {
-        "frame": {
-            "origin": "wafer corner",
-            "axes": "x, y",
-            "units": "mm"
+    "coordinateSystem": {
+        "type": "cartesian",
+        "origin": "wafer corner",
+        "corner": null,
+        "xDirection": null,
+        "yDirection": null,
+        "units": "mm"
+    },
+    "substrate": {
+        "shape": "square",
+        "size": 50.8,
+        "units": "mm",
+        "material": "Si"
+    },
+    "layout": [
+        {
+            "label": "pad_r0c00",
+            "kind": "pad",
+            "row": 0,
+            "column": 0,
+            "position": null,
+            "size": null
         },
-        "dimensions": {
-            "shape": "square",
-            "side": 50.8,
-            "units": "mm"
-        },
-        "layout": [
-            {
-                "label": "pad_r0c00",
-                "row": 0,
-                "column": 0
-            },
-            {
-                "label": "pad_r0c01",
-                "row": 0,
-                "column": 1
-            }
-        ],
-        "synthesis": [
-            {
+        {
+            "label": "pad_r0c01",
+            "kind": "pad",
+            "row": 0,
+            "column": 1,
+            "position": null,
+            "size": null
+        }
+    ],
+    "fabrication": [
+        {
+            "step": 1,
+            "process": "sputter deposition",
+            "tool": "pdac_com5",
+            "produces": "AlScN film",
+            "record": {
                 "form": "htem:deposition",
                 "format": "lmc-1.0",
                 "instrument": "pdac_com5",
@@ -72,7 +86,9 @@
                 "temp": {
                     "setpoint": 400
                 }
-            }
-        ]
-    }
+            },
+            "source": "box label, PXL_20260820_184146995.jpg"
+        }
+    ],
+    "metadata": {}
 }

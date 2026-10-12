@@ -1,0 +1,32 @@
+{
+    "$id": "sample/library/substrate",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "library substrate schema",
+    "description": "The base the piece is built on: shape and size; material when known. After SEMI M1 (polished silicon wafer specification).",
+    "type": "object",
+    "properties": {
+        "shape": {
+            "enum": [
+                "square",
+                "rectangle",
+                "round"
+            ]
+        },
+        "size": {
+            "description": "Side of a square, diameter of a round piece, in units",
+            "type": "number"
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/length"
+        },
+        "material": {
+            "description": "Substrate material, e.g. Si",
+            "type": "string"
+        }
+    },
+    "required": [
+        "shape",
+        "size",
+        "units"
+    ]
+}
