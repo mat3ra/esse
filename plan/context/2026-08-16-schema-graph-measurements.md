@@ -21,14 +21,14 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 568 |
-| Example files | 211 (a schema has a mirror example in 211/568 = 37% of cases) |
-| Cross-schema reference edges | 927 |
-| — of kind *extends* (`allOf`) | 377 |
-| — of kind *contains* (`properties`/`items`) | 380 |
-| — of kind *variant* (`oneOf`/`anyOf`) | 170 |
-| Same-document refs (`#/…`), which are **not** edges | 20 |
-| Edges carrying a JSON-pointer fragment | 145 (e.g. `enum_options.json#/physicsBased`) |
+| Schema files | 572 |
+| Example files | 212 (a schema has a mirror example in 212/572 = 37% of cases) |
+| Cross-schema reference edges | 940 |
+| — of kind *extends* (`allOf`) | 382 |
+| — of kind *contains* (`properties`/`items`) | 387 |
+| — of kind *variant* (`oneOf`/`anyOf`) | 171 |
+| Same-document refs (`#/…`), which are **not** edges | 22 |
+| Edges carrying a JSON-pointer fragment | 147 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
 | Isolated schemas (no refs in or out) | 34 |
@@ -37,9 +37,9 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Domain | Count | | Domain | Count |
 | --- | --- | --- | --- | --- |
-| `properties_directory` | 85 | | `models_directory` | 14 |
+| `properties_directory` | 86 | | `models_directory` | 14 |
 | `methods_category` | 79 | | *(root files)* | 13 |
-| `core` | 73 | | `software_directory` | 11 |
+| `core` | 76 | | `software_directory` | 11 |
 | `workflow` | 62 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
 | `materials_category_components` | 31 | | `in_memory_entity` | 7 |
@@ -59,11 +59,11 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 
 | Layer | Count | What it holds |
 | --- | --- | --- |
-| directory | 156 | `*_directory` catalogs of concrete instances |
+| directory | 157 | `*_directory` catalogs of concrete instances |
 | category | 152 | `*_category` + `materials_category_components` taxonomies |
 | **entity-component** | **108** | sub-schemas of root entities, keyed by `ownerEntity` |
 | system | 38 | platform mixins (`system/*`) |
-| reusable | 31 | `core/reusable` domain blocks |
+| reusable | 34 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |
 | **application-parsing** | **17** | `apse/*` application formats and parsers |
 | entity | 13 | root-level schemas (material, model, workflow, …) |
@@ -79,24 +79,24 @@ application-parsing schemas.
 
 | Schema | In-degree |
 | --- | --- |
-| `definitions/units` | 30 |
-| `core/primitive/scalar` | 28 |
+| `definitions/units` | 32 |
+| `core/primitive/scalar` | 29 |
 | `core/reusable/energy` | 15 |
 | `workflow/unit/context/_base` | 15 |
 | `core/primitive/array_of_3_numbers` | 14 |
 | `materials_category_components/entities/core/three-dimensional/crystal` | 14 |
 | `system/entity_reference` | 14 |
 | `core/reusable/categories` | 12 |
+| `core/abstract/2d_plot` | 11 |
 | `method/unit_method` | 11 |
 | `method` (root) | 10 |
-| `core/abstract/2d_plot` | 10 |
 | `methods_category/physical/qm/wf/enum_options` | 10 |
 
 ## Largest fan-out (out-degree)
 
 | Schema | Out-degree |
 | --- | --- |
-| `property/holder` | 44 (the union over all property types) |
+| `property/holder` | 45 (the union over all property types) |
 | `properties_directory/non-scalar/total_energy_contributions` | 15 |
 | `workflow/unit/context/item` | 15 |
 | `apse/file/applications/espresso/7.2/pw.x` | 10 |
@@ -126,10 +126,10 @@ labeled "islands" strip; the lint reports (but does not fail on) newly isolated 
    (`dist/js/schema`) have `allOf` merged and refs inlined — the extraction target does not exist
    there.
 3. **Same-document refs must be excluded from the edge set**, or a schema appears to reference
-   itself. Twenty exist; the extractor counts them separately and checks their pointers resolve.
+   itself. Twenty-two exist; the extractor counts them separately and checks their pointers resolve.
 4. **Edge kinds partition cleanly into three renderable relationship types** (extends / contains /
    variant) with zero pathological cases (no cycles, no broken refs) — no special-case rendering
    required at launch.
-5. **Fragment refs (145) resolve to file-level edges** and keep the pointer as an edge attribute;
+5. **Fragment refs (147) resolve to file-level edges** and keep the pointer as an edge attribute;
    they never point to files outside the schema tree. The lint checks each pointer exists in its
    target, which nothing verified before.
