@@ -1,7 +1,7 @@
 # Schema graph measurements
 
 > **Type:** context — measurements backing the entity-map/docs plans; not a plan itself.
-> **Created:** 2026-08-16 · **Updated:** 2026-08-16
+> **Created:** 2026-08-16 · **Updated:** 2026-10-12
 > **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)
 > **Measured by:** `npm run lint-entity-graph` (`src/js/scripts/buildEntityGraph.ts`), the
 > production extractor built under [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026).
@@ -21,14 +21,14 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 566 |
-| Example files | 209 (a schema has a mirror example in 209/566 = 37% of cases) |
-| Cross-schema reference edges | 920 |
-| — of kind *extends* (`allOf`) | 372 |
-| — of kind *contains* (`properties`/`items`) | 378 |
+| Schema files | 568 |
+| Example files | 211 (a schema has a mirror example in 211/568 = 37% of cases) |
+| Cross-schema reference edges | 927 |
+| — of kind *extends* (`allOf`) | 377 |
+| — of kind *contains* (`properties`/`items`) | 380 |
 | — of kind *variant* (`oneOf`/`anyOf`) | 170 |
 | Same-document refs (`#/…`), which are **not** edges | 20 |
-| Edges carrying a JSON-pointer fragment | 144 (e.g. `enum_options.json#/physicsBased`) |
+| Edges carrying a JSON-pointer fragment | 145 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
 | Reference cycles | **0** (README's no-circular-refs rule holds in practice) |
 | Isolated schemas (no refs in or out) | 34 |
@@ -38,7 +38,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | Domain | Count | | Domain | Count |
 | --- | --- | --- | --- | --- |
 | `properties_directory` | 85 | | `models_directory` | 14 |
-| `methods_category` | 79 | | *(root files)* | 11 |
+| `methods_category` | 79 | | *(root files)* | 13 |
 | `core` | 73 | | `software_directory` | 11 |
 | `workflow` | 62 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
@@ -66,7 +66,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | reusable | 31 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |
 | **application-parsing** | **17** | `apse/*` application formats and parsers |
-| entity | 11 | root-level schemas (material, model, workflow, …) |
+| entity | 13 | root-level schemas (material, model, workflow, …) |
 | reference | 10 | `core/reference` provenance |
 | abstract | 9 | `core/abstract` unit-less mathematics |
 | in-memory-entity | 7 | behavioral mixins |
@@ -85,7 +85,7 @@ application-parsing schemas.
 | `workflow/unit/context/_base` | 15 |
 | `core/primitive/array_of_3_numbers` | 14 |
 | `materials_category_components/entities/core/three-dimensional/crystal` | 14 |
-| `system/entity_reference` | 13 |
+| `system/entity_reference` | 14 |
 | `core/reusable/categories` | 12 |
 | `method/unit_method` | 11 |
 | `method` (root) | 10 |
@@ -130,6 +130,6 @@ labeled "islands" strip; the lint reports (but does not fail on) newly isolated 
 4. **Edge kinds partition cleanly into three renderable relationship types** (extends / contains /
    variant) with zero pathological cases (no cycles, no broken refs) — no special-case rendering
    required at launch.
-5. **Fragment refs (144) resolve to file-level edges** and keep the pointer as an edge attribute;
+5. **Fragment refs (145) resolve to file-level edges** and keep the pointer as an edge attribute;
    they never point to files outside the schema tree. The lint checks each pointer exists in its
    target, which nothing verified before.

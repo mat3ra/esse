@@ -277,6 +277,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -592,7 +596,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name500(Enum):
+class Name502(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -808,7 +812,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem7(BaseModel):
+class StartingMagnetizationItem9(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -843,7 +847,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem7]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem9]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None

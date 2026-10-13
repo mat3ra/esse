@@ -41,7 +41,7 @@ class LDAFunctionalMixin(BaseModel):
     functional: Optional[Functional] = None
 
 
-class Functional52(Enum):
+class Functional58(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
 
@@ -54,10 +54,10 @@ class GGAFunctionalMixin(BaseModel):
     spinPolarization: Optional[SpinPolarization] = None
     spinOrbitCoupling: Optional[bool] = None
     dispersionCorrection: Optional[DispersionCorrection] = None
-    functional: Optional[Functional52] = None
+    functional: Optional[Functional58] = None
 
 
-class Functional53(Enum):
+class Functional59(Enum):
     scan = "scan"
 
 
@@ -69,10 +69,10 @@ class MetaGGAFunctionalMixin(BaseModel):
     spinPolarization: Optional[SpinPolarization] = None
     spinOrbitCoupling: Optional[bool] = None
     dispersionCorrection: Optional[DispersionCorrection] = None
-    functional: Optional[Functional53] = None
+    functional: Optional[Functional59] = None
 
 
-class Functional54(Enum):
+class Functional60(Enum):
     hse06 = "hse06"
     b3lyp = "b3lyp"
 
@@ -85,10 +85,10 @@ class HybridFunctionalMixin(BaseModel):
     spinPolarization: Optional[SpinPolarization] = None
     spinOrbitCoupling: Optional[bool] = None
     dispersionCorrection: Optional[DispersionCorrection] = None
-    functional: Optional[Functional54] = None
+    functional: Optional[Functional60] = None
 
 
-class Functional55(Enum):
+class Functional61(Enum):
     b2plyp = "b2plyp"
 
 
@@ -100,7 +100,7 @@ class DoubleHybridFunctionalMixin(BaseModel):
     spinPolarization: Optional[SpinPolarization] = None
     spinOrbitCoupling: Optional[bool] = None
     dispersionCorrection: Optional[DispersionCorrection] = None
-    functional: Optional[Functional55] = None
+    functional: Optional[Functional61] = None
 
 
 class ESSE(

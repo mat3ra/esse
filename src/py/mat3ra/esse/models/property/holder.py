@@ -35,7 +35,7 @@ class ValenceBandOffsetPropertySchema(BaseModel):
     value: float
 
 
-class Name515(Enum):
+class Name517(Enum):
     zero_point_energy = "zero_point_energy"
 
 
@@ -60,7 +60,7 @@ class ZeroPointEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name516(Enum):
+class Name518(Enum):
     pressure = "pressure"
 
 
@@ -75,7 +75,7 @@ class PressurePropertySchema(BaseModel):
     value: float
 
 
-class Name517(Enum):
+class Name519(Enum):
     reaction_energy_barrier = "reaction_energy_barrier"
 
 
@@ -100,7 +100,7 @@ class ReactionEnergyBarrierPropertySchema(BaseModel):
     value: float
 
 
-class Name518(Enum):
+class Name520(Enum):
     surface_energy = "surface_energy"
 
 
@@ -125,7 +125,7 @@ class SurfaceEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name519(Enum):
+class Name521(Enum):
     interfacial_energy = "interfacial_energy"
 
 
@@ -150,7 +150,7 @@ class InterfacialEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name520(Enum):
+class Name522(Enum):
     defect_formation_energy = "defect_formation_energy"
 
 
@@ -175,7 +175,7 @@ class DefectFormationEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name521(Enum):
+class Name523(Enum):
     thermal_correction_to_energy = "thermal_correction_to_energy"
 
 
@@ -200,7 +200,7 @@ class ThermalCorrectionToEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name522(Enum):
+class Name524(Enum):
     thermal_correction_to_enthalpy = "thermal_correction_to_enthalpy"
 
 
@@ -225,7 +225,7 @@ class ThermalCorrectionToEnthalpyPropertySchema(BaseModel):
     value: float
 
 
-class Name523(Enum):
+class Name525(Enum):
     total_energy = "total_energy"
 
 
@@ -250,7 +250,7 @@ class TotalEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name524(Enum):
+class Name526(Enum):
     total_force = "total_force"
 
 
@@ -269,7 +269,7 @@ class TotalForcesPropertySchema(BaseModel):
     value: float
 
 
-class Name525(Enum):
+class Name527(Enum):
     fermi_energy = "fermi_energy"
 
 
@@ -294,7 +294,7 @@ class FermiEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name526(Enum):
+class Name528(Enum):
     formation_energy = "formation_energy"
 
 
@@ -319,7 +319,7 @@ class FormationEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name527(Enum):
+class Name529(Enum):
     homo_energy = "homo_energy"
 
 
@@ -344,7 +344,7 @@ class HOMOEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name528(Enum):
+class Name530(Enum):
     ionization_potential = "ionization_potential"
 
 
@@ -369,7 +369,7 @@ class IonizationPotentialScalarPropertySchema(BaseModel):
     value: float
 
 
-class Name529(Enum):
+class Name531(Enum):
     lumo_energy = "lumo_energy"
 
 
@@ -398,7 +398,7 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
-class Name530(Enum):
+class Name532(Enum):
     stress_tensor = "stress_tensor"
 
 
@@ -413,7 +413,7 @@ class StressTensorPropertySchema(BaseModel):
     units: Units232
 
 
-class Name531(Enum):
+class Name533(Enum):
     band_gaps = "band_gaps"
 
 
@@ -523,7 +523,7 @@ class AxisSchema12(BaseModel):
     """
 
 
-class Name532(Enum):
+class Name534(Enum):
     band_structure = "band_structure"
 
 
@@ -588,7 +588,7 @@ class AxisSchema14(BaseModel):
     """
 
 
-class Name533(Enum):
+class Name535(Enum):
     phonon_dispersions = "phonon_dispersions"
 
 
@@ -603,133 +603,133 @@ class PhononBandStructurePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name534(Enum):
+class Name536(Enum):
     temperature_entropy = "temperature_entropy"
 
 
 class ScalarSchema(BaseModel):
-    name: Optional[Name534] = None
-    value: float
-
-
-class Name535(Enum):
-    harris_foulkes = "harris_foulkes"
-
-
-class ScalarSchema61(BaseModel):
-    name: Optional[Name535] = None
-    value: float
-
-
-class Name536(Enum):
-    smearing = "smearing"
-
-
-class ScalarSchema62(BaseModel):
     name: Optional[Name536] = None
     value: float
 
 
 class Name537(Enum):
-    one_electron = "one_electron"
+    harris_foulkes = "harris_foulkes"
 
 
-class ScalarSchema63(BaseModel):
+class ScalarSchema61(BaseModel):
     name: Optional[Name537] = None
     value: float
 
 
 class Name538(Enum):
-    hartree = "hartree"
+    smearing = "smearing"
 
 
-class ScalarSchema64(BaseModel):
+class ScalarSchema62(BaseModel):
     name: Optional[Name538] = None
     value: float
 
 
 class Name539(Enum):
-    exchange = "exchange"
+    one_electron = "one_electron"
 
 
-class ScalarSchema65(BaseModel):
+class ScalarSchema63(BaseModel):
     name: Optional[Name539] = None
     value: float
 
 
 class Name540(Enum):
-    exchange_correlation = "exchange_correlation"
+    hartree = "hartree"
 
 
-class ScalarSchema66(BaseModel):
+class ScalarSchema64(BaseModel):
     name: Optional[Name540] = None
     value: float
 
 
 class Name541(Enum):
-    ewald = "ewald"
+    exchange = "exchange"
 
 
-class ScalarSchema67(BaseModel):
+class ScalarSchema65(BaseModel):
     name: Optional[Name541] = None
     value: float
 
 
 class Name542(Enum):
-    alphaZ = "alphaZ"
+    exchange_correlation = "exchange_correlation"
 
 
-class ScalarSchema68(BaseModel):
+class ScalarSchema66(BaseModel):
     name: Optional[Name542] = None
     value: float
 
 
 class Name543(Enum):
-    atomic_energy = "atomic_energy"
+    ewald = "ewald"
 
 
-class ScalarSchema69(BaseModel):
+class ScalarSchema67(BaseModel):
     name: Optional[Name543] = None
     value: float
 
 
 class Name544(Enum):
-    eigenvalues = "eigenvalues"
+    alphaZ = "alphaZ"
 
 
-class ScalarSchema70(BaseModel):
+class ScalarSchema68(BaseModel):
     name: Optional[Name544] = None
     value: float
 
 
 class Name545(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+    atomic_energy = "atomic_energy"
 
 
-class ScalarSchema71(BaseModel):
+class ScalarSchema69(BaseModel):
     name: Optional[Name545] = None
     value: float
 
 
 class Name546(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+    eigenvalues = "eigenvalues"
 
 
-class ScalarSchema72(BaseModel):
+class ScalarSchema70(BaseModel):
     name: Optional[Name546] = None
     value: float
 
 
 class Name547(Enum):
-    hartree_fock = "hartree_fock"
+    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
-class ScalarSchema73(BaseModel):
+class ScalarSchema71(BaseModel):
     name: Optional[Name547] = None
     value: float
 
 
 class Name548(Enum):
+    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+
+
+class ScalarSchema72(BaseModel):
+    name: Optional[Name548] = None
+    value: float
+
+
+class Name549(Enum):
+    hartree_fock = "hartree_fock"
+
+
+class ScalarSchema73(BaseModel):
+    name: Optional[Name549] = None
+    value: float
+
+
+class Name550(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -805,7 +805,7 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     units: Optional[Units238] = None
 
 
-class Name549(Enum):
+class Name551(Enum):
     formation_energy_contributions = "formation_energy_contributions"
 
 
@@ -889,7 +889,7 @@ class AxisSchema16(BaseModel):
     """
 
 
-class Name550(Enum):
+class Name552(Enum):
     phonon_dos = "phonon_dos"
 
 
@@ -945,7 +945,7 @@ class AxisSchema18(BaseModel):
     """
 
 
-class Name551(Enum):
+class Name553(Enum):
     potential_profile = "potential_profile"
 
 
@@ -990,7 +990,7 @@ class AxisSchema20(BaseModel):
     """
 
 
-class Name552(Enum):
+class Name554(Enum):
     wavefunction_amplitude = "wavefunction_amplitude"
 
 
@@ -1035,7 +1035,7 @@ class AxisSchema22(BaseModel):
     """
 
 
-class Name553(Enum):
+class Name555(Enum):
     reaction_energy_profile = "reaction_energy_profile"
 
 
@@ -1080,7 +1080,7 @@ class AxisSchema24(BaseModel):
     """
 
 
-class Name554(Enum):
+class Name556(Enum):
     density_of_states = "density_of_states"
 
 
@@ -1120,7 +1120,7 @@ class DensityOfStatesPropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name555(Enum):
+class Name557(Enum):
     dielectric_tensor = "dielectric_tensor"
 
 
@@ -1150,7 +1150,7 @@ class DielectricTensorPropertySchema(BaseModel):
     values: List[DielectricTensor]
 
 
-class Name556(Enum):
+class Name558(Enum):
     file_content = "file_content"
 
 
@@ -1204,7 +1204,7 @@ class FileContentPropertySchema(BaseModel):
     """
 
 
-class Name557(Enum):
+class Name559(Enum):
     hubbard_u = "hubbard_u"
 
 
@@ -1234,7 +1234,7 @@ class HubbardUParametersPropertySchema(BaseModel):
     values: List[AtomicDataPerOrbitalNumeric]
 
 
-class Name558(Enum):
+class Name560(Enum):
     hubbard_v = "hubbard_v"
 
 
@@ -1273,7 +1273,7 @@ class HubbardVParametersPropertySchema(BaseModel):
     values: List[AtomicDataPerOrbitalPairNumeric]
 
 
-class Name559(Enum):
+class Name561(Enum):
     hubbard_v_nn = "hubbard_v_nn"
 
 
@@ -1337,7 +1337,7 @@ class AxisSchema26(BaseModel):
     """
 
 
-class Name560(Enum):
+class Name562(Enum):
     average_potential_profile = "average_potential_profile"
 
 
@@ -1386,7 +1386,7 @@ class AxisSchema28(BaseModel):
     """
 
 
-class Name561(Enum):
+class Name563(Enum):
     charge_density_profile = "charge_density_profile"
 
 
@@ -1401,30 +1401,34 @@ class ChargeDensityProfilePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name562(Enum):
+class Name564(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
 class Queue(Enum):
     D = "D"
     OR = "OR"
-    OF = "OF"
-    OFplus = "OFplus"
-    SR = "SR"
-    SF = "SF"
-    SFplus = "SFplus"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
+    SR = "SR"
     SR4 = "SR4"
     SR8 = "SR8"
     SR16 = "SR16"
+    OF = "OF"
+    OFplus = "OFplus"
+    SF = "SF"
+    SFplus = "SFplus"
     GOF = "GOF"
     G4OF = "G4OF"
     G8OF = "G8OF"
+    GP4OF = "GP4OF"
     GSF = "GSF"
     G4SF = "G4SF"
     G8SF = "G8SF"
+    GPSF = "GPSF"
+    GP2SF = "GP2SF"
+    GP4SF = "GP4SF"
 
 
 class TimeLimitType(Enum):
@@ -1498,7 +1502,7 @@ class Error(BaseModel):
 class ComputeArgumentsSchema(BaseModel):
     queue: Queue
     """
-    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
     """
     nodes: int
     """
@@ -1550,7 +1554,7 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
-class Error6(BaseModel):
+class Error8(BaseModel):
     domain: Optional[Domain] = None
     """
     Domain of the error appearance (internal).
@@ -1569,10 +1573,10 @@ class Error6(BaseModel):
     """
 
 
-class ComputeArgumentsSchema6(BaseModel):
+class ComputeArgumentsSchema8(BaseModel):
     queue: Queue
     """
-    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
     """
     nodes: int
     """
@@ -1614,7 +1618,7 @@ class ComputeArgumentsSchema6(BaseModel):
     """
     Cluster where the job is executed. Optional on create. Required on job submission.
     """
-    errors: Optional[List[Error6]] = None
+    errors: Optional[List[Error8]] = None
     """
     Computation error. Optional. Appears only if something happens on jobs execution.
     """
@@ -2204,6 +2208,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -2489,7 +2497,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name563(Enum):
+class Name565(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -2519,7 +2527,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name564(Enum):
+class Name566(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -2635,7 +2643,7 @@ class NebContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Type85(Enum):
+class Type88(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
@@ -2643,7 +2651,7 @@ class Type85(Enum):
 
 
 class BoundaryConditionsDataProviderSchema(BaseModel):
-    type: Optional[Type85] = "pbc"
+    type: Optional[Type88] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
@@ -2735,7 +2743,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem13(BaseModel):
+class StartingMagnetizationItem15(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -2770,7 +2778,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem13]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem15]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -3120,14 +3128,14 @@ class DFTLDAModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Functional28(Enum):
+class Functional31(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class BaseMethod17(BaseModel):
+class BaseMethod22(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -3149,17 +3157,17 @@ class BaseMethod17(BaseModel):
 class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional28
-    method: BaseMethod17 = Field(..., title="base method")
+    functional: Functional31
+    method: BaseMethod22 = Field(..., title="base method")
 
 
-class Functional29(Enum):
+class Functional32(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
     other = "other"
 
 
-class BaseMethod18(BaseModel):
+class BaseMethod23(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -3181,19 +3189,19 @@ class BaseMethod18(BaseModel):
 class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional29
-    method: BaseMethod18 = Field(..., title="base method")
+    functional: Functional32
+    method: BaseMethod23 = Field(..., title="base method")
 
 
-class Type86(Enum):
+class Type89(Enum):
     ml = "ml"
 
 
-class Subtype6(Enum):
+class Subtype9(Enum):
     re = "re"
 
 
-class BaseMethod19(BaseModel):
+class BaseMethod24(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -3213,20 +3221,20 @@ class BaseMethod19(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type86
+    type: Type89
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod19 = Field(..., title="base method")
+    method: BaseMethod24 = Field(..., title="base method")
 
 
-class Type87(Enum):
+class Type90(Enum):
     unknown = "unknown"
 
 
-class Subtype7(Enum):
+class Subtype10(Enum):
     unknown = "unknown"
 
 
-class BaseMethod20(BaseModel):
+class BaseMethod25(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -3246,12 +3254,12 @@ class BaseMethod20(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type87
+    type: Type90
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod20 = Field(..., title="base method")
+    method: BaseMethod25 = Field(..., title="base method")
 
 
-class ApplicationSchema8(BaseModel):
+class ApplicationSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -3333,7 +3341,7 @@ class SubworkflowSchema(BaseModel):
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema6] = Field(None, title="compute arguments schema")
+    compute: Optional[ComputeArgumentsSchema8] = Field(None, title="compute arguments schema")
     """
     Compute schema
     """
@@ -3344,7 +3352,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema8 = Field(..., title="application schema")
+    application: ApplicationSchema10 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
@@ -3352,7 +3360,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class Input3(BaseModel):
+class Input5(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -3441,7 +3449,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input3
+    input: Input5
     """
     Input information for map.
     """
@@ -3600,7 +3608,7 @@ class SubworkflowUnitSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class ErrorUnitSchema4(BaseModel):
+class ErrorUnitSchema6(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -3671,8 +3679,8 @@ class ErrorUnitSchema4(BaseModel):
     """
 
 
-class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema4]]):
-    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema4] = Field(
+class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema6]]):
+    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema6] = Field(
         ..., discriminator="type", title="workflow unit schema"
     )
 
@@ -3691,7 +3699,7 @@ class WorkflowPropertySchema(BaseModel):
     """
     workflows: List[Dict[str, Any]]
     """
-    Array of workflows with the same schema as the current one.
+    Array of workflows with the same schema as the current one. NOTE: items are not validated against the workflow schema itself (known limitation - see server/utils.ts's parseIncludeReferenceStatements for why, and consider fixing).
     """
     compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
@@ -3746,7 +3754,7 @@ class WorkflowPropertySchema(BaseModel):
     descriptionObject: Optional[Dict[str, Any]] = None
 
 
-class Name565(Enum):
+class Name567(Enum):
     magnetic_moments = "magnetic_moments"
 
 
@@ -3771,7 +3779,7 @@ class MagneticMomentsPropertySchema(BaseModel):
     units: Units251
 
 
-class Name566(Enum):
+class Name568(Enum):
     atomic_forces = "atomic_forces"
 
 
@@ -3790,7 +3798,7 @@ class AtomicForcesPropertySchema(BaseModel):
     units: Units252
 
 
-class Name567(Enum):
+class Name569(Enum):
     convergence_electronic = "convergence_electronic"
 
 
@@ -3806,7 +3814,7 @@ class ConvergenceElectronicPropertySchema(BaseModel):
     data: List[List[float]]
 
 
-class Name568(Enum):
+class Name570(Enum):
     convergence_ionic = "convergence_ionic"
 
 
@@ -3859,7 +3867,7 @@ class ConvergenceIonicPropertySchema(BaseModel):
     """
 
 
-class Name569(Enum):
+class Name571(Enum):
     is_relaxed = "is_relaxed"
 
 
@@ -3872,7 +3880,7 @@ class IsRelaxedPropertySchema(BaseModel):
     """
 
 
-class Name570(Enum):
+class Name572(Enum):
     final_structure = "final_structure"
 
 
@@ -3885,7 +3893,7 @@ class FinalStructurePropertySchema(BaseModel):
     """
 
 
-class Name571(Enum):
+class Name573(Enum):
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
 
 
@@ -3907,7 +3915,7 @@ class Info(BaseModel):
     """
 
 
-class Source61(BaseModel):
+class Source62(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -3977,7 +3985,7 @@ class PropertyHolderSchema(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: Source61
+    source: Source62
     exabyteId: List[str]
     """
     Id of the corresponding item in the entity bank that this property is obtained for
