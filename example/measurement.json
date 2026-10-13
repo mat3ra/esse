@@ -9,7 +9,9 @@
     "name": "20260901_171601_alscn_01448",
     "schemaVersion": "0.2.0",
     "setup": {
-        "name": "instrument-1",
+        "instrument": {
+            "name": "Asylum Research"
+        },
         "session": {
             "name": "20260901_171601_alscn_01448",
             "started": "2026-09-01T21:16:02Z"
