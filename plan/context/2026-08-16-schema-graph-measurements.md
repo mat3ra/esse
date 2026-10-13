@@ -21,12 +21,12 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 572 |
-| Example files | 212 (a schema has a mirror example in 212/572 = 37% of cases) |
-| Cross-schema reference edges | 940 |
+| Schema files | 573 |
+| Example files | 213 (a schema has a mirror example in 213/573 = 37% of cases) |
+| Cross-schema reference edges | 943 |
 | — of kind *extends* (`allOf`) | 382 |
-| — of kind *contains* (`properties`/`items`) | 387 |
-| — of kind *variant* (`oneOf`/`anyOf`) | 171 |
+| — of kind *contains* (`properties`/`items`) | 388 |
+| — of kind *variant* (`oneOf`/`anyOf`) | 173 |
 | Same-document refs (`#/…`), which are **not** edges | 22 |
 | Edges carrying a JSON-pointer fragment | 147 (e.g. `enum_options.json#/physicsBased`) |
 | Unresolvable refs | **0** |
@@ -39,7 +39,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | --- | --- | --- | --- | --- |
 | `properties_directory` | 86 | | `models_directory` | 14 |
 | `methods_category` | 79 | | *(root files)* | 13 |
-| `core` | 76 | | `software_directory` | 11 |
+| `core` | 77 | | `software_directory` | 11 |
 | `workflow` | 62 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
 | `materials_category_components` | 31 | | `in_memory_entity` | 7 |
@@ -67,7 +67,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | primitive | 23 | `core/primitive` custom scalars and arrays |
 | **application-parsing** | **17** | `apse/*` application formats and parsers |
 | entity | 13 | root-level schemas (material, model, workflow, …) |
-| reference | 10 | `core/reference` provenance |
+| reference | 11 | `core/reference` provenance |
 | abstract | 9 | `core/abstract` unit-less mathematics |
 | in-memory-entity | 7 | behavioral mixins |
 | definition | 4 | `definitions/` shared vocabularies |
@@ -81,11 +81,11 @@ application-parsing schemas.
 | --- | --- |
 | `definitions/units` | 32 |
 | `core/primitive/scalar` | 29 |
+| `system/entity_reference` | 16 |
 | `core/reusable/energy` | 15 |
 | `workflow/unit/context/_base` | 15 |
 | `core/primitive/array_of_3_numbers` | 14 |
 | `materials_category_components/entities/core/three-dimensional/crystal` | 14 |
-| `system/entity_reference` | 14 |
 | `core/reusable/categories` | 12 |
 | `core/abstract/2d_plot` | 11 |
 | `method/unit_method` | 11 |
@@ -96,7 +96,7 @@ application-parsing schemas.
 
 | Schema | Out-degree |
 | --- | --- |
-| `property/holder` | 45 (the union over all property types) |
+| `property/holder` | 46 (the union over all property types) |
 | `properties_directory/non-scalar/total_energy_contributions` | 15 |
 | `workflow/unit/context/item` | 15 |
 | `apse/file/applications/espresso/7.2/pw.x` | 10 |

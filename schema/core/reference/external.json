@@ -1,0 +1,25 @@
+{
+    "$id": "core/reference/external",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "external reference schema",
+    "description": "Source of a result obtained outside a computational job, e.g. from an experimental measurement",
+    "type": "object",
+    "properties": {
+        "origin": {
+            "description": "Entity that produced the result, e.g. a measurement",
+            "$ref": "../../system/entity_reference.json"
+        },
+        "subject": {
+            "description": "Entity the result describes, e.g. a sample",
+            "$ref": "../../system/entity_reference.json"
+        },
+        "unitId": {
+            "description": "Id of the unit that extracted the result",
+            "type": "string"
+        }
+    },
+    "required": [
+        "origin",
+        "unitId"
+    ]
+}

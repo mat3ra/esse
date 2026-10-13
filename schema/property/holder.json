@@ -160,7 +160,14 @@
                     "type": "string"
                 },
                 "info": {
-                    "$ref": "../core/reference/exabyte.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../core/reference/exabyte.json"
+                        },
+                        {
+                            "$ref": "../core/reference/external.json"
+                        }
+                    ]
                 }
             },
             "required": [

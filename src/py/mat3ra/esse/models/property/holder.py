@@ -4107,12 +4107,36 @@ class Info(BaseModel):
     """
 
 
+class EntityReferenceSchema(BaseModel):
+    id: str = Field(..., alias="_id")
+    """
+    entity identity
+    """
+    cls: Optional[str] = None
+    """
+    entity class
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+
+
+class ExternalReferenceSchema(BaseModel):
+    origin: EntityReferenceSchema = Field(..., title="entity reference schema")
+    subject: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
+    unitId: str
+    """
+    Id of the unit that extracted the result
+    """
+
+
 class Source62(BaseModel):
     type: str
     """
     Type of the material property's source.
     """
-    info: Info
+    info: Union[Info, ExternalReferenceSchema]
 
 
 class Precision(BaseModel):
