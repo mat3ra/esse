@@ -1,0 +1,15 @@
+{
+    "_id": "aScN01448r1c1Xy01",
+    "metadata": {
+        "position": {
+            "coordinates": [
+                5.4000001,
+                6.6500001
+            ],
+            "units": "mm"
+        }
+    },
+    "name": "r1c1",
+    "schemaVersion": "0.2.0",
+    "slug": "r1c1"
+}
