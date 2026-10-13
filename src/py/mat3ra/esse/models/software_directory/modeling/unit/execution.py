@@ -246,7 +246,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class TemplateSchema9(BaseModel):
+class TemplateSchema8(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -274,8 +274,8 @@ class TemplateSchema9(BaseModel):
     """
 
 
-class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines9(BaseModel):
-    template: TemplateSchema9 = Field(..., title="template schema")
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines8(BaseModel):
+    template: TemplateSchema8 = Field(..., title="template schema")
     rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
@@ -333,10 +333,6 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     CARTESIAN: bool
     """
     Whether atomic positions are expressed in cartesian coordinates.
-    """
-    RESTART: Optional[bool] = None
-    """
-    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
     """
 
 
@@ -653,7 +649,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name506(Enum):
+class Name504(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -869,7 +865,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem13(BaseModel):
+class StartingMagnetizationItem11(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -904,7 +900,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem13]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem11]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1038,6 +1034,6 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[
-        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines9]
+        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines8]
     ] = Field(..., title="execution unit input schema")
     context: Optional[List[ContextItemSchema]] = []

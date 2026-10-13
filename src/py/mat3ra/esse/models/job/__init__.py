@@ -13,27 +13,23 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 class Queue(Enum):
     D = "D"
     OR = "OR"
+    OF = "OF"
+    OFplus = "OFplus"
+    SR = "SR"
+    SF = "SF"
+    SFplus = "SFplus"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
-    SR = "SR"
     SR4 = "SR4"
     SR8 = "SR8"
     SR16 = "SR16"
-    OF = "OF"
-    OFplus = "OFplus"
-    SF = "SF"
-    SFplus = "SFplus"
     GOF = "GOF"
     G4OF = "G4OF"
     G8OF = "G8OF"
-    GP4OF = "GP4OF"
     GSF = "GSF"
     G4SF = "G4SF"
     G8SF = "G8SF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
 
 
 class TimeLimitType(Enum):
@@ -107,7 +103,7 @@ class Error(BaseModel):
 class ComputeArgumentsSchema(BaseModel):
     queue: Queue
     """
-    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
     """
     nodes: int
     """
@@ -159,7 +155,7 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
-class Error10(BaseModel):
+class Error8(BaseModel):
     domain: Optional[Domain] = None
     """
     Domain of the error appearance (internal).
@@ -178,10 +174,10 @@ class Error10(BaseModel):
     """
 
 
-class ComputeArgumentsSchema10(BaseModel):
+class ComputeArgumentsSchema8(BaseModel):
     queue: Queue
     """
-    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
     """
     nodes: int
     """
@@ -223,7 +219,7 @@ class ComputeArgumentsSchema10(BaseModel):
     """
     Cluster where the job is executed. Optional on create. Required on job submission.
     """
-    errors: Optional[List[Error10]] = None
+    errors: Optional[List[Error8]] = None
     """
     Computation error. Optional. Appears only if something happens on jobs execution.
     """
@@ -840,10 +836,6 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
-    RESTART: Optional[bool] = None
-    """
-    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
-    """
 
 
 class RESTARTMODE(Enum):
@@ -1159,7 +1151,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name612(Enum):
+class Name610(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1375,7 +1367,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem19(BaseModel):
+class StartingMagnetizationItem17(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1410,7 +1402,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem19]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem17]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1760,14 +1752,14 @@ class DFTLDAModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Functional39(Enum):
+class Functional36(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class BaseMethod27(BaseModel):
+class BaseMethod22(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1789,17 +1781,17 @@ class BaseMethod27(BaseModel):
 class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional39
-    method: BaseMethod27 = Field(..., title="base method")
+    functional: Functional36
+    method: BaseMethod22 = Field(..., title="base method")
 
 
-class Functional40(Enum):
+class Functional37(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
     other = "other"
 
 
-class BaseMethod28(BaseModel):
+class BaseMethod23(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1821,19 +1813,19 @@ class BaseMethod28(BaseModel):
 class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional40
-    method: BaseMethod28 = Field(..., title="base method")
+    functional: Functional37
+    method: BaseMethod23 = Field(..., title="base method")
 
 
-class Type98(Enum):
+class Type95(Enum):
     ml = "ml"
 
 
-class Subtype14(Enum):
+class Subtype11(Enum):
     re = "re"
 
 
-class BaseMethod29(BaseModel):
+class BaseMethod24(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1853,20 +1845,20 @@ class BaseMethod29(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type98
+    type: Type95
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod29 = Field(..., title="base method")
+    method: BaseMethod24 = Field(..., title="base method")
 
 
-class Type99(Enum):
+class Type96(Enum):
     unknown = "unknown"
 
 
-class Subtype15(Enum):
+class Subtype12(Enum):
     unknown = "unknown"
 
 
-class BaseMethod30(BaseModel):
+class BaseMethod25(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1886,12 +1878,12 @@ class BaseMethod30(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type99
+    type: Type96
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod30 = Field(..., title="base method")
+    method: BaseMethod25 = Field(..., title="base method")
 
 
-class ApplicationSchema12(BaseModel):
+class ApplicationSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1973,7 +1965,7 @@ class SubworkflowSchema(BaseModel):
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema10] = Field(None, title="compute arguments schema")
+    compute: Optional[ComputeArgumentsSchema8] = Field(None, title="compute arguments schema")
     """
     Compute schema
     """
@@ -1984,7 +1976,7 @@ class SubworkflowSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema12 = Field(..., title="application schema")
+    application: ApplicationSchema10 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
@@ -1992,7 +1984,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class Input9(BaseModel):
+class Input7(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -2081,7 +2073,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input9
+    input: Input7
     """
     Input information for map.
     """
@@ -2240,7 +2232,7 @@ class SubworkflowUnitSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class ErrorUnitSchema8(BaseModel):
+class ErrorUnitSchema6(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2311,8 +2303,8 @@ class ErrorUnitSchema8(BaseModel):
     """
 
 
-class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema8]]):
-    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema8] = Field(
+class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema6]]):
+    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema6] = Field(
         ..., discriminator="type", title="workflow unit schema"
     )
 
@@ -2327,7 +2319,7 @@ class Application(BaseModel):
 class WorkflowSchema(BaseModel):
     workflows: List[Dict[str, Any]]
     """
-    Array of workflows with the same schema as the current one. NOTE: items are not validated against the workflow schema itself (known limitation - see server/utils.ts's parseIncludeReferenceStatements for why, and consider fixing).
+    Array of workflows with the same schema as the current one.
     """
     compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
@@ -2386,7 +2378,7 @@ class WorkflowSchema(BaseModel):
     descriptionObject: Optional[Dict[str, Any]] = None
 
 
-class Status51(Enum):
+class Status41(Enum):
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -2424,22 +2416,7 @@ class ScopeTrackItem(BaseModel):
     scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
 
 
-class ObjectStorageContainerData10(BaseModel):
-    CONTAINER: Optional[str] = None
-    NAME: Optional[str] = None
-    PROVIDER: Optional[str] = None
-    REGION: Optional[str] = None
-    SIZE: Optional[str] = None
-    TIMESTAMP: Optional[str] = None
-
-
-class JobDatasetSchema(BaseModel):
-    datasetFilepath: Optional[str] = None
-    datasetBasename: Optional[str] = None
-    objectStorageContainerData: Optional[ObjectStorageContainerData10] = None
-
-
-class Error11(BaseModel):
+class Error9(BaseModel):
     domain: Optional[Domain] = None
     """
     Domain of the error appearance (internal).
@@ -2458,10 +2435,10 @@ class Error11(BaseModel):
     """
 
 
-class ComputeArgumentsSchema11(BaseModel):
+class ComputeArgumentsSchema9(BaseModel):
     queue: Queue
     """
-    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
     """
     nodes: int
     """
@@ -2503,7 +2480,7 @@ class ComputeArgumentsSchema11(BaseModel):
     """
     Cluster where the job is executed. Optional on create. Required on job submission.
     """
-    errors: Optional[List[Error11]] = None
+    errors: Optional[List[Error9]] = None
     """
     Computation error. Optional. Appears only if something happens on jobs execution.
     """
@@ -2514,6 +2491,34 @@ class ComputeArgumentsSchema11(BaseModel):
 
 
 class JobSchema(BaseModel):
+    workflow: WorkflowSchema = Field(..., title="workflow schema")
+    rmsId: Optional[str] = None
+    """
+    Identity used to track jobs originated from command-line
+    """
+    status: Status41
+    """
+    job status
+    """
+    startTime: Optional[str] = None
+    """
+    Approximate start time of the job. e.g. within 10 min
+    """
+    workDir: Optional[str] = None
+    """
+    The path to the working directory of this job, when the job originates from command-line
+    """
+    project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
+    material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
+    parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
+    runtimeContext: Optional[Dict[str, Any]] = None
+    """
+    Context variables that the job will have access to at runtime
+    """
+    scopeTrack: Optional[List[ScopeTrackItem]] = None
+    """
+    history of the workflow scope on each update
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2536,44 +2541,7 @@ class JobSchema(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
-    workflow: WorkflowSchema = Field(..., title="workflow schema")
-    rmsId: Optional[str] = None
-    """
-    Identity used to track jobs originated from command-line
-    """
-    status: Status51
-    """
-    job status
-    """
-    startTime: Optional[str] = None
-    """
-    Approximate start time of the job. e.g. within 10 min
-    """
-    workDir: Optional[str] = None
-    """
-    The path to the working directory of this job, when the job originates from command-line
-    """
-    material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
-    materials: Optional[List[EntityReferenceSchema]] = Field(None, alias="_materials")
-    """
-    Subset of the full information about the materials used inside a multi-material job.
-    """
-    materialsSet: Optional[EntityReferenceSchema] = Field(None, alias="_materialsSet", title="entity reference schema")
-    parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
-    runtimeContext: Optional[Dict[str, Any]] = None
-    """
-    Context variables that the job will have access to at runtime
-    """
-    scopeTrack: Optional[List[ScopeTrackItem]] = None
-    """
-    history of the workflow scope on each update
-    """
-    dataset: Optional[JobDatasetSchema] = Field(None, title="job dataset schema")
-    purged: Optional[bool] = None
-    purgedAt: Optional[float] = None
-    compute: ComputeArgumentsSchema11 = Field(..., title="compute arguments schema")
+    compute: ComputeArgumentsSchema9 = Field(..., title="compute arguments schema")
     """
     Compute schema
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")

@@ -2419,7 +2419,7 @@ class MeasurementSchema(BaseModel):
     workflow: WorkflowSchema = Field(..., title="workflow schema")
     setup: Dict[str, Any]
     """
-    Instrument and settings of the measurement
+    Measurement setup: the instrument and its settings.
     """
     status: Status63
     """

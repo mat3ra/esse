@@ -19,7 +19,7 @@
             "$ref": "workflow.json"
         },
         "setup": {
-            "description": "Instrument and settings of the measurement",
+            "description": "Measurement setup: the instrument and its settings.",
             "type": "object"
         },
         "status": {

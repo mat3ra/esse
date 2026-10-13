@@ -19,124 +19,124 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name845(Enum):
+class Name841(Enum):
     harris_foulkes = "harris_foulkes"
 
 
 class ScalarSchema104(BaseModel):
+    name: Optional[Name841] = None
+    value: float
+
+
+class Name842(Enum):
+    smearing = "smearing"
+
+
+class ScalarSchema105(BaseModel):
+    name: Optional[Name842] = None
+    value: float
+
+
+class Name843(Enum):
+    one_electron = "one_electron"
+
+
+class ScalarSchema106(BaseModel):
+    name: Optional[Name843] = None
+    value: float
+
+
+class Name844(Enum):
+    hartree = "hartree"
+
+
+class ScalarSchema107(BaseModel):
+    name: Optional[Name844] = None
+    value: float
+
+
+class Name845(Enum):
+    exchange = "exchange"
+
+
+class ScalarSchema108(BaseModel):
     name: Optional[Name845] = None
     value: float
 
 
 class Name846(Enum):
-    smearing = "smearing"
+    exchange_correlation = "exchange_correlation"
 
 
-class ScalarSchema105(BaseModel):
+class ScalarSchema109(BaseModel):
     name: Optional[Name846] = None
     value: float
 
 
 class Name847(Enum):
-    one_electron = "one_electron"
+    ewald = "ewald"
 
 
-class ScalarSchema106(BaseModel):
+class ScalarSchema110(BaseModel):
     name: Optional[Name847] = None
     value: float
 
 
 class Name848(Enum):
-    hartree = "hartree"
+    alphaZ = "alphaZ"
 
 
-class ScalarSchema107(BaseModel):
+class ScalarSchema111(BaseModel):
     name: Optional[Name848] = None
     value: float
 
 
 class Name849(Enum):
-    exchange = "exchange"
+    atomic_energy = "atomic_energy"
 
 
-class ScalarSchema108(BaseModel):
+class ScalarSchema112(BaseModel):
     name: Optional[Name849] = None
     value: float
 
 
 class Name850(Enum):
-    exchange_correlation = "exchange_correlation"
+    eigenvalues = "eigenvalues"
 
 
-class ScalarSchema109(BaseModel):
+class ScalarSchema113(BaseModel):
     name: Optional[Name850] = None
     value: float
 
 
 class Name851(Enum):
-    ewald = "ewald"
+    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
-class ScalarSchema110(BaseModel):
+class ScalarSchema114(BaseModel):
     name: Optional[Name851] = None
     value: float
 
 
 class Name852(Enum):
-    alphaZ = "alphaZ"
+    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
 
 
-class ScalarSchema111(BaseModel):
+class ScalarSchema115(BaseModel):
     name: Optional[Name852] = None
     value: float
 
 
 class Name853(Enum):
-    atomic_energy = "atomic_energy"
+    hartree_fock = "hartree_fock"
 
 
-class ScalarSchema112(BaseModel):
+class ScalarSchema116(BaseModel):
     name: Optional[Name853] = None
     value: float
 
 
 class Name854(Enum):
-    eigenvalues = "eigenvalues"
-
-
-class ScalarSchema113(BaseModel):
-    name: Optional[Name854] = None
-    value: float
-
-
-class Name855(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
-
-
-class ScalarSchema114(BaseModel):
-    name: Optional[Name855] = None
-    value: float
-
-
-class Name856(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
-
-
-class ScalarSchema115(BaseModel):
-    name: Optional[Name856] = None
-    value: float
-
-
-class Name857(Enum):
-    hartree_fock = "hartree_fock"
-
-
-class ScalarSchema116(BaseModel):
-    name: Optional[Name857] = None
-    value: float
-
-
-class Name858(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -208,5 +208,5 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     """
     hartree-fock contribution
     """
-    name: Name858
+    name: Name854
     units: Optional[Units] = None

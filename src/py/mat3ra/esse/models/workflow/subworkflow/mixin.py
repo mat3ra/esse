@@ -13,27 +13,23 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 class Queue(Enum):
     D = "D"
     OR = "OR"
+    OF = "OF"
+    OFplus = "OFplus"
+    SR = "SR"
+    SF = "SF"
+    SFplus = "SFplus"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
-    SR = "SR"
     SR4 = "SR4"
     SR8 = "SR8"
     SR16 = "SR16"
-    OF = "OF"
-    OFplus = "OFplus"
-    SF = "SF"
-    SFplus = "SFplus"
     GOF = "GOF"
     G4OF = "G4OF"
     G8OF = "G8OF"
-    GP4OF = "GP4OF"
     GSF = "GSF"
     G4SF = "G4SF"
     G8SF = "G8SF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
 
 
 class TimeLimitType(Enum):
@@ -107,7 +103,7 @@ class Error(BaseModel):
 class ComputeArgumentsSchema(BaseModel):
     queue: Queue
     """
-    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
     """
     nodes: int
     """
@@ -766,10 +762,6 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
-    RESTART: Optional[bool] = None
-    """
-    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
-    """
 
 
 class RESTARTMODE(Enum):
@@ -1085,7 +1077,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name663(Enum):
+class Name659(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1301,7 +1293,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem23(BaseModel):
+class StartingMagnetizationItem19(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1336,7 +1328,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem23]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem19]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1686,14 +1678,14 @@ class DFTLDAModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Functional55(Enum):
+class Functional49(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class BaseMethod38(BaseModel):
+class BaseMethod28(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1715,17 +1707,17 @@ class BaseMethod38(BaseModel):
 class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional55
-    method: BaseMethod38 = Field(..., title="base method")
+    functional: Functional49
+    method: BaseMethod28 = Field(..., title="base method")
 
 
-class Functional56(Enum):
+class Functional50(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
     other = "other"
 
 
-class BaseMethod39(BaseModel):
+class BaseMethod29(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1747,19 +1739,19 @@ class BaseMethod39(BaseModel):
 class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional56
-    method: BaseMethod39 = Field(..., title="base method")
+    functional: Functional50
+    method: BaseMethod29 = Field(..., title="base method")
 
 
-class Type113(Enum):
+class Type107(Enum):
     ml = "ml"
 
 
-class Subtype20(Enum):
+class Subtype14(Enum):
     re = "re"
 
 
-class BaseMethod40(BaseModel):
+class BaseMethod30(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1779,20 +1771,20 @@ class BaseMethod40(BaseModel):
 
 
 class MLModelSchema(BaseModel):
-    type: Type113
+    type: Type107
     subtype: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod40 = Field(..., title="base method")
+    method: BaseMethod30 = Field(..., title="base method")
 
 
-class Type114(Enum):
+class Type108(Enum):
     unknown = "unknown"
 
 
-class Subtype21(Enum):
+class Subtype15(Enum):
     unknown = "unknown"
 
 
-class BaseMethod41(BaseModel):
+class BaseMethod31(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -1812,12 +1804,12 @@ class BaseMethod41(BaseModel):
 
 
 class UnknownModelSchema(BaseModel):
-    type: Type114
+    type: Type108
     subtype: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    method: BaseMethod41 = Field(..., title="base method")
+    method: BaseMethod31 = Field(..., title="base method")
 
 
-class ApplicationSchema16(BaseModel):
+class ApplicationSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1893,7 +1885,7 @@ class SubworkflowMixinSchema(BaseModel):
     model: Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema, MLModelSchema, UnknownModelSchema] = Field(
         ..., discriminator="subtype", title="Any model schema"
     )
-    application: ApplicationSchema16 = Field(..., title="application schema")
+    application: ApplicationSchema12 = Field(..., title="application schema")
     isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
