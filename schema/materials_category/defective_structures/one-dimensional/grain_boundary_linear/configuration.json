@@ -25,6 +25,15 @@
             "description": "The actual angle between the two phases",
             "minimum": 0,
             "maximum": 360
+        },
+        "core": {
+            "title": "Grain Boundary Core Enum",
+            "description": "Ring pair of the dislocation cores along both boundaries of a honeycomb lattice",
+            "type": "string",
+            "enum": [
+                "5|7",
+                "4|8"
+            ]
         }
     },
     "required": [
