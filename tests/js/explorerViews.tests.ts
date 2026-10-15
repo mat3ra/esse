@@ -14,14 +14,14 @@ import {
  * operations; Directories is every catalogue entry that is not an enum holder.
  */
 const EXPECTED_CATEGORY_SCHEMAS = 137;
-const EXPECTED_DIRECTORY_SCHEMAS = 153;
+const EXPECTED_DIRECTORY_SCHEMAS = 154;
 
 const EXPECTED_CATEGORY_ROOTS = ["Materials · M-CODE", "Methods · CateCom", "Models · CateCom"];
 const EXPECTED_DIRECTORY_ROOTS = [
     "Context providers (21)",
     "Methods (23)",
     "Models (14)",
-    "Properties (84)",
+    "Properties (85)",
     "Software (11)",
 ];
 
