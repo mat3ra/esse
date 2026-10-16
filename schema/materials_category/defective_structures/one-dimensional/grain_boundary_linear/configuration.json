@@ -28,11 +28,12 @@
         },
         "core": {
             "title": "Grain Boundary Core Enum",
-            "description": "Ring pair of the dislocation cores along both boundaries of a honeycomb lattice",
+            "description": "Rings along both boundaries of a honeycomb lattice: the ring pair of the dislocation cores, or 6 for no defect rings (the grains join through hexagons, the homo-bonded inversion line of binary honeycombs)",
             "type": "string",
             "enum": [
                 "5|7",
-                "4|8"
+                "4|8",
+                "6"
             ]
         }
     },

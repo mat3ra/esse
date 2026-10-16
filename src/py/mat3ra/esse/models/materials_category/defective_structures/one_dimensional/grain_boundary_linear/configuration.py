@@ -4646,6 +4646,7 @@ class VacuumConfigurationSchema17(BaseModel):
 class GrainBoundaryCoreEnum(Enum):
     field_5_7 = "5|7"
     field_4_8 = "4|8"
+    field_6 = "6"
 
 
 class GrainBoundaryLinearConfigurationSchema(BaseModel):
@@ -4669,7 +4670,7 @@ class GrainBoundaryLinearConfigurationSchema(BaseModel):
     """
     core: Optional[GrainBoundaryCoreEnum] = Field(None, title="Grain Boundary Core Enum")
     """
-    Ring pair of the dislocation cores along both boundaries of a honeycomb lattice
+    Rings along both boundaries of a honeycomb lattice: the ring pair of the dislocation cores, or 6 for no defect rings (the grains join through hexagons, the homo-bonded inversion line of binary honeycombs)
     """
     xy_shift: Optional[List[float]] = Field([0, 0], max_length=2, min_length=2, title="vector 2d schema")
     """
