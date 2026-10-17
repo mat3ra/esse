@@ -4660,7 +4660,7 @@ class GrainBoundaryLinearConfigurationSchema(BaseModel):
     """
     actual_angle: Optional[confloat(ge=0.0, le=360.0)] = None
     """
-    The actual angle between the two phases
+    Geometric misorientation of the two grains in degrees; with a core, folded to [0, 60)
     """
     core_ring_sizes: Optional[List[int]] = None
     """
@@ -4668,7 +4668,7 @@ class GrainBoundaryLinearConfigurationSchema(BaseModel):
     """
     homo_bonds: Optional[str] = None
     """
-    Bonds between atoms of one element at the boundaries of a binary honeycomb: alternating (the grains are mirror images with the elements swapped), none (hetero bonds only), or an element symbol (plain mirror images, the first boundary rich in that element, the second in the other)
+    Bonds between atoms of one element at the two boundaries of the built binary honeycomb, by count: none (hetero bonds only), alternating (as many of each element's at both boundaries), or an element symbol (the only element with homo bonds at the first boundary, none of it at the second); the orientation of the second grain is in its supercell matrix
     """
     xy_shift: Optional[List[float]] = Field([0, 0], max_length=2, min_length=2, title="vector 2d schema")
     """

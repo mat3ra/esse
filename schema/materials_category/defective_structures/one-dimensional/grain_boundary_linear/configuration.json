@@ -22,7 +22,7 @@
         },
         "actual_angle": {
             "type": "number",
-            "description": "The actual angle between the two phases",
+            "description": "Geometric misorientation of the two grains in degrees; with a core, folded to [0, 60)",
             "minimum": 0,
             "maximum": 360
         },
@@ -34,7 +34,7 @@
             }
         },
         "homo_bonds": {
-            "description": "Bonds between atoms of one element at the boundaries of a binary honeycomb: alternating (the grains are mirror images with the elements swapped), none (hetero bonds only), or an element symbol (plain mirror images, the first boundary rich in that element, the second in the other)",
+            "description": "Bonds between atoms of one element at the two boundaries of the built binary honeycomb, by count: none (hetero bonds only), alternating (as many of each element's at both boundaries), or an element symbol (the only element with homo bonds at the first boundary, none of it at the second); the orientation of the second grain is in its supercell matrix",
             "type": "string"
         }
     },
