@@ -619,7 +619,3 @@ class RingNetworkReconstructionSchema(BaseModel):
     """
     Supercell matrix of each grain, rows the vector across the boundary and the vector along it
     """
-    slide: Optional[float] = None
-    """
-    Shift of the second grain's hexagon centres along the boundary, in angstrom
-    """

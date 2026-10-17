@@ -14,10 +14,6 @@
             "items": {
                 "$ref": "../../../entities/auxiliary/two-dimensional/supercell_matrix_2d.json"
             }
-        },
-        "slide": {
-            "description": "Shift of the second grain's hexagon centres along the boundary, in angstrom",
-            "type": "number"
         }
     }
 }
