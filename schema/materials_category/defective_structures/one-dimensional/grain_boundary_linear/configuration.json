@@ -26,15 +26,16 @@
             "minimum": 0,
             "maximum": 360
         },
-        "core": {
-            "title": "Grain Boundary Core Enum",
-            "description": "Rings along both boundaries of a honeycomb lattice: the ring pair of the dislocation cores, or 6 for no defect rings (the grains join through hexagons, the homo-bonded inversion line of binary honeycombs)",
-            "type": "string",
-            "enum": [
-                "5|7",
-                "4|8",
-                "6"
-            ]
+        "core_ring_sizes": {
+            "description": "Ring sizes of the dislocation core along both boundaries, sizes n with sum(n - 6) = 0, as [5, 7] or [5, 5, 8]; [6] for hexagons only",
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "homo_bonds": {
+            "description": "Bonds between atoms of one element at the boundaries of a binary honeycomb: alternating (the grains are mirror images with the elements swapped), none (hetero bonds only), or an element symbol (plain mirror images, the first boundary rich in that element, the second in the other)",
+            "type": "string"
         }
     },
     "required": [

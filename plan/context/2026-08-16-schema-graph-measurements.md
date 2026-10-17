@@ -21,11 +21,11 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 566 |
-| Example files | 209 (a schema has a mirror example in 209/566 = 37% of cases) |
-| Cross-schema reference edges | 920 |
+| Schema files | 567 |
+| Example files | 210 (a schema has a mirror example in 210/567 = 37% of cases) |
+| Cross-schema reference edges | 922 |
 | — of kind *extends* (`allOf`) | 372 |
-| — of kind *contains* (`properties`/`items`) | 378 |
+| — of kind *contains* (`properties`/`items`) | 380 |
 | — of kind *variant* (`oneOf`/`anyOf`) | 170 |
 | Same-document refs (`#/…`), which are **not** edges | 20 |
 | Edges carrying a JSON-pointer fragment | 144 (e.g. `enum_options.json#/physicsBased`) |
@@ -42,7 +42,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | `core` | 73 | | `software_directory` | 11 |
 | `workflow` | 62 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
-| `materials_category_components` | 31 | | `in_memory_entity` | 7 |
+| `materials_category_components` | 32 | | `in_memory_entity` | 7 |
 | `models_category` | 25 | | `definitions` | 4 |
 | `methods_directory` | 24 | | `property` | 4 |
 | `context_providers_directory` | 22 | | `compute` | 3 |
@@ -60,7 +60,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | Layer | Count | What it holds |
 | --- | --- | --- |
 | directory | 156 | `*_directory` catalogs of concrete instances |
-| category | 152 | `*_category` + `materials_category_components` taxonomies |
+| category | 153 | `*_category` + `materials_category_components` taxonomies |
 | **entity-component** | **108** | sub-schemas of root entities, keyed by `ownerEntity` |
 | system | 38 | platform mixins (`system/*`) |
 | reusable | 31 | `core/reusable` domain blocks |

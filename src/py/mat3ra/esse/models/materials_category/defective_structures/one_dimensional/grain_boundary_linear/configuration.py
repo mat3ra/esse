@@ -4643,12 +4643,6 @@ class VacuumConfigurationSchema17(BaseModel):
     """
 
 
-class GrainBoundaryCoreEnum(Enum):
-    field_5_7 = "5|7"
-    field_4_8 = "4|8"
-    field_6 = "6"
-
-
 class GrainBoundaryLinearConfigurationSchema(BaseModel):
     stack_components: List[
         Union[
@@ -4668,9 +4662,13 @@ class GrainBoundaryLinearConfigurationSchema(BaseModel):
     """
     The actual angle between the two phases
     """
-    core: Optional[GrainBoundaryCoreEnum] = Field(None, title="Grain Boundary Core Enum")
+    core_ring_sizes: Optional[List[int]] = None
     """
-    Rings along both boundaries of a honeycomb lattice: the ring pair of the dislocation cores, or 6 for no defect rings (the grains join through hexagons, the homo-bonded inversion line of binary honeycombs)
+    Ring sizes of the dislocation core along both boundaries, sizes n with sum(n - 6) = 0, as [5, 7] or [5, 5, 8]; [6] for hexagons only
+    """
+    homo_bonds: Optional[str] = None
+    """
+    Bonds between atoms of one element at the boundaries of a binary honeycomb: alternating (the grains are mirror images with the elements swapped), none (hetero bonds only), or an element symbol (plain mirror images, the first boundary rich in that element, the second in the other)
     """
     xy_shift: Optional[List[float]] = Field([0, 0], max_length=2, min_length=2, title="vector 2d schema")
     """
