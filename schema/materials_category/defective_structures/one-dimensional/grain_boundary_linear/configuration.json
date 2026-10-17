@@ -22,9 +22,20 @@
         },
         "actual_angle": {
             "type": "number",
-            "description": "The actual angle between the two phases",
+            "description": "Geometric misorientation of the two grains in degrees; with a core, folded to [0, 60)",
             "minimum": 0,
             "maximum": 360
+        },
+        "core_ring_sizes": {
+            "description": "Ring sizes of the dislocation core along both boundaries, sizes n with sum(n - 6) = 0, as [5, 7] or [5, 5, 8]; [6] for hexagons only",
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "homo_bonds": {
+            "description": "Bonds between atoms of one element at the two boundaries of the built binary honeycomb, by count: none (hetero bonds only), alternating (as many of each element's at both boundaries), or an element symbol (the only element with homo bonds at the first boundary, none of it at the second); the orientation of the second grain is in its supercell matrix",
+            "type": "string"
         }
     },
     "required": [

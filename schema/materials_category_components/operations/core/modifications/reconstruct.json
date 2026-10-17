@@ -1,0 +1,19 @@
+{
+    "$id": "materials-category-components/operations/core/modifications/reconstruct",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Ring Network Reconstruction Schema",
+    "description": "Rebuilds a band along each boundary of two honeycomb grains stacked along x as the dual of their hexagon centres: one atom per Delaunay triangle of the centres, settled to the bond length, the atoms outside the bands kept.",
+    "type": "object",
+    "properties": {
+        "material": {
+            "$ref": "../../../../material.json"
+        },
+        "supercell_matrices": {
+            "description": "Supercell matrix of each grain, rows the vector across the boundary and the vector along it",
+            "type": "array",
+            "items": {
+                "$ref": "../../../entities/auxiliary/two-dimensional/supercell_matrix_2d.json"
+            }
+        }
+    }
+}
