@@ -1,0 +1,35 @@
+{
+    "$id": "measurement",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "measurement schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
+            "$ref": "system/description.json"
+        }
+    ],
+    "properties": {
+        "_sample": {
+            "$ref": "system/entity_reference.json"
+        },
+        "workflow": {
+            "$ref": "workflow/experimental.json"
+        },
+        "setup": {
+            "description": "Measurement setup: the instrument and its settings.",
+            "type": "object"
+        },
+        "status": {
+            "description": "measurement status",
+            "allOf": [
+                {
+                    "$ref": "job/base.json#/properties/status"
+                }
+            ]
+        }
+    },
+    "required": ["_sample", "workflow", "setup", "status"]
+}

@@ -49,7 +49,7 @@ notice two schemas describing the same physical quantity, the answer is usually 
 
 ### `core/reference` — provenance
 
-How a record points at where it came from: `literature`, `experiment`, `modeling`, `exabyte`.
+How a record points at where it came from: `literature`, `experiment`, `modeling`, `exabyte`, `external`.
 Provenance is deliberately separate from the data it describes, so the same property schema can
 carry a computed value or a measured one without changing shape.
 
