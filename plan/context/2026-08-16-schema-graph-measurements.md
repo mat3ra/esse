@@ -1,7 +1,7 @@
 # Schema graph measurements
 
 > **Type:** context — measurements backing the entity-map/docs plans; not a plan itself.
-> **Created:** 2026-08-16 · **Updated:** 2026-10-12
+> **Created:** 2026-08-16 · **Updated:** 2026-10-19
 > **Epic:** [SOF-8025](https://mat3ra.atlassian.net/browse/SOF-8025)
 > **Measured by:** `npm run lint-entity-graph` (`src/js/scripts/buildEntityGraph.ts`), the
 > production extractor built under [SOF-8026](https://mat3ra.atlassian.net/browse/SOF-8026).
@@ -21,11 +21,11 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 
 | Measure | Value |
 | --- | --- |
-| Schema files | 573 |
-| Example files | 213 (a schema has a mirror example in 213/573 = 37% of cases) |
-| Cross-schema reference edges | 943 |
-| — of kind *extends* (`allOf`) | 382 |
-| — of kind *contains* (`properties`/`items`) | 388 |
+| Schema files | 577 |
+| Example files | 214 (a schema has a mirror example in 214/577 = 37% of cases) |
+| Cross-schema reference edges | 953 |
+| — of kind *extends* (`allOf`) | 388 |
+| — of kind *contains* (`properties`/`items`) | 392 |
 | — of kind *variant* (`oneOf`/`anyOf`) | 173 |
 | Same-document refs (`#/…`), which are **not** edges | 22 |
 | Edges carrying a JSON-pointer fragment | 147 (e.g. `enum_options.json#/physicsBased`) |
@@ -40,7 +40,7 @@ stripping JSON-pointer fragments (`file.json#/pointer`).
 | `properties_directory` | 86 | | `models_directory` | 14 |
 | `methods_category` | 79 | | *(root files)* | 13 |
 | `core` | 77 | | `software_directory` | 11 |
-| `workflow` | 62 | | `software` | 10 |
+| `workflow` | 66 | | `software` | 10 |
 | `system` | 38 | | `material` | 7 |
 | `materials_category_components` | 31 | | `in_memory_entity` | 7 |
 | `models_category` | 25 | | `definitions` | 4 |
@@ -61,7 +61,7 @@ directory forces a deliberate decision instead of silently landing in a catch-al
 | --- | --- | --- |
 | directory | 157 | `*_directory` catalogs of concrete instances |
 | category | 152 | `*_category` + `materials_category_components` taxonomies |
-| **entity-component** | **108** | sub-schemas of root entities, keyed by `ownerEntity` |
+| **entity-component** | **112** | sub-schemas of root entities, keyed by `ownerEntity` |
 | system | 38 | platform mixins (`system/*`) |
 | reusable | 34 | `core/reusable` domain blocks |
 | primitive | 23 | `core/primitive` custom scalars and arrays |

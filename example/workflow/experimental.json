@@ -1,0 +1,60 @@
+{
+    "_id": "238ac9fb-3175-505e-9128-3c5a2306fd6d",
+    "name": "SS-PFM Hysteresis Loop",
+    "subworkflows": [
+        {
+            "_id": "16fd3fd6-53f7-5a22-a512-fcd7f70a2385",
+            "name": "ss_pfm",
+            "instrument": {
+                "name": "asylum-spm",
+                "shortName": "spm",
+                "summary": "Asylum Research SPM driven by afm-lib (switching-spectroscopy PFM)",
+                "version": "1.0"
+            },
+            "properties": [
+                "hysteresis_loop"
+            ],
+            "units": [
+                {
+                    "type": "measurement",
+                    "name": "run_loop",
+                    "head": true,
+                    "results": [
+                        {
+                            "name": "hysteresis_loop"
+                        }
+                    ],
+                    "monitors": [],
+                    "flowchartId": "cb3a0482-92fe-5d9d-a6dd-2dacc26ecaf1",
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "status": "idle",
+                    "statusTrack": [],
+                    "tags": []
+                }
+            ]
+        }
+    ],
+    "units": [
+        {
+            "type": "subworkflow",
+            "name": "ss_pfm",
+            "results": [],
+            "monitors": [],
+            "preProcessors": [],
+            "postProcessors": [],
+            "status": "idle",
+            "statusTrack": [],
+            "tags": [],
+            "_id": "16fd3fd6-53f7-5a22-a512-fcd7f70a2385",
+            "flowchartId": "b9807f88-c2a3-5060-aecf-c9f026585092"
+        }
+    ],
+    "properties": [
+        "hysteresis_loop"
+    ],
+    "tags": [
+        "experimental",
+        "afm"
+    ]
+}

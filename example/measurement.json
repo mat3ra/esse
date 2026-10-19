@@ -29,6 +29,6 @@
     "slug": "20260901-171601-alscn-01448",
     "status": "finished",
     "workflow": {
-        "...": "include(workflow.json)"
+        "...": "include(workflow/experimental.json)"
     }
 }
