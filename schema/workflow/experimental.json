@@ -1,0 +1,48 @@
+{
+    "$id": "workflow/experimental",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "experimental workflow schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../in_memory_entity/named.json"
+        },
+        {
+            "$ref": "../system/metadata.json"
+        },
+        {
+            "$ref": "../system/description.json"
+        },
+        {
+            "$ref": "../system/tags.json"
+        }
+    ],
+    "properties": {
+        "properties": {
+            "description": "Names of the properties measured by this workflow",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "subworkflows": {
+            "description": "Subworkflows of this workflow",
+            "type": "array",
+            "items": {
+                "$ref": "./experimental/subworkflow.json"
+            }
+        },
+        "units": {
+            "description": "Units of this workflow",
+            "type": "array",
+            "items": {
+                "$ref": "./unit/subworkflow.json"
+            }
+        }
+    },
+    "required": [
+        "properties",
+        "subworkflows",
+        "units"
+    ]
+}

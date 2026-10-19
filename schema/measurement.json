@@ -16,7 +16,7 @@
             "$ref": "system/entity_reference.json"
         },
         "workflow": {
-            "$ref": "workflow.json"
+            "$ref": "workflow/experimental.json"
         },
         "setup": {
             "description": "Measurement setup: the instrument and its settings.",
