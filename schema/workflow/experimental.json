@@ -36,12 +36,11 @@
             "description": "Units of this workflow",
             "type": "array",
             "items": {
-                "$ref": "./unit.json"
+                "$ref": "./unit/subworkflow.json"
             }
         }
     },
     "required": [
-        "name",
         "properties",
         "subworkflows",
         "units"

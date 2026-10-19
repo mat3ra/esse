@@ -29,7 +29,6 @@
         }
     },
     "required": [
-        "name",
         "properties",
         "instrument",
         "units"

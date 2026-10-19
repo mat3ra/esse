@@ -126,6 +126,9 @@ class ExperimentalSubworkflowSchema(BaseModel):
     Names of the properties measured by this subworkflow
     """
     instrument: InstrumentSchema = Field(..., title="instrument schema")
+    """
+    Instrument type the workflow names; the physical instrument and its settings are in the measurement's `setup`
+    """
     units: List[ExperimentalUnitSchema]
     """
     Units of this subworkflow

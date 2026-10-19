@@ -2,6 +2,7 @@
     "$id": "workflow/experimental/instrument",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "instrument schema",
+    "description": "Instrument type the workflow names; the physical instrument and its settings are in the measurement's `setup`",
     "type": "object",
     "properties": {
         "name": {

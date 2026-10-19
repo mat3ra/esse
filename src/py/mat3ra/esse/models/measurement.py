@@ -5,9 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EntityReferenceSchema(BaseModel):
@@ -141,6 +141,9 @@ class ExperimentalSubworkflowSchema(BaseModel):
     Names of the properties measured by this subworkflow
     """
     instrument: InstrumentSchema = Field(..., title="instrument schema")
+    """
+    Instrument type the workflow names; the physical instrument and its settings are in the measurement's `setup`
+    """
     units: List[ExperimentalUnitSchema]
     """
     Units of this subworkflow
@@ -161,187 +164,6 @@ class ExperimentalSubworkflowSchema(BaseModel):
     name: str
     """
     entity name
-    """
-
-
-class Input(BaseModel):
-    target: str
-    """
-    Name of the target variable to substitute using the values below. e.g. K_POINTS
-    """
-    scope: Optional[str] = None
-    """
-    Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
-    """
-    name: Optional[str] = None
-    """
-    Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
-    """
-    values: Optional[List[Union[str, float, Dict[str, Any]]]] = None
-    """
-    Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
-    """
-    useValues: Optional[bool] = None
-
-
-class MapUnitSchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    workflowId: str
-    """
-    Id of workflow to run inside map
-    """
-    input: Input
-    """
-    Input information for map.
-    """
-
-
-class InputItem(BaseModel):
-    operation: str
-    """
-    reduce operation, e.g. aggregate
-    """
-    arguments: List[str]
-    """
-    arguments which are passed to reduce operation function
-    """
-
-
-class ReduceUnitSchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
     """
 
 
@@ -409,84 +231,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Status of the unit.
     """
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-
-
-class ErrorUnitSchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    reason: str
-    """
-    JSON string with validation/hydration details: { error, json, schema }
-    """
-
-
-class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema]]):
-    root: Union[MapUnitSchema, ReduceUnitSchema, SubworkflowUnitSchema, ErrorUnitSchema] = Field(
-        ..., discriminator="type", title="workflow unit schema"
-    )
+    type: Literal["subworkflow"] = "subworkflow"
 
 
 class ExperimentalWorkflowSchema(BaseModel):
@@ -498,7 +243,7 @@ class ExperimentalWorkflowSchema(BaseModel):
     """
     Subworkflows of this workflow
     """
-    units: List[WorkflowUnitSchema]
+    units: List[SubworkflowUnitSchema]
     """
     Units of this workflow
     """
@@ -531,7 +276,7 @@ class ExperimentalWorkflowSchema(BaseModel):
     """
 
 
-class Status63(Enum):
+class Status57(Enum):
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -551,7 +296,7 @@ class MeasurementSchema(BaseModel):
     """
     Measurement setup: the instrument and its settings.
     """
-    status: Status63
+    status: Status57
     """
     measurement status
     """
