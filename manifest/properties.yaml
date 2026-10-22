@@ -141,6 +141,12 @@ total_energy_contributions:
   schemaId: properties-directory/non-scalar/total-energy-contributions
   isResult: true
 
+schottky_barrier_height:
+  defaults:
+    units: eV
+  schemaId: properties-directory/non-scalar/schottky-barrier-height
+  isResult: true
+
 formation_energy_contributions:
   defaults:
   schemaId: properties-directory/non-scalar/formation-energy-contributions

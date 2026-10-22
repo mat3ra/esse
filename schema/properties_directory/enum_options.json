@@ -77,6 +77,7 @@
         "ObjectPropertyEnum": {
             "type": "string",
             "enum": [
+                "schottky_barrier_height",
                 "total_energy_contributions"
             ]
         },
