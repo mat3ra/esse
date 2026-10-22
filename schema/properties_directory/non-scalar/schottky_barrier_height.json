@@ -14,11 +14,35 @@
         },
         "pType": {
             "description": "p-type barrier: interface Fermi level minus the semiconductor valence band maximum",
-            "type": "number"
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "p_type"
+                    ]
+                }
+            }
         },
         "nType": {
             "description": "n-type barrier: semiconductor conduction band minimum minus the interface Fermi level",
-            "type": "number"
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "n_type"
+                    ]
+                }
+            }
         }
     },
     "required": [

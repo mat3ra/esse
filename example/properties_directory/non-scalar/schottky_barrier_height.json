@@ -1,6 +1,12 @@
 {
     "name": "schottky_barrier_height",
     "units": "eV",
-    "pType": 1.046,
-    "nType": 0.596
+    "pType": {
+        "name": "p_type",
+        "value": 1.046
+    },
+    "nType": {
+        "name": "n_type",
+        "value": 0.596
+    }
 }
