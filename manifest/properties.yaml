@@ -112,6 +112,16 @@ valence_band_offset:
     units: eV
   schemaId: properties-directory/scalar/valence-band-offset
 
+schottky_barrier_height_p:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/schottky-barrier-height-p
+
+schottky_barrier_height_n:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/schottky-barrier-height-n
+
 # NON-SCALAR
 phonon_dos:
   defaults:

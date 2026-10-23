@@ -18,16 +18,16 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 566;
-const EXPECTED_EDGE_COUNT = 920;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 372, contains: 378, variant: 170 };
+const EXPECTED_NODE_COUNT = 568;
+const EXPECTED_EDGE_COUNT = 924;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 374, contains: 378, variant: 172 };
 const EXPECTED_SAME_DOCUMENT_REFS = 20;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
     "application-parsing": 17,
     category: 152,
     definition: 4,
-    directory: 156,
+    directory: 158,
     entity: 11,
     "entity-component": 108,
     "in-memory-entity": 7,
@@ -99,8 +99,8 @@ describe("buildEntityGraph", () => {
         // The property holder is the corpus' widest union: every property type is a
         // variant of its `data` field, on top of one mixin and one reference.
         const holderEdges = edgesFrom("property/holder");
-        expect(holderEdges).to.have.lengthOf(44);
-        expect(holderEdges.filter((edge) => edge.kind === "variant")).to.have.lengthOf(42);
+        expect(holderEdges).to.have.lengthOf(46);
+        expect(holderEdges.filter((edge) => edge.kind === "variant")).to.have.lengthOf(44);
         expect(
             holderEdges
                 .filter((edge) => edge.kind === "variant")
@@ -279,7 +279,7 @@ describe("buildEntityGraph", () => {
     });
 
     it("reports example coverage as a warning", () => {
-        expect(graph.meta.schemasWithExample).to.equal(209);
+        expect(graph.meta.schemasWithExample).to.equal(211);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be
             .true;
     });
