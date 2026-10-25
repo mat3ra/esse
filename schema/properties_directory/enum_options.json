@@ -37,6 +37,8 @@
                 "total_energy",
                 "total_force",
                 "valence_band_offset",
+                "schottky_barrier_height_p",
+                "schottky_barrier_height_n",
                 "zero_point_energy"
             ]
         },

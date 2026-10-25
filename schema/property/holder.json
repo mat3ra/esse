@@ -22,6 +22,12 @@
                     "$ref": "../properties_directory/scalar/valence_band_offset.json"
                 },
                 {
+                    "$ref": "../properties_directory/scalar/schottky_barrier_height_p.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/schottky_barrier_height_n.json"
+                },
+                {
                     "$ref": "../properties_directory/scalar/zero_point_energy.json"
                 },
                 {
