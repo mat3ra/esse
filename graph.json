@@ -1,18 +1,18 @@
 {
     "meta": {
-        "nodeCount": 566,
-        "edgeCount": 920,
+        "nodeCount": 568,
+        "edgeCount": 924,
         "edgeCountsByKind": {
-            "extends": 372,
+            "extends": 374,
             "contains": 378,
-            "variant": 170
+            "variant": 172
         },
         "layerCounts": {
             "abstract": 9,
             "application-parsing": 17,
             "category": 152,
             "definition": 4,
-            "directory": 156,
+            "directory": 158,
             "entity": 11,
             "entity-component": 108,
             "in-memory-entity": 7,
@@ -22,7 +22,7 @@
             "system": 38
         },
         "sameDocumentRefCount": 20,
-        "schemasWithExample": 209,
+        "schemasWithExample": 211,
         "isolatedNodeCount": 35
     },
     "nodes": [
@@ -38,7 +38,7 @@
             "outDegree": 0,
             "propertyCount": 69,
             "hasExample": true,
-            "x": 1703.62,
+            "x": 1723.35,
             "y": 0
         },
         {
@@ -53,7 +53,7 @@
             "outDegree": 0,
             "propertyCount": 29,
             "hasExample": true,
-            "x": 1697.26,
+            "x": 1717.01,
             "y": 61.67
         },
         {
@@ -68,8 +68,8 @@
             "outDegree": 4,
             "propertyCount": 7,
             "hasExample": false,
-            "x": 1712.3,
-            "y": 124.6
+            "x": 1732.09,
+            "y": 124.59
         },
         {
             "id": "apse/db/nist-jarvis/2024.3.13/db-entry",
@@ -83,8 +83,8 @@
             "outDegree": 1,
             "propertyCount": 2,
             "hasExample": true,
-            "x": 1693.06,
-            "y": 185.2
+            "x": 1712.91,
+            "y": 185.22
         },
         {
             "id": "apse/db/third-party-sources",
@@ -98,8 +98,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1702.01,
-            "y": 249.02
+            "x": 1721.95,
+            "y": 249.01
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x",
@@ -113,8 +113,8 @@
             "outDegree": 10,
             "propertyCount": 10,
             "hasExample": true,
-            "x": 1693.53,
-            "y": 310.96
+            "x": 1713.59,
+            "y": 310.97
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/atomic-positions",
@@ -128,8 +128,8 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
-            "x": 1666.01,
-            "y": 368.91
+            "x": 1686.21,
+            "y": 368.97
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/atomic-species",
@@ -143,8 +143,8 @@
             "outDegree": 0,
             "propertyCount": 1,
             "hasExample": false,
-            "x": 1655.35,
-            "y": 430.15
+            "x": 1675.71,
+            "y": 430.25
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/cell",
@@ -158,8 +158,8 @@
             "outDegree": 0,
             "propertyCount": 5,
             "hasExample": false,
-            "x": 1624.11,
-            "y": 485.63
+            "x": 1644.64,
+            "y": 485.83
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/cell-parameters",
@@ -173,8 +173,8 @@
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": false,
-            "x": 1604.96,
-            "y": 544.13
+            "x": 1625.7,
+            "y": 544.4
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/control",
@@ -188,8 +188,8 @@
             "outDegree": 0,
             "propertyCount": 31,
             "hasExample": false,
-            "x": 1599.68,
-            "y": 607.96
+            "x": 1620.66,
+            "y": 608.25
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/electrons",
@@ -203,8 +203,8 @@
             "outDegree": 1,
             "propertyCount": 27,
             "hasExample": false,
-            "x": 1576.22,
-            "y": 665.5
+            "x": 1597.46,
+            "y": 665.89
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/hubbard",
@@ -218,8 +218,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
-            "x": 1540.41,
-            "y": 717.36
+            "x": 1561.89,
+            "y": 717.92
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/ions",
@@ -233,8 +233,8 @@
             "outDegree": 0,
             "propertyCount": 24,
             "hasExample": false,
-            "x": 1531.91,
-            "y": 782.3
+            "x": 1553.73,
+            "y": 782.9
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/k-points",
@@ -248,8 +248,8 @@
             "outDegree": 0,
             "propertyCount": 2,
             "hasExample": false,
-            "x": 1489.14,
-            "y": 829.97
+            "x": 1511.24,
+            "y": 830.81
         },
         {
             "id": "apse/file/applications/espresso/7.2/pw.x/system",
@@ -263,8 +263,8 @@
             "outDegree": 0,
             "propertyCount": 104,
             "hasExample": false,
-            "x": 1447.74,
-            "y": 877.26
+            "x": 1470.12,
+            "y": 878.36
         },
         {
             "id": "apse/materials/builders/slab/pymatgen/parameters",
@@ -278,8 +278,8 @@
             "outDegree": 0,
             "propertyCount": 4,
             "hasExample": true,
-            "x": 1427.53,
-            "y": 937.53
+            "x": 1450.29,
+            "y": 938.75
         },
         {
             "id": "compute/nodes/base",
@@ -376,8 +376,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 1387.27,
-            "y": 984.99
+            "x": 1410.35,
+            "y": 986.49
         },
         {
             "id": "context-providers-directory/by-application/nwchem-total-energy-context-provider",
@@ -396,8 +396,8 @@
                 "catalogue": "context-providers",
                 "scope": "by-application"
             },
-            "x": 1350.23,
-            "y": 1034.45
+            "x": 1373.68,
+            "y": 1036.22
         },
         {
             "id": "context-providers-directory/by-application/qe-neb-context-provider",
@@ -416,8 +416,8 @@
                 "catalogue": "context-providers",
                 "scope": "by-application"
             },
-            "x": 1317.21,
-            "y": 1087.28
+            "x": 1341.06,
+            "y": 1089.3
         },
         {
             "id": "context-providers-directory/by-application/qe-pwx-base-context-provider",
@@ -436,8 +436,8 @@
                 "catalogue": "context-providers",
                 "scope": "by-application"
             },
-            "x": 1277.09,
-            "y": 1134.6
+            "x": 1301.33,
+            "y": 1136.94
         },
         {
             "id": "context-providers-directory/by-application/qe-pwx-context-provider",
@@ -456,8 +456,8 @@
                 "catalogue": "context-providers",
                 "scope": "by-application"
             },
-            "x": 1231.12,
-            "y": 1176.46
+            "x": 1255.71,
+            "y": 1179.19
         },
         {
             "id": "context-providers-directory/by-application/vasp-context-provider",
@@ -476,8 +476,8 @@
                 "catalogue": "context-providers",
                 "scope": "by-application"
             },
-            "x": 1183.84,
-            "y": 1216.54
+            "x": 1208.79,
+            "y": 1219.69
         },
         {
             "id": "context-providers-directory/by-application/vasp-neb-context-provider",
@@ -496,8 +496,8 @@
                 "catalogue": "context-providers",
                 "scope": "by-application"
             },
-            "x": 1152.97,
-            "y": 1274.28
+            "x": 1178.46,
+            "y": 1277.73
         },
         {
             "id": "context-providers-directory/collinear-magnetization-context-provider",
@@ -515,8 +515,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 1097.79,
-            "y": 1305.61
+            "x": 1123.59,
+            "y": 1309.59
         },
         {
             "id": "context-providers-directory/enum",
@@ -534,8 +534,8 @@
                 "catalogue": "context-providers",
                 "role": "enum-options"
             },
-            "x": 1054.96,
-            "y": 1351.41
+            "x": 1081.23,
+            "y": 1355.82
         },
         {
             "id": "context-providers-directory/hubbard-j-context-provider",
@@ -553,8 +553,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 1007.83,
-            "y": 1392.47
+            "x": 1034.54,
+            "y": 1397.38
         },
         {
             "id": "context-providers-directory/hubbard-legacy-context-provider",
@@ -572,8 +572,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 946.78,
-            "y": 1413.48
+            "x": 973.72,
+            "y": 1419.05
         },
         {
             "id": "context-providers-directory/hubbard-u-context-provider",
@@ -591,8 +591,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 895.55,
-            "y": 1448.09
+            "x": 922.89,
+            "y": 1454.24
         },
         {
             "id": "context-providers-directory/hubbard-v-context-provider",
@@ -610,8 +610,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 843.03,
-            "y": 1480.8
+            "x": 870.76,
+            "y": 1487.58
         },
         {
             "id": "context-providers-directory/ion-dynamics-context-provider",
@@ -629,8 +629,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 793.65,
-            "y": 1519.91
+            "x": 821.87,
+            "y": 1527.29
         },
         {
             "id": "context-providers-directory/ml-settings-context-provider",
@@ -648,8 +648,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 735,
-            "y": 1541.55
+            "x": 763.49,
+            "y": 1549.67
         },
         {
             "id": "context-providers-directory/ml-train-test-split-context-provider",
@@ -667,8 +667,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 675.74,
-            "y": 1560.77
+            "x": 704.5,
+            "y": 1569.67
         },
         {
             "id": "context-providers-directory/neb-data-provider",
@@ -686,8 +686,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 617.39,
-            "y": 1581.12
+            "x": 646.42,
+            "y": 1590.8
         },
         {
             "id": "context-providers-directory/non-collinear-magnetization-context-provider",
@@ -705,8 +705,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 561.1,
-            "y": 1606.88
+            "x": 590.49,
+            "y": 1617.34
         },
         {
             "id": "context-providers-directory/planewave-cutoffs-context-provider",
@@ -724,8 +724,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 508.06,
-            "y": 1644.57
+            "x": 538,
+            "y": 1655.78
         },
         {
             "id": "context-providers-directory/points-grid-data-provider",
@@ -743,8 +743,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 442.15,
-            "y": 1640.19
+            "x": 472.03,
+            "y": 1652.37
         },
         {
             "id": "context-providers-directory/points-path-data-provider",
@@ -762,8 +762,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 383.69,
-            "y": 1661.17
+            "x": 413.89,
+            "y": 1674.24
         },
         {
             "id": "context-providers-directory/points-path-data-provider-rendering",
@@ -781,8 +781,8 @@
                 "catalogue": "context-providers",
                 "scope": "generic"
             },
-            "x": 323.23,
-            "y": 1674.62
+            "x": 353.65,
+            "y": 1688.63
         },
         {
             "id": "core/abstract/2d-data",
@@ -1767,7 +1767,7 @@
             "description": "",
             "domain": "core",
             "layer": "reusable",
-            "inDegree": 15,
+            "inDegree": 17,
             "outDegree": 3,
             "propertyCount": 2,
             "hasExample": true,
@@ -5140,8 +5140,8 @@
                 "catalogue": "methods",
                 "legacy": "true"
             },
-            "x": 261.72,
-            "y": 1682.09
+            "x": 292.27,
+            "y": 1697.08
         },
         {
             "id": "methods-directory/legacy/pseudopotential",
@@ -5159,8 +5159,8 @@
                 "catalogue": "methods",
                 "legacy": "true"
             },
-            "x": 201.95,
-            "y": 1702.92
+            "x": 232.84,
+            "y": 1718.89
         },
         {
             "id": "methods-directory/legacy/regression",
@@ -5178,8 +5178,8 @@
                 "catalogue": "methods",
                 "legacy": "true"
             },
-            "x": 139.13,
-            "y": 1698.75
+            "x": 169.96,
+            "y": 1715.77
         },
         {
             "id": "methods-directory/legacy/unknown",
@@ -5197,8 +5197,8 @@
                 "catalogue": "methods",
                 "legacy": "true"
             },
-            "x": 78.12,
-            "y": 1719.51
+            "x": 109.32,
+            "y": 1737.58
         },
         {
             "id": "methods-directory/mathematical/cg",
@@ -5220,8 +5220,8 @@
                 "tier3": "ordern",
                 "type": "cg"
             },
-            "x": 15.59,
-            "y": 1716.96
+            "x": 46.76,
+            "y": 1736.13
         },
         {
             "id": "methods-directory/mathematical/davidson",
@@ -5242,8 +5242,8 @@
                 "tier2": "diag",
                 "type": "davidson"
             },
-            "x": -46.33,
-            "y": 1700.55
+            "x": -15.45,
+            "y": 1720.85
         },
         {
             "id": "methods-directory/mathematical/regression",
@@ -5263,8 +5263,8 @@
                 "subtype": "least_squares|ridge",
                 "type": "linear|kernel_ridge"
             },
-            "x": -108.63,
-            "y": 1706.91
+            "x": -77.62,
+            "y": 1728.36
         },
         {
             "id": "methods-directory/mathematical/regression/data",
@@ -5282,8 +5282,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -171.47,
-            "y": 1711.13
+            "x": -140.37,
+            "y": 1733.76
         },
         {
             "id": "methods-directory/mathematical/regression/dataset",
@@ -5301,8 +5301,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -233.65,
-            "y": 1704.9
+            "x": -202.64,
+            "y": 1728.73
         },
         {
             "id": "methods-directory/mathematical/regression/kernel-ridge/data-per-property",
@@ -5320,8 +5320,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -295.44,
-            "y": 1695.51
+            "x": -264.6,
+            "y": 1720.57
         },
         {
             "id": "methods-directory/mathematical/regression/linear/data-per-property",
@@ -5339,8 +5339,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -355.35,
-            "y": 1676.78
+            "x": -324.87,
+            "y": 1703.05
         },
         {
             "id": "methods-directory/mathematical/regression/per-feature-item",
@@ -5358,8 +5358,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -414.72,
-            "y": 1657.64
+            "x": -384.62,
+            "y": 1685.13
         },
         {
             "id": "methods-directory/mathematical/regression/precision",
@@ -5377,8 +5377,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -475.52,
-            "y": 1644.55
+            "x": -445.68,
+            "y": 1673.32
         },
         {
             "id": "methods-directory/mathematical/regression/precision-per-property",
@@ -5396,8 +5396,8 @@
                 "branch": "mathematical",
                 "catalogue": "methods"
             },
-            "x": -533.34,
-            "y": 1621.38
+            "x": -503.98,
+            "y": 1651.39
         },
         {
             "id": "methods-directory/physical/ao/dunning",
@@ -5419,8 +5419,8 @@
                 "tier2": "wf",
                 "type": "ao"
             },
-            "x": -587.26,
-            "y": 1588.51
+            "x": -558.61,
+            "y": 1619.7
         },
         {
             "id": "methods-directory/physical/ao/enum-options",
@@ -5438,8 +5438,8 @@
                 "catalogue": "methods",
                 "role": "enum-options"
             },
-            "x": -646.32,
-            "y": 1570.44
+            "x": -618.06,
+            "y": 1602.94
         },
         {
             "id": "methods-directory/physical/ao/other",
@@ -5461,8 +5461,8 @@
                 "tier2": "wf",
                 "type": "ao"
             },
-            "x": -709.28,
-            "y": 1559.91
+            "x": -681.24,
+            "y": 1593.84
         },
         {
             "id": "methods-directory/physical/ao/pople",
@@ -5484,8 +5484,8 @@
                 "tier2": "wf",
                 "type": "ao"
             },
-            "x": -757.02,
-            "y": 1516.24
+            "x": -729.98,
+            "y": 1551.29
         },
         {
             "id": "methods-directory/physical/psp",
@@ -5507,8 +5507,8 @@
                 "tier2": "wf",
                 "type": "psp"
             },
-            "x": -820.88,
-            "y": 1504.81
+            "x": -794.09,
+            "y": 1541.36
         },
         {
             "id": "methods-directory/physical/psp/file",
@@ -5526,8 +5526,8 @@
                 "branch": "physical",
                 "catalogue": "methods"
             },
-            "x": -868.22,
-            "y": 1462.62
+            "x": -842.43,
+            "y": 1500.31
         },
         {
             "id": "methods-directory/physical/psp/file-data-item",
@@ -5545,8 +5545,8 @@
                 "branch": "physical",
                 "catalogue": "methods"
             },
-            "x": -925.76,
-            "y": 1437.9
+            "x": -900.54,
+            "y": 1476.98
         },
         {
             "id": "methods-directory/physical/pw",
@@ -5567,8 +5567,8 @@
                 "tier2": "wf",
                 "type": "pw"
             },
-            "x": -982.19,
-            "y": 1410.27
+            "x": -957.64,
+            "y": 1450.76
         },
         {
             "id": "methods-directory/physical/smearing",
@@ -5590,8 +5590,8 @@
                 "tier2": "wf",
                 "type": "smearing"
             },
-            "x": -1017.38,
-            "y": 1353.24
+            "x": -994.25,
+            "y": 1394.63
         },
         {
             "id": "methods-directory/physical/tetrahedron",
@@ -5613,8 +5613,8 @@
                 "tier2": "wf",
                 "type": "tetrahedron"
             },
-            "x": -1078.73,
-            "y": 1331.29
+            "x": -1056.14,
+            "y": 1374.26
         },
         {
             "id": "model",
@@ -6406,8 +6406,8 @@
                 "tier3": "dft",
                 "type": "ksdft"
             },
-            "x": -1128.33,
-            "y": 1293.5
+            "x": -1106.7,
+            "y": 1337.77
         },
         {
             "id": "models-directory/gga",
@@ -6429,8 +6429,8 @@
                 "tier3": "dft",
                 "type": "ksdft"
             },
-            "x": -1160.27,
-            "y": 1236.46
+            "x": -1140.14,
+            "y": 1281.59
         },
         {
             "id": "models-directory/gw",
@@ -6452,8 +6452,8 @@
                 "tier3": "abin",
                 "type": "gw"
             },
-            "x": -1203.46,
-            "y": 1192.59
+            "x": -1184.49,
+            "y": 1238.88
         },
         {
             "id": "models-directory/hybrid",
@@ -6475,8 +6475,8 @@
                 "tier3": "dft",
                 "type": "ksdft"
             },
-            "x": -1253.18,
-            "y": 1154.74
+            "x": -1235.22,
+            "y": 1202.4
         },
         {
             "id": "models-directory/lda",
@@ -6498,8 +6498,8 @@
                 "tier3": "dft",
                 "type": "ksdft"
             },
-            "x": -1290.7,
-            "y": 1105.41
+            "x": -1274.09,
+            "y": 1154.12
         },
         {
             "id": "models-directory/legacy/any",
@@ -6517,8 +6517,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1333.42,
-            "y": 1060.54
+            "x": -1318.06,
+            "y": 1110.47
         },
         {
             "id": "models-directory/legacy/dft",
@@ -6536,8 +6536,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1381.48,
-            "y": 1019.11
+            "x": -1367.26,
+            "y": 1070.42
         },
         {
             "id": "models-directory/legacy/dft-gga",
@@ -6555,8 +6555,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1409.12,
-            "y": 962.51
+            "x": -1396.53,
+            "y": 1014.64
         },
         {
             "id": "models-directory/legacy/dft-hybrid",
@@ -6574,8 +6574,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1454.81,
-            "y": 918.07
+            "x": -1443.5,
+            "y": 971.56
         },
         {
             "id": "models-directory/legacy/dft-lda",
@@ -6593,8 +6593,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1470.97,
-            "y": 855.21
+            "x": -1461.51,
+            "y": 909.21
         },
         {
             "id": "models-directory/legacy/ml",
@@ -6612,8 +6612,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1503.29,
-            "y": 802.43
+            "x": -1495.41,
+            "y": 857.42
         },
         {
             "id": "models-directory/legacy/unknown",
@@ -6631,8 +6631,8 @@
                 "catalogue": "models",
                 "legacy": "true"
             },
-            "x": -1528.76,
-            "y": 746.01
+            "x": -1522.59,
+            "y": 801.8
         },
         {
             "id": "models-directory/mgga",
@@ -6654,8 +6654,8 @@
                 "tier3": "dft",
                 "type": "ksdft"
             },
-            "x": -1567.01,
-            "y": 695.41
+            "x": -1562.39,
+            "y": 752.41
         },
         {
             "id": "models-directory/re",
@@ -6676,8 +6676,8 @@
                 "tier3": "ml",
                 "type": "re"
             },
-            "x": -1572.77,
-            "y": 630.65
+            "x": -1570.17,
+            "y": 687.86
         },
         {
             "id": "project",
@@ -6709,8 +6709,8 @@
             "facets": {
                 "catalogue": "properties"
             },
-            "x": -1602.74,
-            "y": 576.04
+            "x": -1601.86,
+            "y": 634.22
         },
         {
             "id": "properties-directory/electronic-configuration",
@@ -6727,8 +6727,8 @@
             "facets": {
                 "catalogue": "properties"
             },
-            "x": -1615.83,
-            "y": 515.3
+            "x": -1616.91,
+            "y": 573.94
         },
         {
             "id": "properties-directory/elemental/atomic-radius",
@@ -6746,8 +6746,8 @@
                 "catalogue": "properties",
                 "valueShape": "elemental"
             },
-            "x": -1644.32,
-            "y": 459.32
+            "x": -1647.2,
+            "y": 518.91
         },
         {
             "id": "properties-directory/elemental/electronegativity",
@@ -6765,8 +6765,8 @@
                 "catalogue": "properties",
                 "valueShape": "elemental"
             },
-            "x": -1672.56,
-            "y": 402.35
+            "x": -1677.3,
+            "y": 462.91
         },
         {
             "id": "properties-directory/elemental/ionization-potential",
@@ -6784,8 +6784,8 @@
                 "catalogue": "properties",
                 "valueShape": "elemental"
             },
-            "x": -1674.94,
-            "y": 339.1
+            "x": -1681.79,
+            "y": 399.77
         },
         {
             "id": "properties-directory/enum-options",
@@ -6803,8 +6803,8 @@
                 "catalogue": "properties",
                 "role": "enum-options"
             },
-            "x": -1685.24,
-            "y": 277.91
+            "x": -1694.16,
+            "y": 338.97
         },
         {
             "id": "properties-directory/jupyter-notebook-endpoint",
@@ -6821,8 +6821,8 @@
             "facets": {
                 "catalogue": "properties"
             },
-            "x": -1695.83,
-            "y": 216.74
+            "x": -1706.84,
+            "y": 278.19
         },
         {
             "id": "properties-directory/non-scalar/average-potential-profile",
@@ -6844,8 +6844,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1704.76,
-            "y": 155.21
+            "x": -1717.89,
+            "y": 217.02
         },
         {
             "id": "properties-directory/non-scalar/band-gaps",
@@ -6868,8 +6868,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1703.96,
-            "y": 92.92
+            "x": -1719.28,
+            "y": 154.74
         },
         {
             "id": "properties-directory/non-scalar/band-structure",
@@ -6891,8 +6891,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1706.62,
-            "y": 30.99
+            "x": -1724.14,
+            "y": 92.94
         },
         {
             "id": "properties-directory/non-scalar/charge-density-profile",
@@ -6914,8 +6914,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1699.74,
-            "y": -30.87
+            "x": -1719.47,
+            "y": 30.87
         },
         {
             "id": "properties-directory/non-scalar/density-of-states",
@@ -6937,8 +6937,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1716.11,
-            "y": -93.58
+            "x": -1738.12,
+            "y": -31.21
         },
         {
             "id": "properties-directory/non-scalar/dielectric-tensor",
@@ -6960,8 +6960,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1689.9,
-            "y": -153.86
+            "x": -1714.14,
+            "y": -92.41
         },
         {
             "id": "properties-directory/non-scalar/file-content",
@@ -6983,8 +6983,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1692.68,
-            "y": -216.33
+            "x": -1719.24,
+            "y": -154.73
         },
         {
             "id": "properties-directory/non-scalar/final-structure",
@@ -7002,8 +7002,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1683.18,
-            "y": -277.57
+            "x": -1712.04,
+            "y": -216.28
         },
         {
             "id": "properties-directory/non-scalar/formation-energy-contributions",
@@ -7025,8 +7025,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1664.96,
-            "y": -337.08
+            "x": -1696.09,
+            "y": -276.44
         },
         {
             "id": "properties-directory/non-scalar/hubbard-u",
@@ -7049,8 +7049,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1668.72,
-            "y": -401.43
+            "x": -1702.32,
+            "y": -340.6
         },
         {
             "id": "properties-directory/non-scalar/hubbard-v",
@@ -7073,8 +7073,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1632.13,
-            "y": -455.91
+            "x": -1667.87,
+            "y": -396.46
         },
         {
             "id": "properties-directory/non-scalar/hubbard-v-nn",
@@ -7097,8 +7097,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1635.49,
-            "y": -521.57
+            "x": -1673.8,
+            "y": -461.94
         },
         {
             "id": "properties-directory/non-scalar/is-relaxed",
@@ -7116,8 +7116,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1601.36,
-            "y": -575.54
+            "x": -1641.84,
+            "y": -517.22
         },
         {
             "id": "properties-directory/non-scalar/phonon-dispersions",
@@ -7139,8 +7139,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1593.64,
-            "y": -639.01
+            "x": -1636.67,
+            "y": -580.95
         },
         {
             "id": "properties-directory/non-scalar/phonon-dos",
@@ -7162,8 +7162,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1568.04,
-            "y": -695.86
+            "x": -1613.39,
+            "y": -638.79
         },
         {
             "id": "properties-directory/non-scalar/potential-profile",
@@ -7185,8 +7185,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1542.27,
-            "y": -752.6
+            "x": -1589.97,
+            "y": -696.53
         },
         {
             "id": "properties-directory/non-scalar/reaction-energy-profile",
@@ -7208,8 +7208,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1502.07,
-            "y": -801.77
+            "x": -1551.82,
+            "y": -747.32
         },
         {
             "id": "properties-directory/non-scalar/stress-tensor",
@@ -7232,8 +7232,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1481.16,
-            "y": -861.14
+            "x": -1533.41,
+            "y": -807.5
         },
         {
             "id": "properties-directory/non-scalar/total-energy-contributions",
@@ -7256,8 +7256,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1448.39,
-            "y": -914.02
+            "x": -1502.9,
+            "y": -861.72
         },
         {
             "id": "properties-directory/non-scalar/vibrational-spectrum",
@@ -7279,8 +7279,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1397.17,
-            "y": -954.35
+            "x": -1453.44,
+            "y": -904.19
         },
         {
             "id": "properties-directory/non-scalar/wavefunction-amplitude",
@@ -7302,8 +7302,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1365.77,
-            "y": -1007.53
+            "x": -1424.35,
+            "y": -958.67
         },
         {
             "id": "properties-directory/non-scalar/workflow",
@@ -7321,8 +7321,8 @@
                 "catalogue": "properties",
                 "valueShape": "non-scalar"
             },
-            "x": -1346.29,
-            "y": -1070.78
+            "x": -1407.63,
+            "y": -1022.7
         },
         {
             "id": "properties-directory/reusable/hubbard-parameters",
@@ -7339,8 +7339,8 @@
             "facets": {
                 "catalogue": "properties"
             },
-            "x": -1305.33,
-            "y": -1117.94
+            "x": -1368.78,
+            "y": -1071.61
         },
         {
             "id": "properties-directory/scalar/defect-formation-energy",
@@ -7363,8 +7363,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -1246.97,
-            "y": -1149.02
+            "x": -1311.85,
+            "y": -1105.24
         },
         {
             "id": "properties-directory/scalar/electron-affinity",
@@ -7387,8 +7387,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -1216.61,
-            "y": -1205.61
+            "x": -1284.04,
+            "y": -1163.13
         },
         {
             "id": "properties-directory/scalar/fermi-energy",
@@ -7411,8 +7411,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -1168.48,
-            "y": -1245.21
+            "x": -1237.74,
+            "y": -1204.86
         },
         {
             "id": "properties-directory/scalar/formation-energy",
@@ -7435,8 +7435,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -1127.8,
-            "y": -1292.89
+            "x": -1199.27,
+            "y": -1254.34
         },
         {
             "id": "properties-directory/scalar/homo-energy",
@@ -7459,8 +7459,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -1075.34,
-            "y": -1327.11
+            "x": -1148.44,
+            "y": -1290.92
         },
         {
             "id": "properties-directory/scalar/interfacial-energy",
@@ -7483,8 +7483,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -1026.56,
-            "y": -1365.44
+            "x": -1101.49,
+            "y": -1331.47
         },
         {
             "id": "properties-directory/scalar/ionization-potential",
@@ -7507,8 +7507,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -982.19,
-            "y": -1410.27
+            "x": -1059.26,
+            "y": -1378.31
         },
         {
             "id": "properties-directory/scalar/lumo-energy",
@@ -7531,8 +7531,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -923.46,
-            "y": -1434.32
+            "x": -1001.72,
+            "y": -1405.1
         },
         {
             "id": "properties-directory/scalar/pressure",
@@ -7555,8 +7555,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -865.04,
-            "y": -1457.26
+            "x": -944.46,
+            "y": -1430.79
         },
         {
             "id": "properties-directory/scalar/reaction-energy-barrier",
@@ -7579,8 +7579,54 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -823.89,
-            "y": -1510.33
+            "x": -905.9,
+            "y": -1485.78
+        },
+        {
+            "id": "properties-directory/scalar/schottky-barrier-height-n",
+            "path": "schema/properties_directory/scalar/schottky_barrier_height_n.json",
+            "publishedPath": "schema/properties_directory/scalar/schottky_barrier_height_n.json",
+            "title": "Schottky barrier height n-type property schema",
+            "description": "",
+            "domain": "properties_directory",
+            "layer": "directory",
+            "inDegree": 1,
+            "outDegree": 1,
+            "propertyCount": 1,
+            "hasExample": true,
+            "manifest": {
+                "name": "schottky_barrier_height_n",
+                "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
+            "x": -849.39,
+            "y": -1512.7
+        },
+        {
+            "id": "properties-directory/scalar/schottky-barrier-height-p",
+            "path": "schema/properties_directory/scalar/schottky_barrier_height_p.json",
+            "publishedPath": "schema/properties_directory/scalar/schottky_barrier_height_p.json",
+            "title": "Schottky barrier height p-type property schema",
+            "description": "",
+            "domain": "properties_directory",
+            "layer": "directory",
+            "inDegree": 1,
+            "outDegree": 1,
+            "propertyCount": 1,
+            "hasExample": true,
+            "manifest": {
+                "name": "schottky_barrier_height_p",
+                "defaultUnits": "eV"
+            },
+            "facets": {
+                "catalogue": "properties",
+                "valueShape": "scalar"
+            },
+            "x": -784.59,
+            "y": -1522.92
         },
         {
             "id": "properties-directory/scalar/surface-energy",
@@ -7603,8 +7649,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -764.94,
-            "y": -1532.1
+            "x": -737.52,
+            "y": -1567.32
         },
         {
             "id": "properties-directory/scalar/thermal-correction-to-energy",
@@ -7627,8 +7673,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -711.32,
-            "y": -1564.41
+            "x": -683.18,
+            "y": -1598.39
         },
         {
             "id": "properties-directory/scalar/thermal-correction-to-enthalpy",
@@ -7651,8 +7697,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -655.18,
-            "y": -1591.96
+            "x": -626.44,
+            "y": -1624.66
         },
         {
             "id": "properties-directory/scalar/total-energy",
@@ -7675,8 +7721,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -588.47,
-            "y": -1591.78
+            "x": -559.75,
+            "y": -1623
         },
         {
             "id": "properties-directory/scalar/total-force",
@@ -7699,8 +7745,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -537.85,
-            "y": -1635.11
+            "x": -508.2,
+            "y": -1665.21
         },
         {
             "id": "properties-directory/scalar/valence-band-offset",
@@ -7722,8 +7768,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -473.57,
-            "y": -1637.8
+            "x": -443.87,
+            "y": -1666.53
         },
         {
             "id": "properties-directory/scalar/zero-point-energy",
@@ -7746,8 +7792,8 @@
                 "catalogue": "properties",
                 "valueShape": "scalar"
             },
-            "x": -414.84,
-            "y": -1658.14
+            "x": -384.74,
+            "y": -1685.63
         },
         {
             "id": "properties-directory/structural/atomic-forces",
@@ -7770,8 +7816,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": -353.89,
-            "y": -1669.88
+            "x": -323.55,
+            "y": -1696.12
         },
         {
             "id": "properties-directory/structural/basis",
@@ -7793,8 +7839,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": -292.4,
-            "y": -1678.09
+            "x": -261.91,
+            "y": -1703.09
         },
         {
             "id": "properties-directory/structural/basis-constrained",
@@ -7812,8 +7858,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": -231.76,
-            "y": -1691.11
+            "x": -201.02,
+            "y": -1714.91
         },
         {
             "id": "properties-directory/structural/basis/atomic-constraint",
@@ -7831,8 +7877,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": -170.91,
-            "y": -1705.49
+            "x": -139.91,
+            "y": -1728.11
         },
         {
             "id": "properties-directory/structural/basis/atomic-constraints",
@@ -7853,8 +7899,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": -108.58,
-            "y": -1706.12
+            "x": -77.59,
+            "y": -1727.56
         },
         {
             "id": "properties-directory/structural/basis/atomic-constraints-property",
@@ -7872,8 +7918,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": -46.89,
-            "y": -1720.96
+            "x": -15.63,
+            "y": -1741.27
         },
         {
             "id": "properties-directory/structural/basis/atomic-coordinate",
@@ -7891,8 +7937,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 15.42,
-            "y": -1698.7
+            "x": 46.27,
+            "y": -1717.88
         },
         {
             "id": "properties-directory/structural/basis/atomic-coordinates",
@@ -7910,8 +7956,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 77.97,
-            "y": -1716.16
+            "x": 109.11,
+            "y": -1734.24
         },
         {
             "id": "properties-directory/structural/basis/atomic-element",
@@ -7929,8 +7975,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 140.52,
-            "y": -1715.8
+            "x": 171.65,
+            "y": -1732.8
         },
         {
             "id": "properties-directory/structural/basis/atomic-elements",
@@ -7948,8 +7994,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 201.27,
-            "y": -1697.26
+            "x": 232.07,
+            "y": -1713.24
         },
         {
             "id": "properties-directory/structural/basis/atomic-label",
@@ -7967,8 +8013,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 261.77,
-            "y": -1682.38
+            "x": 292.32,
+            "y": -1697.37
         },
         {
             "id": "properties-directory/structural/basis/atomic-labels",
@@ -7986,8 +8032,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 323.1,
-            "y": -1673.94
+            "x": 353.51,
+            "y": -1687.95
         },
         {
             "id": "properties-directory/structural/basis/bonds",
@@ -8009,8 +8055,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 387.11,
-            "y": -1675.99
+            "x": 417.54,
+            "y": -1689.01
         },
         {
             "id": "properties-directory/structural/basis/boundary-conditions",
@@ -8028,8 +8074,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 446.05,
-            "y": -1654.65
+            "x": 476.14,
+            "y": -1666.77
         },
         {
             "id": "properties-directory/structural/basis/units-enum",
@@ -8047,8 +8093,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 506.05,
-            "y": -1638.07
+            "x": 535.89,
+            "y": -1649.31
         },
         {
             "id": "properties-directory/structural/density",
@@ -8070,8 +8116,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 562.99,
-            "y": -1612.28
+            "x": 592.45,
+            "y": -1622.71
         },
         {
             "id": "properties-directory/structural/elemental-ratio",
@@ -8092,8 +8138,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 620.47,
-            "y": -1589.01
+            "x": 649.61,
+            "y": -1598.65
         },
         {
             "id": "properties-directory/structural/inchi",
@@ -8114,8 +8160,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 677.33,
-            "y": -1564.43
+            "x": 706.13,
+            "y": -1573.3
         },
         {
             "id": "properties-directory/structural/inchi-key",
@@ -8136,8 +8182,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 739.5,
-            "y": -1551
+            "x": 768.12,
+            "y": -1559.06
         },
         {
             "id": "properties-directory/structural/lattice",
@@ -8159,8 +8205,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 787.86,
-            "y": -1508.82
+            "x": 815.94,
+            "y": -1516.27
         },
         {
             "id": "properties-directory/structural/lattice/type-enum",
@@ -8178,8 +8224,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 843.69,
-            "y": -1481.96
+            "x": 871.44,
+            "y": -1488.73
         },
         {
             "id": "properties-directory/structural/lattice/type-extended-enum",
@@ -8197,8 +8243,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 903.9,
-            "y": -1461.6
+            "x": 931.4,
+            "y": -1467.66
         },
         {
             "id": "properties-directory/structural/lattice/units",
@@ -8216,8 +8262,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 951.21,
-            "y": -1420.09
+            "x": 978.23,
+            "y": -1425.62
         },
         {
             "id": "properties-directory/structural/lattice/units/angle-enum",
@@ -8235,8 +8281,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1000.55,
-            "y": -1382.41
+            "x": 1027.15,
+            "y": -1387.39
         },
         {
             "id": "properties-directory/structural/lattice/units/length-enum",
@@ -8254,8 +8300,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1057.38,
-            "y": -1354.51
+            "x": 1083.68,
+            "y": -1358.89
         },
         {
             "id": "properties-directory/structural/lattice/vectors",
@@ -8273,8 +8319,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1097.6,
-            "y": -1305.39
+            "x": 1123.4,
+            "y": -1309.37
         },
         {
             "id": "properties-directory/structural/lattice/vectors/units-enum",
@@ -8292,8 +8338,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1155.15,
-            "y": -1276.7
+            "x": 1180.67,
+            "y": -1280.12
         },
         {
             "id": "properties-directory/structural/magnetic-moments",
@@ -8316,8 +8362,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1186.84,
-            "y": -1219.62
+            "x": 1211.82,
+            "y": -1222.75
         },
         {
             "id": "properties-directory/structural/molecular-pattern",
@@ -8335,8 +8381,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1225.24,
-            "y": -1170.84
+            "x": 1249.79,
+            "y": -1173.63
         },
         {
             "id": "properties-directory/structural/p-norm",
@@ -8357,8 +8403,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1274.41,
-            "y": -1132.21
+            "x": 1298.62,
+            "y": -1134.57
         },
         {
             "id": "properties-directory/structural/patterns/functional-group",
@@ -8376,8 +8422,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1325.63,
-            "y": -1094.23
+            "x": 1349.54,
+            "y": -1096.18
         },
         {
             "id": "properties-directory/structural/patterns/ring",
@@ -8395,8 +8441,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1347.88,
-            "y": -1032.64
+            "x": 1371.31,
+            "y": -1034.43
         },
         {
             "id": "properties-directory/structural/patterns/special-bond",
@@ -8414,8 +8460,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1399.93,
-            "y": -993.99
+            "x": 1423.08,
+            "y": -995.4
         },
         {
             "id": "properties-directory/structural/symmetry",
@@ -8437,8 +8483,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1434.06,
-            "y": -941.82
+            "x": 1456.85,
+            "y": -943
         },
         {
             "id": "properties-directory/structural/volume",
@@ -8460,8 +8506,8 @@
                 "catalogue": "properties",
                 "valueShape": "structural"
             },
-            "x": 1448.46,
-            "y": -877.7
+            "x": 1470.84,
+            "y": -878.78
         },
         {
             "id": "properties-directory/workflow/convergence/electronic",
@@ -8484,8 +8530,8 @@
                 "catalogue": "properties",
                 "valueShape": "workflow"
             },
-            "x": 1487.35,
-            "y": -828.97
+            "x": 1509.44,
+            "y": -829.82
         },
         {
             "id": "properties-directory/workflow/convergence/ionic",
@@ -8508,8 +8554,8 @@
                 "catalogue": "properties",
                 "valueShape": "workflow"
             },
-            "x": 1508.3,
-            "y": -770.24
+            "x": 1530.06,
+            "y": -770.97
         },
         {
             "id": "properties-directory/workflow/convergence/kpoint",
@@ -8527,8 +8573,8 @@
                 "catalogue": "properties",
                 "valueShape": "workflow"
             },
-            "x": 1554.8,
-            "y": -724.06
+            "x": 1576.32,
+            "y": -724.55
         },
         {
             "id": "property/holder",
@@ -8540,7 +8586,7 @@
             "layer": "entity-component",
             "ownerEntity": "property",
             "inDegree": 0,
-            "outDegree": 44,
+            "outDegree": 46,
             "propertyCount": 7,
             "hasExample": true,
             "x": -350.65,
@@ -8610,8 +8656,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1575.62,
-            "y": -665.25
+            "x": 1596.85,
+            "y": -665.64
         },
         {
             "id": "software-directory/modeling/espresso",
@@ -8629,8 +8675,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1597,
-            "y": -606.94
+            "x": 1617.99,
+            "y": -607.24
         },
         {
             "id": "software-directory/modeling/espresso/arguments",
@@ -8648,8 +8694,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1610.74,
-            "y": -546.09
+            "x": 1631.48,
+            "y": -546.34
         },
         {
             "id": "software-directory/modeling/lammps",
@@ -8667,8 +8713,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1641.17,
-            "y": -490.73
+            "x": 1661.72,
+            "y": -490.87
         },
         {
             "id": "software-directory/modeling/nwchem",
@@ -8686,8 +8732,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1656.21,
-            "y": -430.38
+            "x": 1676.57,
+            "y": -430.47
         },
         {
             "id": "software-directory/modeling/unit/execution",
@@ -8705,8 +8751,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1654.2,
-            "y": -366.29
+            "x": 1674.39,
+            "y": -366.39
         },
         {
             "id": "software-directory/modeling/vasp",
@@ -8724,8 +8770,8 @@
                 "catalogue": "software",
                 "softwareKind": "modeling"
             },
-            "x": 1689.06,
-            "y": -310.14
+            "x": 1709.12,
+            "y": -310.16
         },
         {
             "id": "software-directory/scripting/jupyter-lab",
@@ -8743,8 +8789,8 @@
                 "catalogue": "software",
                 "softwareKind": "scripting"
             },
-            "x": 1694.18,
-            "y": -247.87
+            "x": 1714.12,
+            "y": -247.88
         },
         {
             "id": "software-directory/scripting/python",
@@ -8762,7 +8808,7 @@
                 "catalogue": "software",
                 "softwareKind": "scripting"
             },
-            "x": 1699.5,
+            "x": 1719.35,
             "y": -185.91
         },
         {
@@ -8781,7 +8827,7 @@
                 "catalogue": "software",
                 "softwareKind": "scripting"
             },
-            "x": 1708.53,
+            "x": 1728.31,
             "y": -124.32
         },
         {
@@ -8800,8 +8846,8 @@
                 "catalogue": "software",
                 "softwareKind": "scripting"
             },
-            "x": 1699.32,
-            "y": -61.74
+            "x": 1719.06,
+            "y": -61.75
         },
         {
             "id": "software/application",
@@ -14280,6 +14326,16 @@
             "kind": "extends"
         },
         {
+            "source": "properties-directory/scalar/schottky-barrier-height-n",
+            "target": "core/reusable/energy",
+            "kind": "extends"
+        },
+        {
+            "source": "properties-directory/scalar/schottky-barrier-height-p",
+            "target": "core/reusable/energy",
+            "kind": "extends"
+        },
+        {
             "source": "properties-directory/scalar/surface-energy",
             "target": "core/reusable/energy",
             "kind": "extends"
@@ -14814,6 +14870,18 @@
         {
             "source": "property/holder",
             "target": "properties-directory/scalar/reaction-energy-barrier",
+            "kind": "variant",
+            "label": "data"
+        },
+        {
+            "source": "property/holder",
+            "target": "properties-directory/scalar/schottky-barrier-height-n",
+            "kind": "variant",
+            "label": "data"
+        },
+        {
+            "source": "property/holder",
+            "target": "properties-directory/scalar/schottky-barrier-height-p",
             "kind": "variant",
             "label": "data"
         },

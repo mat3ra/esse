@@ -67,7 +67,7 @@ they are declared in the schemas and mechanically extractable:</p>
 <td><code>extends</code></td>
 <td><code>allOf</code></td>
 <td><strong>is a</strong> (subsumption)</td>
-<td>372</td>
+<td>374</td>
 </tr>
 <tr>
 <td><code>contains</code></td>
@@ -79,10 +79,10 @@ they are declared in the schemas and mechanically extractable:</p>
 <td><code>variant</code></td>
 <td><code>oneOf</code> / <code>anyOf</code></td>
 <td><strong>is one of</strong> (disjunction)</td>
-<td>170</td>
+<td>172</td>
 </tr>
 </tbody></table></div>
-<p>Across 566 entity types, 920 declared relationships.</p>
+<p>Across 568 entity types, 924 declared relationships.</p>
 <p>Those three relation kinds are the familiar ontological ones. <code>extends</code> is subsumption: a
 <code>material</code> <strong>is a</strong> named, defaultable in-memory entity. <code>contains</code> is composition: a <code>model</code>
 <strong>has a</strong> <code>method</code>. <code>variant</code> is disjunction: a property holder&#39;s <code>data</code> <strong>is one of</strong> the
@@ -152,7 +152,7 @@ without the platform machinery can take exactly the parts they need.</p>
 <li><strong>Examples</strong> (<code>example/</code>) — instances conforming to those rules, mirroring the schema directory
 layout. They are versioned, reviewed assets rather than documentation garnish: an example is
 often the fastest way to understand a schema, and it fails loudly when the schema changes under
-it. Currently 209 of 566 schemas (37%) have a mirror example.</li>
+it. Currently 211 of 568 schemas (37%) have a mirror example.</li>
 <li><strong>Interfaces</strong> (<code>src/</code>) — thin Python and JavaScript accessors, plus the generated models and
 types.</li>
 </ul>
@@ -168,11 +168,11 @@ types.</li>
 </tr>
 </thead>
 <tbody><tr>
-<td>566</td>
-<td>920</td>
-<td>372</td>
+<td>568</td>
+<td>924</td>
+<td>374</td>
 <td>378</td>
-<td>170</td>
+<td>172</td>
 </tr>
 </tbody></table></div>
 <p>Those references are not incidental. They are what makes the collection a system rather than a
