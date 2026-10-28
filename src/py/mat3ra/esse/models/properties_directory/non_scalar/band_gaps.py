@@ -53,22 +53,22 @@ class BandGapSchema(BaseModel):
     value: float
 
 
-class Eigenvalue1(BaseModel):
+class Eigenvalue(BaseModel):
     spin: Optional[float] = None
     energies: Optional[List] = None
     occupations: Optional[List] = None
 
 
-class Eigenvalue(BaseModel):
+class KPointEigenvaluesSchema(BaseModel):
     kpoint: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
     """
     A k-point is a point in reciprocal space of a crystal.
     """
     weight: Optional[float] = None
-    eigenvalues: Optional[List[Eigenvalue1]] = None
+    eigenvalues: Optional[List[Eigenvalue]] = None
 
 
 class BandGapsPropertySchema(BaseModel):
     name: Name
     values: List[BandGapSchema]
-    eigenvalues: Optional[List[Eigenvalue]] = None
+    eigenvalues: Optional[List[KPointEigenvaluesSchema]] = None

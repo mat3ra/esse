@@ -1,0 +1,22 @@
+{
+    "$id": "properties-directory/scalar/conduction-band-minimum",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Conduction band minimum property schema",
+    "description": "lowest unoccupied band energy of a crystal",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/reusable/energy.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "conduction_band_minimum"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

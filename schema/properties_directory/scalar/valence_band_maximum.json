@@ -1,0 +1,22 @@
+{
+    "$id": "properties-directory/scalar/valence-band-maximum",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Valence band maximum property schema",
+    "description": "highest occupied band energy of a crystal",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/reusable/energy.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "valence_band_maximum"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

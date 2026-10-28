@@ -1,0 +1,28 @@
+{
+    "$id": "properties-directory/non-scalar/eigenvalues-at-kpoints",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Eigenvalues at k-points property schema",
+    "description": "the band energies (and occupations) at each k-point of a calculation, in one energy unit",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "eigenvalues_at_kpoints"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/energy"
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "$ref": "../../core/reusable/kpoint_eigenvalues.json"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "units",
+        "values"
+    ]
+}
