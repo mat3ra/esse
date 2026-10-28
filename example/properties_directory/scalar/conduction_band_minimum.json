@@ -1,5 +1,10 @@
 {
     "name": "conduction_band_minimum",
     "units": "eV",
-    "value": 6.8
+    "value": 6.8,
+    "kpoint": [
+        0.5,
+        0.0,
+        0.5
+    ]
 }

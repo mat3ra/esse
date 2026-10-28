@@ -9,7 +9,8 @@
             "$ref": "./kpoint.json"
         },
         "weight": {
-            "type": "number"
+            "type": "number",
+            "description": "integration weight of the k-point"
         },
         "eigenvalues": {
             "type": "array",
@@ -17,16 +18,36 @@
                 "type": "object",
                 "properties": {
                     "spin": {
-                        "type": "number"
+                        "description": "spin of the channel",
+                        "type": "number",
+                        "enum": [
+                            0.5,
+                            -0.5
+                        ]
                     },
                     "energies": {
-                        "type": "array"
+                        "description": "band energies, in band order",
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
                     },
                     "occupations": {
-                        "type": "array"
+                        "description": "band occupations, in the same order as energies",
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
                     }
-                }
-            }
+                },
+                "required": [
+                    "energies"
+                ]
+            },
+            "description": "one entry per spin channel; a spin-unpolarized calculation has a single entry"
         }
-    }
+    },
+    "required": [
+        "eigenvalues"
+    ]
 }

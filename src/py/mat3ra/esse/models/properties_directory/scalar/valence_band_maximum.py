@@ -5,13 +5,18 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Union
+from typing import List, Optional, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
     valence_band_maximum = "valence_band_maximum"
+
+
+class Spin(Enum):
+    number_0_5 = 0.5
+    number__0_5 = -0.5
 
 
 class Units(Enum):
@@ -31,5 +36,13 @@ class Units394(Enum):
 
 class ValenceBandMaximumPropertySchema(BaseModel):
     name: Name
+    kpoint: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
+    """
+    A k-point is a point in reciprocal space of a crystal.
+    """
+    spin: Optional[Spin] = None
+    """
+    spin of the channel the band edge belongs to
+    """
     units: Union[Units, Units394]
     value: float

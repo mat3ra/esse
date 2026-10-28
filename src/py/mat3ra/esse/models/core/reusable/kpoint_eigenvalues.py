@@ -4,15 +4,30 @@
 
 from __future__ import annotations
 
+from enum import Enum
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
 
+class Spin(Enum):
+    number_0_5 = 0.5
+    number__0_5 = -0.5
+
+
 class Eigenvalue(BaseModel):
-    spin: Optional[float] = None
-    energies: Optional[List] = None
-    occupations: Optional[List] = None
+    spin: Optional[Spin] = None
+    """
+    spin of the channel
+    """
+    energies: List[float]
+    """
+    band energies, in band order
+    """
+    occupations: Optional[List[float]] = None
+    """
+    band occupations, in the same order as energies
+    """
 
 
 class KPointEigenvaluesSchema(BaseModel):
@@ -21,4 +36,10 @@ class KPointEigenvaluesSchema(BaseModel):
     A k-point is a point in reciprocal space of a crystal.
     """
     weight: Optional[float] = None
-    eigenvalues: Optional[List[Eigenvalue]] = None
+    """
+    integration weight of the k-point
+    """
+    eigenvalues: List[Eigenvalue]
+    """
+    one entry per spin channel; a spin-unpolarized calculation has a single entry
+    """
