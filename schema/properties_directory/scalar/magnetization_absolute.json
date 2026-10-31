@@ -1,8 +1,8 @@
 {
-    "$id": "properties-directory/scalar/total-magnetization",
+    "$id": "properties-directory/scalar/magnetization-absolute",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Total magnetization property schema",
-    "description": "net magnetization of the cell: the integral of the magnetization density",
+    "title": "Absolute magnetization property schema",
+    "description": "integral of the absolute value of the magnetization density over the cell",
     "type": "object",
     "allOf": [
         {
@@ -12,7 +12,7 @@
     "properties": {
         "name": {
             "enum": [
-                "total_magnetization"
+                "magnetization_absolute"
             ]
         },
         "units": {

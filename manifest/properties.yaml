@@ -41,16 +41,16 @@ fermi_energy:
   schemaId: properties-directory/scalar/fermi-energy
   isResult: true
 
-total_magnetization:
+magnetization_total:
   defaults:
     units: uB
-  schemaId: properties-directory/scalar/total-magnetization
+  schemaId: properties-directory/scalar/magnetization-total
   isResult: true
 
-absolute_magnetization:
+magnetization_absolute:
   defaults:
     units: uB
-  schemaId: properties-directory/scalar/absolute-magnetization
+  schemaId: properties-directory/scalar/magnetization-absolute
   isResult: true
 
 valence_band_maximum:
