@@ -1,0 +1,27 @@
+{
+    "$id": "properties-directory/scalar/magnetization-absolute",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Absolute magnetization property schema",
+    "description": "integral of the absolute value of the magnetization density over the cell",
+    "type": "object",
+    "required": [
+        "name",
+        "units",
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "magnetization_absolute"
+            ]
+        },
+        "units": {
+            "enum": [
+                "uB"
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

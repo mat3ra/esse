@@ -1,0 +1,34 @@
+{
+    "$id": "core/reusable/band-energies",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "band energies schema",
+    "description": "the band energies and occupations of one spin channel at one k-point",
+    "type": "object",
+    "required": [
+        "energies"
+    ],
+    "properties": {
+        "spin": {
+            "description": "spin of the channel",
+            "type": "number",
+            "enum": [
+                0.5,
+                -0.5
+            ]
+        },
+        "energies": {
+            "description": "band energies, in band order",
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "occupations": {
+            "description": "band occupations, in the same order as energies",
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        }
+    }
+}

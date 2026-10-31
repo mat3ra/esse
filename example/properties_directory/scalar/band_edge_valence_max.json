@@ -1,0 +1,10 @@
+{
+    "name": "band_edge_valence_max",
+    "units": "eV",
+    "value": 6.2,
+    "kpoint": [
+        0,
+        0,
+        0
+    ]
+}

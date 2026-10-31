@@ -1,0 +1,63 @@
+{
+    "$id": "properties-directory/scalar/band-edge-valence-max",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Valence band maximum property schema",
+    "description": "highest occupied band energy of a crystal",
+    "type": "object",
+    "required": [
+        "name",
+        "units",
+        "value"
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "band_edge_valence_max"
+            ],
+            "type": "string"
+        },
+        "kpoint": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "kpoint schema",
+            "description": "A k-point is a point in reciprocal space of a crystal.",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "number"
+            }
+        },
+        "spin": {
+            "description": "spin of the channel the band edge belongs to",
+            "type": "number",
+            "enum": [
+                0.5,
+                -0.5
+            ]
+        },
+        "units": {
+            "oneOf": [
+                {
+                    "enum": [
+                        "kcal/mol",
+                        "kJ/mol",
+                        "eV",
+                        "J/mol",
+                        "hartree",
+                        "cm-1",
+                        "Ry",
+                        "eV/atom"
+                    ]
+                },
+                {
+                    "enum": [
+                        "eV/A^2"
+                    ]
+                }
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

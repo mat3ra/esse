@@ -870,7 +870,13 @@
                         "eigenvalues": {
                             "type": "array",
                             "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "eigenvalues at k-point schema",
+                                "description": "the eigenvalues at one k-point: its coordinates, its integration weight, and the band energies and occupations of each spin channel",
                                 "type": "object",
+                                "required": [
+                                    "eigenvalues"
+                                ],
                                 "properties": {
                                     "kpoint": {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
@@ -884,21 +890,42 @@
                                         }
                                     },
                                     "weight": {
-                                        "type": "number"
+                                        "type": "number",
+                                        "description": "integration weight of the k-point"
                                     },
                                     "eigenvalues": {
                                         "type": "array",
+                                        "description": "one entry per spin channel; a spin-unpolarized calculation has a single entry",
                                         "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "band energies schema",
+                                            "description": "the band energies and occupations of one spin channel at one k-point",
                                             "type": "object",
+                                            "required": [
+                                                "energies"
+                                            ],
                                             "properties": {
                                                 "spin": {
-                                                    "type": "number"
+                                                    "description": "spin of the channel",
+                                                    "type": "number",
+                                                    "enum": [
+                                                        0.5,
+                                                        -0.5
+                                                    ]
                                                 },
                                                 "energies": {
-                                                    "type": "array"
+                                                    "description": "band energies, in band order",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "number"
+                                                    }
                                                 },
                                                 "occupations": {
-                                                    "type": "array"
+                                                    "description": "band occupations, in the same order as energies",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "number"
+                                                    }
                                                 }
                                             }
                                         }
