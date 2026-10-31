@@ -18,9 +18,9 @@ import {
  * change on purpose: update the numbers in the same commit that changes the schemas,
  * and keep plan/context/2026-08-16-schema-graph-measurements.md in step.
  */
-const EXPECTED_NODE_COUNT = 574;
-const EXPECTED_EDGE_COUNT = 935;
-const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 378, contains: 385, variant: 172 };
+const EXPECTED_NODE_COUNT = 575;
+const EXPECTED_EDGE_COUNT = 936;
+const EXPECTED_EDGE_COUNTS_BY_KIND = { extends: 378, contains: 386, variant: 172 };
 const EXPECTED_SAME_DOCUMENT_REFS = 20;
 const EXPECTED_LAYER_COUNTS = {
     abstract: 9,
@@ -33,7 +33,7 @@ const EXPECTED_LAYER_COUNTS = {
     "in-memory-entity": 7,
     primitive: 23,
     reference: 10,
-    reusable: 32,
+    reusable: 33,
     system: 38,
 };
 
@@ -279,7 +279,7 @@ describe("buildEntityGraph", () => {
     });
 
     it("reports example coverage as a warning", () => {
-        expect(graph.meta.schemasWithExample).to.equal(217);
+        expect(graph.meta.schemasWithExample).to.equal(218);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be
             .true;
     });

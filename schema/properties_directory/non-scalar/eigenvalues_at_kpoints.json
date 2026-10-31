@@ -16,7 +16,7 @@
         "values": {
             "type": "array",
             "items": {
-                "$ref": "../../core/reusable/kpoint_eigenvalues.json"
+                "$ref": "../../core/reusable/eigenvalues_at_kpoint.json"
             }
         }
     },

@@ -30,7 +30,7 @@ class Spin(Enum):
     number__0_5 = -0.5
 
 
-class Eigenvalue(BaseModel):
+class BandEnergiesSchema(BaseModel):
     spin: Optional[Spin] = None
     """
     spin of the channel
@@ -45,7 +45,7 @@ class Eigenvalue(BaseModel):
     """
 
 
-class KPointEigenvaluesSchema(BaseModel):
+class EigenvaluesAtKPointSchema(BaseModel):
     kpoint: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
     """
     A k-point is a point in reciprocal space of a crystal.
@@ -54,7 +54,7 @@ class KPointEigenvaluesSchema(BaseModel):
     """
     integration weight of the k-point
     """
-    eigenvalues: List[Eigenvalue]
+    eigenvalues: List[BandEnergiesSchema]
     """
     one entry per spin channel; a spin-unpolarized calculation has a single entry
     """
@@ -63,4 +63,4 @@ class KPointEigenvaluesSchema(BaseModel):
 class EigenvaluesAtKPointsPropertySchema(BaseModel):
     name: Name
     units: Units
-    values: List[KPointEigenvaluesSchema]
+    values: List[EigenvaluesAtKPointSchema]
