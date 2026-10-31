@@ -110,7 +110,11 @@ def validate_and_clean(data, schema, use_defaults=True):
         yield from validate_properties(validator, properties, instance, sub_schema)
 
     cleaning_cls = validators.extend(base_cls, {"properties": properties_hook})
-    errors = list(cleaning_cls(schema).iter_errors(data))
+    # Defaults are filled while traversing, so keywords evaluated earlier than `properties` (e.g. `required`,
+    # whose position changes when `allOf` is merged) would not see them. Traverse once to fill defaults and
+    # record declared keys, then validate the completed data so the result is independent of keyword order.
+    list(cleaning_cls(schema).iter_errors(data))
+    errors = list(base_cls(schema).iter_errors(data))
 
     for declared, instance in declared_by_instance.values():
         for key in list(instance.keys()):

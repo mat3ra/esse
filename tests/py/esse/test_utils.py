@@ -118,6 +118,46 @@ class TestValidateAndClean(unittest.TestCase):
         validate_and_clean(data, schema)
         self.assertEqual(data, {"count": 5})
 
+    def test_defaults_satisfy_required_regardless_of_keyword_order(self):
+        properties = {"name": {"type": "string"}, "precision": {"type": "string", "default": "unknown"}}
+        for schema in (
+            {"type": "object", "properties": properties, "required": ["name", "precision"]},
+            {"type": "object", "required": ["name", "precision"], "properties": properties},
+        ):
+            data = {"name": "espresso"}
+            result = validate_and_clean(data, schema)
+            self.assertTrue(result["is_valid"], result["errors"])
+            self.assertEqual(data, {"name": "espresso", "precision": "unknown"})
+
+    def test_defaults_in_array_items_satisfy_required_when_required_comes_first(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["name", "precision"],
+                        "properties": {"name": {"type": "string"}, "precision": {"type": "number", "default": -1}},
+                    },
+                }
+            },
+        }
+        data = {"values": [{"name": "a"}, {"name": "b", "precision": 3}]}
+        result = validate_and_clean(data, schema)
+        self.assertTrue(result["is_valid"], result["errors"])
+        self.assertEqual(data, {"values": [{"name": "a", "precision": -1}, {"name": "b", "precision": 3}]})
+
+    def test_still_reports_required_errors_without_a_default(self):
+        schema = {
+            "type": "object",
+            "required": ["name", "precision"],
+            "properties": {"name": {"type": "string"}, "precision": {"type": "string", "default": "unknown"}},
+        }
+        result = validate_and_clean({}, schema)
+        self.assertFalse(result["is_valid"])
+        self.assertEqual([e.message for e in result["errors"]], ["'name' is a required property"])
+
     def test_reports_type_errors(self):
         schema = {
             "type": "object",
