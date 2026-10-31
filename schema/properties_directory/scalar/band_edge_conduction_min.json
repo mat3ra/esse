@@ -1,5 +1,5 @@
 {
-    "$id": "properties-directory/scalar/conduction-band-minimum",
+    "$id": "properties-directory/scalar/band-edge-conduction-min",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Conduction band minimum property schema",
     "description": "lowest unoccupied band energy of a crystal",
@@ -12,7 +12,7 @@
     "properties": {
         "name": {
             "enum": [
-                "conduction_band_minimum"
+                "band_edge_conduction_min"
             ]
         },
         "kpoint": {

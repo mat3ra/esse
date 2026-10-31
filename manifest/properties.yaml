@@ -53,16 +53,16 @@ magnetization_absolute:
   schemaId: properties-directory/scalar/magnetization-absolute
   isResult: true
 
-valence_band_maximum:
+band_edge_valence_max:
   defaults:
     units: eV
-  schemaId: properties-directory/scalar/valence-band-maximum
+  schemaId: properties-directory/scalar/band-edge-valence-max
   isResult: true
 
-conduction_band_minimum:
+band_edge_conduction_min:
   defaults:
     units: eV
-  schemaId: properties-directory/scalar/conduction-band-minimum
+  schemaId: properties-directory/scalar/band-edge-conduction-min
   isResult: true
 
 homo_energy:

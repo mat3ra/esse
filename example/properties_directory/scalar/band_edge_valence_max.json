@@ -1,5 +1,5 @@
 {
-    "name": "valence_band_maximum",
+    "name": "band_edge_valence_max",
     "units": "eV",
     "value": 6.2,
     "kpoint": [
