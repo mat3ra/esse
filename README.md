@@ -74,9 +74,6 @@ schema = {
 validate_and_clean(data, schema)
 print(data) # {"a": "x", "b": 1}
 
-# the same schemas with every `allOf` merged into its parent, as `dist/js/schema` holds them
-from mat3ra.esse.data.schemas_resolved import RESOLVED_SCHEMAS
-
 # alternative: schema-aware cleaning via generated pydantic models
 # also see how it is used in ade: https://github.com/mat3ra/ade/blob/main/src/py/mat3ra/ade/application.py
 from pydantic import ConfigDict
