@@ -37,6 +37,8 @@ export default class JSONSchemasGenerator implements JSONSchemasGeneratorConfig 
 
     readonly propertiesManifestDir?: string;
 
+    private resolvedSchemas?: JSONSchema[];
+
     constructor(config: JSONSchemasGeneratorConfig = DEFAULT_CONFIG) {
         this.schemasDir = config.schemasDir;
         this.examplesDir = config.examplesDir;
@@ -59,17 +61,29 @@ export default class JSONSchemasGenerator implements JSONSchemasGeneratorConfig 
             .filter((x) => x) as object;
     }
 
-    writeResolvedSchemas(subfolder: string, skipMergeAllOff = false) {
-        const schemasFolder = `${subfolder}/schema`;
-        fs.rmSync(schemasFolder, { recursive: true, force: true });
+    /**
+     * The schemas with every `allOf` merged into its parent, as dist/js/schema
+     * holds them. Computed once: the JS assets and the Python modules share it.
+     */
+    getResolvedSchemas(skipMergeAllOff = false): JSONSchema[] {
+        if (skipMergeAllOff) return this.schemas;
+        if (this.resolvedSchemas) return this.resolvedSchemas;
 
         const mergeAllOfConfig = {
             resolvers: { defaultResolver: mergeAllOf.options.resolvers.title },
         };
-
-        const schemas = this.schemas.map((schema) => {
+        this.resolvedSchemas = this.schemas.map((schema) => {
             console.log(`Resolving schema: ${schema.$id}`);
-            const mergedSchema = skipMergeAllOff ? schema : mergeAllOf(schema, mergeAllOfConfig);
+            return mergeAllOf(schema, mergeAllOfConfig);
+        });
+        return this.resolvedSchemas;
+    }
+
+    writeResolvedSchemas(subfolder: string, skipMergeAllOff = false) {
+        const schemasFolder = `${subfolder}/schema`;
+        fs.rmSync(schemasFolder, { recursive: true, force: true });
+
+        const schemas = this.getResolvedSchemas(skipMergeAllOff).map((mergedSchema) => {
             let idAsPath = mergedSchema.$id;
             if (!idAsPath) {
                 throw new Error(`Schema ID is missing:

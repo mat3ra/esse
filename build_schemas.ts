@@ -10,7 +10,7 @@ import JSONSchemasGenerator from "./src/js/esse/JSONSchemasGenerator";
 // JS Modules
 
 const generator = new JSONSchemasGenerator();
-const { schemas, wrappedExamples, propertiesManifest, results } = generator;
+const { wrappedExamples, propertiesManifest, results } = generator;
 
 if (process.env.BUILD_PYTHON_MODULES === "true") {
     // PY Modules
@@ -21,9 +21,14 @@ if (process.env.BUILD_PYTHON_MODULES === "true") {
         ),
         "utf8",
     );
+    // allOf merged, as dist/js/schema holds them: the merged shape is what
+    // consumers read, and it validates the same data.
     fs.writeFileSync(
         "./src/py/mat3ra/esse/data/schemas.py",
-        ["import json", `SCHEMAS = json.loads(r'''${JSON.stringify(schemas)}''')`].join("\n"),
+        [
+            "import json",
+            `SCHEMAS = json.loads(r'''${JSON.stringify(generator.getResolvedSchemas())}''')`,
+        ].join("\n"),
         "utf8",
     );
     fs.writeFileSync(
