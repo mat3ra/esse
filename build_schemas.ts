@@ -26,6 +26,17 @@ if (process.env.BUILD_PYTHON_MODULES === "true") {
         ["import json", `SCHEMAS = json.loads(r'''${JSON.stringify(schemas)}''')`].join("\n"),
         "utf8",
     );
+    // The same schemas with every allOf merged, as dist/js/schema holds them.
+    fs.writeFileSync(
+        "./src/py/mat3ra/esse/data/schemas_resolved.py",
+        [
+            "import json",
+            `RESOLVED_SCHEMAS = json.loads(r'''${JSON.stringify(
+                generator.getResolvedSchemas(),
+            )}''')`,
+        ].join("\n"),
+        "utf8",
+    );
     fs.writeFileSync(
         "./src/py/mat3ra/esse/data/properties.py",
         [
