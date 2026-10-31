@@ -1,0 +1,34 @@
+{
+    "$id": "properties-directory/scalar/band-edge-conduction-min",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Conduction band minimum property schema",
+    "description": "lowest unoccupied band energy of a crystal",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/reusable/energy.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "band_edge_conduction_min"
+            ]
+        },
+        "kpoint": {
+            "description": "k-point at which the conduction band minimum occurs, in crystal coordinates",
+            "$ref": "../../core/reusable/kpoint.json"
+        },
+        "spin": {
+            "description": "spin of the channel the band edge belongs to",
+            "type": "number",
+            "enum": [
+                0.5,
+                -0.5
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

@@ -41,6 +41,30 @@ fermi_energy:
   schemaId: properties-directory/scalar/fermi-energy
   isResult: true
 
+magnetization_total:
+  defaults:
+    units: uB
+  schemaId: properties-directory/scalar/magnetization-total
+  isResult: true
+
+magnetization_absolute:
+  defaults:
+    units: uB
+  schemaId: properties-directory/scalar/magnetization-absolute
+  isResult: true
+
+band_edge_valence_max:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/band-edge-valence-max
+  isResult: true
+
+band_edge_conduction_min:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/band-edge-conduction-min
+  isResult: true
+
 homo_energy:
   defaults:
     units: eV
@@ -181,6 +205,12 @@ band_structure:
       units: eV
 
   schemaId: properties-directory/non-scalar/band-structure
+  isResult: true
+
+eigenvalues_at_kpoints:
+  defaults:
+    units: eV
+  schemaId: properties-directory/non-scalar/eigenvalues-at-kpoints
   isResult: true
 
 density_of_states:

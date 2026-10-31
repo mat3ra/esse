@@ -4,7 +4,6 @@
     "title": "Band gaps property schema",
     "description": "contains band gap values",
     "type": "object",
-
     "properties": {
         "name": {
             "enum": [
@@ -20,32 +19,7 @@
         "eigenvalues": {
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "kpoint": {
-                        "$ref": "../../core/reusable/kpoint.json"
-                    },
-                    "weight": {
-                        "type": "number"
-                    },
-                    "eigenvalues": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "spin": {
-                                    "type": "number"
-                                },
-                                "energies": {
-                                    "type": "array"
-                                },
-                                "occupations": {
-                                    "type": "array"
-                                }
-                            }
-                        }
-                    }
-                }
+                "$ref": "../../core/reusable/eigenvalues_at_kpoint.json"
             }
         }
     },

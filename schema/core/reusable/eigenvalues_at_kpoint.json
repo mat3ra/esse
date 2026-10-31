@@ -1,0 +1,26 @@
+{
+    "$id": "core/reusable/eigenvalues-at-kpoint",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "eigenvalues at k-point schema",
+    "description": "the eigenvalues at one k-point: its coordinates, its integration weight, and the band energies and occupations of each spin channel",
+    "type": "object",
+    "properties": {
+        "kpoint": {
+            "$ref": "./kpoint.json"
+        },
+        "weight": {
+            "type": "number",
+            "description": "integration weight of the k-point"
+        },
+        "eigenvalues": {
+            "type": "array",
+            "items": {
+                "$ref": "./band_energies.json"
+            },
+            "description": "one entry per spin channel; a spin-unpolarized calculation has a single entry"
+        }
+    },
+    "required": [
+        "eigenvalues"
+    ]
+}

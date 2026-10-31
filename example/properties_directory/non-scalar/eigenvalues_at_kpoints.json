@@ -1,0 +1,48 @@
+{
+    "name": "eigenvalues_at_kpoints",
+    "units": "eV",
+    "values": [
+        {
+            "kpoint": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "weight": 0.5,
+            "eigenvalues": [
+                {
+                    "spin": 0.5,
+                    "energies": [
+                        -5.6,
+                        6.2
+                    ],
+                    "occupations": [
+                        1.0,
+                        0.0
+                    ]
+                }
+            ]
+        },
+        {
+            "kpoint": [
+                0.5,
+                0.0,
+                0.0
+            ],
+            "weight": 1.5,
+            "eigenvalues": [
+                {
+                    "spin": 0.5,
+                    "energies": [
+                        -4.1,
+                        5.3
+                    ],
+                    "occupations": [
+                        1.0,
+                        0.0
+                    ]
+                }
+            ]
+        }
+    ]
+}

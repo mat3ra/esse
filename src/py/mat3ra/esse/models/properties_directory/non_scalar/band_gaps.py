@@ -53,22 +53,42 @@ class BandGapSchema(BaseModel):
     value: float
 
 
-class Eigenvalue1(BaseModel):
-    spin: Optional[float] = None
-    energies: Optional[List] = None
-    occupations: Optional[List] = None
+class Spin(Enum):
+    number_0_5 = 0.5
+    number__0_5 = -0.5
 
 
-class Eigenvalue(BaseModel):
+class BandEnergiesSchema(BaseModel):
+    spin: Optional[Spin] = None
+    """
+    spin of the channel
+    """
+    energies: List[float]
+    """
+    band energies, in band order
+    """
+    occupations: Optional[List[float]] = None
+    """
+    band occupations, in the same order as energies
+    """
+
+
+class EigenvaluesAtKPointSchema(BaseModel):
     kpoint: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
     """
     A k-point is a point in reciprocal space of a crystal.
     """
     weight: Optional[float] = None
-    eigenvalues: Optional[List[Eigenvalue1]] = None
+    """
+    integration weight of the k-point
+    """
+    eigenvalues: List[BandEnergiesSchema]
+    """
+    one entry per spin channel; a spin-unpolarized calculation has a single entry
+    """
 
 
 class BandGapsPropertySchema(BaseModel):
     name: Name
     values: List[BandGapSchema]
-    eigenvalues: Optional[List[Eigenvalue]] = None
+    eigenvalues: Optional[List[EigenvaluesAtKPointSchema]] = None

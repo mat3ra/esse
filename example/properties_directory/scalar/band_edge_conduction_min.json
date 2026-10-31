@@ -1,0 +1,10 @@
+{
+    "name": "band_edge_conduction_min",
+    "units": "eV",
+    "value": 6.8,
+    "kpoint": [
+        0.5,
+        0.0,
+        0.5
+    ]
+}
