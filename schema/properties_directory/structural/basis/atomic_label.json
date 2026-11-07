@@ -8,5 +8,10 @@
         {
             "$ref": "../../../core/reusable/atomic_int.json"
         }
-    ]
+    ],
+    "properties": {
+        "value": {
+            "minimum": 0
+        }
+    }
 }

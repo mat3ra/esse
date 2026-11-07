@@ -100,7 +100,7 @@ class QEPwxBaseContextProviderSchema(BaseModel):
     """
     NTYP_WITH_LABELS: Optional[conint(ge=1)] = None
     """
-    Number of different atomic species including labels
+    Number of different atomic species, each an element and a starting magnetization
     """
     ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None

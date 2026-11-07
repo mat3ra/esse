@@ -226,7 +226,7 @@ class QENEBContextProviderSchema(BaseModel):
     """
     NTYP_WITH_LABELS: conint(ge=1)
     """
-    Number of different atomic species including labels
+    Number of different atomic species, each an element and a starting magnetization
     """
     ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
@@ -261,7 +261,7 @@ class QEPwxContextProviderSchema(BaseModel):
     """
     NTYP_WITH_LABELS: conint(ge=1)
     """
-    Number of different atomic species including labels
+    Number of different atomic species, each an element and a starting magnetization
     """
     ATOMIC_POSITIONS: List[ATOMICPOSITION]
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str

@@ -9,7 +9,7 @@ from typing import List
 from pydantic import BaseModel, Field, RootModel, confloat
 
 
-class AtomicFloatSchema(BaseModel):
+class AtomicStartingMagnetizationSchema(BaseModel):
     value: confloat(ge=-1.0, le=1.0)
     """
     value of this entry
@@ -20,8 +20,8 @@ class AtomicFloatSchema(BaseModel):
     """
 
 
-class StartingMagnetizationSchema(RootModel[List[AtomicFloatSchema]]):
-    root: List[AtomicFloatSchema] = Field(..., title="starting magnetization schema")
+class StartingMagnetizationSchema(RootModel[List[AtomicStartingMagnetizationSchema]]):
+    root: List[AtomicStartingMagnetizationSchema] = Field(..., title="starting magnetization schema")
     """
-    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
+    starting magnetization schema
     """

@@ -6,11 +6,11 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, Field, RootModel, conint
 
 
 class AtomicLabelSchema(BaseModel):
-    value: int
+    value: conint(ge=0)
     """
     value of this entry
     """

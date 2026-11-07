@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, conint
 
 
 class Name(Enum):
@@ -38,7 +38,7 @@ class Name738(Enum):
 
 
 class AtomicLabelSchema(BaseModel):
-    value: int
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -80,7 +80,7 @@ class Info(BaseModel):
     materialId: Optional[str] = None
 
 
-class Source(BaseModel):
+class MaterialPropertySourceSchema(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -93,7 +93,7 @@ class ProtoPropertyHolderSchema(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: Source
+    source: MaterialPropertySourceSchema = Field(..., title="Material property source schema")
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

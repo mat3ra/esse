@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 
 
 class Value(Enum):
@@ -175,7 +175,7 @@ class AtomicConstraintSchema(BaseModel):
 
 
 class AtomicLabelSchema(BaseModel):
-    value: int
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -185,7 +185,7 @@ class AtomicLabelSchema(BaseModel):
     """
 
 
-class AtomicFloatSchema(BaseModel):
+class AtomicStartingMagnetizationSchema(BaseModel):
     value: confloat(ge=-1.0, le=1.0)
     """
     value of this entry
@@ -214,9 +214,11 @@ class BasisSchema(BaseModel):
     """
     atomic labels schema
     """
-    startingMagnetization: Optional[List[AtomicFloatSchema]] = Field(None, title="starting magnetization schema")
+    startingMagnetization: Optional[List[AtomicStartingMagnetizationSchema]] = Field(
+        None, title="starting magnetization schema"
+    )
     """
-    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
+    starting magnetization schema
     """
 
 

@@ -115,7 +115,7 @@ class Name668(Enum):
     starting_magnetization = "starting_magnetization"
 
 
-class AtomicFloatSchema(BaseModel):
+class AtomicStartingMagnetizationSchema(BaseModel):
     value: confloat(ge=-1.0, le=1.0)
     """
     value of this entry
@@ -128,9 +128,9 @@ class AtomicFloatSchema(BaseModel):
 
 class StartingMagnetizationPropertySchema(BaseModel):
     name: Name668
-    values: List[AtomicFloatSchema] = Field(..., title="starting magnetization schema")
+    values: List[AtomicStartingMagnetizationSchema] = Field(..., title="starting magnetization schema")
     """
-    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
+    starting magnetization schema
     """
 
 
@@ -138,7 +138,7 @@ class Info(BaseModel):
     materialId: Optional[str] = None
 
 
-class Source(BaseModel):
+class MaterialPropertySourceSchema(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -151,7 +151,7 @@ class MetaPropertyHolderSchema(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: Source
+    source: MaterialPropertySourceSchema = Field(..., title="Material property source schema")
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

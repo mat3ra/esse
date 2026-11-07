@@ -14,7 +14,7 @@ class Name(Enum):
     starting_magnetization = "starting_magnetization"
 
 
-class AtomicFloatSchema(BaseModel):
+class AtomicStartingMagnetizationSchema(BaseModel):
     value: confloat(ge=-1.0, le=1.0)
     """
     value of this entry
@@ -27,7 +27,7 @@ class AtomicFloatSchema(BaseModel):
 
 class StartingMagnetizationPropertySchema(BaseModel):
     name: Name
-    values: List[AtomicFloatSchema] = Field(..., title="starting magnetization schema")
+    values: List[AtomicStartingMagnetizationSchema] = Field(..., title="starting magnetization schema")
     """
-    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
+    starting magnetization schema
     """

@@ -24,20 +24,11 @@
         },
         "source": {
             "type": "object",
-            "properties": {
-                "type": {
-                    "description": "Type of the material property's source.",
-                    "type": "string"
-                },
-                "info": {
-                    "type": "object",
-                    "properties": {
-                        "materialId": {
-                            "type": "string"
-                        }
-                    }
+            "allOf": [
+                {
+                    "$ref": "./material_property_source.json"
                 }
-            },
+            ],
             "required": [
                 "type"
             ]

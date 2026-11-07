@@ -2,19 +2,9 @@
     "$id": "properties-directory/structural/basis/starting-magnetization",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "starting magnetization schema",
-    "description": "Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].",
+    "description": "starting magnetization schema",
     "type": "array",
     "items": {
-        "allOf": [
-            {
-                "$ref": "../../../core/reusable/atomic_float.json"
-            }
-        ],
-        "properties": {
-            "value": {
-                "minimum": -1,
-                "maximum": 1
-            }
-        }
+        "$ref": "./atomic_starting_magnetization.json"
     }
 }
