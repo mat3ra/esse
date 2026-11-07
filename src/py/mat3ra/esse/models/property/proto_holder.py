@@ -33,7 +33,30 @@ class AtomicConstraintsPropertySchema(BaseModel):
     """
 
 
-class Name727(Enum):
+class Name738(Enum):
+    atomic_labels = "atomic_labels"
+
+
+class AtomicLabelSchema(BaseModel):
+    value: int
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class AtomicLabelsPropertySchema(BaseModel):
+    name: Name738
+    values: List[AtomicLabelSchema] = Field(..., title="atomic labels schema")
+    """
+    atomic labels schema
+    """
+
+
+class Name739(Enum):
     boundary_conditions = "boundary_conditions"
 
 
@@ -45,7 +68,7 @@ class Type(Enum):
 
 
 class BoundaryConditionsPropertySchema(BaseModel):
-    name: Name727
+    name: Name739
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -66,7 +89,7 @@ class Source(BaseModel):
 
 
 class ProtoPropertyHolderSchema(BaseModel):
-    data: Union[AtomicConstraintsPropertySchema, BoundaryConditionsPropertySchema]
+    data: Union[AtomicConstraintsPropertySchema, AtomicLabelsPropertySchema, BoundaryConditionsPropertySchema]
     """
     container of the information, specific to each property
     """

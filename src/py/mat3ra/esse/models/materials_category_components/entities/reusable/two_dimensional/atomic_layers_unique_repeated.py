@@ -297,17 +297,6 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
-    """
-    value of this entry
-    """
-    id: int
-    """
-    integer id of this entry
-    """
-
-
 class BasisSchema(BaseModel):
     elements: List[AtomicElementSchema] = Field(..., title="atomic elements schema")
     """
@@ -318,10 +307,6 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
-    """
-    atomic labels schema
-    """
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -419,7 +404,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name19(Enum):
+class Name20(Enum):
     density = "density"
 
 
@@ -442,7 +427,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name20(Enum):
+class Name21(Enum):
     symmetry = "symmetry"
 
 
@@ -462,7 +447,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name21(Enum):
+class Name22(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -475,7 +460,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name22(Enum):
+class Name23(Enum):
     p_norm = "p-norm"
 
 
@@ -488,7 +473,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name23(Enum):
+class Name24(Enum):
     inchi = "inchi"
 
 
@@ -497,7 +482,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name24(Enum):
+class Name25(Enum):
     inchi_key = "inchi_key"
 
 
@@ -584,7 +569,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name25(Enum):
+class Name26(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -597,7 +582,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name25
+    name: Name26
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

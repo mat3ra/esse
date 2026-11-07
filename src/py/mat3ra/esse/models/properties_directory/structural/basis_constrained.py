@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field, conint
+from pydantic import BaseModel, Field, confloat
 
 
 class Value(Enum):
@@ -163,8 +163,8 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+class AtomicConstraintSchema(BaseModel):
+    value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
     value of this entry
     """
@@ -174,8 +174,19 @@ class AtomicLabelSchema(BaseModel):
     """
 
 
-class AtomicConstraintSchema(BaseModel):
-    value: List[bool] = Field(..., title="vector boolean 3d schema")
+class AtomicLabelSchema(BaseModel):
+    value: int
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class AtomicFloatSchema(BaseModel):
+    value: confloat(ge=-1.0, le=1.0)
     """
     value of this entry
     """
@@ -195,11 +206,15 @@ class BasisConstrainedSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
+    """
+    atomic constraints schema
+    """
     labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
     """
     atomic labels schema
     """
-    constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
+    startingMagnetization: Optional[List[AtomicFloatSchema]] = Field(None, title="starting magnetization schema")
     """
-    atomic constraints schema
+    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
     """

@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/structural/basis/starting-magnetization-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "starting magnetization property schema",
+    "description": "starting magnetization property schema (as stored in a database)",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "starting_magnetization"
+            ]
+        },
+        "values": {
+            "$ref": "./starting_magnetization.json"
+        }
+    },
+    "required": [
+        "name",
+        "values"
+    ]
+}

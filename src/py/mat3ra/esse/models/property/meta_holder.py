@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, confloat, conint, constr
 
@@ -111,16 +111,43 @@ class FileDataItem(BaseModel):
     """
 
 
+class Name668(Enum):
+    starting_magnetization = "starting_magnetization"
+
+
+class AtomicFloatSchema(BaseModel):
+    value: confloat(ge=-1.0, le=1.0)
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class StartingMagnetizationPropertySchema(BaseModel):
+    name: Name668
+    values: List[AtomicFloatSchema] = Field(..., title="starting magnetization schema")
+    """
+    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
+    """
+
+
+class Info(BaseModel):
+    materialId: Optional[str] = None
+
+
 class Source(BaseModel):
     type: str
     """
     Type of the material property's source.
     """
-    info: Optional[Dict[str, Any]] = None
+    info: Optional[Info] = None
 
 
 class MetaPropertyHolderSchema(BaseModel):
-    data: FileDataItem
+    data: Union[FileDataItem, StartingMagnetizationPropertySchema]
     """
     container of the information, specific to each property
     """

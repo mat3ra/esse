@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat
 
 
 class Value(Enum):
@@ -163,8 +163,8 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+class AtomicConstraintSchema(BaseModel):
+    value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
     value of this entry
     """
@@ -174,8 +174,19 @@ class AtomicLabelSchema(BaseModel):
     """
 
 
-class AtomicConstraintSchema(BaseModel):
-    value: List[bool] = Field(..., title="vector boolean 3d schema")
+class AtomicLabelSchema(BaseModel):
+    value: int
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class AtomicFloatSchema(BaseModel):
+    value: confloat(ge=-1.0, le=1.0)
     """
     value of this entry
     """
@@ -195,13 +206,17 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
+    """
+    atomic constraints schema
+    """
     labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
     """
     atomic labels schema
     """
-    constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
+    startingMagnetization: Optional[List[AtomicFloatSchema]] = Field(None, title="starting magnetization schema")
     """
-    atomic constraints schema
+    Quantum ESPRESSO starting magnetization per atom, a fraction in [-1, 1].
     """
 
 
@@ -300,30 +315,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name625(Enum):
+class Name635(Enum):
     density = "density"
 
 
-class Units285(Enum):
+class Units296(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units285] = None
+    units: Optional[Units296] = None
     value: float
 
 
-class Units286(Enum):
+class Units297(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units286] = None
+    units: Optional[Units297] = None
     value: float
 
 
-class Name626(Enum):
+class Name636(Enum):
     symmetry = "symmetry"
 
 
@@ -343,7 +358,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name627(Enum):
+class Name637(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -356,7 +371,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name628(Enum):
+class Name638(Enum):
     p_norm = "p-norm"
 
 
@@ -369,7 +384,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name629(Enum):
+class Name639(Enum):
     inchi = "inchi"
 
 
@@ -378,7 +393,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name630(Enum):
+class Name640(Enum):
     inchi_key = "inchi_key"
 
 
@@ -465,7 +480,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name631(Enum):
+class Name641(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -478,7 +493,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name631
+    name: Name641
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List
 
-from pydantic import BaseModel, Field, RootModel, conint
+from pydantic import BaseModel, Field, RootModel
 
 
 class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+    value: int
     """
     value of this entry
     """

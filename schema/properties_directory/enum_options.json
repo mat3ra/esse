@@ -92,13 +92,15 @@
             "type": "string",
             "enum": [
                 "atomic_constraints",
+                "atomic_labels",
                 "boundary_conditions"
             ]
         },
         "MetaPropertyEnum": {
             "type": "string",
             "enum": [
-                "pseudopotential"
+                "pseudopotential",
+                "starting_magnetization"
             ]
         }
     }

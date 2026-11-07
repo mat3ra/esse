@@ -11,6 +11,12 @@
             "properties": {
                 "constraints": {
                     "$ref": "basis/atomic_constraints.json"
+                },
+                "labels": {
+                    "$ref": "basis/atomic_labels.json"
+                },
+                "startingMagnetization": {
+                    "$ref": "basis/starting_magnetization.json"
                 }
             },
             "required": ["constraints"]
