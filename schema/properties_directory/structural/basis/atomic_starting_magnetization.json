@@ -2,7 +2,7 @@
     "$id": "properties-directory/structural/basis/atomic-starting-magnetization",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "atomic starting magnetization schema",
-    "description": "Quantum ESPRESSO starting magnetization: spin polarization of the atom's valence electrons, from -1 (all spins down) to 1 (all up); not in Bohr magnetons.",
+    "description": "Quantum ESPRESSO starting magnetization: spin polarization of the atom's valence electrons, from -1 (all spins down) to 1 (all up).",
     "type": "object",
     "allOf": [
         {

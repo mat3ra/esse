@@ -11,6 +11,9 @@ from pydantic import BaseModel
 
 class Info(BaseModel):
     materialId: Optional[str] = None
+    """
+    Material's identity
+    """
 
 
 class MaterialPropertySourceSchema(BaseModel):

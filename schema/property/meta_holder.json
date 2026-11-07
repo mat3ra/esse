@@ -23,6 +23,7 @@
             ]
         },
         "source": {
+            "title": "meta property source schema",
             "type": "object",
             "allOf": [
                 {

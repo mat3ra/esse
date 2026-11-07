@@ -2,6 +2,7 @@
     "$id": "property/material-property-source",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Material property source schema",
+    "description": "Source of a proto or meta property: the material it belongs to, by info.materialId.",
     "type": "object",
     "properties": {
         "type": {
@@ -12,6 +13,7 @@
             "type": "object",
             "properties": {
                 "materialId": {
+                    "description": "Material's identity",
                     "type": "string"
                 }
             }

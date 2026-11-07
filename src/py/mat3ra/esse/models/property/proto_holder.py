@@ -78,9 +78,12 @@ class BoundaryConditionsPropertySchema(BaseModel):
 
 class Info(BaseModel):
     materialId: Optional[str] = None
+    """
+    Material's identity
+    """
 
 
-class MaterialPropertySourceSchema(BaseModel):
+class ProtoPropertySourceSchema(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -93,7 +96,10 @@ class ProtoPropertyHolderSchema(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: MaterialPropertySourceSchema = Field(..., title="Material property source schema")
+    source: ProtoPropertySourceSchema = Field(..., title="proto property source schema")
+    """
+    Source of a proto or meta property: the material it belongs to, by info.materialId.
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

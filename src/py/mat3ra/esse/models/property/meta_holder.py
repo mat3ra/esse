@@ -136,9 +136,12 @@ class StartingMagnetizationPropertySchema(BaseModel):
 
 class Info(BaseModel):
     materialId: Optional[str] = None
+    """
+    Material's identity
+    """
 
 
-class MaterialPropertySourceSchema(BaseModel):
+class MetaPropertySourceSchema(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -151,7 +154,10 @@ class MetaPropertyHolderSchema(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: MaterialPropertySourceSchema = Field(..., title="Material property source schema")
+    source: MetaPropertySourceSchema = Field(..., title="meta property source schema")
+    """
+    Source of a proto or meta property: the material it belongs to, by info.materialId.
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

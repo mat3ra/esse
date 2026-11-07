@@ -26,6 +26,7 @@
             ]
         },
         "source": {
+            "title": "proto property source schema",
             "type": "object",
             "allOf": [
                 {
