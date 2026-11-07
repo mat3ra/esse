@@ -50,14 +50,14 @@ class DFTLDAModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Functional10(Enum):
+class Functional7(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class BaseMethod16(BaseModel):
+class BaseMethod11(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -79,17 +79,17 @@ class BaseMethod16(BaseModel):
 class DFTGGAModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional10
-    method: BaseMethod16 = Field(..., title="base method")
+    functional: Functional7
+    method: BaseMethod11 = Field(..., title="base method")
 
 
-class Functional11(Enum):
+class Functional8(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
     other = "other"
 
 
-class BaseMethod17(BaseModel):
+class BaseMethod12(BaseModel):
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -111,8 +111,8 @@ class BaseMethod17(BaseModel):
 class DFTHybridModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional11
-    method: BaseMethod17 = Field(..., title="base method")
+    functional: Functional8
+    method: BaseMethod12 = Field(..., title="base method")
 
 
 class ESSE(RootModel[Union[DFTLDAModelSchema, DFTGGAModelSchema, DFTHybridModelSchema]]):
