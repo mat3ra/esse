@@ -21,18 +21,29 @@
                     "$ref": "../properties_directory/structural/basis/atomic_labels_property.json"
                 },
                 {
+                    "$ref": "../properties_directory/structural/basis/atomic_magnetic_moments_property.json"
+                },
+                {
                     "$ref": "../properties_directory/structural/basis/boundary_conditions.json"
                 }
             ]
         },
         "source": {
-            "title": "proto property source schema",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "./material_property_source.json"
+            "properties": {
+                "type": {
+                    "description": "Type of the material property's source.",
+                    "type": "string"
+                },
+                "info": {
+                    "type": "object",
+                    "properties": {
+                        "materialId": {
+                            "type": "string"
+                        }
+                    }
                 }
-            ],
+            },
             "required": [
                 "type",
                 "info"

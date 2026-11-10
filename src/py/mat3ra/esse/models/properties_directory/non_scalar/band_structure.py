@@ -34,7 +34,7 @@ class Label3(Enum):
     energy = "energy"
 
 
-class Units21(Enum):
+class Units16(Enum):
     kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
@@ -50,7 +50,7 @@ class AxisSchema6(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units21] = None
+    units: Optional[Units16] = None
     """
     units for an axis
     """

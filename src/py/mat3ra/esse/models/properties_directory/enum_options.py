@@ -90,9 +90,9 @@ class ArrayOfObjectsPropertyEnum(Enum):
 class ProtoPropertyEnum(Enum):
     atomic_constraints = "atomic_constraints"
     atomic_labels = "atomic_labels"
+    atomic_magnetic_moments = "atomic_magnetic_moments"
     boundary_conditions = "boundary_conditions"
 
 
 class MetaPropertyEnum(Enum):
     pseudopotential = "pseudopotential"
-    atomic_magnetic_moments = "atomic_magnetic_moments"

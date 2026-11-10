@@ -30,7 +30,7 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units15(Enum):
+class Units14(Enum):
     eV_A_2 = "eV/A^2"
 
 
@@ -44,5 +44,5 @@ class ConductionBandMinimumPropertySchema(BaseModel):
     """
     spin of the channel the band edge belongs to
     """
-    units: Union[Units, Units15]
+    units: Union[Units, Units14]
     value: float

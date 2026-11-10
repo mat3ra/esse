@@ -16,20 +16,20 @@
             "oneOf": [
                 {
                     "$ref": "../methods_directory/physical/psp/file_data_item.json"
-                },
-                {
-                    "$ref": "../properties_directory/structural/basis/atomic_magnetic_moments_property.json"
                 }
             ]
         },
         "source": {
-            "title": "meta property source schema",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "./material_property_source.json"
+            "properties": {
+                "type": {
+                    "description": "Type of the material property's source.",
+                    "type": "string"
+                },
+                "info": {
+                    "type": "object"
                 }
-            ],
+            },
             "required": [
                 "type"
             ]

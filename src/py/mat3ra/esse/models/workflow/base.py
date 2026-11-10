@@ -13,27 +13,23 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 class Queue(Enum):
     D = "D"
     OR = "OR"
+    OF = "OF"
+    OFplus = "OFplus"
+    SR = "SR"
+    SF = "SF"
+    SFplus = "SFplus"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
-    SR = "SR"
     SR4 = "SR4"
     SR8 = "SR8"
     SR16 = "SR16"
-    OF = "OF"
-    OFplus = "OFplus"
-    SF = "SF"
-    SFplus = "SFplus"
     GOF = "GOF"
     G4OF = "G4OF"
     G8OF = "G8OF"
-    GP4OF = "GP4OF"
     GSF = "GSF"
     G4SF = "G4SF"
     G8SF = "G8SF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
 
 
 class TimeLimitType(Enum):
@@ -107,7 +103,7 @@ class Error(BaseModel):
 class ComputeArgumentsSchema(BaseModel):
     queue: Queue
     """
-    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
     """
     nodes: int
     """
@@ -766,10 +762,6 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
-    RESTART: Optional[bool] = None
-    """
-    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
-    """
 
 
 class RESTARTMODE(Enum):
@@ -937,7 +929,7 @@ class QENEBContextProviderSchema(BaseModel):
     """
     NTYP_WITH_LABELS: conint(ge=1)
     """
-    Number of different atomic species, each an element and a magnetic moment
+    Number of different atomic species including labels
     """
     ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
@@ -972,7 +964,7 @@ class QEPwxContextProviderSchema(BaseModel):
     """
     NTYP_WITH_LABELS: conint(ge=1)
     """
-    Number of different atomic species, each an element and a magnetic moment
+    Number of different atomic species including labels
     """
     ATOMIC_POSITIONS: List[ATOMICPOSITION]
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
@@ -1085,7 +1077,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name35(Enum):
+class Name31(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"

@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, confloat, conint, constr
 
@@ -111,58 +111,20 @@ class FileDataItem(BaseModel):
     """
 
 
-class Name669(Enum):
-    atomic_magnetic_moments = "atomic_magnetic_moments"
-
-
-class AtomicFloatSchema(BaseModel):
-    value: float
-    """
-    value of this entry
-    """
-    id: int
-    """
-    integer id of this entry
-    """
-
-
-class Units(Enum):
-    uB = "uB"
-
-
-class AtomicMagneticMomentsPropertySchema(BaseModel):
-    name: Name669
-    values: List[AtomicFloatSchema] = Field(..., title="atomic magnetic moments schema")
-    """
-    Magnetic moment of each atom.
-    """
-    units: Units
-
-
-class Info(BaseModel):
-    materialId: Optional[str] = None
-    """
-    Material's identity
-    """
-
-
-class MetaPropertySourceSchema(BaseModel):
+class Source(BaseModel):
     type: str
     """
     Type of the material property's source.
     """
-    info: Optional[Info] = None
+    info: Optional[Dict[str, Any]] = None
 
 
 class MetaPropertyHolderSchema(BaseModel):
-    data: Union[FileDataItem, AtomicMagneticMomentsPropertySchema]
+    data: FileDataItem
     """
     container of the information, specific to each property
     """
-    source: MetaPropertySourceSchema = Field(..., title="meta property source schema")
-    """
-    Source of a proto or meta property: the material it belongs to, by info.materialId.
-    """
+    source: Source
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

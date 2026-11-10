@@ -33,7 +33,7 @@ class AtomicConstraintsPropertySchema(BaseModel):
     """
 
 
-class Name739(Enum):
+class Name738(Enum):
     atomic_labels = "atomic_labels"
 
 
@@ -49,11 +49,39 @@ class AtomicLabelSchema(BaseModel):
 
 
 class AtomicLabelsPropertySchema(BaseModel):
-    name: Name739
+    name: Name738
     values: List[AtomicLabelSchema] = Field(..., title="atomic labels schema")
     """
     atomic labels schema
     """
+
+
+class Name739(Enum):
+    atomic_magnetic_moments = "atomic_magnetic_moments"
+
+
+class AtomicFloatSchema(BaseModel):
+    value: float
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class Units(Enum):
+    uB = "uB"
+
+
+class AtomicMagneticMomentsPropertySchema(BaseModel):
+    name: Name739
+    values: List[AtomicFloatSchema] = Field(..., title="atomic magnetic moments schema")
+    """
+    Magnetic moment of each atom.
+    """
+    units: Units
 
 
 class Name740(Enum):
@@ -78,12 +106,9 @@ class BoundaryConditionsPropertySchema(BaseModel):
 
 class Info(BaseModel):
     materialId: Optional[str] = None
-    """
-    Material's identity
-    """
 
 
-class ProtoPropertySourceSchema(BaseModel):
+class Source(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -92,14 +117,16 @@ class ProtoPropertySourceSchema(BaseModel):
 
 
 class ProtoPropertyHolderSchema(BaseModel):
-    data: Union[AtomicConstraintsPropertySchema, AtomicLabelsPropertySchema, BoundaryConditionsPropertySchema]
+    data: Union[
+        AtomicConstraintsPropertySchema,
+        AtomicLabelsPropertySchema,
+        AtomicMagneticMomentsPropertySchema,
+        BoundaryConditionsPropertySchema,
+    ]
     """
     container of the information, specific to each property
     """
-    source: ProtoPropertySourceSchema = Field(..., title="proto property source schema")
-    """
-    Source of a proto or meta property: the material it belongs to, by info.materialId.
-    """
+    source: Source
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
