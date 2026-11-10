@@ -1,5 +1,6 @@
 {
-    "name": "starting_magnetization",
+    "name": "atomic_magnetic_moments",
+    "units": "uB",
     "values": [
         {
             "id": 0,

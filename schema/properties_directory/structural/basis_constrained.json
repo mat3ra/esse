@@ -15,8 +15,8 @@
                 "labels": {
                     "$ref": "basis/atomic_labels.json"
                 },
-                "startingMagnetization": {
-                    "$ref": "basis/starting_magnetization.json"
+                "magneticMoments": {
+                    "$ref": "basis/atomic_magnetic_moments.json"
                 }
             },
             "required": ["constraints"]

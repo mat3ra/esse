@@ -1,0 +1,25 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-magnetic-moments-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic magnetic moments property schema",
+    "description": "atomic magnetic moments property schema (as stored in a database)",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "atomic_magnetic_moments"
+            ]
+        },
+        "values": {
+            "$ref": "./atomic_magnetic_moments.json"
+        },
+        "units": {
+            "$ref": "../../../definitions/units.json#/magnetic"
+        }
+    },
+    "required": [
+        "name",
+        "values",
+        "units"
+    ]
+}

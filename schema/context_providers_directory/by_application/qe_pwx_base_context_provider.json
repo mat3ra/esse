@@ -25,7 +25,7 @@
         },
         "NTYP_WITH_LABELS": {
             "type": "integer",
-            "description": "Number of different atomic species, each an element and a starting magnetization",
+            "description": "Number of different atomic species, each an element and a magnetic moment",
             "minimum": 1
         },
         "ATOMIC_POSITIONS": {

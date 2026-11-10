@@ -185,8 +185,8 @@ class AtomicLabelSchema(BaseModel):
     """
 
 
-class AtomicStartingMagnetizationSchema(BaseModel):
-    value: confloat(ge=-1.0, le=1.0)
+class AtomicFloatSchema(BaseModel):
+    value: float
     """
     value of this entry
     """
@@ -214,11 +214,9 @@ class BasisSchema(BaseModel):
     """
     atomic labels schema
     """
-    startingMagnetization: Optional[List[AtomicStartingMagnetizationSchema]] = Field(
-        None, title="starting magnetization schema"
-    )
+    magneticMoments: Optional[List[AtomicFloatSchema]] = Field(None, title="atomic magnetic moments schema")
     """
-    starting magnetization schema
+    Magnetic moment of each atom.
     """
 
 
@@ -317,30 +315,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name643(Enum):
+class Name644(Enum):
     density = "density"
 
 
-class Units299(Enum):
+class Units300(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units299] = None
-    value: float
-
-
-class Units300(Enum):
-    angstrom = "angstrom"
-
-
-class ScalarSchema(BaseModel):
     units: Optional[Units300] = None
     value: float
 
 
-class Name644(Enum):
+class Units301(Enum):
+    angstrom = "angstrom"
+
+
+class ScalarSchema(BaseModel):
+    units: Optional[Units301] = None
+    value: float
+
+
+class Name645(Enum):
     symmetry = "symmetry"
 
 
@@ -360,7 +358,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name645(Enum):
+class Name646(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -373,7 +371,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name646(Enum):
+class Name647(Enum):
     p_norm = "p-norm"
 
 
@@ -386,7 +384,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name647(Enum):
+class Name648(Enum):
     inchi = "inchi"
 
 
@@ -395,7 +393,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name648(Enum):
+class Name649(Enum):
     inchi_key = "inchi_key"
 
 
@@ -482,7 +480,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name649(Enum):
+class Name650(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -495,7 +493,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name649
+    name: Name650
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

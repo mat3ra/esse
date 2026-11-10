@@ -95,4 +95,4 @@ class ProtoPropertyEnum(Enum):
 
 class MetaPropertyEnum(Enum):
     pseudopotential = "pseudopotential"
-    starting_magnetization = "starting_magnetization"
+    atomic_magnetic_moments = "atomic_magnetic_moments"

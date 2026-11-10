@@ -18,7 +18,7 @@
                     "$ref": "../methods_directory/physical/psp/file_data_item.json"
                 },
                 {
-                    "$ref": "../properties_directory/structural/basis/starting_magnetization_property.json"
+                    "$ref": "../properties_directory/structural/basis/atomic_magnetic_moments_property.json"
                 }
             ]
         },

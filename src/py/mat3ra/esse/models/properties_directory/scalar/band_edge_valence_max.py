@@ -30,7 +30,7 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units16(Enum):
+class Units17(Enum):
     eV_A_2 = "eV/A^2"
 
 
@@ -44,5 +44,5 @@ class ValenceBandMaximumPropertySchema(BaseModel):
     """
     spin of the channel the band edge belongs to
     """
-    units: Union[Units, Units16]
+    units: Union[Units, Units17]
     value: float

@@ -100,7 +100,7 @@ class QEPwxContextProviderSchema(BaseModel):
     """
     NTYP_WITH_LABELS: conint(ge=1)
     """
-    Number of different atomic species, each an element and a starting magnetization
+    Number of different atomic species, each an element and a magnetic moment
     """
     ATOMIC_POSITIONS: List[ATOMICPOSITION]
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str

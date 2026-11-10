@@ -111,12 +111,12 @@ class FileDataItem(BaseModel):
     """
 
 
-class Name668(Enum):
-    starting_magnetization = "starting_magnetization"
+class Name669(Enum):
+    atomic_magnetic_moments = "atomic_magnetic_moments"
 
 
-class AtomicStartingMagnetizationSchema(BaseModel):
-    value: confloat(ge=-1.0, le=1.0)
+class AtomicFloatSchema(BaseModel):
+    value: float
     """
     value of this entry
     """
@@ -126,12 +126,17 @@ class AtomicStartingMagnetizationSchema(BaseModel):
     """
 
 
-class StartingMagnetizationPropertySchema(BaseModel):
-    name: Name668
-    values: List[AtomicStartingMagnetizationSchema] = Field(..., title="starting magnetization schema")
+class Units(Enum):
+    uB = "uB"
+
+
+class AtomicMagneticMomentsPropertySchema(BaseModel):
+    name: Name669
+    values: List[AtomicFloatSchema] = Field(..., title="atomic magnetic moments schema")
     """
-    starting magnetization schema
+    Magnetic moment of each atom.
     """
+    units: Units
 
 
 class Info(BaseModel):
@@ -150,7 +155,7 @@ class MetaPropertySourceSchema(BaseModel):
 
 
 class MetaPropertyHolderSchema(BaseModel):
-    data: Union[FileDataItem, StartingMagnetizationPropertySchema]
+    data: Union[FileDataItem, AtomicMagneticMomentsPropertySchema]
     """
     container of the information, specific to each property
     """

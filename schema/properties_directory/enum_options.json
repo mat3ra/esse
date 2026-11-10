@@ -100,7 +100,7 @@
             "type": "string",
             "enum": [
                 "pseudopotential",
-                "starting_magnetization"
+                "atomic_magnetic_moments"
             ]
         }
     }
