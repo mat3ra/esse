@@ -1,0 +1,14 @@
+{
+    "name": "atomic_magnetic_moments",
+    "units": "uB",
+    "values": [
+        {
+            "id": 0,
+            "value": 0.5
+        },
+        {
+            "id": 1,
+            "value": -0.5
+        }
+    ]
+}

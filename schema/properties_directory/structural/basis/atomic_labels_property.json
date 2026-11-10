@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-labels-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic labels property schema",
+    "description": "atomic labels property schema (as stored in a database)",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "atomic_labels"
+            ]
+        },
+        "values": {
+            "$ref": "./atomic_labels.json"
+        }
+    },
+    "required": [
+        "name",
+        "values"
+    ]
+}

@@ -163,8 +163,8 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+class AtomicConstraintSchema(BaseModel):
+    value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
     value of this entry
     """
@@ -174,8 +174,19 @@ class AtomicLabelSchema(BaseModel):
     """
 
 
-class AtomicConstraintSchema(BaseModel):
-    value: List[bool] = Field(..., title="vector boolean 3d schema")
+class AtomicLabelSchema(BaseModel):
+    value: conint(ge=0)
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class AtomicFloatSchema(BaseModel):
+    value: float
     """
     value of this entry
     """
@@ -195,11 +206,15 @@ class BasisConstrainedSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
+    """
+    atomic constraints schema
+    """
     labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
     """
     atomic labels schema
     """
-    constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
+    magneticMoments: Optional[List[AtomicFloatSchema]] = Field(None, title="atomic magnetic moments schema")
     """
-    atomic constraints schema
+    Magnetic moment of each atom.
     """

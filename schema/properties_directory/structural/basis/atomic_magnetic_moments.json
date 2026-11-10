@@ -1,0 +1,10 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-magnetic-moments",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic magnetic moments schema",
+    "description": "Magnetic moment of each atom.",
+    "type": "array",
+    "items": {
+        "$ref": "../../../core/reusable/atomic_float.json"
+    }
+}

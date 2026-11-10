@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, conint
 
 
 class Name(Enum):
@@ -33,7 +33,58 @@ class AtomicConstraintsPropertySchema(BaseModel):
     """
 
 
-class Name727(Enum):
+class Name738(Enum):
+    atomic_labels = "atomic_labels"
+
+
+class AtomicLabelSchema(BaseModel):
+    value: conint(ge=0)
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class AtomicLabelsPropertySchema(BaseModel):
+    name: Name738
+    values: List[AtomicLabelSchema] = Field(..., title="atomic labels schema")
+    """
+    atomic labels schema
+    """
+
+
+class Name739(Enum):
+    atomic_magnetic_moments = "atomic_magnetic_moments"
+
+
+class AtomicFloatSchema(BaseModel):
+    value: float
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class Units(Enum):
+    uB = "uB"
+
+
+class AtomicMagneticMomentsPropertySchema(BaseModel):
+    name: Name739
+    values: List[AtomicFloatSchema] = Field(..., title="atomic magnetic moments schema")
+    """
+    Magnetic moment of each atom.
+    """
+    units: Units
+
+
+class Name740(Enum):
     boundary_conditions = "boundary_conditions"
 
 
@@ -45,7 +96,7 @@ class Type(Enum):
 
 
 class BoundaryConditionsPropertySchema(BaseModel):
-    name: Name727
+    name: Name740
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -66,7 +117,12 @@ class Source(BaseModel):
 
 
 class ProtoPropertyHolderSchema(BaseModel):
-    data: Union[AtomicConstraintsPropertySchema, BoundaryConditionsPropertySchema]
+    data: Union[
+        AtomicConstraintsPropertySchema,
+        AtomicLabelsPropertySchema,
+        AtomicMagneticMomentsPropertySchema,
+        BoundaryConditionsPropertySchema,
+    ]
     """
     container of the information, specific to each property
     """
