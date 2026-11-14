@@ -47,15 +47,10 @@
                 "commandTemplate": {
                     "description": "The command template of the application",
                     "type": "string"
-                },
-                "outFileName": {
-                    "description": "The output file name of the application",
-                    "type": "string"
                 }
             },
             "required": [
-                "commandTemplate",
-                "outFileName"
+                "commandTemplate"
             ]
         }
     },
