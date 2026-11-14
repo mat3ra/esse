@@ -45,10 +45,6 @@ class RunConfig(BaseModel):
     """
     The command template of the application
     """
-    outFileName: str
-    """
-    The output file name of the application
-    """
 
 
 class ApplicationWithBuildConfigSchema(BaseModel):
