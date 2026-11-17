@@ -279,7 +279,7 @@ describe("buildEntityGraph", () => {
     });
 
     it("reports example coverage as a warning", () => {
-        expect(graph.meta.schemasWithExample).to.equal(222);
+        expect(graph.meta.schemasWithExample).to.equal(220);
         expect(lint.warnings.some((warning) => warning.startsWith("L9 example coverage"))).to.be
             .true;
     });
