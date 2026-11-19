@@ -93,7 +93,6 @@
             "enum": [
                 "atomic_constraints",
                 "atomic_labels",
-                "atomic_magnetic_moments",
                 "boundary_conditions"
             ]
         },

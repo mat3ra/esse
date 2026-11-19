@@ -3,8 +3,22 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "atomic labels schema",
     "description": "atomic labels schema",
-    "type": "array",
-    "items": {
-        "$ref": "./atomic_label.json"
-    }
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "atomic_labels"
+            ]
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "$ref": "../../../core/reusable/atomic_int.json"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "values"
+    ]
 }
