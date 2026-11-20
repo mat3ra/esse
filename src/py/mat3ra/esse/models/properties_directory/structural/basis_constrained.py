@@ -163,6 +163,17 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
+class AtomicIntSchema(BaseModel):
+    value: int
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
 class AtomicConstraintSchema(BaseModel):
     value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
@@ -184,6 +195,7 @@ class BasisConstrainedSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
     constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
     atomic constraints schema

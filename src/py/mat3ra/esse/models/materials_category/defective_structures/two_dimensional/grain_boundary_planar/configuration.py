@@ -303,6 +303,17 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
+class AtomicIntSchema(BaseModel):
+    value: int
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
 class BasisSchema(BaseModel):
     elements: List[AtomicElementSchema] = Field(..., title="atomic elements schema")
     """
@@ -313,17 +324,7 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-
-
-class AtomicIntSchema(BaseModel):
-    value: int
-    """
-    value of this entry
-    """
-    id: int
-    """
-    integer id of this entry
-    """
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -718,7 +719,6 @@ class CrystalSchema(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
@@ -913,6 +913,7 @@ class BasisSchema6(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema5(BaseModel):
@@ -1187,7 +1188,6 @@ class CrystalSchema5(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema6 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema5 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema5]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema5] = Field(None, title="database source schema")
@@ -1420,6 +1420,7 @@ class BasisSchema7(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema6(BaseModel):
@@ -1694,7 +1695,6 @@ class CrystalSchema6(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema7 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema6 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema6]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema6] = Field(None, title="database source schema")
@@ -1889,6 +1889,7 @@ class BasisSchema8(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema7(BaseModel):
@@ -2163,7 +2164,6 @@ class CrystalSchema7(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema8 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema7 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema7]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema7] = Field(None, title="database source schema")
@@ -2389,6 +2389,7 @@ class BasisSchema9(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema8(BaseModel):
@@ -2663,7 +2664,6 @@ class CrystalSchema8(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema9 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema8 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema8]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema8] = Field(None, title="database source schema")
@@ -2858,6 +2858,7 @@ class BasisSchema10(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema9(BaseModel):
@@ -3132,7 +3133,6 @@ class CrystalSchema9(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema10 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema9 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema9]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema9] = Field(None, title="database source schema")
@@ -3346,6 +3346,7 @@ class BasisSchema11(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema10(BaseModel):
@@ -3620,7 +3621,6 @@ class CrystalSchema10(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema11 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema10 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema10]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema10] = Field(None, title="database source schema")
@@ -3815,6 +3815,7 @@ class BasisSchema12(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema11(BaseModel):
@@ -4089,7 +4090,6 @@ class CrystalSchema11(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema12 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema11 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema11]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema11] = Field(None, title="database source schema")
@@ -4302,6 +4302,7 @@ class BasisSchema13(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicIntSchema]] = None
 
 
 class LatticeVectorsSchema12(BaseModel):
@@ -4576,7 +4577,6 @@ class CrystalSchema12(BaseModel):
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema13 = Field(..., title="basis schema")
-    labels: Optional[List[AtomicIntSchema]] = None
     lattice: LatticeSchema12 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema12]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema12] = Field(None, title="database source schema")

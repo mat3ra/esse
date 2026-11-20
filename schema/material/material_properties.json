@@ -17,10 +17,6 @@
             "description": "object containing an array of elements and coordinates in the supercell",
             "$ref": "../properties_directory/structural/basis.json"
         },
-        "labels": {
-            "description": "integer label per atom, keyed by atom id (e.g., 1, 2, as in Fe1, Fe2)",
-            "$ref": "../properties_directory/structural/basis/atomic_labels.json#/properties/values"
-        },
         "lattice": {
             "description": "object defining the lattice cell size and shape",
             "$ref": "../properties_directory/structural/lattice.json"
