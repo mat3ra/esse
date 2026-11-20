@@ -25,6 +25,6 @@ class AtomicIntSchema(BaseModel):
     """
 
 
-class AtomicLabelsSchema(BaseModel):
+class AtomicLabelsPropertySchema(BaseModel):
     name: Name
     values: List[AtomicIntSchema]

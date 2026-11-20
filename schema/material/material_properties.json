@@ -18,6 +18,7 @@
             "$ref": "../properties_directory/structural/basis.json"
         },
         "labels": {
+            "description": "integer label per atom, keyed by atom id (e.g., 1, 2, as in Fe1, Fe2)",
             "$ref": "../properties_directory/structural/basis/atomic_labels.json#/properties/values"
         },
         "lattice": {

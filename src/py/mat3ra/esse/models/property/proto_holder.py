@@ -48,7 +48,7 @@ class AtomicIntSchema(BaseModel):
     """
 
 
-class AtomicLabelsSchema(BaseModel):
+class AtomicLabelsPropertySchema(BaseModel):
     name: Name737
     values: List[AtomicIntSchema]
 
@@ -86,7 +86,7 @@ class Source(BaseModel):
 
 
 class ProtoPropertyHolderSchema(BaseModel):
-    data: Union[AtomicConstraintsPropertySchema, AtomicLabelsSchema, BoundaryConditionsPropertySchema]
+    data: Union[AtomicConstraintsPropertySchema, AtomicLabelsPropertySchema, BoundaryConditionsPropertySchema]
     """
     container of the information, specific to each property
     """
