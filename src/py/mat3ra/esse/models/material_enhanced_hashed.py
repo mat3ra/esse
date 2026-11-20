@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 
 
 class Value(Enum):
@@ -163,8 +163,8 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicIntSchema(BaseModel):
-    value: int
+class AtomicLabelSchema(BaseModel):
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -195,7 +195,7 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
     constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
     atomic constraints schema

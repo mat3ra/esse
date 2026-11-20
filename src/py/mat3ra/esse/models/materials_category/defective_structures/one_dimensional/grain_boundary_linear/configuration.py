@@ -297,8 +297,8 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicIntSchema(BaseModel):
-    value: int
+class AtomicLabelSchema(BaseModel):
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -318,7 +318,7 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -913,7 +913,7 @@ class BasisSchema31(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema30(BaseModel):
@@ -1420,7 +1420,7 @@ class BasisSchema32(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema31(BaseModel):
@@ -1889,7 +1889,7 @@ class BasisSchema33(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema32(BaseModel):
@@ -2389,7 +2389,7 @@ class BasisSchema34(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema33(BaseModel):
@@ -2858,7 +2858,7 @@ class BasisSchema35(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema34(BaseModel):
@@ -3346,7 +3346,7 @@ class BasisSchema36(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema35(BaseModel):
@@ -3815,7 +3815,7 @@ class BasisSchema37(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema36(BaseModel):
@@ -4302,7 +4302,7 @@ class BasisSchema38(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicIntSchema]] = None
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema37(BaseModel):

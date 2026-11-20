@@ -7,15 +7,15 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, conint
 
 
 class Name(Enum):
     atomic_labels = "atomic_labels"
 
 
-class AtomicIntSchema(BaseModel):
-    value: int
+class AtomicLabelSchema(BaseModel):
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -27,4 +27,4 @@ class AtomicIntSchema(BaseModel):
 
 class AtomicLabelsPropertySchema(BaseModel):
     name: Name
-    values: List[AtomicIntSchema]
+    values: List[AtomicLabelSchema]
