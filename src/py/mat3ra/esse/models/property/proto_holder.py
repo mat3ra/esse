@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, conint
 
 
 class Name(Enum):
@@ -33,7 +33,27 @@ class AtomicConstraintsPropertySchema(BaseModel):
     """
 
 
-class Name727(Enum):
+class Name737(Enum):
+    atomic_labels = "atomic_labels"
+
+
+class AtomicLabelSchema(BaseModel):
+    value: conint(ge=0)
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
+
+
+class AtomicLabelsPropertySchema(BaseModel):
+    name: Name737
+    values: List[AtomicLabelSchema]
+
+
+class Name738(Enum):
     boundary_conditions = "boundary_conditions"
 
 
@@ -45,7 +65,7 @@ class Type(Enum):
 
 
 class BoundaryConditionsPropertySchema(BaseModel):
-    name: Name727
+    name: Name738
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -66,7 +86,7 @@ class Source(BaseModel):
 
 
 class ProtoPropertyHolderSchema(BaseModel):
-    data: Union[AtomicConstraintsPropertySchema, BoundaryConditionsPropertySchema]
+    data: Union[AtomicConstraintsPropertySchema, AtomicLabelsPropertySchema, BoundaryConditionsPropertySchema]
     """
     container of the information, specific to each property
     """

@@ -14,7 +14,7 @@
             "$ref": "basis/units_enum.json"
         },
         "labels": {
-            "$ref": "./basis/atomic_labels.json"
+            "$ref": "./basis/atomic_labels.json#/properties/values"
         }
     },
     "required": [

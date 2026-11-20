@@ -164,7 +164,7 @@ class BasisUnitsEnum(Enum):
 
 
 class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -195,10 +195,7 @@ class BasisConstrainedSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
-    """
-    atomic labels schema
-    """
+    labels: Optional[List[AtomicLabelSchema]] = None
     constraints: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
     atomic constraints schema

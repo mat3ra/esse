@@ -164,7 +164,7 @@ class BasisUnitsEnum(Enum):
 
 
 class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -184,10 +184,7 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
-    """
-    atomic labels schema
-    """
+    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -285,30 +282,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name878(Enum):
+class Name891(Enum):
     density = "density"
 
 
-class Units385(Enum):
+class Units400(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units385] = None
+    units: Optional[Units400] = None
     value: float
 
 
-class Units386(Enum):
+class Units401(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units386] = None
+    units: Optional[Units401] = None
     value: float
 
 
-class Name879(Enum):
+class Name892(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +325,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name880(Enum):
+class Name893(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +338,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name881(Enum):
+class Name894(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +351,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name882(Enum):
+class Name895(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +360,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name883(Enum):
+class Name896(Enum):
     inchi_key = "inchi_key"
 
 
@@ -450,7 +447,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name884(Enum):
+class Name897(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -463,7 +460,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name884
+    name: Name897
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
