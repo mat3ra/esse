@@ -35,6 +35,10 @@ class RunConfig(BaseModel):
     """
     The command template of the application
     """
+    outFileName: Optional[str] = None
+    """
+    The output file name of the application
+    """
 
 
 class JupyterLabApplicationSchema(BaseModel):
