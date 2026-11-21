@@ -9,3 +9,4 @@ from enum import Enum
 
 class LatticeUnitsAngleEnum(Enum):
     degree = "degree"
+    radian = "radian"

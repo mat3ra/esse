@@ -50,6 +50,7 @@ class LatticeUnitsLengthEnum(Enum):
 
 class LatticeUnitsAngleEnum(Enum):
     degree = "degree"
+    radian = "radian"
 
 
 class LatticeUnitsSchema(BaseModel):
