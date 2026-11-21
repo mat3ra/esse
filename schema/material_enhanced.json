@@ -10,7 +10,7 @@
         {
             "properties": {
                 "basis": {
-                    "$ref": "properties_directory/structural/basis_constrained.json"
+                    "$ref": "properties_directory/structural/basis_with_atomic_properties.json"
                 }
             }
         }

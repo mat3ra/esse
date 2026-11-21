@@ -18,9 +18,6 @@
                     "$ref": "../properties_directory/structural/basis/atomic_constraints_property.json"
                 },
                 {
-                    "$ref": "../properties_directory/structural/basis/atomic_labels.json"
-                },
-                {
                     "$ref": "../properties_directory/structural/basis/boundary_conditions.json"
                 }
             ]

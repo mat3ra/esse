@@ -297,17 +297,6 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabelSchema(BaseModel):
-    value: conint(ge=0)
-    """
-    value of this entry
-    """
-    id: int
-    """
-    integer id of this entry
-    """
-
-
 class BasisSchema(BaseModel):
     elements: List[AtomicElementSchema] = Field(..., title="atomic elements schema")
     """
@@ -318,7 +307,6 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -416,7 +404,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name765(Enum):
+class Name772(Enum):
     density = "density"
 
 
@@ -439,7 +427,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name766(Enum):
+class Name773(Enum):
     symmetry = "symmetry"
 
 
@@ -459,7 +447,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name767(Enum):
+class Name774(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -472,7 +460,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name768(Enum):
+class Name775(Enum):
     p_norm = "p-norm"
 
 
@@ -485,7 +473,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name769(Enum):
+class Name776(Enum):
     inchi = "inchi"
 
 
@@ -494,7 +482,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name770(Enum):
+class Name777(Enum):
     inchi_key = "inchi_key"
 
 
@@ -581,7 +569,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name771(Enum):
+class Name778(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -594,7 +582,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name771
+    name: Name778
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -913,7 +901,6 @@ class BasisSchema77(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema77(BaseModel):
@@ -965,7 +952,7 @@ class LatticeSchema77(BaseModel):
     )
 
 
-class Name772(Enum):
+class Name779(Enum):
     volume = "volume"
 
 
@@ -979,7 +966,7 @@ class VolumeSchema77(BaseModel):
     value: float
 
 
-class Name773(Enum):
+class Name780(Enum):
     density = "density"
 
 
@@ -1002,7 +989,7 @@ class ScalarSchema93(BaseModel):
     value: float
 
 
-class Name774(Enum):
+class Name781(Enum):
     symmetry = "symmetry"
 
 
@@ -1022,7 +1009,7 @@ class SymmetrySchema77(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name775(Enum):
+class Name782(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1035,7 +1022,7 @@ class ElementalRatio78(BaseModel):
     """
 
 
-class Name776(Enum):
+class Name783(Enum):
     p_norm = "p-norm"
 
 
@@ -1048,7 +1035,7 @@ class PNorm78(BaseModel):
     value: float
 
 
-class Name777(Enum):
+class Name784(Enum):
     inchi = "inchi"
 
 
@@ -1057,7 +1044,7 @@ class InChIRepresentationSchema78(BaseModel):
     value: str
 
 
-class Name778(Enum):
+class Name785(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1117,14 +1104,14 @@ class DatabaseSourceSchema77(BaseModel):
     """
 
 
-class Name779(Enum):
+class Name786(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema77(BaseModel):
-    name: Name779
+    name: Name786
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1399,7 +1386,6 @@ class BasisSchema78(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema78(BaseModel):
@@ -1451,7 +1437,7 @@ class LatticeSchema78(BaseModel):
     )
 
 
-class Name780(Enum):
+class Name787(Enum):
     volume = "volume"
 
 
@@ -1465,7 +1451,7 @@ class VolumeSchema78(BaseModel):
     value: float
 
 
-class Name781(Enum):
+class Name788(Enum):
     density = "density"
 
 
@@ -1488,7 +1474,7 @@ class ScalarSchema94(BaseModel):
     value: float
 
 
-class Name782(Enum):
+class Name789(Enum):
     symmetry = "symmetry"
 
 
@@ -1508,7 +1494,7 @@ class SymmetrySchema78(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name783(Enum):
+class Name790(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1521,7 +1507,7 @@ class ElementalRatio79(BaseModel):
     """
 
 
-class Name784(Enum):
+class Name791(Enum):
     p_norm = "p-norm"
 
 
@@ -1534,7 +1520,7 @@ class PNorm79(BaseModel):
     value: float
 
 
-class Name785(Enum):
+class Name792(Enum):
     inchi = "inchi"
 
 
@@ -1543,7 +1529,7 @@ class InChIRepresentationSchema79(BaseModel):
     value: str
 
 
-class Name786(Enum):
+class Name793(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1603,14 +1589,14 @@ class DatabaseSourceSchema78(BaseModel):
     """
 
 
-class Name787(Enum):
+class Name794(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema78(BaseModel):
-    name: Name787
+    name: Name794
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

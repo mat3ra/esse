@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat
 
 
 class Value(Enum):
@@ -163,17 +163,6 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabelSchema(BaseModel):
-    value: conint(ge=0)
-    """
-    value of this entry
-    """
-    id: int
-    """
-    integer id of this entry
-    """
-
-
 class BasisSchema(BaseModel):
     elements: List[AtomicElementSchema] = Field(..., title="atomic elements schema")
     """
@@ -184,7 +173,6 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -282,7 +270,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name417(Enum):
+class Name421(Enum):
     density = "density"
 
 
@@ -305,7 +293,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name418(Enum):
+class Name422(Enum):
     symmetry = "symmetry"
 
 
@@ -325,7 +313,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name419(Enum):
+class Name423(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -338,7 +326,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name420(Enum):
+class Name424(Enum):
     p_norm = "p-norm"
 
 
@@ -351,7 +339,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name421(Enum):
+class Name425(Enum):
     inchi = "inchi"
 
 
@@ -360,7 +348,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name422(Enum):
+class Name426(Enum):
     inchi_key = "inchi_key"
 
 
@@ -447,7 +435,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name423(Enum):
+class Name427(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -460,7 +448,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name423
+    name: Name427
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -750,7 +738,6 @@ class BasisSchema52(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabelSchema]] = None
 
 
 class LatticeVectorsSchema51(BaseModel):
@@ -802,7 +789,7 @@ class LatticeSchema51(BaseModel):
     )
 
 
-class Name424(Enum):
+class Name428(Enum):
     volume = "volume"
 
 
@@ -816,7 +803,7 @@ class VolumeSchema51(BaseModel):
     value: float
 
 
-class Name425(Enum):
+class Name429(Enum):
     density = "density"
 
 
@@ -839,7 +826,7 @@ class ScalarSchema52(BaseModel):
     value: float
 
 
-class Name426(Enum):
+class Name430(Enum):
     symmetry = "symmetry"
 
 
@@ -859,7 +846,7 @@ class SymmetrySchema51(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name427(Enum):
+class Name431(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -872,7 +859,7 @@ class ElementalRatio51(BaseModel):
     """
 
 
-class Name428(Enum):
+class Name432(Enum):
     p_norm = "p-norm"
 
 
@@ -885,7 +872,7 @@ class PNorm51(BaseModel):
     value: float
 
 
-class Name429(Enum):
+class Name433(Enum):
     inchi = "inchi"
 
 
@@ -894,7 +881,7 @@ class InChIRepresentationSchema51(BaseModel):
     value: str
 
 
-class Name430(Enum):
+class Name434(Enum):
     inchi_key = "inchi_key"
 
 
@@ -954,14 +941,14 @@ class DatabaseSourceSchema51(BaseModel):
     """
 
 
-class Name431(Enum):
+class Name435(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema51(BaseModel):
-    name: Name431
+    name: Name435
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
