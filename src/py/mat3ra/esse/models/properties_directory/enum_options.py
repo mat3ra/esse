@@ -44,6 +44,8 @@ class ScalarPropertyEnum(Enum):
     total_energy = "total_energy"
     total_force = "total_force"
     valence_band_offset = "valence_band_offset"
+    schottky_barrier_height_p = "schottky_barrier_height_p"
+    schottky_barrier_height_n = "schottky_barrier_height_n"
     zero_point_energy = "zero_point_energy"
 
 
