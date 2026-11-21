@@ -10,7 +10,7 @@ Treat `schema/**`, `example/**`, and `manifest/**` as sources of truth. These ou
 
 - `dist/js/**`
 - `src/py/mat3ra/esse/data/**`
-- `src/py/mat3ra/esse/models/**` (`dist/py` points here)
+- `src/py/mat3ra/esse/models/**` (written by `generate_python_models.sh`)
 
 When merging:
 
@@ -19,11 +19,10 @@ When merging:
 3. Resolve generated files temporarily if Git requires it, then regenerate all derived artifacts from the merged sources:
 
 ```bash
-npm run transpile-and-build-assets
-pre-commit run generate-python-modules --all-files
+./generate_python_models.sh
 ```
 
-The Python hook only runs when a staged path contains `schema`, so stage the resolved source schema changes before invoking it. Its canonical command and pinned generator options live in `.pre-commit-config.yaml`.
+`generate_python_models.sh` holds the generator command and its options; the pre-commit hook and the CI check (`check-generated-python` in `.github/workflows/cicd.yml`) both run it. Install the pinned generator and formatters with `pip install -e ".[dev]"`. The script rebuilds the assets itself and replaces the models directory with the generator's output, so a model whose schema was removed is deleted too.
 
 After generation, stage the generated outputs and verify:
 
