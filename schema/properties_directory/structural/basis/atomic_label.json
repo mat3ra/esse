@@ -2,7 +2,7 @@
     "$id": "properties-directory/structural/basis/atomic-label",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "atomic label schema",
-    "description": "The part of an interface or stack the atom belongs to (0, 1, ...).",
+    "description": "per-atom integer label, e.g. the part of an interface, as in Fe1, Fe2",
     "type": "object",
     "allOf": [
         {

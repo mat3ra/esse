@@ -2,7 +2,7 @@
     "$id": "properties-directory/structural/basis/atomic-labels",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "atomic labels property schema",
-    "description": "integer label per atom, keyed by atom id (e.g., 1, 2, as in Fe1, Fe2)",
+    "description": "per-atom integer labels, e.g. the part of an interface, as in Fe1, Fe2",
     "type": "object",
     "properties": {
         "name": {
