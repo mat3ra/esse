@@ -1,0 +1,11 @@
+{
+    "$id": "model/mixins/magnetization",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Magnetization mixin",
+    "type": "object",
+    "properties": {
+        "magnetization": {
+            "type": "boolean"
+        }
+    }
+}
