@@ -1,0 +1,29 @@
+{
+    "tier1": {
+        "name": "physics-based",
+        "slug": "pb"
+    },
+    "tier2": {
+        "name": "atomistic",
+        "slug": "at"
+    },
+    "tier3": {
+        "name": "atomistic dispersion model",
+        "slug": "disp"
+    },
+    "type": {
+        "name": "Empirical dispersion DFT-D",
+        "slug": "empirical-dft-d"
+    },
+    "subtype": {
+        "name": "DFT-D3(0)",
+        "slug": "dft-d3-0"
+    },
+    "modifier": [
+    ],
+    "tags": [
+    ],
+    "method": {
+        "...": "include(../../../../method.json)"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "schemaId": "models-directory-qm-disp-xdm",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Exchange-Dipole Model (XDM)",
+    "description": "See work by Becke and Johnson (doi: 10.1063/1.1884601)",
+    "allOf": [
+        {
+            "$ref": "../disp.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "enum": [
+                {
+                    "name": "Exchange-Dipole Model",
+                    "slug": "exchange-dipole-model"
+                }
+            ]
+        },
+        "subtype": {
+            "description": "Whether C6 dispersion coefficient (XDM6) or higher-order coefficients are used",
+            "enum": [
+                {
+                    "name": "XDM6",
+                    "slug": "xdm6"
+                },
+                {
+                    "name": "XDM10",
+                    "slug": "xdm10"
+                }
+            ]
+        }
+    }
+}

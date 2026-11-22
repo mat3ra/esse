@@ -1,0 +1,29 @@
+{
+    "tier1": {
+        "name": "physics-based",
+        "slug": "pb"
+    },
+    "tier2": {
+        "name": "quantum-mechanical",
+        "slug": "qm"
+    },
+    "tier3": {
+        "name": "quantum-mechanical dispersion model",
+        "slug": "disp"
+    },
+    "type": {
+        "name": "Exchange-Dipole Model",
+        "slug": "exchange-dipole-model"
+    },
+    "subtype": {
+        "name": "XDM6",
+        "slug": "xdm6"
+    },
+    "modifier": [
+    ],
+    "tags": [
+    ],
+    "method": {
+        "...": "include(../../../../method.json)"
+    }
+}
