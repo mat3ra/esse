@@ -1,0 +1,90 @@
+{
+    "$id": "slab",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../material.json"
+        }
+    ],
+    "properties": {
+        "slab_config": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["slab"]
+                },
+                "source": {
+                    "$ref": "../material.json"
+                },
+                "slab_parameters": {
+                    "type": "object",
+                    "properties": {
+                        "miller_indices": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            },
+                            "description": "Miller indices of the slab surface."
+                        },
+                        "thickness": {
+                            "type": "integer",
+                            "description": "Thickness of the slab in layers."
+                        },
+                        "vacuum": {
+                            "type": "number",
+                            "description": "Vacuum spacing added above the slab."
+                        },
+                        "xy_supercell_matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "description": "Matrix used for creating the xy supercell."
+                        },
+                        "straining_matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "description": "Matrix used for straining the slab."
+                        },
+                        "termination": {
+                            "type": "string",
+                            "description": "Termination of the slab surface. e.g. 'C_P6/mmm_2'"
+                        }
+                    }
+                },
+                "derived_properties": {
+                    "type": "object",
+                    "properties": {
+                        "strain": {
+                            "type": "number",
+                            "description": "Mean absolute strain applied to the slab."
+                        },
+                        "transformation_matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "description": "Matrix describing the slab transformation."
+                        }
+                    }
+                }
+            },
+            "required": ["type", "source", "slab_parameters"]
+        }
+    },
+    "required": ["slab_config"]
+}
