@@ -1487,13 +1487,9 @@ class Queue(Enum):
     GOF = "GOF"
     G4OF = "G4OF"
     G8OF = "G8OF"
-    GP4OF = "GP4OF"
     GSF = "GSF"
     G4SF = "G4SF"
     G8SF = "G8SF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
 
 
 class TimeLimitType(Enum):
