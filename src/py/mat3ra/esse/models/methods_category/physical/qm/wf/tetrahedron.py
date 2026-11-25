@@ -25,17 +25,17 @@ class SlugifiedEntryOrSlug(Enum):
     tetrahedron = "tetrahedron"
 
 
-class SlugifiedEntryOrSlug265(Enum):
+class SlugifiedEntryOrSlug261(Enum):
     linear = "linear"
     optimized = "optimized"
     bloechl = "bloechl"
 
 
-class SlugifiedEntryOrSlug266(Enum):
+class SlugifiedEntryOrSlug262(Enum):
     wf = "wf"
 
 
-class SlugifiedEntryOrSlug267(Enum):
+class SlugifiedEntryOrSlug263(Enum):
     qm = "qm"
 
 
@@ -44,15 +44,15 @@ class TetrahedronMethodForBrillouinZoneIntegrationCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug265]] = Field(None, title="slugified entry or slug")
+    subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug261]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug266]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug262]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug267]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug263]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

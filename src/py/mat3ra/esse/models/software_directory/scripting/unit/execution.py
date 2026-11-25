@@ -246,7 +246,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class TemplateSchema6(BaseModel):
+class TemplateSchema7(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -274,8 +274,8 @@ class TemplateSchema6(BaseModel):
     """
 
 
-class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines6(BaseModel):
-    template: TemplateSchema6 = Field(..., title="template schema")
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7(BaseModel):
+    template: TemplateSchema7 = Field(..., title="template schema")
     rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
@@ -333,6 +333,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     CARTESIAN: bool
     """
     Whether atomic positions are expressed in cartesian coordinates.
+    """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
     """
 
 
@@ -649,7 +653,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name502(Enum):
+class Name505(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1034,6 +1038,6 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[
-        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines6]
+        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7]
     ] = Field(..., title="execution unit input schema")
     context: Optional[List[ContextItemSchema]] = []

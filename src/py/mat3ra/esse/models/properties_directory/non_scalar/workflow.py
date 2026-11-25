@@ -17,17 +17,17 @@ class Name(Enum):
 class Queue(Enum):
     D = "D"
     OR = "OR"
-    OF = "OF"
-    OFplus = "OFplus"
-    SR = "SR"
-    SF = "SF"
-    SFplus = "SFplus"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
+    SR = "SR"
     SR4 = "SR4"
     SR8 = "SR8"
     SR16 = "SR16"
+    OF = "OF"
+    OFplus = "OFplus"
+    SF = "SF"
+    SFplus = "SFplus"
     GOF = "GOF"
     G4OF = "G4OF"
     G8OF = "G8OF"
@@ -107,7 +107,7 @@ class Error(BaseModel):
 class ComputeArgumentsSchema(BaseModel):
     queue: Queue
     """
-    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
     """
     nodes: int
     """
@@ -181,7 +181,7 @@ class Error15(BaseModel):
 class ComputeArgumentsSchema15(BaseModel):
     queue: Queue
     """
-    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+    Name of the submission queue: https://docs.mat3ra.com/infrastructure/resource/queues/.
     """
     nodes: int
     """
@@ -840,6 +840,10 @@ class NWChemTotalEnergyContextProviderSchema(BaseModel):
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """
+    RESTART: Optional[bool] = None
+    """
+    Whether to continue from the RTDB of a previous run in the same working directory, taking its geometry, instead of declaring one. Optional: absent means no restart.
+    """
 
 
 class RESTARTMODE(Enum):
@@ -1125,7 +1129,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name890(Enum):
+class Name899(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1155,7 +1159,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name891(Enum):
+class Name900(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -2327,7 +2331,7 @@ class WorkflowPropertySchema(BaseModel):
     """
     workflows: List[Dict[str, Any]]
     """
-    Array of workflows with the same schema as the current one.
+    Array of workflows with the same schema as the current one. NOTE: items are not validated against the workflow schema itself (known limitation - see server/utils.ts's parseIncludeReferenceStatements for why, and consider fixing).
     """
     compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
