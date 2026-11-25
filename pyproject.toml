@@ -28,7 +28,11 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    # generate_python_models.sh: the generator and the formatters it runs, pinned together so the
+    # models generate identically everywhere, the CI check included.
     "datamodel-code-generator==0.28.5",
+    "black==26.10.1",
+    "isort==6.1.0",
     "pre-commit>=4.1.0",
 ]
 tests = [
@@ -68,19 +72,6 @@ git_describe_command = "git describe --tags --long --match [v0-9]*"
 [tool.setuptools.packages.find]
 where = [
     "src/py",
-]
-
-[tool.setuptools.package-data]
-"*" = [
-    # NOTE: may be needed to allow for the `models` link in the `src/py` directory
-    "dist/py/**"
-]
-
-[tool.setuptools.exclude-package-data]
-"*" = [
-    # Since models inside `src/py` is a link, exclusion is needed
-    # to avoid `doesn't exist or not a regular file` error
-    "models"
 ]
 
 [tool.black]
