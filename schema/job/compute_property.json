@@ -39,13 +39,9 @@
                         "GOF",
                         "G4OF",
                         "G8OF",
-                        "GP4OF",
                         "GSF",
                         "G4SF",
-                        "G8SF",
-                        "GPSF",
-                        "GP2SF",
-                        "GP4SF"
+                        "G8SF"
                     ],
                     "tsType": "QueueNameEnum"
                 },

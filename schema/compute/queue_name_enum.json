@@ -21,13 +21,9 @@
                 "GOF",
                 "G4OF",
                 "G8OF",
-                "GP4OF",
                 "GSF",
                 "G4SF",
-                "G8SF",
-                "GPSF",
-                "GP2SF",
-                "GP4SF"
+                "G8SF"
             ],
             "tsEnumNames": [
                 "debug",
@@ -46,13 +42,9 @@
                 "gpuOrdinaryFast",
                 "gpu4OrdinaryFast",
                 "gpu8OrdinaryFast",
-                "gpuP4OrdinaryFast",
                 "gpuSavingFast",
                 "gpu4SavingFast",
-                "gpu8SavingFast",
-                "gpuPSavingFast",
-                "gpuP2SavingFast",
-                "gpuP4SavingFast"
+                "gpu8SavingFast"
             ]
         }
     }

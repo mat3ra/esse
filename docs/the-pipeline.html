@@ -108,11 +108,20 @@ against the format.</p>
 remember. <code>.husky/pre-commit</code>:</p>
 <ol>
 <li>Rebuilds JS and PY assets if any <code>.json</code> changed (<code>npm run transpile-and-build-assets</code>).</li>
-<li>Runs <code>pre-commit run --all-files</code> — ruff, black, and <code>datamodel-codegen</code> for the pydantic
-models — inside the project&#39;s <code>.venv</code>, when one exists. Without a <code>.venv</code> the hook skips the
-Python model regeneration rather than failing.</li>
+<li>Runs <code>pre-commit run --all-files</code> — ruff, black, and <code>generate_python_models.sh</code>
+(<code>datamodel-codegen</code>) for the pydantic models, when a staged path is a schema — inside the
+project&#39;s <code>.venv</code>, when one exists. Without a <code>.venv</code> the hook skips the Python model
+regeneration rather than failing.</li>
 <li>Runs <code>lint-staged</code>, then <code>npm run transpile</code>.</li>
 </ol>
+<p>Because the hook can skip, CI checks it: the <code>check-generated-python</code> job runs
+<code>generate_python_models.sh</code> and fails when the committed files under <code>src/py/</code> differ. To
+regenerate by hand, with the pinned generator and formatters from <code>pip install -e &quot;.[dev]&quot;</code>:</p>
+<pre><code class="language-bash">./generate_python_models.sh
+</code></pre>
+<p>The script rebuilds the assets (<code>npm run transpile-and-build-assets</code>) before generating, so the
+models always come from the schemas on disk, and it replaces <code>src/py/mat3ra/esse/models</code> with the
+generator&#39;s output, so a model whose schema was removed or renamed is deleted with it.</p>
 <p><strong><code>dist/</code> is build output and is not committed.</strong> It is gitignored and rebuilt on demand:
 <code>prepublishOnly</code> produces it before an npm publish, and the deploy job builds it before
 assembling the site. <code>graph.json</code> is a site asset only — it is written into <code>site/</code>, never into
