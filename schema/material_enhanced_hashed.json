@@ -50,9 +50,8 @@
             "title": "basis schema",
             "type": "object",
             "required": [
-                "constraints",
-                "coordinates",
-                "elements"
+                "elements",
+                "coordinates"
             ],
             "properties": {
                 "elements": {
@@ -254,84 +253,111 @@
                     ],
                     "default": "crystal"
                 },
-                "labels": {
+                "atomic_properties": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "atomic labels schema",
-                    "description": "atomic labels schema",
+                    "title": "atomic properties schema",
+                    "description": "per-atom properties of a basis, each keyed by atom id",
                     "type": "array",
                     "items": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "atomic label schema",
-                        "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
-                        "type": "object",
-                        "required": [
-                            "id",
-                            "value"
-                        ],
-                        "properties": {
-                            "value": {
-                                "anyOf": [
-                                    {
-                                        "type": [
-                                            "integer",
-                                            "string",
-                                            "number"
+                        "oneOf": [
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "atomic constraints property schema",
+                                "description": "atomic constraints property schema (as stored in a database)",
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "enum": [
+                                            "atomic_constraints"
                                         ]
                                     },
-                                    {
+                                    "values": {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                        "title": "integer positive single digit",
-                                        "type": "integer",
-                                        "minimum": 1,
-                                        "maximum": 9
-                                    }
-                                ],
-                                "description": "value of this entry"
-                            },
-                            "id": {
-                                "description": "integer id of this entry",
-                                "type": "integer"
-                            }
-                        }
-                    }
-                },
-                "constraints": {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "atomic constraints schema",
-                    "description": "atomic constraints schema",
-                    "type": "array",
-                    "items": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "atomic constraint schema",
-                        "description": "constraint of atoms by ids, used to constraint the position etc.",
-                        "type": "object",
-                        "required": [
-                            "id",
-                            "value"
-                        ],
-                        "properties": {
-                            "value": {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "vector boolean 3d schema",
-                                "oneOf": [
-                                    {
-                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                        "title": "array of 3 boolean elements schema",
+                                        "title": "atomic constraints schema",
+                                        "description": "atomic constraints schema",
                                         "type": "array",
                                         "items": {
-                                            "type": "boolean"
-                                        },
-                                        "minItems": 3,
-                                        "maxItems": 3
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic constraint schema",
+                                            "description": "constraint of atoms by ids, used to constraint the position etc.",
+                                            "type": "object",
+                                            "required": [
+                                                "id",
+                                                "value"
+                                            ],
+                                            "properties": {
+                                                "value": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "vector boolean 3d schema",
+                                                    "oneOf": [
+                                                        {
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "array of 3 boolean elements schema",
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "minItems": 3,
+                                                            "maxItems": 3
+                                                        }
+                                                    ],
+                                                    "description": "value of this entry"
+                                                },
+                                                "id": {
+                                                    "description": "integer id of this entry",
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
                                     }
-                                ],
-                                "description": "value of this entry"
+                                },
+                                "required": [
+                                    "name",
+                                    "values"
+                                ]
                             },
-                            "id": {
-                                "description": "integer id of this entry",
-                                "type": "integer"
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "atomic labels property schema",
+                                "description": "per-atom integer labels, e.g. the part of an interface, as in Fe1, Fe2",
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "enum": [
+                                            "atomic_labels"
+                                        ]
+                                    },
+                                    "values": {
+                                        "type": "array",
+                                        "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic label schema",
+                                            "description": "per-atom integer label, e.g. the part of an interface, as in Fe1, Fe2",
+                                            "type": "object",
+                                            "required": [
+                                                "id",
+                                                "value"
+                                            ],
+                                            "properties": {
+                                                "value": {
+                                                    "minimum": 0,
+                                                    "type": "integer",
+                                                    "description": "value of this entry"
+                                                },
+                                                "id": {
+                                                    "description": "integer id of this entry",
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "values"
+                                ]
                             }
-                        }
+                        ]
                     }
                 }
             }

@@ -3318,7 +3318,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "elemental",
                 "atomic_radius.json"
             ],
@@ -3326,7 +3326,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "elemental",
                 "atomic_radius.json · example"
             ],
@@ -3334,7 +3334,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "elemental",
                 "electronegativity.json"
             ],
@@ -3342,7 +3342,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "elemental",
                 "electronegativity.json · example"
             ],
@@ -3350,7 +3350,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "elemental",
                 "ionization_potential.json"
             ],
@@ -3358,7 +3358,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "elemental",
                 "ionization_potential.json · example"
             ],
@@ -3366,7 +3366,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "average_potential_profile.json"
             ],
@@ -3374,7 +3374,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "band_gaps.json"
             ],
@@ -3382,7 +3382,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "band_gaps.json · example"
             ],
@@ -3390,7 +3390,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "band_structure.json"
             ],
@@ -3398,7 +3398,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "band_structure.json · example"
             ],
@@ -3406,7 +3406,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "charge_density_profile.json"
             ],
@@ -3414,7 +3414,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "charge_density_profile.json · example"
             ],
@@ -3422,7 +3422,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "density_of_states.json"
             ],
@@ -3430,7 +3430,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "density_of_states.json · example"
             ],
@@ -3438,7 +3438,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "dielectric_tensor.json"
             ],
@@ -3446,7 +3446,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "dielectric_tensor.json · example"
             ],
@@ -3454,7 +3454,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "eigenvalues_at_kpoints.json"
             ],
@@ -3462,7 +3462,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "eigenvalues_at_kpoints.json · example"
             ],
@@ -3470,7 +3470,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "file_content.json"
             ],
@@ -3478,7 +3478,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "file_content.json · example"
             ],
@@ -3486,7 +3486,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "final_structure.json"
             ],
@@ -3494,7 +3494,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "formation_energy_contributions.json"
             ],
@@ -3502,7 +3502,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "formation_energy_contributions.json · example"
             ],
@@ -3510,7 +3510,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "hubbard_u.json"
             ],
@@ -3518,7 +3518,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "hubbard_u.json · example"
             ],
@@ -3526,7 +3526,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "hubbard_v_nn.json"
             ],
@@ -3534,7 +3534,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "hubbard_v_nn.json · example"
             ],
@@ -3542,7 +3542,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "hubbard_v.json"
             ],
@@ -3550,7 +3550,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "hubbard_v.json · example"
             ],
@@ -3558,7 +3558,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "is_relaxed.json"
             ],
@@ -3566,7 +3566,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "phonon_dispersions.json"
             ],
@@ -3574,7 +3574,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "phonon_dispersions.json · example"
             ],
@@ -3582,7 +3582,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "phonon_dos.json"
             ],
@@ -3590,7 +3590,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "phonon_dos.json · example"
             ],
@@ -3598,7 +3598,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "potential_profile.json"
             ],
@@ -3606,7 +3606,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "potential_profile.json · example"
             ],
@@ -3614,7 +3614,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "reaction_energy_profile.json"
             ],
@@ -3622,7 +3622,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "reaction_energy_profile.json · example"
             ],
@@ -3630,7 +3630,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "stress_tensor.json"
             ],
@@ -3638,7 +3638,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "stress_tensor.json · example"
             ],
@@ -3646,7 +3646,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "total_energy_contributions.json"
             ],
@@ -3654,7 +3654,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "total_energy_contributions.json · example"
             ],
@@ -3662,7 +3662,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "vibrational_spectrum.json"
             ],
@@ -3670,7 +3670,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "vibrational_spectrum.json · example"
             ],
@@ -3678,7 +3678,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "wavefunction_amplitude.json"
             ],
@@ -3686,7 +3686,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "wavefunction_amplitude.json · example"
             ],
@@ -3694,7 +3694,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "non-scalar",
                 "workflow.json"
             ],
@@ -3702,7 +3702,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "band_edge_conduction_min.json"
             ],
@@ -3710,7 +3710,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "band_edge_conduction_min.json · example"
             ],
@@ -3718,7 +3718,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "band_edge_valence_max.json"
             ],
@@ -3726,7 +3726,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "band_edge_valence_max.json · example"
             ],
@@ -3734,7 +3734,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "defect_formation_energy.json"
             ],
@@ -3742,7 +3742,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "defect_formation_energy.json · example"
             ],
@@ -3750,7 +3750,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "electron_affinity.json"
             ],
@@ -3758,7 +3758,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "electron_affinity.json · example"
             ],
@@ -3766,7 +3766,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "fermi_energy.json"
             ],
@@ -3774,7 +3774,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "fermi_energy.json · example"
             ],
@@ -3782,7 +3782,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "formation_energy.json"
             ],
@@ -3790,7 +3790,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "formation_energy.json · example"
             ],
@@ -3798,7 +3798,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "homo_energy.json"
             ],
@@ -3806,7 +3806,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "interfacial_energy.json"
             ],
@@ -3814,7 +3814,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "interfacial_energy.json · example"
             ],
@@ -3822,7 +3822,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "ionization_potential.json"
             ],
@@ -3830,7 +3830,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "ionization_potential.json · example"
             ],
@@ -3838,7 +3838,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "lumo_energy.json"
             ],
@@ -3846,7 +3846,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "magnetization_absolute.json"
             ],
@@ -3854,7 +3854,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "magnetization_absolute.json · example"
             ],
@@ -3862,7 +3862,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "magnetization_total.json"
             ],
@@ -3870,7 +3870,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "magnetization_total.json · example"
             ],
@@ -3878,7 +3878,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "pressure.json"
             ],
@@ -3886,7 +3886,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "pressure.json · example"
             ],
@@ -3894,7 +3894,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "reaction_energy_barrier.json"
             ],
@@ -3902,7 +3902,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "reaction_energy_barrier.json · example"
             ],
@@ -3910,7 +3910,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "schottky_barrier_height_n.json"
             ],
@@ -3918,7 +3918,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "schottky_barrier_height_n.json · example"
             ],
@@ -3926,7 +3926,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "schottky_barrier_height_p.json"
             ],
@@ -3934,7 +3934,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "schottky_barrier_height_p.json · example"
             ],
@@ -3942,7 +3942,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "surface_energy.json"
             ],
@@ -3950,7 +3950,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "surface_energy.json · example"
             ],
@@ -3958,7 +3958,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "thermal_correction_to_energy.json"
             ],
@@ -3966,7 +3966,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "thermal_correction_to_energy.json · example"
             ],
@@ -3974,7 +3974,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "thermal_correction_to_enthalpy.json"
             ],
@@ -3982,7 +3982,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "thermal_correction_to_enthalpy.json · example"
             ],
@@ -3990,7 +3990,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "total_energy.json"
             ],
@@ -3998,7 +3998,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "total_energy.json · example"
             ],
@@ -4006,7 +4006,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "total_force.json"
             ],
@@ -4014,7 +4014,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "total_force.json · example"
             ],
@@ -4022,7 +4022,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "valence_band_offset.json"
             ],
@@ -4030,7 +4030,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "valence_band_offset.json · example"
             ],
@@ -4038,7 +4038,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "zero_point_energy.json"
             ],
@@ -4046,7 +4046,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "scalar",
                 "zero_point_energy.json · example"
             ],
@@ -4054,7 +4054,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "angle_enum.json"
             ],
@@ -4062,7 +4062,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_constraint.json"
             ],
@@ -4070,7 +4070,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_constraints_property.json"
             ],
@@ -4078,7 +4078,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_constraints_property.json · example"
             ],
@@ -4086,7 +4086,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_constraints.json"
             ],
@@ -4094,7 +4094,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_coordinate.json"
             ],
@@ -4102,7 +4102,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_coordinate.json · example"
             ],
@@ -4110,7 +4110,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_coordinates.json"
             ],
@@ -4118,7 +4118,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_coordinates.json · example"
             ],
@@ -4126,7 +4126,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_element.json"
             ],
@@ -4134,7 +4134,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_element.json · example"
             ],
@@ -4142,7 +4142,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_elements.json"
             ],
@@ -4150,7 +4150,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_elements.json · example"
             ],
@@ -4158,7 +4158,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_forces.json"
             ],
@@ -4166,7 +4166,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_forces.json · example"
             ],
@@ -4174,7 +4174,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_label.json"
             ],
@@ -4182,7 +4182,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_label.json · example"
             ],
@@ -4190,7 +4190,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_labels.json"
             ],
@@ -4198,7 +4198,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "atomic_labels.json · example"
             ],
@@ -4206,15 +4206,23 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
-                "basis_constrained.json"
+                "atomic_properties.json"
             ],
-            "path": "schema/properties_directory/structural/basis_constrained.json"
+            "path": "schema/properties_directory/structural/basis/atomic_properties.json"
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
+                "structural",
+                "basis_with_atomic_properties.json"
+            ],
+            "path": "schema/properties_directory/structural/basis_with_atomic_properties.json"
+        },
+        {
+            "segments": [
+                "Properties (92)",
                 "structural",
                 "basis.json"
             ],
@@ -4222,7 +4230,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "basis.json · example"
             ],
@@ -4230,7 +4238,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "basis/units_enum.json"
             ],
@@ -4238,7 +4246,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "bonds.json"
             ],
@@ -4246,7 +4254,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "bonds.json · example"
             ],
@@ -4254,7 +4262,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "boundary_conditions.json"
             ],
@@ -4262,7 +4270,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "density.json"
             ],
@@ -4270,7 +4278,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "density.json · example"
             ],
@@ -4278,7 +4286,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "elemental_ratio.json"
             ],
@@ -4286,7 +4294,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "elemental_ratio.json · example"
             ],
@@ -4294,7 +4302,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "functional_group.json"
             ],
@@ -4302,7 +4310,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "inchi_key.json"
             ],
@@ -4310,7 +4318,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "inchi_key.json · example"
             ],
@@ -4318,7 +4326,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "inchi.json"
             ],
@@ -4326,7 +4334,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "inchi.json · example"
             ],
@@ -4334,7 +4342,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "lattice.json"
             ],
@@ -4342,7 +4350,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "lattice.json · example"
             ],
@@ -4350,7 +4358,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "length_enum.json"
             ],
@@ -4358,7 +4366,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "magnetic_moments.json"
             ],
@@ -4366,7 +4374,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "magnetic_moments.json · example"
             ],
@@ -4374,7 +4382,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "molecular_pattern.json"
             ],
@@ -4382,7 +4390,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "molecular_pattern.json · example"
             ],
@@ -4390,7 +4398,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "p_norm.json"
             ],
@@ -4398,7 +4406,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "p_norm.json · example"
             ],
@@ -4406,7 +4414,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "ring.json"
             ],
@@ -4414,7 +4422,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "special_bond.json"
             ],
@@ -4422,7 +4430,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "symmetry.json"
             ],
@@ -4430,7 +4438,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "symmetry.json · example"
             ],
@@ -4438,7 +4446,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "type_enum.json"
             ],
@@ -4446,7 +4454,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "type_extended_enum.json"
             ],
@@ -4454,7 +4462,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "units.json"
             ],
@@ -4462,7 +4470,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "vectors.json"
             ],
@@ -4470,7 +4478,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "vectors.json · example"
             ],
@@ -4478,7 +4486,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "vectors/units_enum.json"
             ],
@@ -4486,7 +4494,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "volume.json"
             ],
@@ -4494,7 +4502,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "structural",
                 "volume.json · example"
             ],
@@ -4502,7 +4510,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "uncategorized",
                 "derived_properties.json"
             ],
@@ -4510,7 +4518,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "uncategorized",
                 "electronic_configuration.json"
             ],
@@ -4518,7 +4526,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "uncategorized",
                 "electronic_configuration.json · example"
             ],
@@ -4526,7 +4534,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "uncategorized",
                 "hubbard_parameters.json"
             ],
@@ -4534,7 +4542,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "uncategorized",
                 "jupyter_notebook_endpoint.json"
             ],
@@ -4542,7 +4550,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "workflow",
                 "electronic.json"
             ],
@@ -4550,7 +4558,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "workflow",
                 "electronic.json · example"
             ],
@@ -4558,7 +4566,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "workflow",
                 "ionic.json"
             ],
@@ -4566,7 +4574,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "workflow",
                 "ionic.json · example"
             ],
@@ -4574,7 +4582,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "workflow",
                 "kpoint.json"
             ],
@@ -4582,7 +4590,7 @@
         },
         {
             "segments": [
-                "Properties (91)",
+                "Properties (92)",
                 "workflow",
                 "kpoint.json · example"
             ],
