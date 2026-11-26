@@ -1972,7 +1972,9 @@
                                 },
                                 "units": {
                                     "enum": [
-                                        "states/unitcell"
+                                        "states/unitcell",
+                                        "states/eV/unitcell",
+                                        "states/Ry/unitcell"
                                     ],
                                     "description": "units for an axis",
                                     "type": "string"
@@ -4020,8 +4022,7 @@
                                                                     "description": "The run configuration of the application",
                                                                     "type": "object",
                                                                     "required": [
-                                                                        "commandTemplate",
-                                                                        "outFileName"
+                                                                        "commandTemplate"
                                                                     ],
                                                                     "properties": {
                                                                         "commandTemplate": {
@@ -6707,8 +6708,7 @@
                                                 "description": "The run configuration of the application",
                                                 "type": "object",
                                                 "required": [
-                                                    "commandTemplate",
-                                                    "outFileName"
+                                                    "commandTemplate"
                                                 ],
                                                 "properties": {
                                                     "commandTemplate": {

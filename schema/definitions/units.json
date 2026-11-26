@@ -116,7 +116,9 @@
     },
     "electronicDOS": {
         "enum": [
-            "states/unitcell"
+            "states/unitcell",
+            "states/eV/unitcell",
+            "states/Ry/unitcell"
         ]
     },
     "magnetic": {

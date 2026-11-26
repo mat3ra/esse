@@ -1431,8 +1431,7 @@
                                                     "description": "The run configuration of the application",
                                                     "type": "object",
                                                     "required": [
-                                                        "commandTemplate",
-                                                        "outFileName"
+                                                        "commandTemplate"
                                                     ],
                                                     "properties": {
                                                         "commandTemplate": {
@@ -4118,8 +4117,7 @@
                                 "description": "The run configuration of the application",
                                 "type": "object",
                                 "required": [
-                                    "commandTemplate",
-                                    "outFileName"
+                                    "commandTemplate"
                                 ],
                                 "properties": {
                                     "commandTemplate": {
