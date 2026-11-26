@@ -42,6 +42,8 @@ class Label7(Enum):
 
 class Units191(Enum):
     states_unitcell = "states/unitcell"
+    states_eV_unitcell = "states/eV/unitcell"
+    states_Ry_unitcell = "states/Ry/unitcell"
 
 
 class AxisSchema10(BaseModel):
