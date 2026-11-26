@@ -1137,6 +1137,8 @@ class Label21(Enum):
 
 class Units253(Enum):
     states_unitcell = "states/unitcell"
+    states_eV_unitcell = "states/eV/unitcell"
+    states_Ry_unitcell = "states/Ry/unitcell"
 
 
 class AxisSchema24(BaseModel):
@@ -2017,7 +2019,7 @@ class RunConfig(BaseModel):
     """
     The command template of the application
     """
-    outFileName: str
+    outFileName: Optional[str] = None
     """
     The output file name of the application
     """

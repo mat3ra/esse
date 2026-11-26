@@ -584,7 +584,7 @@ class RunConfig(BaseModel):
     """
     The command template of the application
     """
-    outFileName: str
+    outFileName: Optional[str] = None
     """
     The output file name of the application
     """
