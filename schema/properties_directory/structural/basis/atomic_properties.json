@@ -1,0 +1,17 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic properties schema",
+    "description": "per-atom properties of a basis, each keyed by atom id",
+    "type": "array",
+    "items": {
+        "oneOf": [
+            {
+                "$ref": "./atomic_constraints_property.json"
+            },
+            {
+                "$ref": "./atomic_labels.json"
+            }
+        ]
+    }
+}

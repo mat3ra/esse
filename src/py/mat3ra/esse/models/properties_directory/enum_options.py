@@ -89,6 +89,7 @@ class ArrayOfObjectsPropertyEnum(Enum):
 
 class ProtoPropertyEnum(Enum):
     atomic_constraints = "atomic_constraints"
+    atomic_labels = "atomic_labels"
     boundary_conditions = "boundary_conditions"
 
 

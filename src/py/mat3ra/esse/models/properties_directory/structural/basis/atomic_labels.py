@@ -4,13 +4,18 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from enum import Enum
+from typing import List
 
-from pydantic import BaseModel, Field, RootModel, conint
+from pydantic import BaseModel, conint
+
+
+class Name(Enum):
+    atomic_labels = "atomic_labels"
 
 
 class AtomicLabelSchema(BaseModel):
-    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+    value: conint(ge=0)
     """
     value of this entry
     """
@@ -20,8 +25,6 @@ class AtomicLabelSchema(BaseModel):
     """
 
 
-class AtomicLabelsSchema(RootModel[List[AtomicLabelSchema]]):
-    root: List[AtomicLabelSchema] = Field(..., title="atomic labels schema")
-    """
-    atomic labels schema
-    """
+class AtomicLabelsPropertySchema(BaseModel):
+    name: Name
+    values: List[AtomicLabelSchema]

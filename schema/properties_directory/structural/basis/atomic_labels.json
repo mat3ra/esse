@@ -1,10 +1,24 @@
 {
     "$id": "properties-directory/structural/basis/atomic-labels",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic labels schema",
-    "description": "atomic labels schema",
-    "type": "array",
-    "items": {
-        "$ref": "./atomic_label.json"
-    }
+    "title": "atomic labels property schema",
+    "description": "per-atom integer labels, e.g. the part of an interface, as in Fe1, Fe2",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "atomic_labels"
+            ]
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "$ref": "./atomic_label.json"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "values"
+    ]
 }
