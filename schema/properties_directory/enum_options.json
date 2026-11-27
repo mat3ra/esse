@@ -94,6 +94,11 @@
                 "atomic_constraints",
                 "atomic_labels",
                 "boundary_conditions"
+            ],
+            "tsEnumNames": [
+                "atomic_constraints",
+                "atomic_labels",
+                "boundary_conditions"
             ]
         },
         "MetaPropertyEnum": {
